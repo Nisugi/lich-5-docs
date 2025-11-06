@@ -5,6 +5,7 @@ Optimized for free tier usage with Gemini 2.0 Flash
 
 import os
 import logging
+import time
 from typing import Optional
 from .base import LLMProvider, ProviderConfig
 
@@ -27,9 +28,10 @@ class GeminiProvider(LLMProvider):
                 model="gemini-2.0-flash-exp",  # Current 2.0 Flash model
                 max_tokens=8192,  # 2.0 Flash supports larger outputs
                 temperature=0.0,
-                # Free tier limits (same as 1.5)
-                requests_per_minute=15,
-                requests_per_day=1500,
+                # ACTUAL free tier limits (much lower than documented!)
+                # Being conservative to avoid 429 errors
+                requests_per_minute=8,   # Setting to 8/min to be safe (actual limit ~10)
+                requests_per_day=150,    # Setting to 150/day to be safe (actual limit ~200)
                 # No costs for free tier
                 cost_per_1m_input=0,
                 cost_per_1m_output=0
@@ -106,40 +108,65 @@ class GeminiProvider(LLMProvider):
         else:
             full_prompt = prompt
 
-        try:
-            logger.info(f"Sending request to Gemini ({self.daily_request_count}/{self.config.requests_per_day} daily)")
+        # Retry logic with exponential backoff for 429 errors
+        max_retries = 5
+        base_delay = 30  # Start with 30 seconds (more conservative)
 
-            # Generate response
-            response = self.model.generate_content(
-                full_prompt,
-                generation_config=genai.types.GenerationConfig(
-                    max_output_tokens=self.config.max_tokens,
-                    temperature=self.config.temperature,
-                ),
-                safety_settings=self.safety_settings
-            )
+        for attempt in range(max_retries):
+            try:
+                logger.info(f"Sending request to Gemini ({self.daily_request_count}/{self.config.requests_per_day} daily)")
 
-            # Extract text
-            result_text = response.text
-
-            # Track usage (no cost for free tier)
-            self._track_cost(full_prompt, result_text)
-
-            # Log remaining quota
-            remaining = self.config.requests_per_day - self.daily_request_count
-            if remaining < 100:
-                logger.warning(f"⚠️  Low quota warning: {remaining} requests remaining today")
-
-            return result_text
-
-        except Exception as e:
-            logger.error(f"Gemini API error: {e}")
-            if "quota" in str(e).lower():
-                raise Exception(
-                    f"Gemini quota exceeded. Daily limit: {self.config.requests_per_day}. "
-                    f"Consider waiting or switching to OpenAI if you have credits."
+                # Generate response
+                response = self.model.generate_content(
+                    full_prompt,
+                    generation_config=genai.types.GenerationConfig(
+                        max_output_tokens=self.config.max_tokens,
+                        temperature=self.config.temperature,
+                    ),
+                    safety_settings=self.safety_settings
                 )
-            raise
+
+                # Extract text
+                result_text = response.text
+
+                # Track usage (no cost for free tier)
+                self._track_cost(full_prompt, result_text)
+
+                # Log remaining quota
+                remaining = self.config.requests_per_day - self.daily_request_count
+                if remaining < 100:
+                    logger.warning(f"⚠️  Low quota warning: {remaining} requests remaining today")
+
+                return result_text
+
+            except Exception as e:
+                error_str = str(e)
+                logger.error(f"Gemini API error: {error_str}")
+
+                # Check for rate limit errors (429)
+                if "429" in error_str or "resource exhausted" in error_str.lower():
+                    if attempt < max_retries - 1:
+                        # Exponential backoff: 30s, 60s, 120s, 240s, 480s
+                        delay = base_delay * (2 ** attempt)
+                        logger.warning(f"Rate limited (429). Retrying in {delay} seconds... (attempt {attempt + 1}/{max_retries})")
+                        time.sleep(delay)
+                        continue
+                    else:
+                        logger.error(f"Max retries ({max_retries}) reached. Still getting rate limited.")
+                        raise Exception(
+                            f"Gemini rate limit exceeded after {max_retries} retries. "
+                            f"This may indicate you've hit a burst limit or daily quota. "
+                            f"Try: 1) Wait a few minutes, 2) Use mock provider for testing, "
+                            f"3) Check your API quotas at https://makersuite.google.com/app/apikey"
+                        )
+
+                # Check for quota errors
+                if "quota" in error_str.lower():
+                    raise Exception(
+                        f"Gemini quota exceeded. Daily limit: {self.config.requests_per_day}. "
+                        f"Consider waiting or switching to OpenAI if you have credits."
+                    )
+                raise
 
     def estimate_job_feasibility(self, num_files: int, avg_chunks_per_file: int = 1) -> dict:
         """
