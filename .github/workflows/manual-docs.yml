@@ -82,12 +82,18 @@ jobs:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       run: |
         echo "Generating documentation with ${{ inputs.provider }} provider"
-        python generate_docs.py lich-source/lib --provider ${{ inputs.provider }} --yard
+        if [ "${{ inputs.full_rebuild }}" == "true" ]; then
+          echo "Running FULL REBUILD (all files will be reprocessed)"
+          python generate_docs.py lich-source/lib --provider ${{ inputs.provider }} --yard --force-rebuild --output output/latest
+        else
+          echo "Running INCREMENTAL build (skipping already processed files)"
+          python generate_docs.py lich-source/lib --provider ${{ inputs.provider }} --yard --output output/latest
+        fi
 
     - name: Prepare documentation for GitHub Pages
       run: |
-        # Find the latest output directory
-        OUTPUT_DIR=$(ls -td output/* | head -1)
+        # Use the consistent output directory
+        OUTPUT_DIR="output/latest"
         echo "Using output directory: $OUTPUT_DIR"
 
         # Copy documented files to docs directory

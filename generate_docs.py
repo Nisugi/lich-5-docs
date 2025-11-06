@@ -30,22 +30,27 @@ logger = logging.getLogger(__name__)
 class Lich5DocumentationGenerator:
     """Main documentation generator for Lich5 Ruby code"""
 
-    def __init__(self, provider_name: Optional[str] = None, output_dir: Optional[str] = None):
+    def __init__(self, provider_name: Optional[str] = None, output_dir: Optional[str] = None,
+                 incremental: bool = True, force_rebuild: bool = False):
         """
         Initialize the documentation generator
 
         Args:
             provider_name: LLM provider to use (defaults to env var or 'openai')
-            output_dir: Output directory for documentation (defaults to 'output/{timestamp}')
+            output_dir: Output directory for documentation (defaults to 'output/latest')
+            incremental: Enable incremental processing (skip already documented files)
+            force_rebuild: Force reprocessing of all files even if already documented
         """
         self.provider_name = provider_name or os.environ.get('LLM_PROVIDER', 'openai')
+        self.incremental = incremental and not force_rebuild
+        self.force_rebuild = force_rebuild
 
         # Set up output directory
         if output_dir:
             self.output_dir = Path(output_dir)
         else:
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            self.output_dir = Path('output') / timestamp
+            # Use 'latest' directory for incremental processing
+            self.output_dir = Path('output') / 'latest'
 
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -57,9 +62,73 @@ class Lich5DocumentationGenerator:
         self.documentation = {}
         self.failed_files = []
 
+        # Load existing manifest for incremental processing
+        self.manifest_file = self.output_dir / 'manifest.json'
+        self.manifest = self.load_manifest()
+
         logger.info(f"Documentation generator initialized")
         logger.info(f"Provider: {self.provider_name}")
         logger.info(f"Output directory: {self.output_dir}")
+        logger.info(f"Incremental mode: {self.incremental}")
+        if self.incremental and self.manifest.get('processed_files'):
+            logger.info(f"Found {len(self.manifest['processed_files'])} already processed files")
+
+    def load_manifest(self) -> dict:
+        """Load the manifest file tracking processed files"""
+        if self.manifest_file.exists():
+            try:
+                with open(self.manifest_file, 'r') as f:
+                    manifest = json.load(f)
+                logger.info(f"Loaded manifest with {len(manifest.get('processed_files', []))} processed files")
+                return manifest
+            except Exception as e:
+                logger.warning(f"Failed to load manifest: {e}")
+                return {'processed_files': {}, 'failed_files': [], 'timestamp': datetime.now().isoformat()}
+        return {'processed_files': {}, 'failed_files': [], 'timestamp': datetime.now().isoformat()}
+
+    def save_manifest(self):
+        """Save the manifest file"""
+        try:
+            with open(self.manifest_file, 'w') as f:
+                json.dump(self.manifest, f, indent=2, default=str)
+        except Exception as e:
+            logger.error(f"Failed to save manifest: {e}")
+
+    def is_file_processed(self, file_path: Path) -> bool:
+        """Check if a file has already been processed"""
+        if not self.incremental:
+            return False
+
+        relative_path = str(file_path)
+        if relative_path in self.manifest.get('processed_files', {}):
+            # Check if output file actually exists
+            output_file = self.output_dir / 'documented' / file_path.name
+            if output_file.exists():
+                logger.info(f"  Skipping (already processed): {file_path.name}")
+                return True
+            else:
+                logger.info(f"  Output file missing, reprocessing: {file_path.name}")
+                return False
+        return False
+
+    def mark_file_processed(self, file_path: Path, success: bool = True):
+        """Mark a file as processed in the manifest"""
+        relative_path = str(file_path)
+        if success:
+            if 'processed_files' not in self.manifest:
+                self.manifest['processed_files'] = {}
+            self.manifest['processed_files'][relative_path] = {
+                'timestamp': datetime.now().isoformat(),
+                'provider': self.provider_name
+            }
+        else:
+            if 'failed_files' not in self.manifest:
+                self.manifest['failed_files'] = []
+            if relative_path not in self.manifest['failed_files']:
+                self.manifest['failed_files'].append(relative_path)
+
+        # Save manifest after each file (in case of interruption)
+        self.save_manifest()
 
     def create_documentation_prompt(self, file_name: str, content: str) -> tuple[str, str]:
         """
@@ -300,6 +369,11 @@ Preserve ALL original code exactly as-is, only adding documentation comments."""
         for i, file_path in enumerate(ruby_files, 1):
             logger.info(f"\n[{i}/{len(ruby_files)}] {file_path.name}")
 
+            # Check if already processed (for incremental mode)
+            if self.is_file_processed(file_path):
+                processed += 1  # Count as processed
+                continue
+
             result = self.process_file(file_path)
             if result:
                 processed += 1
@@ -310,6 +384,12 @@ Preserve ALL original code exactly as-is, only adding documentation comments."""
 
                 with open(output_file, 'w', encoding='utf-8') as f:
                     f.write(result)
+
+                # Mark file as successfully processed
+                self.mark_file_processed(file_path, success=True)
+            else:
+                # Mark file as failed
+                self.mark_file_processed(file_path, success=False)
 
             # Rate limiting is handled automatically by the provider
 
@@ -413,6 +493,16 @@ def main():
         action='store_true',
         help='Also generate YARD comment files'
     )
+    parser.add_argument(
+        '--force-rebuild',
+        action='store_true',
+        help='Force reprocessing of all files (disable incremental mode)'
+    )
+    parser.add_argument(
+        '--no-incremental',
+        action='store_true',
+        help='Disable incremental processing (same as --force-rebuild)'
+    )
 
     args = parser.parse_args()
 
@@ -432,9 +522,11 @@ def main():
         logger.warning(warning)
 
     # Create generator
+    force_rebuild = args.force_rebuild or args.no_incremental
     generator = Lich5DocumentationGenerator(
         provider_name=args.provider,
-        output_dir=args.output
+        output_dir=args.output,
+        force_rebuild=force_rebuild
     )
 
     # Process input
