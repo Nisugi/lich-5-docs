@@ -132,10 +132,14 @@ Preserve ALL original code exactly as-is, only adding documentation comments."""
         # Track nesting level to avoid breaking in the middle of methods
         nesting_level = 0
 
-        for line in lines:
+        # Track if we're at the start of the file (for preserving initial comments/requires)
+        at_start = True
+
+        for i, line in enumerate(lines):
             # Track Ruby block structure
             if re.match(r'^\s*(class|module|def)\b', line):
                 nesting_level += 1
+                at_start = False
             elif re.match(r'^\s*end\b', line):
                 nesting_level -= 1
 
@@ -143,10 +147,21 @@ Preserve ALL original code exactly as-is, only adding documentation comments."""
             current_length += 1
 
             # Check if we should start a new chunk
-            if (current_length >= chunk_size and
-                nesting_level == 0 and  # Only split at top level
-                current_chunk):
+            # Conditions for splitting:
+            # 1. We've reached our target chunk size
+            # 2. We're at a good split point (between methods or at class/module level)
+            # 3. We just processed an 'end' statement (clean boundary)
+            # 4. We're not in the middle of a method (nesting_level <= 1)
+            should_split = (
+                current_length >= chunk_size and
+                nesting_level <= 1 and  # At most inside a class/module, not in a method
+                current_chunk and
+                not at_start and  # Don't split file headers/requires
+                (re.match(r'^\s*end\b', line) or  # After an 'end'
+                 (i + 1 < len(lines) and re.match(r'^\s*(def|class|module)\b', lines[i + 1])))  # Before a new definition
+            )
 
+            if should_split:
                 chunks.append('\n'.join(current_chunk))
                 current_chunk = []
                 current_length = 0
