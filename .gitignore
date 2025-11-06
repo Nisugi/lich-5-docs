@@ -56,3 +56,6 @@ coverage.xml
 dist/
 build/
 *.egg-info/
+
+# Cloned repositories (for documentation generation)
+lich-source/

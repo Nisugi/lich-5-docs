@@ -110,6 +110,12 @@ jobs:
                     f.write(f'- [{file.name}]({file.name})\n')
         "
 
+    - name: Clean up cloned repository
+      run: |
+        # Remove the cloned Lich repository to avoid committing it
+        rm -rf lich-source
+        echo "Cleaned up lich-source directory"
+
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
       with:
