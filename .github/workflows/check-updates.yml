@@ -82,4 +82,4 @@ jobs:
       run: |
         echo "New Lich release detected: ${{ steps.check-release.outputs.latest_version }}"
         echo "To generate documentation, run the manual workflow:"
-        echo "https://github.com/${{ github.repository }}/actions/workflows/manual-docs.yml"
+        echo "https://github.com/${{ github.repository }}/actions/workflows/generate-docs.yml"
