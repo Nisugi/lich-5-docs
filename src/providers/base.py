@@ -7,6 +7,7 @@ from abc import ABC, abstractmethod
 from typing import Dict, List, Optional, Any
 import time
 import logging
+import threading
 from dataclasses import dataclass
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -40,6 +41,8 @@ class LLMProvider(ABC):
         self.daily_request_count = 0
         self.last_request_time = 0
         self.estimated_cost = 0.0
+        # Thread safety for rate limiting
+        self.rate_limit_lock = threading.Lock()
 
     @abstractmethod
     def generate(self, prompt: str, system_prompt: Optional[str] = None) -> str:
@@ -56,20 +59,21 @@ class LLMProvider(ABC):
         pass
 
     def _enforce_rate_limit(self):
-        """Enforce rate limits if configured"""
-        if self.config.requests_per_minute:
-            elapsed = time.time() - self.last_request_time
-            if elapsed < 60 / self.config.requests_per_minute:
-                sleep_time = (60 / self.config.requests_per_minute) - elapsed
-                logger.info(f"Rate limiting: sleeping for {sleep_time:.2f}s")
-                time.sleep(sleep_time)
+        """Enforce rate limits if configured (thread-safe)"""
+        with self.rate_limit_lock:
+            if self.config.requests_per_minute:
+                elapsed = time.time() - self.last_request_time
+                if elapsed < 60 / self.config.requests_per_minute:
+                    sleep_time = (60 / self.config.requests_per_minute) - elapsed
+                    logger.debug(f"Rate limiting: sleeping for {sleep_time:.2f}s")
+                    time.sleep(sleep_time)
 
-        if self.config.requests_per_day and self.daily_request_count >= self.config.requests_per_day:
-            raise Exception(f"Daily request limit ({self.config.requests_per_day}) reached")
+            if self.config.requests_per_day and self.daily_request_count >= self.config.requests_per_day:
+                raise Exception(f"Daily request limit ({self.config.requests_per_day}) reached")
 
-        self.last_request_time = time.time()
-        self.request_count += 1
-        self.daily_request_count += 1
+            self.last_request_time = time.time()
+            self.request_count += 1
+            self.daily_request_count += 1
 
     def _estimate_tokens(self, text: str) -> int:
         """Rough estimation of token count"""

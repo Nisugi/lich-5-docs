@@ -25,9 +25,9 @@ class OpenAIProvider(LLMProvider):
                 model="gpt-4o-mini",
                 max_tokens=4096,
                 temperature=0.0,
-                # No hard limits, but track costs
-                requests_per_minute=60,  # Reasonable limit
-                requests_per_day=None,   # No daily limit
+                # Actual GPT-4o-mini tier limits
+                requests_per_minute=400,  # 500 RPM limit, using 400 to be safe
+                requests_per_day=None,    # No daily limit (2M tokens/day is huge)
                 # GPT-4o-mini pricing (as of 2024)
                 cost_per_1m_input=0.15,   # $0.15 per 1M input tokens
                 cost_per_1m_output=0.60   # $0.60 per 1M output tokens
