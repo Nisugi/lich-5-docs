@@ -23,7 +23,7 @@ class OpenAIProvider(LLMProvider):
             config = ProviderConfig(
                 name="openai",
                 model="gpt-4o-mini",
-                max_tokens=4096,
+                max_tokens=16384,  # Max output tokens for gpt-4o-mini
                 temperature=0.0,
                 # Actual GPT-4o-mini tier limits
                 requests_per_minute=400,  # 500 RPM limit, using 400 to be safe
