@@ -90,32 +90,62 @@ jobs:
           python generate_docs.py lich-source/lib --provider ${{ inputs.provider }} --yard --output output/latest
         fi
 
-    - name: Prepare documentation for GitHub Pages
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.1'
+        bundler-cache: false
+
+    - name: Install YARD
+      run: |
+        gem install yard
+        gem install redcarpet  # For markdown support in YARD
+        yard --version
+
+    - name: Generate HTML Documentation with YARD
       run: |
         # Use the consistent output directory
         OUTPUT_DIR="output/latest"
         echo "Using output directory: $OUTPUT_DIR"
 
-        # Copy documented files to docs directory
-        rm -rf docs/*
-        cp -r $OUTPUT_DIR/documented/* docs/ 2>/dev/null || true
-        cp -r $OUTPUT_DIR/yard/* docs/ 2>/dev/null || true
+        # Create temporary directory for documented Ruby files
+        mkdir -p temp_yard_input
+        cp -r $OUTPUT_DIR/documented/* temp_yard_input/ 2>/dev/null || true
 
-        # Generate index if needed
-        python -c "
-        import os
-        from pathlib import Path
+        # Generate HTML documentation using YARD
+        echo "Generating HTML documentation with YARD..."
+        cd temp_yard_input
+        yard doc --output-dir ../docs \
+                 --title "Lich-5 Documentation" \
+                 --readme ../README.md \
+                 --markup markdown \
+                 --markup-provider redcarpet \
+                 --charset utf-8 \
+                 --no-private \
+                 **/*.rb
 
-        docs_dir = Path('docs')
-        if docs_dir.exists():
-            files = sorted(docs_dir.glob('*.rb'))
-            with open(docs_dir / 'index.md', 'w') as f:
-                f.write('# Lich5 Documentation\n\n')
-                f.write('Generated with ' + os.environ.get('LLM_PROVIDER', 'unknown') + '\n\n')
-                f.write('## Files\n\n')
-                for file in files:
-                    f.write(f'- [{file.name}]({file.name})\n')
-        "
+        cd ..
+        echo "HTML documentation generated in docs/"
+
+        # Add a custom landing page if YARD didn't create one
+        if [ ! -f docs/index.html ]; then
+          echo "Creating custom index.html..."
+          cat > docs/index.html << 'EOF'
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lich-5 Documentation</title>
+  <meta http-equiv="refresh" content="0; url=frames.html">
+</head>
+<body>
+  <p>Redirecting to <a href="frames.html">documentation</a>...</p>
+</body>
+</html>
+EOF
+        fi
+
+        # Clean up temporary directory
+        rm -rf temp_yard_input
 
     - name: Clean up cloned repository
       run: |
