@@ -61,12 +61,9 @@ jobs:
           if [ "${{ inputs.clean }}" == "true" ]; then
             args="$args --clean"
           fi
-          if [ -n "${{ inputs.title }}" ]; then
-            args="$args --title '${{ inputs.title }}'"
-          fi
 
           # Use the updated input path (documented/ at root now, not output/latest/documented)
-          python build_html.py --input ./documented --output ./docs --verify $args
+          python build_html.py --input ./documented --output ./docs --title "${{ inputs.title }}" --verify $args
 
       - name: Check for changes
         if: steps.check-files.outputs.file_count > 0
