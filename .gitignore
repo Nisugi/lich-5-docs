@@ -23,8 +23,9 @@ test_output/
 *.log
 
 # Documentation outputs (generated)
-output/
+output/*
 !output/latest/
+output/latest/*
 !output/latest/manifest.json
 generated_docs/
 *.yard
