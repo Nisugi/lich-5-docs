@@ -3,7 +3,6 @@
 module Lich
   module Common
     # Path navigator to encapsulate path navigation logic
-    # Path navigator to encapsulate path navigation logic
     #
     # This class provides methods to manage and navigate through a path structure.
     # It interacts with a database adapter to retrieve and manipulate settings.
@@ -17,7 +16,6 @@ module Lich
 
       attr_reader :path
 
-      # Allow external callers to drive the effective path
       # Allow external callers to drive the effective path
       #
       # This method sets the current path to the provided new path.
@@ -51,15 +49,6 @@ module Lich
         value
       end
 
-      # Navigate to the node at "path" (or @path if nil).
-      # Returns [target, root]
-      #
-      # @param script_name [String] the script namespace (e.g., Script.current.name)
-      # @param create_missing [Boolean] whether to create intermediate containers
-      # @param scope [String] settings scope (e.g., "GS3:CharName")
-      # @param path [Array, nil] path segments; integers index arrays, symbols/strings index hashes
-      #
-      # @return [Array(Object, Hash|Array)] [target_node, root_object]
       # Navigate to the node at "path" (or @path if nil).
       # Returns [target, root]
       #

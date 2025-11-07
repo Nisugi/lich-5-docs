@@ -71,7 +71,6 @@ module Lich
         @target.hash
       end
 
-      # Helper method for delegating conversion methods with appropriate return types
       # Helper method for delegating conversion methods with appropriate return types.
       # @param method [Symbol] The conversion method to delegate.
       # @param options [Hash] Options for delegation, including :strict and :default.
@@ -94,10 +93,6 @@ module Lich
         end
       end
 
-      # Internal: rebind this proxy to the live container and clear detached state.
-      # This centralizes target swaps so invariants/logging stay consistent.
-      # @param new_target [Hash, Array] the live container resolved from root+path
-      # @return [self]
       # Rebinds this proxy to a new live target and clears the detached state.
       # This centralizes target swaps so invariants/logging stay consistent.
       # @param new_target [Hash, Array] The live container resolved from root+path.

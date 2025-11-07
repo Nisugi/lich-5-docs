@@ -1,18 +1,7 @@
 # Root module for Lich scripting components.
-# Root module for Lich scripting components.
 module Lich
   # Namespace for GemStone IV-specific modules.
-  # Namespace for GemStone IV-specific modules.
   module Gemstone
-    # Provides logic for using weapon-based PSM techniques.
-    #
-    # The Weapon module includes metadata about known weapon techniques (cost, result patterns, buff effect, etc.)
-    # and provides methods to:
-    # - Check whether a technique is known, affordable, or available
-    # - Execute techniques with optional FORCERT or specific targets
-    # - Detect buff activation for some techniques
-    #
-    # Dynamic methods are generated for each weapon technique using its short and long name.
     # Provides logic for using weapon-based PSM techniques.
     #
     # The Weapon module includes metadata about known weapon techniques (cost, result patterns, buff effect, etc.)
@@ -25,15 +14,6 @@ module Lich
     # @example Using a weapon technique
     #   Weapon.use("volley")
     module Weapon
-      # Internal registry of weapon techniques.
-      #
-      # @return [Hash<String, Hash>] Mapping of technique names to their metadata, including:
-      #   - `:short_name` [String]
-      #   - `:cost` [Integer]
-      #   - `:regex` [Regexp] expected combat log output
-      #   - `:assault_rx` [Regexp, optional] alternate result pattern for assault-style moves
-      #   - `:buff` [String, optional] buff name to check via Effects::Buffs
-      #   - `:usage` [String, optional] override for default usage command
       # Internal registry of weapon techniques.
       #
       # @return [Hash<String, Hash>] Mapping of technique names to their metadata, including:
@@ -210,9 +190,6 @@ module Lich
       # Returns a summary array of weapon techniques and metadata.
       #
       # @return [Array<Hash>] Each hash contains :long_name, :short_name, :cost
-      # Returns a summary array of weapon techniques and metadata.
-      #
-      # @return [Array<Hash>] Each hash contains :long_name, :short_name, :cost
       # @example
       #   Weapon.weapon_lookups # returns an array of weapon techniques
       def self.weapon_lookups
@@ -232,26 +209,10 @@ module Lich
       # @example
       #   Weapon["volley"] => 2
       #   Weapon["volley"] => 0 # if not known
-      # Looks up the rank known of a weapon technique.
-      #
-      # @param name [String] The name of the weapon technique
-      # @return [Integer] The rank of the technique, or 0 if unknown
-      # @example
-      #   Weapon["volley"] => 2
-      #   Weapon["volley"] => 0 # if not known
       def Weapon.[](name)
         return PSMS.assess(name, 'Weapon')
       end
 
-      # Determines if the character knows an weapon technique at all, and
-      # optionally if the character knows it at the specified rank.
-      #
-      # @param name [String] The name of the weapon technique
-      # @param min_rank [Integer] Optionally, the minimum rank to test against (default: 1, so known)
-      # @return [Boolean] True if the technique is known at or above the given rank
-      # @example
-      #   Weapon.known?("volley") => true # if any number of ranks is known
-      #   Weapon.known?("volley", min_rank: 2) => false # if only rank 1 is known
       # Determines if the character knows a weapon technique at all, and
       # optionally if the character knows it at the specified rank.
       #
@@ -266,15 +227,6 @@ module Lich
         Weapon[name] >= min_rank
       end
 
-      # Determines if an Weapon technique is affordable, and optionally tests
-      # affordability with a given number of FORCERTs having been used (including the current one).
-      #
-      # @param name [String] The name of the Weapon technique
-      # @param forcert_count [Integer] Optionally, the count of FORCERTs being used, including for this execution (default: 0)
-      # @return [Boolean] True if the technique can be used with available FORCERTs
-      # @example
-      #   Weapon.affordable?("Weapon_blessing") => true # if enough skill and stamina
-      #   Weapon.affordable?("Weapon_blessing", forcert_count: 1) => false  # if not enough skill or stamina
       # Determines if a weapon technique is affordable, and optionally tests
       # affordability with a given number of FORCERTs having been used (including the current one).
       #
@@ -289,20 +241,6 @@ module Lich
         return PSMS.assess(name, 'Weapon', true, forcert_count: forcert_count)
       end
 
-      # Determines if an Weapon technique is available to use right now by testing:
-      # - if the technique is known
-      # - if the technique is affordable
-      # - if the technique is not on cooldown
-      # - if the character is not overexerted
-      # - if the character is capable of performing the number of FORCERTs specified
-      #
-      # @param name [String] The name of the Weapon technique
-      # @param min_rank [Integer] Optionally, the minimum rank to check (default: 1)
-      # @param forcert_count [Integer] Optionally, the count of FORCERTs being used (default: 0)
-      # @return [Boolean] True if the technique is known, affordable, and not on cooldown or
-      # blocked by overexertion
-      # @example
-      #   Weapon.available?("Weapon_blessing") => true # if known, affordable, not on cooldown, and not overexerted
       # Determines if a weapon technique is available to use right now by testing:
       # - if the technique is known
       # - if the technique is affordable
@@ -335,21 +273,12 @@ module Lich
       #
       # @param name [String] Technique name
       # @return [Boolean] True if the buff is active
-      # DEPRECATED: Use {#buff_active?} instead.
-      # Checks whether a technique's buff is currently active.
-      #
-      # @param name [String] Technique name
-      # @return [Boolean] True if the buff is active
       def Weapon.active?(name)
         ## DEPRECATED ##
         Lich.deprecated("Weapon.active?", "Weapon.buff_active?", caller[0], fe_log: false)
         buff_active?(name)
       end
 
-      # Checks whether the technique's buff is currently active.
-      #
-      # @param name [String] The technique's name
-      # @return [Boolean] True if buff is already active
       # Checks whether the technique's buff is currently active.
       #
       # @param name [String] The technique's name
@@ -362,16 +291,6 @@ module Lich
         Effects::Buffs.active?(@@weapon_techniques.fetch(PSMS.find_name(name, "Weapon")[:long_name])[:buff])
       end
 
-      # Attempts to use a Weapon technique, optionally on a target.
-      #
-      # @param name [String] The name of the Weapon technique
-      # @param target [String, Integer, GameObj] The target of the technique (optional).  If unspecified, the technique will be used on the character.
-      # @param results_of_interest [Regexp, nil] Additional regex to capture from result (optional)
-      # @param forcert_count [Integer] Number of FORCERTs to use (default: 0)
-      # @return [String, nil] The result of the regex match, or nil if unavailable
-      # @example
-      #   Weapon.use("Weapon_blessing") # attempt to use Weapon blessing on self
-      #   Weapon.use("Weapon_blessing", "Dissonance") # attempt to use Weapon blessing on Dissonance
       # Attempts to use a Weapon technique, optionally on a target.
       #
       # @param name [String] The name of the Weapon technique
@@ -446,15 +365,6 @@ module Lich
         usage_result
       end
 
-      # Returns the "success" regex associated with a given Weapon technique name.
-      # This regex is used to match the expected output when the technique is successfully *attempted*.
-      # It does not necessarily indicate that the technique was successful in its effect, or even
-      # that the technique was executed at all.
-      #
-      # @param name [String] The technique name
-      # @return [Regexp] The regex used to match technique success or effects
-      # @example
-      #   Weapon.regexp("Weapon_blessing") => /As \w+ prays? over \w+(?:'s)? [\w\s]+, you sense that (?:the Arkati's|a) blessing will be granted against magical attacks\./i
       # Returns the "success" regex associated with a given Weapon technique name.
       # This regex is used to match the expected output when the technique is successfully *attempted*.
       # It does not necessarily indicate that the technique was successful in its effect, or even

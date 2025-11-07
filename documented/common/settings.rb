@@ -3,7 +3,6 @@
 module Lich
   module Common
     require 'sequel'
-    # rubocop:disable Lint/RedundantRequireStatement
     require 'set' # Ensure Set is required for Ruby < 3.2, may be removed in future versions
     # rubocop:enable Lint/RedundantRequireStatement
 
@@ -189,14 +188,6 @@ module Lich
       #
       # @example Create a root proxy for the current character
       #   settings = Lich::Common::Settings.root_proxy_for("#{XMLData.game}:#{XMLData.name}")
-      #
-      # Creates a root-level SettingsProxy for the given scope.
-      # @param scope [String] A logical scope identifier (e.g., "#{XMLData.game}:#{XMLData.name}").
-      # @param script_name [String, nil] The script namespace; defaults to Script.current.name.
-      # @return [SettingsProxy] A proxy wrapping the cached root object.
-      # @raise [ArgumentError] if scope is nil or empty.
-      # @example Creating a root proxy
-      #   settings_proxy = Lich::Common::Settings.root_proxy_for("#{XMLData.game}:#{XMLData.name}")
       def self.root_proxy_for(scope, script_name: Script.current.name)
         raise ArgumentError, "scope must be a non-empty String" if scope.nil? || scope.to_s.strip.empty?
 

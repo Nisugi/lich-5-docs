@@ -2,11 +2,7 @@ require_relative '../util/util.rb' # needed to ensure it loads before Society tr
 
 module Lich
   module Gemstone
-    ##
-    # The Society class provides accessors for a character's society membership, rank, and task data.
-    #
-    # All methods rely on Infomon or XMLData, and a future rewrite might shift responsibility to
-    # character-specific data models or direct game scraping.
+
     # The Society class provides accessors for a character's society membership, rank, and task data.
     #
     # All methods rely on Infomon or XMLData, and a future rewrite might shift responsibility to
@@ -14,14 +10,7 @@ module Lich
     # @example Accessing society information
     #   membership = Lich::Gemstone::Society.membership
     class Society
-      ##
-      # Retrieves the character's society membership status.
-      #
-      # @return [String, nil] The name of the society:
-      #   - "Order of Voln"
-      #   - "Council of Light"
-      #   - "Guardians of Sunfist"
-      #   - or `nil`/"None" if not a member
+
       # Retrieves the character's society membership status.
       #
       # @return [String, nil] The name of the society:
@@ -35,14 +24,6 @@ module Lich
         Infomon.get("society.status")
       end
 
-      ##
-      # Retrieves the character's society membership status.
-      #
-      # @return [String, nil] The name of the society:
-      #   - "Order of Voln"
-      #   - "Council of Light"
-      #   - "Guardians of Sunfist"
-      #   - or `nil`/"None" if not a member
       # Retrieves the character's society membership status.
       #
       # @return [String, nil] The name of the society:
@@ -56,10 +37,6 @@ module Lich
         self.membership
       end
 
-      ##
-      # Retrieves the character's current rank within their society.
-      #
-      # @return [Integer] The rank number, or 0 if not a member
       # Retrieves the character's current rank within their society.
       #
       # @return [Integer] The rank number, or 0 if not a member
@@ -69,18 +46,6 @@ module Lich
         Infomon.get("society.rank")
       end
 
-      ##
-      # Retrieves the current task assigned by the society, if any.
-      #
-      # The current society task, or "You are not currently in a society." if not a member, or
-      # "It is your eternal duty to release undead creatures from their suffering in the name of the Great Spirit Voln." if
-      # a Voln Master.
-      #
-      # @return [String] The current society task message.
-      #   Examples:
-      #   - A task description
-      #   - "You are not currently in a society."
-      #   - "It is your eternal duty to release undead creatures..." (Voln masters)
       # Retrieves the current task assigned by the society, if any.
       #
       # The current society task, or "You are not currently in a society." if not a member, or
@@ -98,10 +63,6 @@ module Lich
         XMLData.society_task
       end
 
-      ##
-      # Bundles the current society status and rank into a simple structure.
-      #
-      # @return [Array<(String, Integer)>] An array in the format `[status, rank]`
       # Bundles the current society status and rank into a simple structure.
       #
       # @return [Array<(String, Integer)>] An array in the format `[status, rank]`
@@ -115,10 +76,6 @@ module Lich
       ## DEPRECATED METHODS ##
       ########################
 
-      ##
-      # @deprecated Use {#member_of} instead.  Deprecated 6/2025
-      #
-      # @return [String] The current society membership
       # @deprecated Use {#membership} instead.  Deprecated 6/2025
       #
       # @return [String] The current society membership
@@ -129,10 +86,6 @@ module Lich
         self.membership
       end
 
-      ##
-      # @deprecated Use {#rank} instead.  Deprecated 6/2025
-      #
-      # @return [Integer] The current society rank
       # @deprecated Use {#rank} instead.  Deprecated 6/2025
       #
       # @return [Integer] The current society rank
@@ -143,10 +96,6 @@ module Lich
         self.rank
       end
 
-      ##
-      # @deprecated Use {OrderOfVoln.favor} instead.  Deprecated 6/2025
-      #
-      # @return [Integer] The amount of Voln favor
       # @deprecated Use {OrderOfVoln.favor} instead.  Deprecated 6/2025
       #
       # @return [Integer] The amount of Voln favor
@@ -158,14 +107,6 @@ module Lich
         Societies::OrderOfVoln.favor
       end
 
-      ##
-      # Looks up an ability definition from a society hash using a normalized short or long name.
-      #
-      # @param name [String] The user-facing name (short or long) of the ability
-      # @param entries [Hash<String, Hash>] The base hash keyed by short_name
-      # @param lookups [Array<Hash>] An array of hashes containing at least `:short_name` and `:long_name`
-      # @return [Hash, nil] The matching entry from the base hash, or nil if not found
-      #
       # Looks up an ability definition from a society hash using a normalized short or long name.
       #
       # @param name [String] The user-facing name (short or long) of the ability
@@ -184,18 +125,6 @@ module Lich
         end
       end
 
-      ##
-      # Resolves a value that may be a static literal or a lambda/proc.
-      #
-      # If the value responds to `:call` (i.e., is a `Proc` or `lambda`), it is called and
-      # the result is returned. Otherwise, the value is returned as-is.
-      #
-      # This allows society metadata fields such as `:duration` or `:summary` to be defined
-      # as either static values or dynamically evaluated lambdas.
-      #
-      # @param value [Object, Proc] The value to resolve
-      # @return [Object] The resolved value, or the original value if not callable
-      #
       # Resolves a value that may be a static literal or a lambda/proc.
       #
       # If the value responds to `:call` (i.e., is a `Proc` or `lambda`), it is called and
@@ -211,19 +140,6 @@ module Lich
         value
       end
 
-      ##
-      # Defines singleton accessors for both short and long names on a given target class.
-      #
-      # Method names are normalized using {Lich::Util.normalize_name}, which ensures
-      # compatibility with Ruby method naming (e.g., downcased, underscores instead of spaces, etc.).
-      #
-      # Example:
-      #   "Symbol of Recognition" => `symbol_of_recognition`
-      #   "Kai's Strike"          => `kais_strike`
-      #
-      # @param target_class [Class] The class to define singleton methods on (typically `self`)
-      # @param data [Hash<String, Hash>] The metadata hash (e.g., `@@voln_symbols`)
-      #
       # Defines singleton accessors for both short and long names on a given target class.
       #
       # Method names are normalized using {Lich::Util.normalize_name}, which ensures

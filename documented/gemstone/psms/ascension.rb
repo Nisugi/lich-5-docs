@@ -1,23 +1,7 @@
 # The root module for all Lich-related functionality.
-# The root module for all Lich-related functionality.
 module Lich
   # Submodule for GemStone IV-specific logic.
-  # Submodule for GemStone IV-specific logic.
   module Gemstone
-    # The Ascension module manages character ascension skills.
-    #
-    # It provides lookup tables for ascension skill names, methods to query skill availability,
-    # affordability, and knowledge, and dynamically defines shortcut methods for all ascension skills.
-    #
-    # Each skill includes:
-    # - a long name (as used in internal references)
-    # - a short name (used as a shortcut method)
-    # - a cost (currently hardcoded to 0)
-    #
-    # Example:
-    #   if Ascension.available?("discipline")
-    #     Ascension.use("discipline")
-    #   end
     # The Ascension module manages character ascension skills.
     #
     # It provides lookup tables for ascension skill names, methods to query skill availability,
@@ -33,9 +17,6 @@ module Lich
     #     Ascension.use("discipline")
     #   end
     module Ascension
-      # Returns an array of all defined Ascension skill mappings.
-      #
-      # @return [Array<Hash>] Array of hashes, each containing :long_name, :short_name, and :cost
       # Returns an array of all defined Ascension skill mappings.
       #
       # @return [Array<Hash>] Array of hashes, each containing :long_name, :short_name, and :cost
@@ -123,26 +104,12 @@ module Lich
       # @param name [String] The name of the ascension skill
       # @return [Integer] The current rank (or 0 if unknown)
       # @example
-      #   Ascension['discipline'] # => 3  # knows 3 ranks of discipline
-      #   Ascension['influence'] # => 0  # does not have any ranks in influence
-      # Retrieves the character's rank in the specified ascension skill.
-      #
-      # @param name [String] The name of the ascension skill
-      # @return [Integer] The current rank (or 0 if unknown)
-      # @example
       #   Ascension["discipline"] # => 3  # knows 3 ranks of discipline
       #   Ascension["influence"] # => 0  # does not have any ranks in influence
       def Ascension.[](name)
         return PSMS.assess(name, 'Ascension')
       end
 
-      # Checks if the character has at least one rank in the specified ascension skill.
-      #
-      # @param name [String] The ascension skill name
-      # @return [Boolean] True if known
-      # @example
-      #   Ascension.known?('discipline') # => true  # has at least one rank in discipline
-      #   Ascension.known?('influence') # => false  # does not have any ranks in influence
       # Checks if the character has at least one rank in the specified ascension skill.
       #
       # @param name [String] The ascension skill name
@@ -159,24 +126,11 @@ module Lich
       # @param name [String] The ascension skill name
       # @return [Boolean] True if affordable
       # @example
-      #   Ascension.affordable?('discipline') # => true  # no cost, so always affordable
-      # Checks if the ascension skill can be afforded (based on FORCERT or other gating logic).
-      #
-      # @param name [String] The ascension skill name
-      # @return [Boolean] True if affordable
-      # @example
       #   Ascension.affordable?("discipline") # => true  # no cost, so always affordable
       def Ascension.affordable?(name)
         return PSMS.assess(name, 'Ascension', true)
       end
 
-      # Determines if the ascension skill is available for use.
-      #
-      # @param name [String] The ascension skill name
-      # @return [Boolean] True if known, affordable, and not blocked by cooldowns or debuffs
-      # @example
-      #   Ascension.available?('discipline') # => true  # known, affordable, not on cooldown, and not overexerted
-      #   Ascension.available?('influence') # => false  # not known
       # Determines if the ascension skill is available for use.
       #
       # @param name [String] The ascension skill name
@@ -190,7 +144,6 @@ module Lich
           PSMS.available?(name)
       end
 
-      # Dynamically defines shortcut methods for each ascension skill using both short and long names.
       # Dynamically defines shortcut methods for each ascension skill using both short and long names.
       Ascension.ascension_lookups.each { |ascension|
         self.define_singleton_method(ascension[:short_name]) do

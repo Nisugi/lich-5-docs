@@ -13,31 +13,12 @@ module Lich
   # @example Add a member to the group
   #   Group.add("PlayerName")
   module Gemstone
-    # Manages group membership and leadership in Gemstone IV.
-    # Tracks group members, leader status, and group state (open/closed).
-    # Automatically updates based on game output through the Observer pattern.
-    #
-    # @example Check if player is group leader
-    #   Group.leader? #=> true or false
-    #
-    # @example Get all group members
-    #   members = Group.members #=> [GameObj, GameObj, ...]
-    #
-    # @example Add a member to the group
-    #   Group.add("PlayerName")
-    #
-    # Represents a group of players in Gemstone IV.
-    # Manages membership, leadership, and group status.
     class Group
       @@members ||= []
       @@leader  ||= nil
       @@checked ||= false
       @@status  ||= :closed
 
-      # Clears all group members and resets the checked flag.
-      # Does not change leader status.
-      #
-      # @return [Array] Empty array
       # Clears all group members and resets the checked flag.
       # Does not change leader status.
       # @return [Array] Empty array
@@ -47,19 +28,11 @@ module Lich
       end
 
       # Checks if group data has been verified with the game.
-      #
-      # @return [Boolean] true if group data has been checked
-      # Checks if group data has been verified with the game.
       # @return [Boolean] true if group data has been checked
       def self.checked?
         @@checked
       end
 
-      # Adds one or more members to the group if they're not already included.
-      # Does not duplicate members.
-      #
-      # @param members [Array<GameObj>] one or more GameObj instances to add
-      # @return [Array<GameObj>] the updated members array
       # Adds one or more members to the group if they're not already included.
       # Does not duplicate members.
       # @param members [Array<GameObj>] one or more GameObj instances to add
@@ -71,10 +44,6 @@ module Lich
       end
 
       # Removes one or more members from the group by ID.
-      #
-      # @param members [Array<GameObj>] one or more GameObj instances to remove
-      # @return [Array<GameObj>] the updated members array
-      # Removes one or more members from the group by ID.
       # @param members [Array<GameObj>] one or more GameObj instances to remove
       # @return [Array<GameObj>] the updated members array
       def self.delete(*members)
@@ -82,11 +51,6 @@ module Lich
         @@members.reject! do |m| gone.include?(m.id) end
       end
 
-      # Replaces the entire members list with new members.
-      # Used when receiving a complete group listing from the game.
-      #
-      # @param members [Array<GameObj>] the complete list of group members
-      # @return [Array<GameObj>] the new members array
       # Replaces the entire members list with new members.
       # Used when receiving a complete group listing from the game.
       # @param members [Array<GameObj>] the complete list of group members
@@ -97,10 +61,6 @@ module Lich
 
       # Returns a copy of the current group members.
       # Automatically checks group status if not already checked.
-      #
-      # @return [Array<GameObj>] copy of the members array
-      # Returns a copy of the current group members.
-      # Automatically checks group status if not already checked.
       # @return [Array<GameObj>] copy of the members array
       def self.members
         maybe_check
@@ -109,22 +69,12 @@ module Lich
 
       # Returns the internal members array without checking or copying.
       # Used internally by the Observer to avoid infinite loops.
-      #
-      # @api private
-      # @return [Array<GameObj>] the internal members array
-      # Returns the internal members array without checking or copying.
-      # Used internally by the Observer to avoid infinite loops.
       # @api private
       # @return [Array<GameObj>] the internal members array
       def self._members
         @@members
       end
 
-      # Returns Disk objects for all group members.
-      # If the player is leader with no members, returns only the player's disk.
-      # Always includes the current character's disk if available.
-      #
-      # @return [Array<Disk>] array of Disk objects for group members
       # Returns Disk objects for all group members.
       # If the player is leader with no members, returns only the player's disk.
       # Always includes the current character's disk if available.
@@ -137,18 +87,11 @@ module Lich
       end
 
       # String representation of the group members.
-      #
-      # @return [String] string representation of members array
-      # String representation of the group members.
       # @return [String] string representation of members array
       def self.to_s
         @@members.to_s
       end
 
-      # Sets the checked flag indicating group data has been verified.
-      #
-      # @param flag [Boolean] true if group data is verified
-      # @return [Boolean] the flag value
       # Sets the checked flag indicating group data has been verified.
       # @param flag [Boolean] true if group data is verified
       # @return [Boolean] the flag value
@@ -156,12 +99,7 @@ module Lich
         @@checked = flag
       end
 
-      # Sets the group status (open or closed).
-      #
-      # @param state [Symbol] :open or :closed
-      # @return [Symbol] the status value
-      # Gets the current group status.
-      # @return [Symbol] :open or :closed
+
       # Sets the group status (open or closed).
       # @param state [Symbol] :open or :closed
       # @return [Symbol] the status value
@@ -170,16 +108,11 @@ module Lich
       end
 
       # Gets the current group status.
-      #
       # @return [Symbol] :open or :closed
       def self.status()
         @@status
       end
 
-      # Checks if the group is open to new members.
-      # Automatically verifies group status if not already checked.
-      #
-      # @return [Boolean] true if group status is open
       # Checks if the group is open to new members.
       # Automatically verifies group status if not already checked.
       # @return [Boolean] true if group status is open
@@ -189,19 +122,11 @@ module Lich
       end
 
       # Checks if the group is closed to new members.
-      #
-      # @return [Boolean] true if group status is not open
-      # Checks if the group is closed to new members.
       # @return [Boolean] true if group status is not open
       def self.closed?
         not open?
       end
 
-      # Actively checks group status by sending the GROUP command to the game.
-      # Clears current group data and waits up to 3 seconds for response.
-      # Should be called at script initialization.
-      #
-      # @return [Array<GameObj>] copy of the members array after checking
       # Actively checks group status by sending the GROUP command to the game.
       # Clears current group data and waits up to 3 seconds for response.
       # Should be called at script initialization.
@@ -215,29 +140,17 @@ module Lich
       end
 
       # Checks group status only if not already checked.
-      #
-      # @return [Array<GameObj>, nil] members array if check was needed, nil otherwise
-      # Checks group status only if not already checked.
       # @return [Array<GameObj>, nil] members array if check was needed, nil otherwise
       def self.maybe_check
         Group.check unless checked?
       end
 
       # Returns all PCs in the room who are not in the group.
-      #
-      # @return [Array<GameObj>] array of PC GameObj instances not in group
-      # Returns all PCs in the room who are not in the group.
       # @return [Array<GameObj>] array of PC GameObj instances not in group
       def self.nonmembers
         GameObj.pcs.to_a.reject { |pc| ids.include?(pc.id) }
       end
 
-      # Sets the group leader.
-      #
-      # @param char [Symbol, GameObj] :self if current player is leader, or GameObj of leader
-      # @return [Symbol, GameObj] the leader value
-      # Gets the current group leader.
-      # @return [Symbol, GameObj] :self if current player is leader, or GameObj of leader
       # Sets the group leader.
       # @param char [Symbol, GameObj] :self if current player is leader, or GameObj of leader
       # @return [Symbol, GameObj] the leader value
@@ -246,31 +159,17 @@ module Lich
       end
 
       # Gets the current group leader.
-      #
       # @return [Symbol, GameObj] :self if current player is leader, or GameObj of leader
       def self.leader
         @@leader
       end
 
       # Checks if the current player is the group leader.
-      #
-      # @return [Boolean] true if current player is leader
-      # Checks if the current player is the group leader.
       # @return [Boolean] true if current player is leader
       def self.leader?
         @@leader.eql?(:self)
       end
 
-      # Adds one or more members to the group by sending GROUP commands.
-      # Handles both String names and GameObj instances.
-      # Can accept nested arrays of members.
-      #
-      # @param members [Array<String, GameObj, Array>] members to add
-      # @return [Array<Hash>] array of results, each containing :ok or :err key with member
-      # @example Add a single member
-      #   Group.add("PlayerName")
-      # @example Add multiple members
-      #   Group.add("Player1", "Player2")
       # Adds one or more members to the group by sending GROUP commands.
       # Handles both String names and GameObj instances.
       # Can accept nested arrays of members.
@@ -309,17 +208,11 @@ module Lich
       end
 
       # Returns array of all member IDs.
-      #
-      # @return [Array<String>] array of member IDs
-      # Returns array of all member IDs.
       # @return [Array<String>] array of member IDs
       def self.ids
         @@members.map(&:id)
       end
 
-      # Returns array of all member nouns (names).
-      #
-      # @return [Array<String>] array of member nouns
       # Returns array of all member nouns (names).
       # @return [Array<String>] array of member nouns
       def self.nouns
@@ -327,22 +220,12 @@ module Lich
       end
 
       # Checks if all specified members are in the group.
-      #
-      # @param members [Array<GameObj>] members to check
-      # @return [Boolean] true if all members are in the group
-      # Checks if all specified members are in the group.
       # @param members [Array<GameObj>] members to check
       # @return [Boolean] true if all members are in the group
       def self.include?(*members)
         members.all? { |m| ids.include?(m.id) }
       end
 
-      # Checks if the group state is broken or inconsistent.
-      # Waits for any claim locks to release before checking.
-      # For leaders: checks if member list matches actual PCs in room.
-      # For members: checks if leader is still present.
-      #
-      # @return [Boolean] true if group state is inconsistent
       # Checks if the group state is broken or inconsistent.
       # Waits for any claim locks to release before checking.
       # For leaders: checks if member list matches actual PCs in room.
@@ -361,10 +244,6 @@ module Lich
 
       # Delegates missing methods to the members array.
       # Allows Group to act like an Array in many contexts.
-      #
-      # @api private
-      # Delegates missing methods to the members array.
-      # Allows Group to act like an Array in many contexts.
       # @api private
       def self.method_missing(method, *args, &block)
         @@members.send(method, *args, &block)
@@ -374,160 +253,121 @@ module Lich
     class Group
       # Observes game output and automatically updates Group state.
       # Watches for group-related messages and updates membership, leadership, and status.
-      # Observes game output and automatically updates Group state.
-      # Watches for group-related messages and updates membership, leadership, and status.
       module Observer
         # Regular expressions and constants for matching group-related game output.
-        # Regular expressions and constants for matching group-related game output.
         module Term
-          # Matches when someone joins your group
-          # @example "<a exist="-10467645" noun="Oreh">Oreh</a> joins your group."
           # Matches when someone joins your group
           # @example "<a exist=\"-10467645\" noun=\"Oreh\">Oreh</a> joins your group."
           JOIN    = %r{^<a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> joins your group.\r?\n?$}
 
           # Matches when someone leaves your group
-          # @example "<a exist="-10467645" noun="Oreh">Oreh</a> leaves your group"
-          # Matches when someone leaves your group
           # @example "<a exist=\"-10467645\" noun=\"Oreh\">Oreh</a> leaves your group"
           LEAVE   = %r{^<a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> leaves your group.\r?\n?$}
 
-          # Matches when you add someone to your group
-          # @example "You add <a exist="-10467645" noun="Oreh">Oreh</a> to your group."
           # Matches when you add someone to your group
           # @example "You add <a exist=\"-10467645\" noun=\"Oreh\">Oreh</a> to your group."
           ADD     = %r{^You add <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> to your group.\r?\n?$}
 
           # Matches when you remove someone from the group
-          # @example "You remove <a exist="-10467645" noun="Oreh">Oreh</a> from the group."
-          # Matches when you remove someone from the group
           # @example "You remove <a exist=\"-10467645\" noun=\"Oreh\">Oreh</a> from the group."
           REMOVE  = %r{^You remove <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> from the group.\r?\n?$}
 
-          # Matches when trying to add someone already in group
-          # @example "But <a exist="-10467645" noun="Oreh">Oreh</a> is already a member of your group!"
           # Matches when trying to add someone already in group
           # @example "But <a exist=\"-10467645\" noun=\"Oreh\">Oreh</a> is already a member of your group!"
           NOOP    = %r{^But <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> is already a member of your group!\r?\n?$}
 
           # Matches when you receive leadership
-          # @example "<a exist="-10488845" noun="Etanamir">Etanamir</a> designates you as the new leader of the group."
-          # Matches when you receive leadership
           # @example "<a exist=\"-10488845\" noun=\"Etanamir\">Etanamir</a> designates you as the new leader of the group."
           HAS_LEADER = %r{<a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> designates you as the new leader of the group\.\r?\n?$}
 
           # Matches when leadership changes to another player
-          # @example "<a exist="-10488845" noun="Etanamir">Etanamir</a> designates <a exist="-10488845" noun="Ondreian">Ondreian</a> as the new leader of the group."
-          # Matches when leadership changes to another player
           # @example "<a exist=\"-10488845\" noun=\"Etanamir\">Etanamir</a> designates <a exist=\"-10488845\" noun=\"Ondreian\">Ondreian</a> as the new leader of the group."
           SWAP_LEADER = %r{<a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> designates <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> as the new leader of the group.\r?\n?$}
 
-          # Matches when you give away leadership
-          # @example "You designate <a exist="-10778599" noun="Ondreian">Ondreian</a> as the new leader of the group."
           # Matches when you give away leadership
           # @example "You designate <a exist=\"-10778599\" noun=\"Ondreian\">Ondreian</a> as the new leader of the group."
           GAVE_LEADER_AWAY = %r{You designate <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> as the new leader of the group\.\r?\n?$}
 
           # Matches when you disband the group
           # @example "You disband your group."
-          # Matches when you disband the group
-          # @example "You disband your group."
           DISBAND = %r{^You disband your group}
 
-          # Matches when you're added to someone's group
-          # @example "<a exist="-10488845" noun="Etanamir">Etanamir</a> adds you to <a exist="-10488845" noun="Etanamir">his</a> group."
           # Matches when you're added to someone's group
           # @example "<a exist=\"-10488845\" noun=\"Etanamir\">Etanamir</a> adds you to <a exist=\"-10488845\" noun=\"Etanamir\">his</a> group."
           ADDED_TO_NEW_GROUP = %r{<a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> adds you to <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> group.\r?\n?$}
 
           # Matches when you join someone's group
-          # @example "You join <a exist="-10488845" noun="Etanamir">Etanamir</a>."
-          # Matches when you join someone's group
           # @example "You join <a exist=\"-10488845\" noun=\"Etanamir\">Etanamir</a>."
           JOINED_NEW_GROUP = %r{You join <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a>\.\r?\n?$}
 
-          # Matches when your leader adds another member
-          # @example "<a exist="-10488845" noun="Etanamir">Etanamir</a> adds <a exist="-10974229" noun="Szan">Szan</a> to <a exist="-10488845" noun="Etanamir">his</a> group."
           # Matches when your leader adds another member
           # @example "<a exist=\"-10488845\" noun=\"Etanamir\">Etanamir</a> adds <a exist=\"-10974229\" noun=\"Szan\">Szan</a> to <a exist=\"-10488845\" noun=\"Etanamir\">his</a> group."
           LEADER_ADDED_MEMBER = %r{<a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> adds <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> to <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> group\.\r?\n?$}
 
           # Matches when your leader removes a member
-          # @example "<a exist="-10488845" noun="Etanamir">Etanamir</a> removes <a exist="-10974229" noun="Szan">Szan</a> from the group."
-          # Matches when your leader removes a member
           # @example "<a exist=\"-10488845\" noun=\"Etanamir\">Etanamir</a> removes <a exist=\"-10974229\" noun=\"Szan\">Szan</a> from the group."
           LEADER_REMOVED_MEMBER = %r{<a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> removes <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> from the group\.\r?\n?$}
 
-          # Matches when you grab someone's hand (reserved demeanor)
-          # @example "You grab <a exist="-10070682" noun="Dicate">Dicate's</a> hand."
           # Matches when you grab someone's hand (reserved demeanor)
           # @example "You grab <a exist=\"-10070682\" noun=\"Dicate\">Dicate's</a> hand."
           HOLD_RESERVED_FIRST = %r{^You grab <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>[\w']+?)</a> hand.\r?\n?$}
 
           # Matches when you hold someone's hand (neutral demeanor)
-          # Matches when you hold someone's hand (neutral demeanor)
           # @example "You reach out and hold <a exist=\"-10070682\" noun=\"Dicate\">Dicate's</a> hand."
           HOLD_NEUTRAL_FIRST = %r{^You reach out and hold <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>[\w']+?)</a> hand.\r?\n?$}
 
-          # Matches when you take someone's hand (friendly demeanor)
           # Matches when you take someone's hand (friendly demeanor)
           # @example "You gently take hold of <a exist=\"-10070682\" noun=\"Dicate\">Dicate's</a> hand."
           HOLD_FRIENDLY_FIRST = %r{^You gently take hold of <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>[\w']+?)</a> hand.\r?\n?$}
 
           # Matches when you clasp someone's hand (warm demeanor)
-          # Matches when you clasp someone's hand (warm demeanor)
           # @example "You clasp <a exist=\"-10070682\" noun=\"Dicate\">Dicate's</a> hand tenderly."
           HOLD_WARM_FIRST = %r{^You clasp <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>[\w']+?)</a> hand tenderly.\r?\n?$}
 
           # Matches when someone grabs your hand (reserved demeanor)
-          # @example "<indicator id='IconJOINED' visible='y'/><a exist="-10966483" noun="Nisugi">Nisugi</a> grabs your hand."
-          # Matches when someone grabs your hand (reserved demeanor)
           # @example "<indicator id='IconJOINED' visible='y'/><a exist=\"-10966483\" noun=\"Nisugi\">Nisugi</a> grabs your hand."
           HOLD_RESERVED_SECOND = %r{<a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> grabs your hand.\r?\n?$}
 
-          # Matches when someone holds your hand (neutral demeanor)
+
           # Matches when someone holds your hand (neutral demeanor)
           # @example "<a exist=\"-10966483\" noun=\"Nisugi\">Nisugi</a> reaches out and holds your hand."
           HOLD_NEUTRAL_SECOND = %r{<a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> reaches out and holds your hand.\r?\n?$}
 
-          # Matches when someone takes your hand (friendly demeanor)
+
           # Matches when someone takes your hand (friendly demeanor)
           # @example "<a exist=\"-10966483\" noun=\"Nisugi\">Nisugi</a> gently takes hold of your hand."
           HOLD_FRIENDLY_SECOND = %r{<a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> gently takes hold of your hand.\r?\n?$}
 
-          # Matches when someone clasps your hand (warm demeanor)
+
           # Matches when someone clasps your hand (warm demeanor)
           # @example "<a exist=\"-10966483\" noun=\"Nisugi\">Nisugi</a> clasps your hand tenderly."
           HOLD_WARM_SECOND = %r{<a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> clasps your hand tenderly.\r?\n?$}
 
-          # Matches when you observe someone grabbing another's hand (reserved demeanor)
-          # @example "<a exist="-10966483" noun="Nisugi">Nisugi</a> grabs <a exist="-10070682" noun="Dicate">Dicate's</a> hand."
+
           # Matches when you observe someone grabbing another's hand (reserved demeanor)
           # @example "<a exist=\"-10966483\" noun=\"Nisugi\">Nisugi</a> grabs <a exist=\"-10070682\" noun=\"Dicate\">Dicate's</a> hand."
           HOLD_RESERVED_THIRD = %r{^<a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>[\w']+?)</a> grabs <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>[\w']+?)</a> hand.\r?\n?$}
 
-          # Matches when you observe someone holding another's hand (neutral demeanor)
+
           # Matches when you observe someone holding another's hand (neutral demeanor)
           # @example "<a exist=\"-10966483\" noun=\"Nisugi\">Nisugi</a> reaches out and holds <a exist=\"-10070682\" noun=\"Dicate\">Dicate's</a> hand."
           HOLD_NEUTRAL_THIRD = %r{^<a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>[\w']+?)</a> reaches out and holds <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>[\w']+?)</a> hand.\r?\n?$}
 
           # Matches when you observe someone taking another's hand (friendly demeanor)
-          # Matches when you observe someone taking another's hand (friendly demeanor)
           # @example "<a exist=\"-10966483\" noun=\"Nisugi\">Nisugi</a> gently takes hold of <a exist=\"-10070682\" noun=\"Dicate\">Dicate's</a> hand."
           HOLD_FRIENDLY_THIRD = %r{^<a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>[\w']+?)</a> gently takes hold of <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>[\w']+?)</a> hand.\r?\n?$}
 
-          # Matches when you observe someone clasping another's hand (warm demeanor)
+
           # Matches when you observe someone clasping another's hand (warm demeanor)
           # @example "<a exist=\"-10966483\" noun=\"Nisugi\">Nisugi</a> clasps <a exist=\"-10070682\" noun=\"Dicate\">Dicate's</a> hand tenderly."
           HOLD_WARM_THIRD = %r{^<a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> clasps <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>[\w']+?)</a> hand tenderly.\r?\n?$}
 
-          # Matches when someone else joins another's group
-          # @example "<a exist="-10154507" noun="Zoleta">Zoleta</a> joins <a exist="-10966483" noun="Nisugi">Nisugi's</a> group."
+
           # Matches when someone else joins another's group
           # @example "<a exist=\"-10154507\" noun=\"Zoleta\">Zoleta</a> joins <a exist=\"-10966483\" noun=\"Nisugi\">Nisugi's</a> group."
           OTHER_JOINED_GROUP = %r{^<a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>\w+?)</a> joins <a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>[\w']+?)</a> group.\r?\n?$}
 
-          # Matches when not in any group
+
           # Matches when not in any group
           # @example /^You are not currently in a group/
           NO_GROUP = /^You are not currently in a group/
@@ -535,30 +375,21 @@ module Lich
           # Matches group member listing from GROUP command
           # @example "You are leading PlayerName, PlayerName2."
           # @example "You are grouped with LeaderName, PlayerName."
-          # Matches group member listing from GROUP command
-          # @example "You are leading PlayerName, PlayerName2."
-          # @example "You are grouped with LeaderName, PlayerName."
           MEMBER   = /^You are (?:leading|grouped with) (.*)/
 
-          # Matches group status line
-          # @example "Your group status is currently open."
           # Matches group status line
           # @example "Your group status is currently open."
           STATUS   = /^Your group status is currently (?<status>open|closed)\./
 
           # UI indicator showing group is empty
-          # UI indicator showing group is empty
           GROUP_EMPTIED    = %[<indicator id='IconJOINED' visible='n'/>]
 
-          # UI indicator showing group exists
           # UI indicator showing group exists
           GROUP_EXISTS     = %[<indicator id='IconJOINED' visible='y'/>]
 
           # Text indicating leadership transfer
-          # Text indicating leadership transfer
           GIVEN_LEADERSHIP = %[designates you as the new leader of the group.]
 
-          # Combined regex matching any group-related message
           # Combined regex matching any group-related message
           ANY = Regexp.union(
             JOIN,
@@ -593,14 +424,9 @@ module Lich
           )
 
           # Regex for extracting character data from XML tags
-          # Regex for extracting character data from XML tags
           EXIST = %r{<a exist="(?<id>[\d-]+)" noun="(?<noun>[A-Za-z]+)">(?<name>[\w']+?)</a>}
         end
 
-        # Extracts GameObj instances from XML character links in game output.
-        #
-        # @param xml [String] game output containing character XML tags
-        # @return [Array<GameObj>] array of GameObj instances found in the XML
         # Extracts GameObj instances from XML character links in game output.
         # @param xml [String] game output containing character XML tags
         # @return [Array<GameObj>] array of GameObj instances found in the XML
@@ -609,10 +435,6 @@ module Lich
         end
 
         # Checks if a line of game output contains group-related information.
-        #
-        # @param line [String] line of game output
-        # @return [Boolean] true if line contains group information
-        # Checks if a line of game output contains group-related information.
         # @param line [String] line of game output
         # @return [Boolean] true if line contains group information
         def self.wants?(line)
@@ -620,12 +442,6 @@ module Lich
             line.include?(Term::GROUP_EMPTIED)
         end
 
-        # Processes a line of group-related game output and updates Group state.
-        # Handles all types of group changes: joins, leaves, leadership changes, etc.
-        #
-        # @param line [String] line of game output
-        # @param match_data [MatchData] regex match data from the line
-        # @return [void]
         # Processes a line of group-related game output and updates Group state.
         # Handles all types of group changes: joins, leaves, leadership changes, etc.
         # @param line [String] line of game output
