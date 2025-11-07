@@ -292,7 +292,7 @@ This module provides methods to read from and write to a buffer, as well as mana
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Clears the buffer and returns all lines that match the current stream.</p>
+    <span class="summary_desc"><div class='inline'><p>Clears the buffer for the current thread and returns all lines that were read.</p>
 </div></span>
   
 </li>
@@ -499,14 +499,14 @@ Cleans up the index and streams for threads that are no longer active.</p>
       <pre class="lines">
 
 
-186
 187
 188
 189
-190</pre>
+190
+191</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'buffer.rb', line 186</span>
+      <pre class="code"><span class="info file"># File 'buffer.rb', line 187</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_cleanup'>cleanup</span>
   <span class='cvar'>@@index</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid__v'>_v</span><span class='op'>|</span> <span class='kw'>not</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span> <span class='op'>==</span> <span class='id identifier rubyid_k'>k</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span>
@@ -529,7 +529,7 @@ Cleans up the index and streams for threads that are no longer active.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Clears the buffer and returns all lines that match the current stream.</p>
+    <p>Clears the buffer for the current thread and returns all lines that were read.</p>
 
 
   </div>
@@ -558,7 +558,7 @@ Cleans up the index and streams for threads that are no longer active.</p>
       
       
         &mdash;
-        <div class='inline'><p>An array of lines that were cleared from the buffer.</p>
+        <div class='inline'><p>An array of lines that were read from the buffer.</p>
 </div>
       
     </li>
@@ -571,7 +571,6 @@ Cleans up the index and streams for threads that are no longer active.</p>
       <pre class="lines">
 
 
-109
 110
 111
 112
@@ -596,10 +595,11 @@ Cleans up the index and streams for threads that are no longer active.</p>
 131
 132
 133
-134</pre>
+134
+135</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'buffer.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'buffer.rb', line 110</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
   <span class='id identifier rubyid_thread_id'>thread_id</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span>
@@ -646,7 +646,7 @@ Cleans up the index and streams for threads that are no longer active.</p>
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>This method blocks until a line is available.</p>
+    <div class='inline'><p>This method will block if no lines are available.</p>
 </div>
   </div>
 
@@ -692,7 +692,6 @@ Cleans up the index and streams for threads that are no longer active.</p>
       <pre class="lines">
 
 
-39
 40
 41
 42
@@ -715,10 +714,11 @@ Cleans up the index and streams for threads that are no longer active.</p>
 59
 60
 61
-62</pre>
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'buffer.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'buffer.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gets'>gets</span>
   <span class='id identifier rubyid_thread_id'>thread_id</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span>
@@ -802,7 +802,6 @@ Cleans up the index and streams for threads that are no longer active.</p>
       <pre class="lines">
 
 
-68
 69
 70
 71
@@ -826,10 +825,11 @@ Cleans up the index and streams for threads that are no longer active.</p>
 89
 90
 91
-92</pre>
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'buffer.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'buffer.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gets?'>gets?</span>
   <span class='id identifier rubyid_thread_id'>thread_id</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span>
@@ -914,15 +914,15 @@ Cleans up the index and streams for threads that are no longer active.</p>
       <pre class="lines">
 
 
-98
 99
 100
 101
 102
-103</pre>
+103
+104</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'buffer.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'buffer.rb', line 99</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rewind'>rewind</span>
   <span class='id identifier rubyid_thread_id'>thread_id</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span>
@@ -958,10 +958,10 @@ Retrieves the current stream type for the calling thread.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Getting the current stream type</p>
+        <h5 class="example_title"><div class='inline'><p>Getting the current streams</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_current_stream'>current_stream</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_streams'>streams</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_current_streams'>current_streams</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_streams'>streams</span></code></pre>
     
   </div>
 
@@ -976,7 +976,7 @@ Retrieves the current stream type for the calling thread.</p>
       
       
         &mdash;
-        <div class='inline'><p>The current stream type for the thread.</p>
+        <div class='inline'><p>The stream type for the current thread.</p>
 </div>
       
     </li>
@@ -989,12 +989,12 @@ Retrieves the current stream type for the calling thread.</p>
       <pre class="lines">
 
 
-163
 164
-165</pre>
+165
+166</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'buffer.rb', line 163</span>
+      <pre class="code"><span class="info file"># File 'buffer.rb', line 164</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_streams'>streams</span>
   <span class='cvar'>@@streams</span><span class='lbracket'>[</span><span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span><span class='rbracket'>]</span>
@@ -1026,10 +1026,10 @@ Retrieves the current stream type for the calling thread.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Setting the stream type</p>
+        <h5 class="example_title"><div class='inline'><p>Setting the streams</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_streams'><span class='object_link'><a href="#streams-class_method" title="Lich::Common::Buffer.streams (method)">streams</a></span></span> <span class='op'>=</span> <span class='id identifier rubyid_new_stream_type'>new_stream_type</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_streams'><span class='object_link'><a href="#streams-class_method" title="Lich::Common::Buffer.streams (method)">streams</a></span></span> <span class='op'>=</span> <span class='id identifier rubyid_new_stream_value'>new_stream_value</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1093,16 +1093,16 @@ Retrieves the current stream type for the calling thread.</p>
       <pre class="lines">
 
 
-173
 174
 175
 176
 177
 178
-179</pre>
+179
+180</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'buffer.rb', line 173</span>
+      <pre class="code"><span class="info file"># File 'buffer.rb', line 174</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_streams='>streams=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='op'>!</span><span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Integer</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>or</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span> <span class='op'>&amp;</span> <span class='int'>63</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='int'>0</span><span class='rparen'>)</span>
@@ -1138,10 +1138,10 @@ Retrieves the current stream type for the calling thread.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Updating the buffer with a new line</p>
+        <h5 class="example_title"><div class='inline'><p>Updating the buffer</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_new_line'>new_line</span><span class='comma'>,</span> <span class='id identifier rubyid_stream_type'>stream_type</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='comma'>,</span> <span class='id identifier rubyid_stream'>stream</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1174,7 +1174,7 @@ Retrieves the current stream type for the calling thread.</p>
       
       
         &mdash;
-        <div class='inline'><p>The stream type for the line (optional).</p>
+        <div class='inline'><p>The stream type for the line (default: nil).</p>
 </div>
       
     </li>
@@ -1205,7 +1205,6 @@ Retrieves the current stream type for the calling thread.</p>
       <pre class="lines">
 
 
-142
 143
 144
 145
@@ -1219,10 +1218,11 @@ Retrieves the current stream type for the calling thread.</p>
 153
 154
 155
-156</pre>
+156
+157</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'buffer.rb', line 142</span>
+      <pre class="code"><span class="info file"># File 'buffer.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='comma'>,</span> <span class='id identifier rubyid_stream'>stream</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='cvar'>@@mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span>
@@ -1249,7 +1249,7 @@ Retrieves the current stream type for the calling thread.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:49 2025 by
+  Generated on Fri Nov  7 03:59:24 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

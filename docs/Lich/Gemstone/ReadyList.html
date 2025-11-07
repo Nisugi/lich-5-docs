@@ -133,8 +133,8 @@ This class provides methods to check, reset, and validate the items in the ready
         <dt id="ORIGINAL_READY_LIST-constant" class="">ORIGINAL_READY_LIST =
           <div class="docstring">
   <div class="discussion">
-    <p>The original list of ready item types.
-This constant defines the types of items that can be ready.</p>
+    <p>The original list of ready items.
+This constant defines the default items that can be included in the ready list.</p>
 
 
   </div>
@@ -149,8 +149,8 @@ This constant defines the types of items that can be ready.</p>
         <dt id="ORIGINAL_STORE_LIST-constant" class="">ORIGINAL_STORE_LIST =
           <div class="docstring">
   <div class="discussion">
-    <p>The original list of store item types.
-This constant defines the types of items that can be stored.</p>
+    <p>The original list of store items.
+This constant defines the default items that can be included in the store list.</p>
 
 
   </div>
@@ -274,7 +274,7 @@ This constant defines the types of items that can be stored.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#reset-class_method" title="reset (class method)">.<strong>reset</strong>(all: false)  &#x21d2; Object </a>
+      <a href="#reset-class_method" title="reset (class method)">.<strong>reset</strong>(all: false)  &#x21d2; void </a>
     
 
     
@@ -430,7 +430,6 @@ This constant defines the types of items that can be stored.</p>
       <pre class="lines">
 
 
-112
 113
 114
 115
@@ -439,10 +438,11 @@ This constant defines the types of items that can be stored.</p>
 118
 119
 120
-121</pre>
+121
+122</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'readylist.rb', line 112</span>
+      <pre class="code"><span class="info file"># File 'readylist.rb', line 113</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check'>check</span><span class='lparen'>(</span><span class='label'>silent:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_quiet'>quiet</span>
@@ -503,12 +503,12 @@ This constant defines the types of items that can be stored.</p>
       <pre class="lines">
 
 
+70
 71
-72
-73</pre>
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'readylist.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'readylist.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_checked='>checked=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='ivar'>@checked</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -560,12 +560,12 @@ This constant defines the types of items that can be stored.</p>
       <pre class="lines">
 
 
+64
 65
-66
-67</pre>
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'readylist.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'readylist.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_checked?'>checked?</span>
   <span class='ivar'>@checked</span>
@@ -617,12 +617,12 @@ This constant defines the types of items that can be stored.</p>
       <pre class="lines">
 
 
+52
 53
-54
-55</pre>
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'readylist.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'readylist.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ready_list'>ready_list</span>
   <span class='ivar'>@ready_list</span>
@@ -635,7 +635,7 @@ This constant defines the types of items that can be stored.</p>
       <div class="method_details ">
   <h3 class="signature " id="reset-class_method">
   
-    .<strong>reset</strong>(all: false)  &#x21d2; <tt>Object</tt> 
+    .<strong>reset</strong>(all: false)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -643,7 +643,7 @@ This constant defines the types of items that can be stored.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Resets the ready and store lists.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Resets the ready and store lists.</p>
 
 
   </div>
@@ -678,7 +678,6 @@ This constant defines the types of items that can be stored.</p>
       <pre class="lines">
 
 
-93
 94
 95
 96
@@ -688,10 +687,11 @@ This constant defines the types of items that can be stored.</p>
 100
 101
 102
-103</pre>
+103
+104</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'readylist.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'readylist.rb', line 94</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reset'>reset</span><span class='lparen'>(</span><span class='label'>all:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='ivar'>@checked</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -751,12 +751,12 @@ This constant defines the types of items that can be stored.</p>
       <pre class="lines">
 
 
+58
 59
-60
-61</pre>
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'readylist.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'readylist.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_store_list'>store_list</span>
   <span class='ivar'>@store_list</span>
@@ -777,7 +777,14 @@ This constant defines the types of items that can be stored.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Validates the items in the ready list.</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This method requires that the ready list has been checked before validation.</p>
+</div>
+  </div>
+
+<p>Validates the items in the ready list.</p>
 
 
   </div>
@@ -798,7 +805,7 @@ This constant defines the types of items that can be stored.</p>
       
       
         &mdash;
-        <div class='inline'><p>If true, checks all items; otherwise, only checks original ready items.</p>
+        <div class='inline'><p>If true, validates all items; otherwise, only validates original ready items.</p>
 </div>
       
     </li>
@@ -816,7 +823,7 @@ This constant defines the types of items that can be stored.</p>
       
       
         &mdash;
-        <div class='inline'><p>True if all checked items are valid, false otherwise.</p>
+        <div class='inline'><p>True if all relevant items are valid, false otherwise.</p>
 </div>
       
     </li>
@@ -867,7 +874,7 @@ This constant defines the types of items that can be stored.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:56 2025 by
+  Generated on Fri Nov  7 03:59:31 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

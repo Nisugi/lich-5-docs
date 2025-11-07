@@ -102,7 +102,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     <p>Represents a skill in DragonRealms.
-This class manages skill data, including ranks, experience, and skillsets.</p>
+This class manages skill data, experience, and ranks.</p>
 
 
   </div>
@@ -344,7 +344,7 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Clears the experience points for a skill.</p>
+    <span class="summary_desc"><div class='inline'><p>Resets the experience of a skill to zero.</p>
 </div></span>
   
 </li>
@@ -367,7 +367,7 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the current experience modifiers for skills.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the current experience modifiers.</p>
 </div></span>
   
 </li>
@@ -390,7 +390,7 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Finds a skill by its name or alias.</p>
+    <span class="summary_desc"><div class='inline'><p>Finds a skill by its name.</p>
 </div></span>
   
 </li>
@@ -445,7 +445,7 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#getmodrank-class_method" title="getmodrank (class method)">.<strong>getmodrank</strong>(val)  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#getmodrank-class_method" title="getmodrank (class method)">.<strong>getmodrank</strong>(val)  &#x21d2; Integer </a>
     
 
     
@@ -459,7 +459,7 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the modified rank of a specified skill, including any modifiers.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the modified rank of a skill, including any modifiers.</p>
 </div></span>
   
 </li>
@@ -482,7 +482,7 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the percentage to the next rank of a specified skill.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the percentage to the next rank of a skill.</p>
 </div></span>
   
 </li>
@@ -505,7 +505,7 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the rank of a specified skill.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the rank of a skill.</p>
 </div></span>
   
 </li>
@@ -528,7 +528,7 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the skillset associated with a specified skill.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the skillset associated with a skill.</p>
 </div></span>
   
 </li>
@@ -551,7 +551,7 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the experience points of a specified skill.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the experience points of a skill.</p>
 </div></span>
   
 </li>
@@ -838,21 +838,20 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Initializes a new DRSkill instance.</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>Skills are capped at 34 ranks.</p>
+</div>
+  </div>
+
+<p>Initializes a new DRSkill instance.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_skill'>skill</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Evasion</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>10</span><span class='comma'>,</span> <span class='int'>100</span><span class='comma'>,</span> <span class='int'>50</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -924,6 +923,7 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
       <pre class="lines">
 
 
+24
 25
 26
 27
@@ -934,11 +934,10 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
 32
 33
 34
-35
-36</pre>
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_rank'>rank</span><span class='comma'>,</span> <span class='id identifier rubyid_exp'>exp</span><span class='comma'>,</span> <span class='id identifier rubyid_percent'>percent</span><span class='rparen'>)</span>
   <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span> <span class='comment'># skill name like &#39;Evasion&#39;
@@ -1274,21 +1273,13 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Clears the experience points for a skill.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Resets the experience of a skill to zero.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_mind'>clear_mind</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Evasion</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1301,7 +1292,7 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
       
       
         &mdash;
-        <div class='inline'><p>The name of the skill to clear.</p>
+        <div class='inline'><p>The name of the skill.</p>
 </div>
       
     </li>
@@ -1315,12 +1306,12 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
       <pre class="lines">
 
 
-159
-160
-161</pre>
+138
+139
+140</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 159</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 138</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_clear_mind'>clear_mind</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_skill'>find_skill</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_exp'>exp</span> <span class='op'>=</span> <span class='int'>0</span>
@@ -1341,21 +1332,13 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the current experience modifiers for skills.</p>
+    <p>Returns the current experience modifiers.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_modifiers'>modifiers</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_exp_modifiers'>exp_modifiers</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1367,7 +1350,7 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
       
       
         &mdash;
-        <div class='inline'><p>A hash of skill names and their experience modifiers.</p>
+        <div class='inline'><p>A hash of skill names and their modifiers.</p>
 </div>
       
     </li>
@@ -1380,12 +1363,12 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
       <pre class="lines">
 
 
-150
-151
-152</pre>
+131
+132
+133</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 150</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 131</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_exp_modifiers'>exp_modifiers</span>
   <span class='cvar'>@@exp_modifiers</span>
@@ -1406,21 +1389,13 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Finds a skill by its name or alias.</p>
+    <p>Finds a skill by its name.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_skill'>skill</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_skill'>find_skill</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Evasion</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1433,7 +1408,7 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
       
       
         &mdash;
-        <div class='inline'><p>The name or alias of the skill.</p>
+        <div class='inline'><p>The name of the skill.</p>
 </div>
       
     </li>
@@ -1464,12 +1439,12 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
       <pre class="lines">
 
 
-237
-238
-239</pre>
+200
+201
+202</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 237</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 200</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_skill'>find_skill</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@list</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_data'>data</span><span class='op'>|</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_lookup_alias'>lookup_alias</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -1490,7 +1465,14 @@ This class manages skill data, including ranks, experience, and skillsets.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the amount of ranks that have been gained since
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This method should not be confused with DRSkill.getxp(..).</p>
+</div>
+  </div>
+
+<p>Returns the amount of ranks that have been gained since
 the baseline was last reset. This allows you to track
 rank gain for a given play session.</p>
 
@@ -1502,15 +1484,7 @@ Returns the amount of ranks gained since the last reset.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_exp_gained'>exp_gained</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gained_exp'>gained_exp</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Evasion</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1523,7 +1497,7 @@ Returns the amount of ranks gained since the last reset.</p>
       
       
         &mdash;
-        <div class='inline'><p>The name of the skill to check.</p>
+        <div class='inline'><p>The name of the skill.</p>
 </div>
       
     </li>
@@ -1541,7 +1515,7 @@ Returns the amount of ranks gained since the last reset.</p>
       
       
         &mdash;
-        <div class='inline'><p>The amount of ranks gained since the last baseline reset.</p>
+        <div class='inline'><p>The amount of ranks gained.</p>
 </div>
       
     </li>
@@ -1554,15 +1528,15 @@ Returns the amount of ranks gained since the last reset.</p>
       <pre class="lines">
 
 
-81
-82
-83
-84
-85
-86</pre>
+72
+73
+74
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_gained_exp'>gained_exp</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_skill'>skill</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_skill'>find_skill</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
@@ -1596,14 +1570,6 @@ Returns the list of skills that have increased their learning rates.</p>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_skills'>skills</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gained_skills'>gained_skills</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1615,7 +1581,7 @@ Returns the list of skills that have increased their learning rates.</p>
       
       
         &mdash;
-        <div class='inline'><p>An array of hashes containing skill names and their experience changes.</p>
+        <div class='inline'><p>An array of hashes containing skill names and changes.</p>
 </div>
       
     </li>
@@ -1628,12 +1594,12 @@ Returns the list of skills that have increased their learning rates.</p>
       <pre class="lines">
 
 
-66
-67
-68</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_gained_skills'>gained_skills</span>
   <span class='cvar'>@@gained_skills</span>
@@ -1646,7 +1612,7 @@ Returns the list of skills that have increased their learning rates.</p>
       <div class="method_details ">
   <h3 class="signature " id="getmodrank-class_method">
   
-    .<strong>getmodrank</strong>(val)  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>getmodrank</strong>(val)  &#x21d2; <tt>Integer</tt> 
   
 
   
@@ -1654,115 +1620,13 @@ Returns the list of skills that have increased their learning rates.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the modified rank of a specified skill, including any modifiers.</p>
+    <p>Retrieves the modified rank of a skill, including any modifiers.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_mod_rank'>mod_rank</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_getmodrank'>getmodrank</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Evasion</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>val</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The name of the skill.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The modified rank of the skill or nil if not found.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-177
-178
-179
-180
-181
-182
-183
-184</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 177</span>
-
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_getmodrank'>getmodrank</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_skill'>skill</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_skill'>find_skill</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_skill'>skill</span>
-    <span class='id identifier rubyid_rank'>rank</span> <span class='op'>=</span> <span class='id identifier rubyid_skill'>skill</span><span class='period'>.</span><span class='id identifier rubyid_rank'>rank</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
-    <span class='id identifier rubyid_modifier'>modifier</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_exp_modifiers'>exp_modifiers</span><span class='lbracket'>[</span><span class='id identifier rubyid_skill'>skill</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
-    <span class='id identifier rubyid_rank'>rank</span> <span class='op'>+</span> <span class='id identifier rubyid_modifier'>modifier</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="getpercent-class_method">
-  
-    .<strong>getpercent</strong>(val)  &#x21d2; <tt>Integer</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Returns the percentage to the next rank of a specified skill.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_percent'>percent</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_getpercent'>getpercent</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Evasion</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1793,7 +1657,7 @@ Returns the list of skills that have increased their learning rates.</p>
       
       
         &mdash;
-        <div class='inline'><p>The percentage to the next rank (0 to 100).</p>
+        <div class='inline'><p>The modified rank of the skill.</p>
 </div>
       
     </li>
@@ -1806,12 +1670,98 @@ Returns the list of skills that have increased their learning rates.</p>
       <pre class="lines">
 
 
-201
-202
-203</pre>
+152
+153
+154
+155
+156
+157
+158
+159</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 201</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 152</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_getmodrank'>getmodrank</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_skill'>skill</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_skill'>find_skill</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_skill'>skill</span>
+    <span class='id identifier rubyid_rank'>rank</span> <span class='op'>=</span> <span class='id identifier rubyid_skill'>skill</span><span class='period'>.</span><span class='id identifier rubyid_rank'>rank</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+    <span class='id identifier rubyid_modifier'>modifier</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_exp_modifiers'>exp_modifiers</span><span class='lbracket'>[</span><span class='id identifier rubyid_skill'>skill</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+    <span class='id identifier rubyid_rank'>rank</span> <span class='op'>+</span> <span class='id identifier rubyid_modifier'>modifier</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getpercent-class_method">
+  
+    .<strong>getpercent</strong>(val)  &#x21d2; <tt>Integer</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Retrieves the percentage to the next rank of a skill.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>val</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the skill.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The percentage to the next rank.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+172
+173
+174</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 172</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_getpercent'>getpercent</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_skill'>find_skill</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_percent'>percent</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -1832,21 +1782,13 @@ Returns the list of skills that have increased their learning rates.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the rank of a specified skill.</p>
+    <p>Retrieves the rank of a skill.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_rank'>rank</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_getrank'>getrank</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Evasion</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1890,12 +1832,12 @@ Returns the list of skills that have increased their learning rates.</p>
       <pre class="lines">
 
 
-168
-169
-170</pre>
+145
+146
+147</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 145</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_getrank'>getrank</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_skill'>find_skill</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_rank'>rank</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -1916,21 +1858,13 @@ Returns the list of skills that have increased their learning rates.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the skillset associated with a specified skill.</p>
+    <p>Retrieves the skillset associated with a skill.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_skillset'>skillset</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_getskillset'>getskillset</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Evasion</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1974,12 +1908,12 @@ Returns the list of skills that have increased their learning rates.</p>
       <pre class="lines">
 
 
-210
-211
-212</pre>
+179
+180
+181</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 210</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 179</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_getskillset'>getskillset</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_skill'>find_skill</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_skillset'>skillset</span>
@@ -2000,21 +1934,13 @@ Returns the list of skills that have increased their learning rates.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the experience points of a specified skill.</p>
+    <p>Retrieves the experience points of a skill.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_xp'>xp</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_getxp'>getxp</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Evasion</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2058,13 +1984,13 @@ Returns the list of skills that have increased their learning rates.</p>
       <pre class="lines">
 
 
-191
-192
-193
-194</pre>
+164
+165
+166
+167</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 191</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 164</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_getxp'>getxp</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_skill'>skill</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_skill'>find_skill</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
@@ -2094,15 +2020,7 @@ Updates gained skills if the learning rate increased.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_handle_exp_change'>handle_exp_change</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Evasion</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>150</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2130,7 +2048,7 @@ Updates gained skills if the learning rate increased.</p>
       
       
         &mdash;
-        <div class='inline'><p>The new experience value for the skill.</p>
+        <div class='inline'><p>The new experience value.</p>
 </div>
       
     </li>
@@ -2144,18 +2062,18 @@ Updates gained skills if the learning rate increased.</p>
       <pre class="lines">
 
 
-96
-97
-98
-99
-100
-101
-102
-103
-104</pre>
+85
+86
+87
+88
+89
+90
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 96</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_handle_exp_change'>handle_exp_change</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_new_exp'>new_exp</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='const'>UserVars</span><span class='period'>.</span><span class='id identifier rubyid_echo_exp'>echo_exp</span>
@@ -2188,15 +2106,7 @@ Updates gained skills if the learning rate increased.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_exists'>exists</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Evasion</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2209,7 +2119,7 @@ Updates gained skills if the learning rate increased.</p>
       
       
         &mdash;
-        <div class='inline'><p>The name of the skill to check.</p>
+        <div class='inline'><p>The name of the skill.</p>
 </div>
       
     </li>
@@ -2240,12 +2150,12 @@ Updates gained skills if the learning rate increased.</p>
       <pre class="lines">
 
 
-111
-112
-113</pre>
+98
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='op'>!</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_skill'>find_skill</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -2273,14 +2183,6 @@ Updates gained skills if the learning rate increased.</p>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_skills'>skills</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2305,12 +2207,12 @@ Updates gained skills if the learning rate increased.</p>
       <pre class="lines">
 
 
-228
-229
-230</pre>
+193
+194
+195</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 228</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 193</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span>
   <span class='cvar'>@@list</span>
@@ -2338,14 +2240,6 @@ Updates gained skills if the learning rate increased.</p>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_listall'>listall</span></code></pre>
-    
-  </div>
-
 
 </div><table class="source_code">
   <tr>
@@ -2353,14 +2247,14 @@ Updates gained skills if the learning rate increased.</p>
       <pre class="lines">
 
 
-218
-219
-220
-221
-222</pre>
+185
+186
+187
+188
+189</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 218</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 185</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_listall'>listall</span>
   <span class='cvar'>@@list</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
@@ -2392,15 +2286,7 @@ Looks up the alias for a skill based on the guild.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_canonical_name'>canonical_name</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lookup_alias'>lookup_alias</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Inner Fire</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2413,7 +2299,7 @@ Looks up the alias for a skill based on the guild.</p>
       
       
         &mdash;
-        <div class='inline'><p>The name of the skill to look up.</p>
+        <div class='inline'><p>The name of the skill.</p>
 </div>
       
     </li>
@@ -2444,12 +2330,12 @@ Looks up the alias for a skill based on the guild.</p>
       <pre class="lines">
 
 
-249
-250
-251</pre>
+210
+211
+212</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 249</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 210</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_lookup_alias'>lookup_alias</span><span class='lparen'>(</span><span class='id identifier rubyid_skill'>skill</span><span class='rparen'>)</span>
   <span class='cvar'>@@skills_data</span><span class='lbracket'>[</span><span class='symbol'>:guild_skill_aliases</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="DRStats.html" title="Lich::DragonRealms::DRStats (module)">DRStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_guild'><span class='object_link'><a href="DRStats.html#guild-class_method" title="Lich::DragonRealms::DRStats.guild (method)">guild</a></span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_skill'>skill</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_skill'>skill</span>
@@ -2470,22 +2356,13 @@ Looks up the alias for a skill based on the guild.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Resets the gained skills and start time.
-This method clears the list of gained skills and resets the baseline for all skills.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Resets the gained skills and start time.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reset'>reset</span></code></pre>
-    
-  </div>
-
 
 </div><table class="source_code">
   <tr>
@@ -2493,14 +2370,14 @@ This method clears the list of gained skills and resets the baseline for all ski
       <pre class="lines">
 
 
-43
-44
-45
-46
-47</pre>
+39
+40
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_reset'>reset</span>
   <span class='cvar'>@@gained_skills</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -2532,14 +2409,6 @@ Returns the start time of the current session.</p>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_start_time'>start_time</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_start_time'>start_time</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2551,7 +2420,7 @@ Returns the start time of the current session.</p>
       
       
         &mdash;
-        <div class='inline'><p>The time when tracking started.</p>
+        <div class='inline'><p>The start time.</p>
 </div>
       
     </li>
@@ -2564,12 +2433,12 @@ Returns the start time of the current session.</p>
       <pre class="lines">
 
 
-55
-56
-57</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_start_time'>start_time</span>
   <span class='cvar'>@@start_time</span>
@@ -2596,15 +2465,7 @@ Returns the start time of the current session.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Evasion</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>11</span><span class='comma'>,</span> <span class='int'>120</span><span class='comma'>,</span> <span class='int'>60</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2617,7 +2478,7 @@ Returns the start time of the current session.</p>
       
       
         &mdash;
-        <div class='inline'><p>The name of the skill to update.</p>
+        <div class='inline'><p>The name of the skill.</p>
 </div>
       
     </li>
@@ -2647,7 +2508,7 @@ Returns the start time of the current session.</p>
       
       
         &mdash;
-        <div class='inline'><p>The new experience points for the skill.</p>
+        <div class='inline'><p>The new experience points.</p>
 </div>
       
     </li>
@@ -2662,7 +2523,7 @@ Returns the start time of the current session.</p>
       
       
         &mdash;
-        <div class='inline'><p>The new percentage to the next rank (0 to 100).</p>
+        <div class='inline'><p>The new percentage to the next rank.</p>
 </div>
       
     </li>
@@ -2676,21 +2537,21 @@ Returns the start time of the current session.</p>
       <pre class="lines">
 
 
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134</pre>
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 123</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 108</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_rank'>rank</span><span class='comma'>,</span> <span class='id identifier rubyid_exp'>exp</span><span class='comma'>,</span> <span class='id identifier rubyid_percent'>percent</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_handle_exp_change'>handle_exp_change</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_exp'>exp</span><span class='rparen'>)</span>
@@ -2726,15 +2587,7 @@ Returns the start time of the current session.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update_mods'>update_mods</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Evasion</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>2</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2762,7 +2615,7 @@ Returns the start time of the current session.</p>
       
       
         &mdash;
-        <div class='inline'><p>The new rank modifier for the skill.</p>
+        <div class='inline'><p>The new rank to set.</p>
 </div>
       
     </li>
@@ -2776,12 +2629,12 @@ Returns the start time of the current session.</p>
       <pre class="lines">
 
 
-142
-143
-144</pre>
+125
+126
+127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 142</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 125</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update_mods'>update_mods</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_rank'>rank</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_exp_modifiers'>exp_modifiers</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_lookup_alias'>lookup_alias</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_rank'>rank</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -2812,21 +2665,13 @@ Returns the start time of the current session.</p>
 It is called from the initialize method (constructor).
 When it was defined as a class method then the initialize method
 complained that this method didn&#39;t yet exist.
-Looks up the skillset for a skill instance.</p>
+Looks up the skillset for an instance skill.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_skillset'>skillset</span> <span class='op'>=</span> <span class='id identifier rubyid_skill'>skill</span><span class='period'>.</span><span class='id identifier rubyid_lookup_skillset'>lookup_skillset</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Evasion</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2870,12 +2715,12 @@ Looks up the skillset for a skill instance.</p>
       <pre class="lines">
 
 
-262
-263
-264</pre>
+221
+222
+223</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drskill.rb', line 262</span>
+      <pre class="code"><span class="info file"># File 'drskill.rb', line 221</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lookup_skillset'>lookup_skillset</span><span class='lparen'>(</span><span class='id identifier rubyid_skill'>skill</span><span class='rparen'>)</span>
   <span class='cvar'>@@skills_data</span><span class='lbracket'>[</span><span class='symbol'>:skillsets</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid__skillset'>_skillset</span><span class='comma'>,</span> <span class='id identifier rubyid_skills'>skills</span><span class='op'>|</span> <span class='id identifier rubyid_skills'>skills</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_skill'>skill</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
@@ -2890,7 +2735,7 @@ Looks up the skillset for a skill instance.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:56 2025 by
+  Generated on Fri Nov  7 03:59:30 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

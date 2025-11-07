@@ -117,7 +117,8 @@ This class manages the state of the room, including NPCs, PCs, and room properti
 </div></h5>
       
       <pre class="example code"><code><span class='id identifier rubyid_room'>room</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../DragonRealms.html" title="Lich::DragonRealms (module)">DragonRealms</a></span></span><span class='op'>::</span><span class='const'>DRRoom</span>
-<span class='id identifier rubyid_room'>room</span><span class='period'>.</span><span class='id identifier rubyid_title'>title</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>A Dark Cave</span><span class='tstring_end'>&#39;</span></span></code></pre>
+<span class='id identifier rubyid_room'>room</span><span class='period'>.</span><span class='id identifier rubyid_title'>title</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>A Dark Cave</span><span class='tstring_end'>&#39;</span></span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_room'>room</span><span class='period'>.</span><span class='id identifier rubyid_description'>description</span></code></pre>
     
   </div>
 
@@ -497,7 +498,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the list of objects in the room.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the list of objects present in the room.</p>
 </div></span>
   
 </li>
@@ -520,7 +521,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sets the list of objects in the room.</p>
+    <span class="summary_desc"><div class='inline'><p>Sets the list of objects present in the room.</p>
 </div></span>
   
 </li>
@@ -595,7 +596,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>An array of dead NPCs.</p>
+        <div class='inline'><p>An array of dead NPCs present in the room.</p>
 </div>
       
     </li>
@@ -608,12 +609,12 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       <pre class="lines">
 
 
-133
 134
-135</pre>
+135
+136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drroom.rb', line 133</span>
+      <pre class="code"><span class="info file"># File 'drroom.rb', line 134</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dead_npcs'>dead_npcs</span>
   <span class='cvar'>@@dead_npcs</span>
@@ -661,7 +662,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>The new array of dead NPCs to set.</p>
+        <div class='inline'><p>An array of dead NPCs to set for the room.</p>
 </div>
       
     </li>
@@ -679,7 +680,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>The updated array of dead NPCs.</p>
+        <div class='inline'><p>The updated list of dead NPCs.</p>
 </div>
       
     </li>
@@ -692,12 +693,12 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       <pre class="lines">
 
 
-142
 143
-144</pre>
+144
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drroom.rb', line 142</span>
+      <pre class="code"><span class="info file"># File 'drroom.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dead_npcs='>dead_npcs=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@dead_npcs</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -757,12 +758,12 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       <pre class="lines">
 
 
-74
 75
-76</pre>
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drroom.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'drroom.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_description'>description</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_room_description'>room_description</span>
@@ -822,12 +823,12 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       <pre class="lines">
 
 
-58
 59
-60</pre>
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drroom.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'drroom.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_exits'>exits</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_room_exits'>room_exits</span>
@@ -874,7 +875,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>An array of group members.</p>
+        <div class='inline'><p>An array of group members present in the room.</p>
 </div>
       
     </li>
@@ -887,12 +888,12 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       <pre class="lines">
 
 
-82
 83
-84</pre>
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drroom.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'drroom.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_group_members'>group_members</span>
   <span class='cvar'>@@group_members</span>
@@ -940,7 +941,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>The new array of group members to set.</p>
+        <div class='inline'><p>An array of group members to set for the room.</p>
 </div>
       
     </li>
@@ -958,7 +959,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>The updated array of group members.</p>
+        <div class='inline'><p>The updated list of group members.</p>
 </div>
       
     </li>
@@ -971,12 +972,12 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       <pre class="lines">
 
 
-91
 92
-93</pre>
+93
+94</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drroom.rb', line 91</span>
+      <pre class="code"><span class="info file"># File 'drroom.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_group_members='>group_members=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@group_members</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -1023,7 +1024,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>An array of NPCs in the room.</p>
+        <div class='inline'><p>An array of NPCs present in the room.</p>
 </div>
       
     </li>
@@ -1036,12 +1037,12 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       <pre class="lines">
 
 
-24
 25
-26</pre>
+26
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drroom.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'drroom.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_npcs'>npcs</span>
   <span class='cvar'>@@npcs</span>
@@ -1089,7 +1090,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>The new array of NPCs to set.</p>
+        <div class='inline'><p>An array of NPCs to set for the room.</p>
 </div>
       
     </li>
@@ -1107,7 +1108,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>The updated array of NPCs.</p>
+        <div class='inline'><p>The updated list of NPCs.</p>
 </div>
       
     </li>
@@ -1120,12 +1121,12 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       <pre class="lines">
 
 
-33
 34
-35</pre>
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drroom.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'drroom.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_npcs='>npcs=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@npcs</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -1172,7 +1173,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>An array of PCs in the room.</p>
+        <div class='inline'><p>An array of PCs present in the room.</p>
 </div>
       
     </li>
@@ -1185,12 +1186,12 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       <pre class="lines">
 
 
-41
 42
-43</pre>
+43
+44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drroom.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'drroom.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pcs'>pcs</span>
   <span class='cvar'>@@pcs</span>
@@ -1238,7 +1239,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>The new array of PCs to set.</p>
+        <div class='inline'><p>An array of PCs to set for the room.</p>
 </div>
       
     </li>
@@ -1256,7 +1257,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>The updated array of PCs.</p>
+        <div class='inline'><p>The updated list of PCs.</p>
 </div>
       
     </li>
@@ -1269,12 +1270,12 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       <pre class="lines">
 
 
-50
 51
-52</pre>
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drroom.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'drroom.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pcs='>pcs=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@pcs</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -1321,7 +1322,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>An array of prone PCs.</p>
+        <div class='inline'><p>An array of PCs that are currently prone.</p>
 </div>
       
     </li>
@@ -1334,12 +1335,12 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       <pre class="lines">
 
 
-99
 100
-101</pre>
+101
+102</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drroom.rb', line 99</span>
+      <pre class="code"><span class="info file"># File 'drroom.rb', line 100</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pcs_prone'>pcs_prone</span>
   <span class='cvar'>@@pcs_prone</span>
@@ -1387,7 +1388,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>The new array of prone PCs to set.</p>
+        <div class='inline'><p>An array of PCs to set as prone.</p>
 </div>
       
     </li>
@@ -1405,7 +1406,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>The updated array of prone PCs.</p>
+        <div class='inline'><p>The updated list of prone PCs.</p>
 </div>
       
     </li>
@@ -1418,12 +1419,12 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       <pre class="lines">
 
 
-108
 109
-110</pre>
+110
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drroom.rb', line 108</span>
+      <pre class="code"><span class="info file"># File 'drroom.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pcs_prone='>pcs_prone=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@pcs_prone</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -1470,7 +1471,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>An array of sitting PCs.</p>
+        <div class='inline'><p>An array of PCs that are currently sitting.</p>
 </div>
       
     </li>
@@ -1483,12 +1484,12 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       <pre class="lines">
 
 
-116
 117
-118</pre>
+118
+119</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drroom.rb', line 116</span>
+      <pre class="code"><span class="info file"># File 'drroom.rb', line 117</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pcs_sitting'>pcs_sitting</span>
   <span class='cvar'>@@pcs_sitting</span>
@@ -1536,7 +1537,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>The new array of sitting PCs to set.</p>
+        <div class='inline'><p>An array of PCs to set as sitting.</p>
 </div>
       
     </li>
@@ -1554,7 +1555,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>The updated array of sitting PCs.</p>
+        <div class='inline'><p>The updated list of sitting PCs.</p>
 </div>
       
     </li>
@@ -1567,12 +1568,12 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       <pre class="lines">
 
 
-125
 126
-127</pre>
+127
+128</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drroom.rb', line 125</span>
+      <pre class="code"><span class="info file"># File 'drroom.rb', line 126</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pcs_sitting='>pcs_sitting=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@pcs_sitting</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -1593,7 +1594,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the list of objects in the room.</p>
+    <p>Returns the list of objects present in the room.</p>
 
 
   </div>
@@ -1632,12 +1633,12 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       <pre class="lines">
 
 
-150
 151
-152</pre>
+152
+153</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drroom.rb', line 150</span>
+      <pre class="code"><span class="info file"># File 'drroom.rb', line 151</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_room_objs'>room_objs</span>
   <span class='cvar'>@@room_objs</span>
@@ -1658,7 +1659,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Sets the list of objects in the room.</p>
+    <p>Sets the list of objects present in the room.</p>
 
 
   </div>
@@ -1685,7 +1686,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>The new array of room objects to set.</p>
+        <div class='inline'><p>An array of objects to set for the room.</p>
 </div>
       
     </li>
@@ -1703,7 +1704,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       
       
         &mdash;
-        <div class='inline'><p>The updated array of room objects.</p>
+        <div class='inline'><p>The updated list of room objects.</p>
 </div>
       
     </li>
@@ -1716,12 +1717,12 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       <pre class="lines">
 
 
-159
 160
-161</pre>
+161
+162</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drroom.rb', line 159</span>
+      <pre class="code"><span class="info file"># File 'drroom.rb', line 160</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_room_objs='>room_objs=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@room_objs</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -1781,12 +1782,12 @@ This class manages the state of the room, including NPCs, PCs, and room properti
       <pre class="lines">
 
 
-66
 67
-68</pre>
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'drroom.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'drroom.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_title'>title</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_room_title'>room_title</span>
@@ -1801,7 +1802,7 @@ This class manages the state of the room, including NPCs, PCs, and room properti
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:54 2025 by
+  Generated on Fri Nov  7 03:59:29 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

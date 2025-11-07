@@ -85,8 +85,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Handles frontend session file operations
-This module manages the creation, location, and cleanup of session files.</p>
+    <p>Handles frontend session management for the Lich project</p>
 
 
   </div>
@@ -100,7 +99,7 @@ This module manages the creation, location, and cleanup of session files.</p>
         <h5 class="example_title"><div class='inline'><p>Using the Frontend module</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'>Frontend</span><span class='period'>.</span><span class='id identifier rubyid_create_session_file'><span class='object_link'><a href="#create_session_file-class_method" title="Lich::Common::Frontend.create_session_file (method)">create_session_file</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>example</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>localhost</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>3000</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'>Frontend</span><span class='period'>.</span><span class='id identifier rubyid_create_session_file'><span class='object_link'><a href="#create_session_file-class_method" title="Lich::Common::Frontend.create_session_file (method)">create_session_file</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>session_name</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>localhost</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>3000</span><span class='rparen'>)</span></code></pre>
     
   </div>
 
@@ -212,7 +211,7 @@ This module manages the creation, location, and cleanup of session files.</p>
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>If the session file does not exist, the method will return early without performing any action.</p>
+    <div class='inline'><p>This method does nothing if the session file is nil.</p>
 </div>
   </div>
 
@@ -254,13 +253,13 @@ This module manages the creation, location, and cleanup of session files.</p>
       <pre class="lines">
 
 
+50
+51
 52
-53
-54
-55</pre>
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'front-end.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'front-end.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_cleanup_session_file'>cleanup_session_file</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='ivar'>@session_file</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -285,7 +284,7 @@ This module manages the creation, location, and cleanup of session files.</p>
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>If the name is nil, the method will return early without creating a session file.</p>
+    <div class='inline'><p>This method will not create a session file if the name is nil.</p>
 </div>
   </div>
 
@@ -303,7 +302,7 @@ This module manages the creation, location, and cleanup of session files.</p>
         <h5 class="example_title"><div class='inline'><p>Creating a session file</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Frontend (module)">Frontend</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_session_file'>create_session_file</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>example</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>localhost</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>3000</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Frontend (module)">Frontend</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_session_file'>create_session_file</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>my_session</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>localhost</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>3000</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -334,7 +333,7 @@ This module manages the creation, location, and cleanup of session files.</p>
       
       
         &mdash;
-        <div class='inline'><p>The host for the session</p>
+        <div class='inline'><p>The host address</p>
 </div>
       
     </li>
@@ -349,7 +348,7 @@ This module manages the creation, location, and cleanup of session files.</p>
       
       
         &mdash;
-        <div class='inline'><p>The port for the session</p>
+        <div class='inline'><p>The port number</p>
 </div>
       
     </li>
@@ -393,6 +392,8 @@ This module manages the creation, location, and cleanup of session files.</p>
       <pre class="lines">
 
 
+26
+27
 28
 29
 30
@@ -400,12 +401,10 @@ This module manages the creation, location, and cleanup of session files.</p>
 32
 33
 34
-35
-36
-37</pre>
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'front-end.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'front-end.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_session_file'>create_session_file</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span><span class='comma'>,</span> <span class='label'>display_session:</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -475,12 +474,12 @@ This module manages the creation, location, and cleanup of session files.</p>
       <pre class="lines">
 
 
-43
-44
-45</pre>
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'front-end.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'front-end.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_session_file_location'>session_file_location</span>
   <span class='ivar'>@session_file</span>
@@ -495,7 +494,7 @@ This module manages the creation, location, and cleanup of session files.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:51 2025 by
+  Generated on Fri Nov  7 03:59:26 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

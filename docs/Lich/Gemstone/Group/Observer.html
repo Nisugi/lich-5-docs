@@ -314,72 +314,72 @@ Handles all types of group changes: joins, leaves, leadership changes, etc.</p>
       <pre class="lines">
 
 
-632
-633
-634
-635
-636
-637
-638
-639
-640
-641
-642
-643
-644
-645
-646
-647
-648
-649
-650
-651
-652
-653
-654
-655
-656
-657
-658
-659
-660
-661
-662
-663
-664
-665
-666
-667
-668
-669
-670
-671
-672
-673
-674
-675
-676
-677
-678
-679
-680
-681
-682
-683
-684
-685
-686
-687
-688
-689
-690
-691
-692
-693
-694</pre>
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'group.rb', line 632</span>
+      <pre class="code"><span class="info file"># File 'group.rb', line 568</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_consume'>consume</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='comma'>,</span> <span class='id identifier rubyid_match_data'>match_data</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Observer/Term.html" title="Lich::Gemstone::Group::Observer::Term (module)">Term</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Observer/Term.html#GIVEN_LEADERSHIP-constant" title="Lich::Gemstone::Group::Observer::Term::GIVEN_LEADERSHIP (constant)">GIVEN_LEADERSHIP</a></span></span><span class='rparen'>)</span>
@@ -540,12 +540,12 @@ Handles all types of group changes: joins, leaves, leadership changes, etc.</p>
       <pre class="lines">
 
 
-605
-606
-607</pre>
+541
+542
+543</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'group.rb', line 605</span>
+      <pre class="code"><span class="info file"># File 'group.rb', line 541</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_exist'>exist</span><span class='lparen'>(</span><span class='id identifier rubyid_xml'>xml</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_xml'>xml</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../Group.html" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Group::Observer (module)">Observer</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Observer/Term.html" title="Lich::Gemstone::Group::Observer::Term (module)">Term</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Observer/Term.html#EXIST-constant" title="Lich::Gemstone::Group::Observer::Term::EXIST (constant)">EXIST</a></span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid__noun'>_noun</span><span class='comma'>,</span> <span class='id identifier rubyid__name'>_name</span><span class='op'>|</span> <span class='const'>GameObj</span><span class='lbracket'>[</span><span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
@@ -646,13 +646,13 @@ Handles all types of group changes: joins, leaves, leadership changes, etc.</p>
       <pre class="lines">
 
 
-616
-617
-618
-619</pre>
+552
+553
+554
+555</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'group.rb', line 616</span>
+      <pre class="code"><span class="info file"># File 'group.rb', line 552</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_wants?'>wants?</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Observer/Term.html" title="Lich::Gemstone::Group::Observer::Term (module)">Term</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Observer/Term.html#ANY-constant" title="Lich::Gemstone::Group::Observer::Term::ANY (constant)">ANY</a></span></span><span class='rparen'>)</span> <span class='kw'>or</span>
@@ -668,7 +668,7 @@ Handles all types of group changes: joins, leaves, leadership changes, etc.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:49 2025 by
+  Generated on Fri Nov  7 03:59:24 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

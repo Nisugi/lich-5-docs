@@ -262,7 +262,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves a line from the internal buffer.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves a string from the internal buffer.</p>
 </div></span>
   
 </li>
@@ -285,7 +285,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sends a string to the socket.</p>
+    <span class="summary_desc"><div class='inline'><p>Sends a string to the game server.</p>
 </div></span>
   
 </li>
@@ -308,7 +308,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Closes the socket connection.</p>
+    <span class="summary_desc"><div class='inline'><p>Closes the game connection.</p>
 </div></span>
   
 </li>
@@ -331,7 +331,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if the socket is closed.</p>
+    <span class="summary_desc"><div class='inline'><p>Checks if the game connection is closed.</p>
 </div></span>
   
 </li>
@@ -377,7 +377,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves a line from the buffer.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves a string from the game server.</p>
 </div></span>
   
 </li>
@@ -607,7 +607,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sends a formatted string to the client.</p>
+    <span class="summary_desc"><div class='inline'><p>Sends a formatted string to the game server.</p>
 </div></span>
   
 </li>
@@ -630,7 +630,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sends the processed string to the client.</p>
+    <span class="summary_desc"><div class='inline'><p>Sends a string to the client.</p>
 </div></span>
   
 </li>
@@ -722,7 +722,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Starts a thread to manage the game wrap.</p>
+    <span class="summary_desc"><div class='inline'><p>Starts a thread to wrap the game connection.</p>
 </div></span>
   
 </li>
@@ -921,7 +921,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves a line from the internal buffer</p>
+    <p>Retrieves a string from the internal buffer</p>
 
 
   </div>
@@ -939,7 +939,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The retrieved line</p>
+        <div class='inline'><p>The retrieved string</p>
 </div>
       
     </li>
@@ -978,7 +978,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Sends a string to the socket</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sends a string to the game server</p>
 
 
   </div>
@@ -1041,7 +1041,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Closes the socket connection</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Closes the game connection</p>
 
 
   </div>
@@ -1087,7 +1087,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the socket is closed</p>
+    <p>Checks if the game connection is closed</p>
 
 
   </div>
@@ -1105,7 +1105,7 @@
       
       
         &mdash;
-        <div class='inline'><p>True if the socket is closed, false otherwise</p>
+        <div class='inline'><p>True if the connection is closed, false otherwise</p>
 </div>
       
     </li>
@@ -1222,7 +1222,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves a line from the buffer</p>
+    <p>Retrieves a string from the game server</p>
 
 
   </div>
@@ -1240,7 +1240,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The retrieved line</p>
+        <div class='inline'><p>The received string</p>
 </div>
       
     </li>
@@ -1857,7 +1857,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The alternative room display string</p>
+        <div class='inline'><p>The room display string</p>
 </div>
       
     </li>
@@ -2160,7 +2160,7 @@
     <span class='comment'># Check for valid XML
 </span>    <span class='const'>REXML</span><span class='op'>::</span><span class='const'>Document</span><span class='period'>.</span><span class='id identifier rubyid_parse_stream'>parse_stream</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;root&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_server_string'>server_string</span><span class='embexpr_end'>}</span><span class='tstring_content'>&lt;/root&gt;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>XMLData</span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='kw'>case</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'><span class='object_link'><a href="../../String.html#to_s-instance_method" title="String#to_s (method)">to_s</a></span></span>
+    <span class='kw'>case</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
     <span class='comment'># Missing attribute equal: &lt;s&gt; - in dynamic dialogs with a single apostrophe for possessive &#39;Tsetem&#39;s Items&#39;
 </span>    <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>nested single quotes|nested double quotes|Missing attribute equal: &lt;[^&gt;]+&gt;|Invalid attribute name: &lt;[^&gt;]+&gt;</span><span class='regexp_end'>/</span></span>
       <span class='id identifier rubyid_original_server_string'>original_server_string</span> <span class='op'>=</span> <span class='id identifier rubyid_server_string'>server_string</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
@@ -2216,7 +2216,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Sends a formatted string to the client</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sends a formatted string to the game server</p>
 
 
   </div>
@@ -2301,7 +2301,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Sends the processed string to the client</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sends a string to the client</p>
 
 
   </div>
@@ -2320,7 +2320,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The string to send to the client</p>
+        <div class='inline'><p>The string to send</p>
 </div>
       
     </li>
@@ -2567,7 +2567,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Starts a thread to manage the game wrap</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Starts a thread to wrap the game connection</p>
 
 
   </div>
@@ -2617,7 +2617,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:53 2025 by
+  Generated on Fri Nov  7 03:59:28 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

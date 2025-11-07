@@ -102,7 +102,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     <p>Manages the equipment for the DragonRealms game.
-This class handles the wearing, removing, and organizing of items.</p>
+This class handles the initialization, wearing, and removing of items.</p>
 
 
   </div>
@@ -112,9 +112,6 @@ This class handles the wearing, removing, and organizing of items.</p>
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
-      
-        <h5 class="example_title"><div class='inline'><p>Creating an equipment manager</p>
-</div></h5>
       
       <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../DragonRealms.html" title="Lich::DragonRealms (module)">DragonRealms</a></span></span><span class='op'>::</span><span class='const'>EquipmentManager</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::DragonRealms::EquipmentManager#initialize (method)">new</a></span></span></code></pre>
     
@@ -176,7 +173,7 @@ This class handles the wearing, removing, and organizing of items.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Empties the hands by returning held gear or stowing hands.</p>
+    <span class="summary_desc"><div class='inline'><p>Empties the hands by returning held gear or stowing items.</p>
 </div></span>
   
 </li>
@@ -339,7 +336,7 @@ This class handles the wearing, removing, and organizing of items.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the list of items managed by the equipment manager.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the list of items managed by the EquipmentManager.</p>
 </div></span>
   
 </li>
@@ -477,7 +474,7 @@ This class handles the wearing, removing, and organizing of items.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Helper method to perform stowing actions for weapons.</p>
+    <span class="summary_desc"><div class='inline'><p>Helper method to assist in stowing a weapon.</p>
 </div></span>
   
 </li>
@@ -615,7 +612,7 @@ This class handles the wearing, removing, and organizing of items.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Wears a set of equipment by name.</p>
+    <span class="summary_desc"><div class='inline'><p>Wears an entire set of equipment.</p>
 </div></span>
   
 </li>
@@ -901,7 +898,7 @@ This class handles the wearing, removing, and organizing of items.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_items'>items</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_desc_to_items'>desc_to_items</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a shiny sword</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a leather armor</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_items'>items</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_desc_to_items'>desc_to_items</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a sword</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a shield</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -917,7 +914,7 @@ This class handles the wearing, removing, and organizing of items.</p>
       
       
         &mdash;
-        <div class='inline'><p>The descriptions to convert.</p>
+        <div class='inline'><p>The list of descriptions to convert.</p>
 </div>
       
     </li>
@@ -974,7 +971,7 @@ This class handles the wearing, removing, and organizing of items.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Empties the hands by returning held gear or stowing hands.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Empties the hands by returning held gear or stowing items.</p>
 
 
   </div>
@@ -1048,7 +1045,7 @@ This class handles the wearing, removing, and organizing of items.</p>
       
       
         &mdash;
-        <div class='inline'><p>The list of combat items.</p>
+        <div class='inline'><p>The list of combat item descriptions.</p>
 </div>
       
     </li>
@@ -1355,7 +1352,7 @@ This class handles the wearing, removing, and organizing of items.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_item'>item</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_is_listed_item?'>is_listed_item?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a shiny sword</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_item'>item</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_is_listed_item?'>is_listed_item?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a sword</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1439,7 +1436,7 @@ This class handles the wearing, removing, and organizing of items.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_item'>item</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_item_by_desc'>item_by_desc</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a shiny sword</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_item'>item</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_item_by_desc'>item_by_desc</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a sword</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1512,7 +1509,7 @@ This class handles the wearing, removing, and organizing of items.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the list of items managed by the equipment manager.</p>
+    <p>Retrieves the list of items managed by the EquipmentManager.</p>
 
 
   </div>
@@ -1559,7 +1556,7 @@ This class handles the wearing, removing, and organizing of items.</p>
       
       
         &mdash;
-        <div class='inline'><p>The list of items managed.</p>
+        <div class='inline'><p>The list of items.</p>
 </div>
       
     </li>
@@ -1972,7 +1969,7 @@ This class handles the wearing, removing, and organizing of items.</p>
       
       
         &mdash;
-        <div class='inline'><p>The current combat items.</p>
+        <div class='inline'><p>The list of combat item descriptions.</p>
 </div>
       
     </li>
@@ -1987,7 +1984,7 @@ This class handles the wearing, removing, and organizing of items.</p>
       
       
         &mdash;
-        <div class='inline'><p>The worn items.</p>
+        <div class='inline'><p>The list of worn items.</p>
 </div>
       
     </li>
@@ -2200,7 +2197,7 @@ This class handles the wearing, removing, and organizing of items.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Helper method to perform stowing actions for weapons.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Helper method to assist in stowing a weapon.</p>
 
 
   </div>
@@ -2211,7 +2208,7 @@ This class handles the wearing, removing, and organizing of items.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_stow_helper'>stow_helper</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stow my shiny sword</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>shiny sword</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You put</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You should unload</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_stow_helper'>stow_helper</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stow my sword</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>sword</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You put</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You should unload</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2227,7 +2224,7 @@ This class handles the wearing, removing, and organizing of items.</p>
       
       
         &mdash;
-        <div class='inline'><p>The action command to perform.</p>
+        <div class='inline'><p>The action to perform for stowing.</p>
 </div>
       
     </li>
@@ -2257,7 +2254,7 @@ This class handles the wearing, removing, and organizing of items.</p>
       
       
         &mdash;
-        <div class='inline'><p>The success messages to match against.</p>
+        <div class='inline'><p>The strings to match for successful stowing.</p>
 </div>
       
     </li>
@@ -2344,7 +2341,7 @@ This class handles the wearing, removing, and organizing of items.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_stow_weapon'>stow_weapon</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a shiny sword</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_stow_weapon'>stow_weapon</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a sword</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2362,7 +2359,7 @@ This class handles the wearing, removing, and organizing of items.</p>
       
       
         &mdash;
-        <div class='inline'><p>The description of the weapon to stow.</p>
+        <div class='inline'><p>Optional description of the weapon to stow.</p>
 </div>
       
     </li>
@@ -2471,7 +2468,7 @@ Swaps a weapon to be used for a different skill.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_swap_to_skill?'>swap_to_skill?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a shiny sword</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>heavy edged</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_swap_to_skill?'>swap_to_skill?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a sword</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Heavy Edge</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2722,7 +2719,7 @@ Turns a weapon to be used as a different weapon.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_turn_to_weapon?'>turn_to_weapon?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a shiny sword</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a shiny dagger</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_turn_to_weapon?'>turn_to_weapon?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a sword</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a dagger</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2839,7 +2836,7 @@ Turns a weapon to be used as a different weapon.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_unload_weapon'>unload_weapon</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a shiny sword</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_unload_weapon'>unload_weapon</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a bow</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3107,7 +3104,7 @@ Turns a weapon to be used as a different weapon.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Wears a set of equipment by name.</p>
+    <p>Wears an entire set of equipment.</p>
 
 
   </div>
@@ -3118,7 +3115,7 @@ Turns a weapon to be used as a different weapon.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_wear_equipment_set?'>wear_equipment_set?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>default</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_wear_equipment_set?'>wear_equipment_set?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>warrior_set</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3425,7 +3422,7 @@ Turns a weapon to be used as a different weapon.</p>
       
       
         &mdash;
-        <div class='inline'><p>The items that should be worn.</p>
+        <div class='inline'><p>The list of items that should be worn.</p>
 </div>
       
     </li>
@@ -3531,7 +3528,7 @@ Wields a weapon into the right hand.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_wield_weapon'>wield_weapon</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a shiny sword</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_wield_weapon'>wield_weapon</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a sword</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3635,7 +3632,7 @@ Wields a weapon into the right hand with skill handling.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_wield_weapon?'>wield_weapon?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a shiny sword</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_wield_weapon?'>wield_weapon?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a sword</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Heavy Edge</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3789,7 +3786,7 @@ Wields a weapon into the left hand.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_wield_weapon_offhand'>wield_weapon_offhand</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a shiny sword</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_wield_weapon_offhand'>wield_weapon_offhand</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a sword</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3892,7 +3889,7 @@ Wields a weapon into the left hand with skill handling.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_wield_weapon_offhand?'>wield_weapon_offhand?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a shiny sword</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_wield_weapon_offhand?'>wield_weapon_offhand?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a sword</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Offhand Weapon</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -4033,7 +4030,7 @@ Wields a weapon into the left hand with skill handling.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_worn'>worn</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_worn_items'>worn_items</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a shiny sword</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a leather armor</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_worn'>worn</span> <span class='op'>=</span> <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_worn_items'>worn_items</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a sword</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a shield</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -4067,7 +4064,7 @@ Wields a weapon into the left hand with skill handling.</p>
       
       
         &mdash;
-        <div class='inline'><p>The list of worn items that match the descriptions.</p>
+        <div class='inline'><p>The list of worn items that match the filter.</p>
 </div>
       
     </li>
@@ -4104,7 +4101,7 @@ Wields a weapon into the left hand with skill handling.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:57 2025 by
+  Generated on Fri Nov  7 03:59:32 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

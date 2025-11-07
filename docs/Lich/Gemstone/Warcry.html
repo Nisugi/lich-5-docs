@@ -131,7 +131,10 @@ Class for managing and using Warcries in GemStone IV.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'>Warcry</span><span class='period'>.</span><span class='id identifier rubyid_warcry_lookups'><span class='object_link'><a href="#warcry_lookups-class_method" title="Lich::Gemstone::Warcry.warcry_lookups (method)">warcry_lookups</a></span></span> <span class='comment'># returns an array of warcry metadata</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>Using a warcry</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'>Warcry</span><span class='period'>.</span><span class='id identifier rubyid_use'><span class='object_link'><a href="#use-class_method" title="Lich::Gemstone::Warcry.use (method)">use</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 
@@ -517,8 +520,8 @@ convenient way to check if a warcry is known or not that fits with the rest of t
 </span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>0</span> <span class='comment'># if not known</span></code></pre>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='comment'># =&gt; 1 # if known
-</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='comment'># =&gt; 0 # if not known</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='comment'># =&gt; 1 # if known
+</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='comment'># =&gt; 0 # if not known</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -638,8 +641,8 @@ affordability with a given number of FORCERTs having been used (including the cu
 </span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_affordable?'>affordable?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>forcert_count:</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='op'>=&gt;</span> <span class='kw'>false</span>  <span class='comment'># if not enough skill or stamina</span></code></pre>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_affordable?'>affordable?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; true # if enough skill and stamina
-</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_affordable?'>affordable?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>forcert_count:</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='comment'># =&gt; false  # if not enough skill or stamina</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_affordable?'>affordable?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; true # if enough skill and stamina
+</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_affordable?'>affordable?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>forcert_count:</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='comment'># =&gt; false  # if not enough skill or stamina</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -809,7 +812,7 @@ Determines if a warcry is available to use right now by testing:</p>
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_available?'>available?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>=&gt;</span> <span class='kw'>true</span> <span class='comment'># if known, affordable, not on cooldown, and not overexerted</span></code></pre>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_available?'>available?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; true # if known, affordable, not on cooldown, and not overexerted</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_available?'>available?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; true # if known, affordable, not on cooldown, and not overexerted</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -995,7 +998,7 @@ Determines if a warcry is available to use right now by testing:</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_buff_active?'>buff_active?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; true # if buff is active</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_buff_active?'>buff_active?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; true # if buff is active</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1236,7 +1239,7 @@ with the rest of the PSMS.</p>
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_known?'>known?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>=&gt;</span> <span class='kw'>true</span> <span class='comment'># if any number of ranks is known</span></code></pre>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_known?'>known?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; true # if any number of ranks is known</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_known?'>known?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; true # if any number of ranks is known</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1395,7 +1398,7 @@ that the technique was executed at all.</p>
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_regexp'>regexp</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>As \w+ prays? over \w+(?:&#39;s)? [\w\s]+, you sense that (?:the Arkati&#39;s|a) blessing will be granted against magical attacks\.</span><span class='regexp_end'>/i</span></span></code></pre>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_regexp'>regexp</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; /As \w+ prays? over \w+(?:&#39;s)? [\w\s]+, you sense that (?:the Arkati&#39;s|a) blessing will be granted against magical attacks\./i</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_regexp'>regexp</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; /As \w+ prays? over \w+(?:&#39;s)? [\w\s]+, you sense that (?:the Arkati&#39;s|a) blessing will be granted against magical attacks\./i</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1513,8 +1516,8 @@ that the technique was executed at all.</p>
 </span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Dissonance</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># attempt to use holler on Dissonance</span></code></pre>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># attempt to use holler on self
-</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Dissonance</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># attempt to use holler on Dissonance</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># attempt to use holler on self
+</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holler</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Dissonance</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># attempt to use holler on Dissonance</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1812,7 +1815,7 @@ that the technique was executed at all.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warcry_lookups'>warcry_lookups</span> <span class='comment'># returns an array of hashes with warcry details</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Warcry (class)">Warcry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warcry_lookups'>warcry_lookups</span> <span class='comment'># =&gt; [{:long_name =&gt; &#39;holler&#39;, :short_name =&gt; &#39;holler&#39;, :cost =&gt; { stamina: 20 }}, ...]</span></code></pre>
     
   </div>
 
@@ -1885,7 +1888,7 @@ that the technique was executed at all.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:55 2025 by
+  Generated on Fri Nov  7 03:59:30 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

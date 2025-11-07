@@ -83,17 +83,7 @@
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    <p>This module manages the state of the parser</p>
 
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
   
     <h2>
       Constant Summary
@@ -200,7 +190,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Gets the current state of the parser</p>
+    <p>Gets the current state of the parser.</p>
 
 
   </div>
@@ -218,7 +208,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The current state</p>
+        <div class='inline'><p>The current state.</p>
 </div>
       
     </li>
@@ -231,12 +221,12 @@
       <pre class="lines">
 
 
-195
-196
-197</pre>
+206
+207
+208</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'parser.rb', line 195</span>
+      <pre class="code"><span class="info file"># File 'parser.rb', line 206</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="../../../../top-level-namespace.html#get-instance_method" title="#get (method)">get</a></span></span>
   <span class='ivar'>@state</span>
@@ -257,7 +247,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the current state of the parser</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the current state of the parser.</p>
 
 
   </div>
@@ -268,7 +258,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#Goals-constant" title="Lich::Gemstone::Infomon::Parser::State::Goals (constant)">Goals</a></span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Parser.html" title="Lich::Gemstone::Infomon::Parser (module)">Parser</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='symbol'>:goals</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -284,7 +274,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The state to set</p>
+        <div class='inline'><p>The state to set.</p>
 </div>
       
     </li>
@@ -297,12 +287,12 @@
     <li>
       
       
-        <span class='type'>(<tt>RuntimeError</tt>)</span>
+        <span class='type'>(<tt>StandardError</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>if the state is invalid</p>
+        <div class='inline'><p>if the state is invalid.</p>
 </div>
       
     </li>
@@ -315,19 +305,19 @@
       <pre class="lines">
 
 
-182
-183
-184
-185
-186
-187
-188
-189
-190
-191</pre>
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'parser.rb', line 182</span>
+      <pre class="code"><span class="info file"># File 'parser.rb', line 193</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='id identifier rubyid_state'>state</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_state'>state</span>
@@ -349,7 +339,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:50 2025 by
+  Generated on Fri Nov  7 03:59:24 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

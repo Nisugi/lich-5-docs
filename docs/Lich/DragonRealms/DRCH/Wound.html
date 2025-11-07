@@ -515,7 +515,7 @@ Initializes a new Wound object.</p>
       
       
         &mdash;
-        <div class='inline'><p>Indicates if the wound is internal.</p>
+        <div class='inline'><p>Indicates if the wound is internal, defaults to false.</p>
 </div>
       
     </li>
@@ -532,7 +532,7 @@ Initializes a new Wound object.</p>
       
       
         &mdash;
-        <div class='inline'><p>Indicates if the wound is a scar.</p>
+        <div class='inline'><p>Indicates if the wound is a scar, defaults to false.</p>
 </div>
       
     </li>
@@ -549,7 +549,7 @@ Initializes a new Wound object.</p>
       
       
         &mdash;
-        <div class='inline'><p>Indicates if the wound is a parasite.</p>
+        <div class='inline'><p>Indicates if the wound is a parasite, defaults to false.</p>
 </div>
       
     </li>
@@ -566,7 +566,7 @@ Initializes a new Wound object.</p>
       
       
         &mdash;
-        <div class='inline'><p>Indicates if the wound is a lodged item.</p>
+        <div class='inline'><p>Indicates if the wound is a lodged item, defaults to false.</p>
 </div>
       
     </li>
@@ -580,9 +580,6 @@ Initializes a new Wound object.</p>
       <pre class="lines">
 
 
-473
-474
-475
 476
 477
 478
@@ -597,10 +594,13 @@ Initializes a new Wound object.</p>
 487
 488
 489
-490</pre>
+490
+491
+492
+493</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 473</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 476</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span>
   <span class='label'>body_part:</span> <span class='kw'>nil</span><span class='comma'>,</span>
@@ -657,12 +657,12 @@ Initializes a new Wound object.</p>
       <pre class="lines">
 
 
-460
-461
-462</pre>
+464
+465
+466</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 460</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 464</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_bleeding_rate'>bleeding_rate</span>
   <span class='ivar'>@bleeding_rate</span>
@@ -699,12 +699,12 @@ Initializes a new Wound object.</p>
       <pre class="lines">
 
 
-460
-461
-462</pre>
+464
+465
+466</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 460</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 464</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_body_part'>body_part</span>
   <span class='ivar'>@body_part</span>
@@ -741,12 +741,12 @@ Initializes a new Wound object.</p>
       <pre class="lines">
 
 
-460
-461
-462</pre>
+464
+465
+466</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 460</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 464</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_severity'>severity</span>
   <span class='ivar'>@severity</span>
@@ -805,12 +805,12 @@ Initializes a new Wound object.</p>
       <pre class="lines">
 
 
-494
-495
-496</pre>
+497
+498
+499</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 494</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 497</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_bleeding?'>bleeding?</span>
   <span class='kw'>return</span> <span class='op'>!</span><span class='ivar'>@bleeding_rate</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@bleeding_rate</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@bleeding_rate</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>(tended)</span><span class='tstring_end'>&#39;</span></span>
@@ -862,12 +862,12 @@ Initializes a new Wound object.</p>
       <pre class="lines">
 
 
-500
-501
-502</pre>
+503
+504
+505</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 500</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 503</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_internal?'>internal?</span>
   <span class='kw'>return</span> <span class='ivar'>@is_internal</span>
@@ -919,12 +919,12 @@ Initializes a new Wound object.</p>
       <pre class="lines">
 
 
-536
-537
-538</pre>
+539
+540
+541</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 536</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 539</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_location'>location</span>
   <span class='id identifier rubyid_internal?'>internal?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>internal</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>external</span><span class='tstring_end'>&#39;</span></span>
@@ -976,12 +976,12 @@ Initializes a new Wound object.</p>
       <pre class="lines">
 
 
-518
-519
-520</pre>
+521
+522
+523</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 518</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 521</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lodged?'>lodged?</span>
   <span class='kw'>return</span> <span class='ivar'>@is_lodged_item</span>
@@ -1033,12 +1033,12 @@ Initializes a new Wound object.</p>
       <pre class="lines">
 
 
-512
-513
-514</pre>
+515
+516
+517</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 512</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 515</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parasite?'>parasite?</span>
   <span class='kw'>return</span> <span class='ivar'>@is_parasite</span>
@@ -1090,12 +1090,12 @@ Initializes a new Wound object.</p>
       <pre class="lines">
 
 
-506
-507
-508</pre>
+509
+510
+511</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 506</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 509</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_scar?'>scar?</span>
   <span class='kw'>return</span> <span class='ivar'>@is_scar</span>
@@ -1147,18 +1147,18 @@ Initializes a new Wound object.</p>
       <pre class="lines">
 
 
-524
-525
-526
 527
 528
 529
 530
 531
-532</pre>
+532
+533
+534
+535</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 524</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 527</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tendable?'>tendable?</span>
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_parasite?'>parasite?</span>
@@ -1216,12 +1216,12 @@ Initializes a new Wound object.</p>
       <pre class="lines">
 
 
-542
-543
-544</pre>
+545
+546
+547</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 542</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 545</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_type'>type</span>
   <span class='id identifier rubyid_scar?'>scar?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wound</span><span class='tstring_end'>&#39;</span></span>
@@ -1236,7 +1236,7 @@ Initializes a new Wound object.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:57 2025 by
+  Generated on Fri Nov  7 03:59:32 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

@@ -102,7 +102,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     <p>Class for managing scripts
-Provides methods to start, run, and manage script execution.</p>
+Handles script execution, state, and management.</p>
 
 
   </div>
@@ -1600,7 +1600,7 @@ Provides methods to start, run, and manage script execution.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#open_file-class_method" title="open_file (class method)">.<strong>open_file</strong>(ext, mode = &#39;r&#39;, &amp;block)  &#x21d2; File<sup>?</sup> </a>
+      <a href="#open_file-class_method" title="open_file (class method)">.<strong>open_file</strong>(ext, mode = &#39;r&#39;, &amp;block)  &#x21d2; Object </a>
     
 
     
@@ -1614,8 +1614,7 @@ Provides methods to start, run, and manage script execution.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Opens a file associated with the script.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -2500,6 +2499,13 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
+594
+595
+596
+597
+598
+599
+600
 601
 602
 603
@@ -2573,17 +2579,10 @@ Provides methods to start, run, and manage script execution.</p>
 671
 672
 673
-674
-675
-676
-677
-678
-679
-680
-681</pre>
+674</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 601</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 594</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='ivar'>@file_name</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='symbol'>:file</span><span class='rbracket'>]</span>
@@ -2703,12 +2702,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-305
 306
-307</pre>
+307
+308</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 305</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_at_exit_procs'>at_exit_procs</span>
   <span class='ivar'>@at_exit_procs</span>
@@ -2745,12 +2744,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_command_line'>command_line</span>
   <span class='ivar'>@command_line</span>
@@ -2787,12 +2786,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_current_label'>current_label</span>
   <span class='ivar'>@current_label</span>
@@ -2829,12 +2828,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_die_with'>die_with</span>
   <span class='ivar'>@die_with</span>
@@ -2871,12 +2870,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_downstream_buffer'>downstream_buffer</span>
   <span class='ivar'>@downstream_buffer</span>
@@ -2913,12 +2912,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-305
 306
-307</pre>
+307
+308</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 305</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_file_name'>file_name</span>
   <span class='ivar'>@file_name</span>
@@ -2955,12 +2954,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hidden'>hidden</span>
   <span class='ivar'>@hidden</span>
@@ -2997,12 +2996,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ignore_pause'>ignore_pause</span>
   <span class='ivar'>@ignore_pause</span>
@@ -3039,12 +3038,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_jump_label'>jump_label</span>
   <span class='ivar'>@jump_label</span>
@@ -3081,12 +3080,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-305
 306
-307</pre>
+307
+308</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 305</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_label_order'>label_order</span>
   <span class='ivar'>@label_order</span>
@@ -3123,12 +3122,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_match_stack_labels'>match_stack_labels</span>
   <span class='ivar'>@match_stack_labels</span>
@@ -3165,12 +3164,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_match_stack_strings'>match_stack_strings</span>
   <span class='ivar'>@match_stack_strings</span>
@@ -3207,12 +3206,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-305
 306
-307</pre>
+307
+308</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 305</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -3249,12 +3248,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_no_echo'>no_echo</span>
   <span class='ivar'>@no_echo</span>
@@ -3291,12 +3290,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_no_kill_all'><span class='object_link'><a href="../../top-level-namespace.html#no_kill_all-instance_method" title="#no_kill_all (method)">no_kill_all</a></span></span>
   <span class='ivar'>@no_kill_all</span>
@@ -3333,12 +3332,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_no_pause_all'><span class='object_link'><a href="../../top-level-namespace.html#no_pause_all-instance_method" title="#no_pause_all (method)">no_pause_all</a></span></span>
   <span class='ivar'>@no_pause_all</span>
@@ -3375,12 +3374,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_paused'>paused</span>
   <span class='ivar'>@paused</span>
@@ -3417,12 +3416,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_quiet'>quiet</span>
   <span class='ivar'>@quiet</span>
@@ -3459,12 +3458,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-305
 306
-307</pre>
+307
+308</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 305</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_safe'>safe</span>
   <span class='ivar'>@safe</span>
@@ -3501,12 +3500,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_silent'>silent</span>
   <span class='ivar'>@silent</span>
@@ -3543,12 +3542,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unique_buffer'>unique_buffer</span>
   <span class='ivar'>@unique_buffer</span>
@@ -3585,12 +3584,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_upstream_buffer'>upstream_buffer</span>
   <span class='ivar'>@upstream_buffer</span>
@@ -3627,12 +3626,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-305
 306
-307</pre>
+307
+308</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 305</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_vars'>vars</span>
   <span class='ivar'>@vars</span>
@@ -3669,12 +3668,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_want_downstream'>want_downstream</span>
   <span class='ivar'>@want_downstream</span>
@@ -3711,12 +3710,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_want_downstream_xml'>want_downstream_xml</span>
   <span class='ivar'>@want_downstream_xml</span>
@@ -3753,12 +3752,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_want_script_output'>want_script_output</span>
   <span class='ivar'>@want_script_output</span>
@@ -3795,12 +3794,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_want_upstream'>want_upstream</span>
   <span class='ivar'>@want_upstream</span>
@@ -3837,12 +3836,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_watchfor'>watchfor</span>
   <span class='ivar'>@watchfor</span>
@@ -3874,17 +3873,17 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-484
-485
-486
-487
-488
-489
-490
-491</pre>
+477
+478
+479
+480
+481
+482
+483
+484</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 484</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 477</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_at_exit'>at_exit</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_script'>script</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current'><span class='object_link'><a href="#current-class_method" title="Lich::Common::Script.current (method)">current</a></span></span><span class='rparen'>)</span>
@@ -3914,17 +3913,17 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-493
-494
-495
-496
-497
-498
-499
-500</pre>
+486
+487
+488
+489
+490
+491
+492
+493</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 493</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 486</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_exit_procs'>clear_exit_procs</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_script'>script</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current'><span class='object_link'><a href="#current-class_method" title="Lich::Common::Script.current (method)">current</a></span></span><span class='rparen'>)</span>
@@ -3954,17 +3953,17 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-353
 354
 355
 356
 357
 358
 359
-360</pre>
+360
+361</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 353</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 354</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_script'>script</span> <span class='op'>=</span> <span class='cvar'>@@running</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span> <span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='period'>.</span><span class='id identifier rubyid_has_thread?'>has_thread?</span><span class='lparen'>(</span><span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -3994,12 +3993,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-468
 469
-470</pre>
+470
+471</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 468</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 469</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_db'>db</span>
   <span class='cvar'>@@elevated_db</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span>
@@ -4024,6 +4023,13 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
+550
+551
+552
+553
+554
+555
+556
 557
 558
 559
@@ -4035,17 +4041,10 @@ Provides methods to start, run, and manage script execution.</p>
 565
 566
 567
-568
-569
-570
-571
-572
-573
-574
-575</pre>
+568</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 557</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 550</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_distrust'>distrust</span><span class='lparen'>(</span><span class='id identifier rubyid_script_name'>script_name</span><span class='rparen'>)</span>
   <span class='kw'>begin</span>
@@ -4143,12 +4142,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-421
 422
-423</pre>
+423
+424</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 421</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 422</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span><span class='lparen'>(</span><span class='id identifier rubyid_script_name'>script_name</span><span class='rparen'>)</span>
   <span class='cvar'>@@elevated_exists</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_script_name'>script_name</span><span class='rparen'>)</span>
@@ -4173,17 +4172,17 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-502
-503
-504
-505
-506
-507
-508
-509</pre>
+495
+496
+497
+498
+499
+500
+501
+502</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 502</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 495</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_exit!'>exit!</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_script'>script</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current'><span class='object_link'><a href="#current-class_method" title="Lich::Common::Script.current (method)">current</a></span></span><span class='rparen'>)</span>
@@ -4213,16 +4212,16 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-528
-529
-530
-531
-532
-533
-534</pre>
+521
+522
+523
+524
+525
+526
+527</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 528</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 521</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_hidden'>hidden</span>
   <span class='id identifier rubyid_list'>list</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -4251,12 +4250,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-524
-525
-526</pre>
+517
+518
+519</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 524</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 517</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_running'><span class='object_link'><a href="#running-class_method" title="Lich::Common::Script.running (method)">running</a></span></span>
@@ -4281,17 +4280,17 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-399
 400
 401
 402
 403
 404
 405
-406</pre>
+406
+407</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 399</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 400</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_kill'>kill</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span> <span class='op'>=</span> <span class='lparen'>(</span><span class='cvar'>@@running</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='id identifier rubyid_name'>name</span> <span class='rbrace'>}</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='cvar'>@@running</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>$</span><span class='regexp_end'>/i</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -4321,12 +4320,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-349
 350
-351</pre>
+351
+352</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 349</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 350</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span>
   <span class='cvar'>@@running</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
@@ -4351,19 +4350,19 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
+570
+571
+572
+573
+574
+575
+576
 577
 578
-579
-580
-581
-582
-583
-584
-585
-586</pre>
+579</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 577</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 570</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list_trusted'>list_trusted</span>
   <span class='id identifier rubyid_list'>list</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -4395,12 +4394,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-464
 465
-466</pre>
+466
+467</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 464</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 465</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='cvar'>@@elevated_log</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
@@ -4425,12 +4424,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-536
-537
-538</pre>
+529
+530
+531</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 536</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 529</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_namescript_incoming'>namescript_incoming</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_downstream'><span class='object_link'><a href="#new_downstream-class_method" title="Lich::Common::Script.new_downstream (method)">new_downstream</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
@@ -4455,7 +4454,6 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-437
 438
 439
 440
@@ -4474,10 +4472,11 @@ Provides methods to start, run, and manage script execution.</p>
 453
 454
 455
-456</pre>
+456
+457</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 437</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 438</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_downstream'>new_downstream</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='cvar'>@@running</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_script'>script</span><span class='op'>|</span>
@@ -4519,14 +4518,14 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-425
 426
 427
 428
-429</pre>
+429
+430</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 425</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 426</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_downstream_xml'>new_downstream_xml</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='kw'>for</span> <span class='id identifier rubyid_script'>script</span> <span class='kw'>in</span> <span class='cvar'>@@running</span>
@@ -4553,14 +4552,14 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-458
 459
 460
 461
-462</pre>
+462
+463</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 458</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 459</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_script_output'>new_script_output</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='kw'>for</span> <span class='id identifier rubyid_script'>script</span> <span class='kw'>in</span> <span class='cvar'>@@running</span>
@@ -4587,14 +4586,14 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-431
 432
 433
 434
-435</pre>
+435
+436</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 431</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 432</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_upstream'>new_upstream</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='kw'>for</span> <span class='id identifier rubyid_script'>script</span> <span class='kw'>in</span> <span class='cvar'>@@running</span>
@@ -4609,130 +4608,24 @@ Provides methods to start, run, and manage script execution.</p>
       <div class="method_details ">
   <h3 class="signature " id="open_file-class_method">
   
-    .<strong>open_file</strong>(ext, mode = &#39;r&#39;, &amp;block)  &#x21d2; <tt>File</tt><sup>?</sup> 
+    .<strong>open_file</strong>(ext, mode = &#39;r&#39;, &amp;block)  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Opens a file associated with the script</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Opening a file</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_file'>file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_open_file'>open_file</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>txt</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>ext</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The file extension</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>mode</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>&#39;r&#39;</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'><p>The mode to open the file in (default: &#39;r&#39;)</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>block</span>
-      
-      
-        <span class='type'>(<tt>Proc</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>Optional block for file handling</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>File</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The opened file or nil if failed</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>If the file cannot be opened</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-480
-481
-482</pre>
+473
+474
+475</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 480</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 473</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_open_file'>open_file</span><span class='lparen'>(</span><span class='id identifier rubyid_ext'>ext</span><span class='comma'>,</span> <span class='id identifier rubyid_mode'>mode</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>r</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='cvar'>@@elevated_open_file</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_ext'>ext</span><span class='comma'>,</span> <span class='id identifier rubyid_mode'>mode</span><span class='comma'>,</span> <span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -4757,7 +4650,6 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-376
 377
 378
 379
@@ -4769,10 +4661,11 @@ Provides methods to start, run, and manage script execution.</p>
 385
 386
 387
-388</pre>
+388
+389</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 376</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 377</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_pause'>pause</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -4780,7 +4673,7 @@ Provides methods to start, run, and manage script execution.</p>
     <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current'><span class='object_link'><a href="#current-class_method" title="Lich::Common::Script.current (method)">current</a></span></span>
   <span class='kw'>else</span>
     <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span> <span class='op'>=</span> <span class='lparen'>(</span><span class='cvar'>@@running</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span> <span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='kw'>not</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_paused?'>paused?</span> <span class='rbrace'>}</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='cvar'>@@running</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span> <span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>$</span><span class='regexp_end'>/i</span></span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='kw'>not</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_paused?'>paused?</span> <span class='rbrace'>}</span><span class='rparen'>)</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='period'>.</span><span class='id identifier rubyid_pause'><span class='object_link'><a href="../../top-level-namespace.html#pause-instance_method" title="#pause (method)">pause</a></span></span>
+      <span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='period'>.</span><span class='id identifier rubyid_pause'>pause</span>
       <span class='kw'>true</span>
     <span class='kw'>else</span>
       <span class='kw'>false</span>
@@ -4829,16 +4722,16 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-408
 409
 410
 411
 412
 413
-414</pre>
+414
+415</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 408</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 409</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_paused?'>paused?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span> <span class='op'>=</span> <span class='lparen'>(</span><span class='cvar'>@@running</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='id identifier rubyid_name'>name</span> <span class='rbrace'>}</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='cvar'>@@running</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>$</span><span class='regexp_end'>/i</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -4867,14 +4760,14 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-366
 367
 368
 369
-370</pre>
+370
+371</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 366</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 367</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span> <span class='op'>=</span> <span class='cvar'>@@elevated_script_start</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -4901,16 +4794,16 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-516
-517
-518
-519
-520
-521
-522</pre>
+509
+510
+511
+512
+513
+514
+515</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 516</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 509</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_running'>running</span>
   <span class='id identifier rubyid_list'>list</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -4961,12 +4854,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-372
 373
-374</pre>
+374
+375</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 372</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 373</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_running?'>running?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='cvar'>@@running</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span> <span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>$</span><span class='regexp_end'>/i</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -5001,12 +4894,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-512
-513
-514</pre>
+505
+506
+507</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 512</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 505</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='kw'>self</span>
   <span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span>
@@ -5031,12 +4924,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-362
 363
-364</pre>
+364
+365</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 362</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 363</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='cvar'>@@elevated_script_start</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -5061,6 +4954,13 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
+534
+535
+536
+537
+538
+539
+540
 541
 542
 543
@@ -5068,17 +4968,10 @@ Provides methods to start, run, and manage script execution.</p>
 545
 546
 547
-548
-549
-550
-551
-552
-553
-554
-555</pre>
+548</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 541</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 534</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_trust'>trust</span><span class='lparen'>(</span><span class='id identifier rubyid_script_name'>script_name</span><span class='rparen'>)</span>
   <span class='comment'># fixme: case sensitive blah blah
@@ -5115,17 +5008,17 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-390
 391
 392
 393
 394
 395
 396
-397</pre>
+397
+398</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 390</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 391</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_unpause'>unpause</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span> <span class='op'>=</span> <span class='lparen'>(</span><span class='cvar'>@@running</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span> <span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_paused?'>paused?</span> <span class='rbrace'>}</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='cvar'>@@running</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span> <span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>$</span><span class='regexp_end'>/i</span></span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_paused?'>paused?</span> <span class='rbrace'>}</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -5155,7 +5048,6 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-312
 313
 314
 315
@@ -5190,10 +5082,11 @@ Provides methods to start, run, and manage script execution.</p>
 344
 345
 346
-347</pre>
+347
+348</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 312</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 313</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_version'>version</span><span class='lparen'>(</span><span class='id identifier rubyid_script_name'>script_name</span><span class='comma'>,</span> <span class='id identifier rubyid_script_version_required'>script_version_required</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_script_name'>script_name</span> <span class='op'>=</span> <span class='id identifier rubyid_script_name'>script_name</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[.](lic|rb|cmd|wiz)$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -5257,18 +5150,18 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
+704
+705
+706
+707
+708
+709
+710
 711
-712
-713
-714
-715
-716
-717
-718
-719</pre>
+712</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 711</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 704</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_at_exit'>at_exit</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_block'>block</span>
@@ -5299,14 +5192,14 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-792
-793
-794
-795
-796</pre>
+785
+786
+787
+788
+789</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 792</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 785</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clear'><span class='object_link'><a href="../../top-level-namespace.html#clear-instance_method" title="#clear (method)">clear</a></span></span>
   <span class='id identifier rubyid_to_return'>to_return</span> <span class='op'>=</span> <span class='ivar'>@downstream_buffer</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
@@ -5333,13 +5226,13 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-721
-722
-723
-724</pre>
+714
+715
+716
+717</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 721</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 714</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clear_exit_procs'>clear_exit_procs</span>
   <span class='ivar'>@at_exit_procs</span><span class='period'>.</span><span class='id identifier rubyid_clear'><span class='object_link'><a href="../../top-level-namespace.html#clear-instance_method" title="#clear (method)">clear</a></span></span>
@@ -5387,12 +5280,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-872
-873
-874</pre>
+865
+866
+867</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 872</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 865</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_custom?'>custom?</span>
   <span class='ivar'>@custom</span>
@@ -5417,12 +5310,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-726
-727
-728</pre>
+719
+720
+721</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 726</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 719</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_exit'>exit</span>
   <span class='id identifier rubyid_kill'>kill</span>
@@ -5447,13 +5340,13 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-730
-731
-732
-733</pre>
+723
+724
+725
+726</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 730</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 723</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_exit!'>exit!</span>
   <span class='ivar'>@at_exit_procs</span><span class='period'>.</span><span class='id identifier rubyid_clear'><span class='object_link'><a href="../../top-level-namespace.html#clear-instance_method" title="#clear (method)">clear</a></span></span>
@@ -5479,12 +5372,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-858
-859
-860</pre>
+851
+852
+853</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 858</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 851</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_feedme_upstream'>feedme_upstream</span>
   <span class='ivar'>@want_upstream</span> <span class='op'>=</span> <span class='op'>!</span><span class='ivar'>@want_upstream</span>
@@ -5509,6 +5402,13 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
+766
+767
+768
+769
+770
+771
+772
 773
 774
 775
@@ -5519,17 +5419,10 @@ Provides methods to start, run, and manage script execution.</p>
 780
 781
 782
-783
-784
-785
-786
-787
-788
-789
-790</pre>
+783</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 773</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 766</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_next_label'>get_next_label</span>
   <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@jump_label</span>
@@ -5569,20 +5462,20 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
+795
+796
+797
+798
+799
+800
+801
 802
 803
 804
-805
-806
-807
-808
-809
-810
-811
-812</pre>
+805</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 802</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 795</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_gets'>gets</span>
   <span class='comment'># fixme: no xml gets
@@ -5637,22 +5530,22 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
+807
+808
+809
+810
+811
+812
+813
 814
 815
 816
 817
 818
-819
-820
-821
-822
-823
-824
-825
-826</pre>
+819</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 814</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 807</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_gets?'>gets?</span>
   <span class='kw'>if</span> <span class='ivar'>@want_downstream</span> <span class='kw'>or</span> <span class='ivar'>@want_downstream_xml</span> <span class='kw'>or</span> <span class='ivar'>@want_script_output</span>
@@ -5709,12 +5602,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-747
-748
-749</pre>
+740
+741
+742</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 747</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 740</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_thread?'>has_thread?</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='ivar'>@thread_group</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
@@ -5739,10 +5632,10 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-737</pre>
+730</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 737</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 730</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_instance_eval'>instance_eval</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid__a'>_a</span><span class='rparen'>)</span><span class='semicolon'>;</span>         <span class='kw'>nil</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -5765,10 +5658,10 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-735</pre>
+728</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 735</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 728</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_instance_variable_get'>instance_variable_get</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid__a'>_a</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>nil</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -5791,6 +5684,13 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
+676
+677
+678
+679
+680
+681
+682
 683
 684
 685
@@ -5810,17 +5710,10 @@ Provides methods to start, run, and manage script execution.</p>
 699
 700
 701
-702
-703
-704
-705
-706
-707
-708
-709</pre>
+702</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 683</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 676</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_kill'>kill</span>
   <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbrace'>{</span>
@@ -5869,12 +5762,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-739
-740
-741</pre>
+732
+733
+734</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 739</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 732</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_labels'>labels</span>
   <span class='ivar'>@labels</span>
@@ -5899,13 +5792,13 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-862
-863
-864
-865</pre>
+855
+856
+857
+858</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 862</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 855</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_match_stack_add'>match_stack_add</span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span>
   <span class='ivar'>@match_stack_labels</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='rparen'>)</span>
@@ -5931,13 +5824,13 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-867
-868
-869
-870</pre>
+860
+861
+862
+863</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 867</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 860</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_match_stack_clear'>match_stack_clear</span>
   <span class='ivar'>@match_stack_labels</span><span class='period'>.</span><span class='id identifier rubyid_clear'><span class='object_link'><a href="../../top-level-namespace.html#clear-instance_method" title="#clear (method)">clear</a></span></span>
@@ -5963,17 +5856,17 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-751
-752
-753
-754
-755
-756
-757
-758</pre>
+744
+745
+746
+747
+748
+749
+750
+751</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 751</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 744</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pause'><span class='object_link'><a href="../../top-level-namespace.html#pause-instance_method" title="#pause (method)">pause</a></span></span>
   <span class='kw'>if</span> <span class='ivar'>@paused</span> <span class='op'>==</span> <span class='kw'>true</span>
@@ -6025,12 +5918,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-769
-770
-771</pre>
+762
+763
+764</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 769</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 762</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_paused?'>paused?</span>
   <span class='ivar'>@paused</span>
@@ -6077,12 +5970,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-854
-855
-856</pre>
+847
+848
+849</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 854</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 847</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_safe?'>safe?</span>
   <span class='ivar'>@safe</span>
@@ -6107,12 +6000,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-743
-744
-745</pre>
+736
+737
+738</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 743</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 736</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_thread_group'>thread_group</span>
   <span class='ivar'>@thread_group</span>
@@ -6137,12 +6030,12 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-798
-799
-800</pre>
+791
+792
+793</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 798</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 791</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
   <span class='ivar'>@name</span>
@@ -6167,13 +6060,13 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-841
-842
-843
-844</pre>
+834
+835
+836
+837</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 841</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 834</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unique_gets'>unique_gets</span>
   <span class='id identifier rubyid_sleep'>sleep</span> <span class='float'>0.05</span> <span class='kw'>while</span> <span class='ivar'>@unique_buffer</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -6221,16 +6114,16 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-846
-847
-848
-849
-850
-851
-852</pre>
+839
+840
+841
+842
+843
+844
+845</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 846</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 839</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unique_gets?'>unique_gets?</span>
   <span class='kw'>if</span> <span class='ivar'>@unique_buffer</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -6259,17 +6152,17 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-760
-761
-762
-763
-764
-765
-766
-767</pre>
+753
+754
+755
+756
+757
+758
+759
+760</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 760</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 753</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unpause'>unpause</span>
   <span class='kw'>if</span> <span class='ivar'>@paused</span> <span class='op'>==</span> <span class='kw'>true</span>
@@ -6299,13 +6192,13 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-828
-829
-830
-831</pre>
+821
+822
+823
+824</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 828</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 821</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_upstream_gets'>upstream_gets</span>
   <span class='id identifier rubyid_sleep'>sleep</span> <span class='float'>0.05</span> <span class='kw'>while</span> <span class='ivar'>@upstream_buffer</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -6353,16 +6246,16 @@ Provides methods to start, run, and manage script execution.</p>
       <pre class="lines">
 
 
-833
-834
-835
-836
-837
-838
-839</pre>
+826
+827
+828
+829
+830
+831
+832</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'script.rb', line 833</span>
+      <pre class="code"><span class="info file"># File 'script.rb', line 826</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_upstream_gets?'>upstream_gets?</span>
   <span class='kw'>if</span> <span class='ivar'>@upstream_buffer</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -6381,7 +6274,7 @@ Provides methods to start, run, and manage script execution.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:55 2025 by
+  Generated on Fri Nov  7 03:59:30 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

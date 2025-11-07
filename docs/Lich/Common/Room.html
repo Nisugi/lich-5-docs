@@ -105,25 +105,14 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Represents a room in the map.
-Inherits from Map and can have additional properties or methods.</p>
+    <p>Represents a room that inherits from Map.
+This class can be used to extend the functionality of rooms in the map.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Creating a room</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_room'>room</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'>Room</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Map.html#initialize-instance_method" title="Lich::Common::Map#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='int'>1</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Room Title</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Room Description</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>path1</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>path2</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-
 
 </div>
 
@@ -162,7 +151,8 @@ Inherits from Map and can have additional properties or methods.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Handles missing methods for the Room class.</p>
+</div></span>
   
 </li>
 
@@ -203,18 +193,47 @@ Inherits from Map and can have additional properties or methods.</p>
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Handles missing methods for the Room class.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>args</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The arguments passed to the missing method.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-997
-998
-999</pre>
+994
+995
+996</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 997</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 994</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Room (class)">Room</a></span></span><span class='period'>.</span><span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -229,7 +248,7 @@ Inherits from Map and can have additional properties or methods.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:55 2025 by
+  Generated on Fri Nov  7 03:59:30 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

@@ -85,14 +85,24 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>A module for Theurgy-related functionalities
-This module provides methods and constants related to cleric items and actions.</p>
+    <p>A module for handling theurgy-related functionality.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Using the DRCTH module</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../DragonRealms.html" title="Lich::DragonRealms (module)">DragonRealms</a></span></span><span class='op'>::</span><span class='const'>DRCTH</span><span class='period'>.</span><span class='id identifier rubyid_has_holy_water?'><span class='object_link'><a href="#has_holy_water%3F-class_method" title="Lich::DragonRealms::DRCTH.has_holy_water? (method)">has_holy_water?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_container'>container</span><span class='comma'>,</span> <span class='id identifier rubyid_holder'>holder</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
   
@@ -106,7 +116,7 @@ This module provides methods and constants related to cleric items and actions.<
         <dt id="CLERIC_ITEMS-constant" class="">CLERIC_ITEMS =
           <div class="docstring">
   <div class="discussion">
-    <p>List of items used by clerics in the game.</p>
+    <p>A list of items used by clerics in the game.</p>
 
 
   </div>
@@ -123,7 +133,7 @@ This module provides methods and constants related to cleric items and actions.<
         <dt id="COMMUNE_ERRORS-constant" class="">COMMUNE_ERRORS =
           <div class="docstring">
   <div class="discussion">
-    <p>List of error messages related to commune actions.</p>
+    <p>Error messages related to commune actions.</p>
 
 
   </div>
@@ -142,7 +152,7 @@ This module provides methods and constants related to cleric items and actions.<
         <dt id="DEVOTION_LEVELS-constant" class="">DEVOTION_LEVELS =
           <div class="docstring">
   <div class="discussion">
-    <p>List of messages indicating the levels of devotion sensed during communion.</p>
+    <p>Levels of devotion messages for clerics.</p>
 
 
   </div>
@@ -298,7 +308,7 @@ This module provides methods and constants related to cleric items and actions.<
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Senses the current state of communion.</p>
+    <span class="summary_desc"><div class='inline'><p>Senses the current commune state and returns active and recent communes.</p>
 </div></span>
   
 </li>
@@ -321,7 +331,7 @@ This module provides methods and constants related to cleric items and actions.<
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Ensures that the cleric&#39;s hands are empty before performing actions.</p>
+    <span class="summary_desc"><div class='inline'><p>Ensures the cleric&#39;s hands are empty before performing actions.</p>
 </div></span>
   
 </li>
@@ -528,7 +538,7 @@ This module provides methods and constants related to cleric items and actions.<
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Performs the action of sprinkling an item on a target.</p>
+    <span class="summary_desc"><div class='inline'><p>Performs the sprinkle action on a target item.</p>
 </div></span>
   
 </li>
@@ -551,7 +561,7 @@ This module provides methods and constants related to cleric items and actions.<
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sprinkles holy oil on a target.</p>
+    <span class="summary_desc"><div class='inline'><p>Sprinkles holy oil on a target without checking for success.</p>
 </div></span>
   
 </li>
@@ -574,7 +584,7 @@ This module provides methods and constants related to cleric items and actions.<
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Attempts to sprinkle holy oil on a target.</p>
+    <span class="summary_desc"><div class='inline'><p>Sprinkles holy oil on a target.</p>
 </div></span>
   
 </li>
@@ -597,7 +607,7 @@ This module provides methods and constants related to cleric items and actions.<
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sprinkles holy water on a target.</p>
+    <span class="summary_desc"><div class='inline'><p>Sprinkles holy water on a target without checking for success.</p>
 </div></span>
   
 </li>
@@ -620,7 +630,7 @@ This module provides methods and constants related to cleric items and actions.<
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Attempts to sprinkle holy water on a target.</p>
+    <span class="summary_desc"><div class='inline'><p>Sprinkles holy water on a target.</p>
 </div></span>
   
 </li>
@@ -643,7 +653,7 @@ This module provides methods and constants related to cleric items and actions.<
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Waves incense at a target, lighting it in the process.</p>
+    <span class="summary_desc"><div class='inline'><p>Waves incense at a target after lighting it.</p>
 </div></span>
   
 </li>
@@ -728,10 +738,6 @@ This module provides methods and constants related to cleric items and actions.<
       
       
       
-        &mdash;
-        <div class='inline'><p>Returns nil after attempting to apply the balm.</p>
-</div>
-      
     </li>
   
 </ul>
@@ -742,14 +748,14 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-307
 308
 309
 310
-311</pre>
+311
+312</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 307</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 308</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_apply_jalbreth_balm'>apply_jalbreth_balm</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_item?'><span class='object_link'><a href="DRCI.html#get_item%3F-class_method" title="Lich::DragonRealms::DRCI.get_item? (method)">get_item?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>jalbreth balm</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
@@ -783,7 +789,7 @@ This module provides methods and constants related to cleric items and actions.<
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_buy_cleric_item?'>buy_cleric_item?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>town_name</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holy water</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='int'>5</span><span class='comma'>,</span> <span class='id identifier rubyid_supply_container'>supply_container</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_buy_cleric_item?'>buy_cleric_item?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>town_name</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>item_name</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='int'>2</span><span class='comma'>,</span> <span class='id identifier rubyid_supply_container'>supply_container</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -877,7 +883,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>Returns true if the purchase was successful, false otherwise.</p>
+        <div class='inline'><p>True if the purchase was successful, false otherwise.</p>
 </div>
       
     </li>
@@ -890,7 +896,6 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-120
 121
 122
 123
@@ -916,10 +921,11 @@ This module provides methods and constants related to cleric items and actions.<
 143
 144
 145
-146</pre>
+146
+147</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 120</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 121</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_buy_cleric_item?'>buy_cleric_item?</span><span class='lparen'>(</span><span class='id identifier rubyid_town'>town</span><span class='comma'>,</span> <span class='id identifier rubyid_item_name'>item_name</span><span class='comma'>,</span> <span class='id identifier rubyid_stackable'>stackable</span><span class='comma'>,</span> <span class='id identifier rubyid_num_to_buy'>num_to_buy</span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_town_theurgy_data'>town_theurgy_data</span> <span class='op'>=</span> <span class='id identifier rubyid_get_data'>get_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>theurgy</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='id identifier rubyid_town'>town</span><span class='rbracket'>]</span>
@@ -975,7 +981,7 @@ This module provides methods and constants related to cleric items and actions.<
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_buy_single_supply'>buy_single_supply</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holy water</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_shop_data'>shop_data</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_buy_single_supply'>buy_single_supply</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>item_name</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_shop_data'>shop_data</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1006,7 +1012,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>The data of the shop where the item is being bought.</p>
+        <div class='inline'><p>The data related to the shop.</p>
 </div>
       
     </li>
@@ -1023,10 +1029,6 @@ This module provides methods and constants related to cleric items and actions.<
       
       
       
-        &mdash;
-        <div class='inline'><p>Returns nil after attempting to buy the item.</p>
-</div>
-      
     </li>
   
 </ul>
@@ -1037,7 +1039,6 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-154
 155
 156
 157
@@ -1047,10 +1048,11 @@ This module provides methods and constants related to cleric items and actions.<
 161
 162
 163
-164</pre>
+164
+165</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 154</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 155</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_buy_single_supply'>buy_single_supply</span><span class='lparen'>(</span><span class='id identifier rubyid_item_name'>item_name</span><span class='comma'>,</span> <span class='id identifier rubyid_shop_data'>shop_data</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_shop_data'>shop_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>method</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
@@ -1090,7 +1092,7 @@ This module provides methods and constants related to cleric items and actions.<
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_buying_cleric_item_requires_bless?'>buying_cleric_item_requires_bless?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>town_name</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holy water</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_buying_cleric_item_requires_bless?'>buying_cleric_item_requires_bless?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>town_name</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>item_name</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1139,7 +1141,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>Returns true if a blessing is needed, false if not, or nil if data is unavailable.</p>
+        <div class='inline'><p>True if a blessing is needed, false if not, nil if town or item data is missing.</p>
 </div>
       
     </li>
@@ -1152,7 +1154,6 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-101
 102
 103
 104
@@ -1160,10 +1161,11 @@ This module provides methods and constants related to cleric items and actions.<
 106
 107
 108
-109</pre>
+109
+110</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 102</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_buying_cleric_item_requires_bless?'>buying_cleric_item_requires_bless?</span><span class='lparen'>(</span><span class='id identifier rubyid_town'>town</span><span class='comma'>,</span> <span class='id identifier rubyid_item_name'>item_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_town_theurgy_data'>town_theurgy_data</span> <span class='op'>=</span> <span class='id identifier rubyid_get_data'>get_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>theurgy</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='id identifier rubyid_town'>town</span><span class='rbracket'>]</span>
@@ -1190,7 +1192,7 @@ This module provides methods and constants related to cleric items and actions.<
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Senses the current state of communion.</p>
+    <p>Senses the current commune state and returns active and recent communes.</p>
 
 
   </div>
@@ -1216,7 +1218,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>Returns a hash containing active and recent communes, and if commune is ready.</p>
+        <div class='inline'><p>A hash containing active and recent communes, and commune readiness.</p>
 </div>
       
     </li>
@@ -1229,7 +1231,6 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-367
 368
 369
 370
@@ -1264,10 +1265,11 @@ This module provides methods and constants related to cleric items and actions.<
 399
 400
 401
-402</pre>
+402
+403</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 367</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 368</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_commune_sense'>commune_sense</span>
   <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>commune sense</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Roundtime:</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1321,7 +1323,7 @@ This module provides methods and constants related to cleric items and actions.<
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Ensures that the cleric&#39;s hands are empty before performing actions.</p>
+    <p>Ensures the cleric&#39;s hands are empty before performing actions.</p>
 
 
   </div>
@@ -1365,10 +1367,6 @@ This module provides methods and constants related to cleric items and actions.<
       
       
       
-        &mdash;
-        <div class='inline'><p>Returns nil after ensuring hands are empty.</p>
-</div>
-      
     </li>
   
 </ul>
@@ -1379,7 +1377,6 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-184
 185
 186
 187
@@ -1393,10 +1390,11 @@ This module provides methods and constants related to cleric items and actions.<
 195
 196
 197
-198</pre>
+198
+199</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 184</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 185</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_empty_cleric_hands'>empty_cleric_hands</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
   <span class='comment'># Adding an explicit glance to ensure we know what&#39;s in hands, as
@@ -1473,10 +1471,6 @@ This module provides methods and constants related to cleric items and actions.<
       
       
       
-        &mdash;
-        <div class='inline'><p>Returns nil after attempting to empty the left hand.</p>
-</div>
-      
     </li>
   
 </ul>
@@ -1487,15 +1481,15 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-217
 218
 219
 220
 221
-222</pre>
+222
+223</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 217</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 218</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_empty_cleric_left_hand'>empty_cleric_left_hand</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_hand'><span class='object_link'><a href="DRC.html#left_hand-class_method" title="Lich::DragonRealms::DRC.left_hand (method)">left_hand</a></span></span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1563,10 +1557,6 @@ This module provides methods and constants related to cleric items and actions.<
       
       
       
-        &mdash;
-        <div class='inline'><p>Returns nil after attempting to empty the right hand.</p>
-</div>
-      
     </li>
   
 </ul>
@@ -1577,15 +1567,15 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-205
 206
 207
 208
 209
-210</pre>
+210
+211</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 205</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 206</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_empty_cleric_right_hand'>empty_cleric_right_hand</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_hand'><span class='object_link'><a href="DRC.html#right_hand-class_method" title="Lich::DragonRealms::DRC.right_hand (method)">right_hand</a></span></span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1654,7 +1644,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>Returns true if flint is present, false otherwise.</p>
+        <div class='inline'><p>True if flint is present, false otherwise.</p>
 </div>
       
     </li>
@@ -1667,12 +1657,12 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-64
 65
-66</pre>
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_flint?'>has_flint?</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_have_item_by_look?'><span class='object_link'><a href="DRCI.html#have_item_by_look%3F-class_method" title="Lich::DragonRealms::DRCI.have_item_by_look? (method)">have_item_by_look?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>flint</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
@@ -1738,7 +1728,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>Returns true if holy oil is present, false otherwise.</p>
+        <div class='inline'><p>True if holy oil is present, false otherwise.</p>
 </div>
       
     </li>
@@ -1751,12 +1741,12 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-73
 74
-75</pre>
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_holy_oil?'>has_holy_oil?</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_have_item_by_look?'><span class='object_link'><a href="DRCI.html#have_item_by_look%3F-class_method" title="Lich::DragonRealms::DRCI.have_item_by_look? (method)">have_item_by_look?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holy oil</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
@@ -1788,7 +1778,7 @@ This module provides methods and constants related to cleric items and actions.<
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_has_holy_water?'>has_holy_water?</span><span class='lparen'>(</span><span class='id identifier rubyid_supply_container'>supply_container</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>water flask</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_has_holy_water?'>has_holy_water?</span><span class='lparen'>(</span><span class='id identifier rubyid_supply_container'>supply_container</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>water holder</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1819,7 +1809,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>The item used to hold the holy water.</p>
+        <div class='inline'><p>The item holder for water.</p>
 </div>
       
     </li>
@@ -1837,7 +1827,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>Returns true if holy water is present, false otherwise.</p>
+        <div class='inline'><p>True if holy water is present, false otherwise.</p>
 </div>
       
     </li>
@@ -1850,16 +1840,16 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-51
 52
 53
 54
 55
 56
-57</pre>
+57
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 51</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_holy_water?'>has_holy_water?</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='comma'>,</span> <span class='id identifier rubyid_water_holder'>water_holder</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_item?'><span class='object_link'><a href="DRCI.html#get_item%3F-class_method" title="Lich::DragonRealms::DRCI.get_item? (method)">get_item?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_water_holder'>water_holder</span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
@@ -1929,7 +1919,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>Returns true if incense is present, false otherwise.</p>
+        <div class='inline'><p>True if incense is present, false otherwise.</p>
 </div>
       
     </li>
@@ -1942,12 +1932,12 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-82
 83
-84</pre>
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_incense?'>has_incense?</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_have_item_by_look?'><span class='object_link'><a href="DRCI.html#have_item_by_look%3F-class_method" title="Lich::DragonRealms::DRCI.have_item_by_look? (method)">have_item_by_look?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>incense</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
@@ -2013,7 +2003,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>Returns true if jalbreth balm is present, false otherwise.</p>
+        <div class='inline'><p>True if jalbreth balm is present, false otherwise.</p>
 </div>
       
     </li>
@@ -2026,12 +2016,12 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-91
 92
-93</pre>
+93
+94</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 91</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_jalbreth_balm?'>has_jalbreth_balm?</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_have_item_by_look?'><span class='object_link'><a href="DRCI.html#have_item_by_look%3F-class_method" title="Lich::DragonRealms::DRCI.have_item_by_look? (method)">have_item_by_look?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>jalbreth balm</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
@@ -2063,7 +2053,7 @@ This module provides methods and constants related to cleric items and actions.<
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_quick_bless_item'>quick_bless_item</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holy water</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_quick_bless_item'>quick_bless_item</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>item_name</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2096,10 +2086,6 @@ This module provides methods and constants related to cleric items and actions.<
       
       
       
-        &mdash;
-        <div class='inline'><p>Returns nil after attempting to bless the item.</p>
-</div>
-      
     </li>
   
 </ul>
@@ -2110,16 +2096,16 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-171
 172
 173
 174
 175
 176
-177</pre>
+177
+178</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 171</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 172</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_quick_bless_item'>quick_bless_item</span><span class='lparen'>(</span><span class='id identifier rubyid_item_name'>item_name</span><span class='rparen'>)</span>
   <span class='comment'># use dummy settings object since this isn&#39;t complex enough for camb, etc.
@@ -2144,7 +2130,7 @@ This module provides methods and constants related to cleric items and actions.<
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Performs the action of sprinkling an item on a target.</p>
+    <p>Performs the sprinkle action on a target item.</p>
 
 
   </div>
@@ -2186,7 +2172,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>The target to sprinkle the item on.</p>
+        <div class='inline'><p>The target to sprinkle on.</p>
 </div>
       
     </li>
@@ -2204,7 +2190,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>Returns true if the action was successful, false otherwise.</p>
+        <div class='inline'><p>True if the action was successful, false otherwise.</p>
 </div>
       
     </li>
@@ -2217,13 +2203,13 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-296
 297
 298
-299</pre>
+299
+300</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 296</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 297</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sprinkle?'>sprinkle?</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sprinkle </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item'>item</span><span class='embexpr_end'>}</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target'>target</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You sprinkle</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Sprinkle (what|that)</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>What were you referring to</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -2245,7 +2231,7 @@ This module provides methods and constants related to cleric items and actions.<
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Sprinkles holy oil on a target.</p>
+    <p>Sprinkles holy oil on a target without checking for success.</p>
 
 
   </div>
@@ -2287,7 +2273,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>The target to sprinkle the holy oil on.</p>
+        <div class='inline'><p>The target to sprinkle holy oil on.</p>
 </div>
       
     </li>
@@ -2304,10 +2290,6 @@ This module provides methods and constants related to cleric items and actions.<
       
       
       
-        &mdash;
-        <div class='inline'><p>Returns nil after attempting to sprinkle holy oil.</p>
-</div>
-      
     </li>
   
 </ul>
@@ -2318,14 +2300,14 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-284
 285
 286
 287
-288</pre>
+288
+289</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 284</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 285</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sprinkle_holy_oil'>sprinkle_holy_oil</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_item?'><span class='object_link'><a href="DRCI.html#get_item%3F-class_method" title="Lich::DragonRealms::DRCI.get_item? (method)">get_item?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holy oil</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
@@ -2348,7 +2330,7 @@ This module provides methods and constants related to cleric items and actions.<
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Attempts to sprinkle holy oil on a target.</p>
+    <p>Sprinkles holy oil on a target.</p>
 
 
   </div>
@@ -2390,7 +2372,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>The target to sprinkle the holy oil on.</p>
+        <div class='inline'><p>The target to sprinkle holy oil on.</p>
 </div>
       
     </li>
@@ -2408,7 +2390,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>Returns true if the sprinkling was successful, false otherwise.</p>
+        <div class='inline'><p>True if the action was successful, false otherwise.</p>
 </div>
       
     </li>
@@ -2421,7 +2403,6 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-251
 252
 253
 254
@@ -2433,10 +2414,11 @@ This module provides methods and constants related to cleric items and actions.<
 260
 261
 262
-263</pre>
+263
+264</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 251</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 252</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sprinkle_holy_oil?'>sprinkle_holy_oil?</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_item?'><span class='object_link'><a href="DRCI.html#get_item%3F-class_method" title="Lich::DragonRealms::DRCI.get_item? (method)">get_item?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holy oil</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
@@ -2467,7 +2449,7 @@ This module provides methods and constants related to cleric items and actions.<
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Sprinkles holy water on a target.</p>
+    <p>Sprinkles holy water on a target without checking for success.</p>
 
 
   </div>
@@ -2478,7 +2460,7 @@ This module provides methods and constants related to cleric items and actions.<
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_sprinkle_holy_water'>sprinkle_holy_water</span><span class='lparen'>(</span><span class='id identifier rubyid_supply_container'>supply_container</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>water flask</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>target</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_sprinkle_holy_water'>sprinkle_holy_water</span><span class='lparen'>(</span><span class='id identifier rubyid_supply_container'>supply_container</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>water holder</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>target</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2509,7 +2491,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>The item used to hold the holy water.</p>
+        <div class='inline'><p>The item holder for water.</p>
 </div>
       
     </li>
@@ -2524,7 +2506,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>The target to sprinkle the holy water on.</p>
+        <div class='inline'><p>The target to sprinkle holy water on.</p>
 </div>
       
     </li>
@@ -2541,10 +2523,6 @@ This module provides methods and constants related to cleric items and actions.<
       
       
       
-        &mdash;
-        <div class='inline'><p>Returns nil after attempting to sprinkle holy water.</p>
-</div>
-      
     </li>
   
 </ul>
@@ -2555,14 +2533,14 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-272
 273
 274
 275
-276</pre>
+276
+277</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 272</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 273</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sprinkle_holy_water'>sprinkle_holy_water</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='comma'>,</span> <span class='id identifier rubyid_water_holder'>water_holder</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_item?'><span class='object_link'><a href="DRCI.html#get_item%3F-class_method" title="Lich::DragonRealms::DRCI.get_item? (method)">get_item?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_water_holder'>water_holder</span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
@@ -2585,7 +2563,7 @@ This module provides methods and constants related to cleric items and actions.<
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Attempts to sprinkle holy water on a target.</p>
+    <p>Sprinkles holy water on a target.</p>
 
 
   </div>
@@ -2596,7 +2574,7 @@ This module provides methods and constants related to cleric items and actions.<
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_sprinkle_holy_water?'>sprinkle_holy_water?</span><span class='lparen'>(</span><span class='id identifier rubyid_supply_container'>supply_container</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>water flask</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>target</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_sprinkle_holy_water?'>sprinkle_holy_water?</span><span class='lparen'>(</span><span class='id identifier rubyid_supply_container'>supply_container</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>water holder</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>target</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2627,7 +2605,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>The item used to hold the holy water.</p>
+        <div class='inline'><p>The item holder for water.</p>
 </div>
       
     </li>
@@ -2642,7 +2620,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>The target to sprinkle the holy water on.</p>
+        <div class='inline'><p>The target to sprinkle holy water on.</p>
 </div>
       
     </li>
@@ -2660,7 +2638,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>Returns true if the sprinkling was successful, false otherwise.</p>
+        <div class='inline'><p>True if the action was successful, false otherwise.</p>
 </div>
       
     </li>
@@ -2673,7 +2651,6 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-231
 232
 233
 234
@@ -2685,10 +2662,11 @@ This module provides methods and constants related to cleric items and actions.<
 240
 241
 242
-243</pre>
+243
+244</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 231</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 232</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sprinkle_holy_water?'>sprinkle_holy_water?</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='comma'>,</span> <span class='id identifier rubyid_water_holder'>water_holder</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_item?'><span class='object_link'><a href="DRCI.html#get_item%3F-class_method" title="Lich::DragonRealms::DRCI.get_item? (method)">get_item?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_water_holder'>water_holder</span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
@@ -2719,7 +2697,7 @@ This module provides methods and constants related to cleric items and actions.<
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Waves incense at a target, lighting it in the process.</p>
+    <p>Waves incense at a target after lighting it.</p>
 
 
   </div>
@@ -2776,7 +2754,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>The target to wave the incense at.</p>
+        <div class='inline'><p>The target to wave incense at.</p>
 </div>
       
     </li>
@@ -2794,7 +2772,7 @@ This module provides methods and constants related to cleric items and actions.<
       
       
         &mdash;
-        <div class='inline'><p>Returns true if the action was successful, false otherwise.</p>
+        <div class='inline'><p>True if the action was successful, false otherwise.</p>
 </div>
       
     </li>
@@ -2807,7 +2785,6 @@ This module provides methods and constants related to cleric items and actions.<
       <pre class="lines">
 
 
-320
 321
 322
 323
@@ -2848,10 +2825,11 @@ This module provides methods and constants related to cleric items and actions.<
 358
 359
 360
-361</pre>
+361
+362</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 320</span>
+      <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 321</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_wave_incense?'>wave_incense?</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='comma'>,</span> <span class='id identifier rubyid_flint_lighter'>flint_lighter</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_empty_cleric_hands'>empty_cleric_hands</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
@@ -2905,7 +2883,7 @@ This module provides methods and constants related to cleric items and actions.<
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:52 2025 by
+  Generated on Fri Nov  7 03:59:27 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

@@ -108,9 +108,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>deprecated
-Deprecated class for map representation.
-This class is kept for backward compatibility.</p>
+    <p>deprecated</p>
 
 
   </div>
@@ -636,7 +634,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Clears all maps and resets the state.</p>
+    <span class="summary_desc"><div class='inline'><p>Clears the current map data and resets the state.</p>
 </div></span>
   
 </li>
@@ -659,7 +657,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the current map instance.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the current map instance based on the game state.</p>
 </div></span>
   
 </li>
@@ -866,7 +864,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the current location of the player.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the current location based on the game state.</p>
 </div></span>
   
 </li>
@@ -889,7 +887,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves IDs associated with a given UID.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the map IDs associated with a given UID.</p>
 </div></span>
   
 </li>
@@ -1013,7 +1011,7 @@ This class is kept for backward compatibility.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#load_uids-class_method" title="load_uids (class method)">.<strong>load_uids</strong>  &#x21d2; void </a>
+      <a href="#load_uids-class_method" title="load_uids (class method)">.<strong>load_uids</strong>  &#x21d2; Object </a>
     
 
     
@@ -1027,7 +1025,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Loads UIDs from the map list into the UID mapping.</p>
+    <span class="summary_desc"><div class='inline'><p>Loads the UID mappings from the current list of maps.</p>
 </div></span>
   
 </li>
@@ -1119,7 +1117,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Matches the current room based on the script context.</p>
+    <span class="summary_desc"><div class='inline'><p>Matches the current room based on the provided script.</p>
 </div></span>
   
 </li>
@@ -1188,7 +1186,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Matches a room without a UID.</p>
+    <span class="summary_desc"><div class='inline'><p>Matches the current room based on the game state without a UID.</p>
 </div></span>
   
 </li>
@@ -1211,7 +1209,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the previous map instance.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the previous map instance based on the previous room ID.</p>
 </div></span>
   
 </li>
@@ -1266,7 +1264,7 @@ This class is kept for backward compatibility.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#previous_uid-class_method" title="previous_uid (class method)">.<strong>previous_uid</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#previous_uid-class_method" title="previous_uid (class method)">.<strong>previous_uid</strong>  &#x21d2; Integer </a>
     
 
     
@@ -1280,7 +1278,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the previous UID.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the previous UID from the XML data.</p>
 </div></span>
   
 </li>
@@ -1550,7 +1548,7 @@ This class is kept for backward compatibility.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#desc-instance_method" title="#desc (instance method)">#<strong>desc</strong>  &#x21d2; String </a>
+      <a href="#desc-instance_method" title="#desc (instance method)">#<strong>desc</strong>  &#x21d2; Array&lt;String&gt; </a>
     
 
     
@@ -1564,7 +1562,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the description of the map.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the description of the room.</p>
 </div></span>
   
 </li>
@@ -1573,7 +1571,7 @@ This class is kept for backward compatibility.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#dijkstra-instance_method" title="#dijkstra (instance method)">#<strong>dijkstra</strong>(destination = nil)  &#x21d2; Array </a>
+      <a href="#dijkstra-instance_method" title="#dijkstra (instance method)">#<strong>dijkstra</strong>(destination = nil)  &#x21d2; Array&lt;Integer&gt;, Array&lt;Float&gt; </a>
     
 
     
@@ -1587,7 +1585,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Performs Dijkstra&#39;s algorithm for the current map instance.</p>
+    <span class="summary_desc"><div class='inline'><p>Performs Dijkstra&#39;s algorithm for the current room.</p>
 </div></span>
   
 </li>
@@ -1665,7 +1663,7 @@ This class is kept for backward compatibility.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#fuzzy_room_id-instance_method" title="#fuzzy_room_id (instance method)">#<strong>fuzzy_room_id</strong>  &#x21d2; Integer </a>
+      <a href="#fuzzy_room_id-instance_method" title="#fuzzy_room_id (instance method)">#<strong>fuzzy_room_id</strong>  &#x21d2; Object </a>
     
 
     
@@ -1679,8 +1677,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the fuzzy room ID.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1702,7 +1699,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves geographical information about the map.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns geographical information for the room.</p>
 </div></span>
   
 </li>
@@ -1773,7 +1770,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the name of the map image.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the name of the map image.</p>
 </div></span>
   
 </li>
@@ -1796,7 +1793,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the size of the map image.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the size of the room based on the image coordinates.</p>
 </div></span>
   
 </li>
@@ -1819,7 +1816,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the X coordinate of the map image.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the X coordinate of the map image.</p>
 </div></span>
   
 </li>
@@ -1842,7 +1839,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the Y coordinate of the map image.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the Y coordinate of the map image.</p>
 </div></span>
   
 </li>
@@ -1865,7 +1862,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if the map is outside.</p>
+    <span class="summary_desc"><div class='inline'><p>Checks if the current map is outside.</p>
 </div></span>
   
 </li>
@@ -1888,7 +1885,7 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Finds a path to a specified destination.</p>
+    <span class="summary_desc"><div class='inline'><p>Finds the path to a specified destination.</p>
 </div></span>
   
 </li>
@@ -1920,7 +1917,7 @@ This class is kept for backward compatibility.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#to_json-instance_method" title="#to_json (instance method)">#<strong>to_json</strong>(*_args)  &#x21d2; Object </a>
+      <a href="#to_json-instance_method" title="#to_json (instance method)">#<strong>to_json</strong>(*_args)  &#x21d2; String </a>
     
 
     
@@ -1934,7 +1931,8 @@ This class is kept for backward compatibility.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Converts the map instance to JSON format.</p>
+</div></span>
   
 </li>
 
@@ -3053,7 +3051,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Clears all maps and resets the state.</p>
+    <p>Clears the current map data and resets the state.</p>
 
 
   </div>
@@ -3084,18 +3082,18 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+364
+365
 366
 367
 368
 369
 370
 371
-372
-373
-374</pre>
+372</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 366</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 364</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
   <span class='cvar'>@@load_mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span>
@@ -3122,7 +3120,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the current map instance.</p>
+    <p>Retrieves the current map instance based on the game state.</p>
 
 
   </div>
@@ -3140,7 +3138,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The current map instance or nil if not set.</p>
+        <div class='inline'><p>The current map instance or nil if not found.</p>
 </div>
       
     </li>
@@ -3345,10 +3343,10 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
-48</pre>
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_gs.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'map_gs.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current_room_id'>current_room_id</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='cvar'>@@current_room_id</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -3417,10 +3415,10 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
-52</pre>
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_gs.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'map_gs.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current_room_id='>current_room_id=</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='cvar'>@@current_room_id</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -3458,7 +3456,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The source map or room ID.</p>
+        <div class='inline'><p>The source map or its ID.</p>
 </div>
       
     </li>
@@ -3475,7 +3473,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The destination room ID.</p>
+        <div class='inline'><p>The destination map ID.</p>
 </div>
       
     </li>
@@ -3493,7 +3491,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The previous room IDs and shortest distances.</p>
+        <div class='inline'><p>The previous nodes and shortest distances.</p>
 </div>
       
     </li>
@@ -3506,19 +3504,19 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+804
+805
+806
 807
 808
 809
 810
 811
 812
-813
-814
-815
-816</pre>
+813</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 807</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 804</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dijkstra'>dijkstra</span><span class='lparen'>(</span><span class='id identifier rubyid_source'>source</span><span class='comma'>,</span> <span class='id identifier rubyid_destination'>destination</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_source'>source</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='rparen'>)</span>
@@ -3589,23 +3587,6 @@ This class is kept for backward compatibility.</p>
     </li>
   
 </ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'></span>
-      
-      
-      
-        
-        <div class='inline'><p>MapError if the input is not an array.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -3613,6 +3594,9 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+779
+780
+781
 782
 783
 784
@@ -3629,13 +3613,10 @@ This class is kept for backward compatibility.</p>
 795
 796
 797
-798
-799
-800
-801</pre>
+798</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 782</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 779</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_estimate_time'>estimate_time</span><span class='lparen'>(</span><span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Map.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -3692,7 +3673,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The source map or room ID.</p>
+        <div class='inline'><p>The source map or its ID.</p>
 </div>
       
     </li>
@@ -3707,7 +3688,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The destination room ID.</p>
+        <div class='inline'><p>The destination map ID.</p>
 </div>
       
     </li>
@@ -3725,7 +3706,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The path as an array of room IDs or nil if no path found.</p>
+        <div class='inline'><p>The path as an array of room IDs or nil if not found.</p>
 </div>
       
     </li>
@@ -3738,19 +3719,19 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+922
+923
+924
 925
 926
 927
 928
 929
 930
-931
-932
-933
-934</pre>
+931</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 925</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 922</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_findpath'>findpath</span><span class='lparen'>(</span><span class='id identifier rubyid_source'>source</span><span class='comma'>,</span> <span class='id identifier rubyid_destination'>destination</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_source'>source</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='rparen'>)</span>
@@ -3809,10 +3790,10 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
-87</pre>
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_gs.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'map_gs.rb', line 89</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_fuzzy_room_id'>fuzzy_room_id</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='cvar'>@@fuzzy_room_id</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -3890,7 +3871,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the current location of the player.</p>
+    <p>Retrieves the current location based on the game state.</p>
 
 
   </div>
@@ -3908,7 +3889,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The current location or nil if not set.</p>
+        <div class='inline'><p>The current location or nil if not determined.</p>
 </div>
       
     </li>
@@ -3921,8 +3902,6 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
-122
-123
 124
 125
 126
@@ -3940,10 +3919,12 @@ This class is kept for backward compatibility.</p>
 138
 139
 140
-141</pre>
+141
+142
+143</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_gs.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'map_gs.rb', line 124</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_location'>get_location</span>
   <span class='kw'>unless</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_room_count'>room_count</span> <span class='op'>==</span> <span class='cvar'>@@current_location_count</span>
@@ -3981,7 +3962,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves IDs associated with a given UID.</p>
+    <p>Retrieves the map IDs associated with a given UID.</p>
 
 
   </div>
@@ -4018,7 +3999,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>An array of IDs associated with the UID.</p>
+        <div class='inline'><p>An array of map IDs associated with the UID.</p>
 </div>
       
     </li>
@@ -4031,12 +4012,12 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+359
 360
-361
-362</pre>
+361</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 360</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 359</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_ids_from_uid'>ids_from_uid</span><span class='lparen'>(</span><span class='id identifier rubyid_n'><span class='object_link'><a href="../../top-level-namespace.html#n-instance_method" title="#n (method)">n</a></span></span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='lparen'>(</span><span class='cvar'>@@uids</span><span class='lbracket'>[</span><span class='id identifier rubyid_n'><span class='object_link'><a href="../../top-level-namespace.html#n-instance_method" title="#n (method)">n</a></span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_n'><span class='object_link'><a href="../../top-level-namespace.html#n-instance_method" title="#n (method)">n</a></span></span> <span class='op'>==</span> <span class='int'>0</span> <span class='op'>?</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='cvar'>@@uids</span><span class='lbracket'>[</span><span class='id identifier rubyid_n'><span class='object_link'><a href="../../top-level-namespace.html#n-instance_method" title="#n (method)">n</a></span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -4088,14 +4069,14 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
-468
-469
 470
 471
-472</pre>
+472
+473
+474</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_gs.rb', line 468</span>
+      <pre class="code"><span class="info file"># File 'map_gs.rb', line 470</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_images'>images</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Map.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -4198,7 +4179,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The filename to load from, or nil to load default files.</p>
+        <div class='inline'><p>The filename to load from, or nil to load from default.</p>
 </div>
       
     </li>
@@ -4229,6 +4210,9 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+383
+384
+385
 386
 387
 388
@@ -4252,13 +4236,10 @@ This class is kept for backward compatibility.</p>
 406
 407
 408
-409
-410
-411
-412</pre>
+409</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 386</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 383</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_filename'>filename</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -4324,7 +4305,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The filename to load from, or nil to load default DAT files.</p>
+        <div class='inline'><p>The filename to load from, or nil to load from default.</p>
 </div>
       
     </li>
@@ -4355,6 +4336,9 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+467
+468
+469
 470
 471
 472
@@ -4386,13 +4370,10 @@ This class is kept for backward compatibility.</p>
 498
 499
 500
-501
-502
-503
-504</pre>
+501</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 470</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 467</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_dat'>load_dat</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='cvar'>@@load_mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span>
@@ -4466,7 +4447,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The filename to load from, or nil to load default JSON files.</p>
+        <div class='inline'><p>The filename to load from, or nil to load from default.</p>
 </div>
       
     </li>
@@ -4497,6 +4478,9 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+414
+415
+416
 417
 418
 419
@@ -4542,13 +4526,10 @@ This class is kept for backward compatibility.</p>
 459
 460
 461
-462
-463
-464
-465</pre>
+462</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 417</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 414</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_json'>load_json</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='cvar'>@@load_mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span>
@@ -4607,7 +4588,7 @@ This class is kept for backward compatibility.</p>
       <div class="method_details ">
   <h3 class="signature " id="load_uids-class_method">
   
-    .<strong>load_uids</strong>  &#x21d2; <tt>void</tt> 
+    .<strong>load_uids</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -4615,7 +4596,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Loads UIDs from the map list into the UID mapping.</p>
+    <p>Loads the UID mappings from the current list of maps.</p>
 
 
   </div>
@@ -4629,6 +4610,7 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+342
 343
 344
 345
@@ -4640,11 +4622,10 @@ This class is kept for backward compatibility.</p>
 351
 352
 353
-354
-355</pre>
+354</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 343</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 342</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_uids'>load_uids</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Map.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -4727,6 +4708,9 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+506
+507
+508
 509
 510
 511
@@ -4840,13 +4824,10 @@ This class is kept for backward compatibility.</p>
 619
 620
 621
-622
-623
-624
-625</pre>
+622</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 509</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 506</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_xml'>load_xml</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>DATA_DIR</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span><span class='embexpr_end'>}</span><span class='tstring_content'>/map.xml</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='cvar'>@@load_mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span>
@@ -5012,10 +4993,10 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
-55</pre>
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_gs.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'map_gs.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_loaded'>loaded</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='cvar'>@@loaded</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -5065,14 +5046,14 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
-460
-461
 462
 463
-464</pre>
+464
+465
+466</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_gs.rb', line 460</span>
+      <pre class="code"><span class="info file"># File 'map_gs.rb', line 462</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_locations'>locations</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Map.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -5095,7 +5076,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Matches the current room based on the script context.</p>
+    <p>Matches the current room based on the provided script.</p>
 
 
   </div>
@@ -5132,7 +5113,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The ID of the matched room.</p>
+        <div class='inline'><p>The matched room ID.</p>
 </div>
       
     </li>
@@ -5484,7 +5465,7 @@ This class is kept for backward compatibility.</p>
       <pre class="code"><span class="info file"># File 'map_dr.rb', line 321</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_match_multi_ids'>match_multi_ids</span><span class='lparen'>(</span><span class='id identifier rubyid_ids'>ids</span><span class='rparen'>)</span> <span class='comment'># returns id
-</span>  <span class='id identifier rubyid_matches'>matches</span> <span class='op'>=</span> <span class='id identifier rubyid_ids'>ids</span><span class='period'>.</span><span class='id identifier rubyid_find_all'>find_all</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span> <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='cvar'>@@current_room_id</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_wayto'>wayto</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'><span class='object_link'><a href="../../String.html#to_s-instance_method" title="String#to_s (method)">to_s</a></span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+</span>  <span class='id identifier rubyid_matches'>matches</span> <span class='op'>=</span> <span class='id identifier rubyid_ids'>ids</span><span class='period'>.</span><span class='id identifier rubyid_find_all'>find_all</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span> <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='cvar'>@@current_room_id</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_wayto'>wayto</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_matches'>matches</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_matches'>matches</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>1</span><span class='semicolon'>;</span>
   <span class='kw'>return</span> <span class='kw'>nil</span><span class='semicolon'>;</span>
 <span class='kw'>end</span></pre>
@@ -5504,7 +5485,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Matches a room without a UID.</p>
+    <p>Matches the current room based on the game state without a UID.</p>
 
 
   </div>
@@ -5569,7 +5550,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the previous map instance.</p>
+    <p>Retrieves the previous map instance based on the previous room ID.</p>
 
 
   </div>
@@ -5587,7 +5568,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The previous map instance or nil if not set.</p>
+        <div class='inline'><p>The previous map instance or nil if not found.</p>
 </div>
       
     </li>
@@ -5657,10 +5638,10 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
-58</pre>
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_gs.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'map_gs.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_previous_room_id'>previous_room_id</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='cvar'>@@previous_room_id</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -5729,10 +5710,10 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
-62</pre>
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_gs.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'map_gs.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_previous_room_id='>previous_room_id=</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='cvar'>@@previous_room_id</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -5743,7 +5724,7 @@ This class is kept for backward compatibility.</p>
       <div class="method_details ">
   <h3 class="signature " id="previous_uid-class_method">
   
-    .<strong>previous_uid</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>previous_uid</strong>  &#x21d2; <tt>Integer</tt> 
   
 
   
@@ -5751,7 +5732,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the previous UID.</p>
+    <p>Retrieves the previous UID from the XML data.</p>
 
 
   </div>
@@ -5764,12 +5745,12 @@ This class is kept for backward compatibility.</p>
     <li>
       
       
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>The previous UID or nil if not set.</p>
+        <div class='inline'><p>The previous UID.</p>
 </div>
       
     </li>
@@ -5839,13 +5820,13 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
-378
-379
-380
-381</pre>
+375
+376
+377
+378</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 378</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 375</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reload'>reload</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear'><span class='object_link'><a href="#clear-class_method" title="Lich::Common::Map.clear (method)">clear</a></span></span>
@@ -5888,7 +5869,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The filename to save the map data to.</p>
+        <div class='inline'><p>The filename to save to.</p>
 </div>
       
     </li>
@@ -5919,6 +5900,9 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+627
+628
+629
 630
 631
 632
@@ -5937,13 +5921,10 @@ This class is kept for backward compatibility.</p>
 645
 646
 647
-648
-649
-650
-651</pre>
+648</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 630</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 627</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>DATA_DIR</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span><span class='embexpr_end'>}</span><span class='tstring_content'>/map-</span><span class='embexpr_beg'>#{</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='embexpr_end'>}</span><span class='tstring_content'>.dat</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
@@ -6004,7 +5985,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The filename to save the map data to.</p>
+        <div class='inline'><p>The filename to save to.</p>
 </div>
       
     </li>
@@ -6035,6 +6016,9 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+682
+683
+684
 685
 686
 687
@@ -6050,13 +6034,10 @@ This class is kept for backward compatibility.</p>
 697
 698
 699
-700
-701
-702
-703</pre>
+700</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 685</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 682</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_save_json'>save_json</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>DATA_DIR</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span><span class='embexpr_end'>}</span><span class='tstring_content'>/map-</span><span class='embexpr_beg'>#{</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='embexpr_end'>}</span><span class='tstring_content'>.json</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
@@ -6114,7 +6095,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The filename to save the map data to.</p>
+        <div class='inline'><p>The filename to save to.</p>
 </div>
       
     </li>
@@ -6145,6 +6126,9 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+705
+706
+707
 708
 709
 710
@@ -6210,13 +6194,10 @@ This class is kept for backward compatibility.</p>
 770
 771
 772
-773
-774
-775
-776</pre>
+773</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 708</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 705</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_save_xml'>save_xml</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>DATA_DIR</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span><span class='embexpr_end'>}</span><span class='tstring_content'>/map-</span><span class='embexpr_beg'>#{</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='embexpr_end'>}</span><span class='tstring_content'>.xml</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
@@ -6546,7 +6527,26 @@ This class is kept for backward compatibility.</p>
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>args</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Additional arguments for JSON generation.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -6558,7 +6558,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The JSON representation of the map data.</p>
+        <div class='inline'><p>The JSON representation of the map.</p>
 </div>
       
     </li>
@@ -6571,13 +6571,13 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
-656
-657
-658
-659</pre>
+653
+654
+655
+656</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 656</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 653</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='cvar'>@@list</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='rbrace'>}</span>
@@ -6617,7 +6617,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>A hash mapping UIDs to their corresponding IDs.</p>
+        <div class='inline'><p>A hash mapping UIDs to their corresponding map IDs.</p>
 </div>
       
     </li>
@@ -6630,10 +6630,10 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
-484</pre>
+486</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_gs.rb', line 484</span>
+      <pre class="code"><span class="info file"># File 'map_gs.rb', line 486</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_uids'>uids</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='cvar'>@@uids</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -6738,10 +6738,10 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
-485</pre>
+487</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_gs.rb', line 485</span>
+      <pre class="code"><span class="info file"># File 'map_gs.rb', line 487</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_uids_clear'>uids_clear</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='cvar'>@@uids</span><span class='period'>.</span><span class='id identifier rubyid_clear'><span class='object_link'><a href="../../top-level-namespace.html#clear-instance_method" title="#clear (method)">clear</a></span></span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -6758,7 +6758,7 @@ This class is kept for backward compatibility.</p>
       <div class="method_details first">
   <h3 class="signature first" id="desc-instance_method">
   
-    #<strong>desc</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>desc</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt> 
   
 
   
@@ -6766,7 +6766,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the description of the map.</p>
+    <p>Returns the description of the room.</p>
 
 
   </div>
@@ -6779,12 +6779,12 @@ This class is kept for backward compatibility.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>The description of the map.</p>
+        <div class='inline'><p>The description of the room.</p>
 </div>
       
     </li>
@@ -6797,12 +6797,12 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
-1008
-1009
-1010</pre>
+1005
+1006
+1007</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 1008</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 1005</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_desc'>desc</span>
   <span class='ivar'>@description</span>
@@ -6815,7 +6815,7 @@ This class is kept for backward compatibility.</p>
       <div class="method_details ">
   <h3 class="signature " id="dijkstra-instance_method">
   
-    #<strong>dijkstra</strong>(destination = nil)  &#x21d2; <tt>Array</tt> 
+    #<strong>dijkstra</strong>(destination = nil)  &#x21d2; <tt>Array&lt;Integer&gt;</tt>, <tt>Array&lt;Float&gt;</tt> 
   
 
   
@@ -6823,7 +6823,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Performs Dijkstra&#39;s algorithm for the current map instance.</p>
+    <p>Performs Dijkstra&#39;s algorithm for the current room.</p>
 
 
   </div>
@@ -6844,7 +6844,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The destination room ID (default: nil).</p>
+        <div class='inline'><p>The destination room ID.</p>
 </div>
       
     </li>
@@ -6857,12 +6857,12 @@ This class is kept for backward compatibility.</p>
     <li>
       
       
-        <span class='type'>(<tt>Array</tt>, <tt>Array</tt>)</span>
+        <span class='type'>(<tt>Array&lt;Integer&gt;</tt>, <tt>Array&lt;Float&gt;</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>The previous rooms and shortest distances.</p>
+        <div class='inline'><p>The previous room IDs and the shortest distances.</p>
 </div>
       
     </li>
@@ -6875,6 +6875,9 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+818
+819
+820
 821
 822
 823
@@ -6970,13 +6973,10 @@ This class is kept for backward compatibility.</p>
 913
 914
 915
-916
-917
-918
-919</pre>
+916</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 821</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 818</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dijkstra'>dijkstra</span><span class='lparen'>(</span><span class='id identifier rubyid_destination'>destination</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>begin</span>
@@ -7143,16 +7143,16 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+966
+967
+968
 969
 970
 971
-972
-973
-974
-975</pre>
+972</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 969</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 966</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_find_all_nearest_by_tag'>find_all_nearest_by_tag</span><span class='lparen'>(</span><span class='id identifier rubyid_tag_name'>tag_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_target_list'>target_list</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -7227,19 +7227,19 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+977
+978
+979
 980
 981
 982
 983
 984
 985
-986
-987
-988
-989</pre>
+986</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 980</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 977</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_find_nearest'>find_nearest</span><span class='lparen'>(</span><span class='id identifier rubyid_target_list'>target_list</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_target_list'>target_list</span> <span class='op'>=</span> <span class='id identifier rubyid_target_list'>target_list</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_num'>num</span><span class='op'>|</span> <span class='id identifier rubyid_num'>num</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='rbrace'>}</span>
@@ -7317,6 +7317,9 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+951
+952
+953
 954
 955
 956
@@ -7324,13 +7327,10 @@ This class is kept for backward compatibility.</p>
 958
 959
 960
-961
-962
-963
-964</pre>
+961</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 954</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 951</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_find_nearest_by_tag'>find_nearest_by_tag</span><span class='lparen'>(</span><span class='id identifier rubyid_tag_name'>tag_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_target_list'>target_list</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -7351,49 +7351,22 @@ This class is kept for backward compatibility.</p>
       <div class="method_details ">
   <h3 class="signature " id="fuzzy_room_id-instance_method">
   
-    #<strong>fuzzy_room_id</strong>  &#x21d2; <tt>Integer</tt> 
+    #<strong>fuzzy_room_id</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Retrieves the fuzzy room ID.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The fuzzy room ID.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-65</pre>
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_gs.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'map_gs.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fuzzy_room_id'>fuzzy_room_id</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='cvar'>@@current_room_id</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -7412,7 +7385,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves geographical information about the map.</p>
+    <p>Returns geographical information for the room.</p>
 
 
   </div>
@@ -7443,12 +7416,12 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
-1050
-1051
-1052</pre>
+1047
+1048
+1049</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 1050</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 1047</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_geo'>geo</span>
   <span class='kw'>nil</span>
@@ -7526,7 +7499,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the name of the map image.</p>
+    <p>Returns the name of the map image.</p>
 
 
   </div>
@@ -7557,12 +7530,12 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
-1014
-1015
-1016</pre>
+1011
+1012
+1013</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 1014</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 1011</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_map_name'>map_name</span>
   <span class='ivar'>@image</span>
@@ -7583,7 +7556,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the size of the map image.</p>
+    <p>Returns the size of the room based on the image coordinates.</p>
 
 
   </div>
@@ -7601,7 +7574,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The size of the map image or nil if not set.</p>
+        <div class='inline'><p>The size of the room, or nil if not set.</p>
 </div>
       
     </li>
@@ -7614,16 +7587,16 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+1037
+1038
+1039
 1040
 1041
 1042
-1043
-1044
-1045
-1046</pre>
+1043</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 1040</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 1037</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_map_roomsize'>map_roomsize</span>
   <span class='kw'>if</span> <span class='ivar'>@image_coords</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -7648,7 +7621,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the X coordinate of the map image.</p>
+    <p>Returns the X coordinate of the map image.</p>
 
 
   </div>
@@ -7666,7 +7639,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The X coordinate or nil if not set.</p>
+        <div class='inline'><p>The X coordinate, or nil if not set.</p>
 </div>
       
     </li>
@@ -7679,16 +7652,16 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+1017
+1018
+1019
 1020
 1021
 1022
-1023
-1024
-1025
-1026</pre>
+1023</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 1020</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 1017</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_map_x'>map_x</span>
   <span class='kw'>if</span> <span class='ivar'>@image_coords</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -7713,7 +7686,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the Y coordinate of the map image.</p>
+    <p>Returns the Y coordinate of the map image.</p>
 
 
   </div>
@@ -7731,7 +7704,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The Y coordinate or nil if not set.</p>
+        <div class='inline'><p>The Y coordinate, or nil if not set.</p>
 </div>
       
     </li>
@@ -7744,16 +7717,16 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+1027
+1028
+1029
 1030
 1031
 1032
-1033
-1034
-1035
-1036</pre>
+1033</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 1030</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 1027</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_map_y'>map_y</span>
   <span class='kw'>if</span> <span class='ivar'>@image_coords</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -7778,7 +7751,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the map is outside.</p>
+    <p>Checks if the current map is outside.</p>
 
 
   </div>
@@ -7809,10 +7782,10 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
-68</pre>
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_gs.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'map_gs.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_outside?'><span class='object_link'><a href="../../top-level-namespace.html#outside%3F-instance_method" title="#outside? (method)">outside?</a></span></span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='ivar'>@paths</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Obvious paths:</span><span class='regexp_end'>/</span></span> <span class='op'>?</span> <span class='kw'>true</span> <span class='op'>:</span> <span class='kw'>false</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -7831,7 +7804,7 @@ This class is kept for backward compatibility.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Finds a path to a specified destination.</p>
+    <p>Finds the path to a specified destination.</p>
 
 
   </div>
@@ -7850,7 +7823,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The destination room ID.</p>
+        <div class='inline'><p>The destination map ID.</p>
 </div>
       
     </li>
@@ -7868,7 +7841,7 @@ This class is kept for backward compatibility.</p>
       
       
         &mdash;
-        <div class='inline'><p>The path as an array of room IDs or nil if no path found.</p>
+        <div class='inline'><p>The path as an array of room IDs or nil if not found.</p>
 </div>
       
     </li>
@@ -7881,6 +7854,9 @@ This class is kept for backward compatibility.</p>
       <pre class="lines">
 
 
+936
+937
+938
 939
 940
 941
@@ -7888,13 +7864,10 @@ This class is kept for backward compatibility.</p>
 943
 944
 945
-946
-947
-948
-949</pre>
+946</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 939</span>
+      <pre class="code"><span class="info file"># File 'map_dr.rb', line 936</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_path_to'>path_to</span><span class='lparen'>(</span><span class='id identifier rubyid_destination'>destination</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Map.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -7972,41 +7945,68 @@ This class is kept for backward compatibility.</p>
       <div class="method_details ">
   <h3 class="signature " id="to_json-instance_method">
   
-    #<strong>to_json</strong>(*_args)  &#x21d2; <tt>Object</tt> 
+    #<strong>to_json</strong>(*_args)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Converts the map instance to JSON format.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The JSON representation of the map instance.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-661
-662
-663
-664
-665
-666
-667
-668
-669
-670
-671
-672
-673
-674
-675
-676
-677
-678
-679
-680</pre>
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'map_dr.rb', line 661</span>
+      <pre class="code"><span class="info file"># File 'map_gs.rb', line 812</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_json'>to_json</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid__args'>_args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_mapjson'>mapjson</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='lbrace'>{</span>
@@ -8095,7 +8095,7 @@ This class is kept for backward compatibility.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:55 2025 by
+  Generated on Fri Nov  7 03:59:29 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

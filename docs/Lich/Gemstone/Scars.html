@@ -122,7 +122,7 @@ It defines both primary and alias methods for body parts, as well as composite m
 </div></h5>
       
       <pre class="example code"><code><span class='id identifier rubyid_scars'>scars</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>Scars</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-<span class='id identifier rubyid_scars'>scars</span><span class='period'>.</span><span class='id identifier rubyid_leftEye'>leftEye</span></code></pre>
+<span class='id identifier rubyid_scar_level'>scar_level</span> <span class='op'>=</span> <span class='id identifier rubyid_scars'>scars</span><span class='period'>.</span><span class='id identifier rubyid_leftEye'>leftEye</span></code></pre>
     
   </div>
 
@@ -556,14 +556,7 @@ This constant is used to define methods for accessing scars on different body pa
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'><p>This method temporarily changes the injury mode to &#39;scar&#39; to retrieve actual scar level data.</p>
-</div>
-  </div>
-
-<p>Helper method to get all scar levels
+    <p>Helper method to get all scar levels
 Returns a hash of all scar levels for each body part.</p>
 
 
@@ -571,6 +564,17 @@ Returns a hash of all scar levels for each body part.</p>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Accessing all scar levels</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_all_scar_levels'>all_scar_levels</span> <span class='op'>=</span> <span class='id identifier rubyid_scars'>scars</span><span class='period'>.</span><span class='id identifier rubyid_all_scars'>all_scars</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -588,23 +592,6 @@ Returns a hash of all scar levels for each body part.</p>
     </li>
   
 </ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>If there is an issue retrieving the scar data.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -612,18 +599,18 @@ Returns a hash of all scar levels for each body part.</p>
       <pre class="lines">
 
 
-127
-128
-129
-130
-131
 132
 133
 134
-135</pre>
+135
+136
+137
+138
+139
+140</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 127</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 132</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_all_scars'>all_scars</span>
   <span class='kw'>begin</span>
@@ -650,14 +637,7 @@ Returns a hash of all scar levels for each body part.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'><p>This method uses &#39;both&#39; injury mode for consistency.</p>
-</div>
-  </div>
-
-<p>Composite scar methods
+    <p>Composite scar methods
 Returns the maximum scar level for both arms and hands.</p>
 
 
@@ -665,6 +645,17 @@ Returns the maximum scar level for both arms and hands.</p>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Accessing the maximum scar level for arms</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_max_scar'>max_scar</span> <span class='op'>=</span> <span class='id identifier rubyid_scars'>scars</span><span class='period'>.</span><span class='id identifier rubyid_arms'>arms</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -689,18 +680,18 @@ Returns the maximum scar level for both arms and hands.</p>
       <pre class="lines">
 
 
-73
-74
 75
 76
 77
 78
 79
 80
-81</pre>
+81
+82
+83</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_arms'>arms</span>
   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -731,10 +722,10 @@ Returns the maximum scar level for both arms and hands.</p>
       <pre class="lines">
 
 
-60</pre>
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_arm'>left_arm</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftArm'>leftArm</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -753,14 +744,7 @@ Returns the maximum scar level for both arms and hands.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'><p>This method is an alias for leftEye.</p>
-</div>
-  </div>
-
-<p>Alias snake_case methods for overachievers
+    <p>Alias snake_case methods for overachievers
 Returns the scar level for the left eye using snake_case.</p>
 
 
@@ -768,6 +752,17 @@ Returns the scar level for the left eye using snake_case.</p>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Accessing the left eye scar level</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_scar_level'>scar_level</span> <span class='op'>=</span> <span class='id identifier rubyid_scars'>scars</span><span class='period'>.</span><span class='id identifier rubyid_left_eye'>left_eye</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -792,10 +787,10 @@ Returns the scar level for the left eye using snake_case.</p>
       <pre class="lines">
 
 
-58</pre>
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_eye'>left_eye</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftEye'>leftEye</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -818,10 +813,10 @@ Returns the scar level for the left eye using snake_case.</p>
       <pre class="lines">
 
 
-66</pre>
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_foot'>left_foot</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftFoot'>leftFoot</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -844,10 +839,10 @@ Returns the scar level for the left eye using snake_case.</p>
       <pre class="lines">
 
 
-62</pre>
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_hand'>left_hand</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftHand'>leftHand</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -870,10 +865,10 @@ Returns the scar level for the left eye using snake_case.</p>
       <pre class="lines">
 
 
-64</pre>
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_leg'>left_leg</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftLeg'>leftLeg</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -892,20 +887,24 @@ Returns the scar level for the left eye using snake_case.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'><p>This method uses &#39;both&#39; injury mode for consistency.</p>
-</div>
-  </div>
-
-<p>Returns the maximum scar level for both arms and legs.</p>
+    <p>Returns the maximum scar level for both arms and legs.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Accessing the maximum scar level for limbs</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_max_scar'>max_scar</span> <span class='op'>=</span> <span class='id identifier rubyid_scars'>scars</span><span class='period'>.</span><span class='id identifier rubyid_limbs'>limbs</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -930,9 +929,6 @@ Returns the scar level for the left eye using snake_case.</p>
       <pre class="lines">
 
 
-86
-87
-88
 89
 90
 91
@@ -940,10 +936,13 @@ Returns the scar level for the left eye using snake_case.</p>
 93
 94
 95
-96</pre>
+96
+97
+98
+99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 89</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_limbs'>limbs</span>
   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -976,10 +975,10 @@ Returns the scar level for the left eye using snake_case.</p>
       <pre class="lines">
 
 
-61</pre>
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_arm'>right_arm</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightArm'>rightArm</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1002,10 +1001,10 @@ Returns the scar level for the left eye using snake_case.</p>
       <pre class="lines">
 
 
-59</pre>
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_eye'>right_eye</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightEye'>rightEye</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1028,10 +1027,10 @@ Returns the scar level for the left eye using snake_case.</p>
       <pre class="lines">
 
 
-67</pre>
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 68</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_foot'>right_foot</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightFoot'>rightFoot</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1054,10 +1053,10 @@ Returns the scar level for the left eye using snake_case.</p>
       <pre class="lines">
 
 
-63</pre>
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_hand'>right_hand</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightHand'>rightHand</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1080,10 +1079,10 @@ Returns the scar level for the left eye using snake_case.</p>
       <pre class="lines">
 
 
-65</pre>
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_leg'>right_leg</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightLeg'>rightLeg</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1102,21 +1101,25 @@ Returns the scar level for the left eye using snake_case.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'><p>This method uses &#39;both&#39; injury mode for consistency.</p>
-</div>
-  </div>
-
-<p>Helper method to get scar level for any body part
+    <p>Helper method to get scar level for any body part
 Returns the scar level for a specified body part.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Accessing the scar level for a specific body part</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_scar_level'>scar_level</span> <span class='op'>=</span> <span class='id identifier rubyid_scars'>scars</span><span class='period'>.</span><span class='id identifier rubyid_scar_level'>scar_level</span><span class='lparen'>(</span><span class='symbol'>:leftEye</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1160,13 +1163,13 @@ Returns the scar level for a specified body part.</p>
       <pre class="lines">
 
 
-117
-118
-119
-120</pre>
+122
+123
+124
+125</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 122</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_scar_level'>scar_level</span><span class='lparen'>(</span><span class='id identifier rubyid_part'>part</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1188,20 +1191,24 @@ Returns the scar level for a specified body part.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'><p>This method uses &#39;both&#39; injury mode for consistency.</p>
-</div>
-  </div>
-
-<p>Returns the maximum scar level for the torso.</p>
+    <p>Returns the maximum scar level for the torso.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Accessing the maximum scar level for the torso</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_max_scar'>max_scar</span> <span class='op'>=</span> <span class='id identifier rubyid_scars'>scars</span><span class='period'>.</span><span class='id identifier rubyid_torso'>torso</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1226,19 +1233,19 @@ Returns the scar level for a specified body part.</p>
       <pre class="lines">
 
 
-101
-102
-103
-104
 105
 106
 107
 108
 109
-110</pre>
+110
+111
+112
+113
+114</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 105</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_torso'>torso</span>
   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1260,7 +1267,7 @@ Returns the scar level for a specified body part.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:54 2025 by
+  Generated on Fri Nov  7 03:59:28 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

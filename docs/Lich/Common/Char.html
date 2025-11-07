@@ -245,7 +245,7 @@ This class provides various methods to access character attributes.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the current encumbrance of the character.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the encumbrance text of the character.</p>
 </div></span>
   
 </li>
@@ -880,7 +880,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_che_value'>che_value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_che'>che</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>che_value = Char.che</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -908,12 +911,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-291
-292
-293</pre>
+260
+261
+262</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 291</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 260</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_che'>che</span>
   <span class='const'>Infomon</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>che</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^GS</span><span class='regexp_end'>/</span></span>
@@ -945,7 +948,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_citizenship'>citizenship</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_citizenship'>citizenship</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>citizenship = Char.citizenship</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -973,12 +979,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-273
-274
-275</pre>
+244
+245
+246</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 273</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 244</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_citizenship'>citizenship</span>
   <span class='const'>Infomon</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>citizenship</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^GS</span><span class='regexp_end'>/</span></span>
@@ -1012,7 +1018,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_citizenship'><span class='object_link'><a href="#citizenship-class_method" title="Lich::Common::Char.citizenship (method)">citizenship</a></span></span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>New Citizenship</span><span class='tstring_end'>&#39;</span></span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>Char.citizenship = &#39;new_citizenship&#39;</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1042,12 +1051,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-283
-284
-285</pre>
+253
+254
+255</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 283</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 253</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_citizenship='>citizenship=</span><span class='lparen'>(</span><span class='id identifier rubyid__val'>_val</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="../../top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Updating via Char.citizenship is no longer supported. Update or fix your script.</span><span class='tstring_end'>&quot;</span></span>
@@ -1081,7 +1090,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dump_info'>dump_info</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>Char.dump_info</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -1092,12 +1104,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-210
-211
-212</pre>
+187
+188
+189</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 210</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 187</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dump_info'>dump_info</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="../../top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.dump_info is no longer used. Update or fix your script.</span><span class='tstring_end'>&quot;</span></span>
@@ -1118,7 +1130,7 @@ This class provides various methods to access character attributes.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the current encumbrance of the character.</p>
+    <p>Returns the encumbrance text of the character.</p>
 
 
   </div>
@@ -1129,7 +1141,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_encumbrance'>encumbrance</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_encumbrance'>encumbrance</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>character_encumbrance = Char.encumbrance</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -1157,12 +1172,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-48
-49
-50</pre>
+43
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_encumbrance'>encumbrance</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_encumbrance_text'>encumbrance_text</span>
@@ -1194,7 +1209,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_health'>health</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_health'>health</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>character_health = Char.health</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -1222,12 +1240,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-64
-65
-66</pre>
+57
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_health'>health</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_health'>health</span>
@@ -1261,7 +1279,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>Char.info</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -1272,12 +1293,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-256
-257
-258</pre>
+229
+230
+231</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 256</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 229</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="../../top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.info is no longer supported. Update or fix your script.</span><span class='tstring_end'>&quot;</span></span>
@@ -1311,7 +1332,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_init'>init</span><span class='lparen'>(</span><span class='id identifier rubyid_some_value'>some_value</span><span class='rparen'>)</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>Char.init(&#39;some_value&#39;)</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1341,12 +1365,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
+15
 16
-17
-18</pre>
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_init'>init</span><span class='lparen'>(</span><span class='id identifier rubyid__blah'>_blah</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="../../top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Char.init is no longer used. Update or fix your script.</span><span class='tstring_end'>&#39;</span></span>
@@ -1380,7 +1404,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_info'>load_info</span><span class='lparen'>(</span><span class='id identifier rubyid_some_string'>some_string</span><span class='rparen'>)</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>Char.load_info(&#39;info_string&#39;)</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1396,7 +1423,7 @@ This class provides various methods to access character attributes.</p>
       
       
         &mdash;
-        <div class='inline'><p>The string to load.</p>
+        <div class='inline'><p>Unused parameter.</p>
 </div>
       
     </li>
@@ -1410,12 +1437,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-220
-221
-222</pre>
+196
+197
+198</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 220</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 196</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_info'>load_info</span><span class='lparen'>(</span><span class='id identifier rubyid__string'>_string</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="../../top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.load_info is no longer used. Update or fix your script.</span><span class='tstring_end'>&quot;</span></span>
@@ -1447,7 +1474,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_mana'>mana</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>character_mana = Char.mana</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -1475,12 +1505,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-72
-73
-74</pre>
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 72</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span>
@@ -1512,7 +1542,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_max_health'>max_health</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_health'>max_health</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>max_health = Char.max_health</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -1540,13 +1573,13 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-96
-97
-98
-99</pre>
+85
+86
+87
+88</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 96</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_health'>max_health</span>
   <span class='comment'># Object.module_eval { XMLData.max_health }
@@ -1579,7 +1612,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_max_mana'>max_mana</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_mana'>max_mana</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>max_mana = Char.max_mana</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -1607,12 +1643,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-115
-116
-117</pre>
+102
+103
+104</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 115</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 102</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_mana'>max_mana</span>
   <span class='const'>Object</span><span class='period'>.</span><span class='id identifier rubyid_module_eval'>module_eval</span> <span class='lbrace'>{</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_max_mana'>max_mana</span> <span class='rbrace'>}</span>
@@ -1644,7 +1680,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_max_spirit'>max_spirit</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_spirit'>max_spirit</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>max_spirit = Char.max_spirit</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -1672,12 +1711,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-133
-134
-135</pre>
+118
+119
+120</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 133</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 118</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_spirit'>max_spirit</span>
   <span class='const'>Object</span><span class='period'>.</span><span class='id identifier rubyid_module_eval'>module_eval</span> <span class='lbrace'>{</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_max_spirit'>max_spirit</span> <span class='rbrace'>}</span>
@@ -1709,7 +1748,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_max_stamina'>max_stamina</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_stamina'>max_stamina</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>max_stamina = Char.max_stamina</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -1737,12 +1779,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-151
-152
-153</pre>
+134
+135
+136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 151</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 134</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_stamina'>max_stamina</span>
   <span class='const'>Object</span><span class='period'>.</span><span class='id identifier rubyid_module_eval'>module_eval</span> <span class='lbrace'>{</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_max_stamina'>max_stamina</span> <span class='rbrace'>}</span>
@@ -1776,7 +1818,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_max_health'>max_health</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxhealth'>maxhealth</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>max_health = Char.maxhealth</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -1804,13 +1849,13 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-106
-107
-108
-109</pre>
+94
+95
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 106</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 94</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxhealth'>maxhealth</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.maxhealth</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.max_health</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1845,7 +1890,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_max_mana'>max_mana</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxmana'>maxmana</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>max_mana = Char.maxmana</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -1873,13 +1921,13 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-124
-125
-126
-127</pre>
+110
+111
+112
+113</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 110</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxmana'>maxmana</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.maxmana</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.max_mana</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1914,7 +1962,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_max_spirit'>max_spirit</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxspirit'>maxspirit</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>max_spirit = Char.maxspirit</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -1942,13 +1993,13 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-142
-143
-144
-145</pre>
+126
+127
+128
+129</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 142</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 126</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxspirit'>maxspirit</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.maxspirit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.max_spirit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1983,7 +2034,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_max_stamina'>max_stamina</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxstamina'>maxstamina</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>max_stamina = Char.maxstamina</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -2011,13 +2065,13 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-160
-161
-162
-163</pre>
+142
+143
+144
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 160</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 142</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxstamina'>maxstamina</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.maxstamina</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.max_stamina</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -2050,7 +2104,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_some_undefined_method'>some_undefined_method</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>Char.some_undefined_method</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2081,7 +2138,7 @@ This class provides various methods to access character attributes.</p>
       
       
         &mdash;
-        <div class='inline'><p>Arguments for the method.</p>
+        <div class='inline'><p>Arguments passed to the method.</p>
 </div>
       
     </li>
@@ -2112,19 +2169,19 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-240
-241
-242
-243
-244
-245
-246
-247
-248
-249</pre>
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 240</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 214</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_meth'>meth</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_polyfill'>polyfill</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='const'>Stats</span><span class='comma'>,</span> <span class='const'>Skills</span><span class='comma'>,</span> <span class='const'>Spellsong</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_klass'>klass</span><span class='op'>|</span>
@@ -2163,7 +2220,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>character_name = Char.name</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -2191,12 +2251,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-24
-25
-26</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
@@ -2228,7 +2288,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_encumbrance_percentage'>encumbrance_percentage</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_encumbrance'>percent_encumbrance</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>encumbrance_percentage = Char.percent_encumbrance</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -2256,12 +2319,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-56
-57
-58</pre>
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_encumbrance'>percent_encumbrance</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_encumbrance_value'>encumbrance_value</span>
@@ -2293,7 +2356,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_health_percentage'>health_percentage</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_health'>percent_health</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>health_percentage = Char.percent_health</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -2321,12 +2387,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-169
-170
-171</pre>
+150
+151
+152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 169</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 150</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_health'>percent_health</span>
   <span class='lparen'>(</span><span class='lparen'>(</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_health'>health</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span> <span class='op'>/</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_max_health'>max_health</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='rparen'>)</span> <span class='op'>*</span> <span class='int'>100</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -2358,7 +2424,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_mana_percentage'>mana_percentage</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_mana'>percent_mana</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>mana_percentage = Char.percent_mana</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -2386,16 +2455,16 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-177
-178
-179
-180
-181
-182
-183</pre>
+157
+158
+159
+160
+161
+162
+163</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 177</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 157</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_mana'>percent_mana</span>
   <span class='kw'>if</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_max_mana'>max_mana</span> <span class='op'>==</span> <span class='int'>0</span>
@@ -2431,7 +2500,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_spirit_percentage'>spirit_percentage</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_spirit'>percent_spirit</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>spirit_percentage = Char.percent_spirit</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -2459,12 +2531,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-189
-190
-191</pre>
+168
+169
+170</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 189</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 168</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_spirit'>percent_spirit</span>
   <span class='lparen'>(</span><span class='lparen'>(</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_spirit'>spirit</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span> <span class='op'>/</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_max_spirit'>max_spirit</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='rparen'>)</span> <span class='op'>*</span> <span class='int'>100</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -2496,7 +2568,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_stamina_percentage'>stamina_percentage</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_stamina'>percent_stamina</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>stamina_percentage = Char.percent_stamina</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -2524,16 +2599,16 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-197
-198
-199
-200
-201
-202
-203</pre>
+175
+176
+177
+178
+179
+180
+181</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 197</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 175</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_stamina'>percent_stamina</span>
   <span class='kw'>if</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_max_stamina'>max_stamina</span> <span class='op'>==</span> <span class='int'>0</span>
@@ -2569,7 +2644,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_stance_percentage'>stance_percentage</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_stance'>percent_stance</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>stance_percentage = Char.percent_stance</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -2597,12 +2675,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-40
-41
-42</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_stance'>percent_stance</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_stance_value'>stance_value</span>
@@ -2634,7 +2712,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_supports_method'>supports_method</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:some_method</span><span class='rparen'>)</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>Char.respond_to?(:skills)</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2696,12 +2777,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-230
-231
-232</pre>
+205
+206
+207</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 230</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 205</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='lbracket'>[</span><span class='const'>Stats</span><span class='comma'>,</span> <span class='const'>Skills</span><span class='comma'>,</span> <span class='const'>Spellsong</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span> <span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='kw'>or</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -2735,7 +2816,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_skills'>skills</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>Char.skills</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -2746,12 +2830,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-265
-266
-267</pre>
+237
+238
+239</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 265</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 237</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_skills'>skills</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="../../top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.skills is no longer supported. Update or fix your script.</span><span class='tstring_end'>&quot;</span></span>
@@ -2783,7 +2867,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_spirit'>spirit</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_spirit'>spirit</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>character_spirit = Char.spirit</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -2811,12 +2898,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-80
-81
-82</pre>
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_spirit'>spirit</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_spirit'>spirit</span>
@@ -2848,7 +2935,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_stamina'>stamina</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stamina'>stamina</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>character_stamina = Char.stamina</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -2876,12 +2966,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-88
-89
-90</pre>
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 78</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stamina'>stamina</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_stamina'>stamina</span>
@@ -2913,7 +3003,10 @@ This class provides various methods to access character attributes.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_stance'>stance</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stance'>stance</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>character_stance = Char.stance</p>
+</div></h5>
+      
+      <pre class="example code"><code></code></pre>
     
   </div>
 
@@ -2941,12 +3034,12 @@ This class provides various methods to access character attributes.</p>
       <pre class="lines">
 
 
-32
-33
-34</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stance'>stance</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_stance_text'>stance_text</span>
@@ -2961,7 +3054,7 @@ This class provides various methods to access character attributes.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:53 2025 by
+  Generated on Fri Nov  7 03:59:28 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

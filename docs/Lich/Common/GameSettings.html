@@ -137,7 +137,7 @@ This module allows access to game settings scoped to the current game context.</
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves a scoped game setting by name.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves a scoped setting by name.</p>
 </div></span>
   
 </li>
@@ -146,7 +146,7 @@ This module allows access to game settings scoped to the current game context.</
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#[]=-class_method" title="[]= (class method)">.<strong>[]=</strong>(name, value)  &#x21d2; Object </a>
+      <a href="#[]=-class_method" title="[]= (class method)">.<strong>[]=</strong>(name, value)  &#x21d2; void </a>
     
 
     
@@ -160,7 +160,7 @@ This module allows access to game settings scoped to the current game context.</
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sets a scoped game setting by name.</p>
+    <span class="summary_desc"><div class='inline'><p>Sets a scoped setting by name and value.</p>
 </div></span>
   
 </li>
@@ -189,7 +189,7 @@ This module allows access to game settings scoped to the current game context.</
 </li>
 
       
-        <li class="public deprecated">
+        <li class="public ">
   <span class="summary_signature">
     
       <a href="#auto-class_method" title="auto (class method)">.<strong>auto</strong>  &#x21d2; nil </a>
@@ -202,20 +202,20 @@ This module allows access to game settings scoped to the current game context.</
   
   
   
-  <span class="deprecated note title">deprecated</span>
+  
   
 
   
-    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>This method is no longer applicable.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the auto setting (deprecated).</p>
 </div></span>
   
 </li>
 
       
-        <li class="public deprecated">
+        <li class="public ">
   <span class="summary_signature">
     
-      <a href="#auto=-class_method" title="auto= (class method)">.<strong>auto=</strong>(_val)  &#x21d2; Object </a>
+      <a href="#auto=-class_method" title="auto= (class method)">.<strong>auto=</strong>(_val)  &#x21d2; void </a>
     
 
     
@@ -225,17 +225,17 @@ This module allows access to game settings scoped to the current game context.</
   
   
   
-  <span class="deprecated note title">deprecated</span>
+  
   
 
   
-    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>This method is no longer applicable.</p>
+    <span class="summary_desc"><div class='inline'><p>Sets the auto setting (deprecated).</p>
 </div></span>
   
 </li>
 
       
-        <li class="public deprecated">
+        <li class="public ">
   <span class="summary_signature">
     
       <a href="#autoload-class_method" title="autoload (class method)">.<strong>autoload</strong>  &#x21d2; nil </a>
@@ -248,17 +248,17 @@ This module allows access to game settings scoped to the current game context.</
   
   
   
-  <span class="deprecated note title">deprecated</span>
+  
   
 
   
-    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>This method is no longer applicable.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the autoload setting (deprecated).</p>
 </div></span>
   
 </li>
 
       
-        <li class="public deprecated">
+        <li class="public ">
   <span class="summary_signature">
     
       <a href="#clear-class_method" title="clear (class method)">.<strong>clear</strong>  &#x21d2; nil </a>
@@ -271,17 +271,17 @@ This module allows access to game settings scoped to the current game context.</
   
   
   
-  <span class="deprecated note title">deprecated</span>
+  
   
 
   
-    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>This method is no longer applicable.</p>
+    <span class="summary_desc"><div class='inline'><p>Clears game settings (deprecated).</p>
 </div></span>
   
 </li>
 
       
-        <li class="public deprecated">
+        <li class="public ">
   <span class="summary_signature">
     
       <a href="#load-class_method" title="load (class method)">.<strong>load</strong>  &#x21d2; nil </a>
@@ -294,17 +294,17 @@ This module allows access to game settings scoped to the current game context.</
   
   
   
-  <span class="deprecated note title">deprecated</span>
+  
   
 
   
-    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>This method is no longer applicable.</p>
+    <span class="summary_desc"><div class='inline'><p>deprecated Loads game settings (deprecated).</p>
 </div></span>
   
 </li>
 
       
-        <li class="public deprecated">
+        <li class="public ">
   <span class="summary_signature">
     
       <a href="#save-class_method" title="save (class method)">.<strong>save</strong>  &#x21d2; nil </a>
@@ -317,17 +317,17 @@ This module allows access to game settings scoped to the current game context.</
   
   
   
-  <span class="deprecated note title">deprecated</span>
+  
   
 
   
-    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>This method is no longer applicable.</p>
+    <span class="summary_desc"><div class='inline'><p>Saves game settings (deprecated).</p>
 </div></span>
   
 </li>
 
       
-        <li class="public deprecated">
+        <li class="public ">
   <span class="summary_signature">
     
       <a href="#save_all-class_method" title="save_all (class method)">.<strong>save_all</strong>  &#x21d2; nil </a>
@@ -340,11 +340,11 @@ This module allows access to game settings scoped to the current game context.</
   
   
   
-  <span class="deprecated note title">deprecated</span>
+  
   
 
   
-    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>This method is no longer applicable.</p>
+    <span class="summary_desc"><div class='inline'><p>Saves all game settings (deprecated).</p>
 </div></span>
   
 </li>
@@ -393,21 +393,13 @@ This module allows access to game settings scoped to the current game context.</
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves a scoped game setting by name.</p>
+    <p>Retrieves a scoped setting by name.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::GameSettings (module)">GameSettings</a></span></span><span class='lbracket'>[</span><span class='symbol'>:setting_name</span><span class='rbracket'>]</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -438,7 +430,7 @@ This module allows access to game settings scoped to the current game context.</
       
       
         &mdash;
-        <div class='inline'><p>The value of the specified game setting.</p>
+        <div class='inline'><p>The value of the setting.</p>
 </div>
       
     </li>
@@ -451,12 +443,12 @@ This module allows access to game settings scoped to the current game context.</
       <pre class="lines">
 
 
-25
-26
-27</pre>
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="Settings.html" title="Lich::Common::Settings (module)">Settings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_scoped_setting'><span class='object_link'><a href="Settings.html#get_scoped_setting-class_method" title="Lich::Common::Settings.get_scoped_setting (method)">get_scoped_setting</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_active_scope'>active_scope</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -469,7 +461,7 @@ This module allows access to game settings scoped to the current game context.</
       <div class="method_details ">
   <h3 class="signature " id="[]=-class_method">
   
-    .<strong>[]=</strong>(name, value)  &#x21d2; <tt>Object</tt> 
+    .<strong>[]=</strong>(name, value)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -477,21 +469,13 @@ This module allows access to game settings scoped to the current game context.</
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Sets a scoped game setting by name.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets a scoped setting by name and value.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GameSettings (module)">GameSettings</a></span></span><span class='lbracket'>[</span><span class='symbol'>:setting_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_new_value'>new_value</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -526,23 +510,6 @@ This module allows access to game settings scoped to the current game context.</
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Object</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The value that was set.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -550,12 +517,12 @@ This module allows access to game settings scoped to the current game context.</
       <pre class="lines">
 
 
-35
-36
-37</pre>
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='op'>[]=</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="Settings.html" title="Lich::Common::Settings (module)">Settings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_script_settings'><span class='object_link'><a href="Settings.html#set_script_settings-class_method" title="Lich::Common::Settings.set_script_settings (method)">set_script_settings</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_active_scope'>active_scope</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
@@ -576,16 +543,10 @@ This module allows access to game settings scoped to the current game context.</
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'><p>Assumes XMLData.game is available.</p>
-</div>
-  </div>
-
-<p>Helper to get the active scope for GameSettings
+    <p>Helper to get the active scope for GameSettings
 Assumes XMLData.game is available and provides the correct scope string.
-Retrieves the active scope for game settings.</p>
+Retrieves the active scope for GameSettings.
+Assumes XMLData.game is available and provides the correct scope string.</p>
 
 
   </div>
@@ -603,7 +564,7 @@ Retrieves the active scope for game settings.</p>
       
       
         &mdash;
-        <div class='inline'><p>The current game scope string.</p>
+        <div class='inline'><p>The active game scope.</p>
 </div>
       
     </li>
@@ -642,9 +603,8 @@ Retrieves the active scope for game settings.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>This method is no longer applicable.</p>
-</div></div>
-<p>Retrieves the auto setting (deprecated).</p>
+    <p>Retrieves the auto setting (deprecated).
+This method is no longer applicable and will log a deprecation warning.</p>
 
 
   </div>
@@ -675,13 +635,13 @@ Retrieves the active scope for game settings.</p>
       <pre class="lines">
 
 
+91
 92
 93
-94
-95</pre>
+94</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 91</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::GameSettings (module)">GameSettings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_auto'>auto</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GameSettings.auto</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>not using, not applicable,</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -695,7 +655,7 @@ Retrieves the active scope for game settings.</p>
       <div class="method_details ">
   <h3 class="signature " id="auto=-class_method">
   
-    .<strong>auto=</strong>(_val)  &#x21d2; <tt>Object</tt> 
+    .<strong>auto=</strong>(_val)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -703,9 +663,8 @@ Retrieves the active scope for game settings.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>This method is no longer applicable.</p>
-</div></div>
-<p>Sets the auto setting (deprecated).</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the auto setting (deprecated).
+This method is no longer applicable and will log a deprecation warning.</p>
 
 
   </div>
@@ -724,7 +683,7 @@ Retrieves the active scope for game settings.</p>
       
       
         &mdash;
-        <div class='inline'><p>The value to set for auto.</p>
+        <div class='inline'><p>The value to set for the auto setting.</p>
 </div>
       
     </li>
@@ -738,12 +697,12 @@ Retrieves the active scope for game settings.</p>
       <pre class="lines">
 
 
+84
 85
-86
-87</pre>
+86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 84</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::GameSettings (module)">GameSettings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_auto='>auto=</span><span class='lparen'>(</span><span class='id identifier rubyid__val'>_val</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GameSettings.auto=(val)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>not using, not applicable,</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -764,9 +723,8 @@ Retrieves the active scope for game settings.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>This method is no longer applicable.</p>
-</div></div>
-<p>Retrieves the autoload setting (deprecated).</p>
+    <p>Retrieves the autoload setting (deprecated).
+This method is no longer applicable and will log a deprecation warning.</p>
 
 
   </div>
@@ -797,13 +755,13 @@ Retrieves the active scope for game settings.</p>
       <pre class="lines">
 
 
+99
 100
 101
-102
-103</pre>
+102</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 99</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::GameSettings (module)">GameSettings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_autoload'>autoload</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GameSettings.autoload</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>not using, not applicable,</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -825,9 +783,8 @@ Retrieves the active scope for game settings.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>This method is no longer applicable.</p>
-</div></div>
-<p>Clears game settings (deprecated).</p>
+    <p>Clears game settings (deprecated).
+This method is no longer applicable and will log a deprecation warning.</p>
 
 
   </div>
@@ -858,13 +815,13 @@ Retrieves the active scope for game settings.</p>
       <pre class="lines">
 
 
+75
+76
 77
-78
-79
-80</pre>
+78</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::GameSettings (module)">GameSettings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GameSettings.clear</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>not using, not applicable,</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -886,10 +843,9 @@ Retrieves the active scope for game settings.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>This method is no longer applicable.</p>
-</div></div>
-<p>deprecated
-Loads game settings (deprecated).</p>
+    <p>deprecated
+Loads game settings (deprecated).
+This method is no longer applicable and will log a deprecation warning.</p>
 
 
   </div>
@@ -920,13 +876,13 @@ Loads game settings (deprecated).</p>
       <pre class="lines">
 
 
+51
+52
 53
-54
-55
-56</pre>
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::GameSettings (module)">GameSettings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GameSettings.load</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>not using, not applicable,</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -948,9 +904,8 @@ Loads game settings (deprecated).</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>This method is no longer applicable.</p>
-</div></div>
-<p>Saves game settings (deprecated).</p>
+    <p>Saves game settings (deprecated).
+This method is no longer applicable and will log a deprecation warning.</p>
 
 
   </div>
@@ -981,13 +936,13 @@ Loads game settings (deprecated).</p>
       <pre class="lines">
 
 
+59
+60
 61
-62
-63
-64</pre>
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::GameSettings (module)">GameSettings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GameSettings.save</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>not using, not applicable,</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1009,9 +964,8 @@ Loads game settings (deprecated).</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>This method is no longer applicable.</p>
-</div></div>
-<p>Saves all game settings (deprecated).</p>
+    <p>Saves all game settings (deprecated).
+This method is no longer applicable and will log a deprecation warning.</p>
 
 
   </div>
@@ -1042,13 +996,13 @@ Loads game settings (deprecated).</p>
       <pre class="lines">
 
 
+67
+68
 69
-70
-71
-72</pre>
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::GameSettings (module)">GameSettings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_save_all'>save_all</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GameSettings.save_all</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>not using, not applicable,</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1070,14 +1024,10 @@ Loads game settings (deprecated).</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'><p>This method does not behave like a standard Ruby hash request.</p>
-</div>
-  </div>
-
-<p>Converts the current game settings to a hash-like structure.</p>
+    <p>Converts the current game settings to a hash-like structure.
+This method does not behave like a standard Ruby hash request.
+It returns a root proxy for the game settings scope, allowing persistent
+modifications on the returned object for legacy support.</p>
 
 
   </div>
@@ -1108,15 +1058,15 @@ Loads game settings (deprecated).</p>
       <pre class="lines">
 
 
+40
+41
 42
 43
 44
-45
-46
-47</pre>
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'gamesettings.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_hash'>to_hash</span>
   <span class='comment'># NB:  This method does not behave like a standard Ruby hash request.
@@ -1134,7 +1084,7 @@ Loads game settings (deprecated).</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:52 2025 by
+  Generated on Fri Nov  7 03:59:26 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

@@ -105,7 +105,7 @@
 especially Settings._log. The actual require_relative for settings_proxy.rb
 is now at the end of settings.rb.
 A proxy class for managing settings with additional features.
-This class allows for dynamic delegation to a target object while maintaining a context.</p>
+This class allows for delegation of method calls to a target object while maintaining a context.</p>
 
 
   </div>
@@ -139,17 +139,7 @@ This class allows for dynamic delegation to a target object while maintaining a 
         <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[SettingsProxy]</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="NON_DESTRUCTIVE_METHODS-constant" class="">NON_DESTRUCTIVE_METHODS =
-          <div class="docstring">
-  <div class="discussion">
-    <p>A list of non-destructive methods that can be called on the target.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='lbracket'>[</span>
   <span class='symbol'>:+</span><span class='comma'>,</span> <span class='symbol'>:-</span><span class='comma'>,</span> <span class='symbol'>:&amp;</span><span class='comma'>,</span> <span class='symbol'>:|</span><span class='comma'>,</span> <span class='symbol'>:*</span><span class='comma'>,</span>
@@ -171,8 +161,7 @@ This class allows for dynamic delegation to a target object while maintaining a 
         <dt id="NON_DESTRUCTIVE_CONTAINER_VIEWS-constant" class="">NON_DESTRUCTIVE_CONTAINER_VIEWS =
           <div class="docstring">
   <div class="discussion">
-    <p>Subset of non-destructive methods that return container &quot;views&quot;
-A subset of non-destructive methods that return container views.</p>
+    <p>Subset of non-destructive methods that return container &quot;views&quot;</p>
 
 
   </div>
@@ -388,7 +377,7 @@ A subset of non-destructive methods that return container views.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#each-instance_method" title="#each (instance method)">#<strong>each</strong>(&amp;_block)  &#x21d2; Object </a>
+      <a href="#each-instance_method" title="#each (instance method)">#<strong>each</strong> {|Object| ... } &#x21d2; self </a>
     
 
     
@@ -470,7 +459,7 @@ A subset of non-destructive methods that return container views.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the hash of the target object.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the hash value of the target.</p>
 </div></span>
   
 </li>
@@ -518,7 +507,7 @@ A subset of non-destructive methods that return container views.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Updated inspect method to show the target&#39;s inspect string Returns a string representation of the proxy for inspection.</p>
+    <span class="summary_desc"><div class='inline'><p>Updated inspect method to show the target&#39;s inspect string Returns a string representation of the proxy, showing the target&#39;s inspect string.</p>
 </div></span>
   
 </li>
@@ -720,7 +709,7 @@ A subset of non-destructive methods that return container views.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if the target responds to a method that is not explicitly defined.</p>
+    <span class="summary_desc"><div class='inline'><p>Checks if the target responds to a method, including private methods.</p>
 </div></span>
   
 </li>
@@ -885,7 +874,7 @@ A subset of non-destructive methods that return container views.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#to_i-instance_method" title="#to_i (instance method)">#<strong>to_i</strong>  &#x21d2; Object </a>
+      <a href="#to_i-instance_method" title="#to_i (instance method)">#<strong>to_i</strong>  &#x21d2; Integer </a>
     
 
     
@@ -899,7 +888,7 @@ A subset of non-destructive methods that return container views.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Numeric conversions.</p>
+    <span class="summary_desc"><div class='inline'><p>Numeric conversions Converts the target to an integer.</p>
 </div></span>
   
 </li>
@@ -1065,7 +1054,7 @@ A subset of non-destructive methods that return container views.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#to_str-instance_method" title="#to_str (instance method)">#<strong>to_str</strong>  &#x21d2; Object </a>
+      <a href="#to_str-instance_method" title="#to_str (instance method)">#<strong>to_str</strong>  &#x21d2; String </a>
     
 
     
@@ -1079,7 +1068,8 @@ A subset of non-destructive methods that return container views.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Converts the target to a string, strict version.</p>
+</div></span>
   
 </li>
 
@@ -1151,7 +1141,7 @@ Initializes a new SettingsProxy instance.</p>
       
       
         &mdash;
-        <div class='inline'><p>The settings module to use.</p>
+        <div class='inline'><p>The Settings module itself.</p>
 </div>
       
     </li>
@@ -1196,7 +1186,7 @@ Initializes a new SettingsProxy instance.</p>
       
       
         &mdash;
-        <div class='inline'><p>The target object to delegate to.</p>
+        <div class='inline'><p>The target object to delegate method calls to.</p>
 </div>
       
     </li>
@@ -1213,7 +1203,7 @@ Initializes a new SettingsProxy instance.</p>
       
       
         &mdash;
-        <div class='inline'><p>Whether the proxy is detached (default: false).</p>
+        <div class='inline'><p>Whether the proxy is detached from the target (default: false).</p>
 </div>
       
     </li>
@@ -1277,15 +1267,7 @@ Initializes a new SettingsProxy instance.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_proxy'>proxy</span><span class='period'>.</span><span class='id identifier rubyid_some_method'>some_method</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1313,7 +1295,7 @@ Initializes a new SettingsProxy instance.</p>
       
       
         &mdash;
-        <div class='inline'><p>The arguments for the method.</p>
+        <div class='inline'><p>The arguments for the method call.</p>
 </div>
       
     </li>
@@ -1328,7 +1310,7 @@ Initializes a new SettingsProxy instance.</p>
       
       
         &mdash;
-        <div class='inline'><p>An optional block for the method.</p>
+        <div class='inline'><p>An optional block for the method call.</p>
 </div>
       
     </li>
@@ -1352,6 +1334,23 @@ Initializes a new SettingsProxy instance.</p>
     </li>
   
 </ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>NoMethodError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>If the method is not supported by the target.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1359,6 +1358,19 @@ Initializes a new SettingsProxy instance.</p>
       <pre class="lines">
 
 
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
 337
 338
 339
@@ -1379,23 +1391,10 @@ Initializes a new SettingsProxy instance.</p>
 354
 355
 356
-357
-358
-359
-360
-361
-362
-363
-364
-365
-366
-367
-368
-369
-370</pre>
+357</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 337</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 324</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@settings_module</span><span class='period'>.</span><span class='id identifier rubyid__log'>_log</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Settings.html" title="Lich::Common::Settings (module)">Settings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Settings.html#LOG_LEVEL_DEBUG-constant" title="Lich::Common::Settings::LOG_LEVEL_DEBUG (constant)">LOG_LEVEL_DEBUG</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#LOG_PREFIX-constant" title="Lich::Common::SettingsProxy::LOG_PREFIX (constant)">LOG_PREFIX</a></span></span><span class='comma'>,</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CALL scope: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@scope</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, path: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@path</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, method: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_method'>method</span><span class='embexpr_end'>}</span><span class='tstring_content'>, args: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, target_object_id: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -1591,15 +1590,7 @@ Initializes a new SettingsProxy instance.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_proxy'>proxy</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1643,20 +1634,20 @@ Initializes a new SettingsProxy instance.</p>
       <pre class="lines">
 
 
-298
-299
-300
-301
-302
-303
-304
-305
-306
-307
-308</pre>
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 298</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 288</span>
 
 <span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='ivar'>@settings_module</span><span class='period'>.</span><span class='id identifier rubyid__log'>_log</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Settings.html" title="Lich::Common::Settings (module)">Settings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Settings.html#LOG_LEVEL_DEBUG-constant" title="Lich::Common::Settings::LOG_LEVEL_DEBUG (constant)">LOG_LEVEL_DEBUG</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#LOG_PREFIX-constant" title="Lich::Common::SettingsProxy::LOG_PREFIX (constant)">LOG_PREFIX</a></span></span><span class='comma'>,</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GET scope: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@scope</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, path: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@path</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, key: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, target_object_id: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -1691,15 +1682,7 @@ Initializes a new SettingsProxy instance.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_proxy'>proxy</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1758,22 +1741,22 @@ Initializes a new SettingsProxy instance.</p>
       <pre class="lines">
 
 
-316
-317
-318
-319
-320
-321
-322
-323
-324
-325
-326
-327
-328</pre>
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 316</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 304</span>
 
 <span class='kw'>def</span> <span class='op'>[]=</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='ivar'>@settings_module</span><span class='period'>.</span><span class='id identifier rubyid__log'>_log</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Settings.html" title="Lich::Common::Settings (module)">Settings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Settings.html#LOG_LEVEL_DEBUG-constant" title="Lich::Common::Settings::LOG_LEVEL_DEBUG (constant)">LOG_LEVEL_DEBUG</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#LOG_PREFIX-constant" title="Lich::Common::SettingsProxy::LOG_PREFIX (constant)">LOG_PREFIX</a></span></span><span class='comma'>,</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SET scope: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@scope</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, path: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@path</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, key: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, value: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, target_object_id: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -1810,15 +1793,7 @@ Initializes a new SettingsProxy instance.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_proxy'>proxy</span><span class='period'>.</span><span class='id identifier rubyid_binary_op'>binary_op</span><span class='lparen'>(</span><span class='symbol'>:+</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1831,7 +1806,7 @@ Initializes a new SettingsProxy instance.</p>
       
       
         &mdash;
-        <div class='inline'><p>The operator to use (e.g., :+, :-).</p>
+        <div class='inline'><p>The operator to apply (e.g., :+, :-).</p>
 </div>
       
     </li>
@@ -1877,13 +1852,13 @@ Initializes a new SettingsProxy instance.</p>
       <pre class="lines">
 
 
+55
+56
 57
-58
-59
-60</pre>
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_binary_op'>binary_op</span><span class='lparen'>(</span><span class='id identifier rubyid_operator'>operator</span><span class='comma'>,</span> <span class='id identifier rubyid_other'>other</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_other_value'>other_value</span> <span class='op'>=</span> <span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::SettingsProxy (class)">SettingsProxy</a></span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_target'>target</span> <span class='op'>:</span> <span class='id identifier rubyid_other'>other</span>
@@ -1917,7 +1892,9 @@ Checks if the proxy is in a detached state.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_proxy'>proxy</span><span class='period'>.</span><span class='id identifier rubyid_detached?'>detached?</span> <span class='comment'># =&gt; true</span></code></pre>
+      <pre class="example code"><code><span class='kw'>if</span> <span class='id identifier rubyid_proxy'>proxy</span><span class='period'>.</span><span class='id identifier rubyid_detached?'>detached?</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Proxy is detached</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></code></pre>
     
   </div>
 
@@ -1945,12 +1922,12 @@ Checks if the proxy is in a detached state.</p>
       <pre class="lines">
 
 
-39
-40
-41</pre>
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_detached?'>detached?</span>
   <span class='op'>!</span><span class='op'>!</span><span class='ivar'>@detached</span>
@@ -1963,7 +1940,7 @@ Checks if the proxy is in a detached state.</p>
       <div class="method_details ">
   <h3 class="signature " id="each-instance_method">
   
-    #<strong>each</strong>(&amp;_block)  &#x21d2; <tt>Object</tt> 
+    #<strong>each</strong> {|Object| ... } &#x21d2; <tt>self</tt> 
   
 
   
@@ -1972,13 +1949,48 @@ Checks if the proxy is in a detached state.</p>
 </h3><div class="docstring">
   <div class="discussion">
     <p>Minimal change: items yielded from #each are &quot;views&quot; over the container.
-Mark them detached so mutations during a derived iteration won&#39;t clobber root.</p>
+Mark them detached so mutations during a derived iteration won&#39;t clobber root.
+Iterates over the target, yielding each item.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Yields each item in the target.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>self</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Returns the current instance.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1986,22 +1998,22 @@ Mark them detached so mutations during a derived iteration won&#39;t clobber roo
       <pre class="lines">
 
 
+248
+249
+250
+251
+252
+253
 254
 255
 256
 257
 258
 259
-260
-261
-262
-263
-264
-265
-266</pre>
+260</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 254</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 248</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_each'>each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid__block'>_block</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_enum_for'>enum_for</span><span class='lparen'>(</span><span class='symbol'>:each</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
@@ -2036,20 +2048,20 @@ Mark them detached so mutations during a derived iteration won&#39;t clobber roo
       <pre class="lines">
 
 
-384
-385
-386
-387
-388
-389
-390
-391
-392
-393
-394</pre>
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 384</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 371</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_handle_method_result'>handle_method_result</span><span class='lparen'>(</span><span class='id identifier rubyid_result'>result</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_equal?'>equal?</span><span class='lparen'>(</span><span class='ivar'>@target</span><span class='rparen'>)</span>
@@ -2092,19 +2104,19 @@ Mark them detached so mutations during a derived iteration won&#39;t clobber roo
       <pre class="lines">
 
 
-373
-374
-375
-376
-377
-378
-379
-380
-381
-382</pre>
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 373</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 360</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_handle_non_destructive_result'>handle_non_destructive_result</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='id identifier rubyid_result'>result</span><span class='rparen'>)</span>
   <span class='ivar'>@settings_module</span><span class='period'>.</span><span class='id identifier rubyid_reset_path_and_return'>reset_path_and_return</span><span class='lparen'>(</span>
@@ -2132,21 +2144,13 @@ Mark them detached so mutations during a derived iteration won&#39;t clobber roo
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the hash of the target object.</p>
+    <p>Returns the hash value of the target.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_hash_value'>hash_value</span> <span class='op'>=</span> <span class='id identifier rubyid_proxy'>proxy</span><span class='period'>.</span><span class='id identifier rubyid_hash'>hash</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2171,12 +2175,12 @@ Mark them detached so mutations during a derived iteration won&#39;t clobber roo
       <pre class="lines">
 
 
-72
-73
-74</pre>
+68
+69
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 72</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 68</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hash'>hash</span>
   <span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_hash'>hash</span>
@@ -2198,21 +2202,13 @@ Mark them detached so mutations during a derived iteration won&#39;t clobber roo
 </h3><div class="docstring">
   <div class="discussion">
     <p>Updated inspect method to show the target&#39;s inspect string
-Returns a string representation of the proxy for inspection.</p>
+Returns a string representation of the proxy, showing the target&#39;s inspect string.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_inspect_string'>inspect_string</span> <span class='op'>=</span> <span class='id identifier rubyid_proxy'>proxy</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2237,12 +2233,12 @@ Returns a string representation of the proxy for inspection.</p>
       <pre class="lines">
 
 
-219
-220
-221</pre>
+212
+213
+214</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 219</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 212</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inspect'>inspect</span>
   <span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span>
@@ -2289,12 +2285,12 @@ Returns a string representation of the proxy for inspection.</p>
       <pre class="lines">
 
 
-244
-245
-246</pre>
+235
+236
+237</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 244</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 235</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_instance_of?'>instance_of?</span><span class='lparen'>(</span><span class='id identifier rubyid_klass'>klass</span><span class='rparen'>)</span>
   <span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_instance_of?'>instance_of?</span><span class='lparen'>(</span><span class='id identifier rubyid_klass'>klass</span><span class='rparen'>)</span>
@@ -2341,12 +2337,12 @@ Returns a string representation of the proxy for inspection.</p>
       <pre class="lines">
 
 
-236
-237
-238</pre>
+227
+228
+229</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 236</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 227</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='id identifier rubyid_klass'>klass</span><span class='rparen'>)</span>
   <span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='id identifier rubyid_klass'>klass</span><span class='rparen'>)</span>
@@ -2393,12 +2389,12 @@ Returns a string representation of the proxy for inspection.</p>
       <pre class="lines">
 
 
-240
-241
-242</pre>
+231
+232
+233</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 240</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 231</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_kind_of?'>kind_of?</span><span class='lparen'>(</span><span class='id identifier rubyid_klass'>klass</span><span class='rparen'>)</span>
   <span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_kind_of?'>kind_of?</span><span class='lparen'>(</span><span class='id identifier rubyid_klass'>klass</span><span class='rparen'>)</span>
@@ -2426,14 +2422,6 @@ Returns a string representation of the proxy for inspection.</p>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_proxy'>proxy</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2488,12 +2476,12 @@ Returns a string representation of the proxy for inspection.</p>
       <pre class="lines">
 
 
-232
-233
-234</pre>
+223
+224
+225</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 232</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 223</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pretty_print'>pretty_print</span><span class='lparen'>(</span><span class='id identifier rubyid_pp'>pp</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_pp'>pp</span><span class='period'>.</span><span class='id identifier rubyid_pp'>pp</span><span class='lparen'>(</span><span class='ivar'>@target</span><span class='rparen'>)</span>
@@ -2522,14 +2510,6 @@ Returns a string with the internal details of the proxy.</p>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_details'>details</span> <span class='op'>=</span> <span class='id identifier rubyid_proxy'>proxy</span><span class='period'>.</span><span class='id identifier rubyid_proxy_details'>proxy_details</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2541,7 +2521,7 @@ Returns a string with the internal details of the proxy.</p>
       
       
         &mdash;
-        <div class='inline'><p>A detailed string representation of the proxy.</p>
+        <div class='inline'><p>A string representation of the proxy&#39;s internal state.</p>
 </div>
       
     </li>
@@ -2554,12 +2534,12 @@ Returns a string with the internal details of the proxy.</p>
       <pre class="lines">
 
 
-228
-229
-230</pre>
+219
+220
+221</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 228</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 219</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_proxy_details'>proxy_details</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;SettingsProxy scope=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@scope</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> path=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@path</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> target_class=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> target_object_id=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span><span class='embexpr_end'>}</span><span class='tstring_content'> detached=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@detached</span><span class='embexpr_end'>}</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>&quot;</span></span>
@@ -2606,12 +2586,12 @@ Returns a string with the internal details of the proxy.</p>
       <pre class="lines">
 
 
-248
-249
-250</pre>
+239
+240
+241</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 248</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 239</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='id identifier rubyid_include_private'>include_private</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>super</span> <span class='op'>||</span> <span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='id identifier rubyid_include_private'>include_private</span><span class='rparen'>)</span>
@@ -2632,21 +2612,13 @@ Returns a string with the internal details of the proxy.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the target responds to a method that is not explicitly defined.</p>
+    <p>Checks if the target responds to a method, including private methods.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_proxy'>proxy</span><span class='period'>.</span><span class='id identifier rubyid_respond_to_missing?'>respond_to_missing?</span><span class='lparen'>(</span><span class='symbol'>:some_method</span><span class='rparen'>)</span> <span class='comment'># =&gt; true or false</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2694,7 +2666,7 @@ Returns a string with the internal details of the proxy.</p>
       
       
         &mdash;
-        <div class='inline'><p>Returns true if the target responds to the method, false otherwise.</p>
+        <div class='inline'><p>Returns true if the target responds to the method.</p>
 </div>
       
     </li>
@@ -2707,12 +2679,12 @@ Returns a string with the internal details of the proxy.</p>
       <pre class="lines">
 
 
-402
-403
-404</pre>
+387
+388
+389</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 402</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 387</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_respond_to_missing?'>respond_to_missing?</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='id identifier rubyid_include_private'>include_private</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='id identifier rubyid_include_private'>include_private</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='kw'>super</span>
@@ -2747,12 +2719,12 @@ Returns a string with the internal details of the proxy.</p>
       <pre class="lines">
 
 
-158
-159
-160</pre>
+153
+154
+155</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 158</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 153</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_a'>to_a</span>
   <span class='id identifier rubyid_delegate_conversion'>delegate_conversion</span><span class='lparen'>(</span><span class='symbol'>:to_a</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -2777,12 +2749,12 @@ Returns a string with the internal details of the proxy.</p>
       <pre class="lines">
 
 
-162
-163
-164</pre>
+157
+158
+159</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 162</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 157</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_ary'>to_ary</span>
   <span class='id identifier rubyid_delegate_conversion'>delegate_conversion</span><span class='lparen'>(</span><span class='symbol'>:to_ary</span><span class='comma'>,</span> <span class='label'>strict:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -2807,12 +2779,12 @@ Returns a string with the internal details of the proxy.</p>
       <pre class="lines">
 
 
-153
-154
-155</pre>
+148
+149
+150</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 153</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 148</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_c'>to_c</span>
   <span class='id identifier rubyid_delegate_conversion'>delegate_conversion</span><span class='lparen'>(</span><span class='symbol'>:to_c</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='const'>Complex</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -2847,18 +2819,18 @@ Returns a string with the internal details of the proxy.</p>
       <pre class="lines">
 
 
+199
+200
+201
+202
+203
 204
 205
 206
-207
-208
-209
-210
-211
-212</pre>
+207</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 204</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 199</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_enum'>to_enum</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:to_enum</span><span class='rparen'>)</span>
@@ -2889,12 +2861,12 @@ Returns a string with the internal details of the proxy.</p>
       <pre class="lines">
 
 
-145
-146
-147</pre>
+140
+141
+142</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 145</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 140</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_f'>to_f</span>
   <span class='id identifier rubyid_delegate_conversion'>delegate_conversion</span><span class='lparen'>(</span><span class='symbol'>:to_f</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='float'>0.0</span><span class='rparen'>)</span>
@@ -2919,12 +2891,12 @@ Returns a string with the internal details of the proxy.</p>
       <pre class="lines">
 
 
-166
-167
-168</pre>
+161
+162
+163</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 166</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 161</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_h'>to_h</span>
   <span class='id identifier rubyid_delegate_conversion'>delegate_conversion</span><span class='lparen'>(</span><span class='symbol'>:to_h</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -2949,12 +2921,12 @@ Returns a string with the internal details of the proxy.</p>
       <pre class="lines">
 
 
-170
-171
-172</pre>
+165
+166
+167</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 170</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 165</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_hash'>to_hash</span>
   <span class='id identifier rubyid_delegate_conversion'>delegate_conversion</span><span class='lparen'>(</span><span class='symbol'>:to_hash</span><span class='comma'>,</span> <span class='label'>strict:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -2967,7 +2939,7 @@ Returns a string with the internal details of the proxy.</p>
       <div class="method_details ">
   <h3 class="signature " id="to_i-instance_method">
   
-    #<strong>to_i</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>to_i</strong>  &#x21d2; <tt>Integer</tt> 
   
 
   
@@ -2975,13 +2947,31 @@ Returns a string with the internal details of the proxy.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Numeric conversions</p>
+    <p>Numeric conversions
+Converts the target to an integer.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The integer representation of the target.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -2989,12 +2979,12 @@ Returns a string with the internal details of the proxy.</p>
       <pre class="lines">
 
 
-137
-138
-139</pre>
+132
+133
+134</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 132</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_i'>to_i</span>
   <span class='id identifier rubyid_delegate_conversion'>delegate_conversion</span><span class='lparen'>(</span><span class='symbol'>:to_i</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='int'>0</span><span class='rparen'>)</span>
@@ -3019,12 +3009,12 @@ Returns a string with the internal details of the proxy.</p>
       <pre class="lines">
 
 
-141
-142
-143</pre>
+136
+137
+138</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 141</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 136</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_int'>to_int</span>
   <span class='id identifier rubyid_delegate_conversion'>delegate_conversion</span><span class='lparen'>(</span><span class='symbol'>:to_int</span><span class='comma'>,</span> <span class='label'>strict:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -3049,12 +3039,12 @@ Returns a string with the internal details of the proxy.</p>
       <pre class="lines">
 
 
-195
-196
-197</pre>
+190
+191
+192</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 195</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 190</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_io'>to_io</span>
   <span class='id identifier rubyid_delegate_conversion'>delegate_conversion</span><span class='lparen'>(</span><span class='symbol'>:to_io</span><span class='comma'>,</span> <span class='label'>strict:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -3087,7 +3077,7 @@ Converts the target to JSON format.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_json_output'>json_output</span> <span class='op'>=</span> <span class='id identifier rubyid_proxy'>proxy</span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_json'>json</span> <span class='op'>=</span> <span class='id identifier rubyid_proxy'>proxy</span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3138,7 +3128,7 @@ Converts the target to JSON format.</p>
       
       
         &mdash;
-        <div class='inline'><p>If the target does not respond to :to_json.</p>
+        <div class='inline'><p>If the target does not support to_json.</p>
 </div>
       
     </li>
@@ -3151,17 +3141,17 @@ Converts the target to JSON format.</p>
       <pre class="lines">
 
 
+176
+177
+178
+179
+180
 181
 182
-183
-184
-185
-186
-187
-188</pre>
+183</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 181</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 176</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_json'>to_json</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:to_json</span><span class='rparen'>)</span>
@@ -3191,12 +3181,12 @@ Converts the target to JSON format.</p>
       <pre class="lines">
 
 
-199
-200
-201</pre>
+194
+195
+196</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 199</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 194</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_path'>to_path</span>
   <span class='id identifier rubyid_delegate_conversion'>delegate_conversion</span><span class='lparen'>(</span><span class='symbol'>:to_path</span><span class='comma'>,</span> <span class='label'>strict:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -3231,12 +3221,12 @@ Converts the target to JSON format.</p>
       <pre class="lines">
 
 
-191
-192
-193</pre>
+186
+187
+188</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 191</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 186</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_proc'>to_proc</span>
   <span class='id identifier rubyid_delegate_conversion'>delegate_conversion</span><span class='lparen'>(</span><span class='symbol'>:to_proc</span><span class='comma'>,</span> <span class='label'>strict:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -3261,12 +3251,12 @@ Converts the target to JSON format.</p>
       <pre class="lines">
 
 
-149
-150
-151</pre>
+144
+145
+146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 149</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 144</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_r'>to_r</span>
   <span class='id identifier rubyid_delegate_conversion'>delegate_conversion</span><span class='lparen'>(</span><span class='symbol'>:to_r</span><span class='comma'>,</span> <span class='label'>strict:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -3295,14 +3285,6 @@ Converts the target to a string.</p>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_string_representation'>string_representation</span> <span class='op'>=</span> <span class='id identifier rubyid_proxy'>proxy</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -3327,12 +3309,12 @@ Converts the target to a string.</p>
       <pre class="lines">
 
 
-124
-125
-126</pre>
+114
+115
+116</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 114</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
   <span class='id identifier rubyid_delegate_conversion'>delegate_conversion</span><span class='lparen'>(</span><span class='symbol'>:to_s</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -3345,24 +3327,68 @@ Converts the target to a string.</p>
       <div class="method_details ">
   <h3 class="signature " id="to_str-instance_method">
   
-    #<strong>to_str</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>to_str</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Converts the target to a string, strict version.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The string representation of the target.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>NoMethodError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>If the target does not support to_str.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-128
-129
-130</pre>
+121
+122
+123</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 128</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 121</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_str'>to_str</span>
   <span class='id identifier rubyid_delegate_conversion'>delegate_conversion</span><span class='lparen'>(</span><span class='symbol'>:to_str</span><span class='comma'>,</span> <span class='label'>strict:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -3387,12 +3413,12 @@ Converts the target to a string.</p>
       <pre class="lines">
 
 
-132
-133
-134</pre>
+125
+126
+127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 132</span>
+      <pre class="code"><span class="info file"># File 'settings_proxy.rb', line 125</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_sym'>to_sym</span>
   <span class='id identifier rubyid_delegate_conversion'>delegate_conversion</span><span class='lparen'>(</span><span class='symbol'>:to_sym</span><span class='comma'>,</span> <span class='label'>strict:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -3407,7 +3433,7 @@ Converts the target to a string.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:57 2025 by
+  Generated on Fri Nov  7 03:59:32 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

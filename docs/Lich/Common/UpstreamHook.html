@@ -102,7 +102,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     <p>Handles upstream hooks for the Lich project.
-This class allows adding, running, removing, and listing hooks.</p>
+This class allows adding, running, removing, and listing hooks that can modify client strings.</p>
 
 
   </div>
@@ -245,7 +245,7 @@ This class allows adding, running, removing, and listing hooks.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Executes all registered upstream hooks in order.</p>
+    <span class="summary_desc"><div class='inline'><p>Runs all registered upstream hooks in order.</p>
 </div></span>
   
 </li>
@@ -268,7 +268,7 @@ This class allows adding, running, removing, and listing hooks.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Displays a table of hook sources.</p>
+    <span class="summary_desc"><div class='inline'><p>Displays a table of upstream hook sources.</p>
 </div></span>
   
 </li>
@@ -339,7 +339,7 @@ This class allows adding, running, removing, and listing hooks.</p>
       
       
         &mdash;
-        <div class='inline'><p>The action to be executed when the hook is triggered.</p>
+        <div class='inline'><p>The action to be executed when the hook is run.</p>
 </div>
       
     </li>
@@ -374,7 +374,7 @@ This class allows adding, running, removing, and listing hooks.</p>
       
       
         &mdash;
-        <div class='inline'><p>If action is not a Proc.</p>
+        <div class='inline'><p>Raises an error if action is not a Proc.</p>
 </div>
       
     </li>
@@ -631,7 +631,7 @@ This class allows adding, running, removing, and listing hooks.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Executes all registered upstream hooks in order.</p>
+    <p>Runs all registered upstream hooks in order.</p>
 
 
   </div>
@@ -645,7 +645,7 @@ This class allows adding, running, removing, and listing hooks.</p>
         <h5 class="example_title"><div class='inline'><p>Running hooks</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::UpstreamHook (class)">UpstreamHook</a></span></span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>input string</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_modified_string'>modified_string</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::UpstreamHook (class)">UpstreamHook</a></span></span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>input string</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -661,7 +661,7 @@ This class allows adding, running, removing, and listing hooks.</p>
       
       
         &mdash;
-        <div class='inline'><p>The input string to be processed by the hooks.</p>
+        <div class='inline'><p>The string to be modified by the hooks.</p>
 </div>
       
     </li>
@@ -679,7 +679,7 @@ This class allows adding, running, removing, and listing hooks.</p>
       
       
         &mdash;
-        <div class='inline'><p>Returns the processed string or nil if any hook returns nil.</p>
+        <div class='inline'><p>Returns the modified string or nil if any hook returns nil.</p>
 </div>
       
     </li>
@@ -696,7 +696,7 @@ This class allows adding, running, removing, and listing hooks.</p>
       
       
         &mdash;
-        <div class='inline'><p>If an error occurs during hook execution.</p>
+        <div class='inline'><p>Catches exceptions raised by hooks and removes them from the registry.</p>
 </div>
       
     </li>
@@ -755,7 +755,7 @@ This class allows adding, running, removing, and listing hooks.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Displays a table of hook sources.</p>
+    <p>Displays a table of upstream hook sources.</p>
 
 
   </div>
@@ -823,7 +823,7 @@ This class allows adding, running, removing, and listing hooks.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:57 2025 by
+  Generated on Fri Nov  7 03:59:32 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

@@ -144,8 +144,6 @@ and dynamic method access for individual symbols.</p>
   <div class="discussion">
     <p>Favor cost required to use each symbol by character level (indexed by level).</p>
 
-<p>Favor cost required to use each symbol by character level (indexed by level).</p>
-
 
   </div>
 </div>
@@ -153,19 +151,6 @@ and dynamic method access for individual symbols.</p>
   
 <p class="tag_title">Returns:</p>
 <ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array&lt;Integer&gt;</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>Favor cost per level</p>
-</div>
-      
-    </li>
   
     <li>
       
@@ -935,9 +920,6 @@ of all Order of Voln symbols. Returns the corresponding symbol metadata if found
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Retrieving a symbol</p>
-</div></h5>
-      
       <pre class="example code"><code><span class='id identifier rubyid_symbol'>symbol</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>symbol_of_blessing</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span></code></pre>
     
   </div>
@@ -1013,6 +995,7 @@ of all Order of Voln symbols. Returns the corresponding symbol metadata if found
       <pre class="lines">
 
 
+357
 358
 359
 360
@@ -1028,11 +1011,10 @@ of all Order of Voln symbols. Returns the corresponding symbol metadata if found
 370
 371
 372
-373
-374</pre>
+373</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 358</span>
+      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 357</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_lookup'>lookup</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Society.html" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lookup'><span class='object_link'><a href="../Society.html#lookup-class_method" title="Lich::Gemstone::Society.lookup (method)">lookup</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_symbol_lookups'>symbol_lookups</span><span class='rparen'>)</span>
@@ -1080,10 +1062,7 @@ of all Order of Voln symbols. Returns the corresponding symbol metadata if found
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Checking affordability</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_affordable'>affordable</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span><span class='period'>.</span><span class='id identifier rubyid_affordable?'>affordable?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>symbol_of_protection</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_is_affordable'>is_affordable</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span><span class='period'>.</span><span class='id identifier rubyid_affordable?'>affordable?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>symbol_of_protection</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1158,19 +1137,19 @@ of all Order of Voln symbols. Returns the corresponding symbol metadata if found
       <pre class="lines">
 
 
+492
+493
+494
+495
+496
+497
 498
 499
 500
-501
-502
-503
-504
-505
-506
-507</pre>
+501</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 498</span>
+      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 492</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_affordable?'>affordable?</span><span class='lparen'>(</span><span class='id identifier rubyid_symbol_name'>symbol_name</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_member?'>member?</span>
@@ -1211,10 +1190,7 @@ of all Order of Voln symbols. Returns the corresponding symbol metadata if found
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Getting all symbols</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_symbols'>symbols</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_all_symbols'>all_symbols</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span></code></pre>
     
   </div>
 
@@ -1255,12 +1231,12 @@ of all Order of Voln symbols. Returns the corresponding symbol metadata if found
       <pre class="lines">
 
 
+385
 386
-387
-388</pre>
+387</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 386</span>
+      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 385</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
   <span class='cvar'>@@voln_symbols</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_entry'>entry</span><span class='op'>|</span> <span class='id identifier rubyid_entry'>entry</span><span class='period'>.</span><span class='id identifier rubyid_transform_values'>transform_values</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='const'><span class='object_link'><a href="../Society.html" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_resolve'><span class='object_link'><a href="../Society.html#resolve-class_method" title="Lich::Gemstone::Society.resolve (method)">resolve</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_entry'>entry</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span>
@@ -1294,10 +1270,7 @@ of all Order of Voln symbols. Returns the corresponding symbol metadata if found
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Checking availability</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_available'>available</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span><span class='period'>.</span><span class='id identifier rubyid_available?'>available?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>symbol_of_recognition</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_is_available'>is_available</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span><span class='period'>.</span><span class='id identifier rubyid_available?'>available?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>symbol_of_submission</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1372,13 +1345,13 @@ of all Order of Voln symbols. Returns the corresponding symbol metadata if found
       <pre class="lines">
 
 
-521
-522
-523
-524</pre>
+515
+516
+517
+518</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 521</span>
+      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 515</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_available?'>available?</span><span class='lparen'>(</span><span class='id identifier rubyid_symbol_name'>symbol_name</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_member?'>member?</span>
@@ -1400,7 +1373,14 @@ of all Order of Voln symbols. Returns the corresponding symbol metadata if found
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Calculates the favor cost of a Voln symbol based on the character&#39;s level
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>Returns nil if the cost modifier is nil.</p>
+</div>
+  </div>
+
+<p>Calculates the favor cost of a Voln symbol based on the character&#39;s level
 and the provided symbol-specific cost modifier.</p>
 
 <p>Calculates the favor cost of a Voln symbol based on the character&#39;s level
@@ -1414,9 +1394,6 @@ and the provided symbol-specific cost modifier.</p>
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
-      
-        <h5 class="example_title"><div class='inline'><p>Calculating cost</p>
-</div></h5>
       
       <pre class="example code"><code><span class='id identifier rubyid_cost'>cost</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span><span class='period'>.</span><span class='id identifier rubyid_calculate_cost'>calculate_cost</span><span class='lparen'>(</span><span class='float'>0.20</span><span class='rparen'>)</span></code></pre>
     
@@ -1538,9 +1515,6 @@ and the provided symbol-specific cost modifier.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Getting favor</p>
-</div></h5>
-      
       <pre class="example code"><code><span class='id identifier rubyid_current_favor'>current_favor</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span><span class='period'>.</span><span class='id identifier rubyid_favor'>favor</span></code></pre>
     
   </div>
@@ -1582,12 +1556,12 @@ and the provided symbol-specific cost modifier.</p>
       <pre class="lines">
 
 
-536
-537
-538</pre>
+530
+531
+532</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 536</span>
+      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 530</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_favor'>favor</span>
   <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="../Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>resources.voln_favor</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1621,10 +1595,7 @@ and the provided symbol-specific cost modifier.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Checking if a symbol is known</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_known'>known</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span><span class='period'>.</span><span class='id identifier rubyid_known?'>known?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>symbol_of_courage</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_is_known'>is_known</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span><span class='period'>.</span><span class='id identifier rubyid_known?'>known?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>symbol_of_courage</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1746,9 +1717,6 @@ and the provided symbol-specific cost modifier.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Checking if a character is a master</p>
-</div></h5>
-      
       <pre class="example code"><code><span class='id identifier rubyid_is_master'>is_master</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span><span class='period'>.</span><span class='id identifier rubyid_master?'>master?</span></code></pre>
     
   </div>
@@ -1790,13 +1758,13 @@ and the provided symbol-specific cost modifier.</p>
       <pre class="lines">
 
 
-550
-551
-552
-553</pre>
+544
+545
+546
+547</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 550</span>
+      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 544</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_master?'>master?</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_member?'>member?</span>
@@ -1830,9 +1798,6 @@ and the provided symbol-specific cost modifier.</p>
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
-      
-        <h5 class="example_title"><div class='inline'><p>Checking membership</p>
-</div></h5>
       
       <pre class="example code"><code><span class='id identifier rubyid_is_member'>is_member</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span><span class='period'>.</span><span class='id identifier rubyid_member?'>member?</span></code></pre>
     
@@ -1913,13 +1878,13 @@ and the provided symbol-specific cost modifier.</p>
       <pre class="lines">
 
 
-591
-592
-593
-594</pre>
+587
+588
+589
+590</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 591</span>
+      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 587</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_member?'>member?</span><span class='lparen'>(</span><span class='id identifier rubyid_rank'>rank</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="../Society.html" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_membership'><span class='object_link'><a href="../Society.html#membership-class_method" title="Lich::Gemstone::Society.membership (method)">membership</a></span></span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Order of Voln</span><span class='tstring_end'>&quot;</span></span>
@@ -1953,9 +1918,6 @@ and the provided symbol-specific cost modifier.</p>
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
-      
-        <h5 class="example_title"><div class='inline'><p>Getting the current rank</p>
-</div></h5>
       
       <pre class="example code"><code><span class='id identifier rubyid_current_rank'>current_rank</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rank'>rank</span></code></pre>
     
@@ -1998,13 +1960,13 @@ and the provided symbol-specific cost modifier.</p>
       <pre class="lines">
 
 
-565
-566
-567
-568</pre>
+559
+560
+561
+562</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 565</span>
+      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 559</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_rank'>rank</span>
   <span class='kw'>return</span> <span class='int'>0</span> <span class='kw'>unless</span> <span class='id identifier rubyid_member?'>member?</span>
@@ -2035,6 +1997,14 @@ and the provided symbol-specific cost modifier.</p>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_current_step'>current_step</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span><span class='period'>.</span><span class='id identifier rubyid_step'>step</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2059,12 +2029,12 @@ and the provided symbol-specific cost modifier.</p>
       <pre class="lines">
 
 
-575
-576
-577</pre>
+571
+572
+573</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 575</span>
+      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 571</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_step'>step</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_rank'>rank</span>
@@ -2097,9 +2067,6 @@ and the provided symbol-specific cost modifier.</p>
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
-      
-        <h5 class="example_title"><div class='inline'><p>Getting symbol lookups</p>
-</div></h5>
       
       <pre class="example code"><code><span class='id identifier rubyid_lookups'>lookups</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span><span class='period'>.</span><span class='id identifier rubyid_symbol_lookups'>symbol_lookups</span></code></pre>
     
@@ -2184,57 +2151,12 @@ and the provided symbol-specific cost modifier.</p>
   <div class="discussion">
     <p>Attempts to use a symbol by issuing the <code>symbol of &lt;name&gt;</code> command.</p>
 
-<p>Attempts to use a symbol by issuing the <code>symbol of &lt;name&gt;</code> command.</p>
-
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Using a symbol</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>symbol_of_blessing</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
-  
-    <li>
-      
-        <span class='name'>symbol_name</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>Long or short name of the symbol</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>target</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>nil</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'><p>Optional target to append</p>
-</div>
-      
-    </li>
   
     <li>
       
@@ -2277,6 +2199,12 @@ and the provided symbol-specific cost modifier.</p>
       <pre class="lines">
 
 
+458
+459
+460
+461
+462
+463
 464
 465
 466
@@ -2291,16 +2219,10 @@ and the provided symbol-specific cost modifier.</p>
 475
 476
 477
-478
-479
-480
-481
-482
-483
-484</pre>
+478</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 464</span>
+      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 458</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span><span class='lparen'>(</span><span class='id identifier rubyid_symbol_name'>symbol_name</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_member?'>member?</span>
@@ -2367,10 +2289,10 @@ short name or long name as a method. For example:</p>
       <pre class="lines">
 
 
-607</pre>
+603</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 607</span>
+      <pre class="code"><span class="info file"># File 'order_of_voln.rb', line 603</span>
 
 <span class='id identifier rubyid_define_name_methods'>define_name_methods</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='cvar'>@@voln_symbols</span><span class='rparen'>)</span></pre>
     </td>
@@ -2383,7 +2305,7 @@ short name or long name as a method. For example:</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:57 2025 by
+  Generated on Fri Nov  7 03:59:32 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

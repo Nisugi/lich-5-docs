@@ -240,7 +240,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if there are any tasks.</p>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task is any type other than none.</p>
 </div></span>
   
 </li>
@@ -263,7 +263,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if the task is assigned.</p>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task is an assignment type.</p>
 </div></span>
   
 </li>
@@ -702,7 +702,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Initializes a new task with the given options.</p>
+    <span class="summary_desc"><div class='inline'><p>Initializes a new bounty task.</p>
 </div></span>
   
 </li>
@@ -794,7 +794,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Handles calls to methods that are not defined.</p>
+    <span class="summary_desc"><div class='inline'><p>Handles missing methods dynamically based on requirements.</p>
 </div></span>
   
 </li>
@@ -817,7 +817,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if there are no tasks.</p>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task is of type none.</p>
 </div></span>
   
 </li>
@@ -886,7 +886,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if the object responds to a missing method.</p>
+    <span class="summary_desc"><div class='inline'><p>Checks if the object responds to a missing method based on requirements.</p>
 </div></span>
   
 </li>
@@ -955,7 +955,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if the task has been spawned.</p>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task has spawned.</p>
 </div></span>
   
 </li>
@@ -1001,7 +1001,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if the task has been triggered.</p>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task has been triggered (spawned).</p>
 </div></span>
   
 </li>
@@ -1024,7 +1024,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Initializes a new task with the given options.</p>
+    <p>Initializes a new bounty task.</p>
 
 
   </div>
@@ -1045,7 +1045,7 @@
       
       
         &mdash;
-        <div class='inline'><p>A hash of options for the task.</p>
+        <div class='inline'><p>Options for the task.</p>
 </div>
       
     </li>
@@ -1156,7 +1156,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Handles calls to methods that are not defined.</p>
+    <p>Handles missing methods dynamically based on requirements.</p>
 
 
   </div>
@@ -1223,7 +1223,24 @@
       
       
         &mdash;
-        <div class='inline'><p>The value of the requirement if it exists, otherwise calls super.</p>
+        <div class='inline'><p>The value from requirements if it exists, otherwise raises NoMethodError.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>NoMethodError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>If the method does not exist in requirements.</p>
 </div>
       
     </li>
@@ -1236,16 +1253,16 @@
       <pre class="lines">
 
 
-228
-229
-230
-231
-232
-233
-234</pre>
+284
+285
+286
+287
+288
+289
+290</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 228</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 284</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_symbol'>symbol</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_blk'>blk</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_requirements'>requirements</span><span class='op'>&amp;.</span><span class='id identifier rubyid_keys'>keys</span><span class='op'>&amp;.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_symbol'>symbol</span><span class='rparen'>)</span>
@@ -1450,13 +1467,21 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if there are any tasks.</p>
+    <p>Checks if the task is any type other than none.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_has_any_task'>has_any_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1468,7 +1493,7 @@
       
       
         &mdash;
-        <div class='inline'><p>True if there are tasks, false otherwise.</p>
+        <div class='inline'><p>True if the task is not none, false otherwise.</p>
 </div>
       
     </li>
@@ -1481,12 +1506,12 @@
       <pre class="lines">
 
 
-171
-172
-173</pre>
+212
+213
+214</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 171</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 212</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_any?'>any?</span>
   <span class='op'>!</span><span class='id identifier rubyid_none?'>none?</span>
@@ -1507,13 +1532,21 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the task is assigned.</p>
+    <p>Checks if the task is an assignment type.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_assigned_task'>is_assigned_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_assigned?'>assigned?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1538,12 +1571,12 @@
       <pre class="lines">
 
 
-192
-193
-194</pre>
+239
+240
+241</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 192</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 239</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assigned?'>assigned?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_end_with?'>end_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>assignment</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -1571,6 +1604,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_assist_task'>is_assist_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_assist?'>assist?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1582,7 +1623,7 @@
       
       
         &mdash;
-        <div class='inline'><p>True if the task is a help task.</p>
+        <div class='inline'><p>True if the task is a help task, false otherwise.</p>
 </div>
       
     </li>
@@ -1595,12 +1636,12 @@
       <pre class="lines">
 
 
-213
-214
-215</pre>
+266
+267
+268</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 213</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 266</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assist?'>assist?</span>
   <span class='id identifier rubyid_help?'>help?</span>
@@ -1628,6 +1669,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_bandit_task'>is_bandit_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_bandit?'>bandit?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1652,12 +1701,12 @@
       <pre class="lines">
 
 
-67
-68
-69</pre>
+76
+77
+78</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_bandit?'>bandit?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bandit</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -1689,7 +1738,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_task_count'>task_count</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span></code></pre>
     
   </div>
 
@@ -1717,10 +1766,10 @@
       <pre class="lines">
 
 
-39</pre>
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_count'>count</span><span class='semicolon'>;</span> <span class='id identifier rubyid_number'>number</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1746,6 +1795,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_required_creature'>required_creature</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_creature'>creature</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1770,12 +1827,12 @@
       <pre class="lines">
 
 
-43
 44
-45</pre>
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_creature'>creature</span>
   <span class='id identifier rubyid_requirements'>requirements</span><span class='lbracket'>[</span><span class='symbol'>:creature</span><span class='rbracket'>]</span>
@@ -1803,6 +1860,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_creature_task'>is_creature_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_creature?'>creature?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1827,14 +1892,14 @@
       <pre class="lines">
 
 
-73
-74
-75
-76
-77</pre>
+84
+85
+86
+87
+88</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 84</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_creature?'>creature?</span>
   <span class='lbracket'>[</span>
@@ -1864,6 +1929,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_required_critter'>required_critter</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_critter'>critter</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1888,12 +1961,12 @@
       <pre class="lines">
 
 
-49
-50
-51</pre>
+52
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_critter'>critter</span>
   <span class='id identifier rubyid_requirements'>requirements</span><span class='lbracket'>[</span><span class='symbol'>:creature</span><span class='rbracket'>]</span>
@@ -1921,6 +1994,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_has_critter'>has_critter</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_critter?'>critter?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1945,12 +2026,12 @@
       <pre class="lines">
 
 
-55
-56
-57</pre>
+60
+61
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_critter?'>critter?</span>
   <span class='op'>!</span><span class='op'>!</span><span class='id identifier rubyid_requirements'>requirements</span><span class='lbracket'>[</span><span class='symbol'>:creature</span><span class='rbracket'>]</span>
@@ -1978,6 +2059,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_cull_task'>is_cull_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_cull?'>cull?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2002,12 +2091,12 @@
       <pre class="lines">
 
 
-81
-82
-83</pre>
+94
+95
+96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 94</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cull?'>cull?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cull</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2035,6 +2124,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_dangerous_task'>is_dangerous_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_dangerous?'>dangerous?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2059,12 +2156,12 @@
       <pre class="lines">
 
 
-87
-88
-89</pre>
+102
+103
+104</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 102</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dangerous?'>dangerous?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>dangerous</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2092,6 +2189,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_done_task'>is_done_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_done?'>done?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2116,14 +2221,14 @@
       <pre class="lines">
 
 
-151
-152
-153
-154
-155</pre>
+186
+187
+188
+189
+190</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 151</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 186</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_done?'>done?</span>
   <span class='lbracket'>[</span>
@@ -2153,6 +2258,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_escort_task'>is_escort_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_escort?'>escort?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2177,12 +2290,12 @@
       <pre class="lines">
 
 
-93
-94
-95</pre>
+110
+111
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 110</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_escort?'>escort?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>escort</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2210,6 +2323,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_gem_task'>is_gem_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_gem?'>gem?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2234,12 +2355,12 @@
       <pre class="lines">
 
 
-99
-100
-101</pre>
+118
+119
+120</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 99</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 118</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_gem?'>gem?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>gem</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2267,6 +2388,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_group_task'>is_group_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_group?'>group?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2278,7 +2407,7 @@
       
       
         &mdash;
-        <div class='inline'><p>True if the task is a help task.</p>
+        <div class='inline'><p>True if the task is a help task, false otherwise.</p>
 </div>
       
     </li>
@@ -2291,12 +2420,12 @@
       <pre class="lines">
 
 
-219
-220
-221</pre>
+274
+275
+276</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 219</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 274</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_group?'>group?</span>
   <span class='id identifier rubyid_help?'>help?</span>
@@ -2324,6 +2453,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_guard_task'>is_guard_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_guard?'>guard?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2348,15 +2485,15 @@
       <pre class="lines">
 
 
-183
-184
-185
-186
-187
-188</pre>
+228
+229
+230
+231
+232
+233</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 183</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 228</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_guard?'>guard?</span>
   <span class='lbracket'>[</span>
@@ -2387,6 +2524,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_heirloom_task'>is_heirloom_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_heirloom?'>heirloom?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2411,12 +2556,12 @@
       <pre class="lines">
 
 
-105
-106
-107</pre>
+126
+127
+128</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 105</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 126</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_heirloom?'>heirloom?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>heirloom</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2444,6 +2589,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_heirloom_found_task'>is_heirloom_found_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_heirloom_found?'>heirloom_found?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2468,14 +2621,14 @@
       <pre class="lines">
 
 
-143
-144
-145
-146
-147</pre>
+176
+177
+178
+179
+180</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 143</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 176</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_heirloom_found?'>heirloom_found?</span>
   <span class='lbracket'>[</span>
@@ -2505,6 +2658,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_help_task'>is_help_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_help?'>help?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2529,12 +2690,12 @@
       <pre class="lines">
 
 
-207
-208
-209</pre>
+258
+259
+260</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 207</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 258</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_help?'>help?</span>
   <span class='id identifier rubyid_description'>description</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You have been tasked to help</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2562,6 +2723,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_herb_task'>is_herb_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_herb?'>herb?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2586,12 +2755,12 @@
       <pre class="lines">
 
 
-111
-112
-113</pre>
+134
+135
+136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 134</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_herb?'>herb?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>herb</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2623,7 +2792,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_kind'>kind</span> <span class='comment'># =&gt; &#39;bandit&#39;</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_task_kind'>task_kind</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_kind'>kind</span></code></pre>
     
   </div>
 
@@ -2651,10 +2820,10 @@
       <pre class="lines">
 
 
-34</pre>
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_kind'>kind</span><span class='semicolon'>;</span> <span class='id identifier rubyid_type'>type</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2680,6 +2849,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_task_location'>task_location</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_location'>location</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2704,12 +2881,12 @@
       <pre class="lines">
 
 
-61
-62
-63</pre>
+68
+69
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 68</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_location'>location</span>
   <span class='id identifier rubyid_requirements'>requirements</span><span class='lbracket'>[</span><span class='symbol'>:area</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_town'>town</span>
@@ -2737,6 +2914,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_loot_heirloom_task'>is_loot_heirloom_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_loot_heirloom?'>loot_heirloom?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2761,13 +2946,13 @@
       <pre class="lines">
 
 
-136
-137
-138
-139</pre>
+167
+168
+169
+170</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 136</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 167</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_loot_heirloom?'>loot_heirloom?</span>
   <span class='lbracket'>[</span><span class='symbol'>:heirloom</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>
@@ -2789,13 +2974,21 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if there are no tasks.</p>
+    <p>Checks if the task is of type none.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_none_task'>is_none_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_none?'>none?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2820,12 +3013,12 @@
       <pre class="lines">
 
 
-177
-178
-179</pre>
+220
+221
+222</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 177</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 220</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_none?'>none?</span>
   <span class='lbracket'>[</span><span class='symbol'>:none</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
@@ -2853,6 +3046,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_ready_task'>is_ready_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_ready?'>ready?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2877,15 +3078,15 @@
       <pre class="lines">
 
 
-198
-199
-200
-201
-202
-203</pre>
+247
+248
+249
+250
+251
+252</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 198</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 247</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ready?'>ready?</span>
   <span class='lbracket'>[</span>
@@ -2916,6 +3117,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_rescue_task'>is_rescue_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_rescue?'>rescue?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2940,12 +3149,12 @@
       <pre class="lines">
 
 
-117
-118
-119</pre>
+142
+143
+144</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 142</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rescue?'>rescue?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rescue</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2966,7 +3175,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the object responds to a missing method.</p>
+    <p>Checks if the object responds to a missing method based on requirements.</p>
 
 
   </div>
@@ -3033,12 +3242,12 @@
       <pre class="lines">
 
 
-240
-241
-242</pre>
+296
+297
+298</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 240</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 296</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_respond_to_missing?'>respond_to_missing?</span><span class='lparen'>(</span><span class='id identifier rubyid_symbol'>symbol</span><span class='comma'>,</span> <span class='id identifier rubyid_include_private'>include_private</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_requirements'>requirements</span><span class='op'>&amp;.</span><span class='id identifier rubyid_keys'>keys</span><span class='op'>&amp;.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_symbol'>symbol</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='kw'>super</span>
@@ -3066,6 +3275,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_search_heirloom_task'>is_search_heirloom_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_search_heirloom?'>search_heirloom?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -3090,13 +3307,13 @@
       <pre class="lines">
 
 
-129
-130
-131
-132</pre>
+158
+159
+160
+161</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 129</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 158</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_search_heirloom?'>search_heirloom?</span>
   <span class='lbracket'>[</span><span class='symbol'>:heirloom</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>
@@ -3125,6 +3342,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_skin_task'>is_skin_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_skin?'>skin?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -3149,12 +3374,12 @@
       <pre class="lines">
 
 
-123
-124
-125</pre>
+150
+151
+152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 123</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 150</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_skin?'>skin?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>skin</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -3175,13 +3400,21 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the task has been spawned.</p>
+    <p>Checks if the task has spawned.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_spawned_task'>is_spawned_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_spawned?'>spawned?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -3206,14 +3439,14 @@
       <pre class="lines">
 
 
-159
-160
-161
-162
-163</pre>
+196
+197
+198
+199
+200</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 159</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 196</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_spawned?'>spawned?</span>
   <span class='lbracket'>[</span>
@@ -3247,8 +3480,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Bounty.html" title="Lich::Gemstone::Bounty (class)">Bounty</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Bounty::Task (class)">Task</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Gemstone::Bounty::Task#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>type:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bandit</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-<span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_task'>task</span> <span class='comment'># =&gt; &#39;bandit&#39;</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_task_type'>task_type</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_task'>task</span></code></pre>
     
   </div>
 
@@ -3276,10 +3508,10 @@
       <pre class="lines">
 
 
-29</pre>
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_task'>task</span><span class='semicolon'>;</span> <span class='id identifier rubyid_type'>type</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -3298,13 +3530,21 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the task has been triggered.</p>
+    <p>Checks if the task has been triggered (spawned).</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_triggered_task'>is_triggered_task</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty_task'>bounty_task</span><span class='period'>.</span><span class='id identifier rubyid_triggered?'>triggered?</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -3316,7 +3556,7 @@
       
       
         &mdash;
-        <div class='inline'><p>True if the task has been spawned, false otherwise.</p>
+        <div class='inline'><p>True if the task has spawned, false otherwise.</p>
 </div>
       
     </li>
@@ -3329,10 +3569,10 @@
       <pre class="lines">
 
 
-167</pre>
+206</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'task.rb', line 167</span>
+      <pre class="code"><span class="info file"># File 'task.rb', line 206</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_triggered?'>triggered?</span><span class='semicolon'>;</span> <span class='id identifier rubyid_spawned?'>spawned?</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -3345,7 +3585,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:53 2025 by
+  Generated on Fri Nov  7 03:59:28 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

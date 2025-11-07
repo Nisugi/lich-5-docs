@@ -85,8 +85,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>New module for managing session variables
-This module provides a way to store variables needed by multiple scripts without saving them to the database.</p>
+    <p>A module for managing session variables that are needed by multiple scripts but do not require persistence in the database.</p>
 
 
   </div>
@@ -315,12 +314,12 @@ This module provides a way to store variables needed by multiple scripts without
       <pre class="lines">
 
 
+18
 19
-20
-21</pre>
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'sessionvars.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'sessionvars.rb', line 18</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="SessionVars (module)">SessionVars</a></span></span><span class='period'>.</span><span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='cvar'>@@svars</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
@@ -357,12 +356,6 @@ This module provides a way to store variables needed by multiple scripts without
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SessionVars (module)">SessionVars</a></span></span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>123</span></code></pre>
     
-      
-        <h5 class="example_title"><div class='inline'><p>Deleting a session variable</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SessionVars (module)">SessionVars</a></span></span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span></code></pre>
-    
   </div>
 <p class="tag_title">Parameters:</p>
 <ul class="param">
@@ -392,7 +385,7 @@ This module provides a way to store variables needed by multiple scripts without
       
       
         &mdash;
-        <div class='inline'><p>The value to set, or nil to delete the variable.</p>
+        <div class='inline'><p>The value to assign to the session variable. If nil, the variable is deleted.</p>
 </div>
       
     </li>
@@ -423,16 +416,16 @@ This module provides a way to store variables needed by multiple scripts without
       <pre class="lines">
 
 
+28
+29
+30
 31
 32
 33
-34
-35
-36
-37</pre>
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'sessionvars.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'sessionvars.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="SessionVars (module)">SessionVars</a></span></span><span class='period'>.</span><span class='op'>[]=</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -499,12 +492,12 @@ This module provides a way to store variables needed by multiple scripts without
       <pre class="lines">
 
 
-43
-44
-45</pre>
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'sessionvars.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'sessionvars.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="SessionVars (module)">SessionVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span>
   <span class='cvar'>@@svars</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
@@ -536,16 +529,11 @@ This module provides a way to store variables needed by multiple scripts without
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Dynamic setting of a session variable</p>
+        <h5 class="example_title"><div class='inline'><p>Using dynamic methods</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SessionVars (module)">SessionVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_user_id'>user_id</span> <span class='op'>=</span> <span class='int'>123</span></code></pre>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Dynamic getting of a session variable</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_user_id'>user_id</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="SessionVars (module)">SessionVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_user_id'>user_id</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="SessionVars (module)">SessionVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_user_id'>user_id</span> <span class='op'>=</span> <span class='int'>123</span>
+<span class='id identifier rubyid_user_id'>user_id</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="SessionVars (module)">SessionVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_user_id'>user_id</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -561,7 +549,7 @@ This module provides a way to store variables needed by multiple scripts without
       
       
         &mdash;
-        <div class='inline'><p>The name of the session variable.</p>
+        <div class='inline'><p>The name of the session variable, or the method name being called.</p>
 </div>
       
     </li>
@@ -578,7 +566,7 @@ This module provides a way to store variables needed by multiple scripts without
       
       
         &mdash;
-        <div class='inline'><p>The value to set, or nil to delete the variable.</p>
+        <div class='inline'><p>The value to set if the method is a setter (ends with &#39;=&#39;), otherwise ignored.</p>
 </div>
       
     </li>
@@ -609,20 +597,20 @@ This module provides a way to store variables needed by multiple scripts without
       <pre class="lines">
 
 
+51
+52
+53
+54
 55
 56
 57
 58
 59
 60
-61
-62
-63
-64
-65</pre>
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'sessionvars.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'sessionvars.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="SessionVars (module)">SessionVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_arg1'>arg1</span><span class='comma'>,</span> <span class='id identifier rubyid_arg2'>arg2</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_arg1'>arg1</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='comma'>,</span> <span class='int'>1</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>=</span><span class='tstring_end'>&#39;</span></span>
@@ -645,7 +633,7 @@ This module provides a way to store variables needed by multiple scripts without
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:51 2025 by
+  Generated on Fri Nov  7 03:59:26 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

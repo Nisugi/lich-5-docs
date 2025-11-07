@@ -128,7 +128,7 @@ This module handles logging, settings retrieval, and storage.</p>
           <div class="docstring">
   <div class="discussion">
     <p>Logging Configuration
-Log level constant indicating no logging.</p>
+Log level indicating no logging.</p>
 
 
   </div>
@@ -143,7 +143,7 @@ Log level constant indicating no logging.</p>
         <dt id="LOG_LEVEL_ERROR-constant" class="">LOG_LEVEL_ERROR =
           <div class="docstring">
   <div class="discussion">
-    <p>Log level constant indicating error logging.</p>
+    <p>Log level indicating error messages.</p>
 
 
   </div>
@@ -158,7 +158,7 @@ Log level constant indicating no logging.</p>
         <dt id="LOG_LEVEL_INFO-constant" class="">LOG_LEVEL_INFO =
           <div class="docstring">
   <div class="discussion">
-    <p>Log level constant indicating informational logging.</p>
+    <p>Log level indicating informational messages.</p>
 
 
   </div>
@@ -173,7 +173,7 @@ Log level constant indicating no logging.</p>
         <dt id="LOG_LEVEL_DEBUG-constant" class="">LOG_LEVEL_DEBUG =
           <div class="docstring">
   <div class="discussion">
-    <p>Log level constant indicating debug logging.</p>
+    <p>Log level indicating debug messages.</p>
 
 
   </div>
@@ -186,24 +186,14 @@ Log level constant indicating no logging.</p>
         <dd><pre class="code"><span class='int'>3</span></pre></dd>
       
         <dt id="DEFAULT_SCOPE-constant" class="">DEFAULT_SCOPE =
-          <div class="docstring">
-  <div class="discussion">
-    <p>The default scope identifier for settings.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>:</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="log_level-classvariable" class="">@@log_level =
           <div class="docstring">
   <div class="discussion">
-    <p>The current log level for the Settings module.</p>
+    <p>Default: logging disabled</p>
 
 
   </div>
@@ -216,17 +206,7 @@ Log level constant indicating no logging.</p>
         <dd><pre class="code"><span class='const'><span class='object_link'><a href="#LOG_LEVEL_NONE-constant" title="Lich::Common::Settings::LOG_LEVEL_NONE (constant)">LOG_LEVEL_NONE</a></span></span></pre></dd>
       
         <dt id="log_prefix-classvariable" class="">@@log_prefix =
-          <div class="docstring">
-  <div class="discussion">
-    <p>The prefix used in log messages from the Settings module.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[SettingsModule]</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
@@ -264,7 +244,7 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves a setting by name for the current script and scope.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves a setting by name from the current script settings.</p>
 </div></span>
   
 </li>
@@ -287,7 +267,7 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sets a value for a setting by name for the current script and scope.</p>
+    <span class="summary_desc"><div class='inline'><p>Sets a value for a setting by name in the current script settings.</p>
 </div></span>
   
 </li>
@@ -333,7 +313,7 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Internal non-destructive correction method (issue from Lich 5.12.6) non-destructive methods (.sort) cannot own a proxy that requires update (.push) Reattaches a proxy to a live object based on the current path.</p>
+    <span class="summary_desc"><div class='inline'><p>Internal non-destructive correction method (issue from Lich 5.12.6) non-destructive methods (.sort) cannot own a proxy that requires update (.push) Reattaches a proxy to a live object.</p>
 </div></span>
   
 </li>
@@ -342,7 +322,7 @@ Log level constant indicating no logging.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#auto-class_method" title="auto (class method)">.<strong>auto</strong>  &#x21d2; Object </a>
+      <a href="#auto-class_method" title="auto (class method)">.<strong>auto</strong>  &#x21d2; nil </a>
     
 
     
@@ -356,7 +336,8 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Deprecated no-op method for getting auto.</p>
+</div></span>
   
 </li>
 
@@ -364,7 +345,7 @@ Log level constant indicating no logging.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#auto=-class_method" title="auto= (class method)">.<strong>auto=</strong>(_val)  &#x21d2; Object </a>
+      <a href="#auto=-class_method" title="auto= (class method)">.<strong>auto=</strong>(_val)  &#x21d2; nil </a>
     
 
     
@@ -378,7 +359,8 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Deprecated no-op method for setting auto.</p>
+</div></span>
   
 </li>
 
@@ -386,7 +368,7 @@ Log level constant indicating no logging.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#autoload-class_method" title="autoload (class method)">.<strong>autoload</strong>  &#x21d2; Object </a>
+      <a href="#autoload-class_method" title="autoload (class method)">.<strong>autoload</strong>  &#x21d2; nil </a>
     
 
     
@@ -400,7 +382,8 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Deprecated no-op method for autoloading settings.</p>
+</div></span>
   
 </li>
 
@@ -408,7 +391,7 @@ Log level constant indicating no logging.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#clear-class_method" title="clear (class method)">.<strong>clear</strong>  &#x21d2; Object </a>
+      <a href="#clear-class_method" title="clear (class method)">.<strong>clear</strong>  &#x21d2; nil </a>
     
 
     
@@ -422,7 +405,8 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Deprecated no-op method for clearing settings.</p>
+</div></span>
   
 </li>
 
@@ -467,7 +451,7 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the current settings for the active script and scope.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the current settings for the script in the given scope.</p>
 </div></span>
   
 </li>
@@ -490,7 +474,7 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the current logging level for the Settings module.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the current logging level.</p>
 </div></span>
   
 </li>
@@ -513,7 +497,7 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves a scoped setting by key name.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves a setting for a specific scope and key.</p>
 </div></span>
   
 </li>
@@ -536,7 +520,8 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves a value from a container (Hash or Array).</p>
+</div></span>
   
 </li>
 
@@ -544,7 +529,7 @@ Log level constant indicating no logging.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#load-class_method" title="load (class method)">.<strong>load</strong>  &#x21d2; Object </a>
+      <a href="#load-class_method" title="load (class method)">.<strong>load</strong>  &#x21d2; void </a>
     
 
     
@@ -558,7 +543,8 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Legacy method for loading settings.</p>
+</div></span>
   
 </li>
 
@@ -580,7 +566,7 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>End Legacy Support Methods.</p>
+    <span class="summary_desc"><div class='inline'><p>Handles missing methods by delegating to the path navigator.</p>
 </div></span>
   
 </li>
@@ -603,7 +589,7 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Navigates to a specific path within the settings structure.</p>
+    <span class="summary_desc"><div class='inline'><p>Navigates to a path within the current settings structure.</p>
 </div></span>
   
 </li>
@@ -626,7 +612,7 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Refreshes the settings data for the specified scope.</p>
+    <span class="summary_desc"><div class='inline'><p>Refreshes the settings data for the current script and scope.</p>
 </div></span>
   
 </li>
@@ -672,7 +658,8 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the Settings module responds to a missing method.</p>
+</div></span>
   
 </li>
 
@@ -703,7 +690,7 @@ Log level constant indicating no logging.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#save-class_method" title="save (class method)">.<strong>save</strong>  &#x21d2; Object </a>
+      <a href="#save-class_method" title="save (class method)">.<strong>save</strong>  &#x21d2; Symbol </a>
     
 
     
@@ -717,7 +704,7 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Legacy Support Methods.</p>
+    <span class="summary_desc"><div class='inline'><p>Legacy Support Methods Legacy method for saving settings.</p>
 </div></span>
   
 </li>
@@ -726,7 +713,7 @@ Log level constant indicating no logging.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#save_all-class_method" title="save_all (class method)">.<strong>save_all</strong>  &#x21d2; Object </a>
+      <a href="#save_all-class_method" title="save_all (class method)">.<strong>save_all</strong>  &#x21d2; nil </a>
     
 
     
@@ -740,7 +727,7 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Deprecated No-Op Methods from Original.</p>
+    <span class="summary_desc"><div class='inline'><p>Deprecated No-Op Methods from Original Deprecated no-op method for saving all settings.</p>
 </div></span>
   
 </li>
@@ -763,7 +750,7 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Saves changes made to a SettingsProxy back to the database.</p>
+    <span class="summary_desc"><div class='inline'><p>Saves changes made to a proxy back to the database.</p>
 </div></span>
   
 </li>
@@ -832,7 +819,7 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sets a specific setting for the current script and scope.</p>
+    <span class="summary_desc"><div class='inline'><p>Sets a setting for the current script in the specified scope.</p>
 </div></span>
   
 </li>
@@ -841,7 +828,7 @@ Log level constant indicating no logging.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#to_h-class_method" title="to_h (class method)">.<strong>to_h</strong>(scope = DEFAULT_SCOPE)  &#x21d2; Object </a>
+      <a href="#to_h-class_method" title="to_h (class method)">.<strong>to_h</strong>(scope = DEFAULT_SCOPE)  &#x21d2; Hash </a>
     
 
     
@@ -855,7 +842,7 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Added scope to match to_hash for consistency if used directly.</p>
+    <span class="summary_desc"><div class='inline'><p>Legacy method for converting settings to hash.</p>
 </div></span>
   
 </li>
@@ -878,7 +865,7 @@ Log level constant indicating no logging.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Converts the current settings to a hash representation.</p>
+    <span class="summary_desc"><div class='inline'><p>Converts the current script settings to a hash.</p>
 </div></span>
   
 </li>
@@ -927,7 +914,7 @@ Log level constant indicating no logging.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves a setting by name for the current script and scope.</p>
+    <p>Retrieves a setting by name from the current script settings.</p>
 
 
   </div>
@@ -957,7 +944,7 @@ Log level constant indicating no logging.</p>
       
       
         &mdash;
-        <div class='inline'><p>The name of the setting to retrieve</p>
+        <div class='inline'><p>The name of the setting to retrieve.</p>
 </div>
       
     </li>
@@ -975,7 +962,7 @@ Log level constant indicating no logging.</p>
       
       
         &mdash;
-        <div class='inline'><p>The value of the setting, or nil if not found</p>
+        <div class='inline'><p>The value of the setting, or nil if not found.</p>
 </div>
       
     </li>
@@ -988,6 +975,23 @@ Log level constant indicating no logging.</p>
       <pre class="lines">
 
 
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
 540
 541
 542
@@ -997,27 +1001,10 @@ Log level constant indicating no logging.</p>
 546
 547
 548
-549
-550
-551
-552
-553
-554
-555
-556
-557
-558
-559
-560
-561
-562
-563
-564
-565
-566</pre>
+549</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 540</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 523</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_scope_to_use'>scope_to_use</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#DEFAULT_SCOPE-constant" title="Lich::Common::Settings::DEFAULT_SCOPE (constant)">DEFAULT_SCOPE</a></span></span>
@@ -1062,7 +1049,7 @@ Log level constant indicating no logging.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Sets a value for a setting by name for the current script and scope.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets a value for a setting by name in the current script settings.</p>
 
 
   </div>
@@ -1092,7 +1079,7 @@ Log level constant indicating no logging.</p>
       
       
         &mdash;
-        <div class='inline'><p>The name of the setting to set</p>
+        <div class='inline'><p>The name of the setting to set.</p>
 </div>
       
     </li>
@@ -1107,7 +1094,7 @@ Log level constant indicating no logging.</p>
       
       
         &mdash;
-        <div class='inline'><p>The value to set for the setting</p>
+        <div class='inline'><p>The value to set for the setting.</p>
 </div>
       
     </li>
@@ -1121,29 +1108,29 @@ Log level constant indicating no logging.</p>
       <pre class="lines">
 
 
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
 574
 575
-576
-577
-578
-579
-580
-581
-582
-583
-584
-585
-586
-587
-588
-589
-590
-591
-592
-593</pre>
+576</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 574</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 557</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='op'>[]=</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_scope_to_use'>scope_to_use</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#DEFAULT_SCOPE-constant" title="Lich::Common::Settings::DEFAULT_SCOPE (constant)">DEFAULT_SCOPE</a></span></span>
@@ -1209,7 +1196,7 @@ Internal logging method for the Settings module.</p>
       
       
         &mdash;
-        <div class='inline'><p>The log level for the message</p>
+        <div class='inline'><p>The log level for the message.</p>
 </div>
       
     </li>
@@ -1224,7 +1211,7 @@ Internal logging method for the Settings module.</p>
       
       
         &mdash;
-        <div class='inline'><p>The prefix for the log message</p>
+        <div class='inline'><p>The prefix for the log message.</p>
 </div>
       
     </li>
@@ -1239,7 +1226,7 @@ Internal logging method for the Settings module.</p>
       
       
         &mdash;
-        <div class='inline'><p>A proc that generates the log message</p>
+        <div class='inline'><p>A proc that generates the log message.</p>
 </div>
       
     </li>
@@ -1253,6 +1240,10 @@ Internal logging method for the Settings module.</p>
       <pre class="lines">
 
 
+75
+76
+77
+78
 79
 80
 81
@@ -1266,14 +1257,10 @@ Internal logging method for the Settings module.</p>
 89
 90
 91
-92
-93
-94
-95
-96</pre>
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 79</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid__log'>_log</span><span class='lparen'>(</span><span class='id identifier rubyid_level'>level</span><span class='comma'>,</span> <span class='id identifier rubyid_prefix'>prefix</span><span class='comma'>,</span> <span class='id identifier rubyid_message_proc'>message_proc</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:log</span><span class='rparen'>)</span>
@@ -1311,7 +1298,7 @@ Internal logging method for the Settings module.</p>
   <div class="discussion">
     <p>Internal non-destructive correction method (issue from Lich 5.12.6)
 non-destructive methods (.sort) cannot own a proxy that requires update (.push)
-Reattaches a proxy to a live object based on the current path.</p>
+Reattaches a proxy to a live object.</p>
 
 
   </div>
@@ -1322,7 +1309,7 @@ Reattaches a proxy to a live object based on the current path.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Reattaching a live proxy</p>
+        <h5 class="example_title"><div class='inline'><p>Reattaching a proxy</p>
 </div></h5>
       
       <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Settings (module)">Settings</a></span></span><span class='period'>.</span><span class='id identifier rubyid__reattach_live!'>_reattach_live!</span><span class='lparen'>(</span><span class='id identifier rubyid_my_proxy'>my_proxy</span><span class='rparen'>)</span></code></pre>
@@ -1341,7 +1328,7 @@ Reattaches a proxy to a live object based on the current path.</p>
       
       
         &mdash;
-        <div class='inline'><p>The proxy to reattach</p>
+        <div class='inline'><p>The proxy to reattach.</p>
 </div>
       
     </li>
@@ -1359,7 +1346,7 @@ Reattaches a proxy to a live object based on the current path.</p>
       
       
         &mdash;
-        <div class='inline'><p>true if successful, false otherwise</p>
+        <div class='inline'><p>True if reattachment was successful, false otherwise.</p>
 </div>
       
     </li>
@@ -1372,6 +1359,10 @@ Reattaches a proxy to a live object based on the current path.</p>
       <pre class="lines">
 
 
+101
+102
+103
+104
 105
 106
 107
@@ -1388,14 +1379,10 @@ Reattaches a proxy to a live object based on the current path.</p>
 118
 119
 120
-121
-122
-123
-124
-125</pre>
+121</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 105</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid__reattach_live!'>_reattach_live!</span><span class='lparen'>(</span><span class='id identifier rubyid_proxy'>proxy</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_script_name'>script_name</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Script.html" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current'><span class='object_link'><a href="Script.html#current-class_method" title="Lich::Common::Script.current (method)">current</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
@@ -1426,26 +1413,53 @@ Reattaches a proxy to a live object based on the current path.</p>
       <div class="method_details ">
   <h3 class="signature " id="auto-class_method">
   
-    .<strong>auto</strong>  &#x21d2; <tt>Object</tt> 
+    .<strong>auto</strong>  &#x21d2; <tt>nil</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Deprecated no-op method for getting auto.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Always returns nil.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
+681
+682
+683
 684
-685
-686
-687
-688</pre>
+685</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 684</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 681</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_auto'>auto</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Settings.auto</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>not using, not applicable,</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:deprecated</span><span class='rparen'>)</span>
@@ -1460,25 +1474,71 @@ Reattaches a proxy to a live object based on the current path.</p>
       <div class="method_details ">
   <h3 class="signature " id="auto=-class_method">
   
-    .<strong>auto=</strong>(_val)  &#x21d2; <tt>Object</tt> 
+    .<strong>auto=</strong>(_val)  &#x21d2; <tt>nil</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Deprecated no-op method for setting auto.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>_val</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The value to set.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Always returns nil.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-679
-680
-681
-682</pre>
+674
+675
+676
+677</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 679</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 674</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_auto='>auto=</span><span class='lparen'>(</span><span class='id identifier rubyid__val'>_val</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Settings.auto=(val)</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>not using, not applicable,</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:deprecated</span><span class='rparen'>)</span>
@@ -1492,26 +1552,53 @@ Reattaches a proxy to a live object based on the current path.</p>
       <div class="method_details ">
   <h3 class="signature " id="autoload-class_method">
   
-    .<strong>autoload</strong>  &#x21d2; <tt>Object</tt> 
+    .<strong>autoload</strong>  &#x21d2; <tt>nil</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Deprecated no-op method for autoloading settings.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Always returns nil.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
+689
 690
 691
 692
-693
-694</pre>
+693</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 690</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 689</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_autoload'>autoload</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Settings.autoload</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>not using, not applicable,</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:deprecated</span><span class='rparen'>)</span>
@@ -1526,26 +1613,53 @@ Reattaches a proxy to a live object based on the current path.</p>
       <div class="method_details ">
   <h3 class="signature " id="clear-class_method">
   
-    .<strong>clear</strong>  &#x21d2; <tt>Object</tt> 
+    .<strong>clear</strong>  &#x21d2; <tt>nil</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Deprecated no-op method for clearing settings.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Always returns nil.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-673
-674
-675
-676
-677</pre>
+665
+666
+667
+668
+669</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 673</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 665</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_clear'><span class='object_link'><a href="../../top-level-namespace.html#clear-instance_method" title="#clear (method)">clear</a></span></span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Settings.clear</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>not using, not applicable,</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:deprecated</span><span class='rparen'>)</span>
@@ -1574,18 +1688,7 @@ Reattaches a proxy to a live object based on the current path.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Checking if a value is a container</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_is_container'>is_container</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Settings (module)">Settings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_container?'>container?</span><span class='lparen'>(</span><span class='id identifier rubyid_my_value'>my_value</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1598,7 +1701,7 @@ Reattaches a proxy to a live object based on the current path.</p>
       
       
         &mdash;
-        <div class='inline'><p>The value to check</p>
+        <div class='inline'><p>The value to check.</p>
 </div>
       
     </li>
@@ -1616,7 +1719,7 @@ Reattaches a proxy to a live object based on the current path.</p>
       
       
         &mdash;
-        <div class='inline'><p>true if the value is a container, false otherwise</p>
+        <div class='inline'><p>True if the value is a container, false otherwise.</p>
 </div>
       
     </li>
@@ -1629,12 +1732,12 @@ Reattaches a proxy to a live object based on the current path.</p>
       <pre class="lines">
 
 
-140
-141
-142</pre>
+132
+133
+134</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 140</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 132</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_container?'>container?</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
@@ -1655,7 +1758,7 @@ Reattaches a proxy to a live object based on the current path.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the current settings for the active script and scope.</p>
+    <p>Retrieves the current settings for the script in the given scope.</p>
 
 
   </div>
@@ -1687,7 +1790,7 @@ Reattaches a proxy to a live object based on the current path.</p>
       
       
         &mdash;
-        <div class='inline'><p>The scope to retrieve settings for; defaults to DEFAULT_SCOPE</p>
+        <div class='inline'><p>The scope to retrieve settings for; defaults to DEFAULT_SCOPE.</p>
 </div>
       
     </li>
@@ -1705,7 +1808,7 @@ Reattaches a proxy to a live object based on the current path.</p>
       
       
         &mdash;
-        <div class='inline'><p>The current settings data</p>
+        <div class='inline'><p>The current settings for the script.</p>
 </div>
       
     </li>
@@ -1718,6 +1821,15 @@ Reattaches a proxy to a live object based on the current path.</p>
       <pre class="lines">
 
 
+391
+392
+393
+394
+395
+396
+397
+398
+399
 400
 401
 402
@@ -1726,19 +1838,10 @@ Reattaches a proxy to a live object based on the current path.</p>
 405
 406
 407
-408
-409
-410
-411
-412
-413
-414
-415
-416
-417</pre>
+408</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 400</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 391</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_current_script_settings'>current_script_settings</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#DEFAULT_SCOPE-constant" title="Lich::Common::Settings::DEFAULT_SCOPE (constant)">DEFAULT_SCOPE</a></span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_script_name'>script_name</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Script.html" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current'><span class='object_link'><a href="Script.html#current-class_method" title="Lich::Common::Script.current (method)">current</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
@@ -1774,24 +1877,13 @@ Reattaches a proxy to a live object based on the current path.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the current logging level for the Settings module.</p>
+    <p>Retrieves the current logging level.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Getting the current log level</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_current_level'>current_level</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Settings (module)">Settings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_log_level'>get_log_level</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1803,7 +1895,7 @@ Reattaches a proxy to a live object based on the current path.</p>
       
       
         &mdash;
-        <div class='inline'><p>The current numeric log level</p>
+        <div class='inline'><p>The current numeric log level.</p>
 </div>
       
     </li>
@@ -1816,12 +1908,12 @@ Reattaches a proxy to a live object based on the current path.</p>
       <pre class="lines">
 
 
-67
-68
-69</pre>
+63
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_log_level'>get_log_level</span>
   <span class='cvar'>@@log_level</span>
@@ -1842,7 +1934,7 @@ Reattaches a proxy to a live object based on the current path.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves a scoped setting by key name.</p>
+    <p>Retrieves a setting for a specific scope and key.</p>
 
 
   </div>
@@ -1872,7 +1964,7 @@ Reattaches a proxy to a live object based on the current path.</p>
       
       
         &mdash;
-        <div class='inline'><p>The scope to retrieve the setting from</p>
+        <div class='inline'><p>The scope to retrieve the setting from.</p>
 </div>
       
     </li>
@@ -1887,7 +1979,7 @@ Reattaches a proxy to a live object based on the current path.</p>
       
       
         &mdash;
-        <div class='inline'><p>The key name of the setting to retrieve</p>
+        <div class='inline'><p>The key of the setting to retrieve.</p>
 </div>
       
     </li>
@@ -1905,7 +1997,7 @@ Reattaches a proxy to a live object based on the current path.</p>
       
       
         &mdash;
-        <div class='inline'><p>The value of the setting, or nil if not found</p>
+        <div class='inline'><p>The value of the setting, or nil if not found.</p>
 </div>
       
     </li>
@@ -1918,26 +2010,26 @@ Reattaches a proxy to a live object based on the current path.</p>
       <pre class="lines">
 
 
-601
-602
-603
-604
-605
-606
-607
-608
-609
-610
-611
-612
-613
-614
-615
-616
-617</pre>
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 601</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 584</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_scoped_setting'>get_scoped_setting</span><span class='lparen'>(</span><span class='id identifier rubyid_scope_string'>scope_string</span><span class='comma'>,</span> <span class='id identifier rubyid_key_name'>key_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid__log'>_log</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#LOG_LEVEL_DEBUG-constant" title="Lich::Common::Settings::LOG_LEVEL_DEBUG (constant)">LOG_LEVEL_DEBUG</a></span></span><span class='comma'>,</span> <span class='cvar'>@@log_prefix</span><span class='comma'>,</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>get_scoped_setting: scope: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_scope_string'>scope_string</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, key: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key_name'>key_name</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -1970,27 +2062,88 @@ Reattaches a proxy to a live object based on the current path.</p>
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Retrieves a value from a container (Hash or Array).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>container</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The container to retrieve the value from.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The key or index to access the value.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The value retrieved, or nil if not found.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-715
-716
-717
-718
-719
-720
-721
-722
-723
-724
-725
-726</pre>
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 715</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 726</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_value_from_container'>get_value_from_container</span><span class='lparen'>(</span><span class='id identifier rubyid_container'>container</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_container'>container</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></span><span class='rparen'>)</span>
@@ -2012,25 +2165,35 @@ Reattaches a proxy to a live object based on the current path.</p>
       <div class="method_details ">
   <h3 class="signature " id="load-class_method">
   
-    .<strong>load</strong>  &#x21d2; <tt>Object</tt> 
+    .<strong>load</strong>  &#x21d2; <tt>void</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Legacy method for loading settings.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-656
-657
-658
-659</pre>
+641
+642
+643
+644</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 656</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 641</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span>
   <span class='id identifier rubyid__log'>_log</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#LOG_LEVEL_INFO-constant" title="Lich::Common::Settings::LOG_LEVEL_INFO (constant)">LOG_LEVEL_INFO</a></span></span><span class='comma'>,</span> <span class='cvar'>@@log_prefix</span><span class='comma'>,</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Settings.load called (legacy, aliasing to refresh_data).</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -2052,13 +2215,64 @@ Reattaches a proxy to a live object based on the current path.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>End Legacy Support Methods</p>
+    <p>Handles missing methods by delegating to the path navigator.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>method</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The method that was called.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>args</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The arguments passed to the method.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The result of the delegated method call.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -2066,9 +2280,6 @@ Reattaches a proxy to a live object based on the current path.</p>
       <pre class="lines">
 
 
-697
-698
-699
 700
 701
 702
@@ -2078,10 +2289,13 @@ Reattaches a proxy to a live object based on the current path.</p>
 706
 707
 708
-709</pre>
+709
+710
+711
+712</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 697</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 700</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid__log'>_log</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#LOG_LEVEL_DEBUG-constant" title="Lich::Common::Settings::LOG_LEVEL_DEBUG (constant)">LOG_LEVEL_DEBUG</a></span></span><span class='comma'>,</span> <span class='cvar'>@@log_prefix</span><span class='comma'>,</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>method_missing: method: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_method'>method</span><span class='embexpr_end'>}</span><span class='tstring_content'>, args: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, path: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@path_navigator</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -2112,24 +2326,13 @@ Reattaches a proxy to a live object based on the current path.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Navigates to a specific path within the settings structure.</p>
+    <p>Navigates to a path within the current settings structure.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Navigating to a path</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_target'>target</span><span class='comma'>,</span> <span class='id identifier rubyid_root'><span class='object_link'><a href="../../top-level-namespace.html" title="Top Level Namespace (root)">root</a></span></span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Settings (module)">Settings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_navigate_to_path'>navigate_to_path</span><span class='lparen'>(</span><span class='kw'>true</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>example_scope</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2144,7 +2347,7 @@ Reattaches a proxy to a live object based on the current path.</p>
       
       
         &mdash;
-        <div class='inline'><p>Whether to create missing segments; defaults to true</p>
+        <div class='inline'><p>Whether to create missing segments; defaults to true.</p>
 </div>
       
     </li>
@@ -2161,7 +2364,7 @@ Reattaches a proxy to a live object based on the current path.</p>
       
       
         &mdash;
-        <div class='inline'><p>The scope to navigate within; defaults to DEFAULT_SCOPE</p>
+        <div class='inline'><p>The scope to navigate within; defaults to DEFAULT_SCOPE.</p>
 </div>
       
     </li>
@@ -2179,7 +2382,7 @@ Reattaches a proxy to a live object based on the current path.</p>
       
       
         &mdash;
-        <div class='inline'><p>An array containing the target object and the root settings</p>
+        <div class='inline'><p>An array containing the target object and the root settings.</p>
 </div>
       
     </li>
@@ -2192,6 +2395,23 @@ Reattaches a proxy to a live object based on the current path.</p>
       <pre class="lines">
 
 
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
 476
 477
 478
@@ -2199,27 +2419,10 @@ Reattaches a proxy to a live object based on the current path.</p>
 480
 481
 482
-483
-484
-485
-486
-487
-488
-489
-490
-491
-492
-493
-494
-495
-496
-497
-498
-499
-500</pre>
+483</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 476</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 459</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_navigate_to_path'>navigate_to_path</span><span class='lparen'>(</span><span class='id identifier rubyid_create_missing'>create_missing</span> <span class='op'>=</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='id identifier rubyid_scope'>scope</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#DEFAULT_SCOPE-constant" title="Lich::Common::Settings::DEFAULT_SCOPE (constant)">DEFAULT_SCOPE</a></span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_root_for_scope'>root_for_scope</span> <span class='op'>=</span> <span class='id identifier rubyid_current_script_settings'>current_script_settings</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='rparen'>)</span>
@@ -2262,24 +2465,13 @@ Reattaches a proxy to a live object based on the current path.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Refreshes the settings data for the specified scope.</p>
+    <p>Refreshes the settings data for the current script and scope.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Refreshing settings data</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_refreshed_settings'>refreshed_settings</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Settings (module)">Settings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_refresh_data'>refresh_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>example_scope</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2294,7 +2486,7 @@ Reattaches a proxy to a live object based on the current path.</p>
       
       
         &mdash;
-        <div class='inline'><p>The scope to refresh; defaults to DEFAULT_SCOPE</p>
+        <div class='inline'><p>The scope to refresh; defaults to DEFAULT_SCOPE.</p>
 </div>
       
     </li>
@@ -2312,7 +2504,7 @@ Reattaches a proxy to a live object based on the current path.</p>
       
       
         &mdash;
-        <div class='inline'><p>The refreshed settings data</p>
+        <div class='inline'><p>The refreshed settings data.</p>
 </div>
       
     </li>
@@ -2325,16 +2517,16 @@ Reattaches a proxy to a live object based on the current path.</p>
       <pre class="lines">
 
 
-453
-454
-455
-456
-457
-458
-459</pre>
+440
+441
+442
+443
+444
+445
+446</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 453</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 440</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_refresh_data'>refresh_data</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#DEFAULT_SCOPE-constant" title="Lich::Common::Settings::DEFAULT_SCOPE (constant)">DEFAULT_SCOPE</a></span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_script_name'>script_name</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Script.html" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current'><span class='object_link'><a href="Script.html#current-class_method" title="Lich::Common::Script.current (method)">current</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
@@ -2365,18 +2557,7 @@ Reattaches a proxy to a live object based on the current path.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Resetting path and returning a value</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_returned_value'>returned_value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Settings (module)">Settings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reset_path_and_return'>reset_path_and_return</span><span class='lparen'>(</span><span class='id identifier rubyid_my_value'>my_value</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2389,7 +2570,7 @@ Reattaches a proxy to a live object based on the current path.</p>
       
       
         &mdash;
-        <div class='inline'><p>The value to return after resetting the path</p>
+        <div class='inline'><p>The value to return after resetting the path.</p>
 </div>
       
     </li>
@@ -2407,7 +2588,7 @@ Reattaches a proxy to a live object based on the current path.</p>
       
       
         &mdash;
-        <div class='inline'><p>The value passed in</p>
+        <div class='inline'><p>The value passed in.</p>
 </div>
       
     </li>
@@ -2420,12 +2601,12 @@ Reattaches a proxy to a live object based on the current path.</p>
       <pre class="lines">
 
 
-466
-467
-468</pre>
+451
+452
+453</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 466</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 451</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_reset_path_and_return'>reset_path_and_return</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='ivar'>@path_navigator</span><span class='period'>.</span><span class='id identifier rubyid_reset_path_and_return'>reset_path_and_return</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
@@ -2446,12 +2627,49 @@ Reattaches a proxy to a live object based on the current path.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
+    <p>Checks if the Settings module responds to a missing method.</p>
+
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>method_name</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the method.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>include_private</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to include private methods.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2461,6 +2679,10 @@ Reattaches a proxy to a live object based on the current path.</p>
         <span class='type'>(<tt>Boolean</tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'><p>True if the method is handled, false otherwise.</p>
+</div>
       
     </li>
   
@@ -2472,12 +2694,12 @@ Reattaches a proxy to a live object based on the current path.</p>
       <pre class="lines">
 
 
-711
-712
-713</pre>
+718
+719
+720</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 711</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 718</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_respond_to_missing?'>respond_to_missing?</span><span class='lparen'>(</span><span class='id identifier rubyid_method_name'>method_name</span><span class='comma'>,</span> <span class='id identifier rubyid_include_private'>include_private</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='ivar'>@path_navigator</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_method_name'>method_name</span><span class='comma'>,</span> <span class='id identifier rubyid_include_private'>include_private</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='kw'>super</span>
@@ -2575,7 +2797,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>A logical scope identifier</p>
+        <div class='inline'><p>A logical scope identifier.</p>
 </div>
       
     </li>
@@ -2592,7 +2814,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>The script namespace; defaults to Script.current.name</p>
+        <div class='inline'><p>The script namespace; defaults to Script.current.name.</p>
 </div>
       
     </li>
@@ -2623,7 +2845,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>a proxy wrapping the cached root object</p>
+        <div class='inline'><p>A proxy wrapping the cached root object.</p>
 </div>
       
     </li>
@@ -2653,7 +2875,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>if scope is nil or empty</p>
+        <div class='inline'><p>if scope is nil or empty.</p>
 </div>
       
     </li>
@@ -2666,18 +2888,18 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       <pre class="lines">
 
 
-208
-209
-210
-211
-212
-213
-214
-215
-216</pre>
+200
+201
+202
+203
+204
+205
+206
+207
+208</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 208</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 200</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_root_proxy_for'>root_proxy_for</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='label'>script_name:</span> <span class='const'><span class='object_link'><a href="Script.html" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current'><span class='object_link'><a href="Script.html#current-class_method" title="Lich::Common::Script.current (method)">current</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scope must be a non-empty String</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_scope'>scope</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_scope'>scope</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -2696,7 +2918,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       <div class="method_details ">
   <h3 class="signature " id="save-class_method">
   
-    .<strong>save</strong>  &#x21d2; <tt>Object</tt> 
+    .<strong>save</strong>  &#x21d2; <tt>Symbol</tt> 
   
 
   
@@ -2704,13 +2926,31 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Legacy Support Methods</p>
+    <p>Legacy Support Methods
+Legacy method for saving settings.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Always returns :noop.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -2718,13 +2958,13 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       <pre class="lines">
 
 
-651
-652
-653
-654</pre>
+634
+635
+636
+637</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 651</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 634</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
   <span class='id identifier rubyid__log'>_log</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#LOG_LEVEL_INFO-constant" title="Lich::Common::Settings::LOG_LEVEL_INFO (constant)">LOG_LEVEL_INFO</a></span></span><span class='comma'>,</span> <span class='cvar'>@@log_prefix</span><span class='comma'>,</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Settings.save called (legacy no-op).</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -2738,7 +2978,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       <div class="method_details ">
   <h3 class="signature " id="save_all-class_method">
   
-    .<strong>save_all</strong>  &#x21d2; <tt>Object</tt> 
+    .<strong>save_all</strong>  &#x21d2; <tt>nil</tt> 
   
 
   
@@ -2746,13 +2986,31 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Deprecated No-Op Methods from Original</p>
+    <p>Deprecated No-Op Methods from Original
+Deprecated no-op method for saving all settings.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Always returns nil.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -2760,14 +3018,14 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       <pre class="lines">
 
 
-667
-668
-669
-670
-671</pre>
+657
+658
+659
+660
+661</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 667</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 657</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_save_all'>save_all</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Settings.save_all</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>not using, not applicable,</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:deprecated</span><span class='rparen'>)</span>
@@ -2790,24 +3048,20 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Saves changes made to a SettingsProxy back to the database.</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This method handles both root and nested paths.</p>
+</div>
+  </div>
+
+<p class="note returns_void">This method returns an undefined value.</p><p>Saves changes made to a proxy back to the database.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Saving changes to a proxy</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Settings (module)">Settings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_save_proxy_changes'>save_proxy_changes</span><span class='lparen'>(</span><span class='id identifier rubyid_my_proxy'>my_proxy</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2820,7 +3074,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>The proxy containing changes to save</p>
+        <div class='inline'><p>The proxy containing changes to save.</p>
 </div>
       
     </li>
@@ -2834,6 +3088,15 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       <pre class="lines">
 
 
+214
+215
+216
+217
+218
+219
+220
+221
+222
 223
 224
 225
@@ -2995,19 +3258,10 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
 381
 382
 383
-384
-385
-386
-387
-388
-389
-390
-391
-392
-393</pre>
+384</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 223</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 214</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_save_proxy_changes'>save_proxy_changes</span><span class='lparen'>(</span><span class='id identifier rubyid_proxy'>proxy</span><span class='rparen'>)</span>
   <span class='id identifier rubyid__log'>_log</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#LOG_LEVEL_DEBUG-constant" title="Lich::Common::Settings::LOG_LEVEL_DEBUG (constant)">LOG_LEVEL_DEBUG</a></span></span><span class='comma'>,</span> <span class='cvar'>@@log_prefix</span><span class='comma'>,</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>save_proxy_changes: Initiated for proxy.scope: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_proxy'>proxy</span><span class='period'>.</span><span class='id identifier rubyid_scope'>scope</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, proxy.path: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_proxy'>proxy</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, proxy.target_object_id: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_proxy'>proxy</span><span class='period'>.</span><span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -3199,7 +3453,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>If the script name is nil or empty, the save operation is aborted.</p>
+    <div class='inline'><p>This method will not save if the script name is nil or empty.</p>
 </div>
   </div>
 
@@ -3209,18 +3463,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Saving data to the database</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Settings (module)">Settings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_save_to_database'>save_to_database</span><span class='lparen'>(</span><span class='id identifier rubyid_my_data'>my_data</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>example_scope</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -3233,7 +3476,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>The data to save</p>
+        <div class='inline'><p>The data to save.</p>
 </div>
       
     </li>
@@ -3250,7 +3493,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>The scope for which to save the data; defaults to DEFAULT_SCOPE</p>
+        <div class='inline'><p>The scope for which to save the data; defaults to DEFAULT_SCOPE.</p>
 </div>
       
     </li>
@@ -3264,6 +3507,17 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       <pre class="lines">
 
 
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
 426
 427
 428
@@ -3273,21 +3527,10 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
 432
 433
 434
-435
-436
-437
-438
-439
-440
-441
-442
-443
-444
-445
-446</pre>
+435</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 426</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 415</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_save_to_database'>save_to_database</span><span class='lparen'>(</span><span class='id identifier rubyid_data_to_save'>data_to_save</span><span class='comma'>,</span> <span class='id identifier rubyid_scope'>scope</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#DEFAULT_SCOPE-constant" title="Lich::Common::Settings::DEFAULT_SCOPE (constant)">DEFAULT_SCOPE</a></span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_script_name'>script_name</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Script.html" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current'><span class='object_link'><a href="Script.html#current-class_method" title="Lich::Common::Script.current (method)">current</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
@@ -3374,7 +3617,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>The numeric log level set</p>
+        <div class='inline'><p>The numeric log level set.</p>
 </div>
       
     </li>
@@ -3391,7 +3634,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>if an invalid log level is specified</p>
+        <div class='inline'><p>if an invalid log level is specified.</p>
 </div>
       
     </li>
@@ -3404,6 +3647,8 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       <pre class="lines">
 
 
+48
+49
 50
 51
 52
@@ -3413,12 +3658,10 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
 56
 57
 58
-59
-60
-61</pre>
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_set_log_level'>set_log_level</span><span class='lparen'>(</span><span class='id identifier rubyid_level'>level</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_numeric_level'>numeric_level</span> <span class='op'>=</span> <span class='kw'>case</span> <span class='id identifier rubyid_level'>level</span>
@@ -3448,7 +3691,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Sets a specific setting for the current script and scope.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets a setting for the current script in the specified scope.</p>
 
 
   </div>
@@ -3462,7 +3705,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
         <h5 class="example_title"><div class='inline'><p>Setting a script setting</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Settings (module)">Settings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_script_settings'>set_script_settings</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>example_scope</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>setting_name</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>setting_value</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Settings (module)">Settings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_script_settings'>set_script_settings</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>example_scope</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>setting_name</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>value</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3480,7 +3723,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>The scope to set the setting for; defaults to DEFAULT_SCOPE</p>
+        <div class='inline'><p>The scope to set the setting in; defaults to DEFAULT_SCOPE.</p>
 </div>
       
     </li>
@@ -3495,7 +3738,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>The name of the setting to set</p>
+        <div class='inline'><p>The name of the setting to set.</p>
 </div>
       
     </li>
@@ -3510,7 +3753,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>The value to set for the setting</p>
+        <div class='inline'><p>The value to set for the setting.</p>
 </div>
       
     </li>
@@ -3524,6 +3767,23 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       <pre class="lines">
 
 
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
 509
 510
 511
@@ -3531,27 +3791,10 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
 513
 514
 515
-516
-517
-518
-519
-520
-521
-522
-523
-524
-525
-526
-527
-528
-529
-530
-531
-532
-533</pre>
+516</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 509</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 492</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_set_script_settings'>set_script_settings</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#DEFAULT_SCOPE-constant" title="Lich::Common::Settings::DEFAULT_SCOPE (constant)">DEFAULT_SCOPE</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid__log'>_log</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#LOG_LEVEL_DEBUG-constant" title="Lich::Common::Settings::LOG_LEVEL_DEBUG (constant)">LOG_LEVEL_DEBUG</a></span></span><span class='comma'>,</span> <span class='cvar'>@@log_prefix</span><span class='comma'>,</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>set_script_settings: scope: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_scope'>scope</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, name: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, value: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, current_path: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@path_navigator</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -3586,7 +3829,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       <div class="method_details ">
   <h3 class="signature " id="to_h-class_method">
   
-    .<strong>to_h</strong>(scope = DEFAULT_SCOPE)  &#x21d2; <tt>Object</tt> 
+    .<strong>to_h</strong>(scope = DEFAULT_SCOPE)  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt> 
   
 
   
@@ -3594,13 +3837,51 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Added scope to match to_hash for consistency if used directly</p>
+    <p>Legacy method for converting settings to hash.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>scope</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>DEFAULT_SCOPE</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The scope to convert; defaults to DEFAULT_SCOPE.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A hash representation of the current settings.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -3608,13 +3889,13 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       <pre class="lines">
 
 
-661
-662
-663
-664</pre>
+649
+650
+651
+652</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 661</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 649</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_h'>to_h</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#DEFAULT_SCOPE-constant" title="Lich::Common::Settings::DEFAULT_SCOPE (constant)">DEFAULT_SCOPE</a></span></span><span class='rparen'>)</span> <span class='comment'># Added scope to match to_hash for consistency if used directly
 </span>  <span class='id identifier rubyid__log'>_log</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#LOG_LEVEL_INFO-constant" title="Lich::Common::Settings::LOG_LEVEL_INFO (constant)">LOG_LEVEL_INFO</a></span></span><span class='comma'>,</span> <span class='cvar'>@@log_prefix</span><span class='comma'>,</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Settings.to_h called (legacy, aliasing to to_hash).</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -3636,7 +3917,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Converts the current settings to a hash representation.</p>
+    <p>Converts the current script settings to a hash.</p>
 
 
   </div>
@@ -3668,7 +3949,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>The scope to convert; defaults to DEFAULT_SCOPE</p>
+        <div class='inline'><p>The scope to convert; defaults to DEFAULT_SCOPE.</p>
 </div>
       
     </li>
@@ -3686,7 +3967,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>The settings as a hash</p>
+        <div class='inline'><p>A hash representation of the current settings.</p>
 </div>
       
     </li>
@@ -3699,16 +3980,16 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       <pre class="lines">
 
 
-642
-643
-644
-645
-646
-647
-648</pre>
+623
+624
+625
+626
+627
+628
+629</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 642</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 623</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_hash'>to_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#DEFAULT_SCOPE-constant" title="Lich::Common::Settings::DEFAULT_SCOPE (constant)">DEFAULT_SCOPE</a></span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid__log'>_log</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#LOG_LEVEL_DEBUG-constant" title="Lich::Common::Settings::LOG_LEVEL_DEBUG (constant)">LOG_LEVEL_DEBUG</a></span></span><span class='comma'>,</span> <span class='cvar'>@@log_prefix</span><span class='comma'>,</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>to_hash: scope: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_scope'>scope</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -3739,18 +4020,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Wrapping a value</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_wrapped_value'>wrapped_value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Settings (module)">Settings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_wrap_value_if_container'>wrap_value_if_container</span><span class='lparen'>(</span><span class='id identifier rubyid_my_value'>my_value</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>example_scope</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>path</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -3763,7 +4033,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>The value to potentially wrap</p>
+        <div class='inline'><p>The value to potentially wrap.</p>
 </div>
       
     </li>
@@ -3778,7 +4048,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>The scope for the value</p>
+        <div class='inline'><p>The scope for the value.</p>
 </div>
       
     </li>
@@ -3793,7 +4063,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>The path to the value</p>
+        <div class='inline'><p>The path to the value.</p>
 </div>
       
     </li>
@@ -3811,7 +4081,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       
       
         &mdash;
-        <div class='inline'><p>The wrapped value or the original value</p>
+        <div class='inline'><p>The wrapped value if it is a container, otherwise the original value.</p>
 </div>
       
     </li>
@@ -3824,19 +4094,19 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
       <pre class="lines">
 
 
-626
-627
-628
-629
-630
-631
-632
-633
-634
-635</pre>
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'settings.rb', line 626</span>
+      <pre class="code"><span class="info file"># File 'settings.rb', line 607</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_wrap_value_if_container'>wrap_value_if_container</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_path_array'>path_array</span><span class='rparen'>)</span>
   <span class='id identifier rubyid__log'>_log</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#LOG_LEVEL_DEBUG-constant" title="Lich::Common::Settings::LOG_LEVEL_DEBUG (constant)">LOG_LEVEL_DEBUG</a></span></span><span class='comma'>,</span> <span class='cvar'>@@log_prefix</span><span class='comma'>,</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>wrap_value_if_container: value_class: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>, scope: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_scope'>scope</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, path: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path_array'>path_array</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -3858,7 +4128,7 @@ Script.current.name. Pass nil to fall back to the empty string.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:51 2025 by
+  Generated on Fri Nov  7 03:59:25 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

@@ -131,17 +131,7 @@ This class manages spell attributes, casting, and effects.</p>
     <dl class="constants">
       
         <dt id="load_mutex-classvariable" class="">@@load_mutex =
-          <div class="docstring">
-  <div class="discussion">
-    <p>Mutex for thread-safe loading of spells.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='const'>Mutex</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span></pre></dd>
       
@@ -212,7 +202,7 @@ This class manages spell attributes, casting, and effects.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#active-instance_method" title="#active (instance method)">#<strong>active</strong>  &#x21d2; Integer, ... </a>
+      <a href="#active-instance_method" title="#active (instance method)">#<strong>active</strong>  &#x21d2; Object </a>
     
 
     
@@ -229,7 +219,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Attributes of the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute active.</p>
 </div></span>
   
 </li>
@@ -238,7 +228,7 @@ This class manages spell attributes, casting, and effects.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#availability-instance_method" title="#availability (instance method)">#<strong>availability</strong>  &#x21d2; Integer, ... </a>
+      <a href="#availability-instance_method" title="#availability (instance method)">#<strong>availability</strong>  &#x21d2; Object </a>
     
 
     
@@ -257,7 +247,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Attributes of the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute availability.</p>
 </div></span>
   
 </li>
@@ -266,7 +256,7 @@ This class manages spell attributes, casting, and effects.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#cast_proc-instance_method" title="#cast_proc (instance method)">#<strong>cast_proc</strong>  &#x21d2; Integer, ... </a>
+      <a href="#cast_proc-instance_method" title="#cast_proc (instance method)">#<strong>cast_proc</strong>  &#x21d2; Object </a>
     
 
     
@@ -285,7 +275,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Attributes of the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute cast_proc.</p>
 </div></span>
   
 </li>
@@ -294,7 +284,7 @@ This class manages spell attributes, casting, and effects.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#channel-instance_method" title="#channel (instance method)">#<strong>channel</strong>  &#x21d2; String </a>
+      <a href="#channel-instance_method" title="#channel (instance method)">#<strong>channel</strong>  &#x21d2; Object </a>
     
 
     
@@ -311,7 +301,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Stance and channel attributes for the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute channel.</p>
 </div></span>
   
 </li>
@@ -320,35 +310,7 @@ This class manages spell attributes, casting, and effects.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#circle-instance_method" title="#circle (instance method)">#<strong>circle</strong>  &#x21d2; Integer, ... </a>
-    
-
-    
-  </span>
-  
-  
-  
-    
-      <span class="note title readonly">readonly</span>
-    
-    
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>Attributes of the spell.</p>
-</div></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#msgdn-instance_method" title="#msgdn (instance method)">#<strong>msgdn</strong>  &#x21d2; Integer, ... </a>
+      <a href="#circle-instance_method" title="#circle (instance method)">#<strong>circle</strong>  &#x21d2; Object </a>
     
 
     
@@ -367,7 +329,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Attributes of the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute circle.</p>
 </div></span>
   
 </li>
@@ -376,7 +338,7 @@ This class manages spell attributes, casting, and effects.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#msgup-instance_method" title="#msgup (instance method)">#<strong>msgup</strong>  &#x21d2; Integer, ... </a>
+      <a href="#msgdn-instance_method" title="#msgdn (instance method)">#<strong>msgdn</strong>  &#x21d2; Object </a>
     
 
     
@@ -395,7 +357,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Attributes of the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute msgdn.</p>
 </div></span>
   
 </li>
@@ -404,7 +366,7 @@ This class manages spell attributes, casting, and effects.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#name-instance_method" title="#name (instance method)">#<strong>name</strong>  &#x21d2; Integer, ... </a>
+      <a href="#msgup-instance_method" title="#msgup (instance method)">#<strong>msgup</strong>  &#x21d2; Object </a>
     
 
     
@@ -423,7 +385,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Attributes of the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute msgup.</p>
 </div></span>
   
 </li>
@@ -432,7 +394,7 @@ This class manages spell attributes, casting, and effects.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#no_incant-instance_method" title="#no_incant (instance method)">#<strong>no_incant</strong>  &#x21d2; Integer, ... </a>
+      <a href="#name-instance_method" title="#name (instance method)">#<strong>name</strong>  &#x21d2; Object </a>
     
 
     
@@ -451,7 +413,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Attributes of the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute name.</p>
 </div></span>
   
 </li>
@@ -460,7 +422,7 @@ This class manages spell attributes, casting, and effects.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#num-instance_method" title="#num (instance method)">#<strong>num</strong>  &#x21d2; Integer, ... </a>
+      <a href="#no_incant-instance_method" title="#no_incant (instance method)">#<strong>no_incant</strong>  &#x21d2; Object </a>
     
 
     
@@ -479,7 +441,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Attributes of the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute no_incant.</p>
 </div></span>
   
 </li>
@@ -488,7 +450,7 @@ This class manages spell attributes, casting, and effects.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#persist_on_death-instance_method" title="#persist_on_death (instance method)">#<strong>persist_on_death</strong>  &#x21d2; Integer, ... </a>
+      <a href="#num-instance_method" title="#num (instance method)">#<strong>num</strong>  &#x21d2; Object </a>
     
 
     
@@ -507,7 +469,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Attributes of the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute num.</p>
 </div></span>
   
 </li>
@@ -516,7 +478,7 @@ This class manages spell attributes, casting, and effects.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#real_time-instance_method" title="#real_time (instance method)">#<strong>real_time</strong>  &#x21d2; Integer, ... </a>
+      <a href="#persist_on_death-instance_method" title="#persist_on_death (instance method)">#<strong>persist_on_death</strong>  &#x21d2; Object </a>
     
 
     
@@ -535,7 +497,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Attributes of the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute persist_on_death.</p>
 </div></span>
   
 </li>
@@ -544,33 +506,7 @@ This class manages spell attributes, casting, and effects.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#stance-instance_method" title="#stance (instance method)">#<strong>stance</strong>  &#x21d2; String </a>
-    
-
-    
-  </span>
-  
-  
-  
-    
-    
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>Stance and channel attributes for the spell.</p>
-</div></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#timestamp-instance_method" title="#timestamp (instance method)">#<strong>timestamp</strong>  &#x21d2; Integer, ... </a>
+      <a href="#real_time-instance_method" title="#real_time (instance method)">#<strong>real_time</strong>  &#x21d2; Object </a>
     
 
     
@@ -589,7 +525,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Attributes of the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute real_time.</p>
 </div></span>
   
 </li>
@@ -598,7 +534,33 @@ This class manages spell attributes, casting, and effects.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#type-instance_method" title="#type (instance method)">#<strong>type</strong>  &#x21d2; Integer, ... </a>
+      <a href="#stance-instance_method" title="#stance (instance method)">#<strong>stance</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute stance.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#timestamp-instance_method" title="#timestamp (instance method)">#<strong>timestamp</strong>  &#x21d2; Object </a>
     
 
     
@@ -617,7 +579,35 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Attributes of the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute timestamp.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#type-instance_method" title="#type (instance method)">#<strong>type</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute type.</p>
 </div></span>
   
 </li>
@@ -722,7 +712,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Gets the after stance value.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the current after stance setting.</p>
 </div></span>
   
 </li>
@@ -745,7 +735,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sets the after stance value.</p>
+    <span class="summary_desc"><div class='inline'><p>Sets the stance to be used after casting.</p>
 </div></span>
   
 </li>
@@ -814,7 +804,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Loads spells from a specified XML file.</p>
+    <span class="summary_desc"><div class='inline'><p>Loads spell data from a specified XML file.</p>
 </div></span>
   
 </li>
@@ -860,7 +850,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Unlocks the casting process to allow new casts.</p>
+    <span class="summary_desc"><div class='inline'><p>Unlocks the casting process after a spell is cast.</p>
 </div></span>
   
 </li>
@@ -915,7 +905,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the bonuses associated with the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the bonus attributes of the spell.</p>
 </div></span>
   
 </li>
@@ -938,7 +928,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the costs associated with the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the cost attributes of the spell.</p>
 </div></span>
   
 </li>
@@ -1062,7 +1052,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#cast-instance_method" title="#cast (instance method)">#<strong>cast</strong>(target = nil, results_of_interest = nil, arg_options = nil, force_stance: nil)  &#x21d2; String, false </a>
+      <a href="#cast-instance_method" title="#cast (instance method)">#<strong>cast</strong>(target = nil, results_of_interest = nil, arg_options = nil, force_stance: nil)  &#x21d2; String<sup>?</sup> </a>
     
 
     
@@ -1076,7 +1066,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Casts the spell on a target.</p>
+    <span class="summary_desc"><div class='inline'><p>Casts the spell on a target with specified options.</p>
 </div></span>
   
 </li>
@@ -1085,7 +1075,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#castProc-instance_method" title="#castProc (instance method)">#<strong>castProc</strong>  &#x21d2; String </a>
+      <a href="#castProc-instance_method" title="#castProc (instance method)">#<strong>castProc</strong>  &#x21d2; Object </a>
     
 
     
@@ -1099,8 +1089,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the casting procedure of the spell.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1131,7 +1120,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#circlename-instance_method" title="#circlename (instance method)">#<strong>circlename</strong>  &#x21d2; String </a>
+      <a href="#circlename-instance_method" title="#circlename (instance method)">#<strong>circlename</strong>  &#x21d2; Object </a>
     
 
     
@@ -1145,8 +1134,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the name of the spell&#39;s circle.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1177,7 +1165,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#command-instance_method" title="#command (instance method)">#<strong>command</strong>  &#x21d2; nil </a>
+      <a href="#command-instance_method" title="#command (instance method)">#<strong>command</strong>  &#x21d2; Object </a>
     
 
     
@@ -1191,8 +1179,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the command associated with the spell.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1223,7 +1210,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#duration-instance_method" title="#duration (instance method)">#<strong>duration</strong>  &#x21d2; Float </a>
+      <a href="#duration-instance_method" title="#duration (instance method)">#<strong>duration</strong>  &#x21d2; String </a>
     
 
     
@@ -1246,7 +1233,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#elementalCS-instance_method" title="#elementalCS (instance method)">#<strong>elementalCS</strong>  &#x21d2; String </a>
+      <a href="#elementalCS-instance_method" title="#elementalCS (instance method)">#<strong>elementalCS</strong>  &#x21d2; Object </a>
     
 
     
@@ -1260,8 +1247,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the elemental combat strength of the spell.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1283,7 +1269,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the elemental target damage of the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the elemental target defense of the spell.</p>
 </div></span>
   
 </li>
@@ -1292,7 +1278,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#force_cast-instance_method" title="#force_cast (instance method)">#<strong>force_cast</strong>(target = nil, arg_options = nil, results_of_interest = nil, force_stance: nil)  &#x21d2; String, false </a>
+      <a href="#force_cast-instance_method" title="#force_cast (instance method)">#<strong>force_cast</strong>(target = nil, arg_options = nil, results_of_interest = nil, force_stance: nil)  &#x21d2; String<sup>?</sup> </a>
     
 
     
@@ -1306,7 +1292,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Forces the casting of the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Forces the casting of the spell regardless of conditions.</p>
 </div></span>
   
 </li>
@@ -1315,7 +1301,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#force_channel-instance_method" title="#force_channel (instance method)">#<strong>force_channel</strong>(target = nil, arg_options = nil, results_of_interest = nil, force_stance: nil)  &#x21d2; String, false </a>
+      <a href="#force_channel-instance_method" title="#force_channel (instance method)">#<strong>force_channel</strong>(target = nil, arg_options = nil, results_of_interest = nil, force_stance: nil)  &#x21d2; String<sup>?</sup> </a>
     
 
     
@@ -1338,7 +1324,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#force_evoke-instance_method" title="#force_evoke (instance method)">#<strong>force_evoke</strong>(target = nil, arg_options = nil, results_of_interest = nil, force_stance: nil)  &#x21d2; String, false </a>
+      <a href="#force_evoke-instance_method" title="#force_evoke (instance method)">#<strong>force_evoke</strong>(target = nil, arg_options = nil, results_of_interest = nil, force_stance: nil)  &#x21d2; String<sup>?</sup> </a>
     
 
     
@@ -1361,7 +1347,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#force_incant-instance_method" title="#force_incant (instance method)">#<strong>force_incant</strong>(arg_options = nil, results_of_interest = nil, force_stance: nil)  &#x21d2; String, false </a>
+      <a href="#force_incant-instance_method" title="#force_incant (instance method)">#<strong>force_incant</strong>(arg_options = nil, results_of_interest = nil, force_stance: nil)  &#x21d2; String<sup>?</sup> </a>
     
 
     
@@ -1384,7 +1370,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#incant=-instance_method" title="#incant= (instance method)">#<strong>incant=</strong>(val)  &#x21d2; Object </a>
+      <a href="#incant=-instance_method" title="#incant= (instance method)">#<strong>incant=</strong>(val)  &#x21d2; void </a>
     
 
     
@@ -1446,7 +1432,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Initializes a new spell from XML data.</p>
+    <span class="summary_desc"><div class='inline'><p>Initializes a new spell instance.</p>
 </div></span>
   
 </li>
@@ -1478,7 +1464,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#manaCost-instance_method" title="#manaCost (instance method)">#<strong>manaCost</strong>  &#x21d2; String </a>
+      <a href="#manaCost-instance_method" title="#manaCost (instance method)">#<strong>manaCost</strong>  &#x21d2; Object </a>
     
 
     
@@ -1492,8 +1478,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the mana cost of the spell (deprecated).</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1524,7 +1509,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#mentalCS-instance_method" title="#mentalCS (instance method)">#<strong>mentalCS</strong>  &#x21d2; String </a>
+      <a href="#mentalCS-instance_method" title="#mentalCS (instance method)">#<strong>mentalCS</strong>  &#x21d2; Object </a>
     
 
     
@@ -1538,8 +1523,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the mental combat strength of the spell.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1561,7 +1545,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the mental target damage of the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the mental target defense of the spell.</p>
 </div></span>
   
 </li>
@@ -1570,7 +1554,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#method_missing-instance_method" title="#method_missing (instance method)">#<strong>method_missing</strong>(*args)  &#x21d2; Integer, Hash </a>
+      <a href="#method_missing-instance_method" title="#method_missing (instance method)">#<strong>method_missing</strong>(*args)  &#x21d2; Object </a>
     
 
     
@@ -1584,7 +1568,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Handles missing methods for bonus and cost retrieval.</p>
+    <span class="summary_desc"><div class='inline'><p>Handles missing methods for dynamic attribute access.</p>
 </div></span>
   
 </li>
@@ -1607,7 +1591,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the remaining time in minutes for the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the remaining time in minutes.</p>
 </div></span>
   
 </li>
@@ -1639,7 +1623,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#physicalAS-instance_method" title="#physicalAS (instance method)">#<strong>physicalAS</strong>  &#x21d2; String </a>
+      <a href="#physicalAS-instance_method" title="#physicalAS (instance method)">#<strong>physicalAS</strong>  &#x21d2; Object </a>
     
 
     
@@ -1653,8 +1637,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the physical attack strength of the spell.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1662,7 +1645,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#physicalDS-instance_method" title="#physicalDS (instance method)">#<strong>physicalDS</strong>  &#x21d2; String </a>
+      <a href="#physicalDS-instance_method" title="#physicalDS (instance method)">#<strong>physicalDS</strong>  &#x21d2; Object </a>
     
 
     
@@ -1676,8 +1659,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the physical defense strength of the spell.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1791,7 +1773,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the remaining time in seconds for the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the remaining time in seconds.</p>
 </div></span>
   
 </li>
@@ -1800,7 +1782,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#selfonly-instance_method" title="#selfonly (instance method)">#<strong>selfonly</strong>  &#x21d2; Boolean </a>
+      <a href="#selfonly-instance_method" title="#selfonly (instance method)">#<strong>selfonly</strong>  &#x21d2; Object </a>
     
 
     
@@ -1814,8 +1796,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if the spell is self-only.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1846,7 +1827,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#sorcererTD-instance_method" title="#sorcererTD (instance method)">#<strong>sorcererTD</strong>  &#x21d2; String </a>
+      <a href="#sorcererTD-instance_method" title="#sorcererTD (instance method)">#<strong>sorcererTD</strong>  &#x21d2; Object </a>
     
 
     
@@ -1860,8 +1841,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the sorcerer target damage of the spell.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1929,7 +1909,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the spirit target damage of the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the spirit target defense of the spell.</p>
 </div></span>
   
 </li>
@@ -1961,7 +1941,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#stacks-instance_method" title="#stacks (instance method)">#<strong>stacks</strong>  &#x21d2; Boolean </a>
+      <a href="#stacks-instance_method" title="#stacks (instance method)">#<strong>stacks</strong>  &#x21d2; Object </a>
     
 
     
@@ -1975,8 +1955,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if the spell is stackable.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1984,7 +1963,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#staminaCost-instance_method" title="#staminaCost (instance method)">#<strong>staminaCost</strong>  &#x21d2; String </a>
+      <a href="#staminaCost-instance_method" title="#staminaCost (instance method)">#<strong>staminaCost</strong>  &#x21d2; Object </a>
     
 
     
@@ -1998,8 +1977,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the stamina cost of the spell.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -2030,7 +2008,7 @@ This class manages spell attributes, casting, and effects.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#time_per_formula-instance_method" title="#time_per_formula (instance method)">#<strong>time_per_formula</strong>(options = {})  &#x21d2; Float </a>
+      <a href="#time_per_formula-instance_method" title="#time_per_formula (instance method)">#<strong>time_per_formula</strong>(options = {})  &#x21d2; String </a>
     
 
     
@@ -2113,7 +2091,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the string representation of the spell.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the name of the spell as a string.</p>
 </div></span>
   
 </li>
@@ -2136,21 +2114,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Initializes a new spell from XML data.</p>
+    <p>Initializes a new spell instance.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_spell'>spell</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_xml_spell'>xml_spell</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2163,13 +2133,30 @@ This class manages spell attributes, casting, and effects.</p>
       
       
         &mdash;
-        <div class='inline'><p>The XML element containing spell data.</p>
+        <div class='inline'><p>The XML element representing the spell.</p>
 </div>
       
     </li>
   
 </ul>
 
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>If the XML structure is invalid.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -2177,6 +2164,28 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
 94
 95
 96
@@ -2225,32 +2234,10 @@ This class manages spell attributes, casting, and effects.</p>
 139
 140
 141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164</pre>
+142</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 94</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_xml_spell'>xml_spell</span><span class='rparen'>)</span>
   <span class='ivar'>@num</span> <span class='op'>=</span> <span class='id identifier rubyid_xml_spell'>xml_spell</span><span class='period'>.</span><span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>number</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -2339,7 +2326,7 @@ This class manages spell attributes, casting, and effects.</p>
     <div class="method_details first">
   <h3 class="signature first" id="method_missing-instance_method">
   
-    #<strong>method_missing</strong>(*args)  &#x21d2; <tt>Integer</tt>, <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt> 
+    #<strong>method_missing</strong>(*args)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -2347,7 +2334,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Handles missing methods for bonus and cost retrieval.</p>
+    <p>Handles missing methods for dynamic attribute access.</p>
 
 
   </div>
@@ -2366,7 +2353,7 @@ This class manages spell attributes, casting, and effects.</p>
       
       
         &mdash;
-        <div class='inline'><p>The arguments passed to the method.</p>
+        <div class='inline'><p>The arguments passed to the missing method.</p>
 </div>
       
     </li>
@@ -2379,12 +2366,12 @@ This class manages spell attributes, casting, and effects.</p>
     <li>
       
       
-        <span class='type'>(<tt>Integer</tt>, <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+        <span class='type'>(<tt>Object</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>The value of the bonus or cost, or raises NoMethodError.</p>
+        <div class='inline'><p>The value of the dynamic attribute or raises NoMethodError.</p>
 </div>
       
     </li>
@@ -2397,55 +2384,55 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-980
-981
-982
-983
-984
-985
-986
-987
-988
-989
-990
-991
-992
-993
-994
-995
-996
-997
-998
-999
-1000
-1001
-1002
-1003
-1004
-1005
-1006
-1007
-1008
-1009
-1010
-1011
-1012
-1013
-1014
-1015
-1016
-1017
-1018
-1019
-1020
-1021
-1022
-1023
-1024
-1025</pre>
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950
+951
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+962
+963
+964
+965
+966
+967
+968
+969
+970
+971
+972
+973
+974
+975
+976</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 980</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 931</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='cvar'>@@bonus_list</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -2508,7 +2495,7 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details first">
   <h3 class="signature first" id="active-instance_method">
   
-    #<strong>active</strong>  &#x21d2; <tt>Integer</tt>, ... 
+    #<strong>active</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -2516,160 +2503,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Attributes of the spell.</p>
+    <p>Returns the value of attribute active.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>num - The spell number.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>name - The name of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Time</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>timestamp - The time the spell was created.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgup - The message when the spell is cast.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgdn - The message when the spell ends.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>circle - The circle of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>active - Whether the spell is currently active.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>type - The type of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>cast_proc - The procedure to execute when casting.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>persist_on_death - Whether the spell persists after death.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>availability - The availability of the spell.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -2677,12 +2517,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-40
-41
-42</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_active'>active</span>
   <span class='ivar'>@active</span>
@@ -2697,7 +2537,7 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="availability-instance_method">
   
-    #<strong>availability</strong>  &#x21d2; <tt>Integer</tt>, ...  <span class="extras">(readonly)</span>
+    #<strong>availability</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -2705,160 +2545,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Attributes of the spell.</p>
+    <p>Returns the value of attribute availability.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>num - The spell number.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>name - The name of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Time</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>timestamp - The time the spell was created.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgup - The message when the spell is cast.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgdn - The message when the spell ends.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>circle - The circle of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>active - Whether the spell is currently active.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>type - The type of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>cast_proc - The procedure to execute when casting.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>persist_on_death - Whether the spell persists after death.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>availability - The availability of the spell.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -2866,12 +2559,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-40
-41
-42</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_availability'>availability</span>
   <span class='ivar'>@availability</span>
@@ -2886,7 +2579,7 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="cast_proc-instance_method">
   
-    #<strong>cast_proc</strong>  &#x21d2; <tt>Integer</tt>, ...  <span class="extras">(readonly)</span>
+    #<strong>cast_proc</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -2894,160 +2587,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Attributes of the spell.</p>
+    <p>Returns the value of attribute cast_proc.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>num - The spell number.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>name - The name of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Time</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>timestamp - The time the spell was created.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgup - The message when the spell is cast.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgdn - The message when the spell ends.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>circle - The circle of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>active - Whether the spell is currently active.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>type - The type of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>cast_proc - The procedure to execute when casting.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>persist_on_death - Whether the spell persists after death.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>availability - The availability of the spell.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -3055,12 +2601,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-40
-41
-42</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cast_proc'>cast_proc</span>
   <span class='ivar'>@cast_proc</span>
@@ -3075,7 +2621,7 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="channel-instance_method">
   
-    #<strong>channel</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>channel</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -3083,43 +2629,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Stance and channel attributes for the spell.</p>
+    <p>Returns the value of attribute channel.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>stance - The stance required to cast the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>channel - The channeling status of the spell.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -3127,12 +2643,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-44
-45
-46</pre>
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_channel'>channel</span>
   <span class='ivar'>@channel</span>
@@ -3147,7 +2663,7 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="circle-instance_method">
   
-    #<strong>circle</strong>  &#x21d2; <tt>Integer</tt>, ...  <span class="extras">(readonly)</span>
+    #<strong>circle</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -3155,160 +2671,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Attributes of the spell.</p>
+    <p>Returns the value of attribute circle.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>num - The spell number.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>name - The name of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Time</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>timestamp - The time the spell was created.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgup - The message when the spell is cast.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgdn - The message when the spell ends.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>circle - The circle of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>active - Whether the spell is currently active.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>type - The type of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>cast_proc - The procedure to execute when casting.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>persist_on_death - Whether the spell persists after death.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>availability - The availability of the spell.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -3316,12 +2685,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-40
-41
-42</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_circle'>circle</span>
   <span class='ivar'>@circle</span>
@@ -3336,7 +2705,7 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="msgdn-instance_method">
   
-    #<strong>msgdn</strong>  &#x21d2; <tt>Integer</tt>, ...  <span class="extras">(readonly)</span>
+    #<strong>msgdn</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -3344,160 +2713,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Attributes of the spell.</p>
+    <p>Returns the value of attribute msgdn.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>num - The spell number.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>name - The name of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Time</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>timestamp - The time the spell was created.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgup - The message when the spell is cast.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgdn - The message when the spell ends.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>circle - The circle of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>active - Whether the spell is currently active.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>type - The type of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>cast_proc - The procedure to execute when casting.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>persist_on_death - Whether the spell persists after death.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>availability - The availability of the spell.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -3505,12 +2727,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-40
-41
-42</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_msgdn'>msgdn</span>
   <span class='ivar'>@msgdn</span>
@@ -3525,7 +2747,7 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="msgup-instance_method">
   
-    #<strong>msgup</strong>  &#x21d2; <tt>Integer</tt>, ...  <span class="extras">(readonly)</span>
+    #<strong>msgup</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -3533,160 +2755,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Attributes of the spell.</p>
+    <p>Returns the value of attribute msgup.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>num - The spell number.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>name - The name of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Time</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>timestamp - The time the spell was created.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgup - The message when the spell is cast.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgdn - The message when the spell ends.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>circle - The circle of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>active - Whether the spell is currently active.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>type - The type of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>cast_proc - The procedure to execute when casting.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>persist_on_death - Whether the spell persists after death.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>availability - The availability of the spell.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -3694,12 +2769,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-40
-41
-42</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_msgup'>msgup</span>
   <span class='ivar'>@msgup</span>
@@ -3714,7 +2789,7 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="name-instance_method">
   
-    #<strong>name</strong>  &#x21d2; <tt>Integer</tt>, ...  <span class="extras">(readonly)</span>
+    #<strong>name</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -3722,160 +2797,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Attributes of the spell.</p>
+    <p>Returns the value of attribute name.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>num - The spell number.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>name - The name of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Time</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>timestamp - The time the spell was created.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgup - The message when the spell is cast.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgdn - The message when the spell ends.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>circle - The circle of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>active - Whether the spell is currently active.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>type - The type of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>cast_proc - The procedure to execute when casting.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>persist_on_death - Whether the spell persists after death.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>availability - The availability of the spell.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -3883,12 +2811,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-40
-41
-42</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -3903,7 +2831,7 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="no_incant-instance_method">
   
-    #<strong>no_incant</strong>  &#x21d2; <tt>Integer</tt>, ...  <span class="extras">(readonly)</span>
+    #<strong>no_incant</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -3911,160 +2839,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Attributes of the spell.</p>
+    <p>Returns the value of attribute no_incant.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>num - The spell number.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>name - The name of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Time</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>timestamp - The time the spell was created.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgup - The message when the spell is cast.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgdn - The message when the spell ends.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>circle - The circle of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>active - Whether the spell is currently active.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>type - The type of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>cast_proc - The procedure to execute when casting.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>persist_on_death - Whether the spell persists after death.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>availability - The availability of the spell.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -4072,12 +2853,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-40
-41
-42</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_no_incant'>no_incant</span>
   <span class='ivar'>@no_incant</span>
@@ -4092,7 +2873,7 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="num-instance_method">
   
-    #<strong>num</strong>  &#x21d2; <tt>Integer</tt>, ...  <span class="extras">(readonly)</span>
+    #<strong>num</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -4100,160 +2881,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Attributes of the spell.</p>
+    <p>Returns the value of attribute num.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>num - The spell number.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>name - The name of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Time</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>timestamp - The time the spell was created.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgup - The message when the spell is cast.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgdn - The message when the spell ends.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>circle - The circle of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>active - Whether the spell is currently active.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>type - The type of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>cast_proc - The procedure to execute when casting.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>persist_on_death - Whether the spell persists after death.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>availability - The availability of the spell.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -4261,12 +2895,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-40
-41
-42</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_num'>num</span>
   <span class='ivar'>@num</span>
@@ -4281,7 +2915,7 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="persist_on_death-instance_method">
   
-    #<strong>persist_on_death</strong>  &#x21d2; <tt>Integer</tt>, ...  <span class="extras">(readonly)</span>
+    #<strong>persist_on_death</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -4289,160 +2923,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Attributes of the spell.</p>
+    <p>Returns the value of attribute persist_on_death.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>num - The spell number.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>name - The name of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Time</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>timestamp - The time the spell was created.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgup - The message when the spell is cast.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgdn - The message when the spell ends.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>circle - The circle of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>active - Whether the spell is currently active.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>type - The type of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>cast_proc - The procedure to execute when casting.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>persist_on_death - Whether the spell persists after death.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>availability - The availability of the spell.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -4450,12 +2937,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-40
-41
-42</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_persist_on_death'>persist_on_death</span>
   <span class='ivar'>@persist_on_death</span>
@@ -4470,7 +2957,7 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="real_time-instance_method">
   
-    #<strong>real_time</strong>  &#x21d2; <tt>Integer</tt>, ...  <span class="extras">(readonly)</span>
+    #<strong>real_time</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -4478,160 +2965,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Attributes of the spell.</p>
+    <p>Returns the value of attribute real_time.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>num - The spell number.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>name - The name of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Time</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>timestamp - The time the spell was created.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgup - The message when the spell is cast.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgdn - The message when the spell ends.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>circle - The circle of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>active - Whether the spell is currently active.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>type - The type of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>cast_proc - The procedure to execute when casting.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>persist_on_death - Whether the spell persists after death.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>availability - The availability of the spell.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -4639,12 +2979,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-40
-41
-42</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_real_time'>real_time</span>
   <span class='ivar'>@real_time</span>
@@ -4659,7 +2999,7 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="stance-instance_method">
   
-    #<strong>stance</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>stance</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -4667,43 +3007,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Stance and channel attributes for the spell.</p>
+    <p>Returns the value of attribute stance.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>stance - The stance required to cast the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>channel - The channeling status of the spell.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -4711,12 +3021,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-44
-45
-46</pre>
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stance'>stance</span>
   <span class='ivar'>@stance</span>
@@ -4731,7 +3041,7 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="timestamp-instance_method">
   
-    #<strong>timestamp</strong>  &#x21d2; <tt>Integer</tt>, ...  <span class="extras">(readonly)</span>
+    #<strong>timestamp</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -4739,160 +3049,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Attributes of the spell.</p>
+    <p>Returns the value of attribute timestamp.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>num - The spell number.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>name - The name of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Time</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>timestamp - The time the spell was created.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgup - The message when the spell is cast.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgdn - The message when the spell ends.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>circle - The circle of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>active - Whether the spell is currently active.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>type - The type of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>cast_proc - The procedure to execute when casting.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>persist_on_death - Whether the spell persists after death.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>availability - The availability of the spell.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -4900,12 +3063,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-40
-41
-42</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_timestamp'>timestamp</span>
   <span class='ivar'>@timestamp</span>
@@ -4920,7 +3083,7 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="type-instance_method">
   
-    #<strong>type</strong>  &#x21d2; <tt>Integer</tt>, ...  <span class="extras">(readonly)</span>
+    #<strong>type</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -4928,160 +3091,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Attributes of the spell.</p>
+    <p>Returns the value of attribute type.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>num - The spell number.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>name - The name of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Time</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>timestamp - The time the spell was created.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgup - The message when the spell is cast.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>msgdn - The message when the spell ends.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>circle - The circle of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>active - Whether the spell is currently active.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>type - The type of the spell.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>cast_proc - The procedure to execute when casting.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>persist_on_death - Whether the spell persists after death.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>availability - The availability of the spell.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -5089,12 +3105,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-40
-41
-42</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_type'>type</span>
   <span class='ivar'>@type</span>
@@ -5128,16 +3144,7 @@ This class manages spell attributes, casting, and effects.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_spell'>spell</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='lbracket'>[</span><span class='int'>123</span><span class='rbracket'>]</span>
-<span class='id identifier rubyid_spell'>spell</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fireball</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -5181,20 +3188,20 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-244
-245
-246
-247
-248
-249
-250
-251
-252
-253
-254</pre>
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 244</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 217</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Spell.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -5230,14 +3237,6 @@ This class manages spell attributes, casting, and effects.</p>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_active_spells'>active_spells</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active'>active</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -5262,15 +3261,15 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-260
-261
-262
-263
-264
-265</pre>
+231
+232
+233
+234
+235
+236</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 260</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 231</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active'>active</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Spell.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -5300,15 +3299,7 @@ This class manages spell attributes, casting, and effects.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_is_active'>is_active</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='int'>123</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -5352,13 +3343,13 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-272
-273
-274
-275</pre>
+241
+242
+243
+244</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 272</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 241</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Spell.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -5380,7 +3371,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Gets the after stance value.</p>
+    <p>Retrieves the current after stance setting.</p>
 
 
   </div>
@@ -5411,12 +3402,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-175
-176
-177</pre>
+153
+154
+155</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 175</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 153</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_after_stance'>after_stance</span>
   <span class='cvar'>@@after_stance</span>
@@ -5437,7 +3428,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the after stance value.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the stance to be used after casting.</p>
 
 
   </div>
@@ -5456,7 +3447,7 @@ This class manages spell attributes, casting, and effects.</p>
       
       
         &mdash;
-        <div class='inline'><p>The stance to set after casting.</p>
+        <div class='inline'><p>The stance to set.</p>
 </div>
       
     </li>
@@ -5470,12 +3461,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-169
-170
-171</pre>
+147
+148
+149</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 169</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 147</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_after_stance='>after_stance=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@after_stance</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -5503,14 +3494,6 @@ This class manages spell attributes, casting, and effects.</p>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_down_messages'>down_messages</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dnmsgs'>dnmsgs</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -5535,13 +3518,13 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-299
-300
-301
-302</pre>
+262
+263
+264
+265</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 299</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 262</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dnmsgs'>dnmsgs</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Spell.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -5570,14 +3553,6 @@ This class manages spell attributes, casting, and effects.</p>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_all_spells'>all_spells</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -5602,13 +3577,13 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-281
-282
-283
-284</pre>
+248
+249
+250
+251</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 281</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 248</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Spell.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -5630,21 +3605,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Loads spells from a specified XML file.</p>
+    <p>Loads spell data from a specified XML file.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>path/to/spell_file.xml</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -5659,7 +3626,7 @@ This class manages spell attributes, casting, and effects.</p>
       
       
         &mdash;
-        <div class='inline'><p>The path to the XML file. Defaults to nil.</p>
+        <div class='inline'><p>The path to the XML file. If nil, defaults to &#39;effect-list.xml&#39;.</p>
 </div>
       
     </li>
@@ -5694,7 +3661,7 @@ This class manages spell attributes, casting, and effects.</p>
       
       
         &mdash;
-        <div class='inline'><p>If there is an error during loading.</p>
+        <div class='inline'><p>If there is an error during file operations.</p>
 </div>
       
     </li>
@@ -5707,6 +3674,30 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
 185
 186
 187
@@ -5734,34 +3725,10 @@ This class manages spell attributes, casting, and effects.</p>
 209
 210
 211
-212
-213
-214
-215
-216
-217
-218
-219
-220
-221
-222
-223
-224
-225
-226
-227
-228
-229
-230
-231
-232
-233
-234
-235
-236</pre>
+212</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 185</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 161</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_filename'>filename</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -5845,18 +3812,18 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-688
-689
-690
-691
-692
-693
-694
-695
-696</pre>
+642
+643
+644
+645
+646
+647
+648
+649
+650</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 688</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 642</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lock_cast'>lock_cast</span>
   <span class='id identifier rubyid_script'>script</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Script.html" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current'><span class='object_link'><a href="Script.html#current-class_method" title="Lich::Common::Script.current (method)">current</a></span></span>
@@ -5883,7 +3850,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Unlocks the casting process to allow new casts.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Unlocks the casting process after a spell is cast.</p>
 
 
   </div>
@@ -5897,12 +3864,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-700
-701
-702</pre>
+654
+655
+656</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 700</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 654</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_unlock_cast'>unlock_cast</span>
   <span class='cvar'>@@cast_lock</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Script.html" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current'><span class='object_link'><a href="Script.html#current-class_method" title="Lich::Common::Script.current (method)">current</a></span></span><span class='rparen'>)</span>
@@ -5930,14 +3897,6 @@ This class manages spell attributes, casting, and effects.</p>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_up_messages'>up_messages</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_upmsgs'>upmsgs</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -5962,13 +3921,13 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-290
-291
-292
-293</pre>
+255
+256
+257
+258</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 290</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 255</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_upmsgs'>upmsgs</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Spell.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -5996,7 +3955,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the bonuses associated with the spell.</p>
+    <p>Retrieves the bonus attributes of the spell.</p>
 
 
   </div>
@@ -6014,7 +3973,7 @@ This class manages spell attributes, casting, and effects.</p>
       
       
         &mdash;
-        <div class='inline'><p>A hash of bonuses.</p>
+        <div class='inline'><p>A hash of bonus attributes.</p>
 </div>
       
     </li>
@@ -6027,12 +3986,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-967
-968
-969</pre>
+918
+919
+920</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 967</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 918</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__bonus'>_bonus</span>
   <span class='ivar'>@bonus</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
@@ -6053,7 +4012,7 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the costs associated with the spell.</p>
+    <p>Retrieves the cost attributes of the spell.</p>
 
 
   </div>
@@ -6071,7 +4030,7 @@ This class manages spell attributes, casting, and effects.</p>
       
       
         &mdash;
-        <div class='inline'><p>A hash of costs.</p>
+        <div class='inline'><p>A hash of cost attributes.</p>
 </div>
       
     </li>
@@ -6084,12 +4043,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-973
-974
-975</pre>
+924
+925
+926</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 973</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 924</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__cost'>_cost</span>
   <span class='ivar'>@cost</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
@@ -6141,12 +4100,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-428
-429
-430</pre>
+381
+382
+383</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 428</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 381</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_active?'>active?</span>
   <span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_timeleft'>timeleft</span> <span class='op'>&gt;</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='ivar'>@active</span>
@@ -6188,7 +4147,7 @@ This class manages spell attributes, casting, and effects.</p>
       
       
         &mdash;
-        <div class='inline'><p>Options for checking affordability.</p>
+        <div class='inline'><p>Options for the check, including caster and target.</p>
 </div>
       
     </li>
@@ -6219,30 +4178,30 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-664
-665
-666
-667
-668
-669
-670
-671
-672
-673
-674
-675
-676
-677
-678
-679
-680
-681
-682
-683
-684</pre>
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 664</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 618</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_affordable?'>affordable?</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='comment'># fixme: deal with them dirty bards!
@@ -6302,7 +4261,7 @@ This class manages spell attributes, casting, and effects.</p>
       
       
         &mdash;
-        <div class='inline'><p>Options for checking availability.</p>
+        <div class='inline'><p>Options for the check, including caster and target.</p>
 </div>
       
     </li>
@@ -6333,28 +4292,28 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-579
-580
-581
-582
-583
-584
-585
-586
-587
-588
-589
-590
-591
-592
-593
-594
-595
-596
-597</pre>
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 579</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 532</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_available?'>available?</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_known?'>known?</span>
@@ -6409,7 +4368,7 @@ This class manages spell attributes, casting, and effects.</p>
       
       
         &mdash;
-        <div class='inline'><p>The bolt attack strength.</p>
+        <div class='inline'><p>The bolt attack strength formula.</p>
 </div>
       
     </li>
@@ -6422,10 +4381,10 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-1057</pre>
+1004</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1057</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1004</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_boltAS'>boltAS</span><span class='semicolon'>;</span>        <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bolt_as_formula'>bolt_as_formula</span><span class='semicolon'>;</span>             <span class='kw'>end</span></pre>
     </td>
@@ -6462,7 +4421,7 @@ This class manages spell attributes, casting, and effects.</p>
       
       
         &mdash;
-        <div class='inline'><p>The bolt defense strength.</p>
+        <div class='inline'><p>The bolt defense strength formula.</p>
 </div>
       
     </li>
@@ -6475,10 +4434,10 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-1063</pre>
+1008</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1063</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1008</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_boltDS'>boltDS</span><span class='semicolon'>;</span>        <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bolt_ds_formula'>bolt_ds_formula</span><span class='semicolon'>;</span>             <span class='kw'>end</span></pre>
     </td>
@@ -6489,7 +4448,7 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="cast-instance_method">
   
-    #<strong>cast</strong>(target = nil, results_of_interest = nil, arg_options = nil, force_stance: nil)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>false</tt> 
+    #<strong>cast</strong>(target = nil, results_of_interest = nil, arg_options = nil, force_stance: nil)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt><sup>?</sup> 
   
 
   
@@ -6497,21 +4456,13 @@ This class manages spell attributes, casting, and effects.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Casts the spell on a target.</p>
+    <p>Casts the spell on a target with specified options.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_spell'>spell</span><span class='period'>.</span><span class='id identifier rubyid_cast'>cast</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -6543,7 +4494,7 @@ This class manages spell attributes, casting, and effects.</p>
       
       
         &mdash;
-        <div class='inline'><p>Regex for results to capture.</p>
+        <div class='inline'><p>Regex to match results of interest.</p>
 </div>
       
     </li>
@@ -6590,29 +4541,12 @@ This class manages spell attributes, casting, and effects.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>false</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>The result of the cast or false on failure.</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>If there is an error during casting.</p>
+        <div class='inline'><p>The result of the cast or nil if unsuccessful.</p>
 </div>
       
     </li>
@@ -6625,6 +4559,55 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
 713
 714
 715
@@ -6767,59 +4750,10 @@ This class manages spell attributes, casting, and effects.</p>
 852
 853
 854
-855
-856
-857
-858
-859
-860
-861
-862
-863
-864
-865
-866
-867
-868
-869
-870
-871
-872
-873
-874
-875
-876
-877
-878
-879
-880
-881
-882
-883
-884
-885
-886
-887
-888
-889
-890
-891
-892
-893
-894
-895
-896
-897
-898
-899
-900
-901
-902
-903
-904</pre>
+855</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 713</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 664</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cast'><span class='object_link'><a href="../../top-level-namespace.html#cast-instance_method" title="#cast (method)">cast</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_results_of_interest'>results_of_interest</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_arg_options'>arg_options</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>force_stance:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='comment'># fixme: find multicast in target and check mana for it
@@ -7021,49 +4955,22 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="castProc-instance_method">
   
-    #<strong>castProc</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>castProc</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Retrieves the casting procedure of the spell.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The casting procedure.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-1093</pre>
+1028</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1093</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1028</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_castProc'>castProc</span><span class='semicolon'>;</span>      <span class='ivar'>@cast_proc</span><span class='semicolon'>;</span>                       <span class='kw'>end</span></pre>
     </td>
@@ -7113,12 +5020,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-1029
-1030
-1031</pre>
+980
+981
+982</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1029</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 980</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_circle_name'>circle_name</span>
   <span class='const'>Spells</span><span class='period'>.</span><span class='id identifier rubyid_get_circle_name'>get_circle_name</span><span class='lparen'>(</span><span class='ivar'>@circle</span><span class='rparen'>)</span>
@@ -7131,49 +5038,22 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="circlename-instance_method">
   
-    #<strong>circlename</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>circlename</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Retrieves the name of the spell&#39;s circle.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The name of the circle.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-1102</pre>
+1031</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1102</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1031</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_circlename'>circlename</span><span class='semicolon'>;</span>    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_circle_name'>circle_name</span><span class='semicolon'>;</span>                 <span class='kw'>end</span></pre>
     </td>
@@ -7210,7 +5090,7 @@ This class manages spell attributes, casting, and effects.</p>
       
       
         &mdash;
-        <div class='inline'><p>True if the spell should clear, false otherwise.</p>
+        <div class='inline'><p>True if the spell clears on death, false otherwise.</p>
 </div>
       
     </li>
@@ -7223,12 +5103,12 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-1035
-1036
-1037</pre>
+986
+987
+988</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1035</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 986</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clear_on_death'>clear_on_death</span>
   <span class='op'>!</span><span class='ivar'>@persist_on_death</span>
@@ -7241,49 +5121,22 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="command-instance_method">
   
-    #<strong>command</strong>  &#x21d2; <tt>nil</tt> 
+    #<strong>command</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Retrieves the command associated with the spell.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>Always returns nil.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-1099</pre>
+1030</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1099</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1030</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_command'>command</span><span class='semicolon'>;</span>       <span class='kw'>nil</span><span class='semicolon'>;</span>                              <span class='kw'>end</span></pre>
     </td>
@@ -7320,7 +5173,7 @@ This class manages spell attributes, casting, and effects.</p>
       
       
         &mdash;
-        <div class='inline'><p>The mana cost of the spell.</p>
+        <div class='inline'><p>The mana cost formula.</p>
 </div>
       
     </li>
@@ -7333,10 +5186,10 @@ This class manages spell attributes, casting, and effects.</p>
       <pre class="lines">
 
 
-1045</pre>
+996</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1045</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 996</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cost'>cost</span><span class='semicolon'>;</span>          <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mana_cost_formula'>mana_cost_formula</span>    <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0</span><span class='tstring_end'>&#39;</span></span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -7347,7 +5200,7 @@ This class manages spell attributes, casting, and effects.</p>
       <div class="method_details ">
   <h3 class="signature " id="duration-instance_method">
   
-    #<strong>duration</strong>  &#x21d2; <tt>Float</tt> 
+    #<strong>duration</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
   
 
   
@@ -7369,12 +5222,12 @@ Retrieves the duration of the spell.</p>
     <li>
       
       
-        <span class='type'>(<tt>Float</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>The duration of the spell.</p>
+        <div class='inline'><p>The duration formula.</p>
 </div>
       
     </li>
@@ -7387,10 +5240,10 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-1042</pre>
+993</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1042</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 993</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_duration'>duration</span><span class='semicolon'>;</span>      <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_time_per_formula'>time_per_formula</span><span class='semicolon'>;</span>            <span class='kw'>end</span></pre>
     </td>
@@ -7401,49 +5254,22 @@ Retrieves the duration of the spell.</p>
       <div class="method_details ">
   <h3 class="signature " id="elementalCS-instance_method">
   
-    #<strong>elementalCS</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>elementalCS</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Retrieves the elemental combat strength of the spell.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The elemental combat strength.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-1069</pre>
+1010</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1069</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1010</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_elementalCS'>elementalCS</span><span class='semicolon'>;</span>   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_elemental_cs_formula'>elemental_cs_formula</span><span class='semicolon'>;</span>        <span class='kw'>end</span></pre>
     </td>
@@ -7462,7 +5288,7 @@ Retrieves the duration of the spell.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the elemental target damage of the spell.</p>
+    <p>Retrieves the elemental target defense of the spell.</p>
 
 
   </div>
@@ -7480,7 +5306,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>The elemental target damage.</p>
+        <div class='inline'><p>The elemental target defense formula.</p>
 </div>
       
     </li>
@@ -7493,10 +5319,10 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-1081</pre>
+1020</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1081</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1020</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_elementalTD'>elementalTD</span><span class='semicolon'>;</span>   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_elemental_td_formula'>elemental_td_formula</span><span class='semicolon'>;</span>        <span class='kw'>end</span></pre>
     </td>
@@ -7507,7 +5333,7 @@ Retrieves the duration of the spell.</p>
       <div class="method_details ">
   <h3 class="signature " id="force_cast-instance_method">
   
-    #<strong>force_cast</strong>(target = nil, arg_options = nil, results_of_interest = nil, force_stance: nil)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>false</tt> 
+    #<strong>force_cast</strong>(target = nil, arg_options = nil, results_of_interest = nil, force_stance: nil)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt><sup>?</sup> 
   
 
   
@@ -7515,7 +5341,7 @@ Retrieves the duration of the spell.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Forces the casting of the spell.</p>
+    <p>Forces the casting of the spell regardless of conditions.</p>
 
 
   </div>
@@ -7570,7 +5396,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>Regex for results to capture.</p>
+        <div class='inline'><p>Regex to match results of interest.</p>
 </div>
       
     </li>
@@ -7600,12 +5426,12 @@ Retrieves the duration of the spell.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>false</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>The result of the cast or false on failure.</p>
+        <div class='inline'><p>The result of the cast or nil if unsuccessful.</p>
 </div>
       
     </li>
@@ -7618,17 +5444,17 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-912
-913
-914
-915
-916
-917
-918
-919</pre>
+863
+864
+865
+866
+867
+868
+869
+870</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 912</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 863</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_force_cast'>force_cast</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_arg_options'>arg_options</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_results_of_interest'>results_of_interest</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>force_stance:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_arg_options'>arg_options</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_arg_options'>arg_options</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -7646,7 +5472,7 @@ Retrieves the duration of the spell.</p>
       <div class="method_details ">
   <h3 class="signature " id="force_channel-instance_method">
   
-    #<strong>force_channel</strong>(target = nil, arg_options = nil, results_of_interest = nil, force_stance: nil)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>false</tt> 
+    #<strong>force_channel</strong>(target = nil, arg_options = nil, results_of_interest = nil, force_stance: nil)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt><sup>?</sup> 
   
 
   
@@ -7709,7 +5535,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>Regex for results to capture.</p>
+        <div class='inline'><p>Regex to match results of interest.</p>
 </div>
       
     </li>
@@ -7739,12 +5565,12 @@ Retrieves the duration of the spell.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>false</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>The result of the channel or false on failure.</p>
+        <div class='inline'><p>The result of the channel or nil if unsuccessful.</p>
 </div>
       
     </li>
@@ -7757,17 +5583,17 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-927
-928
-929
-930
-931
-932
-933
-934</pre>
+878
+879
+880
+881
+882
+883
+884
+885</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 927</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 878</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_force_channel'>force_channel</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_arg_options'>arg_options</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_results_of_interest'>results_of_interest</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>force_stance:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_arg_options'>arg_options</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_arg_options'>arg_options</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -7785,7 +5611,7 @@ Retrieves the duration of the spell.</p>
       <div class="method_details ">
   <h3 class="signature " id="force_evoke-instance_method">
   
-    #<strong>force_evoke</strong>(target = nil, arg_options = nil, results_of_interest = nil, force_stance: nil)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>false</tt> 
+    #<strong>force_evoke</strong>(target = nil, arg_options = nil, results_of_interest = nil, force_stance: nil)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt><sup>?</sup> 
   
 
   
@@ -7848,7 +5674,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>Regex for results to capture.</p>
+        <div class='inline'><p>Regex to match results of interest.</p>
 </div>
       
     </li>
@@ -7878,12 +5704,12 @@ Retrieves the duration of the spell.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>false</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>The result of the evoke or false on failure.</p>
+        <div class='inline'><p>The result of the evoke or nil if unsuccessful.</p>
 </div>
       
     </li>
@@ -7896,17 +5722,17 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-942
-943
-944
-945
-946
-947
-948
-949</pre>
+893
+894
+895
+896
+897
+898
+899
+900</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 942</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 893</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_force_evoke'>force_evoke</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_arg_options'>arg_options</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_results_of_interest'>results_of_interest</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>force_stance:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_arg_options'>arg_options</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_arg_options'>arg_options</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -7924,7 +5750,7 @@ Retrieves the duration of the spell.</p>
       <div class="method_details ">
   <h3 class="signature " id="force_incant-instance_method">
   
-    #<strong>force_incant</strong>(arg_options = nil, results_of_interest = nil, force_stance: nil)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>false</tt> 
+    #<strong>force_incant</strong>(arg_options = nil, results_of_interest = nil, force_stance: nil)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt><sup>?</sup> 
   
 
   
@@ -7970,7 +5796,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>Regex for results to capture.</p>
+        <div class='inline'><p>Regex to match results of interest.</p>
 </div>
       
     </li>
@@ -8000,12 +5826,12 @@ Retrieves the duration of the spell.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>false</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>The result of the incantation or false on failure.</p>
+        <div class='inline'><p>The result of the incantation or nil if unsuccessful.</p>
 </div>
       
     </li>
@@ -8018,17 +5844,17 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-956
-957
-958
-959
-960
-961
-962
-963</pre>
+907
+908
+909
+910
+911
+912
+913
+914</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 956</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 907</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_force_incant'>force_incant</span><span class='lparen'>(</span><span class='id identifier rubyid_arg_options'>arg_options</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_results_of_interest'>results_of_interest</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>force_stance:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_arg_options'>arg_options</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_arg_options'>arg_options</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -8046,7 +5872,7 @@ Retrieves the duration of the spell.</p>
       <div class="method_details ">
   <h3 class="signature " id="incant=-instance_method">
   
-    #<strong>incant=</strong>(val)  &#x21d2; <tt>Object</tt> 
+    #<strong>incant=</strong>(val)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -8054,7 +5880,7 @@ Retrieves the duration of the spell.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Sets whether the spell requires an incantation.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets whether the spell requires an incantation.</p>
 
 
   </div>
@@ -8073,7 +5899,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>True if the spell requires an incantation, false otherwise.</p>
+        <div class='inline'><p>True if incantation is required, false otherwise.</p>
 </div>
       
     </li>
@@ -8087,12 +5913,12 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-607
-608
-609</pre>
+561
+562
+563</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 607</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 561</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_incant='>incant=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='ivar'>@no_incant</span> <span class='op'>=</span> <span class='op'>!</span><span class='id identifier rubyid_val'>val</span>
@@ -8144,12 +5970,12 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-601
-602
-603</pre>
+554
+555
+556</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 601</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 554</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_incant?'>incant?</span>
   <span class='op'>!</span><span class='ivar'>@no_incant</span>
@@ -8201,6 +6027,53 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
 515
 516
 517
@@ -8213,57 +6086,10 @@ Retrieves the duration of the spell.</p>
 524
 525
 526
-527
-528
-529
-530
-531
-532
-533
-534
-535
-536
-537
-538
-539
-540
-541
-542
-543
-544
-545
-546
-547
-548
-549
-550
-551
-552
-553
-554
-555
-556
-557
-558
-559
-560
-561
-562
-563
-564
-565
-566
-567
-568
-569
-570
-571
-572
-573
-574</pre>
+527</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 515</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 468</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_known?'>known?</span>
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone/SK.html" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone/SK.html" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_known?'><span class='object_link'><a href="../Gemstone/SK.html#known%3F-class_method" title="Lich::Gemstone::SK.known? (method)">known?</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
@@ -8333,49 +6159,22 @@ Retrieves the duration of the spell.</p>
       <div class="method_details ">
   <h3 class="signature " id="manaCost-instance_method">
   
-    #<strong>manaCost</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>manaCost</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Retrieves the mana cost of the spell (deprecated).</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The mana cost of the spell.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-1048</pre>
+997</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1048</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 997</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_manaCost'>manaCost</span><span class='semicolon'>;</span>      <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mana_cost_formula'>mana_cost_formula</span>    <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0</span><span class='tstring_end'>&#39;</span></span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -8415,7 +6214,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>Options for checking duration.</p>
+        <div class='inline'><p>Options for the check, including caster and target.</p>
 </div>
       
     </li>
@@ -8433,7 +6232,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>The maximum duration of the spell.</p>
+        <div class='inline'><p>The maximum duration in minutes.</p>
 </div>
       
     </li>
@@ -8446,24 +6245,24 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-620
-621
-622
-623
-624
-625
-626
-627
-628
-629
-630
-631
-632
-633
-634</pre>
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 620</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 574</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_max_duration'>max_duration</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:caster</span><span class='rbracket'>]</span> <span class='kw'>and</span> <span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:caster</span><span class='rbracket'>]</span> <span class='op'>!~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:self|</span><span class='embexpr_beg'>#{</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>)$</span><span class='regexp_end'>/i</span></span><span class='rparen'>)</span>
@@ -8488,49 +6287,22 @@ Retrieves the duration of the spell.</p>
       <div class="method_details ">
   <h3 class="signature " id="mentalCS-instance_method">
   
-    #<strong>mentalCS</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>mentalCS</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Retrieves the mental combat strength of the spell.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The mental combat strength.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-1072</pre>
+1011</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1072</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1011</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_mentalCS'>mentalCS</span><span class='semicolon'>;</span>      <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mental_cs_formula'>mental_cs_formula</span><span class='semicolon'>;</span>           <span class='kw'>end</span></pre>
     </td>
@@ -8549,7 +6321,7 @@ Retrieves the duration of the spell.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the mental target damage of the spell.</p>
+    <p>Retrieves the mental target defense of the spell.</p>
 
 
   </div>
@@ -8567,7 +6339,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>The mental target damage.</p>
+        <div class='inline'><p>The mental target defense formula.</p>
 </div>
       
     </li>
@@ -8580,10 +6352,10 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-1084</pre>
+1023</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1084</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1023</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_mentalTD'>mentalTD</span><span class='semicolon'>;</span>      <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mental_td_formula'>mental_td_formula</span><span class='semicolon'>;</span>           <span class='kw'>end</span></pre>
     </td>
@@ -8602,21 +6374,13 @@ Retrieves the duration of the spell.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the remaining time in minutes for the spell.</p>
+    <p>Retrieves the remaining time in minutes.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_minutes_left'>minutes_left</span> <span class='op'>=</span> <span class='id identifier rubyid_spell'>spell</span><span class='period'>.</span><span class='id identifier rubyid_minsleft'>minsleft</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -8628,7 +6392,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>The remaining time in minutes.</p>
+        <div class='inline'><p>The time left in minutes.</p>
 </div>
       
     </li>
@@ -8641,12 +6405,12 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-407
-408
-409</pre>
+362
+363
+364</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 407</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 362</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_minsleft'>minsleft</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_timeleft'>timeleft</span>
@@ -8688,7 +6452,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>Options for checking multicastability.</p>
+        <div class='inline'><p>Options for the check, including caster and target.</p>
 </div>
       
     </li>
@@ -8719,32 +6483,32 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-489
-490
-491
-492
-493
-494
-495
-496
-497
-498
-499
-500
-501
-502
-503
-504
-505
-506
-507
-508
-509
-510
-511</pre>
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 489</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 442</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_multicastable?'>multicastable?</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:caster</span><span class='rbracket'>]</span> <span class='kw'>and</span> <span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:caster</span><span class='rbracket'>]</span> <span class='op'>!~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:self|</span><span class='embexpr_beg'>#{</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>)$</span><span class='regexp_end'>/i</span></span><span class='rparen'>)</span>
@@ -8777,49 +6541,22 @@ Retrieves the duration of the spell.</p>
       <div class="method_details ">
   <h3 class="signature " id="physicalAS-instance_method">
   
-    #<strong>physicalAS</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>physicalAS</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Retrieves the physical attack strength of the spell.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The physical attack strength.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-1060</pre>
+1005</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1060</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1005</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_physicalAS'>physicalAS</span><span class='semicolon'>;</span>    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_physical_as_formula'>physical_as_formula</span><span class='semicolon'>;</span>         <span class='kw'>end</span></pre>
     </td>
@@ -8830,49 +6567,22 @@ Retrieves the duration of the spell.</p>
       <div class="method_details ">
   <h3 class="signature " id="physicalDS-instance_method">
   
-    #<strong>physicalDS</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>physicalDS</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Retrieves the physical defense strength of the spell.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The physical defense strength.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-1066</pre>
+1009</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1066</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1009</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_physicalDS'>physicalDS</span><span class='semicolon'>;</span>    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_physical_ds_formula'>physical_ds_formula</span><span class='semicolon'>;</span>         <span class='kw'>end</span></pre>
     </td>
@@ -8905,13 +6615,13 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-650
-651
-652
-653</pre>
+604
+605
+606
+607</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 650</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 604</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_putdown'>putdown</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_timeleft'>timeleft</span> <span class='op'>=</span> <span class='int'>0</span>
@@ -8954,7 +6664,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>Options for activating the spell.</p>
+        <div class='inline'><p>Options for the activation, including caster and target.</p>
 </div>
       
     </li>
@@ -8968,17 +6678,17 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-639
-640
-641
-642
-643
-644
-645
-646</pre>
+593
+594
+595
+596
+597
+598
+599
+600</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 639</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 593</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_putup'>putup</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_stackable?'>stackable?</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -9025,7 +6735,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>Options for checking refreshability.</p>
+        <div class='inline'><p>Options for the check, including caster and target.</p>
 </div>
       
     </li>
@@ -9056,32 +6766,32 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-462
-463
-464
-465
-466
-467
-468
-469
-470
-471
-472
-473
-474
-475
-476
-477
-478
-479
-480
-481
-482
-483
-484</pre>
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 462</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 415</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_refreshable?'>refreshable?</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:caster</span><span class='rbracket'>]</span> <span class='kw'>and</span> <span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:caster</span><span class='rbracket'>]</span> <span class='op'>!~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:self|</span><span class='embexpr_beg'>#{</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>)$</span><span class='regexp_end'>/i</span></span><span class='rparen'>)</span>
@@ -9153,12 +6863,12 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-657
-658
-659</pre>
+611
+612
+613</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 657</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 611</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remaining'>remaining</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_timeleft'>timeleft</span><span class='period'>.</span><span class='id identifier rubyid_as_time'>as_time</span>
@@ -9179,21 +6889,13 @@ Retrieves the duration of the spell.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the remaining time in seconds for the spell.</p>
+    <p>Retrieves the remaining time in seconds.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_seconds_left'>seconds_left</span> <span class='op'>=</span> <span class='id identifier rubyid_spell'>spell</span><span class='period'>.</span><span class='id identifier rubyid_secsleft'>secsleft</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -9205,7 +6907,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>The remaining time in seconds.</p>
+        <div class='inline'><p>The time left in seconds.</p>
 </div>
       
     </li>
@@ -9218,12 +6920,12 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-415
-416
-417</pre>
+368
+369
+370</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 415</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 368</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_secsleft'>secsleft</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_timeleft'>timeleft</span> <span class='op'>*</span> <span class='int'>60</span>
@@ -9236,49 +6938,22 @@ Retrieves the duration of the spell.</p>
       <div class="method_details ">
   <h3 class="signature " id="selfonly-instance_method">
   
-    #<strong>selfonly</strong>  &#x21d2; <tt>Boolean</tt> 
+    #<strong>selfonly</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Checks if the spell is self-only.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>True if the spell is self-only, false otherwise.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-1105</pre>
+1032</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1105</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1032</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_selfonly'>selfonly</span><span class='semicolon'>;</span>      <span class='ivar'>@availability</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>all</span><span class='tstring_end'>&#39;</span></span><span class='semicolon'>;</span>           <span class='kw'>end</span></pre>
     </td>
@@ -9315,7 +6990,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>The sorcerer combat strength.</p>
+        <div class='inline'><p>The sorcerer combat strength formula.</p>
 </div>
       
     </li>
@@ -9328,10 +7003,10 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-1078</pre>
+1017</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1078</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1017</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sorcererCS'>sorcererCS</span><span class='semicolon'>;</span>    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sorcerer_cs_formula'>sorcerer_cs_formula</span><span class='semicolon'>;</span>         <span class='kw'>end</span></pre>
     </td>
@@ -9342,49 +7017,22 @@ Retrieves the duration of the spell.</p>
       <div class="method_details ">
   <h3 class="signature " id="sorcererTD-instance_method">
   
-    #<strong>sorcererTD</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>sorcererTD</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Retrieves the sorcerer target damage of the spell.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The sorcerer target damage.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-1090</pre>
+1027</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1090</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1027</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sorcererTD'>sorcererTD</span><span class='semicolon'>;</span>    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sorcerer_td_formula'>sorcerer_td_formula</span><span class='semicolon'>;</span>         <span class='kw'>end</span></pre>
     </td>
@@ -9421,7 +7069,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>The spirit cost of the spell.</p>
+        <div class='inline'><p>The spirit cost formula.</p>
 </div>
       
     </li>
@@ -9434,10 +7082,10 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-1051</pre>
+1000</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1051</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1000</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_spiritCost'>spiritCost</span><span class='semicolon'>;</span>    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_spirit_cost_formula'>spirit_cost_formula</span>  <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0</span><span class='tstring_end'>&#39;</span></span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -9474,7 +7122,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>The spirit combat strength.</p>
+        <div class='inline'><p>The spirit combat strength formula.</p>
 </div>
       
     </li>
@@ -9487,10 +7135,10 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-1075</pre>
+1014</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1075</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1014</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_spiritCS'>spiritCS</span><span class='semicolon'>;</span>      <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_spirit_cs_formula'>spirit_cs_formula</span><span class='semicolon'>;</span>           <span class='kw'>end</span></pre>
     </td>
@@ -9509,7 +7157,7 @@ Retrieves the duration of the spell.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the spirit target damage of the spell.</p>
+    <p>Retrieves the spirit target defense of the spell.</p>
 
 
   </div>
@@ -9527,7 +7175,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>The spirit target damage.</p>
+        <div class='inline'><p>The spirit target defense formula.</p>
 </div>
       
     </li>
@@ -9540,10 +7188,10 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-1087</pre>
+1026</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1087</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1026</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_spiritTD'>spiritTD</span><span class='semicolon'>;</span>      <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_spirit_td_formula'>spirit_td_formula</span><span class='semicolon'>;</span>           <span class='kw'>end</span></pre>
     </td>
@@ -9583,7 +7231,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>Options for checking stackability.</p>
+        <div class='inline'><p>Options for the check, including caster and target.</p>
 </div>
       
     </li>
@@ -9614,32 +7262,32 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-435
-436
-437
-438
-439
-440
-441
-442
-443
-444
-445
-446
-447
-448
-449
-450
-451
-452
-453
-454
-455
-456
-457</pre>
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 435</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 388</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stackable?'>stackable?</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:caster</span><span class='rbracket'>]</span> <span class='kw'>and</span> <span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:caster</span><span class='rbracket'>]</span> <span class='op'>!~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:self|</span><span class='embexpr_beg'>#{</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>)$</span><span class='regexp_end'>/i</span></span><span class='rparen'>)</span>
@@ -9672,49 +7320,22 @@ Retrieves the duration of the spell.</p>
       <div class="method_details ">
   <h3 class="signature " id="stacks-instance_method">
   
-    #<strong>stacks</strong>  &#x21d2; <tt>Boolean</tt> 
+    #<strong>stacks</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Checks if the spell is stackable.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>True if the spell is stackable, false otherwise.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-1096</pre>
+1029</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1096</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1029</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stacks'>stacks</span><span class='semicolon'>;</span>        <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_stackable?'>stackable?</span>                   <span class='kw'>end</span></pre>
     </td>
@@ -9725,49 +7346,22 @@ Retrieves the duration of the spell.</p>
       <div class="method_details ">
   <h3 class="signature " id="staminaCost-instance_method">
   
-    #<strong>staminaCost</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>staminaCost</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Retrieves the stamina cost of the spell.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The stamina cost of the spell.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-1054</pre>
+1001</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 1054</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 1001</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_staminaCost'>staminaCost</span><span class='semicolon'>;</span>   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_stamina_cost_formula'>stamina_cost_formula</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0</span><span class='tstring_end'>&#39;</span></span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -9792,15 +7386,7 @@ Retrieves the duration of the spell.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_time'>time</span> <span class='op'>=</span> <span class='id identifier rubyid_spell'>spell</span><span class='period'>.</span><span class='id identifier rubyid_time_per'>time_per</span><span class='lparen'>(</span><span class='label'>caster:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>self</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -9815,7 +7401,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>Options for calculating time.</p>
+        <div class='inline'><p>Options for the calculation.</p>
 </div>
       
     </li>
@@ -9833,7 +7419,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>The calculated time.</p>
+        <div class='inline'><p>The calculated time in seconds.</p>
 </div>
       
     </li>
@@ -9846,19 +7432,19 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-366
-367
-368
-369
-370
-371
-372
-373
-374
-375</pre>
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 366</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 325</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_time_per'>time_per</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_formula'>formula</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_time_per_formula'>time_per_formula</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -9878,7 +7464,7 @@ Retrieves the duration of the spell.</p>
       <div class="method_details ">
   <h3 class="signature " id="time_per_formula-instance_method">
   
-    #<strong>time_per_formula</strong>(options = {})  &#x21d2; <tt>Float</tt> 
+    #<strong>time_per_formula</strong>(options = {})  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
   
 
   
@@ -9892,15 +7478,7 @@ Retrieves the duration of the spell.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_time'>time</span> <span class='op'>=</span> <span class='id identifier rubyid_spell'>spell</span><span class='period'>.</span><span class='id identifier rubyid_time_per_formula'>time_per_formula</span><span class='lparen'>(</span><span class='label'>caster:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>self</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -9915,7 +7493,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>Options for calculating time.</p>
+        <div class='inline'><p>Options for the calculation, including caster and target.</p>
 </div>
       
     </li>
@@ -9928,12 +7506,12 @@ Retrieves the duration of the spell.</p>
     <li>
       
       
-        <span class='type'>(<tt>Float</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>The calculated time.</p>
+        <div class='inline'><p>The formula for time calculation.</p>
 </div>
       
     </li>
@@ -9946,6 +7524,45 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
 309
 310
 311
@@ -9957,49 +7574,10 @@ Retrieves the duration of the spell.</p>
 317
 318
 319
-320
-321
-322
-323
-324
-325
-326
-327
-328
-329
-330
-331
-332
-333
-334
-335
-336
-337
-338
-339
-340
-341
-342
-343
-344
-345
-346
-347
-348
-349
-350
-351
-352
-353
-354
-355
-356
-357
-358
-359</pre>
+320</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 309</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 270</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_time_per_formula'>time_per_formula</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_activator_modifier'>activator_modifier</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tap</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='float'>0.5</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rub</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='int'>1</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wave</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='int'>1</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>raise</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='float'>1.33</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>drink</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bite</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>eat</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gobble</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='int'>0</span> <span class='rbrace'>}</span>
@@ -10075,14 +7653,6 @@ Retrieves the duration of the spell.</p>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_remaining_time'>remaining_time</span> <span class='op'>=</span> <span class='id identifier rubyid_spell'>spell</span><span class='period'>.</span><span class='id identifier rubyid_timeleft'>timeleft</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -10094,7 +7664,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>The time left for the spell.</p>
+        <div class='inline'><p>The time left in minutes.</p>
 </div>
       
     </li>
@@ -10107,22 +7677,22 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-389
-390
-391
-392
-393
-394
-395
-396
-397
-398
-399
-400
-401</pre>
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 389</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 346</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_timeleft'>timeleft</span>
   <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_time_per_formula'>time_per_formula</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Spellsong.timeleft</span><span class='tstring_end'>&#39;</span></span>
@@ -10172,7 +7742,7 @@ Retrieves the duration of the spell.</p>
       
       
         &mdash;
-        <div class='inline'><p>The time left for the spell.</p>
+        <div class='inline'><p>The time left in minutes.</p>
 </div>
       
     </li>
@@ -10186,13 +7756,13 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-380
-381
-382
-383</pre>
+339
+340
+341
+342</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 380</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 339</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_timeleft='>timeleft=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='ivar'>@timeleft</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -10214,7 +7784,7 @@ Retrieves the duration of the spell.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the string representation of the spell.</p>
+    <p>Returns the name of the spell as a string.</p>
 
 
   </div>
@@ -10245,12 +7815,12 @@ Retrieves the duration of the spell.</p>
       <pre class="lines">
 
 
-613
-614
-615</pre>
+567
+568
+569</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'spell.rb', line 613</span>
+      <pre class="code"><span class="info file"># File 'spell.rb', line 567</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
   <span class='ivar'>@name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -10265,7 +7835,7 @@ Retrieves the duration of the spell.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:54 2025 by
+  Generated on Fri Nov  7 03:59:29 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

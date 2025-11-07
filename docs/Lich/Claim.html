@@ -325,7 +325,7 @@ This module manages the state of claimed rooms and handles synchronization.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Acquires the lock for the Claim module.</p>
+    <span class="summary_desc"><div class='inline'><p>Acquires the lock for the Claim module if it is not already owned.</p>
 </div></span>
   
 </li>
@@ -440,7 +440,7 @@ This module manages the state of claimed rooms and handles synchronization.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Releases the lock for the Claim module.</p>
+    <span class="summary_desc"><div class='inline'><p>Releases the lock for the Claim module if it is owned.</p>
 </div></span>
   
 </li>
@@ -505,7 +505,7 @@ This module manages the state of claimed rooms and handles synchronization.</p>
       
       
         &mdash;
-        <div class='inline'><p>True if the room has been checked, false otherwise.</p>
+        <div class='inline'><p>True if the room has been checked.</p>
 </div>
       
     </li>
@@ -518,12 +518,12 @@ This module manages the state of claimed rooms and handles synchronization.</p>
       <pre class="lines">
 
 
-68
-69
-70</pre>
+66
+67
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'claim.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'claim.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_checked?'>checked?</span><span class='lparen'>(</span><span class='id identifier rubyid_room'>room</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_room_id'>room_id</span> <span class='op'>==</span> <span class='lparen'>(</span><span class='id identifier rubyid_room'>room</span> <span class='op'>||</span> <span class='ivar'>@last_room</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -592,7 +592,7 @@ This module manages the state of claimed rooms and handles synchronization.</p>
       
       
         &mdash;
-        <div class='inline'><p>If there is an issue claiming the room.</p>
+        <div class='inline'><p>If the room cannot be claimed.</p>
 </div>
       
     </li>
@@ -725,17 +725,17 @@ This module manages the state of claimed rooms and handles synchronization.</p>
       <pre class="lines">
 
 
+117
+118
 119
 120
 121
 122
 123
-124
-125
-126</pre>
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'claim.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'claim.rb', line 117</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_clustered'>clustered</span>
   <span class='kw'>begin</span>
@@ -779,7 +779,7 @@ This module manages the state of claimed rooms and handles synchronization.</p>
       
       
         &mdash;
-        <div class='inline'><p>True if this instance is the owner of the claim, false otherwise.</p>
+        <div class='inline'><p>True if this instance is the current owner of the claim.</p>
 </div>
       
     </li>
@@ -792,12 +792,12 @@ This module manages the state of claimed rooms and handles synchronization.</p>
       <pre class="lines">
 
 
-61
-62
-63</pre>
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'claim.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'claim.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_current?'>current?</span>
   <span class='const'><span class='object_link'><a href="#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span> <span class='ivar'>@mine</span><span class='period'>.</span><span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -829,7 +829,7 @@ This module manages the state of claimed rooms and handles synchronization.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Retrieving claim info</p>
+        <h5 class="example_title"><div class='inline'><p>Getting claim info</p>
 </div></h5>
       
       <pre class="example code"><code><span class='id identifier rubyid_puts'>puts</span> <span class='const'><span class='object_link'><a href="" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span></code></pre>
@@ -860,6 +860,8 @@ This module manages the state of claimed rooms and handles synchronization.</p>
       <pre class="lines">
 
 
+74
+75
 76
 77
 78
@@ -869,12 +871,10 @@ This module manages the state of claimed rooms and handles synchronization.</p>
 82
 83
 84
-85
-86
-87</pre>
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'claim.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'claim.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span>
   <span class='id identifier rubyid_rows'>rows</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>XMLData.room_id</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_room_id'>room_id</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Current room according to the XMLData</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
@@ -961,14 +961,7 @@ This module manages the state of claimed rooms and handles synchronization.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'><p>This method will only lock if the lock is not already owned.</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p><p>Acquires the lock for the Claim module.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Acquires the lock for the Claim module if it is not already owned.</p>
 
 
   </div>
@@ -982,12 +975,12 @@ This module manages the state of claimed rooms and handles synchronization.</p>
       <pre class="lines">
 
 
+47
 48
-49
-50</pre>
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'claim.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'claim.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_lock'>lock</span>
   <span class='const'><span class='object_link'><a href="#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lock'>lock</span> <span class='kw'>if</span> <span class='op'>!</span><span class='const'><span class='object_link'><a href="#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_owned?'>owned?</span>
@@ -1039,6 +1032,8 @@ This module manages the state of claimed rooms and handles synchronization.</p>
       <pre class="lines">
 
 
+101
+102
 103
 104
 105
@@ -1049,12 +1044,10 @@ This module manages the state of claimed rooms and handles synchronization.</p>
 110
 111
 112
-113
-114
-115</pre>
+113</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'claim.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'claim.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_members'>members</span>
   <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='kw'>defined?</span> <span class='const'>Group</span>
@@ -1103,7 +1096,7 @@ This module manages the state of claimed rooms and handles synchronization.</p>
       
       
         &mdash;
-        <div class='inline'><p>True if this instance is the owner of the claim, false otherwise.</p>
+        <div class='inline'><p>True if this instance is the owner of the claim.</p>
 </div>
       
     </li>
@@ -1116,12 +1109,12 @@ This module manages the state of claimed rooms and handles synchronization.</p>
       <pre class="lines">
 
 
-91
-92
-93</pre>
+89
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'claim.rb', line 91</span>
+      <pre class="code"><span class="info file"># File 'claim.rb', line 89</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mine?'>mine?</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_current?'>current?</span>
@@ -1160,7 +1153,7 @@ This module manages the state of claimed rooms and handles synchronization.</p>
       
       
         &mdash;
-        <div class='inline'><p>An array of character names that are not claimed.</p>
+        <div class='inline'><p>An array of character names.</p>
 </div>
       
     </li>
@@ -1173,12 +1166,12 @@ This module manages the state of claimed rooms and handles synchronization.</p>
       <pre class="lines">
 
 
-97
-98
-99</pre>
+95
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'claim.rb', line 97</span>
+      <pre class="code"><span class="info file"># File 'claim.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_others'>others</span>
   <span class='ivar'>@others</span>
@@ -1262,7 +1255,7 @@ This module manages the state of claimed rooms and handles synchronization.</p>
       
       
         &mdash;
-        <div class='inline'><p>If there is an error during parsing.</p>
+        <div class='inline'><p>If an error occurs during parsing.</p>
 </div>
       
     </li>
@@ -1275,6 +1268,8 @@ This module manages the state of claimed rooms and handles synchronization.</p>
       <pre class="lines">
 
 
+133
+134
 135
 136
 137
@@ -1293,12 +1288,10 @@ This module manages the state of claimed rooms and handles synchronization.</p>
 150
 151
 152
-153
-154
-155</pre>
+153</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'claim.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'claim.rb', line 133</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parser_handle'>parser_handle</span><span class='lparen'>(</span><span class='id identifier rubyid_nav_rm'>nav_rm</span><span class='comma'>,</span> <span class='id identifier rubyid_pcs'>pcs</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="../top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Claim handled </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_nav_rm'>nav_rm</span><span class='embexpr_end'>}</span><span class='tstring_content'> with xmlparser</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='gvar'>$claim_debug</span>
@@ -1337,14 +1330,7 @@ This module manages the state of claimed rooms and handles synchronization.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'><p>This method will only unlock if the lock is currently owned.</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p><p>Releases the lock for the Claim module.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Releases the lock for the Claim module if it is owned.</p>
 
 
   </div>
@@ -1358,12 +1344,12 @@ This module manages the state of claimed rooms and handles synchronization.</p>
       <pre class="lines">
 
 
-55
-56
-57</pre>
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'claim.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'claim.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_unlock'>unlock</span>
   <span class='const'><span class='object_link'><a href="#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_unlock'>unlock</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_owned?'>owned?</span>
@@ -1378,7 +1364,7 @@ This module manages the state of claimed rooms and handles synchronization.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:49 2025 by
+  Generated on Fri Nov  7 03:59:23 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

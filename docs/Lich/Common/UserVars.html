@@ -123,7 +123,7 @@ This module allows for listing, adding, changing, and deleting user variables.</
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#add-class_method" title="add (class method)">.<strong>add</strong>(var_name, value, _t = nil)  &#x21d2; void </a>
+      <a href="#add-class_method" title="add (class method)">.<strong>add</strong>(var_name, value, _t = nil)  &#x21d2; String </a>
     
 
     
@@ -146,7 +146,7 @@ This module allows for listing, adding, changing, and deleting user variables.</
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#change-class_method" title="change (class method)">.<strong>change</strong>(var_name, value, _t = nil)  &#x21d2; void </a>
+      <a href="#change-class_method" title="change (class method)">.<strong>change</strong>(var_name, value, _t = nil)  &#x21d2; Object </a>
     
 
     
@@ -169,7 +169,7 @@ This module allows for listing, adding, changing, and deleting user variables.</
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#delete-class_method" title="delete (class method)">.<strong>delete</strong>(var_name, _t = nil)  &#x21d2; void </a>
+      <a href="#delete-class_method" title="delete (class method)">.<strong>delete</strong>(var_name, _t = nil)  &#x21d2; nil </a>
     
 
     
@@ -293,7 +293,7 @@ This module allows for listing, adding, changing, and deleting user variables.</
       <div class="method_details first">
   <h3 class="signature first" id="add-class_method">
   
-    .<strong>add</strong>(var_name, value, _t = nil)  &#x21d2; <tt>void</tt> 
+    .<strong>add</strong>(var_name, value, _t = nil)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
   
 
   
@@ -301,14 +301,7 @@ This module allows for listing, adding, changing, and deleting user variables.</
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'><p>This method assumes the variable is a comma-separated string.</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p><p>Adds a value to a user variable, appending it to the existing value.</p>
+    <p>Adds a value to a user variable, appending it to the existing value.</p>
 
 
   </div>
@@ -366,6 +359,23 @@ This module allows for listing, adding, changing, and deleting user variables.</
   
 </ul>
 
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The updated value of the variable.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -373,12 +383,12 @@ This module allows for listing, adding, changing, and deleting user variables.</
       <pre class="lines">
 
 
+38
 39
-40
-41</pre>
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'uservars.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'uservars.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='id identifier rubyid_var_name'>var_name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid__t'>_t</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="Vars.html" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_var_name'>var_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Vars.html" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_var_name'>var_name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -391,7 +401,7 @@ This module allows for listing, adding, changing, and deleting user variables.</
       <div class="method_details ">
   <h3 class="signature " id="change-class_method">
   
-    .<strong>change</strong>(var_name, value, _t = nil)  &#x21d2; <tt>void</tt> 
+    .<strong>change</strong>(var_name, value, _t = nil)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -399,7 +409,7 @@ This module allows for listing, adding, changing, and deleting user variables.</
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Changes the value of a user variable.</p>
+    <p>Changes the value of a user variable.</p>
 
 
   </div>
@@ -457,6 +467,23 @@ This module allows for listing, adding, changing, and deleting user variables.</
   
 </ul>
 
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The new value of the variable.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -482,7 +509,7 @@ This module allows for listing, adding, changing, and deleting user variables.</
       <div class="method_details ">
   <h3 class="signature " id="delete-class_method">
   
-    .<strong>delete</strong>(var_name, _t = nil)  &#x21d2; <tt>void</tt> 
+    .<strong>delete</strong>(var_name, _t = nil)  &#x21d2; <tt>nil</tt> 
   
 
   
@@ -490,7 +517,7 @@ This module allows for listing, adding, changing, and deleting user variables.</
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Deletes a user variable by setting it to nil.</p>
+    <p>Deletes a user variable by setting it to nil.</p>
 
 
   </div>
@@ -533,6 +560,23 @@ This module allows for listing, adding, changing, and deleting user variables.</
   
 </ul>
 
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Always returns nil.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -540,12 +584,12 @@ This module allows for listing, adding, changing, and deleting user variables.</
       <pre class="lines">
 
 
+46
 47
-48
-49</pre>
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'uservars.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'uservars.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_var_name'>var_name</span><span class='comma'>,</span> <span class='id identifier rubyid__t'>_t</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="Vars.html" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_var_name'>var_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -654,12 +698,12 @@ This module allows for listing, adding, changing, and deleting user variables.</
       <pre class="lines">
 
 
+58
 59
-60
-61</pre>
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'uservars.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'uservars.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list_char'>list_char</span>
   <span class='const'><span class='object_link'><a href="Vars.html" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list'><span class='object_link'><a href="Vars.html#list-class_method" title="Lich::Common::Vars.list (method)">list</a></span></span>
@@ -698,7 +742,7 @@ This module allows for listing, adding, changing, and deleting user variables.</
       
       
         &mdash;
-        <div class='inline'><p>An empty array, as global variables are not implemented.</p>
+        <div class='inline'><p>An empty array, as no global variables are implemented.</p>
 </div>
       
     </li>
@@ -711,12 +755,12 @@ This module allows for listing, adding, changing, and deleting user variables.</
       <pre class="lines">
 
 
+52
 53
-54
-55</pre>
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'uservars.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'uservars.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::UserVars (module)">UserVars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list_global'>list_global</span>
   <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -807,7 +851,7 @@ This module allows for listing, adding, changing, and deleting user variables.</
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:51 2025 by
+  Generated on Fri Nov  7 03:59:25 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

@@ -146,6 +146,10 @@ and dynamic method access for individual sigils.</p>
 Some fields (e.g., <code>:summary</code>, <code>:duration</code>) may be defined as lambdas for dynamic content.
 These are automatically resolved at access time via <code>Society.resolve</code>.</p>
 
+<p>Metadata for each Sigil from the Guardians of Sunfist, including rank, costs, duration, etc.
+Some fields (e.g., <code>:summary</code>, <code>:duration</code>) may be defined as lambdas for dynamic content.
+These are automatically resolved at access time via <code>Society.resolve</code>.</p>
+
 
   </div>
 </div>
@@ -762,9 +766,6 @@ of all Guardians of Sunfist sigils. Returns the corresponding sigil metadata if 
       <pre class="lines">
 
 
-225
-226
-227
 228
 229
 230
@@ -777,10 +778,13 @@ of all Guardians of Sunfist sigils. Returns the corresponding sigil metadata if 
 237
 238
 239
-240</pre>
+240
+241
+242
+243</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 225</span>
+      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 228</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_lookup'>lookup</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Society.html" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lookup'><span class='object_link'><a href="../Society.html#lookup-class_method" title="Lich::Gemstone::Society.lookup (method)">lookup</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_sigil_lookups'>sigil_lookups</span><span class='rparen'>)</span>
@@ -907,10 +911,6 @@ based on available stamina and mana.</p>
       <pre class="lines">
 
 
-351
-352
-353
-354
 355
 356
 357
@@ -925,10 +925,14 @@ based on available stamina and mana.</p>
 366
 367
 368
-369</pre>
+369
+370
+371
+372
+373</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 351</span>
+      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 355</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_affordable?'>affordable?</span><span class='lparen'>(</span><span class='id identifier rubyid_sigil_name'>sigil_name</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_member?'>member?</span>
@@ -978,7 +982,7 @@ based on available stamina and mana.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Getting all sigil metadata</p>
+        <h5 class="example_title"><div class='inline'><p>Getting all sigils</p>
 </div></h5>
       
       <pre class="example code"><code><span class='id identifier rubyid_all_sigils'>all_sigils</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Societies::GuardiansOfSunfist (class)">GuardiansOfSunfist</a></span></span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span></code></pre>
@@ -1022,12 +1026,12 @@ based on available stamina and mana.</p>
       <pre class="lines">
 
 
-404
-405
-406</pre>
+409
+410
+411</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 404</span>
+      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 409</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
   <span class='cvar'>@@sunfist_sigils</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_entry'>entry</span><span class='op'>|</span> <span class='id identifier rubyid_entry'>entry</span><span class='period'>.</span><span class='id identifier rubyid_transform_values'>transform_values</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='const'><span class='object_link'><a href="../Society.html" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_resolve'><span class='object_link'><a href="../Society.html#resolve-class_method" title="Lich::Gemstone::Society.resolve (method)">resolve</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_entry'>entry</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span>
@@ -1153,13 +1157,13 @@ based on available stamina and mana.</p>
       <pre class="lines">
 
 
-390
-391
-392
-393</pre>
+394
+395
+396
+397</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 390</span>
+      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 394</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_available?'>available?</span><span class='lparen'>(</span><span class='id identifier rubyid_sigil_name'>sigil_name</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_member?'>member?</span>
@@ -1276,16 +1280,16 @@ based on available stamina and mana.</p>
       <pre class="lines">
 
 
-289
-290
-291
 292
 293
 294
-295</pre>
+295
+296
+297
+298</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 289</span>
+      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 292</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_known?'>known?</span><span class='lparen'>(</span><span class='id identifier rubyid_sigil_name'>sigil_name</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_member?'>member?</span>
@@ -1367,13 +1371,13 @@ based on available stamina and mana.</p>
       <pre class="lines">
 
 
-435
-436
-437
-438</pre>
+442
+443
+444
+445</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 435</span>
+      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 442</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_master?'>master?</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_member?'>member?</span>
@@ -1492,13 +1496,13 @@ and optionally at a specific rank.</p>
       <pre class="lines">
 
 
-421
-422
-423
-424</pre>
+427
+428
+429
+430</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 421</span>
+      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 427</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_member?'>member?</span><span class='lparen'>(</span><span class='id identifier rubyid_rank'>rank</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="../Society.html" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_membership'><span class='object_link'><a href="../Society.html#membership-class_method" title="Lich::Gemstone::Society.membership (method)">membership</a></span></span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Guardians of Sunfist</span><span class='tstring_end'>&quot;</span></span>
@@ -1577,13 +1581,13 @@ and optionally at a specific rank.</p>
       <pre class="lines">
 
 
-449
-450
-451
-452</pre>
+457
+458
+459
+460</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 449</span>
+      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 457</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_rank'>rank</span>
   <span class='kw'>return</span> <span class='int'>0</span> <span class='kw'>unless</span> <span class='id identifier rubyid_member?'>member?</span>
@@ -1680,19 +1684,19 @@ and optionally at a specific rank.</p>
       <pre class="lines">
 
 
-263
-264
-265
 266
 267
 268
 269
 270
 271
-272</pre>
+272
+273
+274
+275</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 263</span>
+      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 266</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sigil_lookups'>sigil_lookups</span>
   <span class='cvar'>@@sunfist_sigils</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid__'>_</span><span class='comma'>,</span> <span class='id identifier rubyid_sigil'>sigil</span><span class='op'>|</span>
@@ -1843,9 +1847,6 @@ Otherwise, defaults to <code>sigil of &lt;short_name&gt;</code>.</p>
       <pre class="lines">
 
 
-316
-317
-318
 319
 320
 321
@@ -1863,10 +1864,13 @@ Otherwise, defaults to <code>sigil of &lt;short_name&gt;</code>.</p>
 333
 334
 335
-336</pre>
+336
+337
+338
+339</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 316</span>
+      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 319</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span><span class='lparen'>(</span><span class='id identifier rubyid_sigil_name'>sigil_name</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_member?'>member?</span>
@@ -1939,10 +1943,10 @@ short name or long name as a method. For example:</p>
       <pre class="lines">
 
 
-470</pre>
+478</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 470</span>
+      <pre class="code"><span class="info file"># File 'guardians_of_sunfist.rb', line 478</span>
 
 <span class='id identifier rubyid_define_name_methods'>define_name_methods</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='cvar'>@@sunfist_sigils</span><span class='rparen'>)</span></pre>
     </td>
@@ -1955,7 +1959,7 @@ short name or long name as a method. For example:</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:56:58 2025 by
+  Generated on Fri Nov  7 03:59:32 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>
