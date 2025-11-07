@@ -110,14 +110,19 @@ class Lich5DocumentationGenerator:
         if self.output_structure == 'mirror' and self.source_root:
             # Mirror directory structure
             try:
+                # Ensure both paths are resolved to absolute paths for comparison
+                file_path_resolved = file_path.resolve()
+                source_root_resolved = self.source_root.resolve()
+
                 # Get relative path from source root
-                relative_path = file_path.relative_to(self.source_root)
+                relative_path = file_path_resolved.relative_to(source_root_resolved)
                 # Build mirrored path in documented directory
                 output_path = self.output_dir / 'documented' / relative_path
                 return output_path
-            except ValueError:
+            except ValueError as e:
                 # File is not under source_root, fall back to flat
                 logger.warning(f"File {file_path} not under source root {self.source_root}, using flat structure")
+                logger.debug(f"  ValueError: {e}")
                 return self.output_dir / 'documented' / file_path.name
         else:
             # Flat structure - all files in documented directory
