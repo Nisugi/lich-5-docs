@@ -238,6 +238,20 @@ You will return JSON with documentation comments and their anchor points."""
 Generate **YARD-compatible** documentation for every public class, module, method, and constant.
 The line numbers are shown at the start of each line (e.g., "  15: def method_name").
 
+CRITICAL: Only document items that match these EXACT patterns:
+- Method definitions: Lines starting with "def " (e.g., "def method_name", "def self.method")
+- Classes: Lines starting with "class " (e.g., "class ClassName")
+- Modules: Lines starting with "module " (e.g., "module ModuleName")
+- Constants: Lines with ALL_CAPS = value (e.g., "CONSTANT_NAME = 123")
+- Attributes: Lines starting with "attr_reader", "attr_writer", or "attr_accessor"
+
+DO NOT document:
+- Hash keys or data structures (e.g., "leftEye: ['data']")
+- Method calls or iterators (e.g., "array.each do |item|")
+- Metaprogramming (e.g., "define_singleton_method", "define_method")
+- Alias statements (e.g., "alias new_name old_name")
+- Variable assignments (e.g., "variable = value" where variable is not ALL_CAPS)
+
 Documentation rules:
 1. For classes/modules:
    - Brief description on first line
