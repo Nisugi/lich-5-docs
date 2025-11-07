@@ -784,14 +784,7 @@ IMPORTANT:
         logger.info(f"Processing directory: {directory}")
 
         # Find all Ruby files recursively
-        all_ruby_files = list(directory.rglob(pattern))
-
-        # Exclude critranks directory (large data tables that don't need documentation)
-        ruby_files = [f for f in all_ruby_files if 'critranks' not in str(f)]
-
-        excluded_count = len(all_ruby_files) - len(ruby_files)
-        if excluded_count > 0:
-            logger.info(f"Excluded {excluded_count} files from critranks directory")
+        ruby_files = list(directory.rglob(pattern))
 
         logger.info(f"Found {len(ruby_files)} Ruby files to process")
 
