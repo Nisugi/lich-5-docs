@@ -452,7 +452,8 @@ IMPORTANT:
                 return comments
 
             except json.JSONDecodeError as e:
-                logger.debug(f"Strategy '{strategy_name}' failed to parse JSON: {e}")
+                logger.error(f"Strategy '{strategy_name}' failed to parse JSON: {e}")
+                logger.error(f"  Error at position {e.pos}: {sanitized[max(0, e.pos-50):e.pos+50]}")
                 continue
             except Exception as e:
                 logger.debug(f"Strategy '{strategy_name}' failed with error: {e}")
