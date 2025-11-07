@@ -101,13 +101,25 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>character_name = Char.name</p>
+    <p>Represents a character in the Lich game.
+This class provides various methods to access character attributes.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Accessing character name</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_character_name'>character_name</span> <span class='op'>=</span> <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_name'><span class='object_link'><a href="#name-class_method" title="Lich::Common::Char.name (method)">name</a></span></span></code></pre>
+    
+  </div>
+
 
 </div>
 
@@ -187,7 +199,7 @@
   
 
   
-    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>Updating via Char.citizenship is no longer supported. Update or fix your script.</p>
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>Updating via Char.citizenship is no longer supported.</p>
 </div></span>
   
 </li>
@@ -210,7 +222,7 @@
   
 
   
-    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>Char.dump_info is no longer used. Update or fix your script.</p>
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>Char.dump_info is no longer used.</p>
 </div></span>
   
 </li>
@@ -233,7 +245,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the encumbrance text of the character.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the current encumbrance of the character.</p>
 </div></span>
   
 </li>
@@ -279,7 +291,7 @@
   
 
   
-    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>Char.info is no longer supported. Update or fix your script.</p>
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>Char.info is no longer supported.</p>
 </div></span>
   
 </li>
@@ -302,7 +314,7 @@
   
 
   
-    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>Char.init is no longer used. Update or fix your script.</p>
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>Char.init is no longer used.</p>
 </div></span>
   
 </li>
@@ -325,7 +337,7 @@
   
 
   
-    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>Char.load_info is no longer used. Update or fix your script.</p>
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>Char.load_info is no longer used.</p>
 </div></span>
   
 </li>
@@ -555,7 +567,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Handles missing methods for the character.</p>
+    <span class="summary_desc"><div class='inline'><p>Handles calls to methods that are not defined.</p>
 </div></span>
   
 </li>
@@ -762,7 +774,7 @@
   
 
   
-    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>Char.skills is no longer supported. Update or fix your script.</p>
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>Char.skills is no longer supported.</p>
 </div></span>
   
 </li>
@@ -896,12 +908,12 @@
       <pre class="lines">
 
 
-277
-278
-279</pre>
+291
+292
+293</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 277</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 291</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_che'>che</span>
   <span class='const'>Infomon</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>che</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^GS</span><span class='regexp_end'>/</span></span>
@@ -961,12 +973,12 @@
       <pre class="lines">
 
 
-261
-262
-263</pre>
+273
+274
+275</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 261</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 273</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_citizenship'>citizenship</span>
   <span class='const'>Infomon</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>citizenship</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^GS</span><span class='regexp_end'>/</span></span>
@@ -987,7 +999,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Updating via Char.citizenship is no longer supported. Update or fix your script.</p>
+    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Updating via Char.citizenship is no longer supported.</p>
 </div></div>
 <p class="note returns_void">This method returns an undefined value.</p><p>Sets the citizenship of the character (deprecated).</p>
 
@@ -995,7 +1007,15 @@
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_citizenship'><span class='object_link'><a href="#citizenship-class_method" title="Lich::Common::Char.citizenship (method)">citizenship</a></span></span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>New Citizenship</span><span class='tstring_end'>&#39;</span></span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1022,12 +1042,12 @@
       <pre class="lines">
 
 
-269
-270
-271</pre>
+283
+284
+285</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 269</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 283</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_citizenship='>citizenship=</span><span class='lparen'>(</span><span class='id identifier rubyid__val'>_val</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="../../top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Updating via Char.citizenship is no longer supported. Update or fix your script.</span><span class='tstring_end'>&quot;</span></span>
@@ -1048,7 +1068,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Char.dump_info is no longer used. Update or fix your script.</p>
+    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Char.dump_info is no longer used.</p>
 </div></div>
 <p class="note returns_void">This method returns an undefined value.</p><p>Dumps character information (deprecated).</p>
 
@@ -1057,6 +1077,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dump_info'>dump_info</span></code></pre>
+    
+  </div>
+
 
 </div><table class="source_code">
   <tr>
@@ -1064,12 +1092,12 @@
       <pre class="lines">
 
 
-206
-207
-208</pre>
+210
+211
+212</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 206</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 210</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dump_info'>dump_info</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="../../top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.dump_info is no longer used. Update or fix your script.</span><span class='tstring_end'>&quot;</span></span>
@@ -1090,7 +1118,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the encumbrance text of the character.</p>
+    <p>Returns the current encumbrance of the character.</p>
 
 
   </div>
@@ -1101,7 +1129,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_encumbrance_text'>encumbrance_text</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_encumbrance'>encumbrance</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_encumbrance'>encumbrance</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_encumbrance'>encumbrance</span></code></pre>
     
   </div>
 
@@ -1129,12 +1157,12 @@
       <pre class="lines">
 
 
-46
-47
-48</pre>
+48
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_encumbrance'>encumbrance</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_encumbrance_text'>encumbrance_text</span>
@@ -1166,7 +1194,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_current_health'>current_health</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_health'>health</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_health'>health</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_health'>health</span></code></pre>
     
   </div>
 
@@ -1194,12 +1222,12 @@
       <pre class="lines">
 
 
-62
-63
-64</pre>
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_health'>health</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_health'>health</span>
@@ -1220,7 +1248,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Char.info is no longer supported. Update or fix your script.</p>
+    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Char.info is no longer supported.</p>
 </div></div>
 <p class="note returns_void">This method returns an undefined value.</p><p>Provides character information (deprecated).</p>
 
@@ -1229,6 +1257,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span></code></pre>
+    
+  </div>
+
 
 </div><table class="source_code">
   <tr>
@@ -1236,12 +1272,12 @@
       <pre class="lines">
 
 
-246
-247
-248</pre>
+256
+257
+258</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 246</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 256</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="../../top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.info is no longer supported. Update or fix your script.</span><span class='tstring_end'>&quot;</span></span>
@@ -1262,7 +1298,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Char.init is no longer used. Update or fix your script.</p>
+    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Char.init is no longer used.</p>
 </div></div>
 <p class="note returns_void">This method returns an undefined value.</p><p>Initializes the character (deprecated).</p>
 
@@ -1270,7 +1306,15 @@
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_init'>init</span><span class='lparen'>(</span><span class='id identifier rubyid_some_value'>some_value</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1297,12 +1341,12 @@
       <pre class="lines">
 
 
-14
-15
-16</pre>
+16
+17
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_init'>init</span><span class='lparen'>(</span><span class='id identifier rubyid__blah'>_blah</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="../../top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Char.init is no longer used. Update or fix your script.</span><span class='tstring_end'>&#39;</span></span>
@@ -1323,7 +1367,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Char.load_info is no longer used. Update or fix your script.</p>
+    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Char.load_info is no longer used.</p>
 </div></div>
 <p class="note returns_void">This method returns an undefined value.</p><p>Loads character information (deprecated).</p>
 
@@ -1331,7 +1375,15 @@
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_info'>load_info</span><span class='lparen'>(</span><span class='id identifier rubyid_some_string'>some_string</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1344,7 +1396,7 @@
       
       
         &mdash;
-        <div class='inline'><p>Unused parameter.</p>
+        <div class='inline'><p>The string to load.</p>
 </div>
       
     </li>
@@ -1358,12 +1410,12 @@
       <pre class="lines">
 
 
-214
-215
-216</pre>
+220
+221
+222</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 214</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 220</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_info'>load_info</span><span class='lparen'>(</span><span class='id identifier rubyid__string'>_string</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="../../top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.load_info is no longer used. Update or fix your script.</span><span class='tstring_end'>&quot;</span></span>
@@ -1395,7 +1447,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_current_mana'>current_mana</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_mana'>mana</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span></code></pre>
     
   </div>
 
@@ -1423,12 +1475,12 @@
       <pre class="lines">
 
 
-70
-71
-72</pre>
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span>
@@ -1460,7 +1512,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_max_health_value'>max_health_value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_health'>max_health</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_max_health'>max_health</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_health'>max_health</span></code></pre>
     
   </div>
 
@@ -1488,13 +1540,13 @@
       <pre class="lines">
 
 
-94
-95
 96
-97</pre>
+97
+98
+99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 94</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_health'>max_health</span>
   <span class='comment'># Object.module_eval { XMLData.max_health }
@@ -1527,7 +1579,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_max_mana_value'>max_mana_value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_mana'>max_mana</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_max_mana'>max_mana</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_mana'>max_mana</span></code></pre>
     
   </div>
 
@@ -1555,12 +1607,12 @@
       <pre class="lines">
 
 
-113
-114
-115</pre>
+115
+116
+117</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 113</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 115</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_mana'>max_mana</span>
   <span class='const'>Object</span><span class='period'>.</span><span class='id identifier rubyid_module_eval'>module_eval</span> <span class='lbrace'>{</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_max_mana'>max_mana</span> <span class='rbrace'>}</span>
@@ -1592,7 +1644,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_max_spirit_value'>max_spirit_value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_spirit'>max_spirit</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_max_spirit'>max_spirit</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_spirit'>max_spirit</span></code></pre>
     
   </div>
 
@@ -1620,12 +1672,12 @@
       <pre class="lines">
 
 
-131
-132
-133</pre>
+133
+134
+135</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 131</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 133</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_spirit'>max_spirit</span>
   <span class='const'>Object</span><span class='period'>.</span><span class='id identifier rubyid_module_eval'>module_eval</span> <span class='lbrace'>{</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_max_spirit'>max_spirit</span> <span class='rbrace'>}</span>
@@ -1657,7 +1709,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_max_stamina_value'>max_stamina_value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_stamina'>max_stamina</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_max_stamina'>max_stamina</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_stamina'>max_stamina</span></code></pre>
     
   </div>
 
@@ -1685,12 +1737,12 @@
       <pre class="lines">
 
 
-149
-150
-151</pre>
+151
+152
+153</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 149</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 151</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_max_stamina'>max_stamina</span>
   <span class='const'>Object</span><span class='period'>.</span><span class='id identifier rubyid_module_eval'>module_eval</span> <span class='lbrace'>{</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_max_stamina'>max_stamina</span> <span class='rbrace'>}</span>
@@ -1724,7 +1776,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_max_health_value'>max_health_value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxhealth'>maxhealth</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_max_health'>max_health</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxhealth'>maxhealth</span></code></pre>
     
   </div>
 
@@ -1752,13 +1804,13 @@
       <pre class="lines">
 
 
-104
-105
 106
-107</pre>
+107
+108
+109</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 106</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxhealth'>maxhealth</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.maxhealth</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.max_health</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1793,7 +1845,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_max_mana_value'>max_mana_value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxmana'>maxmana</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_max_mana'>max_mana</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxmana'>maxmana</span></code></pre>
     
   </div>
 
@@ -1821,13 +1873,13 @@
       <pre class="lines">
 
 
-122
-123
 124
-125</pre>
+125
+126
+127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 124</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxmana'>maxmana</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.maxmana</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.max_mana</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1862,7 +1914,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_max_spirit_value'>max_spirit_value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxspirit'>maxspirit</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_max_spirit'>max_spirit</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxspirit'>maxspirit</span></code></pre>
     
   </div>
 
@@ -1890,13 +1942,13 @@
       <pre class="lines">
 
 
-140
-141
 142
-143</pre>
+143
+144
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 140</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 142</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxspirit'>maxspirit</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.maxspirit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.max_spirit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1931,7 +1983,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_max_stamina_value'>max_stamina_value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxstamina'>maxstamina</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_max_stamina'>max_stamina</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxstamina'>maxstamina</span></code></pre>
     
   </div>
 
@@ -1959,13 +2011,13 @@
       <pre class="lines">
 
 
-158
-159
 160
-161</pre>
+161
+162
+163</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 158</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 160</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxstamina'>maxstamina</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecated'><span class='object_link'><a href="../../Lich.html#deprecated-class_method" title="Lich.deprecated (method)">deprecated</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.maxstamina</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.max_stamina</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>fe_log:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1987,13 +2039,21 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Handles missing methods for the character.</p>
+    <p>Handles calls to methods that are not defined.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_some_undefined_method'>some_undefined_method</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2006,7 +2066,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The missing method name.</p>
+        <div class='inline'><p>The method name that was called.</p>
 </div>
       
     </li>
@@ -2021,7 +2081,7 @@
       
       
         &mdash;
-        <div class='inline'><p>Arguments for the missing method.</p>
+        <div class='inline'><p>Arguments for the method.</p>
 </div>
       
     </li>
@@ -2052,19 +2112,19 @@
       <pre class="lines">
 
 
-232
-233
-234
-235
-236
-237
-238
-239
 240
-241</pre>
+241
+242
+243
+244
+245
+246
+247
+248
+249</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 232</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 240</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_meth'>meth</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_polyfill'>polyfill</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='const'>Stats</span><span class='comma'>,</span> <span class='const'>Skills</span><span class='comma'>,</span> <span class='const'>Spellsong</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_klass'>klass</span><span class='op'>|</span>
@@ -2103,7 +2163,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_character_name'>character_name</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span></code></pre>
     
   </div>
 
@@ -2131,12 +2191,12 @@
       <pre class="lines">
 
 
-22
-23
-24</pre>
+24
+25
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
@@ -2196,12 +2256,12 @@
       <pre class="lines">
 
 
-54
-55
-56</pre>
+56
+57
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_encumbrance'>percent_encumbrance</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_encumbrance_value'>encumbrance_value</span>
@@ -2261,12 +2321,12 @@
       <pre class="lines">
 
 
-167
-168
-169</pre>
+169
+170
+171</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 167</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 169</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_health'>percent_health</span>
   <span class='lparen'>(</span><span class='lparen'>(</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_health'>health</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span> <span class='op'>/</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_max_health'>max_health</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='rparen'>)</span> <span class='op'>*</span> <span class='int'>100</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -2326,16 +2386,16 @@
       <pre class="lines">
 
 
-175
-176
 177
 178
 179
 180
-181</pre>
+181
+182
+183</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 175</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 177</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_mana'>percent_mana</span>
   <span class='kw'>if</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_max_mana'>max_mana</span> <span class='op'>==</span> <span class='int'>0</span>
@@ -2399,12 +2459,12 @@
       <pre class="lines">
 
 
-187
-188
-189</pre>
+189
+190
+191</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 187</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 189</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_spirit'>percent_spirit</span>
   <span class='lparen'>(</span><span class='lparen'>(</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_spirit'>spirit</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span> <span class='op'>/</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_max_spirit'>max_spirit</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='rparen'>)</span> <span class='op'>*</span> <span class='int'>100</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -2464,16 +2524,16 @@
       <pre class="lines">
 
 
-195
-196
 197
 198
 199
 200
-201</pre>
+201
+202
+203</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 195</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 197</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_stamina'>percent_stamina</span>
   <span class='kw'>if</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_max_stamina'>max_stamina</span> <span class='op'>==</span> <span class='int'>0</span>
@@ -2537,12 +2597,12 @@
       <pre class="lines">
 
 
-38
-39
-40</pre>
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_stance'>percent_stance</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_stance_value'>stance_value</span>
@@ -2636,12 +2696,12 @@
       <pre class="lines">
 
 
-224
-225
-226</pre>
+230
+231
+232</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 224</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 230</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='lbracket'>[</span><span class='const'>Stats</span><span class='comma'>,</span> <span class='const'>Skills</span><span class='comma'>,</span> <span class='const'>Spellsong</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span> <span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='kw'>or</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -2662,7 +2722,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Char.skills is no longer supported. Update or fix your script.</p>
+    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Char.skills is no longer supported.</p>
 </div></div>
 <p class="note returns_void">This method returns an undefined value.</p><p>Provides character skills information (deprecated).</p>
 
@@ -2671,6 +2731,14 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_skills'>skills</span></code></pre>
+    
+  </div>
+
 
 </div><table class="source_code">
   <tr>
@@ -2678,12 +2746,12 @@
       <pre class="lines">
 
 
-253
-254
-255</pre>
+265
+266
+267</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 253</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 265</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_skills'>skills</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="../../top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Char.skills is no longer supported. Update or fix your script.</span><span class='tstring_end'>&quot;</span></span>
@@ -2715,7 +2783,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_current_spirit'>current_spirit</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_spirit'>spirit</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_spirit'>spirit</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_spirit'>spirit</span></code></pre>
     
   </div>
 
@@ -2743,12 +2811,12 @@
       <pre class="lines">
 
 
-78
-79
-80</pre>
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 80</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_spirit'>spirit</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_spirit'>spirit</span>
@@ -2780,7 +2848,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_current_stamina'>current_stamina</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stamina'>stamina</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_stamina'>stamina</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stamina'>stamina</span></code></pre>
     
   </div>
 
@@ -2808,12 +2876,12 @@
       <pre class="lines">
 
 
-86
-87
-88</pre>
+88
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 88</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stamina'>stamina</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_stamina'>stamina</span>
@@ -2845,7 +2913,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_current_stance'>current_stance</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stance'>stance</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_stance'>stance</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stance'>stance</span></code></pre>
     
   </div>
 
@@ -2873,12 +2941,12 @@
       <pre class="lines">
 
 
-30
-31
-32</pre>
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'char.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'char.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Char (class)">Char</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stance'>stance</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_stance_text'>stance_text</span>
@@ -2893,7 +2961,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:52 2025 by
+  Generated on Fri Nov  7 02:56:53 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

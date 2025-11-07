@@ -85,14 +85,25 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>A module that handles skills in the Lich project
-This module provides methods to manage and calculate skill bonuses.</p>
+    <p>Module for handling skills in the Gemstone system
+This module provides methods to calculate bonuses and manage skills.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Accessing a skill bonus</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_bonus'>bonus</span> <span class='op'>=</span> <span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_to_bonus'><span class='object_link'><a href="#to_bonus-class_method" title="Lich::Gemstone::Skills.to_bonus (method)">to_bonus</a></span></span><span class='lparen'>(</span><span class='int'>5</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
   
@@ -106,7 +117,7 @@ This module provides methods to manage and calculate skill bonuses.</p>
         <dt id="skills-classvariable" class="">@@skills =
           <div class="docstring">
   <div class="discussion">
-    <p>A list of all skills available in the Lich project
+    <p>List of all skills available in the Gemstone system
 This constant holds the symbols representing various skills.</p>
 
 
@@ -176,7 +187,7 @@ This constant holds the symbols representing various skills.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>extended function, now takes INT, Symbol, String but not shorthand Symbol, String Skills.to_bonus(Skills.combatmaneuvers), Skills.to_bonus(5), Skills.to_bonus(:combat_maneuvers), Skills.to_bonus(&#39;combat_maneuvers&#39;) as examples Calculates the bonus based on the given ranks.</p>
+    <span class="summary_desc"><div class='inline'><p>extended function, now takes INT, Symbol, String but not shorthand Symbol, String Skills.to_bonus(Skills.combatmaneuvers), Skills.to_bonus(5), Skills.to_bonus(:combat_maneuvers), Skills.to_bonus(&#39;combat_maneuvers&#39;) as examples Calculates the bonus based on the number of ranks.</p>
 </div></span>
   
 </li>
@@ -202,14 +213,7 @@ This constant holds the symbols representing various skills.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'><p>This method returns the ranks of all skills defined in the module.</p>
-</div>
-  </div>
-
-<p>Serializes the current skills into an array</p>
+    <p>Serializes the current skills into an array</p>
 
 
   </div>
@@ -220,7 +224,10 @@ This constant holds the symbols representing various skills.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Skills (module)">Skills</a></span></span><span class='period'>.</span><span class='id identifier rubyid_serialize'>serialize</span> <span class='comment'># =&gt; [rank1, rank2, ...]</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>Serializing skills</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_skills_array'>skills_array</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Skills (module)">Skills</a></span></span><span class='period'>.</span><span class='id identifier rubyid_serialize'>serialize</span></code></pre>
     
   </div>
 
@@ -248,6 +255,8 @@ This constant holds the symbols representing various skills.</p>
       <pre class="lines">
 
 
+87
+88
 89
 90
 91
@@ -260,12 +269,10 @@ This constant holds the symbols representing various skills.</p>
 98
 99
 100
-101
-102
-103</pre>
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'skills.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'skills.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_serialize'>serialize</span>
   <span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_two_weapon_combat'>two_weapon_combat</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_armor_use'>armor_use</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_shield_use'>shield_use</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_combat_maneuvers'>combat_maneuvers</span><span class='comma'>,</span>
@@ -298,17 +305,10 @@ This constant holds the symbols representing various skills.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'><p>This method does not accept shorthand symbols or strings.</p>
-</div>
-  </div>
-
-<p>extended function, now takes INT, Symbol, String but not shorthand Symbol, String
+    <p>extended function, now takes INT, Symbol, String but not shorthand Symbol, String
 Skills.to_bonus(Skills.combatmaneuvers), Skills.to_bonus(5),
 Skills.to_bonus(:combat_maneuvers), Skills.to_bonus(&#39;combat_maneuvers&#39;) as examples
-Calculates the bonus based on the given ranks</p>
+Calculates the bonus based on the number of ranks</p>
 
 
   </div>
@@ -319,8 +319,12 @@ Calculates the bonus based on the given ranks</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Skills (module)">Skills</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_bonus'>to_bonus</span><span class='lparen'>(</span><span class='int'>5</span><span class='rparen'>)</span> <span class='comment'># =&gt; 25
-</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Skills (module)">Skills</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_bonus'>to_bonus</span><span class='lparen'>(</span><span class='symbol'>:combat_maneuvers</span><span class='rparen'>)</span> <span class='comment'># =&gt; bonus value</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>Calculating bonus from ranks</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_bonus'>bonus</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Skills (module)">Skills</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_bonus'>to_bonus</span><span class='lparen'>(</span><span class='int'>10</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_bonus'>bonus</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Skills (module)">Skills</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_bonus'>to_bonus</span><span class='lparen'>(</span><span class='symbol'>:combat_maneuvers</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_bonus'>bonus</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Skills (module)">Skills</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_bonus'>to_bonus</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>combat_maneuvers</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -337,12 +341,6 @@ Calculates the bonus based on the given ranks</p>
       
         &mdash;
         <div class='inline'><p>The ranks to calculate bonus for</p>
-
-<ul>
-<li>Integer: The rank value</li>
-<li>String: The skill name as a string</li>
-<li>Symbol: The skill name as a symbol</li>
-</ul>
 </div>
       
     </li>
@@ -390,6 +388,7 @@ Calculates the bonus based on the given ranks</p>
       <pre class="lines">
 
 
+25
 26
 27
 28
@@ -417,11 +416,10 @@ Calculates the bonus based on the given ranks</p>
 50
 51
 52
-53
-54</pre>
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'skills.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'skills.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_bonus'>to_bonus</span><span class='lparen'>(</span><span class='id identifier rubyid_ranks'>ranks</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_ranks'>ranks</span>
@@ -462,7 +460,7 @@ Calculates the bonus based on the given ranks</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:49 2025 by
+  Generated on Fri Nov  7 02:56:50 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

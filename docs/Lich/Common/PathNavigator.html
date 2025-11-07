@@ -101,7 +101,8 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Path navigator to encapsulate path navigation logic</p>
+    <p>Path navigator to encapsulate path navigation logic
+Path navigator to encapsulate path navigation logic</p>
 
 <p>This class provides methods to manage and navigate through a path structure.</p>
 
@@ -212,7 +213,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Navigate to the node at &#39;path&#39; (or @path if nil).</p>
+    <span class="summary_desc"><div class='inline'><p>Navigate to the node at &quot;path&quot; (or @path if nil).</p>
 </div></span>
   
 </li>
@@ -258,7 +259,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Resets the path and returns a specified value.</p>
+    <span class="summary_desc"><div class='inline'><p>Resets the path and returns the provided value.</p>
 </div></span>
   
 </li>
@@ -281,7 +282,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Allow external callers to drive the effective path.</p>
+    <span class="summary_desc"><div class='inline'><p>Allow external callers to drive the effective path Allow external callers to drive the effective path.</p>
 </div></span>
   
 </li>
@@ -400,7 +401,10 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Navigate to the node at &#39;path&#39; (or @path if nil).
+    <p>Navigate to the node at &quot;path&quot; (or @path if nil).
+Returns [target, root]</p>
+
+<p>Navigate to the node at &#39;path&#39; (or @path if nil).
 Returns [target, root]</p>
 
 <p>This method navigates through the path structure and retrieves the target node and root object.</p>
@@ -422,6 +426,72 @@ Returns [target, root]</p>
   </div>
 <p class="tag_title">Parameters:</p>
 <ul class="param">
+  
+    <li>
+      
+        <span class='name'>script_name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the script namespace (e.g., Script.current.name)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>create_missing</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>whether to create intermediate containers</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>scope</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;:&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>settings scope (e.g., &quot;GS3:CharName&quot;)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>path</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>path segments; integers index arrays, symbols/strings index hashes</p>
+</div>
+      
+    </li>
   
     <li>
       
@@ -493,6 +563,19 @@ Returns [target, root]</p>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array(Object, <span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>|Array)</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>[target_node, root_object]</p>
+</div>
+      
+    </li>
   
     <li>
       
@@ -644,7 +727,7 @@ Returns [target, root]</p>
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p><p>Resets the current path to an empty array.</p>
 
-<p>This method clears the path, effectively resetting the navigator&#39;s state.</p>
+<p>This method clears the current path.</p>
 
 
   </div>
@@ -695,9 +778,9 @@ Returns [target, root]</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Resets the path and returns a specified value.</p>
+    <p>Resets the path and returns the provided value.</p>
 
-<p>This method clears the current path and returns the provided value.</p>
+<p>This method clears the current path and returns the specified value.</p>
 
 
   </div>
@@ -786,7 +869,8 @@ Returns [target, root]</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Allow external callers to drive the effective path</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Allow external callers to drive the effective path
+Allow external callers to drive the effective path</p>
 
 <p>This method sets the current path to the provided new path.</p>
 
@@ -852,7 +936,7 @@ Returns [target, root]</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:56 2025 by
+  Generated on Fri Nov  7 02:56:57 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

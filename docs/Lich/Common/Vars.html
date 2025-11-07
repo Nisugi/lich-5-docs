@@ -100,7 +100,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
         <h5 class="example_title"><div class='inline'><p>Accessing a variable</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='const'>Vars</span><span class='lbracket'>[</span><span class='symbol'>:my_variable</span><span class='rbracket'>]</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'>Vars</span><span class='lbracket'>[</span><span class='symbol'>:my_variable</span><span class='rbracket'>]</span></code></pre>
     
   </div>
 
@@ -207,7 +207,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the value associated with the given name.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the value of a variable by name.</p>
 </div></span>
   
 </li>
@@ -216,7 +216,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#[]=-class_method" title="[]= (class method)">.<strong>[]=</strong>(name, val)  &#x21d2; Object </a>
+      <a href="#[]=-class_method" title="[]= (class method)">.<strong>[]=</strong>(name, val)  &#x21d2; void </a>
     
 
     
@@ -230,7 +230,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sets the value for the given name.</p>
+    <span class="summary_desc"><div class='inline'><p>Sets the value of a variable by name.</p>
 </div></span>
   
 </li>
@@ -253,7 +253,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns a duplicate of the current variables hash.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns a duplicate of all stored variables.</p>
 </div></span>
   
 </li>
@@ -262,7 +262,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#method_missing-class_method" title="method_missing (class method)">.<strong>method_missing</strong>(arg1, arg2 = &#39;&#39;)  &#x21d2; Object </a>
+      <a href="#method_missing-class_method" title="method_missing (class method)">.<strong>method_missing</strong>(arg1, arg2 = &#39;&#39;)  &#x21d2; Object<sup>?</sup> </a>
     
 
     
@@ -285,7 +285,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#save-class_method" title="save (class method)">.<strong>save</strong>  &#x21d2; nil </a>
+      <a href="#save-class_method" title="save (class method)">.<strong>save</strong>  &#x21d2; void </a>
     
 
     
@@ -299,7 +299,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Saves the current variables to the database.</p>
+    <span class="summary_desc"><div class='inline'><p>Saves the current state of variables to the database.</p>
 </div></span>
   
 </li>
@@ -325,7 +325,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the value associated with the given name.</p>
+    <p>Retrieves the value of a variable by name.</p>
 
 
   </div>
@@ -339,7 +339,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
         <h5 class="example_title"><div class='inline'><p>Getting a variable</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='lbracket'>[</span><span class='symbol'>:my_variable</span><span class='rbracket'>]</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='lbracket'>[</span><span class='symbol'>:my_variable</span><span class='rbracket'>]</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -373,7 +373,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
       
       
         &mdash;
-        <div class='inline'><p>The value associated with the name, or nil if not found.</p>
+        <div class='inline'><p>The value associated with the variable name.</p>
 </div>
       
     </li>
@@ -390,7 +390,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
       
       
         &mdash;
-        <div class='inline'><p>If loading variables fails.</p>
+        <div class='inline'><p>If the variable is not loaded yet.</p>
 </div>
       
     </li>
@@ -423,7 +423,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
       <div class="method_details ">
   <h3 class="signature " id="[]=-class_method">
   
-    .<strong>[]=</strong>(name, val)  &#x21d2; <tt>Object</tt> 
+    .<strong>[]=</strong>(name, val)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -431,7 +431,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Sets the value for the given name.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the value of a variable by name.</p>
 
 
   </div>
@@ -445,7 +445,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
         <h5 class="example_title"><div class='inline'><p>Setting a variable</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='lbracket'>[</span><span class='symbol'>:my_variable</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>new_value</span><span class='tstring_end'>&#39;</span></span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='lbracket'>[</span><span class='symbol'>:my_variable</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>new_value</span><span class='tstring_end'>&#39;</span></span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -483,23 +483,6 @@ This module allows for loading, saving, and accessing variables in a thread-safe
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Object</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The value that was set.</p>
-</div>
-      
-    </li>
-  
-</ul>
 <p class="tag_title">Raises:</p>
 <ul class="raise">
   
@@ -511,7 +494,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
       
       
         &mdash;
-        <div class='inline'><p>If loading variables fails.</p>
+        <div class='inline'><p>If the variable is not loaded yet.</p>
 </div>
       
     </li>
@@ -560,7 +543,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns a duplicate of the current variables hash.</p>
+    <p>Returns a duplicate of all stored variables.</p>
 
 
   </div>
@@ -574,7 +557,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
         <h5 class="example_title"><div class='inline'><p>Listing all variables</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_all_vars'>all_vars</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_all_vars'>all_vars</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span></code></pre>
     
   </div>
 
@@ -589,7 +572,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
       
       
         &mdash;
-        <div class='inline'><p>A duplicate of the variables hash.</p>
+        <div class='inline'><p>A hash containing all variable names and their values.</p>
 </div>
       
     </li>
@@ -606,7 +589,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
       
       
         &mdash;
-        <div class='inline'><p>If loading variables fails.</p>
+        <div class='inline'><p>If the variables are not loaded yet.</p>
 </div>
       
     </li>
@@ -639,7 +622,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
       <div class="method_details ">
   <h3 class="signature " id="method_missing-class_method">
   
-    .<strong>method_missing</strong>(arg1, arg2 = &#39;&#39;)  &#x21d2; <tt>Object</tt> 
+    .<strong>method_missing</strong>(arg1, arg2 = &#39;&#39;)  &#x21d2; <tt>Object</tt><sup>?</sup> 
   
 
   
@@ -658,16 +641,11 @@ This module allows for loading, saving, and accessing variables in a thread-safe
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Using method_missing to set a variable</p>
+        <h5 class="example_title"><div class='inline'><p>Dynamic variable access</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_my_variable'>my_variable</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>value</span><span class='tstring_end'>&#39;</span></span></code></pre>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Using method_missing to get a variable</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_my_variable'>my_variable</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_my_variable'>my_variable</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>value</span><span class='tstring_end'>&#39;</span></span>
+<span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_my_variable'>my_variable</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -683,7 +661,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
       
       
         &mdash;
-        <div class='inline'><p>The name of the variable or the setter method (ending with &#39;=&#39;).</p>
+        <div class='inline'><p>The name of the variable or the method being called.</p>
 </div>
       
     </li>
@@ -713,12 +691,12 @@ This module allows for loading, saving, and accessing variables in a thread-safe
     <li>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Object</tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>The value of the variable or nil if not found.</p>
+        <div class='inline'><p>The value of the variable if getting, otherwise nil.</p>
 </div>
       
     </li>
@@ -735,7 +713,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
       
       
         &mdash;
-        <div class='inline'><p>If loading variables fails.</p>
+        <div class='inline'><p>If the variables are not loaded yet.</p>
 </div>
       
     </li>
@@ -748,6 +726,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
       <pre class="lines">
 
 
+120
 121
 122
 123
@@ -758,11 +737,10 @@ This module allows for loading, saving, and accessing variables in a thread-safe
 128
 129
 130
-131
-132</pre>
+131</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'vars.rb', line 121</span>
+      <pre class="code"><span class="info file"># File 'vars.rb', line 120</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_arg1'>arg1</span><span class='comma'>,</span> <span class='id identifier rubyid_arg2'>arg2</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='cvar'>@@load</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -784,7 +762,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
       <div class="method_details ">
   <h3 class="signature " id="save-class_method">
   
-    .<strong>save</strong>  &#x21d2; <tt>nil</tt> 
+    .<strong>save</strong>  &#x21d2; <tt>void</tt> 
   
 
   
@@ -792,7 +770,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Saves the current variables to the database.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Saves the current state of variables to the database.</p>
 
 
   </div>
@@ -806,27 +784,10 @@ This module allows for loading, saving, and accessing variables in a thread-safe
         <h5 class="example_title"><div class='inline'><p>Saving variables</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Vars (module)">Vars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span></code></pre>
     
   </div>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>Always returns nil.</p>
-</div>
-      
-    </li>
-  
-</ul>
 <p class="tag_title">Raises:</p>
 <ul class="raise">
   
@@ -838,7 +799,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
       
       
         &mdash;
-        <div class='inline'><p>If saving variables fails.</p>
+        <div class='inline'><p>If the variables are not loaded yet.</p>
 </div>
       
     </li>
@@ -871,7 +832,7 @@ This module allows for loading, saving, and accessing variables in a thread-safe
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:48 2025 by
+  Generated on Fri Nov  7 02:56:49 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

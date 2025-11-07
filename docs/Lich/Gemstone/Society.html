@@ -104,6 +104,10 @@
     <p>The Society class provides accessors for a character&#39;s society membership, rank, and task data.</p>
 
 <p>All methods rely on Infomon or XMLData, and a future rewrite might shift responsibility to
+character-specific data models or direct game scraping.
+The Society class provides accessors for a character&#39;s society membership, rank, and task data.</p>
+
+<p>All methods rely on Infomon or XMLData, and a future rewrite might shift responsibility to
 character-specific data models or direct game scraping.</p>
 
 
@@ -118,7 +122,7 @@ character-specific data models or direct game scraping.</p>
         <h5 class="example_title"><div class='inline'><p>Accessing society information</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_membership'>membership</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_membership'><span class='object_link'><a href="#membership-class_method" title="Lich::Gemstone::Society.membership (method)">membership</a></span></span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_society_name'>society_name</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_membership'><span class='object_link'><a href="#membership-class_method" title="Lich::Gemstone::Society.membership (method)">membership</a></span></span></code></pre>
     
   </div>
 
@@ -228,7 +232,7 @@ character-specific data models or direct game scraping.</p>
   
 
   
-    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>Use #membership instead.  Deprecated 6/2025</p>
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>Use #member_of instead.  Deprecated 6/2025</p>
 </div></span>
   
 </li>
@@ -420,6 +424,15 @@ character-specific data models or direct game scraping.</p>
 <p>Method names are normalized using <span class='object_link'><a href="../Util.html#normalize_name-class_method" title="Lich::Util.normalize_name (method)">Util.normalize_name</a></span>, which ensures
 compatibility with Ruby method naming (e.g., downcased, underscores instead of spaces, etc.).</p>
 
+<p>Example:
+  &quot;Symbol of Recognition&quot; =&gt; <code>symbol_of_recognition</code>
+  &quot;Kai&#39;s Strike&quot;          =&gt; <code>kais_strike</code></p>
+
+<p>Defines singleton accessors for both short and long names on a given target class.</p>
+
+<p>Method names are normalized using <span class='object_link'><a href="../Util.html#normalize_name-class_method" title="Lich::Util.normalize_name (method)">Util.normalize_name</a></span>, which ensures
+compatibility with Ruby method naming (e.g., downcased, underscores instead of spaces, etc.).</p>
+
 
   </div>
 </div>
@@ -437,6 +450,36 @@ compatibility with Ruby method naming (e.g., downcased, underscores instead of s
   </div>
 <p class="tag_title">Parameters:</p>
 <ul class="param">
+  
+    <li>
+      
+        <span class='name'>target_class</span>
+      
+      
+        <span class='type'>(<tt>Class</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The class to define singleton methods on (typically <code>self</code>)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>data</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>, <span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The metadata hash (e.g., <code>@@voln_symbols</code>)</p>
+</div>
+      
+    </li>
   
     <li>
       
@@ -517,7 +560,6 @@ compatibility with Ruby method naming (e.g., downcased, underscores instead of s
   <div class="discussion">
     <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Use OrderOfVoln.favor instead.  Deprecated 6/2025</p>
 </div></div>
-<p>Returns The amount of Voln favor.</p>
 
 
   </div>
@@ -528,15 +570,28 @@ compatibility with Ruby method naming (e.g., downcased, underscores instead of s
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Getting deprecated favor</p>
+        <h5 class="example_title"><div class='inline'><p>Getting deprecated Voln favor</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_voln_favor'>voln_favor</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_favor'>favor</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_favor'>favor</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_favor'>favor</span></code></pre>
     
   </div>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The amount of Voln favor</p>
+</div>
+      
+    </li>
   
     <li>
       
@@ -591,6 +646,8 @@ compatibility with Ruby method naming (e.g., downcased, underscores instead of s
   <div class="discussion">
     <p>Looks up an ability definition from a society hash using a normalized short or long name.</p>
 
+<p>Looks up an ability definition from a society hash using a normalized short or long name.</p>
+
 
   </div>
 </div>
@@ -639,10 +696,68 @@ compatibility with Ruby method naming (e.g., downcased, underscores instead of s
       
     </li>
   
+    <li>
+      
+        <span class='name'>lookups</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An array of hashes containing at least <code>:short_name</code> and <code>:long_name</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The user-facing name (short or long) of the ability</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>entries</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>, <span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The base hash keyed by short_name</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The matching entry from the base hash, or nil if not found</p>
+</div>
+      
+    </li>
   
     <li>
       
@@ -705,9 +820,8 @@ compatibility with Ruby method naming (e.g., downcased, underscores instead of s
   
 </h3><div class="docstring">
   <div class="discussion">
-    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Use #membership instead.  Deprecated 6/2025</p>
+    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Use #member_of instead.  Deprecated 6/2025</p>
 </div></div>
-<p>Returns The current society membership.</p>
 
 
   </div>
@@ -718,15 +832,28 @@ compatibility with Ruby method naming (e.g., downcased, underscores instead of s
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Getting deprecated membership</p>
+        <h5 class="example_title"><div class='inline'><p>Getting deprecated membership status</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_current_member'>current_member</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_member'>member</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_membership'>membership</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_member'>member</span></code></pre>
     
   </div>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The current society membership</p>
+</div>
+      
+    </li>
   
     <li>
       
@@ -779,6 +906,8 @@ compatibility with Ruby method naming (e.g., downcased, underscores instead of s
   <div class="discussion">
     <p>Retrieves the character&#39;s society membership status.</p>
 
+<p>Retrieves the character&#39;s society membership status.</p>
+
 
   </div>
 </div>
@@ -791,12 +920,32 @@ compatibility with Ruby method naming (e.g., downcased, underscores instead of s
         <h5 class="example_title"><div class='inline'><p>Getting membership status</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_society_name'>society_name</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_membership'>membership</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_membership'>membership</span></code></pre>
     
   </div>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the society:</p>
+
+<ul>
+<li>&quot;Order of Voln&quot;</li>
+<li>&quot;Council of Light&quot;</li>
+<li>&quot;Guardians of Sunfist&quot;</li>
+<li>or <code>nil</code>/&quot;None&quot; if not a member</li>
+</ul>
+</div>
+      
+    </li>
   
     <li>
       
@@ -854,6 +1003,8 @@ compatibility with Ruby method naming (e.g., downcased, underscores instead of s
   <div class="discussion">
     <p>Retrieves the character&#39;s current rank within their society.</p>
 
+<p>Retrieves the character&#39;s current rank within their society.</p>
+
 
   </div>
 </div>
@@ -866,12 +1017,25 @@ compatibility with Ruby method naming (e.g., downcased, underscores instead of s
         <h5 class="example_title"><div class='inline'><p>Getting society rank</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_current_rank'>current_rank</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rank'>rank</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_rank'>rank</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rank'>rank</span></code></pre>
     
   </div>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The rank number, or 0 if not a member</p>
+</div>
+      
+    </li>
   
     <li>
       
@@ -925,6 +1089,14 @@ compatibility with Ruby method naming (e.g., downcased, underscores instead of s
 <p>If the value responds to <code>:call</code> (i.e., is a <code>Proc</code> or <code>lambda</code>), it is called and
 the result is returned. Otherwise, the value is returned as-is.</p>
 
+<p>This allows society metadata fields such as <code>:duration</code> or <code>:summary</code> to be defined
+as either static values or dynamically evaluated lambdas.</p>
+
+<p>Resolves a value that may be a static literal or a lambda/proc.</p>
+
+<p>If the value responds to <code>:call</code> (i.e., is a <code>Proc</code> or <code>lambda</code>), it is called and
+the result is returned. Otherwise, the value is returned as-is.</p>
+
 
   </div>
 </div>
@@ -937,7 +1109,7 @@ the result is returned. Otherwise, the value is returned as-is.</p>
         <h5 class="example_title"><div class='inline'><p>Resolving a value</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_resolved_value'>resolved_value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_resolve'>resolve</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_resolved_value'>resolved_value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_resolve'>resolve</span><span class='lparen'>(</span><span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='int'>42</span> <span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -958,10 +1130,38 @@ the result is returned. Otherwise, the value is returned as-is.</p>
       
     </li>
   
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>, <tt>Proc</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The value to resolve</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The resolved value, or the original value if not callable</p>
+</div>
+      
+    </li>
   
     <li>
       
@@ -1016,6 +1216,8 @@ the result is returned. Otherwise, the value is returned as-is.</p>
   <div class="discussion">
     <p>Bundles the current society status and rank into a simple structure.</p>
 
+<p>Bundles the current society status and rank into a simple structure.</p>
+
 
   </div>
 </div>
@@ -1025,15 +1227,28 @@ the result is returned. Otherwise, the value is returned as-is.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Serializing society data</p>
+        <h5 class="example_title"><div class='inline'><p>Serializing society information</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_society_data'>society_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_serialize'>serialize</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_info'>info</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_serialize'>serialize</span></code></pre>
     
   </div>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;(<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>, Integer)&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An array in the format <code>[status, rank]</code></p>
+</div>
+      
+    </li>
   
     <li>
       
@@ -1084,6 +1299,8 @@ the result is returned. Otherwise, the value is returned as-is.</p>
   <div class="discussion">
     <p>Retrieves the character&#39;s society membership status.</p>
 
+<p>Retrieves the character&#39;s society membership status.</p>
+
 
   </div>
 </div>
@@ -1096,12 +1313,32 @@ the result is returned. Otherwise, the value is returned as-is.</p>
         <h5 class="example_title"><div class='inline'><p>Checking society status</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_current_status'>current_status</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span></code></pre>
     
   </div>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the society:</p>
+
+<ul>
+<li>&quot;Order of Voln&quot;</li>
+<li>&quot;Council of Light&quot;</li>
+<li>&quot;Guardians of Sunfist&quot;</li>
+<li>or <code>nil</code>/&quot;None&quot; if not a member</li>
+</ul>
+</div>
+      
+    </li>
   
     <li>
       
@@ -1159,7 +1396,6 @@ the result is returned. Otherwise, the value is returned as-is.</p>
   <div class="discussion">
     <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Use #rank instead.  Deprecated 6/2025</p>
 </div></div>
-<p>Returns The current society rank.</p>
 
 
   </div>
@@ -1173,12 +1409,25 @@ the result is returned. Otherwise, the value is returned as-is.</p>
         <h5 class="example_title"><div class='inline'><p>Getting deprecated rank</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_current_step'>current_step</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_step'>step</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_rank'>rank</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Society (class)">Society</a></span></span><span class='period'>.</span><span class='id identifier rubyid_step'>step</span></code></pre>
     
   </div>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The current society rank</p>
+</div>
+      
+    </li>
   
     <li>
       
@@ -1235,6 +1484,12 @@ the result is returned. Otherwise, the value is returned as-is.</p>
 &quot;It is your eternal duty to release undead creatures from their suffering in the name of the Great Spirit Voln.&quot; if
 a Voln Master.</p>
 
+<p>Retrieves the current task assigned by the society, if any.</p>
+
+<p>The current society task, or &quot;You are not currently in a society.&quot; if not a member, or
+&quot;It is your eternal duty to release undead creatures from their suffering in the name of the Great Spirit Voln.&quot; if
+a Voln Master.</p>
+
 
   </div>
 </div>
@@ -1253,6 +1508,26 @@ a Voln Master.</p>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The current society task message.
+Examples:</p>
+
+<ul>
+<li>A task description</li>
+<li>&quot;You are not currently in a society.&quot;</li>
+<li>&quot;It is your eternal duty to release undead creatures...&quot; (Voln masters)</li>
+</ul>
+</div>
+      
+    </li>
   
     <li>
       
@@ -1302,7 +1577,7 @@ Examples:</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:55 2025 by
+  Generated on Fri Nov  7 02:56:56 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

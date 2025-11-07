@@ -103,9 +103,11 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Wounds class for tracking character wounds</p>
+    <p>Wounds class for tracking character wounds
+Wounds class for tracking character wounds</p>
 
-<p>This class provides methods to access and manage the wound levels of various body parts of a character.</p>
+<p>This class provides methods to access and manage the wounds of a character in the game.
+It includes methods for individual body parts, composite wounds, and overall wound levels.</p>
 
 
   </div>
@@ -116,11 +118,10 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Accessing wound levels</p>
+        <h5 class="example_title"><div class='inline'><p>Creating a Wounds instance</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_wounds'>wounds</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>Wounds</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-<span class='id identifier rubyid_wounds'>wounds</span><span class='period'>.</span><span class='id identifier rubyid_leftEye'>leftEye</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_wounds'>wounds</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>Wounds</span></code></pre>
     
   </div>
 
@@ -137,9 +138,11 @@
         <dt id="BODY_PARTS-constant" class="">BODY_PARTS =
           <div class="docstring">
   <div class="discussion">
-    <p>A hash of body parts and their shorthand aliases.</p>
-
-<p>This constant defines the mapping of body parts to their respective aliases for easier access.</p>
+    <p>Body part accessor methods
+XML from Simutronics drives the structure of the wound naming (eg. leftEye)
+The following is a hash of the body parts and shorthand aliases created for more idiomatic Ruby
+A hash of body parts and their shorthand aliases.
+This constant is used to define accessor methods for each body part.</p>
 
 
   </div>
@@ -202,7 +205,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns a hash of all body parts and their respective wound levels.</p>
+    <span class="summary_desc"><div class='inline'><p>Helper method to get all wound levels Returns a hash of all body parts and their corresponding wound levels.</p>
 </div></span>
   
 </li>
@@ -225,7 +228,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the maximum wound level for both arms and hands.</p>
+    <span class="summary_desc"><div class='inline'><p>Composite wound methods Returns the maximum wound level for both arms and hands.</p>
 </div></span>
   
 </li>
@@ -270,7 +273,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the wound level for the left eye using snake_case.</p>
+    <span class="summary_desc"><div class='inline'><p>Alias snake_case methods for overachievers Returns the wound level for the left eye using snake_case.</p>
 </div></span>
   
 </li>
@@ -359,7 +362,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the maximum wound level for all limbs including arms and legs.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the maximum wound level for all limbs (arms and legs).</p>
 </div></span>
   
 </li>
@@ -492,7 +495,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the maximum wound level for the torso including chest, abdomen, and back.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the maximum wound level for the torso.</p>
 </div></span>
   
 </li>
@@ -515,7 +518,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the wound level for a specified body part.</p>
+    <span class="summary_desc"><div class='inline'><p>Helper method to get wound level for any body part Returns the wound level for a specified body part.</p>
 </div></span>
   
 </li>
@@ -552,7 +555,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns a hash of all body parts and their respective wound levels.</p>
+    <p>Helper method to get all wound levels
+Returns a hash of all body parts and their corresponding wound levels.</p>
 
 
   </div>
@@ -563,10 +567,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Accessing all wound levels</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_wounds'>wounds</span><span class='period'>.</span><span class='id identifier rubyid_all_wounds'>all_wounds</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_all_wounds'>all_wounds</span> <span class='op'>=</span> <span class='id identifier rubyid_wounds'>wounds</span><span class='period'>.</span><span class='id identifier rubyid_all_wounds'>all_wounds</span></code></pre>
     
   </div>
 
@@ -594,13 +595,13 @@
       <pre class="lines">
 
 
+131
 132
 133
-134
-135</pre>
+134</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'wounds.rb', line 132</span>
+      <pre class="code"><span class="info file"># File 'wounds.rb', line 131</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_all_wounds'>all_wounds</span>
   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -622,7 +623,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the maximum wound level for both arms and hands.</p>
+    <p>Composite wound methods
+Returns the maximum wound level for both arms and hands.</p>
 
 
   </div>
@@ -633,10 +635,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Accessing arms wound level</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_wounds'>wounds</span><span class='period'>.</span><span class='id identifier rubyid_arms'>arms</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_max_wound'>max_wound</span> <span class='op'>=</span> <span class='id identifier rubyid_wounds'>wounds</span><span class='period'>.</span><span class='id identifier rubyid_arms'>arms</span></code></pre>
     
   </div>
 
@@ -651,7 +650,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The maximum wound level among left arm, right arm, left hand, and right hand or nil if not present.</p>
+        <div class='inline'><p>The maximum wound level among the left arm, right arm, left hand, and right hand.</p>
 </div>
       
     </li>
@@ -664,6 +663,7 @@
       <pre class="lines">
 
 
+74
 75
 76
 77
@@ -671,11 +671,10 @@
 79
 80
 81
-82
-83</pre>
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'wounds.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'wounds.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_arms'>arms</span>
   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -706,10 +705,10 @@
       <pre class="lines">
 
 
-61</pre>
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'wounds.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'wounds.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_arm'>left_arm</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftArm'>leftArm</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -728,7 +727,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the wound level for the left eye using snake_case.</p>
+    <p>Alias snake_case methods for overachievers
+Returns the wound level for the left eye using snake_case.</p>
 
 
   </div>
@@ -739,10 +739,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Accessing left eye wound level</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_wounds'>wounds</span><span class='period'>.</span><span class='id identifier rubyid_left_eye'>left_eye</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_wound_level'>wound_level</span> <span class='op'>=</span> <span class='id identifier rubyid_wounds'>wounds</span><span class='period'>.</span><span class='id identifier rubyid_left_eye'>left_eye</span></code></pre>
     
   </div>
 
@@ -757,7 +754,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The wound level of the left eye or nil if not present.</p>
+        <div class='inline'><p>The wound level for the left eye or nil if not present.</p>
 </div>
       
     </li>
@@ -770,10 +767,10 @@
       <pre class="lines">
 
 
-59</pre>
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'wounds.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'wounds.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_eye'>left_eye</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftEye'>leftEye</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -796,10 +793,10 @@
       <pre class="lines">
 
 
-67</pre>
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'wounds.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'wounds.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_foot'>left_foot</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftFoot'>leftFoot</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -822,10 +819,10 @@
       <pre class="lines">
 
 
-63</pre>
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'wounds.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'wounds.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_hand'>left_hand</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftHand'>leftHand</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -848,10 +845,10 @@
       <pre class="lines">
 
 
-65</pre>
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'wounds.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'wounds.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_leg'>left_leg</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftLeg'>leftLeg</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -870,7 +867,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the maximum wound level for all limbs including arms and legs.</p>
+    <p>Returns the maximum wound level for all limbs (arms and legs).</p>
 
 
   </div>
@@ -881,10 +878,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Accessing limbs wound level</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_wounds'>wounds</span><span class='period'>.</span><span class='id identifier rubyid_limbs'>limbs</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_max_wound'>max_wound</span> <span class='op'>=</span> <span class='id identifier rubyid_wounds'>wounds</span><span class='period'>.</span><span class='id identifier rubyid_limbs'>limbs</span></code></pre>
     
   </div>
 
@@ -899,7 +893,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The maximum wound level among all limbs or nil if not present.</p>
+        <div class='inline'><p>The maximum wound level among the arms and legs.</p>
 </div>
       
     </li>
@@ -912,6 +906,7 @@
       <pre class="lines">
 
 
+88
 89
 90
 91
@@ -921,11 +916,10 @@
 95
 96
 97
-98
-99</pre>
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'wounds.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'wounds.rb', line 88</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_limbs'>limbs</span>
   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -958,10 +952,10 @@
       <pre class="lines">
 
 
-62</pre>
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'wounds.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'wounds.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_arm'>right_arm</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightArm'>rightArm</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -984,10 +978,10 @@
       <pre class="lines">
 
 
-60</pre>
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'wounds.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'wounds.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_eye'>right_eye</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightEye'>rightEye</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1010,10 +1004,10 @@
       <pre class="lines">
 
 
-68</pre>
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'wounds.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'wounds.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_foot'>right_foot</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightFoot'>rightFoot</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1036,10 +1030,10 @@
       <pre class="lines">
 
 
-64</pre>
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'wounds.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'wounds.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_hand'>right_hand</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightHand'>rightHand</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1062,10 +1056,10 @@
       <pre class="lines">
 
 
-66</pre>
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'wounds.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'wounds.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_leg'>right_leg</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightLeg'>rightLeg</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1084,7 +1078,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the maximum wound level for the torso including chest, abdomen, and back.</p>
+    <p>Returns the maximum wound level for the torso.</p>
 
 
   </div>
@@ -1095,10 +1089,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Accessing torso wound level</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_wounds'>wounds</span><span class='period'>.</span><span class='id identifier rubyid_torso'>torso</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_max_wound'>max_wound</span> <span class='op'>=</span> <span class='id identifier rubyid_wounds'>wounds</span><span class='period'>.</span><span class='id identifier rubyid_torso'>torso</span></code></pre>
     
   </div>
 
@@ -1113,7 +1104,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The maximum wound level among torso parts or nil if not present.</p>
+        <div class='inline'><p>The maximum wound level among the torso body parts.</p>
 </div>
       
     </li>
@@ -1126,6 +1117,7 @@
       <pre class="lines">
 
 
+104
 105
 106
 107
@@ -1134,11 +1126,10 @@
 110
 111
 112
-113
-114</pre>
+113</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'wounds.rb', line 105</span>
+      <pre class="code"><span class="info file"># File 'wounds.rb', line 104</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_torso'>torso</span>
   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1166,7 +1157,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the wound level for a specified body part.</p>
+    <p>Helper method to get wound level for any body part
+Returns the wound level for a specified body part.</p>
 
 
   </div>
@@ -1177,10 +1169,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Accessing wound level for a specific part</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_wounds'>wounds</span><span class='period'>.</span><span class='id identifier rubyid_wound_level'>wound_level</span><span class='lparen'>(</span><span class='symbol'>:leftEye</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_wound_level'>wound_level</span> <span class='op'>=</span> <span class='id identifier rubyid_wounds'>wounds</span><span class='period'>.</span><span class='id identifier rubyid_wound_level'>wound_level</span><span class='lparen'>(</span><span class='symbol'>:leftArm</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1196,7 +1185,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The body part to check (e.g., :leftEye).</p>
+        <div class='inline'><p>The body part to check (e.g., :leftArm).</p>
 </div>
       
     </li>
@@ -1214,7 +1203,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The wound level of the specified body part or nil if not present.</p>
+        <div class='inline'><p>The wound level for the specified body part or nil if not present.</p>
 </div>
       
     </li>
@@ -1227,13 +1216,13 @@
       <pre class="lines">
 
 
+121
 122
 123
-124
-125</pre>
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'wounds.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'wounds.rb', line 121</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_wound_level'>wound_level</span><span class='lparen'>(</span><span class='id identifier rubyid_part'>part</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1249,7 +1238,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:55 2025 by
+  Generated on Fri Nov  7 02:56:55 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

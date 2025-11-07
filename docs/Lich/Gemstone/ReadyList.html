@@ -101,13 +101,25 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>ready_list = Lich::Gemstone::ReadyList</p>
+    <p>Represents a ready list for managing equipped items in the game.
+This class provides methods to check, reset, and validate the items in the ready list.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Creating a ready list</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_ready_list'>ready_list</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>ReadyList</span></code></pre>
+    
+  </div>
+
 
 </div>
   
@@ -121,8 +133,8 @@
         <dt id="ORIGINAL_READY_LIST-constant" class="">ORIGINAL_READY_LIST =
           <div class="docstring">
   <div class="discussion">
-    <p>The original list of ready items.
-This constant defines the default items that can be included in the ready list.</p>
+    <p>The original list of ready item types.
+This constant defines the types of items that can be ready.</p>
 
 
   </div>
@@ -137,7 +149,8 @@ This constant defines the default items that can be included in the ready list.<
         <dt id="ORIGINAL_STORE_LIST-constant" class="">ORIGINAL_STORE_LIST =
           <div class="docstring">
   <div class="discussion">
-    <p>This constant defines the default items that can be included in the store list.</p>
+    <p>The original list of store item types.
+This constant defines the types of items that can be stored.</p>
 
 
   </div>
@@ -261,7 +274,7 @@ This constant defines the default items that can be included in the ready list.<
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#reset-class_method" title="reset (class method)">.<strong>reset</strong>(all: false)  &#x21d2; void </a>
+      <a href="#reset-class_method" title="reset (class method)">.<strong>reset</strong>(all: false)  &#x21d2; Object </a>
     
 
     
@@ -347,7 +360,14 @@ This constant defines the default items that can be included in the ready list.<
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Checks the current settings of the ready list.</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This method sets the checked status to true after execution.</p>
+</div>
+  </div>
+
+<p class="note returns_void">This method returns an undefined value.</p><p>Checks the current settings of the ready list.</p>
 
 
   </div>
@@ -410,6 +430,7 @@ This constant defines the default items that can be included in the ready list.<
       <pre class="lines">
 
 
+112
 113
 114
 115
@@ -418,11 +439,10 @@ This constant defines the default items that can be included in the ready list.<
 118
 119
 120
-121
-122</pre>
+121</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'readylist.rb', line 113</span>
+      <pre class="code"><span class="info file"># File 'readylist.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check'>check</span><span class='lparen'>(</span><span class='label'>silent:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_quiet'>quiet</span>
@@ -615,7 +635,7 @@ This constant defines the default items that can be included in the ready list.<
       <div class="method_details ">
   <h3 class="signature " id="reset-class_method">
   
-    .<strong>reset</strong>(all: false)  &#x21d2; <tt>void</tt> 
+    .<strong>reset</strong>(all: false)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -623,7 +643,7 @@ This constant defines the default items that can be included in the ready list.<
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Resets the ready and store lists.</p>
+    <p>Resets the ready and store lists.</p>
 
 
   </div>
@@ -658,6 +678,8 @@ This constant defines the default items that can be included in the ready list.<
       <pre class="lines">
 
 
+93
+94
 95
 96
 97
@@ -666,12 +688,10 @@ This constant defines the default items that can be included in the ready list.<
 100
 101
 102
-103
-104
-105</pre>
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'readylist.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'readylist.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reset'>reset</span><span class='lparen'>(</span><span class='label'>all:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='ivar'>@checked</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -757,14 +777,7 @@ This constant defines the default items that can be included in the ready list.<
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'><p>This method requires the ready list to be checked first.</p>
-</div>
-  </div>
-
-<p>Validates the items in the ready list.</p>
+    <p>Validates the items in the ready list.</p>
 
 
   </div>
@@ -785,7 +798,7 @@ This constant defines the default items that can be included in the ready list.<
       
       
         &mdash;
-        <div class='inline'><p>If true, validates all items; otherwise, only validates original ready items.</p>
+        <div class='inline'><p>If true, checks all items; otherwise, only checks original ready items.</p>
 </div>
       
     </li>
@@ -803,7 +816,7 @@ This constant defines the default items that can be included in the ready list.<
       
       
         &mdash;
-        <div class='inline'><p>True if all valid, false otherwise.</p>
+        <div class='inline'><p>True if all checked items are valid, false otherwise.</p>
 </div>
       
     </li>
@@ -816,6 +829,7 @@ This constant defines the default items that can be included in the ready list.<
       <pre class="lines">
 
 
+78
 79
 80
 81
@@ -826,11 +840,10 @@ This constant defines the default items that can be included in the ready list.<
 86
 87
 88
-89
-90</pre>
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'readylist.rb', line 79</span>
+      <pre class="code"><span class="info file"># File 'readylist.rb', line 78</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='label'>all:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='comment'># check if existing ready items are valid or not
@@ -854,7 +867,7 @@ This constant defines the default items that can be included in the ready list.<
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:55 2025 by
+  Generated on Fri Nov  7 02:56:56 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

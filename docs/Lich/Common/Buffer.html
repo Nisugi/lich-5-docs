@@ -85,9 +85,8 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Manages a thread-safe buffer for streaming data.
-This module provides methods to read from and write to a buffer,
-as well as manage stream states for different threads.</p>
+    <p>Manages a buffer for handling streams of data.
+This module provides methods to read from and write to a buffer, as well as manage stream states.</p>
 
 
   </div>
@@ -101,9 +100,8 @@ as well as manage stream states for different threads.</p>
         <h5 class="example_title"><div class='inline'><p>Using the Buffer module</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_buffer'>buffer</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'>Buffer</span>
-<span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
-<span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_gets'>gets</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'>Buffer</span><span class='period'>.</span><span class='id identifier rubyid_update'><span class='object_link'><a href="#update-class_method" title="Lich::Common::Buffer.update (method)">update</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='comma'>,</span> <span class='id identifier rubyid_stream'>stream</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'>Buffer</span><span class='period'>.</span><span class='id identifier rubyid_gets'><span class='object_link'><a href="#gets-class_method" title="Lich::Common::Buffer.gets (method)">gets</a></span></span></code></pre>
     
   </div>
 
@@ -271,7 +269,7 @@ as well as manage stream states for different threads.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Cleans up the index and streams for threads that are no longer active.</p>
+    <span class="summary_desc"><div class='inline'><p>rubocop:enable Lint/HashCompareByIdentity Cleans up the index and streams for threads that are no longer active.</p>
 </div></span>
   
 </li>
@@ -294,7 +292,7 @@ as well as manage stream states for different threads.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Clears all lines from the buffer for the current thread.</p>
+    <span class="summary_desc"><div class='inline'><p>Clears the buffer and returns all lines that match the current stream.</p>
 </div></span>
   
 </li>
@@ -386,7 +384,7 @@ as well as manage stream states for different threads.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the current stream type for the calling thread.</p>
+    <span class="summary_desc"><div class='inline'><p>rubocop:disable Lint/HashCompareByIdentity Retrieves the current stream type for the calling thread.</p>
 </div></span>
   
 </li>
@@ -432,7 +430,7 @@ as well as manage stream states for different threads.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Updates the buffer with a new line, optionally setting its stream type.</p>
+    <span class="summary_desc"><div class='inline'><p>Updates the buffer with a new line and an optional stream type.</p>
 </div></span>
   
 </li>
@@ -458,7 +456,8 @@ as well as manage stream states for different threads.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Cleans up the index and streams for threads that are no longer active.</p>
+    <p>rubocop:enable Lint/HashCompareByIdentity
+Cleans up the index and streams for threads that are no longer active.</p>
 
 
   </div>
@@ -469,10 +468,10 @@ as well as manage stream states for different threads.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Cleaning up inactive threads</p>
+        <h5 class="example_title"><div class='inline'><p>Cleaning up the buffer</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_cleanup'>cleanup</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_cleanup'>cleanup</span></code></pre>
     
   </div>
 
@@ -500,14 +499,14 @@ as well as manage stream states for different threads.</p>
       <pre class="lines">
 
 
+186
+187
 188
 189
-190
-191
-192</pre>
+190</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'buffer.rb', line 188</span>
+      <pre class="code"><span class="info file"># File 'buffer.rb', line 186</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_cleanup'>cleanup</span>
   <span class='cvar'>@@index</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid__v'>_v</span><span class='op'>|</span> <span class='kw'>not</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span> <span class='op'>==</span> <span class='id identifier rubyid_k'>k</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span>
@@ -530,7 +529,7 @@ as well as manage stream states for different threads.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Clears all lines from the buffer for the current thread.</p>
+    <p>Clears the buffer and returns all lines that match the current stream.</p>
 
 
   </div>
@@ -544,7 +543,7 @@ as well as manage stream states for different threads.</p>
         <h5 class="example_title"><div class='inline'><p>Clearing the buffer</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_cleared_lines'>cleared_lines</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_lines'>lines</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span></code></pre>
     
   </div>
 
@@ -572,6 +571,8 @@ as well as manage stream states for different threads.</p>
       <pre class="lines">
 
 
+109
+110
 111
 112
 113
@@ -595,12 +596,10 @@ as well as manage stream states for different threads.</p>
 131
 132
 133
-134
-135
-136</pre>
+134</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'buffer.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'buffer.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
   <span class='id identifier rubyid_thread_id'>thread_id</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span>
@@ -665,7 +664,7 @@ as well as manage stream states for different threads.</p>
         <h5 class="example_title"><div class='inline'><p>Reading a line from the buffer</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gets'>gets</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gets'>gets</span></code></pre>
     
   </div>
 
@@ -693,6 +692,8 @@ as well as manage stream states for different threads.</p>
       <pre class="lines">
 
 
+39
+40
 41
 42
 43
@@ -714,12 +715,10 @@ as well as manage stream states for different threads.</p>
 59
 60
 61
-62
-63
-64</pre>
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'buffer.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'buffer.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gets'>gets</span>
   <span class='id identifier rubyid_thread_id'>thread_id</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span>
@@ -775,7 +774,7 @@ as well as manage stream states for different threads.</p>
         <h5 class="example_title"><div class='inline'><p>Attempting to read a line from the buffer</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gets?'>gets?</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gets?'>gets?</span></code></pre>
     
   </div>
 
@@ -803,6 +802,8 @@ as well as manage stream states for different threads.</p>
       <pre class="lines">
 
 
+68
+69
 70
 71
 72
@@ -825,12 +826,10 @@ as well as manage stream states for different threads.</p>
 89
 90
 91
-92
-93
-94</pre>
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'buffer.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'buffer.rb', line 68</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gets?'>gets?</span>
   <span class='id identifier rubyid_thread_id'>thread_id</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span>
@@ -887,7 +886,7 @@ as well as manage stream states for different threads.</p>
         <h5 class="example_title"><div class='inline'><p>Rewinding the buffer</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rewind'>rewind</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rewind'>rewind</span></code></pre>
     
   </div>
 
@@ -915,15 +914,15 @@ as well as manage stream states for different threads.</p>
       <pre class="lines">
 
 
+98
+99
 100
 101
 102
-103
-104
-105</pre>
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'buffer.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'buffer.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_rewind'>rewind</span>
   <span class='id identifier rubyid_thread_id'>thread_id</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span>
@@ -947,7 +946,8 @@ as well as manage stream states for different threads.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the current stream type for the calling thread.</p>
+    <p>rubocop:disable Lint/HashCompareByIdentity
+Retrieves the current stream type for the calling thread.</p>
 
 
   </div>
@@ -961,7 +961,7 @@ as well as manage stream states for different threads.</p>
         <h5 class="example_title"><div class='inline'><p>Getting the current stream type</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_current_stream'>current_stream</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_streams'>streams</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_current_stream'>current_stream</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_streams'>streams</span></code></pre>
     
   </div>
 
@@ -976,7 +976,7 @@ as well as manage stream states for different threads.</p>
       
       
         &mdash;
-        <div class='inline'><p>The stream type for the current thread.</p>
+        <div class='inline'><p>The current stream type for the thread.</p>
 </div>
       
     </li>
@@ -989,12 +989,12 @@ as well as manage stream states for different threads.</p>
       <pre class="lines">
 
 
-165
-166
-167</pre>
+163
+164
+165</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'buffer.rb', line 165</span>
+      <pre class="code"><span class="info file"># File 'buffer.rb', line 163</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_streams'>streams</span>
   <span class='cvar'>@@streams</span><span class='lbracket'>[</span><span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span><span class='rbracket'>]</span>
@@ -1029,7 +1029,7 @@ as well as manage stream states for different threads.</p>
         <h5 class="example_title"><div class='inline'><p>Setting the stream type</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_streams'><span class='object_link'><a href="#streams-class_method" title="Lich::Common::Buffer.streams (method)">streams</a></span></span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#UPSTREAM-constant" title="Lich::Common::Buffer::UPSTREAM (constant)">UPSTREAM</a></span></span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_streams'><span class='object_link'><a href="#streams-class_method" title="Lich::Common::Buffer.streams (method)">streams</a></span></span> <span class='op'>=</span> <span class='id identifier rubyid_new_stream_type'>new_stream_type</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1093,16 +1093,16 @@ as well as manage stream states for different threads.</p>
       <pre class="lines">
 
 
+173
+174
 175
 176
 177
 178
-179
-180
-181</pre>
+179</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'buffer.rb', line 175</span>
+      <pre class="code"><span class="info file"># File 'buffer.rb', line 173</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_streams='>streams=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='op'>!</span><span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Integer</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>or</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span> <span class='op'>&amp;</span> <span class='int'>63</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='int'>0</span><span class='rparen'>)</span>
@@ -1127,7 +1127,7 @@ as well as manage stream states for different threads.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Updates the buffer with a new line, optionally setting its stream type.</p>
+    <p>Updates the buffer with a new line and an optional stream type.</p>
 
 
   </div>
@@ -1141,7 +1141,7 @@ as well as manage stream states for different threads.</p>
         <h5 class="example_title"><div class='inline'><p>Updating the buffer with a new line</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_new_line'>new_line</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#DOWNSTREAM_RAW-constant" title="Lich::Common::Buffer::DOWNSTREAM_RAW (constant)">DOWNSTREAM_RAW</a></span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_new_line'>new_line</span><span class='comma'>,</span> <span class='id identifier rubyid_stream_type'>stream_type</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1174,7 +1174,7 @@ as well as manage stream states for different threads.</p>
       
       
         &mdash;
-        <div class='inline'><p>The stream type for the line (default: nil).</p>
+        <div class='inline'><p>The stream type for the line (optional).</p>
 </div>
       
     </li>
@@ -1205,6 +1205,8 @@ as well as manage stream states for different threads.</p>
       <pre class="lines">
 
 
+142
+143
 144
 145
 146
@@ -1217,12 +1219,10 @@ as well as manage stream states for different threads.</p>
 153
 154
 155
-156
-157
-158</pre>
+156</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'buffer.rb', line 144</span>
+      <pre class="code"><span class="info file"># File 'buffer.rb', line 142</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Buffer (module)">Buffer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='comma'>,</span> <span class='id identifier rubyid_stream'>stream</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='cvar'>@@mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span>
@@ -1249,7 +1249,7 @@ as well as manage stream states for different threads.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:49 2025 by
+  Generated on Fri Nov  7 02:56:49 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

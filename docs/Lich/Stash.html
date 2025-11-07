@@ -85,13 +85,24 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Lich::Stash.find_container(&#39;backpack&#39;)</p>
+    <p>Provides methods for managing containers and items in the Lich game.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Using the Stash module</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'>Stash</span><span class='period'>.</span><span class='id identifier rubyid_add_to_bag'><span class='object_link'><a href="#add_to_bag-class_method" title="Lich::Stash.add_to_bag (method)">add_to_bag</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_bag'>bag</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
 
@@ -148,7 +159,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves a container and ensures it is open.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves a container and ensures it is displayed.</p>
 </div></span>
   
 </li>
@@ -171,7 +182,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Equips items from the stash back into the hands.</p>
+    <span class="summary_desc"><div class='inline'><p>Equips items from the stash back to the hands.</p>
 </div></span>
   
 </li>
@@ -286,7 +297,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Stashes items from the hands into specified containers.</p>
+    <span class="summary_desc"><div class='inline'><p>Stashes items from the hands into appropriate containers.</p>
 </div></span>
   
 </li>
@@ -332,7 +343,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Wears an item and attempts to add it to the inventory.</p>
+    <span class="summary_desc"><div class='inline'><p>Wears an item and checks if it is in the inventory.</p>
 </div></span>
   
 </li>
@@ -372,7 +383,7 @@
         <h5 class="example_title"><div class='inline'><p>Adding an item to a bag</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Stash (module)">Stash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add_to_bag'>add_to_bag</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>backpack</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Stash (module)">Stash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add_to_bag'>add_to_bag</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>my_bag</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -388,7 +399,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The name of the bag or a GameObj instance.</p>
+        <div class='inline'><p>The bag to add the item to.</p>
 </div>
       
     </li>
@@ -478,7 +489,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves a container and ensures it is open.</p>
+    <p>Retrieves a container and ensures it is displayed.</p>
 
 
   </div>
@@ -492,7 +503,7 @@
         <h5 class="example_title"><div class='inline'><p>Checking a container</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_container'>container</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Stash (module)">Stash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_container'>container</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>backpack</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_container'>container</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Stash (module)">Stash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_container'>container</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>my_container</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -579,7 +590,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Equips items from the stash back into the hands.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Equips items from the stash back to the hands.</p>
 
 
   </div>
@@ -743,7 +754,7 @@
         <h5 class="example_title"><div class='inline'><p>Finding a container</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_container'>container</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Stash (module)">Stash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_container'>find_container</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>backpack</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_container'>container</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Stash (module)">Stash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_container'>find_container</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>my_container</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -880,7 +891,7 @@
         <h5 class="example_title"><div class='inline'><p>Checking for missing primary sheath</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Stash (module)">Stash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_missing_primary_sheath?'>missing_primary_sheath?</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_is_missing'>is_missing</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Stash (module)">Stash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_missing_primary_sheath?'>missing_primary_sheath?</span></code></pre>
     
   </div>
 
@@ -948,7 +959,7 @@
         <h5 class="example_title"><div class='inline'><p>Checking for missing secondary sheath</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Stash (module)">Stash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_missing_secondary_sheath?'>missing_secondary_sheath?</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_is_missing'>is_missing</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Stash (module)">Stash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_missing_secondary_sheath?'>missing_secondary_sheath?</span></code></pre>
     
   </div>
 
@@ -1091,7 +1102,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Stashes items from the hands into specified containers.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Stashes items from the hands into appropriate containers.</p>
 
 
   </div>
@@ -1453,7 +1464,7 @@
         <h5 class="example_title"><div class='inline'><p>Trying a command</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Stash (module)">Stash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_try_or_fail'>try_or_fail</span><span class='lparen'>(</span><span class='label'>command:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>look</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_inv'>inv</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='rbrace'>}</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Stash (module)">Stash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_try_or_fail'>try_or_fail</span><span class='lparen'>(</span><span class='label'>command:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>some_command</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_some_condition_met'>some_condition_met</span> <span class='rbrace'>}</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1551,7 +1562,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Wears an item and attempts to add it to the inventory.</p>
+    <p>Wears an item and checks if it is in the inventory.</p>
 
 
   </div>
@@ -1565,7 +1576,7 @@
         <h5 class="example_title"><div class='inline'><p>Wearing an item</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Stash (module)">Stash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_wear_to_inv'>wear_to_inv</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Stash (module)">Stash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_wear_to_inv'>wear_to_inv</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1599,7 +1610,7 @@
       
       
         &mdash;
-        <div class='inline'><p>True if the item was successfully worn, false otherwise.</p>
+        <div class='inline'><p>True if the item is successfully worn, false otherwise.</p>
 </div>
       
     </li>
@@ -1646,7 +1657,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:49 2025 by
+  Generated on Fri Nov  7 02:56:49 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

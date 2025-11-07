@@ -85,7 +85,8 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Handles frontend session management for the Lich project.</p>
+    <p>Handles frontend session file operations
+This module manages the creation, location, and cleanup of session files.</p>
 
 
   </div>
@@ -96,10 +97,10 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Creating a session</p>
+        <h5 class="example_title"><div class='inline'><p>Using the Frontend module</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'>Frontend</span><span class='period'>.</span><span class='id identifier rubyid_create_session_file'><span class='object_link'><a href="#create_session_file-class_method" title="Lich::Common::Frontend.create_session_file (method)">create_session_file</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>session_name</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>localhost</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>3000</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'>Frontend</span><span class='period'>.</span><span class='id identifier rubyid_create_session_file'><span class='object_link'><a href="#create_session_file-class_method" title="Lich::Common::Frontend.create_session_file (method)">create_session_file</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>example</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>localhost</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>3000</span><span class='rparen'>)</span></code></pre>
     
   </div>
 
@@ -211,17 +212,28 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>If the session file is nil, the method will return without doing anything.</p>
+    <div class='inline'><p>If the session file does not exist, the method will return early without performing any action.</p>
 </div>
   </div>
 
-<p>Cleans up (deletes) the current session file if it exists.</p>
+<p>Cleans up (deletes) the current session file if it exists</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Cleaning up the session file</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Frontend (module)">Frontend</a></span></span><span class='period'>.</span><span class='id identifier rubyid_cleanup_session_file'>cleanup_session_file</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -242,13 +254,13 @@
       <pre class="lines">
 
 
-46
-47
-48
-49</pre>
+52
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'front-end.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'front-end.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_cleanup_session_file'>cleanup_session_file</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='ivar'>@session_file</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -273,11 +285,11 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>If name is nil, the method will return without doing anything.</p>
+    <div class='inline'><p>If the name is nil, the method will return early without creating a session file.</p>
 </div>
   </div>
 
-<p>Creates a session file with the given parameters.</p>
+<p>Creates a session file with the given parameters</p>
 
 
   </div>
@@ -291,7 +303,7 @@
         <h5 class="example_title"><div class='inline'><p>Creating a session file</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Frontend (module)">Frontend</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_session_file'>create_session_file</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>my_session</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>localhost</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>3000</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Frontend (module)">Frontend</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_session_file'>create_session_file</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>example</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>localhost</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>3000</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -307,7 +319,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The name of the session.</p>
+        <div class='inline'><p>The name of the session</p>
 </div>
       
     </li>
@@ -322,7 +334,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The host for the session.</p>
+        <div class='inline'><p>The host for the session</p>
 </div>
       
     </li>
@@ -337,7 +349,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The port for the session.</p>
+        <div class='inline'><p>The port for the session</p>
 </div>
       
     </li>
@@ -354,7 +366,7 @@
       
       
         &mdash;
-        <div class='inline'><p>Whether to display the session descriptor (default: true).</p>
+        <div class='inline'><p>Whether to display the session descriptor (default: true)</p>
 </div>
       
     </li>
@@ -381,8 +393,6 @@
       <pre class="lines">
 
 
-26
-27
 28
 29
 30
@@ -390,10 +400,12 @@
 32
 33
 34
-35</pre>
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'front-end.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'front-end.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_session_file'>create_session_file</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span><span class='comma'>,</span> <span class='label'>display_session:</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -421,13 +433,24 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the location of the current session file.</p>
+    <p>Returns the location of the current session file</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Retrieving the session file location</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_location'>location</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Frontend (module)">Frontend</a></span></span><span class='period'>.</span><span class='id identifier rubyid_session_file_location'>session_file_location</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -439,7 +462,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The path to the session file or nil if not set.</p>
+        <div class='inline'><p>The path to the session file or nil if not set</p>
 </div>
       
     </li>
@@ -452,12 +475,12 @@
       <pre class="lines">
 
 
-39
-40
-41</pre>
+43
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'front-end.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'front-end.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_session_file_location'>session_file_location</span>
   <span class='ivar'>@session_file</span>
@@ -472,7 +495,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:50 2025 by
+  Generated on Fri Nov  7 02:56:51 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

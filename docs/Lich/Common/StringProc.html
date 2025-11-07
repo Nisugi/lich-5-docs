@@ -101,13 +101,26 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>sp.call # =&gt; 2</p>
+    <p>Represents a String processing object that can evaluate a string as a Ruby expression.
+This class allows for the creation of callable objects that encapsulate a string and can execute it.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Creating a StringProc and calling it</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_sp'>sp</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'>StringProc</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::StringProc#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>1 + 1</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_sp'>sp</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='comment'># =&gt; 2</span></code></pre>
+    
+  </div>
+
 
 </div>
 
@@ -196,7 +209,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Executes the string as Ruby code and returns the result.</p>
+    <span class="summary_desc"><div class='inline'><p>Evaluates the stored string as Ruby code and returns the result.</p>
 </div></span>
   
 </li>
@@ -244,7 +257,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Initializes a new StringProc instance.</p>
+    <span class="summary_desc"><div class='inline'><p>Initializes a new StringProc object.</p>
 </div></span>
   
 </li>
@@ -267,7 +280,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns a string representation of the StringProc for debugging.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns a string representation of the StringProc object.</p>
 </div></span>
   
 </li>
@@ -313,7 +326,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Converts the StringProc to a JSON format.</p>
+    <span class="summary_desc"><div class='inline'><p>Converts the StringProc to a JSON representation.</p>
 </div></span>
   
 </li>
@@ -336,7 +349,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Initializes a new StringProc instance.</p>
+    <p>Initializes a new StringProc object.</p>
 
 
   </div>
@@ -408,18 +421,7 @@
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Loading a StringProc</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_sp'>sp</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='period'>.</span><span class='id identifier rubyid__load'>_load</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>3 * 3</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -450,7 +452,7 @@
       
       
         &mdash;
-        <div class='inline'><p>A new instance of StringProc initialized with the provided string.</p>
+        <div class='inline'><p>A new StringProc object initialized with the given string.</p>
 </div>
       
     </li>
@@ -463,12 +465,12 @@
       <pre class="lines">
 
 
-71
-72
-73</pre>
+68
+69
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'stringproc.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'stringproc.rb', line 68</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='period'>.</span><span class='id identifier rubyid__load'>_load</span><span class='lparen'>(</span><span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::StringProc#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span>
@@ -516,7 +518,7 @@
       
       
         &mdash;
-        <div class='inline'><p>An optional parameter (not used).</p>
+        <div class='inline'><p>Optional parameter (not used).</p>
 </div>
       
     </li>
@@ -534,7 +536,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The string contained in the StringProc.</p>
+        <div class='inline'><p>The string stored in the StringProc.</p>
 </div>
       
     </li>
@@ -573,7 +575,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Executes the string as Ruby code and returns the result.</p>
+    <p>Evaluates the stored string as Ruby code and returns the result.</p>
 
 
   </div>
@@ -603,7 +605,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The result of evaluating the string.</p>
+        <div class='inline'><p>The result of the evaluated string.</p>
 </div>
       
     </li>
@@ -660,7 +662,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The class of the StringProc, which is Proc.</p>
+        <div class='inline'><p>The Proc class.</p>
 </div>
       
     </li>
@@ -699,7 +701,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns a string representation of the StringProc for debugging.</p>
+    <p>Returns a string representation of the StringProc object.</p>
 
 
   </div>
@@ -717,7 +719,7 @@
       
       
         &mdash;
-        <div class='inline'><p>A string that represents the StringProc instance.</p>
+        <div class='inline'><p>A string that describes the StringProc.</p>
 </div>
       
     </li>
@@ -843,7 +845,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Converts the StringProc to a JSON format.</p>
+    <p>Converts the StringProc to a JSON representation.</p>
 
 
   </div>
@@ -857,8 +859,7 @@
         <h5 class="example_title"><div class='inline'><p>Converting to JSON</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_sp'>sp</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::StringProc#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>hello</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-<span class='id identifier rubyid_sp'>sp</span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span> <span class='comment'># =&gt; &#39;;e hello&#39;</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_sp'>sp</span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span> <span class='comment'># =&gt; &#39;;e &quot;your_string&quot;&#39;</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -874,7 +875,7 @@
       
       
         &mdash;
-        <div class='inline'><p>Additional arguments for JSON conversion.</p>
+        <div class='inline'><p>Optional arguments for JSON conversion.</p>
 </div>
       
     </li>
@@ -905,12 +906,12 @@
       <pre class="lines">
 
 
+61
 62
-63
-64</pre>
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'stringproc.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'stringproc.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_json'>to_json</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>;e </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__dump'>_dump</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -925,7 +926,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:56 2025 by
+  Generated on Fri Nov  7 02:56:57 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

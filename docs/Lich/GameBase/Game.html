@@ -285,7 +285,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sends a string to the game server.</p>
+    <span class="summary_desc"><div class='inline'><p>Sends a string to the socket.</p>
 </div></span>
   
 </li>
@@ -308,7 +308,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Closes the game connection.</p>
+    <span class="summary_desc"><div class='inline'><p>Closes the socket connection.</p>
 </div></span>
   
 </li>
@@ -331,7 +331,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if the game connection is closed.</p>
+    <span class="summary_desc"><div class='inline'><p>Checks if the socket is closed.</p>
 </div></span>
   
 </li>
@@ -377,7 +377,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves a line from the game server.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves a line from the buffer.</p>
 </div></span>
   
 </li>
@@ -561,7 +561,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Processes a server string received from the game.</p>
+    <span class="summary_desc"><div class='inline'><p>Processes the server string received from the game.</p>
 </div></span>
   
 </li>
@@ -607,7 +607,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sends a formatted string to the game server.</p>
+    <span class="summary_desc"><div class='inline'><p>Sends a formatted string to the client.</p>
 </div></span>
   
 </li>
@@ -630,7 +630,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sends a string to the client.</p>
+    <span class="summary_desc"><div class='inline'><p>Sends the processed string to the client.</p>
 </div></span>
   
 </li>
@@ -722,7 +722,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Starts a thread to wrap the game connection.</p>
+    <span class="summary_desc"><div class='inline'><p>Starts a thread to manage the game wrap.</p>
 </div></span>
   
 </li>
@@ -762,12 +762,12 @@
       <pre class="lines">
 
 
-258
-259
-260</pre>
+215
+216
+217</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 258</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 215</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__buffer'>_buffer</span>
   <span class='ivar'>@_buffer</span>
@@ -804,12 +804,12 @@
       <pre class="lines">
 
 
-258
-259
-260</pre>
+215
+216
+217</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 258</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 215</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_buffer'>buffer</span>
   <span class='ivar'>@buffer</span>
@@ -846,12 +846,12 @@
       <pre class="lines">
 
 
-258
-259
-260</pre>
+215
+216
+217</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 258</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 215</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_game_instance'>game_instance</span>
   <span class='ivar'>@game_instance</span>
@@ -888,12 +888,12 @@
       <pre class="lines">
 
 
-258
-259
-260</pre>
+215
+216
+217</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 258</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 215</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_thread'>thread</span>
   <span class='ivar'>@thread</span>
@@ -939,7 +939,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The line retrieved from the buffer</p>
+        <div class='inline'><p>The retrieved line</p>
 </div>
       
     </li>
@@ -952,12 +952,12 @@
       <pre class="lines">
 
 
-373
-374
-375</pre>
+330
+331
+332</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 373</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 330</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__gets'>_gets</span>
   <span class='ivar'>@_buffer</span><span class='period'>.</span><span class='id identifier rubyid_gets'>gets</span>
@@ -978,7 +978,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Sends a string to the game server</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sends a string to the socket</p>
 
 
   </div>
@@ -1011,14 +1011,14 @@
       <pre class="lines">
 
 
-339
-340
-341
-342
-343</pre>
+296
+297
+298
+299
+300</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 339</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 296</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__puts'>_puts</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='ivar'>@mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
@@ -1041,7 +1041,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Closes the game connection</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Closes the socket connection</p>
 
 
   </div>
@@ -1055,15 +1055,15 @@
       <pre class="lines">
 
 
-329
-330
-331
-332
-333
-334</pre>
+286
+287
+288
+289
+290
+291</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 329</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 286</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
   <span class='kw'>if</span> <span class='ivar'>@socket</span>
@@ -1087,7 +1087,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the game connection is closed</p>
+    <p>Checks if the socket is closed</p>
 
 
   </div>
@@ -1105,7 +1105,7 @@
       
       
         &mdash;
-        <div class='inline'><p>True if the connection is closed, false otherwise</p>
+        <div class='inline'><p>True if the socket is closed, false otherwise</p>
 </div>
       
     </li>
@@ -1118,12 +1118,12 @@
       <pre class="lines">
 
 
-323
-324
-325</pre>
+280
+281
+282</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 323</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 280</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_closed?'>closed?</span>
   <span class='ivar'>@socket</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='ivar'>@socket</span><span class='period'>.</span><span class='id identifier rubyid_closed?'>closed?</span>
@@ -1158,31 +1158,31 @@
       <pre class="lines">
 
 
-469
-470
-471
-472
-473
-474
-475
-476
-477
-478
-479
-480
-481
-482
-483
-484
-485
-486
-487
-488
-489
-490</pre>
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 469</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 426</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_display_ruby_warning'>display_ruby_warning</span>
   <span class='id identifier rubyid_ruby_warning'>ruby_warning</span> <span class='op'>=</span> <span class='const'>Terminal</span><span class='op'>::</span><span class='const'>Table</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -1222,7 +1222,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves a line from the game server</p>
+    <p>Retrieves a line from the buffer</p>
 
 
   </div>
@@ -1240,7 +1240,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The line received from the server</p>
+        <div class='inline'><p>The retrieved line</p>
 </div>
       
     </li>
@@ -1253,12 +1253,12 @@
       <pre class="lines">
 
 
-367
-368
-369</pre>
+324
+325
+326</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 367</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 324</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_gets'>gets</span>
   <span class='ivar'>@buffer</span><span class='period'>.</span><span class='id identifier rubyid_gets'>gets</span>
@@ -1293,23 +1293,23 @@
       <pre class="lines">
 
 
-452
-453
-454
-455
-456
-457
-458
-459
-460
-461
-462
-463
-464
-465</pre>
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 452</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 409</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_handle_autostart'>handle_autostart</span>
   <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../top-level-namespace.html#LICH_VERSION-constant" title="LICH_VERSION (constant)">LICH_VERSION</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_core_updated_with_lich_version'><span class='object_link'><a href="../../Lich.html#core_updated_with_lich_version-class_method" title="Lich.core_updated_with_lich_version (method)">core_updated_with_lich_version</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>
@@ -1391,17 +1391,17 @@
       <pre class="lines">
 
 
-641
-642
-643
-644
-645
-646
-647
-648</pre>
+598
+599
+600
+601
+602
+603
+604
+605</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 641</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 598</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_handle_thread_error'>handle_thread_error</span><span class='lparen'>(</span><span class='id identifier rubyid_error'>error</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: server_thread: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_error'>error</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\t</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_error'>error</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n\t</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -1475,25 +1475,25 @@
       <pre class="lines">
 
 
-557
-558
-559
-560
-561
-562
-563
-564
-565
-566
-567
-568
-569
-570
-571
-572</pre>
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 557</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 514</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_handle_xml_error'>handle_xml_error</span><span class='lparen'>(</span><span class='id identifier rubyid_server_string'>server_string</span><span class='comma'>,</span> <span class='id identifier rubyid_error'>error</span><span class='rparen'>)</span>
   <span class='comment'># Ignoring certain XML errors
@@ -1541,24 +1541,24 @@
       <pre class="lines">
 
 
-262
-263
-264
-265
-266
-267
-268
-269
-270
-271
-272
-273
-274
-275
-276</pre>
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 262</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 219</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize_buffers'>initialize_buffers</span>
   <span class='ivar'>@socket</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -1681,23 +1681,23 @@
       <pre class="lines">
 
 
-292
-293
-294
-295
-296
-297
-298
-299
-300
-301
-302
-303
-304
-305</pre>
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 292</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 249</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span><span class='rparen'>)</span>
   <span class='ivar'>@socket</span> <span class='op'>=</span> <span class='const'>TCPSocket</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span><span class='rparen'>)</span>
@@ -1762,37 +1762,37 @@
       <pre class="lines">
 
 
-577
-578
-579
-580
-581
-582
-583
-584
-585
-586
-587
-588
-589
-590
-591
-592
-593
-594
-595
-596
-597
-598
-599
-600
-601
-602
-603
-604</pre>
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 577</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 534</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_downstream_hooks'>process_downstream_hooks</span><span class='lparen'>(</span><span class='id identifier rubyid_server_string'>server_string</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_alt_string'>alt_string</span> <span class='op'>=</span> <span class='const'>DownstreamHook</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='id identifier rubyid_server_string'>server_string</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -1888,18 +1888,18 @@
       <pre class="lines">
 
 
-609
-610
-611
-612
-613
-614
-615
-616
-617</pre>
+566
+567
+568
+569
+570
+571
+572
+573
+574</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 609</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 566</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_room_information'>process_room_information</span><span class='lparen'>(</span><span class='id identifier rubyid_alt_string'>alt_string</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_alt_string'>alt_string</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(&lt;pushStream id=&quot;familiar&quot; ifClosedStyle=&quot;watching&quot;\/&gt;)?(?:&lt;resource picture=&quot;\d+&quot;\/&gt;|&lt;popBold\/&gt;)?&lt;style id=&quot;roomName&quot;\s+\/&gt;</span><span class='regexp_end'>/</span></span>
@@ -1926,7 +1926,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Processes a server string received from the game</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Processes the server string received from the game</p>
 
 
   </div>
@@ -1959,56 +1959,56 @@
       <pre class="lines">
 
 
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
 402
 403
 404
-405
-406
-407
-408
-409
-410
-411
-412
-413
-414
-415
-416
-417
-418
-419
-420
-421
-422
-423
-424
-425
-426
-427
-428
-429
-430
-431
-432
-433
-434
-435
-436
-437
-438
-439
-440
-441
-442
-443
-444
-445
-446
-447
-448</pre>
+405</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 402</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 359</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_server_string'>process_server_string</span><span class='lparen'>(</span><span class='id identifier rubyid_server_string'>server_string</span><span class='rparen'>)</span>
   <span class='gvar'>$cmd_prefix</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>if</span> <span class='id identifier rubyid_server_string'>server_string</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\034GSw</span><span class='regexp_end'>/</span></span>
@@ -2106,61 +2106,61 @@
       <pre class="lines">
 
 
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
 507
-508
-509
-510
-511
-512
-513
-514
-515
-516
-517
-518
-519
-520
-521
-522
-523
-524
-525
-526
-527
-528
-529
-530
-531
-532
-533
-534
-535
-536
-537
-538
-539
-540
-541
-542
-543
-544
-545
-546
-547
-548
-549
-550
-551</pre>
+508</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 507</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 464</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_xml_data'>process_xml_data</span><span class='lparen'>(</span><span class='id identifier rubyid_server_string'>server_string</span><span class='rparen'>)</span>
   <span class='kw'>begin</span>
     <span class='comment'># Check for valid XML
 </span>    <span class='const'>REXML</span><span class='op'>::</span><span class='const'>Document</span><span class='period'>.</span><span class='id identifier rubyid_parse_stream'>parse_stream</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;root&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_server_string'>server_string</span><span class='embexpr_end'>}</span><span class='tstring_content'>&lt;/root&gt;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>XMLData</span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='kw'>case</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='kw'>case</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'><span class='object_link'><a href="../../String.html#to_s-instance_method" title="String#to_s (method)">to_s</a></span></span>
     <span class='comment'># Missing attribute equal: &lt;s&gt; - in dynamic dialogs with a single apostrophe for possessive &#39;Tsetem&#39;s Items&#39;
 </span>    <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>nested single quotes|nested double quotes|Missing attribute equal: &lt;[^&gt;]+&gt;|Invalid attribute name: &lt;[^&gt;]+&gt;</span><span class='regexp_end'>/</span></span>
       <span class='id identifier rubyid_original_server_string'>original_server_string</span> <span class='op'>=</span> <span class='id identifier rubyid_server_string'>server_string</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
@@ -2216,7 +2216,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Sends a formatted string to the game server</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sends a formatted string to the client</p>
 
 
   </div>
@@ -2249,25 +2249,25 @@
       <pre class="lines">
 
 
-348
-349
-350
-351
-352
-353
-354
-355
-356
-357
-358
-359
-360
-361
-362
-363</pre>
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 348</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 305</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_puts'>puts</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='op'>&amp;.</span><span class='id identifier rubyid_file_name'>file_name</span>
@@ -2301,7 +2301,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Sends a string to the client</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sends the processed string to the client</p>
 
 
   </div>
@@ -2334,24 +2334,24 @@
       <pre class="lines">
 
 
-622
-623
-624
-625
-626
-627
-628
-629
-630
-631
-632
-633
-634
-635
-636</pre>
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 622</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 579</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_send_to_client'>send_to_client</span><span class='lparen'>(</span><span class='id identifier rubyid_alt_string'>alt_string</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='gvar'>$_DETACHABLE_CLIENT_</span>
@@ -2417,12 +2417,12 @@
       <pre class="lines">
 
 
-281
-282
-283</pre>
+238
+239
+240</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 281</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 238</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_game_instance'>set_game_instance</span><span class='lparen'>(</span><span class='id identifier rubyid_game_type'>game_type</span><span class='rparen'>)</span>
   <span class='ivar'>@game_instance</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="GameInstanceFactory.html" title="Lich::GameBase::GameInstanceFactory (module)">GameInstanceFactory</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create'><span class='object_link'><a href="GameInstanceFactory.html#create-class_method" title="Lich::GameBase::GameInstanceFactory.create (method)">create</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_game_type'>game_type</span><span class='rparen'>)</span>
@@ -2457,18 +2457,18 @@
       <pre class="lines">
 
 
-494
-495
-496
-497
-498
-499
-500
-501
-502</pre>
+451
+452
+453
+454
+455
+456
+457
+458
+459</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 494</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 451</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_cli_scripts'>start_cli_scripts</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_arg'>arg</span> <span class='op'>=</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='op'>|</span> <span class='id identifier rubyid_a'>a</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\-\-start\-scripts=</span><span class='regexp_end'>/</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -2509,28 +2509,28 @@
       <pre class="lines">
 
 
-379
-380
-381
-382
-383
-384
-385
-386
-387
-388
-389
-390
-391
-392
-393
-394
-395
-396
-397</pre>
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 379</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 336</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_main_thread'>start_main_thread</span>
   <span class='ivar'>@thread</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span>
@@ -2567,7 +2567,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Starts a thread to wrap the game connection</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Starts a thread to manage the game wrap</p>
 
 
   </div>
@@ -2581,20 +2581,20 @@
       <pre class="lines">
 
 
-309
-310
-311
-312
-313
-314
-315
-316
-317
-318
-319</pre>
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'games.rb', line 309</span>
+      <pre class="code"><span class="info file"># File 'games.rb', line 266</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_wrap_thread'>start_wrap_thread</span>
   <span class='ivar'>@wrap_thread</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span>
@@ -2617,7 +2617,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:53 2025 by
+  Generated on Fri Nov  7 02:56:53 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

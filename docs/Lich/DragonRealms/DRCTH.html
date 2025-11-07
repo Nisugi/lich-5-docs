@@ -85,8 +85,8 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>The DRCTH module
-This module provides methods and constants related to the Theurgy system in DragonRealms.</p>
+    <p>A module for Theurgy-related functionalities
+This module provides methods and constants related to cleric items and actions.</p>
 
 
   </div>
@@ -142,7 +142,7 @@ This module provides methods and constants related to the Theurgy system in Drag
         <dt id="DEVOTION_LEVELS-constant" class="">DEVOTION_LEVELS =
           <div class="docstring">
   <div class="discussion">
-    <p>List of messages indicating the levels of devotion sensed during commune.</p>
+    <p>List of messages indicating the levels of devotion sensed during communion.</p>
 
 
   </div>
@@ -298,7 +298,7 @@ This module provides methods and constants related to the Theurgy system in Drag
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Senses the current commune state and returns active and recent communes.</p>
+    <span class="summary_desc"><div class='inline'><p>Senses the current state of communion.</p>
 </div></span>
   
 </li>
@@ -551,7 +551,7 @@ This module provides methods and constants related to the Theurgy system in Drag
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sprinkles holy oil on a target without checking for success.</p>
+    <span class="summary_desc"><div class='inline'><p>Sprinkles holy oil on a target.</p>
 </div></span>
   
 </li>
@@ -574,7 +574,7 @@ This module provides methods and constants related to the Theurgy system in Drag
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sprinkles holy oil on a target.</p>
+    <span class="summary_desc"><div class='inline'><p>Attempts to sprinkle holy oil on a target.</p>
 </div></span>
   
 </li>
@@ -597,7 +597,7 @@ This module provides methods and constants related to the Theurgy system in Drag
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sprinkles holy water on a target without checking for success.</p>
+    <span class="summary_desc"><div class='inline'><p>Sprinkles holy water on a target.</p>
 </div></span>
   
 </li>
@@ -620,7 +620,7 @@ This module provides methods and constants related to the Theurgy system in Drag
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Sprinkles holy water on a target.</p>
+    <span class="summary_desc"><div class='inline'><p>Attempts to sprinkle holy water on a target.</p>
 </div></span>
   
 </li>
@@ -643,7 +643,7 @@ This module provides methods and constants related to the Theurgy system in Drag
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Waves incense at a target, lighting it if possible.</p>
+    <span class="summary_desc"><div class='inline'><p>Waves incense at a target, lighting it in the process.</p>
 </div></span>
   
 </li>
@@ -753,7 +753,7 @@ This module provides methods and constants related to the Theurgy system in Drag
 
 <span class='kw'>def</span> <span class='id identifier rubyid_apply_jalbreth_balm'>apply_jalbreth_balm</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_item?'><span class='object_link'><a href="DRCI.html#get_item%3F-class_method" title="Lich::DragonRealms::DRCI.get_item? (method)">get_item?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>jalbreth balm</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
-  <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>apply balm to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target'>target</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.*</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>apply balm to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target'>target</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.*</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_put_away_item?'><span class='object_link'><a href="DRCI.html#put_away_item%3F-class_method" title="Lich::DragonRealms::DRCI.put_away_item? (method)">put_away_item?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>jalbreth balm</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_in_hands?'><span class='object_link'><a href="DRCI.html#in_hands%3F-class_method" title="Lich::DragonRealms::DRCI.in_hands? (method)">in_hands?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>balm</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -933,7 +933,7 @@ This module provides methods and constants related to the Theurgy system in Drag
     <span class='id identifier rubyid_num_to_buy'>num_to_buy</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span>
       <span class='id identifier rubyid_buy_single_supply'>buy_single_supply</span><span class='lparen'>(</span><span class='id identifier rubyid_item_name'>item_name</span><span class='comma'>,</span> <span class='id identifier rubyid_item_shop_data'>item_shop_data</span><span class='rparen'>)</span>
       <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_item?'><span class='object_link'><a href="DRCI.html#get_item%3F-class_method" title="Lich::DragonRealms::DRCI.get_item? (method)">get_item?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_item_name'>item_name</span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
-        <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>combine </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item_name'>item_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> with </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item_name'>item_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You combine</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You can\&#39;t combine</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You must be holding</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+        <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>combine </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item_name'>item_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> with </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item_name'>item_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You combine</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You can\&#39;t combine</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You must be holding</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
       <span class='kw'>end</span>
       <span class='comment'># Put this back in the container each cycle so it doesn&#39;t interfere
 </span>      <span class='comment'># with bless of next purchase.
@@ -1006,7 +1006,7 @@ This module provides methods and constants related to the Theurgy system in Drag
       
       
         &mdash;
-        <div class='inline'><p>The data related to the shop.</p>
+        <div class='inline'><p>The data of the shop where the item is being bought.</p>
 </div>
       
     </li>
@@ -1139,7 +1139,7 @@ This module provides methods and constants related to the Theurgy system in Drag
       
       
         &mdash;
-        <div class='inline'><p>Returns true if a blessing is required, false if not, or nil if data is unavailable.</p>
+        <div class='inline'><p>Returns true if a blessing is needed, false if not, or nil if data is unavailable.</p>
 </div>
       
     </li>
@@ -1190,7 +1190,7 @@ This module provides methods and constants related to the Theurgy system in Drag
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Senses the current commune state and returns active and recent communes.</p>
+    <p>Senses the current state of communion.</p>
 
 
   </div>
@@ -1216,7 +1216,7 @@ This module provides methods and constants related to the Theurgy system in Drag
       
       
         &mdash;
-        <div class='inline'><p>A hash containing active and recent communes, and commune readiness.</p>
+        <div class='inline'><p>Returns a hash containing active and recent communes, and if commune is ready.</p>
 </div>
       
     </li>
@@ -1270,7 +1270,7 @@ This module provides methods and constants related to the Theurgy system in Drag
       <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 367</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_commune_sense'>commune_sense</span>
-  <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>commune sense</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Roundtime:</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>commune sense</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Roundtime:</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_pause'><span class='object_link'><a href="../../top-level-namespace.html#pause-instance_method" title="#pause (method)">pause</a></span></span> <span class='float'>0.5</span>
 
   <span class='id identifier rubyid_commune_ready'>commune_ready</span> <span class='op'>=</span> <span class='kw'>true</span>
@@ -1409,7 +1409,7 @@ This module provides methods and constants related to the Theurgy system in Drag
 </span>  <span class='comment'># You glance down to see a steel light spear in your right hand and some burnt incense in your left hand.
 </span>  <span class='comment'>#
 </span>  <span class='comment'># Which this explicit glance fixes.
-</span>  <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>glance</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You glance</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+</span>  <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>glance</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You glance</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_empty_cleric_right_hand'>empty_cleric_right_hand</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_empty_cleric_left_hand'>empty_cleric_left_hand</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -1498,10 +1498,10 @@ This module provides methods and constants related to the Theurgy system in Drag
       <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 217</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_empty_cleric_left_hand'>empty_cleric_left_hand</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='kw'>if</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_left_hand'>left_hand</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_hand'><span class='object_link'><a href="DRC.html#left_hand-class_method" title="Lich::DragonRealms::DRC.left_hand (method)">left_hand</a></span></span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
 
-  <span class='id identifier rubyid_container'>container</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#CLERIC_ITEMS-constant" title="Lich::DragonRealms::DRCTH::CLERIC_ITEMS (constant)">CLERIC_ITEMS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_left_hand'>left_hand</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item'>item</span><span class='embexpr_end'>}</span><span class='regexp_end'>/i</span></span> <span class='rbrace'>}</span> <span class='op'>?</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span> <span class='op'>:</span> <span class='kw'>nil</span>
-  <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_put_away_item?'><span class='object_link'><a href="DRCI.html#put_away_item%3F-class_method" title="Lich::DragonRealms::DRCI.put_away_item? (method)">put_away_item?</a></span></span><span class='lparen'>(</span><span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_left_hand'>left_hand</span><span class='comma'>,</span> <span class='id identifier rubyid_container'>container</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_container'>container</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#CLERIC_ITEMS-constant" title="Lich::DragonRealms::DRCTH::CLERIC_ITEMS (constant)">CLERIC_ITEMS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_hand'><span class='object_link'><a href="DRC.html#left_hand-class_method" title="Lich::DragonRealms::DRC.left_hand (method)">left_hand</a></span></span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item'>item</span><span class='embexpr_end'>}</span><span class='regexp_end'>/i</span></span> <span class='rbrace'>}</span> <span class='op'>?</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span> <span class='op'>:</span> <span class='kw'>nil</span>
+  <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_put_away_item?'><span class='object_link'><a href="DRCI.html#put_away_item%3F-class_method" title="Lich::DragonRealms::DRCI.put_away_item? (method)">put_away_item?</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_hand'><span class='object_link'><a href="DRC.html#left_hand-class_method" title="Lich::DragonRealms::DRC.left_hand (method)">left_hand</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_container'>container</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1588,10 +1588,10 @@ This module provides methods and constants related to the Theurgy system in Drag
       <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 205</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_empty_cleric_right_hand'>empty_cleric_right_hand</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='kw'>if</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_right_hand'>right_hand</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_hand'><span class='object_link'><a href="DRC.html#right_hand-class_method" title="Lich::DragonRealms::DRC.right_hand (method)">right_hand</a></span></span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
 
-  <span class='id identifier rubyid_container'>container</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#CLERIC_ITEMS-constant" title="Lich::DragonRealms::DRCTH::CLERIC_ITEMS (constant)">CLERIC_ITEMS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_right_hand'>right_hand</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item'>item</span><span class='embexpr_end'>}</span><span class='regexp_end'>/i</span></span> <span class='rbrace'>}</span> <span class='op'>?</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span> <span class='op'>:</span> <span class='kw'>nil</span>
-  <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_put_away_item?'><span class='object_link'><a href="DRCI.html#put_away_item%3F-class_method" title="Lich::DragonRealms::DRCI.put_away_item? (method)">put_away_item?</a></span></span><span class='lparen'>(</span><span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_right_hand'>right_hand</span><span class='comma'>,</span> <span class='id identifier rubyid_container'>container</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_container'>container</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#CLERIC_ITEMS-constant" title="Lich::DragonRealms::DRCTH::CLERIC_ITEMS (constant)">CLERIC_ITEMS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_hand'><span class='object_link'><a href="DRC.html#right_hand-class_method" title="Lich::DragonRealms::DRC.right_hand (method)">right_hand</a></span></span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item'>item</span><span class='embexpr_end'>}</span><span class='regexp_end'>/i</span></span> <span class='rbrace'>}</span> <span class='op'>?</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span> <span class='op'>:</span> <span class='kw'>nil</span>
+  <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_put_away_item?'><span class='object_link'><a href="DRCI.html#put_away_item%3F-class_method" title="Lich::DragonRealms::DRCI.put_away_item? (method)">put_away_item?</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_hand'><span class='object_link'><a href="DRC.html#right_hand-class_method" title="Lich::DragonRealms::DRC.right_hand (method)">right_hand</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_container'>container</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2186,7 +2186,7 @@ This module provides methods and constants related to the Theurgy system in Drag
       
       
         &mdash;
-        <div class='inline'><p>The target to sprinkle on.</p>
+        <div class='inline'><p>The target to sprinkle the item on.</p>
 </div>
       
     </li>
@@ -2226,7 +2226,7 @@ This module provides methods and constants related to the Theurgy system in Drag
       <pre class="code"><span class="info file"># File 'common-theurgy.rb', line 296</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sprinkle?'>sprinkle?</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sprinkle </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item'>item</span><span class='embexpr_end'>}</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target'>target</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You sprinkle</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Sprinkle (what|that)</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>What were you referring to</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sprinkle </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item'>item</span><span class='embexpr_end'>}</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target'>target</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You sprinkle</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Sprinkle (what|that)</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>What were you referring to</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You sprinkle</span><span class='tstring_end'>&#39;</span></span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2245,7 +2245,7 @@ This module provides methods and constants related to the Theurgy system in Drag
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Sprinkles holy oil on a target without checking for success.</p>
+    <p>Sprinkles holy oil on a target.</p>
 
 
   </div>
@@ -2305,7 +2305,7 @@ This module provides methods and constants related to the Theurgy system in Drag
       
       
         &mdash;
-        <div class='inline'><p>Returns nil after attempting to sprinkle.</p>
+        <div class='inline'><p>Returns nil after attempting to sprinkle holy oil.</p>
 </div>
       
     </li>
@@ -2348,7 +2348,7 @@ This module provides methods and constants related to the Theurgy system in Drag
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Sprinkles holy oil on a target.</p>
+    <p>Attempts to sprinkle holy oil on a target.</p>
 
 
   </div>
@@ -2440,12 +2440,12 @@ This module provides methods and constants related to the Theurgy system in Drag
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sprinkle_holy_oil?'>sprinkle_holy_oil?</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_item?'><span class='object_link'><a href="DRCI.html#get_item%3F-class_method" title="Lich::DragonRealms::DRCI.get_item? (method)">get_item?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>holy oil</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can&#39;t get holy oil to sprinkle.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'><span class='object_link'><a href="DRC.html#message-class_method" title="Lich::DragonRealms::DRC.message (method)">message</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can&#39;t get holy oil to sprinkle.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='kw'>false</span>
   <span class='kw'>end</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_sprinkle?'>sprinkle?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>oil</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_empty_cleric_hands'>empty_cleric_hands</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Couldn&#39;t sprinkle holy oil.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'><span class='object_link'><a href="DRC.html#message-class_method" title="Lich::DragonRealms::DRC.message (method)">message</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Couldn&#39;t sprinkle holy oil.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='kw'>false</span>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_empty_cleric_hands'>empty_cleric_hands</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
@@ -2467,7 +2467,7 @@ This module provides methods and constants related to the Theurgy system in Drag
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Sprinkles holy water on a target without checking for success.</p>
+    <p>Sprinkles holy water on a target.</p>
 
 
   </div>
@@ -2542,7 +2542,7 @@ This module provides methods and constants related to the Theurgy system in Drag
       
       
         &mdash;
-        <div class='inline'><p>Returns nil after attempting to sprinkle.</p>
+        <div class='inline'><p>Returns nil after attempting to sprinkle holy water.</p>
 </div>
       
     </li>
@@ -2585,7 +2585,7 @@ This module provides methods and constants related to the Theurgy system in Drag
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Sprinkles holy water on a target.</p>
+    <p>Attempts to sprinkle holy water on a target.</p>
 
 
   </div>
@@ -2692,12 +2692,12 @@ This module provides methods and constants related to the Theurgy system in Drag
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sprinkle_holy_water?'>sprinkle_holy_water?</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='comma'>,</span> <span class='id identifier rubyid_water_holder'>water_holder</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_item?'><span class='object_link'><a href="DRCI.html#get_item%3F-class_method" title="Lich::DragonRealms::DRCI.get_item? (method)">get_item?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_water_holder'>water_holder</span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can&#39;t get </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_water_holder'>water_holder</span><span class='embexpr_end'>}</span><span class='tstring_content'> to sprinkle.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'><span class='object_link'><a href="DRC.html#message-class_method" title="Lich::DragonRealms::DRC.message (method)">message</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can&#39;t get </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_water_holder'>water_holder</span><span class='embexpr_end'>}</span><span class='tstring_content'> to sprinkle.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='kw'>false</span>
   <span class='kw'>end</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_sprinkle?'>sprinkle?</span><span class='lparen'>(</span><span class='id identifier rubyid_water_holder'>water_holder</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
     <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_put_away_item?'><span class='object_link'><a href="DRCI.html#put_away_item%3F-class_method" title="Lich::DragonRealms::DRCI.put_away_item? (method)">put_away_item?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_water_holder'>water_holder</span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Couldn&#39;t sprinkle holy water.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'><span class='object_link'><a href="DRC.html#message-class_method" title="Lich::DragonRealms::DRC.message (method)">message</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Couldn&#39;t sprinkle holy water.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='kw'>false</span>
   <span class='kw'>end</span>
   <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_put_away_item?'><span class='object_link'><a href="DRCI.html#put_away_item%3F-class_method" title="Lich::DragonRealms::DRCI.put_away_item? (method)">put_away_item?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_water_holder'>water_holder</span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
@@ -2719,7 +2719,7 @@ This module provides methods and constants related to the Theurgy system in Drag
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Waves incense at a target, lighting it if possible.</p>
+    <p>Waves incense at a target, lighting it in the process.</p>
 
 
   </div>
@@ -2857,39 +2857,39 @@ This module provides methods and constants related to the Theurgy system in Drag
   <span class='id identifier rubyid_empty_cleric_hands'>empty_cleric_hands</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
 
   <span class='kw'>unless</span> <span class='id identifier rubyid_has_flint?'>has_flint?</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can&#39;t find flint to light</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'><span class='object_link'><a href="DRC.html#message-class_method" title="Lich::DragonRealms::DRC.message (method)">message</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can&#39;t find flint to light</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='kw'>false</span>
   <span class='kw'>end</span>
 
   <span class='kw'>unless</span> <span class='id identifier rubyid_has_incense?'>has_incense?</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can&#39;t find incense to light</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'><span class='object_link'><a href="DRC.html#message-class_method" title="Lich::DragonRealms::DRC.message (method)">message</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can&#39;t find incense to light</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='kw'>false</span>
   <span class='kw'>end</span>
 
   <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_item?'><span class='object_link'><a href="DRCI.html#get_item%3F-class_method" title="Lich::DragonRealms::DRCI.get_item? (method)">get_item?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_flint_lighter'>flint_lighter</span><span class='rparen'>)</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can&#39;t get </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_flint_lighter'>flint_lighter</span><span class='embexpr_end'>}</span><span class='tstring_content'> to light incense</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'><span class='object_link'><a href="DRC.html#message-class_method" title="Lich::DragonRealms::DRC.message (method)">message</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can&#39;t get </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_flint_lighter'>flint_lighter</span><span class='embexpr_end'>}</span><span class='tstring_content'> to light incense</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='kw'>false</span>
   <span class='kw'>end</span>
 
   <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_item?'><span class='object_link'><a href="DRCI.html#get_item%3F-class_method" title="Lich::DragonRealms::DRCI.get_item? (method)">get_item?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>incense</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can&#39;t get incense to light</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'><span class='object_link'><a href="DRC.html#message-class_method" title="Lich::DragonRealms::DRC.message (method)">message</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can&#39;t get incense to light</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_empty_cleric_hands'>empty_cleric_hands</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='kw'>false</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_lighting_attempts'>lighting_attempts</span> <span class='op'>=</span> <span class='int'>0</span>
-  <span class='kw'>while</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>light my incense with my flint</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>nothing happens</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bursts into flames</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>much too dark in here to do that</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>What were you referring to?</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>nothing happens</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>while</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>light my incense with my flint</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>nothing happens</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bursts into flames</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>much too dark in here to do that</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>What were you referring to?</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>nothing happens</span><span class='tstring_end'>&#39;</span></span>
     <span class='id identifier rubyid_waitrt?'><span class='object_link'><a href="../../top-level-namespace.html#waitrt%3F-instance_method" title="#waitrt? (method)">waitrt?</a></span></span>
 
     <span class='id identifier rubyid_lighting_attempts'>lighting_attempts</span> <span class='op'>+=</span> <span class='int'>1</span>
     <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_lighting_attempts'>lighting_attempts</span> <span class='op'>&gt;=</span> <span class='int'>5</span><span class='rparen'>)</span>
-      <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can&#39;t light your incense for some reason. Tried 5 times, giving up.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'><span class='object_link'><a href="DRC.html#message-class_method" title="Lich::DragonRealms::DRC.message (method)">message</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can&#39;t light your incense for some reason. Tried 5 times, giving up.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
       <span class='id identifier rubyid_empty_cleric_hands'>empty_cleric_hands</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
       <span class='kw'>return</span> <span class='kw'>false</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
-  <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>wave my incense at </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target'>target</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You wave</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>snuff my incense</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You snuff out</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_in_hands?'><span class='object_link'><a href="DRCI.html#in_hands%3F-class_method" title="Lich::DragonRealms::DRCI.in_hands? (method)">in_hands?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>incense</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>wave my incense at </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target'>target</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You wave</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>snuff my incense</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You snuff out</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_in_hands?'><span class='object_link'><a href="DRCI.html#in_hands%3F-class_method" title="Lich::DragonRealms::DRCI.in_hands? (method)">in_hands?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>incense</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 
   <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_put_away_item?'><span class='object_link'><a href="DRCI.html#put_away_item%3F-class_method" title="Lich::DragonRealms::DRCI.put_away_item? (method)">put_away_item?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_flint_lighter'>flint_lighter</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_empty_cleric_hands'>empty_cleric_hands</span><span class='lparen'>(</span><span class='id identifier rubyid_theurgy_supply_container'>theurgy_supply_container</span><span class='rparen'>)</span>
@@ -2905,7 +2905,7 @@ This module provides methods and constants related to the Theurgy system in Drag
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:51 2025 by
+  Generated on Fri Nov  7 02:56:52 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>
