@@ -361,26 +361,42 @@ IMPORTANT:
         Returns:
             Sanitized JSON string with invalid escapes fixed
         """
-        # Fix invalid escape sequences by double-escaping them
-        # This regex finds backslashes that aren't followed by valid JSON escape chars
-        # Valid: " \ / b f n r t
-        # Special case: \uXXXX (must be followed by exactly 4 hex digits)
+        # Simpler approach: find all escape sequences and validate them
+        result = []
+        i = 0
+        while i < len(json_text):
+            if json_text[i] == '\\' and i + 1 < len(json_text):
+                next_char = json_text[i + 1]
 
-        # First, fix incomplete \u escapes (not followed by 4 hex digits)
-        sanitized = re.sub(
-            r'\\u(?![0-9A-Fa-f]{4})',  # \u NOT followed by 4 hex digits
-            r'\\\\u',                   # Escape the backslash
-            json_text
-        )
+                # Check if it's a valid escape
+                if next_char in '"\\/bfnrt':
+                    # Valid single-char escape
+                    result.append('\\')
+                    result.append(next_char)
+                    i += 2
+                elif next_char == 'u' and i + 5 < len(json_text):
+                    # Check for \uXXXX (must be 4 hex digits)
+                    hex_part = json_text[i+2:i+6]
+                    if len(hex_part) == 4 and all(c in '0123456789ABCDEFabcdef' for c in hex_part):
+                        # Valid \uXXXX
+                        result.append('\\u')
+                        result.append(hex_part)
+                        i += 6
+                    else:
+                        # Invalid \u sequence - double-escape it
+                        result.append('\\\\u')
+                        i += 2
+                else:
+                    # Invalid escape - double-escape the backslash
+                    result.append('\\\\')
+                    result.append(next_char)
+                    i += 2
+            else:
+                # Not an escape sequence
+                result.append(json_text[i])
+                i += 1
 
-        # Then fix all other invalid escapes
-        sanitized = re.sub(
-            r'\\(?!["\\/bfnrtu])',  # Backslash NOT followed by valid escape char
-            r'\\\\',                 # Replace with double backslash
-            sanitized
-        )
-
-        return sanitized
+        return ''.join(result)
 
     def extract_comments_json(self, response: str) -> List[Dict[str, Any]]:
         """
@@ -457,9 +473,16 @@ IMPORTANT:
             # - def ClassName.method
             # And anchor "def self.method" should also match all of those
 
-            # Pattern matches: def <optional-qualifier>.<method_name>
+            # Pattern matches: def <optional-qualifier>.<method_name>[?!=]? or []
             # Where qualifier can be "self", a class name, or nothing
-            pattern = rf'\bdef\s+(?:(?:self|\w+)\.)?{re.escape(method_name)}\b'
+            # Ruby allows ? ! = at end of method names, and [] for array access
+            if method_name == '[]':
+                # Special case: array access operator
+                pattern = rf'\bdef\s+(?:(?:self|\w+)\.)?\[\]'
+            else:
+                # Regular method, might have ?, !, or = suffix
+                pattern = rf'\bdef\s+(?:(?:self|\w+)\.)?{re.escape(method_name)}[?!=]?'
+
             if re.search(pattern, line):
                 return True
 
