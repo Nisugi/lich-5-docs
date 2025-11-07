@@ -101,13 +101,25 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>validator = Lich::DragonRealms::CharacterValidator.new(true, false, true, &#39;Hero&#39;)</p>
+    <p>Validates characters in the DragonRealms game.
+This class handles the validation of characters, sending messages, and managing their states.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Creating a character validator</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_validator'>validator</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../DragonRealms.html" title="Lich::DragonRealms (module)">DragonRealms</a></span></span><span class='op'>::</span><span class='const'>CharacterValidator</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::DragonRealms::CharacterValidator#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>true</span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Hero</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
 
@@ -384,7 +396,7 @@
       
       
         &mdash;
-        <div class='inline'><p>Whether the character is sleeping.</p>
+        <div class='inline'><p>Whether to put the character to sleep.</p>
 </div>
       
     </li>
@@ -624,7 +636,7 @@
       <pre class="code"><span class="info file"># File 'common-validation.rb', line 115</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_in_game?'>in_game?</span><span class='lparen'>(</span><span class='id identifier rubyid_character'>character</span><span class='rparen'>)</span>
-  <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>find </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_character'>character</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>There are no adventurers in the realms that match the names specified</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>^  </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_character'>character</span><span class='embexpr_end'>}</span><span class='tstring_content'>.$</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_character'>character</span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>find </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_character'>character</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>There are no adventurers in the realms that match the names specified</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>^  </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_character'>character</span><span class='embexpr_end'>}</span><span class='tstring_content'>.$</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_character'>character</span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1109,7 +1121,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:57 2025 by
+  Generated on Fri Nov  7 02:56:57 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

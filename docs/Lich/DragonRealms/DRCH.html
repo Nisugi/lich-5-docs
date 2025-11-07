@@ -85,7 +85,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>DRCH module providing methods for health checks and healing actions.</p>
+    <p>Module containing healing-related methods and functionality.</p>
 
 
   </div>
@@ -135,7 +135,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Tends to a wound on the specified body part.</p>
+    <span class="summary_desc"><div class='inline'><p>Tends to a specified wound on the body.</p>
 </div></span>
   
 </li>
@@ -158,7 +158,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Computes a weighted summary score from a wound list.</p>
+    <span class="summary_desc"><div class='inline'><p>Compute a weighted summary score from a wound list.</p>
 </div></span>
   
 </li>
@@ -227,7 +227,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Given lines of text from the HEALTH command output in reverse, returns a map of any bleeding wounds.</p>
+    <span class="summary_desc"><div class='inline'><p>Given lines of text from the HEALTH command output in reverse, returns a map of any bleeding wounds where the keys are the severity and the values are the list of bleeding wounds.</p>
 </div></span>
   
 </li>
@@ -250,7 +250,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Given the line of text from the HEALTH command output that expresses items lodged into you, returns a map of any lodged items.</p>
+    <span class="summary_desc"><div class='inline'><p>Given the line of text from the HEALTH command output that expresses items lodged into you, returns a map of any lodged items where the keys are the severity and the values are the list of wounds.</p>
 </div></span>
   
 </li>
@@ -273,7 +273,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Given the line of text from the HEALTH command output that expresses parasites, returns a map of any parasites.</p>
+    <span class="summary_desc"><div class='inline'><p>Given the line of text from the HEALTH command output that expresses parasites latched to you, returns a map of any parasites where the keys are the severity and the values are the list of wounds.</p>
 </div></span>
   
 </li>
@@ -296,7 +296,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Parses the perceived health data for a target.</p>
+    <span class="summary_desc"><div class='inline'><p>Examples of what this parses can be found in test/test_check_health.rb Parses the output of the PERCEIVE HEALTH command.</p>
 </div></span>
   
 </li>
@@ -319,7 +319,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Given the line of text from the HEALTH command output that expresses external and internal wounds, returns a map of any wounds.</p>
+    <span class="summary_desc"><div class='inline'><p>Given the line of text from the HEALTH command output that expresses external and internal wounds and scars, returns a map of any wounds where the keys are the severity and the values are the list of wounds.</p>
 </div></span>
   
 </li>
@@ -328,7 +328,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#perceive_health-class_method" title="perceive_health (class method)">.<strong>perceive_health</strong>  &#x21d2; Hash<sup>?</sup> </a>
+      <a href="#perceive_health-class_method" title="perceive_health (class method)">.<strong>perceive_health</strong>  &#x21d2; Hash </a>
     
 
     
@@ -388,7 +388,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if the user has the skill to tend a wound based on its bleed rate.</p>
+    <span class="summary_desc"><div class='inline'><p>Skill check to tend a bleeding wound.</p>
 </div></span>
   
 </li>
@@ -397,7 +397,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#unwrap_wound-class_method" title="unwrap_wound (class method)">.<strong>unwrap_wound</strong>(body_part, person = &#39;my&#39;)  &#x21d2; Object </a>
+      <a href="#unwrap_wound-class_method" title="unwrap_wound (class method)">.<strong>unwrap_wound</strong>(body_part, person = &#39;my&#39;)  &#x21d2; void </a>
     
 
     
@@ -411,7 +411,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Unwraps bandages from a specified body part.</p>
+    <span class="summary_desc"><div class='inline'><p>Unwraps bandages from a specified wound.</p>
 </div></span>
   
 </li>
@@ -437,13 +437,22 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Tends to a wound on the specified body part.</p>
+    <p>Tends to a specified wound on the body.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='id identifier rubyid_bind_wound'>bind_wound</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>left arm</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Wound tended successfully!</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_success'>success</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -504,43 +513,43 @@
       <pre class="lines">
 
 
-348
-349
-350
-351
-352
-353
-354
-355
-356
-357
-358
-359
-360
-361
-362
-363
-364
-365
-366
-367
-368
-369
-370
-371
-372
-373
-374
-375
-376
-377
-378
-379
 380
-381</pre>
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 348</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 380</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_bind_wound'>bind_wound</span><span class='lparen'>(</span><span class='id identifier rubyid_body_part'>body_part</span><span class='comma'>,</span> <span class='id identifier rubyid_person'>person</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>my</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='comment'># Either you tended it or it already has bandages on. Good job!
@@ -564,7 +573,7 @@
     <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^As you reach for the clay fragment</span><span class='regexp_end'>/</span></span>
   <span class='rbracket'>]</span>
 
-  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tend </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_person'>person</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_body_part'>body_part</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_tend_success'>tend_success</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_tend_failure'>tend_failure</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_tend_dislodge'>tend_dislodge</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tend </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_person'>person</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_body_part'>body_part</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_tend_success'>tend_success</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_tend_failure'>tend_failure</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_tend_dislodge'>tend_dislodge</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_waitrt?'><span class='object_link'><a href="../../top-level-namespace.html#waitrt%3F-instance_method" title="#waitrt? (method)">waitrt?</a></span></span>
   <span class='kw'>case</span> <span class='id identifier rubyid_result'>result</span>
   <span class='kw'>when</span> <span class='op'>*</span><span class='id identifier rubyid_tend_dislodge'>tend_dislodge</span>
@@ -592,14 +601,24 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Computes a weighted summary score from a wound list.
-Commonly used for thresholding for healing activities.</p>
+    <p>Compute a weighted summary score from a wound list.
+Commonly used for thresholding for healing activities
+Computes a weighted summary score from a list of wounds.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_score'>score</span> <span class='op'>=</span> <span class='id identifier rubyid_calculate_score'>calculate_score</span><span class='lparen'>(</span><span class='id identifier rubyid_wounds'>wounds</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Total score: #{score}</span><span class='tstring_end'>&#39;</span></span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -630,7 +649,7 @@ Commonly used for thresholding for healing activities.</p>
       
       
         &mdash;
-        <div class='inline'><p>The calculated score.</p>
+        <div class='inline'><p>The calculated score based on the wounds.</p>
 </div>
       
     </li>
@@ -643,12 +662,12 @@ Commonly used for thresholding for healing activities.</p>
       <pre class="lines">
 
 
-411
-412
-413</pre>
+452
+453
+454</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 411</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 452</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_calculate_score'>calculate_score</span><span class='lparen'>(</span><span class='id identifier rubyid_wounds_by_severity'>wounds_by_severity</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_wounds_by_severity'>wounds_by_severity</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_severity'>severity</span><span class='comma'>,</span> <span class='id identifier rubyid_wound_list'>wound_list</span><span class='op'>|</span> <span class='lparen'>(</span><span class='id identifier rubyid_severity'>severity</span><span class='op'>**</span><span class='int'>2</span><span class='rparen'>)</span> <span class='op'>*</span> <span class='id identifier rubyid_wound_list'>wound_list</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_reduce'>reduce</span><span class='lparen'>(</span><span class='symbol'>:+</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='int'>0</span>
@@ -669,14 +688,33 @@ Commonly used for thresholding for healing activities.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Uses HEALTH command to check for poisons, diseases, bleeders, parasites, and lodged items.
-Based on this diagnostic information, you should be able to prioritize how you heal yourself with medicinal potions and salves, or healing spells.</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This method may incur a delay due to server response.</p>
+</div>
+  </div>
+
+<p>Uses HEALTH command to check for poisons, diseases, bleeders, parasites, and lodged items.
+Based on this diagnostic information, you should be able to prioritize how you heal
+yourself with medicinal potions and salves, or healing spells.
+Uses the HEALTH command to check for poisons, diseases, bleeders, parasites, and lodged items.
+Based on this diagnostic information, you should be able to prioritize how you heal yourself.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_health_data'>health_data</span> <span class='op'>=</span> <span class='id identifier rubyid_check_health'>check_health</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_health_data'>health_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wounds</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -688,7 +726,7 @@ Based on this diagnostic information, you should be able to prioritize how you h
       
       
         &mdash;
-        <div class='inline'><p>A hash containing health data including wounds, bleeders, parasites, lodged items, poisoned, diseased status, and a score.</p>
+        <div class='inline'><p>A hash containing health data including wounds, bleeders, parasites, lodged items, poisoned, diseased, and score.</p>
 </div>
       
     </li>
@@ -701,14 +739,6 @@ Based on this diagnostic information, you should be able to prioritize how you h
       <pre class="lines">
 
 
-24
-25
-26
-27
-28
-29
-30
-31
 32
 33
 34
@@ -754,10 +784,18 @@ Based on this diagnostic information, you should be able to prioritize how you h
 74
 75
 76
-77</pre>
+77
+78
+79
+80
+81
+82
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_health'>check_health</span>
   <span class='id identifier rubyid_parasites_regex'>parasites_regex</span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_union'>union</span><span class='lparen'>(</span><span class='gvar'>$DRCH_PARASITES_REGEX_LIST</span><span class='rparen'>)</span>
@@ -767,7 +805,7 @@ Based on this diagnostic information, you should be able to prioritize how you h
   <span class='id identifier rubyid_diseased'>diseased</span> <span class='op'>=</span> <span class='kw'>false</span>
   <span class='id identifier rubyid_poisoned'>poisoned</span> <span class='op'>=</span> <span class='kw'>false</span>
 
-  <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>health</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You have</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You feel somewhat tired and seem to be having trouble breathing</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Your wounds</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Your body</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>health</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You have</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You feel somewhat tired and seem to be having trouble breathing</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Your wounds</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Your body</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_pause'><span class='object_link'><a href="../../top-level-namespace.html#pause-instance_method" title="#pause (method)">pause</a></span></span> <span class='float'>0.5</span>
   <span class='id identifier rubyid_health_lines'>health_lines</span> <span class='op'>=</span> <span class='id identifier rubyid_reget'><span class='object_link'><a href="../../top-level-namespace.html#reget-instance_method" title="#reget (method)">reget</a></span></span><span class='lparen'>(</span><span class='int'>50</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:strip</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_reverse'>reverse</span>
 
@@ -836,6 +874,16 @@ Based on this diagnostic information, you should be able to prioritize how you h
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='kw'>if</span> <span class='id identifier rubyid_has_tendable_bleeders?'>has_tendable_bleeders?</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You have wounds that can be tended.</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -847,7 +895,7 @@ Based on this diagnostic information, you should be able to prioritize how you h
       
       
         &mdash;
-        <div class='inline'><p>true if there are tendable bleeders, false otherwise.</p>
+        <div class='inline'><p>true if there are tendable bleeders, false otherwise</p>
 </div>
       
     </li>
@@ -860,15 +908,15 @@ Based on this diagnostic information, you should be able to prioritize how you h
       <pre class="lines">
 
 
-11
-12
-13
-14
 15
-16</pre>
+16
+17
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_tendable_bleeders?'>has_tendable_bleeders?</span>
   <span class='id identifier rubyid_health_data'>health_data</span> <span class='op'>=</span> <span class='id identifier rubyid_check_health'>check_health</span>
@@ -892,13 +940,25 @@ Based on this diagnostic information, you should be able to prioritize how you h
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Given lines of text from the HEALTH command output in reverse, returns a map of any bleeding wounds.</p>
+    <p>Given lines of text from the HEALTH command output in reverse,
+returns a map of any bleeding wounds where the keys
+are the severity and the values are the list of bleeding wounds.
+Parses the bleeding wounds from the HEALTH command output.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_bleeders'>bleeders</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_bleeders'>parse_bleeders</span><span class='lparen'>(</span><span class='id identifier rubyid_health_lines'>health_lines</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_bleeders'>bleeders</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -911,7 +971,7 @@ Based on this diagnostic information, you should be able to prioritize how you h
       
       
         &mdash;
-        <div class='inline'><p>Lines of health command output.</p>
+        <div class='inline'><p>Lines of text from the HEALTH command output.</p>
 </div>
       
     </li>
@@ -929,7 +989,7 @@ Based on this diagnostic information, you should be able to prioritize how you h
       
       
         &mdash;
-        <div class='inline'><p>A hash where keys are severity and values are lists of bleeding wounds.</p>
+        <div class='inline'><p>A hash of bleeding wounds categorized by severity.</p>
 </div>
       
     </li>
@@ -942,26 +1002,6 @@ Based on this diagnostic information, you should be able to prioritize how you h
       <pre class="lines">
 
 
-225
-226
-227
-228
-229
-230
-231
-232
-233
-234
-235
-236
-237
-238
-239
-240
-241
-242
-243
-244
 245
 246
 247
@@ -971,10 +1011,30 @@ Based on this diagnostic information, you should be able to prioritize how you h
 251
 252
 253
-254</pre>
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 225</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 245</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_bleeders'>parse_bleeders</span><span class='lparen'>(</span><span class='id identifier rubyid_health_lines'>health_lines</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_bleeders'>bleeders</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_k'>k</span><span class='op'>|</span> <span class='id identifier rubyid_h'>h</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
@@ -1022,13 +1082,26 @@ Based on this diagnostic information, you should be able to prioritize how you h
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Given the line of text from the HEALTH command output that expresses items lodged into you, returns a map of any lodged items.</p>
+    <p>Given the line of text from the HEALTH command output
+that expresses items lodged into you,
+returns a map of any lodged items where the keys
+are the severity and the values are the list of wounds.
+Parses the lodged items from the HEALTH command output.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_lodged_items'>lodged_items</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_lodged_items'>parse_lodged_items</span><span class='lparen'>(</span><span class='id identifier rubyid_lodged_line'>lodged_line</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_lodged_items'>lodged_items</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1041,7 +1114,7 @@ Based on this diagnostic information, you should be able to prioritize how you h
       
       
         &mdash;
-        <div class='inline'><p>The line containing lodged item descriptions.</p>
+        <div class='inline'><p>The line of text containing lodged item descriptions.</p>
 </div>
       
     </li>
@@ -1059,7 +1132,7 @@ Based on this diagnostic information, you should be able to prioritize how you h
       
       
         &mdash;
-        <div class='inline'><p>A hash where keys are severity and values are lists of lodged items.</p>
+        <div class='inline'><p>A hash of lodged items categorized by severity.</p>
 </div>
       
     </li>
@@ -1072,31 +1145,31 @@ Based on this diagnostic information, you should be able to prioritize how you h
       <pre class="lines">
 
 
-321
-322
-323
-324
-325
-326
-327
-328
-329
-330
-331
-332
-333
-334
-335
-336
-337
-338
-339
-340
-341
-342</pre>
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 321</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 350</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_lodged_items'>parse_lodged_items</span><span class='lparen'>(</span><span class='id identifier rubyid_lodged_line'>lodged_line</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_lodged_items'>lodged_items</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_k'>k</span><span class='op'>|</span> <span class='id identifier rubyid_h'>h</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
@@ -1136,13 +1209,25 @@ Based on this diagnostic information, you should be able to prioritize how you h
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Given the line of text from the HEALTH command output that expresses parasites, returns a map of any parasites.</p>
+    <p>Given the line of text from the HEALTH command output that expresses
+parasites latched to you, returns a map of any parasites where the keys
+are the severity and the values are the list of wounds.
+Parses the parasites from the HEALTH command output.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_parasites'>parasites</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_parasites'>parse_parasites</span><span class='lparen'>(</span><span class='id identifier rubyid_parasites_line'>parasites_line</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_parasites'>parasites</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1155,7 +1240,7 @@ Based on this diagnostic information, you should be able to prioritize how you h
       
       
         &mdash;
-        <div class='inline'><p>The line containing parasite descriptions.</p>
+        <div class='inline'><p>The line of text containing parasite descriptions.</p>
 </div>
       
     </li>
@@ -1173,7 +1258,7 @@ Based on this diagnostic information, you should be able to prioritize how you h
       
       
         &mdash;
-        <div class='inline'><p>A hash where keys are severity and values are lists of parasites.</p>
+        <div class='inline'><p>A hash of parasites categorized by severity.</p>
 </div>
       
     </li>
@@ -1186,28 +1271,28 @@ Based on this diagnostic information, you should be able to prioritize how you h
       <pre class="lines">
 
 
-294
-295
-296
-297
-298
-299
-300
-301
-302
-303
-304
-305
-306
-307
-308
-309
-310
-311
-312</pre>
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 294</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 320</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_parasites'>parse_parasites</span><span class='lparen'>(</span><span class='id identifier rubyid_parasites_line'>parasites_line</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_parasites'>parasites</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_k'>k</span><span class='op'>|</span> <span class='id identifier rubyid_h'>h</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
@@ -1244,13 +1329,23 @@ Based on this diagnostic information, you should be able to prioritize how you h
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Parses the perceived health data for a target.</p>
+    <p>Examples of what this parses can be found in test/test_check_health.rb
+Parses the output of the PERCEIVE HEALTH command.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_health_data'>health_data</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_perceived_health'>parse_perceived_health</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>John</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_health_data'>health_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wounds</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1265,7 +1360,7 @@ Based on this diagnostic information, you should be able to prioritize how you h
       
       
         &mdash;
-        <div class='inline'><p>The name of the target to perceive health, defaults to nil for self.</p>
+        <div class='inline'><p>The target to perceive health for, defaults to nil for self.</p>
 </div>
       
     </li>
@@ -1283,7 +1378,7 @@ Based on this diagnostic information, you should be able to prioritize how you h
       
       
         &mdash;
-        <div class='inline'><p>A hash containing perceived health data or nil if no data is found.</p>
+        <div class='inline'><p>A hash containing perceived health data or nil if parsing fails.</p>
 </div>
       
     </li>
@@ -1296,23 +1391,6 @@ Based on this diagnostic information, you should be able to prioritize how you h
       <pre class="lines">
 
 
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146
-147
 148
 149
 150
@@ -1382,10 +1460,27 @@ Based on this diagnostic information, you should be able to prioritize how you h
 214
 215
 216
-217</pre>
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 131</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 148</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_perceived_health'>parse_perceived_health</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_pause'><span class='object_link'><a href="../../top-level-namespace.html#pause-instance_method" title="#pause (method)">pause</a></span></span> <span class='float'>0.5</span> <span class='comment'># Pause to wait for the full response to come back from the server
@@ -1490,13 +1585,25 @@ Based on this diagnostic information, you should be able to prioritize how you h
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Given the line of text from the HEALTH command output that expresses external and internal wounds, returns a map of any wounds.</p>
+    <p>Given the line of text from the HEALTH command output that expresses
+external and internal wounds and scars, returns a map of any wounds where
+the keys are the severity and the values are the list of wounds.
+Parses the wounds from the HEALTH command output.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_wounds'>wounds</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_wounds'>parse_wounds</span><span class='lparen'>(</span><span class='id identifier rubyid_wounds_line'>wounds_line</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_wounds'>wounds</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1509,7 +1616,7 @@ Based on this diagnostic information, you should be able to prioritize how you h
       
       
         &mdash;
-        <div class='inline'><p>The line containing wound descriptions.</p>
+        <div class='inline'><p>The line of text containing wound descriptions.</p>
 </div>
       
     </li>
@@ -1527,7 +1634,7 @@ Based on this diagnostic information, you should be able to prioritize how you h
       
       
         &mdash;
-        <div class='inline'><p>A hash where keys are severity and values are lists of wounds.</p>
+        <div class='inline'><p>A hash of wounds categorized by severity.</p>
 </div>
       
     </li>
@@ -1540,34 +1647,34 @@ Based on this diagnostic information, you should be able to prioritize how you h
       <pre class="lines">
 
 
-262
-263
-264
-265
-266
-267
-268
-269
-270
-271
-272
-273
-274
-275
-276
-277
-278
-279
-280
-281
-282
-283
-284
 285
-286</pre>
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 262</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 285</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_wounds'>parse_wounds</span><span class='lparen'>(</span><span class='id identifier rubyid_wounds_line'>wounds_line</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_wounds'>wounds</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_k'>k</span><span class='op'>|</span> <span class='id identifier rubyid_h'>h</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
@@ -1602,7 +1709,7 @@ Based on this diagnostic information, you should be able to prioritize how you h
       <div class="method_details ">
   <h3 class="signature " id="perceive_health-class_method">
   
-    .<strong>perceive_health</strong>  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt><sup>?</sup> 
+    .<strong>perceive_health</strong>  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt> 
   
 
   
@@ -1611,6 +1718,9 @@ Based on this diagnostic information, you should be able to prioritize how you h
 </h3><div class="docstring">
   <div class="discussion">
     <p>Uses PERCEIVE HEALTH SELF command to check for wounds and scars.
+Returns a map of any wounds where the keys
+are the severity and the values are the list of wounds.
+Uses the PERCEIVE HEALTH SELF command to check for wounds and scars.
 Returns a map of any wounds where the keys are the severity and the values are the list of wounds.</p>
 
 
@@ -1618,18 +1728,27 @@ Returns a map of any wounds where the keys are the severity and the values are t
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_perceived_health'>perceived_health</span> <span class='op'>=</span> <span class='id identifier rubyid_perceive_health'>perceive_health</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_perceived_health'>perceived_health</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wounds</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>A hash containing perceived health data or nil if unable to perceive.</p>
+        <div class='inline'><p>A hash containing perceived health data including wounds and score.</p>
 </div>
       
     </li>
@@ -1642,17 +1761,6 @@ Returns a map of any wounds where the keys are the severity and the values are t
       <pre class="lines">
 
 
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
 96
 97
 98
@@ -1662,15 +1770,26 @@ Returns a map of any wounds where the keys are the severity and the values are t
 102
 103
 104
-105</pre>
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_perceive_health'>perceive_health</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="DRStats.html" title="Lich::DragonRealms::DRStats (module)">DRStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_empath?'><span class='object_link'><a href="DRStats.html#empath%3F-class_method" title="Lich::DragonRealms::DRStats.empath? (method)">empath?</a></span></span>
 
-  <span class='kw'>case</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>perceive health self</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>feel only an aching emptiness</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Roundtime</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>perceive health self</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>feel only an aching emptiness</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Roundtime</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>feel only an aching emptiness</span><span class='tstring_end'>&#39;</span></span>
     <span class='comment'># Empath is permashocked and cannot perceive wounds.
 </span>    <span class='kw'>return</span> <span class='id identifier rubyid_check_health'>check_health</span>
@@ -1710,7 +1829,16 @@ Returns a map of any wounds where the keys are the severity and the values are t
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_target_health'>target_health</span> <span class='op'>=</span> <span class='id identifier rubyid_perceive_health_other'>perceive_health_other</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>John</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_target_health'>target_health</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wounds</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1723,7 +1851,7 @@ Returns a map of any wounds where the keys are the severity and the values are t
       
       
         &mdash;
-        <div class='inline'><p>The name of the target to perceive health.</p>
+        <div class='inline'><p>The name of the target to perceive health for.</p>
 </div>
       
     </li>
@@ -1741,7 +1869,7 @@ Returns a map of any wounds where the keys are the severity and the values are t
       
       
         &mdash;
-        <div class='inline'><p>A hash containing perceived health data or nil if unable to perceive.</p>
+        <div class='inline'><p>A hash containing perceived health data for the target or nil if unable to perceive.</p>
 </div>
       
     </li>
@@ -1754,30 +1882,30 @@ Returns a map of any wounds where the keys are the severity and the values are t
       <pre class="lines">
 
 
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
 124
-125</pre>
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 110</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 124</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_perceive_health_other'>perceive_health_other</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="DRStats.html" title="Lich::DragonRealms::DRStats (module)">DRStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_empath?'><span class='object_link'><a href="DRStats.html#empath%3F-class_method" title="Lich::DragonRealms::DRStats.empath? (method)">empath?</a></span></span>
 
-  <span class='kw'>case</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>touch </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target'>target</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Touch what</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>feels cold and you are unable to sense anything</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>avoids your touch</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You sense a successful empathic link has been forged between you and (?&lt;name&gt;\w+)\.</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You quickly recoil</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>touch </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target'>target</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Touch what</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>feels cold and you are unable to sense anything</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>avoids your touch</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You sense a successful empathic link has been forged between you and (?&lt;name&gt;\w+)\.</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You quickly recoil</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
   <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>avoids your touch</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>feels cold and you are unable to sense anything</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Touch what</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You quickly recoil</span><span class='regexp_end'>/</span></span>
     <span class='kw'>return</span> <span class='kw'>nil</span>
   <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>You sense a successful empathic link has been forged between you and (?&lt;name&gt;\w+)\.</span><span class='regexp_end'>/</span></span>
@@ -1806,13 +1934,25 @@ Returns a map of any wounds where the keys are the severity and the values are t
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the user has the skill to tend a wound based on its bleed rate.</p>
+    <p>Skill check to tend a bleeding wound.
+If you&#39;re not skilled enough you may make things worse and incur long roundtime.
+Checks if the player has the required skill to tend a bleeding wound.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='kw'>if</span> <span class='id identifier rubyid_skilled_to_tend_wound?'>skilled_to_tend_wound?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>light</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You can tend this wound.</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1825,7 +1965,7 @@ Returns a map of any wounds where the keys are the severity and the values are t
       
       
         &mdash;
-        <div class='inline'><p>The bleeding rate of the wound.</p>
+        <div class='inline'><p>The rate of bleeding.</p>
 </div>
       
     </li>
@@ -1860,7 +2000,7 @@ Returns a map of any wounds where the keys are the severity and the values are t
       
       
         &mdash;
-        <div class='inline'><p>true if skilled enough to tend the wound, false otherwise.</p>
+        <div class='inline'><p>true if skilled enough to tend, false otherwise.</p>
 </div>
       
     </li>
@@ -1873,16 +2013,16 @@ Returns a map of any wounds where the keys are the severity and the values are t
       <pre class="lines">
 
 
-397
-398
-399
-400
-401
-402
-403</pre>
+436
+437
+438
+439
+440
+441
+442</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 397</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 436</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_skilled_to_tend_wound?'>skilled_to_tend_wound?</span><span class='lparen'>(</span><span class='id identifier rubyid_bleed_rate'>bleed_rate</span><span class='comma'>,</span> <span class='id identifier rubyid_internal'>internal</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_skill_target'>skill_target</span> <span class='op'>=</span> <span class='id identifier rubyid_internal'>internal</span> <span class='op'>?</span> <span class='symbol'>:skill_to_tend_internal</span> <span class='op'>:</span> <span class='symbol'>:skill_to_tend</span>
@@ -1899,7 +2039,7 @@ Returns a map of any wounds where the keys are the severity and the values are t
       <div class="method_details ">
   <h3 class="signature " id="unwrap_wound-class_method">
   
-    .<strong>unwrap_wound</strong>(body_part, person = &#39;my&#39;)  &#x21d2; <tt>Object</tt> 
+    .<strong>unwrap_wound</strong>(body_part, person = &#39;my&#39;)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -1907,13 +2047,21 @@ Returns a map of any wounds where the keys are the severity and the values are t
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Unwraps bandages from a specified body part.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Unwraps bandages from a specified wound.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_unwrap_wound'>unwrap_wound</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>left arm</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1957,16 +2105,16 @@ Returns a map of any wounds where the keys are the severity and the values are t
       <pre class="lines">
 
 
-386
-387
-388
-389</pre>
+421
+422
+423
+424</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-healing.rb', line 386</span>
+      <pre class="code"><span class="info file"># File 'common-healing.rb', line 421</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unwrap_wound'>unwrap_wound</span><span class='lparen'>(</span><span class='id identifier rubyid_body_part'>body_part</span><span class='comma'>,</span> <span class='id identifier rubyid_person'>person</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>my</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unwrap </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_person'>person</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_body_part'>body_part</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You unwrap .* bandages</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>That area is not tended</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You may undo the affects of TENDing</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unwrap </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_person'>person</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_body_part'>body_part</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You unwrap .* bandages</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>That area is not tended</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You may undo the affects of TENDing</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_waitrt?'><span class='object_link'><a href="../../top-level-namespace.html#waitrt%3F-instance_method" title="#waitrt? (method)">waitrt?</a></span></span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1979,7 +2127,7 @@ Returns a map of any wounds where the keys are the severity and the values are t
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:51 2025 by
+  Generated on Fri Nov  7 02:56:52 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

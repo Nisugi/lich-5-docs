@@ -92,17 +92,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Using the DRCMM module</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'>DRCMM</span><span class='period'>.</span><span class='id identifier rubyid_observe'><span class='object_link'><a href="#observe-class_method" title="Lich::DragonRealms::DRCMM.observe (method)">observe</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>heavens</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-
 
 </div>
 
@@ -122,7 +111,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#align-class_method" title="align (class method)">.<strong>align</strong>(skill)  &#x21d2; String </a>
+      <a href="#align-class_method" title="align (class method)">.<strong>align</strong>(skill)  &#x21d2; void </a>
     
 
     
@@ -159,7 +148,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if any celestial object is visible.</p>
+    <span class="summary_desc"><div class='inline'><p>returns true if at least one moon (katamba, yavash, xibar) or the sun are  above the horizon and won&#39;t set for at least another ~4 minutes.</p>
 </div></span>
   
 </li>
@@ -182,7 +171,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if at least one bright celestial object is visible.</p>
+    <span class="summary_desc"><div class='inline'><p>returns true if at least one bright moon (yavash, xibar) or the sun are  above the horizon and won&#39;t set for at least another ~4 minutes.</p>
 </div></span>
   
 </li>
@@ -191,7 +180,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#center_telescope-class_method" title="center_telescope (class method)">.<strong>center_telescope</strong>(target)  &#x21d2; String </a>
+      <a href="#center_telescope-class_method" title="center_telescope (class method)">.<strong>center_telescope</strong>(target)  &#x21d2; void </a>
     
 
     
@@ -251,7 +240,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Drops the moon weapon if held.</p>
+    <span class="summary_desc"><div class='inline'><p>Drops the moon weapon in your hands, if any.</p>
 </div></span>
   
 </li>
@@ -343,7 +332,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the divination tool from storage.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves a divination tool from storage.</p>
 </div></span>
   
 </li>
@@ -389,7 +378,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the telescope from storage.</p>
+    <span class="summary_desc"><div class='inline'><p>Retrieves a telescope from storage.</p>
 </div></span>
   
 </li>
@@ -412,7 +401,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if the telescope can be obtained from storage.</p>
+    <span class="summary_desc"><div class='inline'><p>Checks if a telescope can be obtained from storage.</p>
 </div></span>
   
 </li>
@@ -435,7 +424,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Attempts to hold a moon weapon if not already holding one.</p>
+    <span class="summary_desc"><div class='inline'><p>Try to hold a moon weapon.</p>
 </div></span>
   
 </li>
@@ -458,7 +447,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if a moon weapon is currently held.</p>
+    <span class="summary_desc"><div class='inline'><p>Is a moon weapon in your hands? Checks if a moon weapon is currently held.</p>
 </div></span>
   
 </li>
@@ -481,7 +470,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if the specified item is a moon weapon.</p>
+    <span class="summary_desc"><div class='inline'><p>Does the item appear to be a moon weapon? Determines if the given item is a moon weapon.</p>
 </div></span>
   
 </li>
@@ -504,7 +493,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Determines which moon was used to summon a weapon.</p>
+    <span class="summary_desc"><div class='inline'><p>Identifies which moon was used to summon a weapon.</p>
 </div></span>
   
 </li>
@@ -527,7 +516,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if a specific moon is visible.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns true if the moon is above the horizon and won&#39;t set for at least another ~4 minutes.</p>
 </div></span>
   
 </li>
@@ -550,7 +539,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Checks if at least one moon is visible.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns true if at least one moon (e.g. katamba, yavash, xibar) is above the horizon and won&#39;t set for at least another ~4 minutes.</p>
 </div></span>
   
 </li>
@@ -582,7 +571,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#peer_telescope-class_method" title="peer_telescope (class method)">.<strong>peer_telescope</strong>  &#x21d2; String </a>
+      <a href="#peer_telescope-class_method" title="peer_telescope (class method)">.<strong>peer_telescope</strong>  &#x21d2; void </a>
     
 
     
@@ -628,7 +617,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#roll_bones-class_method" title="roll_bones (class method)">.<strong>roll_bones</strong>(storage)  &#x21d2; String </a>
+      <a href="#roll_bones-class_method" title="roll_bones (class method)">.<strong>roll_bones</strong>(storage)  &#x21d2; void </a>
     
 
     
@@ -651,7 +640,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_moon_data-class_method" title="set_moon_data (class method)">.<strong>set_moon_data</strong>(data)  &#x21d2; Hash </a>
+      <a href="#set_moon_data-class_method" title="set_moon_data (class method)">.<strong>set_moon_data</strong>(data)  &#x21d2; Hash<sup>?</sup> </a>
     
 
     
@@ -711,7 +700,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Stores the bones in the specified storage.</p>
+    <span class="summary_desc"><div class='inline'><p>Stores bones in the specified storage.</p>
 </div></span>
   
 </li>
@@ -734,7 +723,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Stores the bones back into storage.</p>
+    <span class="summary_desc"><div class='inline'><p>Stores bones back into storage.</p>
 </div></span>
   
 </li>
@@ -757,7 +746,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Stores the divination tool in the specified storage.</p>
+    <span class="summary_desc"><div class='inline'><p>Stores a divination tool in the specified storage.</p>
 </div></span>
   
 </li>
@@ -780,7 +769,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Stores the divination tool back into storage.</p>
+    <span class="summary_desc"><div class='inline'><p>Stores a divination tool back into storage.</p>
 </div></span>
   
 </li>
@@ -803,7 +792,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Stores the telescope in the specified storage.</p>
+    <span class="summary_desc"><div class='inline'><p>Stores a telescope in the specified storage.</p>
 </div></span>
   
 </li>
@@ -826,7 +815,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Stores the telescope back into storage.</p>
+    <span class="summary_desc"><div class='inline'><p>Stores a telescope back into storage.</p>
 </div></span>
   
 </li>
@@ -881,7 +870,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#use_div_tool-class_method" title="use_div_tool (class method)">.<strong>use_div_tool</strong>(tool_storage)  &#x21d2; String </a>
+      <a href="#use_div_tool-class_method" title="use_div_tool (class method)">.<strong>use_div_tool</strong>(tool_storage)  &#x21d2; void </a>
     
 
     
@@ -895,7 +884,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Uses the specified divination tool.</p>
+    <span class="summary_desc"><div class='inline'><p>Uses a divination tool for divination.</p>
 </div></span>
   
 </li>
@@ -918,7 +907,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns a list of visible moons.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns list of moon names (e.g. katamba, yavash, xibar) that are above the horizon and won&#39;t set for at least another ~4 minutes.</p>
 </div></span>
   
 </li>
@@ -941,7 +930,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Attempts to wear a moon weapon if held.</p>
+    <span class="summary_desc"><div class='inline'><p>There are many variants of a summoned moon weapon (blade, staff, sword, etc) This function checks if you&#39;re holding one then tries to wear it.</p>
 </div></span>
   
 </li>
@@ -959,7 +948,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="align-class_method">
   
-    .<strong>align</strong>(skill)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    .<strong>align</strong>(skill)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -967,7 +956,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Aligns the telescope based on the specified skill.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Aligns the telescope based on the specified skill.</p>
 
 
   </div>
@@ -978,7 +967,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_align'>align</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>astronomy</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_align'>align</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>astrology</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1001,23 +990,6 @@
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The output message regarding the alignment.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1025,15 +997,15 @@
       <pre class="lines">
 
 
+155
 156
-157
-158</pre>
+157</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 156</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 155</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_align'>align</span><span class='lparen'>(</span><span class='id identifier rubyid_skill'>skill</span><span class='rparen'>)</span>
-  <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>align </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_skill'>skill</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You focus internally</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>align </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_skill'>skill</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You focus internally</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1051,7 +1023,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if any celestial object is visible.</p>
+    <p>returns true if at least one moon (katamba, yavash, xibar) or the sun are
+ above the horizon and won&#39;t set for at least another ~4 minutes.
+Checks if any celestial object is visible.</p>
 
 
   </div>
@@ -1062,7 +1036,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_any_celestial_object?'>any_celestial_object?</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_any_celestial_object?'>any_celestial_object?</span></code></pre>
     
   </div>
 
@@ -1090,13 +1064,13 @@
       <pre class="lines">
 
 
+515
 516
 517
-518
-519</pre>
+518</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 516</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 515</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_any_celestial_object?'>any_celestial_object?</span>
   <span class='id identifier rubyid_check_moonwatch'>check_moonwatch</span>
@@ -1118,7 +1092,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if at least one bright celestial object is visible.</p>
+    <p>returns true if at least one bright moon (yavash, xibar) or the sun are
+ above the horizon and won&#39;t set for at least another ~4 minutes.
+Checks if at least one bright celestial object is visible.</p>
 
 
   </div>
@@ -1129,7 +1105,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bright_celestial_object?'>bright_celestial_object?</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_bright_celestial_object?'>bright_celestial_object?</span></code></pre>
     
   </div>
 
@@ -1157,13 +1133,13 @@
       <pre class="lines">
 
 
+504
 505
 506
-507
-508</pre>
+507</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 505</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 504</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_bright_celestial_object?'>bright_celestial_object?</span>
   <span class='id identifier rubyid_check_moonwatch'>check_moonwatch</span>
@@ -1177,7 +1153,7 @@
       <div class="method_details ">
   <h3 class="signature " id="center_telescope-class_method">
   
-    .<strong>center_telescope</strong>(target)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    .<strong>center_telescope</strong>(target)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -1185,7 +1161,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Centers the telescope on a specified target.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Centers the telescope on a specified target.</p>
 
 
   </div>
@@ -1196,7 +1172,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_center_telescope'>center_telescope</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>planet</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_center_telescope'>center_telescope</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>moon</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1219,23 +1195,6 @@
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The output message regarding the centering.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1243,6 +1202,7 @@
       <pre class="lines">
 
 
+130
 131
 132
 133
@@ -1260,14 +1220,13 @@
 145
 146
 147
-148
-149</pre>
+148</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 131</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 130</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_center_telescope'>center_telescope</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
-  <span class='kw'>case</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>center telescope on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target'>target</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='kw'>case</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>center telescope on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target'>target</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
                 <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Center what</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
                 <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You put your eye</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
                 <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>open it to make any use of it</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
@@ -1312,7 +1271,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_check_moonwatch'>check_moonwatch</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_check_moonwatch'>check_moonwatch</span></code></pre>
     
   </div>
 
@@ -1323,6 +1282,7 @@
       <pre class="lines">
 
 
+556
 557
 558
 559
@@ -1330,11 +1290,10 @@
 561
 562
 563
-564
-565</pre>
+564</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 557</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 556</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_moonwatch'>check_moonwatch</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_running?'>running?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>moonwatch</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1361,7 +1320,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Drops the moon weapon if held.</p>
+    <p>Drops the moon weapon in your hands, if any.
+Returns true if dropped something, false otherwise.
+Drops a moon weapon if held.</p>
 
 
   </div>
@@ -1372,7 +1333,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_drop_moon_weapon?'>drop_moon_weapon?</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_drop_moon_weapon?'>drop_moon_weapon?</span></code></pre>
     
   </div>
 
@@ -1400,6 +1361,7 @@
       <pre class="lines">
 
 
+336
 337
 338
 339
@@ -1409,20 +1371,19 @@
 343
 344
 345
-346
-347</pre>
+346</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 337</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 336</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drop_moon_weapon?'>drop_moon_weapon?</span>
   <span class='id identifier rubyid_moon_drop_messages'>moon_drop_messages</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>As you open your hand</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>What were you referring to</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_dropped_it'>dropped_it</span> <span class='op'>=</span> <span class='kw'>false</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_is_moon_weapon?'>is_moon_weapon?</span><span class='lparen'>(</span><span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_left_hand'>left_hand</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_dropped_it'>dropped_it</span> <span class='op'>=</span> <span class='id identifier rubyid_dropped_it'>dropped_it</span> <span class='op'>||</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>drop </span><span class='embexpr_beg'>#{</span><span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_left_hand'>left_hand</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_moon_drop_messages'>moon_drop_messages</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>As you open your hand</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_is_moon_weapon?'>is_moon_weapon?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_hand'><span class='object_link'><a href="DRC.html#left_hand-class_method" title="Lich::DragonRealms::DRC.left_hand (method)">left_hand</a></span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_dropped_it'>dropped_it</span> <span class='op'>=</span> <span class='id identifier rubyid_dropped_it'>dropped_it</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>drop </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_hand'><span class='object_link'><a href="DRC.html#left_hand-class_method" title="Lich::DragonRealms::DRC.left_hand (method)">left_hand</a></span></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_moon_drop_messages'>moon_drop_messages</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>As you open your hand</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_is_moon_weapon?'>is_moon_weapon?</span><span class='lparen'>(</span><span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_right_hand'>right_hand</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_dropped_it'>dropped_it</span> <span class='op'>=</span> <span class='id identifier rubyid_dropped_it'>dropped_it</span> <span class='op'>||</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>drop </span><span class='embexpr_beg'>#{</span><span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_right_hand'>right_hand</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_moon_drop_messages'>moon_drop_messages</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>As you open your hand</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_is_moon_weapon?'>is_moon_weapon?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_hand'><span class='object_link'><a href="DRC.html#right_hand-class_method" title="Lich::DragonRealms::DRC.right_hand (method)">right_hand</a></span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_dropped_it'>dropped_it</span> <span class='op'>=</span> <span class='id identifier rubyid_dropped_it'>dropped_it</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>drop </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_hand'><span class='object_link'><a href="DRC.html#right_hand-class_method" title="Lich::DragonRealms::DRC.right_hand (method)">right_hand</a></span></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_moon_drop_messages'>moon_drop_messages</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>As you open your hand</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_dropped_it'>dropped_it</span>
 <span class='kw'>end</span></pre>
@@ -1453,7 +1414,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_visible_planets'>find_visible_planets</span><span class='lparen'>(</span><span class='id identifier rubyid_planets'>planets</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_find_visible_planets'>find_visible_planets</span><span class='lparen'>(</span><span class='id identifier rubyid_planets'>planets</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1517,6 +1478,7 @@
       <pre class="lines">
 
 
+436
 437
 438
 439
@@ -1534,15 +1496,14 @@
 451
 452
 453
-454
-455</pre>
+454</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 437</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 436</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_find_visible_planets'>find_visible_planets</span><span class='lparen'>(</span><span class='id identifier rubyid_planets'>planets</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_get_telescope?'>get_telescope?</span><span class='lparen'>(</span><span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_telescope_name'>telescope_name</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_telescope_storage'>telescope_storage</span><span class='rparen'>)</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Coult not get telescope to find visible planets</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'><span class='object_link'><a href="DRC.html#message-class_method" title="Lich::DragonRealms::DRC.message (method)">message</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Coult not get telescope to find visible planets</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>return</span>
   <span class='kw'>end</span>
 
@@ -1556,7 +1517,7 @@
   <span class='kw'>end</span>
 
   <span class='const'><span class='object_link'><a href="Flags.html" title="Lich::DragonRealms::Flags (class)">Flags</a></span></span><span class='period'>.</span><span class='id identifier rubyid_delete'><span class='object_link'><a href="Flags.html#delete-class_method" title="Lich::DragonRealms::Flags.delete (method)">delete</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>planet-not-visible</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not store telescope after finding visible planets</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_store_telescope?'>store_telescope?</span><span class='lparen'>(</span><span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_telescope_name'>telescope_name</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_telescope_storage'>telescope_storage</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'><span class='object_link'><a href="DRC.html#message-class_method" title="Lich::DragonRealms::DRC.message (method)">message</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not store telescope after finding visible planets</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_store_telescope?'>store_telescope?</span><span class='lparen'>(</span><span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_telescope_name'>telescope_name</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_telescope_storage'>telescope_storage</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_observed_planets'>observed_planets</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1586,7 +1547,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_bones'>get_bones</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_get_bones'>get_bones</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1602,7 +1563,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The storage information for the bones.</p>
+        <div class='inline'><p>The storage information containing tied or container details.</p>
 </div>
       
     </li>
@@ -1633,22 +1594,22 @@
       <pre class="lines">
 
 
+194
 195
 196
 197
 198
 199
-200
-201</pre>
+200</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 195</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 194</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_bones'>get_bones</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tied</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>untie bones from my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You untie</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You remove</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>untie bones from my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You untie</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You remove</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>else</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>get bones from my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You get</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>get bones from my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You get</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1678,7 +1639,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_bones?'>get_bones?</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_get_bones?'>get_bones?</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1694,7 +1655,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The storage information for the bones.</p>
+        <div class='inline'><p>The storage information containing tied or container details.</p>
 </div>
       
     </li>
@@ -1712,7 +1673,7 @@
       
       
         &mdash;
-        <div class='inline'><p>True if the bones can be obtained, false otherwise.</p>
+        <div class='inline'><p>True if bones can be obtained, false otherwise.</p>
 </div>
       
     </li>
@@ -1725,6 +1686,7 @@
       <pre class="lines">
 
 
+164
 165
 166
 167
@@ -1732,11 +1694,10 @@
 169
 170
 171
-172
-173</pre>
+172</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 165</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 164</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_bones?'>get_bones?</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tied</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
@@ -1763,7 +1724,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the divination tool from storage.</p>
+    <p>Retrieves a divination tool from storage.</p>
 
 
   </div>
@@ -1774,7 +1735,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_div_tool'>get_div_tool</span><span class='lparen'>(</span><span class='id identifier rubyid_tool'>tool</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_get_div_tool'>get_div_tool</span><span class='lparen'>(</span><span class='id identifier rubyid_tool'>tool</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1790,7 +1751,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The tool information for the divination tool.</p>
+        <div class='inline'><p>The tool information containing tied or worn details.</p>
 </div>
       
     </li>
@@ -1821,6 +1782,7 @@
       <pre class="lines">
 
 
+264
 265
 266
 267
@@ -1828,19 +1790,18 @@
 269
 270
 271
-272
-273</pre>
+272</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 265</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 264</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_div_tool'>get_div_tool</span><span class='lparen'>(</span><span class='id identifier rubyid_tool'>tool</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tied</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>untie </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> from my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>untie </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> from my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='kw'>elsif</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>worn</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>remove my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>remove my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>get my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> from my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>you get</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>get my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> from my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>you get</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1870,7 +1831,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_div_tool?'>get_div_tool?</span><span class='lparen'>(</span><span class='id identifier rubyid_tool'>tool</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_get_div_tool?'>get_div_tool?</span><span class='lparen'>(</span><span class='id identifier rubyid_tool'>tool</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1886,7 +1847,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The tool information for the divination tool.</p>
+        <div class='inline'><p>The tool information containing tied or worn details.</p>
 </div>
       
     </li>
@@ -1917,6 +1878,7 @@
       <pre class="lines">
 
 
+234
 235
 236
 237
@@ -1924,11 +1886,10 @@
 239
 240
 241
-242
-243</pre>
+242</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 235</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 234</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_div_tool?'>get_div_tool?</span><span class='lparen'>(</span><span class='id identifier rubyid_tool'>tool</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tied</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
@@ -1955,7 +1916,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the telescope from storage.</p>
+    <p>Retrieves a telescope from storage.</p>
 
 
   </div>
@@ -1966,7 +1927,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_telescope'>get_telescope</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_get_telescope'>get_telescope</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1982,7 +1943,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The storage information for the telescope.</p>
+        <div class='inline'><p>The storage information containing tied or container details.</p>
 </div>
       
     </li>
@@ -2013,6 +1974,7 @@
       <pre class="lines">
 
 
+84
 85
 86
 87
@@ -2020,19 +1982,18 @@
 89
 90
 91
-92
-93</pre>
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 84</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_telescope'>get_telescope</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tied</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>untie telescope from my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tied</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You remove</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You untie</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>^What were you referring</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Untie what</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>^You are a little too busy</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>untie telescope from my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tied</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You remove</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You untie</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>^What were you referring</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Untie what</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>^You are a little too busy</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>elsif</span> <span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>get telescope in my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You get a</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You are already</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>That can&#39;t be picked up</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You need a free hand to pick that up.</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>What were you referring to</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stop practicing your Athletics</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>get telescope in my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You get a</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You are already</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>That can&#39;t be picked up</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You need a free hand to pick that up.</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>What were you referring to</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stop practicing your Athletics</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>else</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>get my telescope</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You get a</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>What were you referring to</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You are already holding that.</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>That can&#39;t be picked up</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You need a free hand to pick that up.</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stop practicing your Athletics</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>get my telescope</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You get a</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>What were you referring to</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You are already holding that.</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>That can&#39;t be picked up</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You need a free hand to pick that up.</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stop practicing your Athletics</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2051,7 +2012,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the telescope can be obtained from storage.</p>
+    <p>Checks if a telescope can be obtained from storage.</p>
 
 
   </div>
@@ -2062,7 +2023,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_telescope?'>get_telescope?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>telescope</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_get_telescope?'>get_telescope?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>telescope</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2080,7 +2041,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The name of the telescope.</p>
+        <div class='inline'><p>The name of the telescope (default: &#39;telescope&#39;).</p>
 </div>
       
     </li>
@@ -2095,7 +2056,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The storage information for the telescope.</p>
+        <div class='inline'><p>The storage information containing tied or container details.</p>
 </div>
       
     </li>
@@ -2126,6 +2087,7 @@
       <pre class="lines">
 
 
+45
 46
 47
 48
@@ -2139,11 +2101,10 @@
 56
 57
 58
-59
-60</pre>
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_telescope?'>get_telescope?</span><span class='lparen'>(</span><span class='id identifier rubyid_telescope_name'>telescope_name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>telescope</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_in_hands?'><span class='object_link'><a href="DRCI.html#in_hands%3F-class_method" title="Lich::DragonRealms::DRCI.in_hands? (method)">in_hands?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_telescope_name'>telescope_name</span><span class='rparen'>)</span>
@@ -2176,7 +2137,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Attempts to hold a moon weapon if not already holding one.</p>
+    <p>Try to hold a moon weapon.
+If you end up not holding a moon weapon then returns false.
+Attempts to hold a moon weapon if not already holding two.</p>
 
 
   </div>
@@ -2187,7 +2150,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_hold_moon_weapon?'>hold_moon_weapon?</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_hold_moon_weapon?'>hold_moon_weapon?</span></code></pre>
     
   </div>
 
@@ -2215,6 +2178,7 @@
       <pre class="lines">
 
 
+363
 364
 365
 366
@@ -2226,21 +2190,20 @@
 372
 373
 374
-375
-376</pre>
+375</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 364</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 363</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hold_moon_weapon?'>hold_moon_weapon?</span>
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_holding_moon_weapon?'>holding_moon_weapon?</span>
-  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='lbracket'>[</span><span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_left_hand'>left_hand</span><span class='comma'>,</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_right_hand'>right_hand</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;=</span> <span class='int'>2</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_hand'><span class='object_link'><a href="DRC.html#left_hand-class_method" title="Lich::DragonRealms::DRC.left_hand (method)">left_hand</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_hand'><span class='object_link'><a href="DRC.html#right_hand-class_method" title="Lich::DragonRealms::DRC.right_hand (method)">right_hand</a></span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;=</span> <span class='int'>2</span>
 
   <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>moonblade</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>moonstaff</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_weapon'>weapon</span><span class='op'>|</span>
-    <span class='id identifier rubyid_glance'>glance</span> <span class='op'>=</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>glance my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_weapon'>weapon</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You glance at a .* </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_weapon'>weapon</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>I could not find</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_glance'>glance</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>glance my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_weapon'>weapon</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You glance at a .* </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_weapon'>weapon</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>I could not find</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>case</span> <span class='id identifier rubyid_glance'>glance</span>
     <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>You glance</span><span class='regexp_end'>/</span></span>
-      <span class='kw'>return</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>hold my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_weapon'>weapon</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You grab</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You aren&#39;t wearing</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hold hands with whom?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You need a free hand</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You grab</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>hold my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_weapon'>weapon</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You grab</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You aren&#39;t wearing</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hold hands with whom?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You need a free hand</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You grab</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
   <span class='kw'>false</span>
@@ -2261,7 +2224,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if a moon weapon is currently held.</p>
+    <p>Is a moon weapon in your hands?
+Checks if a moon weapon is currently held.</p>
 
 
   </div>
@@ -2272,7 +2236,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_holding_moon_weapon?'>holding_moon_weapon?</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_holding_moon_weapon?'>holding_moon_weapon?</span></code></pre>
     
   </div>
 
@@ -2300,15 +2264,15 @@
       <pre class="lines">
 
 
+353
 354
-355
-356</pre>
+355</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 354</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 353</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_holding_moon_weapon?'>holding_moon_weapon?</span>
-  <span class='kw'>return</span> <span class='id identifier rubyid_is_moon_weapon?'>is_moon_weapon?</span><span class='lparen'>(</span><span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_left_hand'>left_hand</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_is_moon_weapon?'>is_moon_weapon?</span><span class='lparen'>(</span><span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_right_hand'>right_hand</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_is_moon_weapon?'>is_moon_weapon?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_hand'><span class='object_link'><a href="DRC.html#left_hand-class_method" title="Lich::DragonRealms::DRC.left_hand (method)">left_hand</a></span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_is_moon_weapon?'>is_moon_weapon?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_hand'><span class='object_link'><a href="DRC.html#right_hand-class_method" title="Lich::DragonRealms::DRC.right_hand (method)">right_hand</a></span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2326,7 +2290,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the specified item is a moon weapon.</p>
+    <p>Does the item appear to be a moon weapon?
+Determines if the given item is a moon weapon.</p>
 
 
   </div>
@@ -2337,7 +2302,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_is_moon_weapon?'>is_moon_weapon?</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_is_moon_weapon?'>is_moon_weapon?</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2384,14 +2349,14 @@
       <pre class="lines">
 
 
+383
 384
 385
 386
-387
-388</pre>
+387</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 384</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 383</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_moon_weapon?'>is_moon_weapon?</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_item'>item</span>
@@ -2414,7 +2379,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Determines which moon was used to summon a weapon.</p>
+    <p>Identifies which moon was used to summon a weapon.</p>
 
 
   </div>
@@ -2425,7 +2390,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_moon_used_to_summon_weapon'>moon_used_to_summon_weapon</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_moon_used_to_summon_weapon'>moon_used_to_summon_weapon</span></code></pre>
     
   </div>
 
@@ -2453,6 +2418,7 @@
       <pre class="lines">
 
 
+393
 394
 395
 396
@@ -2468,18 +2434,17 @@
 406
 407
 408
-409
-410</pre>
+409</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 394</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 393</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_moon_used_to_summon_weapon'>moon_used_to_summon_weapon</span>
   <span class='comment'># Note, if you have more than one weapon summoned at a time
 </span>  <span class='comment'># then the results of this method are non-deterministic.
 </span>  <span class='comment'># For example, if you have 2+ moonblades/staffs cast on different moons.
 </span>  <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>moonblade</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>moonstaff</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_weapon'>weapon</span><span class='op'>|</span>
-    <span class='id identifier rubyid_glance'>glance</span> <span class='op'>=</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>glance my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_weapon'>weapon</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You glance at a .* (black|red-hot|blue-white) moon(blade|staff)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>I could not find</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_glance'>glance</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>glance my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_weapon'>weapon</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You glance at a .* (black|red-hot|blue-white) moon(blade|staff)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>I could not find</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>case</span> <span class='id identifier rubyid_glance'>glance</span>
     <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>black moon</span><span class='regexp_end'>/</span></span>
       <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>katamba</span><span class='tstring_end'>&#39;</span></span>
@@ -2507,7 +2472,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if a specific moon is visible.</p>
+    <p>Returns true if the moon is above the horizon and won&#39;t set for at least another ~4 minutes.
+Checks if a specific moon is visible.</p>
 
 
   </div>
@@ -2518,7 +2484,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_moon_visible?'>moon_visible?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>yavash</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_moon_visible?'>moon_visible?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>yavash</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2565,12 +2531,12 @@
       <pre class="lines">
 
 
+536
 537
-538
-539</pre>
+538</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 537</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 536</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_moon_visible?'>moon_visible?</span><span class='lparen'>(</span><span class='id identifier rubyid_moon_name'>moon_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_visible_moons'>visible_moons</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_moon_name'>moon_name</span><span class='rparen'>)</span>
@@ -2591,7 +2557,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if at least one moon is visible.</p>
+    <p>Returns true if at least one moon (e.g. katamba, yavash, xibar)
+is above the horizon and won&#39;t set for at least another ~4 minutes.
+Checks if at least one moon is visible.</p>
 
 
   </div>
@@ -2602,7 +2570,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_moons_visible?'>moons_visible?</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_moons_visible?'>moons_visible?</span></code></pre>
     
   </div>
 
@@ -2630,12 +2598,12 @@
       <pre class="lines">
 
 
+526
 527
-528
-529</pre>
+528</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 527</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 526</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_moons_visible?'>moons_visible?</span>
   <span class='op'>!</span><span class='id identifier rubyid_visible_moons'>visible_moons</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -2667,7 +2635,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_observe'>observe</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>moon</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_observe'>observe</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>moon</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2714,19 +2682,19 @@
       <pre class="lines">
 
 
+14
 15
 16
 17
-18
-19</pre>
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_observe'>observe</span><span class='lparen'>(</span><span class='id identifier rubyid_thing'>thing</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>observe </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_thing'>thing</span><span class='embexpr_end'>}</span><span class='tstring_content'> in heavens</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>observe heavens</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_thing'>thing</span><span class='period'>.</span><span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>heavens</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='id identifier rubyid_output'>output</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Your search for</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You see nothing regarding the future</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Clouds obscure</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Roundtime</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>The following heavenly bodies are visible:</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>That&#39;s a bit hard to do while inside</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_output'>output</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Your search for</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You see nothing regarding the future</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Clouds obscure</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Roundtime</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>The following heavenly bodies are visible:</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>That&#39;s a bit hard to do while inside</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2736,7 +2704,7 @@
       <div class="method_details ">
   <h3 class="signature " id="peer_telescope-class_method">
   
-    .<strong>peer_telescope</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    .<strong>peer_telescope</strong>  &#x21d2; <tt>void</tt> 
   
 
   
@@ -2744,7 +2712,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Peers through the telescope to observe celestial bodies.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Peers through the telescope to observe celestial bodies.</p>
 
 
   </div>
@@ -2755,27 +2723,10 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_peer_telescope'>peer_telescope</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_peer_telescope'>peer_telescope</span></code></pre>
     
   </div>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The output message regarding the peering.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -2783,6 +2734,7 @@
       <pre class="lines">
 
 
+113
 114
 115
 116
@@ -2792,11 +2744,10 @@
 120
 121
 122
-123
-124</pre>
+123</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 114</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 113</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_peer_telescope'>peer_telescope</span>
   <span class='id identifier rubyid_telescope_regex_patterns'>telescope_regex_patterns</span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_union'>union</span><span class='lparen'>(</span>
@@ -2836,7 +2787,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_predict'>predict</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>all</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_predict'>predict</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>all</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2883,19 +2834,19 @@
       <pre class="lines">
 
 
+25
 26
 27
 28
-29
-30</pre>
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_predict'>predict</span><span class='lparen'>(</span><span class='id identifier rubyid_thing'>thing</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>predict </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_thing'>thing</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>predict state all</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_thing'>thing</span><span class='period'>.</span><span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>all</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='id identifier rubyid_output'>output</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You predict that</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You are far too</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>you lack the skill to grasp them fully</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(R|r)oundtime</span><span class='regexp_end'>/i</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You focus inwardly</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_output'>output</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You predict that</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You are far too</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>you lack the skill to grasp them fully</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(R|r)oundtime</span><span class='regexp_end'>/i</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You focus inwardly</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2905,7 +2856,7 @@
       <div class="method_details ">
   <h3 class="signature " id="roll_bones-class_method">
   
-    .<strong>roll_bones</strong>(storage)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    .<strong>roll_bones</strong>(storage)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -2913,7 +2864,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Rolls the bones for divination.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Rolls the bones for divination.</p>
 
 
   </div>
@@ -2924,7 +2875,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_roll_bones'>roll_bones</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_roll_bones'>roll_bones</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2940,30 +2891,13 @@
       
       
         &mdash;
-        <div class='inline'><p>The storage information for the bones.</p>
+        <div class='inline'><p>The storage information containing tied or container details.</p>
 </div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The output message regarding the rolling.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -2971,22 +2905,22 @@
       <pre class="lines">
 
 
+220
 221
 222
 223
 224
 225
 226
-227
-228</pre>
+227</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 221</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 220</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_roll_bones'>roll_bones</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_get_bones'>get_bones</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span>
 
-  <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>roll my bones</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>roundtime</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>roll my bones</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>roundtime</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_waitrt?'><span class='object_link'><a href="../../top-level-namespace.html#waitrt%3F-instance_method" title="#waitrt? (method)">waitrt?</a></span></span>
 
   <span class='id identifier rubyid_store_bones'>store_bones</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span>
@@ -2999,7 +2933,7 @@
       <div class="method_details ">
   <h3 class="signature " id="set_moon_data-class_method">
   
-    .<strong>set_moon_data</strong>(data)  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt> 
+    .<strong>set_moon_data</strong>(data)  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt><sup>?</sup> 
   
 
   
@@ -3018,7 +2952,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_moon_data'>set_moon_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_set_moon_data'>set_moon_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3047,12 +2981,12 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>The updated data.</p>
+        <div class='inline'><p>The updated data or nil if no moon is available.</p>
 </div>
       
     </li>
@@ -3065,6 +2999,7 @@
       <pre class="lines">
 
 
+483
 484
 485
 486
@@ -3077,11 +3012,10 @@
 493
 494
 495
-496
-497</pre>
+496</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 484</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 483</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_moon_data'>set_moon_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_data'>data</span> <span class='kw'>unless</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>moon</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
@@ -3124,7 +3058,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_planet_data'>set_planet_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_set_planet_data'>set_planet_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3188,6 +3122,7 @@
       <pre class="lines">
 
 
+462
 463
 464
 465
@@ -3201,11 +3136,10 @@
 473
 474
 475
-476
-477</pre>
+476</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 463</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 462</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_planet_data'>set_planet_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_data'>data</span> <span class='kw'>unless</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stats</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
@@ -3220,7 +3154,7 @@
     <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cast</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cast </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_cast_on'>cast_on</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='id identifier rubyid_data'>data</span>
   <span class='kw'>end</span>
-  <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not set planet data. Cannot cast </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abbrev</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'><span class='object_link'><a href="DRC.html#message-class_method" title="Lich::DragonRealms::DRC.message (method)">message</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not set planet data. Cannot cast </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abbrev</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -3238,7 +3172,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Stores the bones in the specified storage.</p>
+    <p>Stores bones in the specified storage.</p>
 
 
   </div>
@@ -3249,7 +3183,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_store_bones'>store_bones</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_store_bones'>store_bones</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3265,7 +3199,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The storage information for the bones.</p>
+        <div class='inline'><p>The storage information containing tied or container details.</p>
 </div>
       
     </li>
@@ -3296,22 +3230,22 @@
       <pre class="lines">
 
 
+207
 208
 209
 210
 211
 212
-213
-214</pre>
+213</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 208</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 207</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_store_bones'>store_bones</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tied</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tie bones to my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You attach</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You tie</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tie bones to my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You attach</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You tie</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>else</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>put bones in my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You put</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>put bones in my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You put</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -3330,7 +3264,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Stores the bones back into storage.</p>
+    <p>Stores bones back into storage.</p>
 
 
   </div>
@@ -3341,7 +3275,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_store_bones?'>store_bones?</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_store_bones?'>store_bones?</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3357,7 +3291,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The storage information for the bones.</p>
+        <div class='inline'><p>The storage information containing tied or container details.</p>
 </div>
       
     </li>
@@ -3375,7 +3309,7 @@
       
       
         &mdash;
-        <div class='inline'><p>True if the bones were successfully stored, false otherwise.</p>
+        <div class='inline'><p>True if bones are successfully stored, false otherwise.</p>
 </div>
       
     </li>
@@ -3388,6 +3322,7 @@
       <pre class="lines">
 
 
+179
 180
 181
 182
@@ -3395,11 +3330,10 @@
 184
 185
 186
-187
-188</pre>
+187</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 180</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 179</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_store_bones?'>store_bones?</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tied</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
@@ -3426,7 +3360,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Stores the divination tool in the specified storage.</p>
+    <p>Stores a divination tool in the specified storage.</p>
 
 
   </div>
@@ -3437,7 +3371,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_store_div_tool'>store_div_tool</span><span class='lparen'>(</span><span class='id identifier rubyid_tool'>tool</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_store_div_tool'>store_div_tool</span><span class='lparen'>(</span><span class='id identifier rubyid_tool'>tool</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3453,7 +3387,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The tool information for the divination tool.</p>
+        <div class='inline'><p>The tool information containing tied or worn details.</p>
 </div>
       
     </li>
@@ -3484,6 +3418,7 @@
       <pre class="lines">
 
 
+279
 280
 281
 282
@@ -3491,19 +3426,18 @@
 284
 285
 286
-287
-288</pre>
+287</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 280</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 279</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_store_div_tool'>store_div_tool</span><span class='lparen'>(</span><span class='id identifier rubyid_tool'>tool</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tied</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tie </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> to my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tie </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> to my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='kw'>elsif</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>worn</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>wear my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>wear my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>put </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> in my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You put</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>put </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> in my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You put</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -3522,7 +3456,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Stores the divination tool back into storage.</p>
+    <p>Stores a divination tool back into storage.</p>
 
 
   </div>
@@ -3533,7 +3467,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_store_div_tool?'>store_div_tool?</span><span class='lparen'>(</span><span class='id identifier rubyid_tool'>tool</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_store_div_tool?'>store_div_tool?</span><span class='lparen'>(</span><span class='id identifier rubyid_tool'>tool</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3549,7 +3483,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The tool information for the divination tool.</p>
+        <div class='inline'><p>The tool information containing tied or worn details.</p>
 </div>
       
     </li>
@@ -3567,7 +3501,7 @@
       
       
         &mdash;
-        <div class='inline'><p>True if the tool was successfully stored, false otherwise.</p>
+        <div class='inline'><p>True if the tool is successfully stored, false otherwise.</p>
 </div>
       
     </li>
@@ -3580,6 +3514,7 @@
       <pre class="lines">
 
 
+249
 250
 251
 252
@@ -3587,11 +3522,10 @@
 254
 255
 256
-257
-258</pre>
+257</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 250</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 249</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_store_div_tool?'>store_div_tool?</span><span class='lparen'>(</span><span class='id identifier rubyid_tool'>tool</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_tool'>tool</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tied</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
@@ -3618,7 +3552,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Stores the telescope in the specified storage.</p>
+    <p>Stores a telescope in the specified storage.</p>
 
 
   </div>
@@ -3629,7 +3563,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_store_telescope'>store_telescope</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_store_telescope'>store_telescope</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3645,7 +3579,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The storage information for the telescope.</p>
+        <div class='inline'><p>The storage information containing tied or container details.</p>
 </div>
       
     </li>
@@ -3676,6 +3610,7 @@
       <pre class="lines">
 
 
+99
 100
 101
 102
@@ -3683,19 +3618,18 @@
 104
 105
 106
-107
-108</pre>
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 99</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_store_telescope'>store_telescope</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tied</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tie telescope to my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tied</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You attach</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>you tie</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You are a little too busy</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tie telescope to my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tied</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You attach</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>you tie</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You are a little too busy</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>elsif</span> <span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>put telescope in my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You put</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>put telescope in my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_storage'>storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>container</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You put</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>else</span>
-    <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stow my telescope</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Stow what</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You put your telescope</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stow my telescope</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Stow what</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You put your telescope</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -3714,7 +3648,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Stores the telescope back into storage.</p>
+    <p>Stores a telescope back into storage.</p>
 
 
   </div>
@@ -3725,7 +3659,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_store_telescope?'>store_telescope?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>telescope</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_store_telescope?'>store_telescope?</span><span class='lparen'>(</span><span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3743,7 +3677,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The name of the telescope.</p>
+        <div class='inline'><p>The name of the telescope (default: &#39;telescope&#39;).</p>
 </div>
       
     </li>
@@ -3758,7 +3692,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The storage information for the telescope.</p>
+        <div class='inline'><p>The storage information containing tied or container details.</p>
 </div>
       
     </li>
@@ -3776,7 +3710,7 @@
       
       
         &mdash;
-        <div class='inline'><p>True if the telescope was successfully stored, false otherwise.</p>
+        <div class='inline'><p>True if the telescope is successfully stored, false otherwise.</p>
 </div>
       
     </li>
@@ -3789,6 +3723,7 @@
       <pre class="lines">
 
 
+67
 68
 69
 70
@@ -3798,11 +3733,10 @@
 74
 75
 76
-77
-78</pre>
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_store_telescope?'>store_telescope?</span><span class='lparen'>(</span><span class='id identifier rubyid_telescope_name'>telescope_name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>telescope</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_storage'>storage</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_in_hands?'><span class='object_link'><a href="DRCI.html#in_hands%3F-class_method" title="Lich::DragonRealms::DRCI.in_hands? (method)">in_hands?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_telescope_name'>telescope_name</span><span class='rparen'>)</span>
@@ -3842,7 +3776,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_study_sky'>study_sky</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_study_sky'>study_sky</span></code></pre>
     
   </div>
 
@@ -3870,15 +3804,15 @@
       <pre class="lines">
 
 
+35
 36
-37
-38</pre>
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_study_sky'>study_sky</span>
-  <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>study sky</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You feel a lingering sense</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You feel it is too soon</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Roundtime</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You are unable to sense additional information</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>detect any portents</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>study sky</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You feel a lingering sense</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You feel it is too soon</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Roundtime</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You are unable to sense additional information</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>detect any portents</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -3907,7 +3841,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update_astral_data'>update_astral_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_update_astral_data'>update_astral_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3971,17 +3905,17 @@
       <pre class="lines">
 
 
+421
 422
 423
 424
 425
 426
 427
-428
-429</pre>
+428</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 422</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 421</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_astral_data'>update_astral_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>moon</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
@@ -3999,7 +3933,7 @@
       <div class="method_details ">
   <h3 class="signature " id="use_div_tool-class_method">
   
-    .<strong>use_div_tool</strong>(tool_storage)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    .<strong>use_div_tool</strong>(tool_storage)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -4007,7 +3941,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Uses the specified divination tool.</p>
+    <p class="note returns_void">This method returns an undefined value.</p><p>Uses a divination tool for divination.</p>
 
 
   </div>
@@ -4018,7 +3952,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_use_div_tool'>use_div_tool</span><span class='lparen'>(</span><span class='id identifier rubyid_tool_storage'>tool_storage</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_use_div_tool'>use_div_tool</span><span class='lparen'>(</span><span class='id identifier rubyid_tool_storage'>tool_storage</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -4034,30 +3968,13 @@
       
       
         &mdash;
-        <div class='inline'><p>The storage information for the divination tool.</p>
+        <div class='inline'><p>The storage information of the tool.</p>
 </div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>The output message regarding the usage.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -4065,6 +3982,7 @@
       <pre class="lines">
 
 
+294
 295
 296
 297
@@ -4077,11 +3995,10 @@
 304
 305
 306
-307
-308</pre>
+307</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 295</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 294</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_use_div_tool'>use_div_tool</span><span class='lparen'>(</span><span class='id identifier rubyid_tool_storage'>tool_storage</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_get_div_tool'>get_div_tool</span><span class='lparen'>(</span><span class='id identifier rubyid_tool_storage'>tool_storage</span><span class='rparen'>)</span>
@@ -4093,7 +4010,7 @@
     <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bowl</span><span class='tstring_end'>&#39;</span></span>   <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gaze</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
     <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prism</span><span class='tstring_end'>&#39;</span></span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>raise</span><span class='tstring_end'>&#39;</span></span>
   <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_tool'>tool</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='op'>|</span> <span class='id identifier rubyid_tool_storage'>tool_storage</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_tool'>tool</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-    <span class='period'>.</span><span class='id identifier rubyid_each'>each</span>   <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_tool'>tool</span><span class='comma'>,</span> <span class='id identifier rubyid_verb'>verb</span><span class='op'>|</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_verb'>verb</span><span class='embexpr_end'>}</span><span class='tstring_content'> my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>roundtime</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='id identifier rubyid_waitrt?'><span class='object_link'><a href="../../top-level-namespace.html#waitrt%3F-instance_method" title="#waitrt? (method)">waitrt?</a></span></span> <span class='rbrace'>}</span>
+    <span class='period'>.</span><span class='id identifier rubyid_each'>each</span>   <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_tool'>tool</span><span class='comma'>,</span> <span class='id identifier rubyid_verb'>verb</span><span class='op'>|</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_verb'>verb</span><span class='embexpr_end'>}</span><span class='tstring_content'> my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tool'>tool</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>roundtime</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='id identifier rubyid_waitrt?'><span class='object_link'><a href="../../top-level-namespace.html#waitrt%3F-instance_method" title="#waitrt? (method)">waitrt?</a></span></span> <span class='rbrace'>}</span>
 
   <span class='id identifier rubyid_store_div_tool'>store_div_tool</span><span class='lparen'>(</span><span class='id identifier rubyid_tool_storage'>tool_storage</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -4113,7 +4030,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns a list of visible moons.</p>
+    <p>Returns list of moon names (e.g. katamba, yavash, xibar)
+that are above the horizon and won&#39;t set for at least another ~4 minutes.
+Returns a list of visible moons.</p>
 
 
   </div>
@@ -4124,7 +4043,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_visible_moons'>visible_moons</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_visible_moons'>visible_moons</span></code></pre>
     
   </div>
 
@@ -4139,7 +4058,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The list of visible moon names.</p>
+        <div class='inline'><p>The names of visible moons.</p>
 </div>
       
     </li>
@@ -4152,14 +4071,14 @@
       <pre class="lines">
 
 
+546
 547
 548
 549
-550
-551</pre>
+550</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 547</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 546</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_visible_moons'>visible_moons</span>
   <span class='id identifier rubyid_check_moonwatch'>check_moonwatch</span>
@@ -4182,7 +4101,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Attempts to wear a moon weapon if held.</p>
+    <p>There are many variants of a summoned moon weapon (blade, staff, sword, etc)
+This function checks if you&#39;re holding one then tries to wear it.
+Returns true if what is in your hands is a summoned moon weapon that becomes worn.
+Returns false if you&#39;re not holding a moon weapon, or you are but can&#39;t wear it.
+<a href="https://elanthipedia.play.net/Shape_Moonblade">https://elanthipedia.play.net/Shape_Moonblade</a>
+Attempts to wear a moon weapon if held.</p>
 
 
   </div>
@@ -4193,7 +4117,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_wear_moon_weapon?'>wear_moon_weapon?</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_wear_moon_weapon?'>wear_moon_weapon?</span></code></pre>
     
   </div>
 
@@ -4221,6 +4145,7 @@
       <pre class="lines">
 
 
+318
 319
 320
 321
@@ -4230,20 +4155,19 @@
 325
 326
 327
-328
-329</pre>
+328</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 319</span>
+      <pre class="code"><span class="info file"># File 'common-moonmage.rb', line 318</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_wear_moon_weapon?'>wear_moon_weapon?</span>
   <span class='id identifier rubyid_moon_wear_messages'>moon_wear_messages</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You&#39;re already</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You can&#39;t wear</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Wear what</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>telekinetic</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_wore_it'>wore_it</span> <span class='op'>=</span> <span class='kw'>false</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_is_moon_weapon?'>is_moon_weapon?</span><span class='lparen'>(</span><span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_left_hand'>left_hand</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_wore_it'>wore_it</span> <span class='op'>=</span> <span class='id identifier rubyid_wore_it'>wore_it</span> <span class='op'>||</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>wear </span><span class='embexpr_beg'>#{</span><span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_left_hand'>left_hand</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_moon_wear_messages'>moon_wear_messages</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>telekinetic</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_is_moon_weapon?'>is_moon_weapon?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_hand'><span class='object_link'><a href="DRC.html#left_hand-class_method" title="Lich::DragonRealms::DRC.left_hand (method)">left_hand</a></span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_wore_it'>wore_it</span> <span class='op'>=</span> <span class='id identifier rubyid_wore_it'>wore_it</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>wear </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_hand'><span class='object_link'><a href="DRC.html#left_hand-class_method" title="Lich::DragonRealms::DRC.left_hand (method)">left_hand</a></span></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_moon_wear_messages'>moon_wear_messages</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>telekinetic</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_is_moon_weapon?'>is_moon_weapon?</span><span class='lparen'>(</span><span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_right_hand'>right_hand</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_wore_it'>wore_it</span> <span class='op'>=</span> <span class='id identifier rubyid_wore_it'>wore_it</span> <span class='op'>||</span> <span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_bput'>bput</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>wear </span><span class='embexpr_beg'>#{</span><span class='const'>DRC</span><span class='period'>.</span><span class='id identifier rubyid_right_hand'>right_hand</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_moon_wear_messages'>moon_wear_messages</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>telekinetic</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_is_moon_weapon?'>is_moon_weapon?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_hand'><span class='object_link'><a href="DRC.html#right_hand-class_method" title="Lich::DragonRealms::DRC.right_hand (method)">right_hand</a></span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_wore_it'>wore_it</span> <span class='op'>=</span> <span class='id identifier rubyid_wore_it'>wore_it</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>wear </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_hand'><span class='object_link'><a href="DRC.html#right_hand-class_method" title="Lich::DragonRealms::DRC.right_hand (method)">right_hand</a></span></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_moon_wear_messages'>moon_wear_messages</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>telekinetic</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_wore_it'>wore_it</span>
 <span class='kw'>end</span></pre>
@@ -4257,7 +4181,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:52 2025 by
+  Generated on Fri Nov  7 02:56:53 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Lich::Gemstone::Infomon::Parser::Pattern
+  
+    &mdash; Lich-5 Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../../../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../../../../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Lich::Gemstone::Infomon::Parser::Pattern";
+  relpath = '../../../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../../../_index.html">Index (P)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../../Lich.html" title="Lich (module)">Lich</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Parser.html" title="Lich::Gemstone::Infomon::Parser (module)">Parser</a></span></span>
+     &raquo; 
+    <span class="title">Pattern</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Lich::Gemstone::Infomon::Parser::Pattern
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>parser.rb</dd>
+  </dl>
+  
+</div>
+
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="CharRaceProf-constant" class="">CharRaceProf =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex patterns grouped for Info, Exp, Skill and PSM parsing - calls upsert_batch to reduce db impact
+Regex pattern for character race and profession parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Name:\s+(?&lt;name&gt;[A-z\s&#39;-]+)\s+Race:\s+(?&lt;race&gt;[A-z]+|[A-z]+(?: |-)[A-z]+)\s+Profession:\s+(?&lt;profession&gt;[-A-z]+)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="CharGenderAgeExpLevel-constant" class="">CharGenderAgeExpLevel =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for character gender, age, experience, and level parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Gender:\s+(?&lt;gender&gt;[A-z]+)\s+Age:\s+(?&lt;age&gt;[,0-9]+)\s+Expr:\s+(?&lt;experience&gt;[0-9,]+)\s+Level:\s+(?&lt;level&gt;[0-9]+)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="Stat-constant" class="">Stat =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for character stats parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*(?&lt;stat&gt;[A-z]+)\s\((?:STR|CON|DEX|AGI|DIS|AUR|LOG|INT|WIS|INF)\):\s+(?&lt;value&gt;[0-9]+)\s\((?&lt;bonus&gt;-?[0-9]+)\)\s+[.]{3}\s+(?&lt;enhanced_value&gt;\d+)\s+\((?&lt;enhanced_bonus&gt;-?\d+)\)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="StatEnd-constant" class="">StatEnd =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for the end of stats parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Mana:\s+-?\d+\s+Silver:\s(?&lt;silver&gt;-?[\d,]+)$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="Fame-constant" class="">Fame =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for fame parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+Level: \d+\s+Fame: (?&lt;fame&gt;-?[\d,]+)$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="RealExp-constant" class="">RealExp =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for real experience parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^\s+Experience: [\d,]+\s+Field Exp: (?&lt;fxp_current&gt;[\d,]+)/(?&lt;fxp_max&gt;[\d,]+)$</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="AscExp-constant" class="">AscExp =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for ascension experience parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+Ascension Exp: (?&lt;ascension_experience&gt;[\d,]+)\s+Recent Deaths: [\d,]+$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="TotalExp-constant" class="">TotalExp =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for total experience parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+Total Exp: (?&lt;total_experience&gt;[\d,]+)\s+Death&#39;s Sting: (?&lt;deaths_sting&gt;None|Light|Moderate|Sharp|Harsh|Piercing|Crushing)$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="LTE-constant" class="">LTE =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for long-term experience parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+Long-Term Exp: (?&lt;long_term_experience&gt;[\d,]+)\s+Deeds: (?&lt;deeds&gt;\d+)$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ExprEnd-constant" class="">ExprEnd =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for the end of experience parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+Exp (?:until lvl|to next TP): -?[\d,]+</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SkillStart-constant" class="">SkillStart =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for the start of skill parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s\w+\s\(at level \d+\), your current skill bonuses and ranks</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="Skill-constant" class="">Skill =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for individual skill parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+(?&lt;name&gt;[[a-zA-Z]\s\-&#39;]+)\.+\|\s+(?&lt;bonus&gt;\d+)\s+(?&lt;ranks&gt;\d+)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SpellRanks-constant" class="">SpellRanks =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for spell ranks parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+(?&lt;name&gt;[\w\s\-&#39;]+)\.+\|\s+(?&lt;rank&gt;\d+).*$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SkillEnd-constant" class="">SkillEnd =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for the end of skill parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Training Points: \d+ Phy \d+ Mnt</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="GoalsDetected-constant" class="">GoalsDetected =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for detecting skill goals updates</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Skill goals updated!$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="GoalsEnded-constant" class="">GoalsEnded =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for the end of skill goals updates</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Further information can be found in the FAQs\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="PSMStart-constant" class="">PSMStart =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for the start of PSM parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\w+, the following (?&lt;cat&gt;Ascension Abilities|Armor Specializations|Combat Maneuvers|Feats|Shield Specializations|Weapon Techniques) are available:$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="PSM-constant" class="">PSM =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for PSM parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+(?&lt;name&gt;[A-z\s\-&#39;:]+)\s+(?&lt;command&gt;[a-z]+)\s+(?&lt;ranks&gt;\d+)\/(?&lt;max&gt;\d+).*$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="PSMEnd-constant" class="">PSMEnd =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for the end of PSM parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^   Subcategory: all$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="Levelup-constant" class="">Levelup =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Single / low impact - single db write
+Regex pattern for level up parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+(?&lt;stat&gt;\w+)\s+\(\w{3}\)\s+:\s+(?&lt;value&gt;\d+)\s+(?:\+1)\s+\.\.\.\s+(?&lt;bonus&gt;\d+)(?:\s+\+1)?$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SpellsSolo-constant" class="">SpellsSolo =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for solo spell parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?&lt;name&gt;Bard|Cleric|Empath|Minor (?:Elemental|Mental|Spiritual)|Major (?:Elemental|Mental|Spiritual)|Paladin|Ranger|Savant|Sorcerer|Wizard)(?: Base)?\.+(?&lt;rank&gt;\d+).*$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="Citizenship-constant" class="">Citizenship =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for citizenship parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You currently have .*? citizenship in (?&lt;town&gt;.*)\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="NoCitizenship-constant" class="">NoCitizenship =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for no citizenship parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You don&#39;t seem to have citizenship\.</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="Society-constant" class="">Society =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for society membership parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+You are a (?&lt;standing&gt;Master|member) (?:in|of) the (?&lt;society&gt;Order of Voln|Council of Light|Guardians of Sunfist)(?: at (?:rank|step) (?&lt;rank&gt;[0-9]+))?\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="NoSociety-constant" class="">NoSociety =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for no society membership parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+You are not a member of any society at this time.</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SocietyStep-constant" class="">SocietyStep =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for society step parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:Zarak|Faylanna|Draelox|Marl|Vindar|Taryn|Meaha|Oxanna|Cyndelle) traces the outline of a sigil into the air before you and says|^The High Taskmaster looks at you, consults (?:her|his) notes, and then announces in a loud voice|^The monk concludes ceremoniously,</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SocietyJoin-constant" class="">SocietyJoin =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for society join parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^The Grandmaster says, &quot;Welcome to the Order|^The Grandmaster says, &quot;You are now a member of the Guardians of Sunfist|^The Grand Poohbah smiles broadly.  &quot;Welcome to the Lodge,&quot; he cries</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SocietyResign-constant" class="">SocietyResign =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for society resignation parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^The Grandmaster says, &quot;I&#39;m sorry to hear that.  You are no longer in our service.|^The Poohbah looks at you sternly.  &quot;I had high hopes for you,&quot; he says, &quot;but if this be your decision, so be it\.  I hereby strip you of membership|^The Grandmaster says, &quot;I&#39;m sorry to hear that,.+I wish you well with any of your future endeavors.</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="Warcries-constant" class="">Warcries =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for warcries parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+(?&lt;name&gt;(?:Bertrandt&#39;s Bellow|Yertie&#39;s Yowlp|Gerrelle&#39;s Growl|Seanette&#39;s Shout|Carn&#39;s Cry|Horland&#39;s Holler))$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="NoWarcries-constant" class="">NoWarcries =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for no warcries parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You must be an active member of the Warrior Guild to use this skill\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="LearnPSM-constant" class="">LearnPSM =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for learning PSM parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have now achieved rank (?&lt;rank&gt;\d+) of (?&lt;psm&gt;[A-z\s]+), costing \d+ (?&lt;cat&gt;[A-z]+) .*?points\.$</span><span class='regexp_end'>/</span></span></pre></dd>
+      
+        <dt id="LearnTechnique-constant" class="">LearnTechnique =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Technique covers Specialization (Armor and Shield), Technique (Weapon), and Feat
+Regex pattern for learning technique parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\[You have (?:gained|increased to) rank (?&lt;rank&gt;\d+) of (?&lt;cat&gt;[A-z]+).*: (?&lt;psm&gt;[A-z\s\-&#39;:]+)\.\]$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="UnlearnPSM-constant" class="">UnlearnPSM =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for unlearning PSM parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You decide to unlearn rank (?&lt;rank&gt;\d+) of (?&lt;psm&gt;[A-z\s\-&#39;:]+), regaining \d+ (?&lt;cat&gt;[A-z]+) .*?points\.$</span><span class='regexp_end'>/</span></span></pre></dd>
+      
+        <dt id="UnlearnTechnique-constant" class="">UnlearnTechnique =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\[You have decreased to rank (?&lt;rank&gt;\d+) of (?&lt;cat&gt;[A-z]+).*: (?&lt;psm&gt;[A-z\s\-&#39;:]+)\.\]$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="LostTechnique-constant" class="">LostTechnique =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for lost technique parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\[You are no longer trained in (?&lt;cat&gt;[A-z]+) .*: (?&lt;psm&gt;[A-z\s\-&#39;:]+)\.\]$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="Resource-constant" class="">Resource =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:Essence|Necrotic Energy|Lore Knowledge|Motes of Tranquility|Devotion|Nature&#39;s Grace|Grit|Luck Inspiration|Guile|Vitality): (?&lt;weekly&gt;[0-9,]+)\/50,000 \(Weekly\)\s+(?&lt;total&gt;[0-9,]+)\/200,000 \(Total\)$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="Suffused-constant" class="">Suffused =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for suffused resource parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Suffused (?&lt;type&gt;(?:Essence|Necrotic Energy|Lore Knowledge|Motes of Tranquility|Devotion|Nature&#39;s Grace|Grit|Luck Inspiration|Guile|Vitality)): (?&lt;suffused&gt;[0-9,]+)$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="VolnFavor-constant" class="">VolnFavor =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for Voln favor parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Voln Favor: (?&lt;favor&gt;[-\d,]+)$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="CovertArtsCharges-constant" class="">CovertArtsCharges =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for Covert Arts charges parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Covert Arts Charges: (?&lt;charges&gt;[-\d,]+)\/200$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="GigasArtifactFragments-constant" class="">GigasArtifactFragments =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You are carrying (?&lt;gigas_artifact_fragments&gt;[\d,]+) gigas artifact fragments\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="RedsteelMarks-constant" class="">RedsteelMarks =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:\s* Redsteel Marks:           |You are carrying) (?&lt;redsteel_marks&gt;[\d,]+)(?: redsteel marks\.)?$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="GemstoneDust-constant" class="">GemstoneDust =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You are carrying (?&lt;gemstone_dust&gt;[\d,]+) Dust in your reserves\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="TicketGeneral-constant" class="">TicketGeneral =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for general ticket parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*General - (?&lt;tickets&gt;[\d,]+) tickets\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="TicketBlackscrip-constant" class="">TicketBlackscrip =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*Troubled Waters - (?&lt;blackscrip&gt;[\d,]+) blackscrip\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="TicketBloodscrip-constant" class="">TicketBloodscrip =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*Duskruin Arena - (?&lt;bloodscrip&gt;[\d,]+) bloodscrip\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="TicketEtherealScrip-constant" class="">TicketEtherealScrip =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for ethereal scrip ticket parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*Reim - (?&lt;ethereal_scrip&gt;[\d,]+) ethereal scrip\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="TicketSoulShards-constant" class="">TicketSoulShards =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for soul shards ticket parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*Ebon Gate - (?&lt;soul_shards&gt;[\d,]+) soul shards\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="TicketRaikhen-constant" class="">TicketRaikhen =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for raikhen ticket parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*Rumor Woods - (?&lt;raikhen&gt;[\d,]+) raikhen\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="WealthSilver-constant" class="">WealthSilver =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for wealth in silver parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have (?&lt;silver&gt;no|[,\d]+|but one) silver with you\.</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="WealthSilverContainer-constant" class="">WealthSilverContainer =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for wealth in silver container parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You are carrying (?&lt;silver&gt;[\d,]+) silver stored within your </span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="AccountName-constant" class="">AccountName =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for account name parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Account Name:     (?&lt;name&gt;[\w\d\-\_]+)$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="AccountSubscription-constant" class="">AccountSubscription =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Account Type:     (?&lt;subscription&gt;F2P|Standard|Premium|Platinum)(?: with Shattered)?(?: \(\w+\))?$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ProfileStart-constant" class="">ProfileStart =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for the start of profile parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^PERSONAL INFORMATION$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ProfileName-constant" class="">ProfileName =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for profile name parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Name: (?&lt;name&gt;[\w\s]+)$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ProfileHouseCHE-constant" class="">ProfileHouseCHE =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for profile house parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^[A-Za-z\- ]+? (?:of House of the |of House of |of House |of )(?&lt;house&gt;Argent Aspis|Rising Phoenix|Paupers|Arcane Masters|Brigatta|Twilight Hall|Silvergate Inn|Sovyn|Sylvanfair|Helden Hall|White Haven|Beacon Hall|Rone Academy|Willow Hall|Moonstone Abbey|Obsidian Tower|Cairnfang Manor)(?: Archive)?$|^(?&lt;none&gt;No House affiliation)$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ResignCHE-constant" class="">ResignCHE =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for resigning from a house parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:Once you have resigned from your House, you will be unable to rejoin without being inducted again by the |If you wish to renounce your membership in the |Before you can resign from the )(?&lt;house&gt;Argent Aspis|Rising Phoenix|Paupers|Arcane Masters|Brigatta|Twilight Hall|Silvergate Inn|Sovyn|Sylvanfair|Helden Hall|White Haven|Beacon Hall|Rone Academy|Willow Hall|Moonstone Abbey|Obsidian Tower|Cairnfang Manor)(?: Archive)?|^(?&lt;none&gt;The RESIGN command is for resigning your membership in a House, but you don&#39;t currently belong to any of the Cooperative Houses of Elanthia)\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SleepActive-constant" class="">SleepActive =
+          <div class="docstring">
+  <div class="discussion">
+    <p>TODO: refactor / streamline?</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Your mind goes completely blank\.$|^You close your eyes and slowly drift off to sleep\.$|^You slump to the ground and immediately fall asleep\.  You must have been exhausted!$|^That is impossible to do while unconscious$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SleepNoActive-constant" class="">SleepNoActive =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Your thoughts slowly come back to you as you find yourself lying on the ground\.  You must have been sleeping\.$|^You wake up from your slumber\.$|^You are awoken|^You awake|^You slowly come back to alertness and realize you must have been sleeping\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="BindActive-constant" class="">BindActive =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^An unseen force (?:envelops|entangles) you, restricting (?:all|your) movement|^You are caught fast, the light of (?:Liabo|Lornon|Tilaok|Makiri|the moon) arresting your movements</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="BindNoActive-constant" class="">BindNoActive =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^The restricting force that envelops you dissolves away\.|^You shake off the immobilization that was restricting your movements!|^The restricting force enveloping you fades away\.</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SilenceActive-constant" class="">SilenceActive =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for silence active state parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^A pall of silence settles over you\.|^The pall of silence settles more heavily over you\.</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SilenceNoActive-constant" class="">SilenceNoActive =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^The pall of silence leaves you\.</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="CalmActive-constant" class="">CalmActive =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^A calm washes over you\.</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="CalmNoActive-constant" class="">CalmNoActive =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You are enraged by .*? attack!|^The feeling of calm leaves you\.</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="CutthroatActive-constant" class="">CutthroatActive =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>slices deep into your vocal cords!$|^All you manage to do is cough up some blood\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="CutthroatNoActive-constant" class="">CutthroatNoActive =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*The horrible pain in your vocal cords subsides as you spit out the last of the blood clogging your throat\.$|^That tingles, but there are no head injuries to repair\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ThornPoisonStart-constant" class="">ThornPoisonStart =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for thorn poison start state parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^One of the vines surrounding .*? lashes out at you, driving a thorn into your skin!  You feel poison coursing through your veins\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ThornPoisonProgression-constant" class="">ThornPoisonProgression =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for thorn poison progression state parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You begin to feel a strange fatigue, spreading throughout your body\.$|^The strange lassitude is growing worse, making it difficult to keep up with any strenuous activities\.$|^You find yourself gradually slowing down, your muscles trembling with fatigue\.$|^It\&#39;s getting increasingly difficult to move. It feels almost as if the air itself is growing thick as molasses\.$|^No longer able to fight this odd paralysis, you collapse to the ground, as limp as an old washrag\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ThornPoisonDeprogression-constant" class="">ThornPoisonDeprogression =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for thorn poison deprogression state parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^With a shaky gasp and trembling muscles, you regain at least some small ability to move, however slowly\.$|Although you can\&#39;t seem to move as quickly as you usually can, you\&#39;re feeling better than you were just moments ago\.$|^Fine coordination is difficult, but at least you can move at something close to your normal speed again\.$|^While you\&#39;re still a bit shaky, your muscles are responding better than they were\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ThornPoisonEnd-constant" class="">ThornPoisonEnd =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Your body begins to respond normally again\.$|^Your skin takes on a more pinkish tint\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SpellUpMsgs-constant" class="">SpellUpMsgs =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Adding spell regexes.  Does not save to infomon.db.  Used by Spell and by ActiveSpells</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Common/Spell.html" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_upmsgs'><span class='object_link'><a href="../../../Common/Spell.html#upmsgs-class_method" title="Lich::Common::Spell.upmsgs (method)">upmsgs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>$|^</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>$</span><span class='regexp_end'>/o</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SpellDnMsgs-constant" class="">SpellDnMsgs =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Common/Spell.html" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dnmsgs'><span class='object_link'><a href="../../../Common/Spell.html#dnmsgs-class_method" title="Lich::Common::Spell.dnmsgs (method)">dnmsgs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>$|^</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>$</span><span class='regexp_end'>/o</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SpellsongRenewed-constant" class="">SpellsongRenewed =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Regex pattern for spellsong renewal</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Your songs? renews?</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="All-constant" class="">All =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Union of all regex patterns for parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_union'>union</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#CharRaceProf-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::CharRaceProf (constant)">CharRaceProf</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#CharGenderAgeExpLevel-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::CharGenderAgeExpLevel (constant)">CharGenderAgeExpLevel</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#Stat-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Stat (constant)">Stat</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#StatEnd-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::StatEnd (constant)">StatEnd</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#Fame-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Fame (constant)">Fame</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#RealExp-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::RealExp (constant)">RealExp</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#AscExp-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::AscExp (constant)">AscExp</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TotalExp-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TotalExp (constant)">TotalExp</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#LTE-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::LTE (constant)">LTE</a></span></span><span class='comma'>,</span>
+<span class='const'><span class='object_link'><a href="#ExprEnd-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ExprEnd (constant)">ExprEnd</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SkillStart-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SkillStart (constant)">SkillStart</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#Skill-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Skill (constant)">Skill</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SpellRanks-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SpellRanks (constant)">SpellRanks</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SkillEnd-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SkillEnd (constant)">SkillEnd</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#PSMStart-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::PSMStart (constant)">PSMStart</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#PSM-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::PSM (constant)">PSM</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#PSMEnd-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::PSMEnd (constant)">PSMEnd</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#Levelup-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Levelup (constant)">Levelup</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SpellsSolo-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SpellsSolo (constant)">SpellsSolo</a></span></span><span class='comma'>,</span>
+<span class='comment'># Regex pattern for bind active state parsing
+</span><span class='comment'># Regex pattern for sleep active state parsing
+</span><span class='const'><span class='object_link'><a href="#Citizenship-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Citizenship (constant)">Citizenship</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#NoCitizenship-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::NoCitizenship (constant)">NoCitizenship</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#Society-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Society (constant)">Society</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#NoSociety-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::NoSociety (constant)">NoSociety</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SleepActive-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SleepActive (constant)">SleepActive</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SleepNoActive-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SleepNoActive (constant)">SleepNoActive</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#BindActive-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::BindActive (constant)">BindActive</a></span></span><span class='comma'>,</span>
+<span class='comment'># Regex pattern for cutthroat active state parsing
+</span><span class='comment'># Regex pattern for calm inactive state parsing
+</span><span class='comment'># Regex pattern for bind inactive state parsing
+</span><span class='const'><span class='object_link'><a href="#BindNoActive-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::BindNoActive (constant)">BindNoActive</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SilenceActive-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SilenceActive (constant)">SilenceActive</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SilenceNoActive-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SilenceNoActive (constant)">SilenceNoActive</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#CalmActive-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::CalmActive (constant)">CalmActive</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#CalmNoActive-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::CalmNoActive (constant)">CalmNoActive</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#CutthroatActive-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::CutthroatActive (constant)">CutthroatActive</a></span></span><span class='comma'>,</span>
+<span class='comment'># Regex pattern for spell down messages
+</span><span class='comment'># Regex pattern for spell up messages
+</span><span class='const'><span class='object_link'><a href="#CutthroatNoActive-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::CutthroatNoActive (constant)">CutthroatNoActive</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SpellUpMsgs-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SpellUpMsgs (constant)">SpellUpMsgs</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SpellDnMsgs-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SpellDnMsgs (constant)">SpellDnMsgs</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#Warcries-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Warcries (constant)">Warcries</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#NoWarcries-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::NoWarcries (constant)">NoWarcries</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SocietyJoin-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SocietyJoin (constant)">SocietyJoin</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SocietyStep-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SocietyStep (constant)">SocietyStep</a></span></span><span class='comma'>,</span>
+<span class='const'><span class='object_link'><a href="#SocietyResign-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SocietyResign (constant)">SocietyResign</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#LearnPSM-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::LearnPSM (constant)">LearnPSM</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#UnlearnPSM-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::UnlearnPSM (constant)">UnlearnPSM</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#LostTechnique-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::LostTechnique (constant)">LostTechnique</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#LearnTechnique-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::LearnTechnique (constant)">LearnTechnique</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#UnlearnTechnique-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::UnlearnTechnique (constant)">UnlearnTechnique</a></span></span><span class='comma'>,</span>
+<span class='const'><span class='object_link'><a href="#Resource-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Resource (constant)">Resource</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#Suffused-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Suffused (constant)">Suffused</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#VolnFavor-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::VolnFavor (constant)">VolnFavor</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#GigasArtifactFragments-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::GigasArtifactFragments (constant)">GigasArtifactFragments</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#RedsteelMarks-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::RedsteelMarks (constant)">RedsteelMarks</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketGeneral-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketGeneral (constant)">TicketGeneral</a></span></span><span class='comma'>,</span>
+<span class='const'><span class='object_link'><a href="#TicketBlackscrip-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketBlackscrip (constant)">TicketBlackscrip</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketBloodscrip-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketBloodscrip (constant)">TicketBloodscrip</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketEtherealScrip-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketEtherealScrip (constant)">TicketEtherealScrip</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketSoulShards-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketSoulShards (constant)">TicketSoulShards</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketRaikhen-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketRaikhen (constant)">TicketRaikhen</a></span></span><span class='comma'>,</span>
+<span class='const'><span class='object_link'><a href="#WealthSilver-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::WealthSilver (constant)">WealthSilver</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#WealthSilverContainer-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::WealthSilverContainer (constant)">WealthSilverContainer</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#GoalsDetected-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::GoalsDetected (constant)">GoalsDetected</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#GoalsEnded-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::GoalsEnded (constant)">GoalsEnded</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SpellsongRenewed-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SpellsongRenewed (constant)">SpellsongRenewed</a></span></span><span class='comma'>,</span>
+<span class='comment'># Regex pattern for thorn poison end state parsing
+</span><span class='const'><span class='object_link'><a href="#ThornPoisonStart-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ThornPoisonStart (constant)">ThornPoisonStart</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ThornPoisonProgression-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ThornPoisonProgression (constant)">ThornPoisonProgression</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ThornPoisonDeprogression-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ThornPoisonDeprogression (constant)">ThornPoisonDeprogression</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ThornPoisonEnd-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ThornPoisonEnd (constant)">ThornPoisonEnd</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#CovertArtsCharges-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::CovertArtsCharges (constant)">CovertArtsCharges</a></span></span><span class='comma'>,</span>
+<span class='const'><span class='object_link'><a href="#AccountName-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::AccountName (constant)">AccountName</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#AccountSubscription-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::AccountSubscription (constant)">AccountSubscription</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ProfileStart-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ProfileStart (constant)">ProfileStart</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ProfileName-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ProfileName (constant)">ProfileName</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ProfileHouseCHE-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ProfileHouseCHE (constant)">ProfileHouseCHE</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ResignCHE-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ResignCHE (constant)">ResignCHE</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#GemstoneDust-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::GemstoneDust (constant)">GemstoneDust</a></span></span><span class='rparen'>)</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Nov  7 02:56:50 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.1.7).
+</div>
+
+    </div>
+  </body>
+</html>

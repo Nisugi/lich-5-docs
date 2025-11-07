@@ -85,8 +85,8 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>SK module
-This module manages SK spells known by the player.</p>
+    <p>The SK module
+This module manages the spells known by the SK character class.</p>
 
 
   </div>
@@ -97,10 +97,11 @@ This module manages SK spells known by the player.</p>
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Adding a spell</p>
+        <h5 class="example_title"><div class='inline'><p>Usage</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>SK</span><span class='period'>.</span><span class='id identifier rubyid_add'><span class='object_link'><a href="#add-class_method" title="Lich::Gemstone::SK.add (method)">add</a></span></span><span class='lparen'>(</span><span class='int'>123</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>SK</span><span class='period'>.</span><span class='id identifier rubyid_add'><span class='object_link'><a href="#add-class_method" title="Lich::Gemstone::SK.add (method)">add</a></span></span><span class='lparen'>(</span><span class='int'>123</span><span class='rparen'>)</span>
+<span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>SK</span><span class='period'>.</span><span class='id identifier rubyid_list'><span class='object_link'><a href="#list-class_method" title="Lich::Gemstone::SK.list (method)">list</a></span></span></code></pre>
     
   </div>
 
@@ -330,18 +331,7 @@ This module manages SK spells known by the player.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Adding spells</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='int'>123</span><span class='comma'>,</span> <span class='int'>456</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -368,13 +358,13 @@ This module manages SK spells known by the player.</p>
       <pre class="lines">
 
 
-82
-83
-84
-85</pre>
+79
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'sk.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'sk.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_numbers'>numbers</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sk_known'>sk_known</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='ivar'>@sk_known</span> <span class='op'>+</span> <span class='id identifier rubyid_numbers'>numbers</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
@@ -421,6 +411,7 @@ This module manages SK spells known by the player.</p>
       <pre class="lines">
 
 
+66
 67
 68
 69
@@ -428,11 +419,10 @@ This module manages SK spells known by the player.</p>
 71
 72
 73
-74
-75</pre>
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'sk.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'sk.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_help'>help</span>
   <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>   Script to add SK spells to be known and used with Spell API calls.</span><span class='tstring_end'>&quot;</span></span>
@@ -520,13 +510,13 @@ This module manages SK spells known by the player.</p>
       <pre class="lines">
 
 
+48
 49
 50
-51
-52</pre>
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'sk.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'sk.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_known?'>known?</span><span class='lparen'>(</span><span class='id identifier rubyid_spell'>spell</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sk_known'>sk_known</span> <span class='kw'>if</span> <span class='ivar'>@sk_known</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -573,13 +563,13 @@ This module manages SK spells known by the player.</p>
       <pre class="lines">
 
 
+57
 58
 59
-60
-61</pre>
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'sk.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'sk.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span>
   <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Current SK Spells: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@sk_known</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -607,18 +597,7 @@ This module manages SK spells known by the player.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Executing a command</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_main'>main</span><span class='lparen'>(</span><span class='symbol'>:add</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>123 456</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -664,6 +643,13 @@ This module manages SK spells known by the player.</p>
       <pre class="lines">
 
 
+96
+97
+98
+99
+100
+101
+102
 103
 104
 105
@@ -673,17 +659,10 @@ This module manages SK spells known by the player.</p>
 109
 110
 111
-112
-113
-114
-115
-116
-117
-118
-119</pre>
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'sk.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'sk.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_main'>main</span><span class='lparen'>(</span><span class='id identifier rubyid_action'>action</span> <span class='op'>=</span> <span class='id identifier rubyid_help'>help</span><span class='comma'>,</span> <span class='id identifier rubyid_spells'>spells</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sk_known'>sk_known</span> <span class='kw'>if</span> <span class='ivar'>@sk_known</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -724,18 +703,7 @@ This module manages SK spells known by the player.</p>
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Removing spells</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_remove'>remove</span><span class='lparen'>(</span><span class='int'>123</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -762,13 +730,13 @@ This module manages SK spells known by the player.</p>
       <pre class="lines">
 
 
-92
-93
-94
-95</pre>
+87
+88
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'sk.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'sk.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_remove'>remove</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_numbers'>numbers</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sk_known'>sk_known</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='ivar'>@sk_known</span> <span class='op'>-</span> <span class='id identifier rubyid_numbers'>numbers</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
@@ -797,17 +765,6 @@ This module manages SK spells known by the player.</p>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'><p>Getting known spells</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_known_spells'>known_spells</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::SK (module)">SK</a></span></span><span class='period'>.</span><span class='id identifier rubyid_sk_known'>sk_known</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -832,6 +789,7 @@ This module manages SK spells known by the player.</p>
       <pre class="lines">
 
 
+17
 18
 19
 20
@@ -846,11 +804,10 @@ This module manages SK spells known by the player.</p>
 29
 30
 31
-32
-33</pre>
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'sk.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'sk.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sk_known'>sk_known</span>
   <span class='kw'>if</span> <span class='ivar'>@sk_known</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -934,14 +891,14 @@ This module manages SK spells known by the player.</p>
       <pre class="lines">
 
 
+37
 38
 39
 40
-41
-42</pre>
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'sk.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'sk.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sk_known='>sk_known=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='ivar'>@sk_known</span> <span class='kw'>if</span> <span class='ivar'>@sk_known</span> <span class='op'>==</span> <span class='id identifier rubyid_val'>val</span>
@@ -958,7 +915,7 @@ This module manages SK spells known by the player.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:48 2025 by
+  Generated on Fri Nov  7 02:56:48 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

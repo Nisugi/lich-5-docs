@@ -85,8 +85,8 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Status module for managing character statuses.
-This module provides methods to check various character statuses such as thorned, bound, and calmed.</p>
+    <p>Status module for character status management
+This module provides methods to check various character statuses.</p>
 
 
   </div>
@@ -393,7 +393,7 @@ This module provides methods to check various character statuses such as thorned
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the character is bound.</p>
+    <p>Checks if the character is bound</p>
 
 
   </div>
@@ -435,12 +435,12 @@ This module provides methods to check various character statuses such as thorned
       <pre class="lines">
 
 
-31
-32
-33</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'status.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'status.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bound?'><span class='object_link'><a href="../../top-level-namespace.html#bound%3F-instance_method" title="#bound? (method)">bound?</a></span></span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_bool'><span class='object_link'><a href="Infomon.html#get_bool-class_method" title="Lich::Gemstone::Infomon.get_bool (method)">get_bool</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status.bound</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Bind</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='int'>214</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -461,7 +461,7 @@ This module provides methods to check various character statuses such as thorned
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the character is calmed.</p>
+    <p>Checks if the character is calmed</p>
 
 
   </div>
@@ -503,12 +503,12 @@ This module provides methods to check various character statuses such as thorned
       <pre class="lines">
 
 
-39
-40
-41</pre>
+37
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'status.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'status.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_calmed?'><span class='object_link'><a href="../../top-level-namespace.html#calmed%3F-instance_method" title="#calmed? (method)">calmed?</a></span></span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_bool'><span class='object_link'><a href="Infomon.html#get_bool-class_method" title="Lich::Gemstone::Infomon.get_bool (method)">get_bool</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status.calmed</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Calm</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='int'>201</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -529,7 +529,7 @@ This module provides methods to check various character statuses such as thorned
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the character is in a cutthroat state.</p>
+    <p>Checks if the character is in a cutthroat state</p>
 
 
   </div>
@@ -571,12 +571,12 @@ This module provides methods to check various character statuses such as thorned
       <pre class="lines">
 
 
-47
-48
-49</pre>
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'status.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'status.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_cutthroat?'><span class='object_link'><a href="../../top-level-namespace.html#cutthroat%3F-instance_method" title="#cutthroat? (method)">cutthroat?</a></span></span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_bool'><span class='object_link'><a href="Infomon.html#get_bool-class_method" title="Lich::Gemstone::Infomon.get_bool (method)">get_bool</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status.cutthroat</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Major Bleed</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -597,7 +597,7 @@ This module provides methods to check various character statuses such as thorned
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the character is dead.</p>
+    <p>Checks if the character is dead</p>
 
 
   </div>
@@ -639,12 +639,12 @@ This module provides methods to check various character statuses such as thorned
       <pre class="lines">
 
 
+79
 80
-81
-82</pre>
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'status.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'status.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dead?'>dead?</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_indicator'>indicator</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>IconDEAD</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>y</span><span class='tstring_end'>&#39;</span></span>
@@ -665,7 +665,7 @@ This module provides methods to check various character statuses such as thorned
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the character is muckled (webbed, dead, stunned, bound, or sleeping).</p>
+    <p>Checks if the character is muckled (webbed, dead, stunned, bound, or sleeping)</p>
 
 
   </div>
@@ -707,12 +707,12 @@ This module provides methods to check various character statuses such as thorned
       <pre class="lines">
 
 
+95
 96
-97
-98</pre>
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'status.rb', line 96</span>
+      <pre class="code"><span class="info file"># File 'status.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_muckled?'><span class='object_link'><a href="../../top-level-namespace.html#muckled%3F-instance_method" title="#muckled? (method)">muckled?</a></span></span>
   <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_webbed?'><span class='object_link'><a href="#webbed%3F-class_method" title="Lich::Gemstone::Status.webbed? (method)">webbed?</a></span></span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dead?'><span class='object_link'><a href="#dead%3F-class_method" title="Lich::Gemstone::Status.dead? (method)">dead?</a></span></span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stunned?'><span class='object_link'><a href="#stunned%3F-class_method" title="Lich::Gemstone::Status.stunned? (method)">stunned?</a></span></span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bound?'><span class='object_link'><a href="#bound%3F-class_method" title="Lich::Gemstone::Status.bound? (method)">bound?</a></span></span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_sleeping?'><span class='object_link'><a href="#sleeping%3F-class_method" title="Lich::Gemstone::Status.sleeping? (method)">sleeping?</a></span></span>
@@ -734,7 +734,7 @@ This module provides methods to check various character statuses such as thorned
 </h3><div class="docstring">
   <div class="discussion">
     <p>todo: does this serve a purpose?
-Serializes the current status of the character.</p>
+Serializes the current status of the character</p>
 
 
   </div>
@@ -776,12 +776,12 @@ Serializes the current status of the character.</p>
       <pre class="lines">
 
 
+104
 105
-106
-107</pre>
+106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'status.rb', line 105</span>
+      <pre class="code"><span class="info file"># File 'status.rb', line 104</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_serialize'>serialize</span>
   <span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bound?'><span class='object_link'><a href="../../top-level-namespace.html#bound%3F-instance_method" title="#bound? (method)">bound?</a></span></span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_calmed?'><span class='object_link'><a href="../../top-level-namespace.html#calmed%3F-instance_method" title="#calmed? (method)">calmed?</a></span></span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_cutthroat?'><span class='object_link'><a href="../../top-level-namespace.html#cutthroat%3F-instance_method" title="#cutthroat? (method)">cutthroat?</a></span></span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_silenced?'><span class='object_link'><a href="../../top-level-namespace.html#silenced%3F-instance_method" title="#silenced? (method)">silenced?</a></span></span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sleeping?'><span class='object_link'><a href="../../top-level-namespace.html#sleeping%3F-instance_method" title="#sleeping? (method)">sleeping?</a></span></span><span class='rbracket'>]</span>
@@ -802,7 +802,7 @@ Serializes the current status of the character.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the character is silenced.</p>
+    <p>Checks if the character is silenced</p>
 
 
   </div>
@@ -844,12 +844,12 @@ Serializes the current status of the character.</p>
       <pre class="lines">
 
 
-55
-56
-57</pre>
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'status.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'status.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_silenced?'><span class='object_link'><a href="../../top-level-namespace.html#silenced%3F-instance_method" title="#silenced? (method)">silenced?</a></span></span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_bool'><span class='object_link'><a href="Infomon.html#get_bool-class_method" title="Lich::Gemstone::Infomon.get_bool (method)">get_bool</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status.silenced</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Silenced</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -870,7 +870,7 @@ Serializes the current status of the character.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the character is sleeping.</p>
+    <p>Checks if the character is sleeping</p>
 
 
   </div>
@@ -912,12 +912,12 @@ Serializes the current status of the character.</p>
       <pre class="lines">
 
 
-63
-64
-65</pre>
+61
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'status.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'status.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sleeping?'><span class='object_link'><a href="../../top-level-namespace.html#sleeping%3F-instance_method" title="#sleeping? (method)">sleeping?</a></span></span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_bool'><span class='object_link'><a href="Infomon.html#get_bool-class_method" title="Lich::Gemstone::Infomon.get_bool (method)">get_bool</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status.sleeping</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Sleep</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='int'>501</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -938,7 +938,7 @@ Serializes the current status of the character.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the character is stunned.</p>
+    <p>Checks if the character is stunned</p>
 
 
   </div>
@@ -980,12 +980,12 @@ Serializes the current status of the character.</p>
       <pre class="lines">
 
 
+87
 88
-89
-90</pre>
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'status.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'status.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_stunned?'>stunned?</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_indicator'>indicator</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>IconSTUNNED</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>y</span><span class='tstring_end'>&#39;</span></span>
@@ -1006,7 +1006,7 @@ Serializes the current status of the character.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Checks if the character is thorned.</p>
+    <p>Checks if the character is thorned</p>
 
 
   </div>
@@ -1048,12 +1048,12 @@ Serializes the current status of the character.</p>
       <pre class="lines">
 
 
-23
-24
-25</pre>
+21
+22
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'status.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'status.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_thorned?'>thorned?</span> <span class='comment'># added 2024-09-08
 </span>  <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_bool'><span class='object_link'><a href="Infomon.html#get_bool-class_method" title="Lich::Gemstone::Infomon.get_bool (method)">get_bool</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status.thorned</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Wall of Thorns Poison [1-5]</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -1074,8 +1074,15 @@ Serializes the current status of the character.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>deprecate these in global_defs after warning, consider bringing other status maps over
-Checks if the character is webbed.</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This method is marked for deprecation.</p>
+</div>
+  </div>
+
+<p>deprecate these in global_defs after warning, consider bringing other status maps over
+Checks if the character is webbed</p>
 
 
   </div>
@@ -1117,12 +1124,12 @@ Checks if the character is webbed.</p>
       <pre class="lines">
 
 
+71
 72
-73
-74</pre>
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'status.rb', line 72</span>
+      <pre class="code"><span class="info file"># File 'status.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_webbed?'>webbed?</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_indicator'>indicator</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>IconWEBBED</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>y</span><span class='tstring_end'>&#39;</span></span>
@@ -1137,7 +1144,7 @@ Checks if the character is webbed.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:49 2025 by
+  Generated on Fri Nov  7 02:56:50 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>

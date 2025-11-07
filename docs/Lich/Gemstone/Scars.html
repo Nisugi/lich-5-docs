@@ -103,10 +103,11 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Scars class for tracking character scars</p>
+    <p>Scars class for tracking character scars
+Scars class for tracking character scars</p>
 
 <p>This class provides methods to access and manage scars on various body parts of a character.
-It defines body part accessors and composite methods for retrieving scar information.</p>
+It defines both primary and alias methods for body parts, as well as composite methods for groups of body parts.</p>
 
 
   </div>
@@ -117,10 +118,11 @@ It defines body part accessors and composite methods for retrieving scar informa
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'><p>Retrieving a scar level</p>
+        <h5 class="example_title"><div class='inline'><p>Accessing a character&#39;s left eye scar</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_scar_level'>scar_level</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>Scars</span><span class='period'>.</span><span class='id identifier rubyid_leftEye'>leftEye</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_scars'>scars</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>Scars</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+<span class='id identifier rubyid_scars'>scars</span><span class='period'>.</span><span class='id identifier rubyid_leftEye'>leftEye</span></code></pre>
     
   </div>
 
@@ -140,8 +142,8 @@ It defines body part accessors and composite methods for retrieving scar informa
     <p>Body part accessor methods
 XML from Simutronics drives the structure of the scar naming (eg. leftEye)
 The following is a hash of the body parts and shorthand aliases created for more idiomatic Ruby
-A hash mapping body parts to their shorthand aliases.
-This constant is used to define accessor methods for each body part.</p>
+A hash of body parts and their shorthand aliases.
+This constant is used to define methods for accessing scars on different body parts.</p>
 
 
   </div>
@@ -190,7 +192,7 @@ This constant is used to define accessor methods for each body part.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#all_scars-class_method" title="all_scars (class method)">.<strong>all_scars</strong>  &#x21d2; Hash </a>
+      <a href="#all_scars-class_method" title="all_scars (class method)">.<strong>all_scars</strong>  &#x21d2; Hash&lt;Symbol, Integer&gt; </a>
     
 
     
@@ -204,7 +206,7 @@ This constant is used to define accessor methods for each body part.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves all scar levels for all body parts.</p>
+    <span class="summary_desc"><div class='inline'><p>Helper method to get all scar levels Returns a hash of all scar levels for each body part.</p>
 </div></span>
   
 </li>
@@ -227,7 +229,7 @@ This constant is used to define accessor methods for each body part.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the maximum scar level for both arms and hands.</p>
+    <span class="summary_desc"><div class='inline'><p>Composite scar methods Returns the maximum scar level for both arms and hands.</p>
 </div></span>
   
 </li>
@@ -272,7 +274,7 @@ This constant is used to define accessor methods for each body part.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the scar level for the left eye using snake_case.</p>
+    <span class="summary_desc"><div class='inline'><p>Alias snake_case methods for overachievers Returns the scar level for the left eye using snake_case.</p>
 </div></span>
   
 </li>
@@ -361,7 +363,7 @@ This constant is used to define accessor methods for each body part.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the maximum scar level for both arms, hands, legs.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the maximum scar level for both arms and legs.</p>
 </div></span>
   
 </li>
@@ -494,7 +496,7 @@ This constant is used to define accessor methods for each body part.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the scar level for a specified body part.</p>
+    <span class="summary_desc"><div class='inline'><p>Helper method to get scar level for any body part Returns the scar level for a specified body part.</p>
 </div></span>
   
 </li>
@@ -517,7 +519,7 @@ This constant is used to define accessor methods for each body part.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Retrieves the maximum scar level for the torso.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the maximum scar level for the torso.</p>
 </div></span>
   
 </li>
@@ -546,7 +548,7 @@ This constant is used to define accessor methods for each body part.</p>
       <div class="method_details first">
   <h3 class="signature first" id="all_scars-class_method">
   
-    .<strong>all_scars</strong>  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt> 
+    .<strong>all_scars</strong>  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&lt;Symbol, Integer&gt;</tt> 
   
 
   
@@ -554,33 +556,50 @@ This constant is used to define accessor methods for each body part.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves all scar levels for all body parts.</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This method temporarily changes the injury mode to &#39;scar&#39; to retrieve actual scar level data.</p>
+</div>
+  </div>
+
+<p>Helper method to get all scar levels
+Returns a hash of all scar levels for each body part.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_all_scar_levels'>all_scar_levels</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_all_scars'>all_scars</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&lt;Symbol, Integer&gt;</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'><p>A hash mapping body parts to their scar levels.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>If there is an issue retrieving the scar data.</p>
 </div>
       
     </li>
@@ -593,18 +612,18 @@ This constant is used to define accessor methods for each body part.</p>
       <pre class="lines">
 
 
-137
-138
-139
-140
-141
-142
-143
-144
-145</pre>
+127
+128
+129
+130
+131
+132
+133
+134
+135</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 127</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_all_scars'>all_scars</span>
   <span class='kw'>begin</span>
@@ -631,21 +650,21 @@ This constant is used to define accessor methods for each body part.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the maximum scar level for both arms and hands.</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This method uses &#39;both&#39; injury mode for consistency.</p>
+</div>
+  </div>
+
+<p>Composite scar methods
+Returns the maximum scar level for both arms and hands.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_max_scar'>max_scar</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_arms'>arms</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -670,18 +689,18 @@ This constant is used to define accessor methods for each body part.</p>
       <pre class="lines">
 
 
+73
+74
+75
 76
 77
 78
 79
 80
-81
-82
-83
-84</pre>
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_arms'>arms</span>
   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -712,10 +731,10 @@ This constant is used to define accessor methods for each body part.</p>
       <pre class="lines">
 
 
-61</pre>
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_arm'>left_arm</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftArm'>leftArm</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -734,21 +753,21 @@ This constant is used to define accessor methods for each body part.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the scar level for the left eye using snake_case.</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This method is an alias for leftEye.</p>
+</div>
+  </div>
+
+<p>Alias snake_case methods for overachievers
+Returns the scar level for the left eye using snake_case.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_scar_level'>scar_level</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_eye'>left_eye</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -773,10 +792,10 @@ This constant is used to define accessor methods for each body part.</p>
       <pre class="lines">
 
 
-59</pre>
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_eye'>left_eye</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftEye'>leftEye</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -799,10 +818,10 @@ This constant is used to define accessor methods for each body part.</p>
       <pre class="lines">
 
 
-67</pre>
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_foot'>left_foot</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftFoot'>leftFoot</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -825,10 +844,10 @@ This constant is used to define accessor methods for each body part.</p>
       <pre class="lines">
 
 
-63</pre>
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_hand'>left_hand</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftHand'>leftHand</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -851,10 +870,10 @@ This constant is used to define accessor methods for each body part.</p>
       <pre class="lines">
 
 
-65</pre>
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_leg'>left_leg</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftLeg'>leftLeg</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -873,21 +892,20 @@ This constant is used to define accessor methods for each body part.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the maximum scar level for both arms, hands, legs.</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This method uses &#39;both&#39; injury mode for consistency.</p>
+</div>
+  </div>
+
+<p>Returns the maximum scar level for both arms and legs.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_max_scar'>max_scar</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_limbs'>limbs</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -912,20 +930,20 @@ This constant is used to define accessor methods for each body part.</p>
       <pre class="lines">
 
 
+86
+87
+88
+89
+90
 91
 92
 93
 94
 95
-96
-97
-98
-99
-100
-101</pre>
+96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 91</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 86</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_limbs'>limbs</span>
   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -958,10 +976,10 @@ This constant is used to define accessor methods for each body part.</p>
       <pre class="lines">
 
 
-62</pre>
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_arm'>right_arm</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightArm'>rightArm</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -984,10 +1002,10 @@ This constant is used to define accessor methods for each body part.</p>
       <pre class="lines">
 
 
-60</pre>
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_eye'>right_eye</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightEye'>rightEye</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1010,10 +1028,10 @@ This constant is used to define accessor methods for each body part.</p>
       <pre class="lines">
 
 
-68</pre>
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_foot'>right_foot</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightFoot'>rightFoot</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1036,10 +1054,10 @@ This constant is used to define accessor methods for each body part.</p>
       <pre class="lines">
 
 
-64</pre>
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_hand'>right_hand</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightHand'>rightHand</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1062,10 +1080,10 @@ This constant is used to define accessor methods for each body part.</p>
       <pre class="lines">
 
 
-66</pre>
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_leg'>right_leg</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightLeg'>rightLeg</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1084,21 +1102,21 @@ This constant is used to define accessor methods for each body part.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the scar level for a specified body part.</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This method uses &#39;both&#39; injury mode for consistency.</p>
+</div>
+  </div>
+
+<p>Helper method to get scar level for any body part
+Returns the scar level for a specified body part.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_scar_level'>scar_level</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_scar_level'>scar_level</span><span class='lparen'>(</span><span class='symbol'>:leftEye</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1142,13 +1160,13 @@ This constant is used to define accessor methods for each body part.</p>
       <pre class="lines">
 
 
-126
-127
-128
-129</pre>
+117
+118
+119
+120</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 126</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 117</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_scar_level'>scar_level</span><span class='lparen'>(</span><span class='id identifier rubyid_part'>part</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1170,21 +1188,20 @@ This constant is used to define accessor methods for each body part.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Retrieves the maximum scar level for the torso.</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This method uses &#39;both&#39; injury mode for consistency.</p>
+</div>
+  </div>
+
+<p>Returns the maximum scar level for the torso.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_max_scar'>max_scar</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Scars (class)">Scars</a></span></span><span class='period'>.</span><span class='id identifier rubyid_torso'>torso</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1209,19 +1226,19 @@ This constant is used to define accessor methods for each body part.</p>
       <pre class="lines">
 
 
+101
+102
+103
+104
+105
+106
+107
 108
 109
-110
-111
-112
-113
-114
-115
-116
-117</pre>
+110</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'scars.rb', line 108</span>
+      <pre class="code"><span class="info file"># File 'scars.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_torso'>torso</span>
   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1243,7 +1260,7 @@ This constant is used to define accessor methods for each body part.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 02:18:53 2025 by
+  Generated on Fri Nov  7 02:56:54 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.7).
 </div>
