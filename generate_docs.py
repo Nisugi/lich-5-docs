@@ -185,8 +185,20 @@ class Lich5DocumentationGenerator:
 
         relative_path = str(file_path)
         if relative_path in self.manifest.get('processed_files', {}):
-            # Check if output file actually exists
-            output_file = self.get_output_file_path(file_path)
+            # Check if output file actually exists in committed documented/ directory
+            # Use same logic as get_output_file_path but check repo root documented/
+            if self.output_structure == 'mirror' and self.source_root:
+                try:
+                    file_path_resolved = file_path.resolve()
+                    source_root_resolved = self.source_root.resolve()
+                    relative_path_from_source = file_path_resolved.relative_to(source_root_resolved)
+                    # Check in repo root documented/ directory (committed files)
+                    output_file = Path('documented') / relative_path_from_source
+                except ValueError:
+                    output_file = Path('documented') / file_path.name
+            else:
+                output_file = Path('documented') / file_path.name
+
             if not output_file.exists():
                 logger.info(f"  Output file missing, reprocessing: {file_path.name}")
                 return False
