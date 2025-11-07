@@ -238,20 +238,6 @@ You will return JSON with documentation comments and their anchor points."""
 Generate **YARD-compatible** documentation for every public class, module, method, and constant.
 The line numbers are shown at the start of each line (e.g., "  15: def method_name").
 
-CRITICAL: Only document items that match these EXACT patterns:
-- Method definitions: Lines starting with "def " (e.g., "def method_name", "def self.method")
-- Classes: Lines starting with "class " (e.g., "class ClassName")
-- Modules: Lines starting with "module " (e.g., "module ModuleName")
-- Constants: Lines with ALL_CAPS = value (e.g., "CONSTANT_NAME = 123")
-- Attributes: Lines starting with "attr_reader", "attr_writer", or "attr_accessor"
-
-DO NOT document:
-- Hash keys or data structures (e.g., "leftEye: ['data']")
-- Method calls or iterators (e.g., "array.each do |item|")
-- Metaprogramming (e.g., "define_singleton_method", "define_method")
-- Alias statements (e.g., "alias new_name old_name")
-- Variable assignments (e.g., "variable = value" where variable is not ALL_CAPS)
-
 Documentation rules:
 1. For classes/modules:
    - Brief description on first line
@@ -337,6 +323,12 @@ IMPORTANT:
 
             if not comments:
                 logger.error(f"  No comments extracted from response")
+                logger.error(f"  AI response length: {len(result)} characters")
+                if len(result) < 1000:
+                    logger.error(f"  Full AI response: {result}")
+                else:
+                    logger.error(f"  AI response (first 500): {result[:500]}")
+                    logger.error(f"  AI response (last 500): {result[-500:]}")
                 self.failed_files.append(file_path.name)
                 return None
 
@@ -419,35 +411,58 @@ IMPORTANT:
         Returns:
             List of comment entries with anchor, indent, and comment fields
         """
-        # Try to find JSON code blocks first
+        extraction_attempts = []
+
+        # Strategy 1: Try to find JSON code blocks first
         json_blocks = re.findall(r'```json\s*(.*?)```', response, re.DOTALL)
-
         if json_blocks:
-            json_text = json_blocks[0].strip()
-        else:
-            # Try to find JSON array directly
-            json_match = re.search(r'\[\s*\{.*?\}\s*\]', response, re.DOTALL)
-            if json_match:
-                json_text = json_match.group(0)
-            else:
-                # Last resort: assume entire response is JSON
-                json_text = response.strip()
+            extraction_attempts.append(('json code block', json_blocks[0].strip()))
 
-        # Sanitize invalid escape sequences before parsing
-        json_text = self.sanitize_json_escapes(json_text)
+        # Strategy 2: Try to find JSON array directly (greedy match)
+        json_match = re.search(r'\[\s*\{.*\}\s*\]', response, re.DOTALL)
+        if json_match:
+            extraction_attempts.append(('greedy array match', json_match.group(0)))
 
-        try:
-            comments = json.loads(json_text)
-            if not isinstance(comments, list):
-                raise ValueError("Expected JSON array")
+        # Strategy 3: Try to find JSON array (non-greedy)
+        json_match_ng = re.search(r'\[\s*\{.*?\}\s*\]', response, re.DOTALL)
+        if json_match_ng and json_match_ng.group(0) not in [a[1] for a in extraction_attempts]:
+            extraction_attempts.append(('non-greedy array match', json_match_ng.group(0)))
 
-            logger.debug(f"Extracted {len(comments)} comment entries from response")
-            return comments
+        # Strategy 4: Last resort - assume entire response is JSON
+        if response.strip():
+            extraction_attempts.append(('raw response', response.strip()))
 
-        except json.JSONDecodeError as e:
-            logger.error(f"Failed to parse JSON response: {e}")
-            logger.debug(f"Response text (sanitized): {json_text[:500]}")
-            return []
+        # Try each extraction strategy
+        for strategy_name, json_text in extraction_attempts:
+            try:
+                # Sanitize invalid escape sequences before parsing
+                sanitized = self.sanitize_json_escapes(json_text)
+
+                comments = json.loads(sanitized)
+
+                if not isinstance(comments, list):
+                    logger.debug(f"Strategy '{strategy_name}' found non-list JSON, skipping")
+                    continue
+
+                if len(comments) == 0:
+                    logger.debug(f"Strategy '{strategy_name}' found empty array, skipping")
+                    continue
+
+                logger.debug(f"Strategy '{strategy_name}' successfully extracted {len(comments)} comment entries")
+                return comments
+
+            except json.JSONDecodeError as e:
+                logger.debug(f"Strategy '{strategy_name}' failed to parse JSON: {e}")
+                continue
+            except Exception as e:
+                logger.debug(f"Strategy '{strategy_name}' failed with error: {e}")
+                continue
+
+        # All strategies failed
+        logger.error(f"Failed to parse JSON response with all {len(extraction_attempts)} strategies")
+        logger.error(f"Response preview (first 500 chars): {response[:500]}")
+        logger.error(f"Response preview (last 500 chars): {response[-500:]}")
+        return []
 
     def soft_match_anchor(self, anchor: str, line: str) -> bool:
         """
@@ -984,9 +999,12 @@ def main():
         # Print summary
         generator.print_summary(stats)
 
-        # Exit with error if any files failed
+        # Log failed files but don't exit with error
+        # This allows partial success - manifest will track successful files
+        # and failed files will be retried on next run
         if stats['failed'] > 0:
-            sys.exit(1)
+            logger.warning(f"{stats['failed']} file(s) failed but will be retried on next run")
+            logger.info(f"{stats['processed']} file(s) successfully documented and saved")
 
     else:
         logger.error(f"Input path does not exist: {input_path}")
