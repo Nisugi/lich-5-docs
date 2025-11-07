@@ -321,7 +321,8 @@ IMPORTANT:
             # Parse JSON response
             comments = self.extract_comments_json(result)
 
-            if not comments:
+            if comments is None:
+                # JSON parsing completely failed
                 logger.error(f"  No comments extracted from response")
                 logger.error(f"  AI response length: {len(result)} characters")
                 if len(result) < 1000:
@@ -332,10 +333,14 @@ IMPORTANT:
                 self.failed_files.append(file_path.name)
                 return None
 
-            logger.info(f"  Extracted {len(comments)} documentation entries")
-
-            # Insert comments into original code
-            documented_code = self.insert_comments(original_content, comments)
+            if len(comments) == 0:
+                # Empty array is valid - file has nothing to document (e.g., only require statements)
+                logger.info(f"  No documentation needed (file contains only requires/imports)")
+                documented_code = original_content
+            else:
+                logger.info(f"  Extracted {len(comments)} documentation entries")
+                # Insert comments into original code
+                documented_code = self.insert_comments(original_content, comments)
 
             # Store documentation
             self.documentation[file_path.name] = {
@@ -444,10 +449,7 @@ IMPORTANT:
                     logger.debug(f"Strategy '{strategy_name}' found non-list JSON, skipping")
                     continue
 
-                if len(comments) == 0:
-                    logger.debug(f"Strategy '{strategy_name}' found empty array, skipping")
-                    continue
-
+                # Empty arrays are valid - file may have nothing to document
                 logger.debug(f"Strategy '{strategy_name}' successfully extracted {len(comments)} comment entries")
                 return comments
 
@@ -463,7 +465,7 @@ IMPORTANT:
         logger.error(f"Failed to parse JSON response with all {len(extraction_attempts)} strategies")
         logger.error(f"Response preview (first 500 chars): {response[:500]}")
         logger.error(f"Response preview (last 500 chars): {response[-500:]}")
-        return []
+        return None
 
     def soft_match_anchor(self, anchor: str, line: str) -> bool:
         """
