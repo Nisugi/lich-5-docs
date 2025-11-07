@@ -194,13 +194,17 @@ class Lich5DocumentationGenerator:
                     relative_path_from_source = file_path_resolved.relative_to(source_root_resolved)
                     # Check in repo root documented/ directory (committed files)
                     output_file = Path('documented') / relative_path_from_source
-                except ValueError:
+                    logger.debug(f"  Checking: {output_file} (exists: {output_file.exists()})")
+                except ValueError as e:
                     output_file = Path('documented') / file_path.name
+                    logger.debug(f"  ValueError in path resolution: {e}, using flat: {output_file}")
             else:
                 output_file = Path('documented') / file_path.name
+                logger.debug(f"  Using flat structure: {output_file}")
 
             if not output_file.exists():
                 logger.info(f"  Output file missing, reprocessing: {file_path.name}")
+                logger.debug(f"    Looked for: {output_file.absolute()}")
                 return False
 
             # Check if source file has changed by comparing hashes
