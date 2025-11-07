@@ -174,11 +174,6 @@ end
 # @return [String] "east"
 # @example
 #   direction = e
-# Sends a message to the current script's output.
-# @param messages [Array<String>] The messages to send.
-# @return [void]
-# @example
-#   echo("Hello, world!")
 # Turns on echo for the current script.
 # @return [void]
 # @example
@@ -1037,7 +1032,7 @@ end
 # Monitors the character's health and executes a block when it falls below a certain value.
 # @param value [Integer] The health value to monitor.
 # @param theproc [Proc] Optional procedure to execute.
-# @param &block [Proc] The block to execute when health falls below the specified value.
+# @param block [Proc] The block to execute when health falls below the specified value.
 # @return [void]
 # @example
 #   watchhealth(50) { puts "Health is low!" }
@@ -1145,7 +1140,7 @@ end
 
 # Walks in a direction until a condition is met.
 # @param boundaries [Array<String>] The boundaries to check against.
-# @param &block [Proc] The block to execute while walking.
+# @param block [Proc] The block to execute while walking.
 # @return [void]
 # @example
 #   walk("boundary") { check_condition }
