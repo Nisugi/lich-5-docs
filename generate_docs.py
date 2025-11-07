@@ -223,13 +223,20 @@ class Lich5DocumentationGenerator:
 Your task is to generate YARD-compatible documentation for Ruby code.
 You will return JSON with documentation comments and their anchor points."""
 
+        # Add line numbers to help AI identify exact lines
+        numbered_lines = []
+        for i, line in enumerate(content.split('\n'), start=1):
+            numbered_lines.append(f"{i:4d}: {line}")
+        numbered_content = '\n'.join(numbered_lines)
+
         user_prompt = f"""Analyze this Ruby file from the Lich5 project: **{file_name}**
 
 ```ruby
-{content}
+{numbered_content}
 ```
 
 Generate **YARD-compatible** documentation for every public class, module, method, and constant.
+The line numbers are shown at the start of each line (e.g., "  15: def method_name").
 
 Documentation rules:
 1. For classes/modules:
@@ -341,6 +348,29 @@ IMPORTANT:
             self.failed_files.append(file_path.name)
             return None
 
+    def sanitize_json_escapes(self, json_text: str) -> str:
+        r"""
+        Sanitize invalid escape sequences in JSON string
+
+        Valid JSON escapes: \", \\, \/, \b, \f, \n, \r, \t, \uXXXX
+        Common invalid escapes from AI: \d, \s, \w, \x, etc. (regex patterns)
+
+        Args:
+            json_text: Raw JSON string that may contain invalid escapes
+
+        Returns:
+            Sanitized JSON string with invalid escapes fixed
+        """
+        # Fix invalid escape sequences by double-escaping them
+        # This regex finds backslashes that aren't followed by valid JSON escape chars
+        # Valid: " \ / b f n r t u
+        sanitized = re.sub(
+            r'\\(?!["\\/bfnrtu])',  # Backslash NOT followed by valid escape char
+            r'\\\\',                 # Replace with double backslash
+            json_text
+        )
+        return sanitized
+
     def extract_comments_json(self, response: str) -> List[Dict[str, Any]]:
         """
         Extract JSON array of comments from LLM response
@@ -362,6 +392,9 @@ IMPORTANT:
                 # Last resort: assume entire response is JSON
                 json_text = response.strip()
 
+        # Sanitize invalid escape sequences before parsing
+        json_text = self.sanitize_json_escapes(json_text)
+
         try:
             comments = json.loads(json_text)
             if not isinstance(comments, list):
@@ -372,7 +405,7 @@ IMPORTANT:
 
         except json.JSONDecodeError as e:
             logger.error(f"Failed to parse JSON response: {e}")
-            logger.debug(f"Response text: {response[:500]}")
+            logger.debug(f"Response text (sanitized): {json_text[:500]}")
             return []
 
     def soft_match_anchor(self, anchor: str, line: str) -> bool:
@@ -457,7 +490,8 @@ IMPORTANT:
         Strategy:
         1. Try exact match at expected line number
         2. Try soft match at expected line number
-        3. Search nearby lines (within 3 lines) with soft match
+        3. Search entire file (nearby lines first, then rest of file)
+           Methods/classes are unique, so safe to search whole file
 
         Args:
             lines: Source code lines
@@ -491,18 +525,35 @@ IMPORTANT:
             logger.debug(f"Soft match at line {line_number} for anchor: {anchor[:30]}")
             return expected_idx
 
-        # Strategy 3: Search nearby lines (±3)
-        for offset in range(-3, 4):
-            if offset == 0:
-                continue  # Already checked
+        # Strategy 3: Search entire file (methods/classes are unique in a file)
+        # Start with nearby lines first, then expand outward
+        search_order = []
 
+        # First check nearby lines (±5)
+        for offset in range(-5, 6):
+            if offset == 0:
+                continue
             idx = expected_idx + offset
-            if 0 <= idx < len(lines) and idx not in inserted_at_lines:
+            if 0 <= idx < len(lines):
+                search_order.append(idx)
+
+        # Then check rest of file
+        for idx in range(len(lines)):
+            if idx != expected_idx and idx not in search_order:
+                search_order.append(idx)
+
+        # Search in priority order
+        for idx in search_order:
+            if idx not in inserted_at_lines:
                 if self.soft_match_anchor(anchor, lines[idx]):
-                    logger.warning(f"Found anchor at line {idx + 1} (expected {line_number}, offset {offset:+d})")
+                    offset = idx - expected_idx
+                    if abs(offset) <= 5:
+                        logger.info(f"Found anchor at line {idx + 1} (expected {line_number}, offset {offset:+d})")
+                    else:
+                        logger.warning(f"Found anchor at line {idx + 1} (expected {line_number}, offset {offset:+d})")
                     return idx
 
-        # Not found
+        # Not found anywhere in file
         logger.warning(f"Could not find anchor: {anchor[:50]} (expected line {line_number})")
         return None
 
