@@ -216,9 +216,15 @@ class Lich5DocumentationGenerator:
                 stored_info = self.manifest['processed_files'][relative_path]
                 stored_hash = stored_info.get('content_hash')
 
+                # Log hash comparison for debugging
+                logger.info(f"  Hash check for {file_path.name}:")
+                logger.info(f"    Manifest key: {relative_path}")
+                logger.info(f"    Stored hash:  {stored_hash}")
+                logger.info(f"    Current hash: {current_hash}")
+                logger.info(f"    Match: {current_hash == stored_hash}")
+
                 if current_hash != stored_hash:
                     logger.info(f"  Source file changed, reprocessing: {file_path.name}")
-                    logger.debug(f"    Hash changed: {stored_hash} -> {current_hash}")
                     return False
                 else:
                     logger.info(f"  Skipping (unchanged): {file_path.name}")
