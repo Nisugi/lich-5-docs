@@ -283,6 +283,12 @@ IMPORTANT:
 - Return ONLY the JSON array, no other text
 - Line numbers should match the ORIGINAL file (1-indexed)
 - Anchors should be concise (just the key part like "def method_name" or "class ClassName")
+- CRITICAL: In the "comment" field, you MUST escape all special characters:
+  * Double quotes MUST be escaped: use \\" not "
+  * Backslashes MUST be escaped: use \\\\ not \\
+  * Example code MUST have escaped quotes: Feat[\\"name\\"] not Feat["name"]
+  * Line breaks use \\n (already escaped)
+- Your JSON MUST be valid and parseable - test it mentally before returning
 """
 
         return system_prompt, user_prompt
