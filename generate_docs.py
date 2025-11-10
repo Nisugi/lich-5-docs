@@ -512,6 +512,53 @@ IMPORTANT:
 
         return ''.join(result)
 
+    def clean_json_concatenation(self, json_text: str) -> str:
+        """
+        Clean up invalid JSON string concatenation patterns
+
+        LLMs sometimes generate JSON with JavaScript/Python-style string concatenation:
+        "text1"
+            + "text2"
+            + "text3"
+
+        This is NOT valid JSON. Convert to single concatenated string.
+
+        Args:
+            json_text: Raw JSON that may contain string concatenation
+
+        Returns:
+            Cleaned JSON with concatenations resolved
+        """
+        # Pattern: "string1" + "string2" (with optional whitespace/newlines)
+        # Match: "..." followed by optional whitespace, +, optional whitespace, "..."
+        # This handles both inline and multi-line concatenations:
+        #   "line1\n" + "line2\n"  (inline)
+        #   "line1\n"
+        #       + "line2\n"        (multi-line)
+        #       + "line3\n"
+
+        def concat_strings(match):
+            """Callback to concatenate matched string segments"""
+            # Extract all string contents from the match (between quotes)
+            # This regex finds content between quotes, handling escaped quotes
+            strings = []
+            # Match all "..." segments, including escaped characters
+            for s in re.finditer(r'"((?:[^"\\]|\\.)*)"', match.group(0)):
+                strings.append(s.group(1))
+
+            # Concatenate all segments into a single JSON string
+            # The content is already escaped (e.g., \n for newlines)
+            return '"' + ''.join(strings) + '"'
+
+        # Pattern explanation:
+        # "(?:[^"\\]|\\.)*"  - Match a JSON string (with escaped chars)
+        # (?:\s*\+\s*"(?:[^"\\]|\\.)*")+  - Match one or more: whitespace, +, whitespace, string
+        # The \s* allows for optional newlines and indentation
+        pattern = r'"(?:[^"\\]|\\.)*"(?:\s*\+\s*"(?:[^"\\]|\\.)*")+'
+
+        cleaned = re.sub(pattern, concat_strings, json_text)
+        return cleaned
+
     def extract_comments_json(self, response: str) -> List[Dict[str, Any]]:
         """
         Extract JSON array of comments from LLM response
@@ -543,8 +590,11 @@ IMPORTANT:
         # Try each extraction strategy
         for strategy_name, json_text in extraction_attempts:
             try:
-                # Sanitize invalid escape sequences before parsing
-                sanitized = self.sanitize_json_escapes(json_text)
+                # Step 1: Clean up string concatenation (LLMs sometimes use + operators)
+                cleaned = self.clean_json_concatenation(json_text)
+
+                # Step 2: Sanitize invalid escape sequences
+                sanitized = self.sanitize_json_escapes(cleaned)
 
                 comments = json.loads(sanitized)
 
