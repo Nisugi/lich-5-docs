@@ -1,0 +1,1045 @@
+require 'singleton'
+require 'ostruct'
+
+module Lich
+  module Gemstone
+    # Static creature template data (ID-less reference information)
+    #
+    # Manages creature templates loaded from data files. Templates contain
+    # static information about creature types (level, HP, abilities, etc.)
+    # and are shared across all instances of that creature type.
+    #
+    # @example Load and lookup a template
+    #   CreatureTemplate.load_all
+    #   template = CreatureTemplate['troll']
+    #   puts template.level  # => 14
+    #
+    # @example Handle boon adjectives
+    #   template = CreatureTemplate['radiant troll']  # Same as 'troll'
+    #
+    class CreatureTemplate
+      @@templates = {}
+      @@loaded = false
+      @@max_templates = 500  # Prevent unbounded template cache growth
+
+      attr_reader :name, :url, :picture, :level, :family, :type,
+                  :undead, :otherclass, :areas, :bcs, :max_hp,
+                  :speed, :height, :size, :attack_attributes,
+                  :defense_attributes, :treasure, :messaging,
+                  :special_other, :abilities, :alchemy
+
+      BOON_ADJECTIVES = %w[
+        adroit afflicted apt barbed belligerent blurry canny combative dazzling deft diseased drab
+        dreary ethereal flashy flexile flickering flinty frenzied ghastly ghostly gleaming glittering
+        glorious glowing grotesque hardy illustrious indistinct keen lanky luminous lustrous muculent
+        nebulous oozing pestilent radiant raging ready resolute robust rune-covered shadowy shifting
+        shimmering shining sickly green sinuous slimy sparkling spindly spiny stalwart steadfast stout
+        tattoed tenebrous tough twinkling unflinching unyielding wavering wispy
+      ]
+
+      def initialize(data)
+        @name = data[:name]
+        @url = data[:url]
+        @picture = data[:picture]
+        @level = data[:level].to_i
+        @family = data[:family]
+        @type = data[:type]
+        @undead = data[:undead]
+        @otherclass = data[:otherclass] || []
+        @areas = data[:areas] || []
+        @bcs = data[:bcs]
+        @max_hp = data[:max_hp]&.to_i || data[:hitpoints]&.to_i
+        @speed = data[:speed]
+        @height = data[:height].to_i
+        @size = data[:size]
+
+        atk = data[:attack_attributes] || {}
+        @attack_attributes = OpenStruct.new(
+          physical_attacks: atk[:physical_attacks] || [],
+          bolt_spells: atk[:bolt_spells] || [],
+          warding_spells: normalize_spells(atk[:warding_spells]),
+          offensive_spells: normalize_spells(atk[:offensive_spells]),
+          maneuvers: atk[:maneuvers] || [],
+          special_abilities: (atk[:special_abilities] || []).map { |s| SpecialAbility.new(s) }
+        )
+
+        @defense_attributes = DefenseAttributes.new(data[:defense_attributes] || {})
+        @treasure = Treasure.new(data[:treasure] || {})
+        @messaging = Messaging.new(data[:messaging] || {})
+        @special_other = data[:special_other]
+        @abilities = data[:abilities] || []
+        @alchemy = data[:alchemy] || []
+      end
+
+      # Load all creature templates from the creatures directory
+      #
+      # Scans for .rb files in lib/gemstone/creatures and loads them as templates.
+      # Implements a safety limit (@@max_templates) to prevent memory exhaustion.
+      # Templates are cached in @@templates for fast lookup.
+      #
+      # @return [void]
+      # @note Only loads once; subsequent calls are no-ops
+      def self.load_all
+        return if @@loaded
+
+        templates_dir = File.join(File.dirname(__FILE__), 'creatures')
+        return unless File.directory?(templates_dir)
+
+        template_count = 0
+        Dir[File.join(templates_dir, '*.rb')].each do |path|
+          next if File.basename(path) == '_creature_template.rb'
+
+          # Check template limit
+          if template_count >= @@max_templates
+            puts "--- warning: Template cache limit (#{@@max_templates}) reached, skipping remaining templates" if $creature_debug
+            break
+          end
+
+          template_name = File.basename(path, '.rb').tr('_', ' ')
+          normalized_name = fix_template_name(template_name)
+
+          begin
+            # Safer loading with validation
+            file_content = File.read(path)
+            data = load_template_data(file_content, path)
+            next unless data.is_a?(Hash)
+
+            data[:name] = template_name
+            template = new(data)
+            @@templates[normalized_name] = template
+            template_count += 1
+          rescue => e
+            puts "--- error loading template #{template_name}: #{e.message}" if $creature_debug
+          end
+        end
+
+        @@loaded = true
+        puts "--- loaded #{template_count} creature templates" if $creature_debug
+      end
+
+      # Clean creature name by removing boon adjectives
+      # Optimized to use single compiled regex instead of 50+ sequential matches
+      BOON_REGEX = /^(#{BOON_ADJECTIVES.join('|')})\s+/i.freeze
+
+      # Remove boon adjectives from creature names for template matching
+      #
+      # Boon adjectives like "radiant", "ghostly", "shadowy" are temporary
+      # modifiers and should be stripped for template lookup.
+      #
+      # @param template_name [String] The creature name to normalize
+      # @return [String] Normalized name without boon adjectives
+      # @example
+      #   fix_template_name("radiant troll")  # => "troll"
+      def self.fix_template_name(template_name)
+        name = template_name.dup.downcase
+        name.sub!(BOON_REGEX, '')
+        name.strip
+      end
+
+      # Safer template loading with validation
+      def self.load_template_data(file_content, path)
+        # Use binding.eval for slightly better isolation
+        data = binding.eval(file_content, path, 1)
+
+        # Validate it's a hash
+        unless data.is_a?(Hash)
+          raise "Template must return a Hash, got #{data.class}"
+        end
+
+        data
+      end
+      private_class_method :load_template_data
+
+      # Lookup template by creature name
+      #
+      # Attempts exact match first, then tries with boon adjectives removed.
+      # Automatically loads templates if not yet loaded.
+      #
+      # @param name [String] Creature name to look up
+      # @return [CreatureTemplate, nil] The template or nil if not found
+      # @example
+      #   template = CreatureTemplate['troll']
+      #   template = CreatureTemplate['radiant troll']  # Same result
+      def self.[](name)
+        load_all unless @@loaded
+        return nil unless name
+
+        # Try exact match first
+        template = @@templates[name.downcase]
+        return template if template
+
+        # Try with boon adjectives removed
+        normalized_name = fix_template_name(name)
+        @@templates[normalized_name]
+      end
+
+      # Get all loaded templates
+      def self.all
+        load_all unless @@loaded
+        @@templates.values.uniq
+      end
+
+      private
+
+      def normalize_spells(spells)
+        (spells || []).map do |s|
+          {
+            name: s[:name].to_s.strip,
+            cs: parse_td(s[:cs])
+          }
+        end
+      end
+
+      def parse_td(val)
+        return nil if val.nil?
+        return val if val.is_a?(Range)
+
+        # Parse range strings without eval (safer)
+        if val.is_a?(String) && val.match?(/\A(\d+)\.\.(\d+)\z/)
+          start_val, end_val = val.split('..').map(&:to_i)
+          return start_val..end_val
+        end
+
+        val
+      end
+    end
+
+    # Individual creature instance (runtime tracking with ID)
+    #
+    # Represents a specific creature in the game world, tracked by unique ID.
+    # Manages runtime state including damage, injuries, status effects, and UCS data.
+    #
+    # Instances are automatically registered and cleaned up based on age.
+    # Max registry size prevents memory exhaustion during extended play.
+    #
+    # @example Register and track a creature
+    #   creature = CreatureInstance.register("troll", 1234, "troll")
+    #   creature.add_damage(50)
+    #   creature.add_status(:stunned)
+    #   puts creature.hp_percent  # => 75.0
+    #
+    class CreatureInstance
+      @@instances = {}
+      @@max_size = 1000
+      @@auto_register = true
+
+      attr_accessor :id, :noun, :name, :status, :injuries, :health, :damage_taken, :created_at, :fatal_crit, :status_timestamps,
+                    :ucs_position, :ucs_tierup, :ucs_smote, :ucs_updated
+
+      BODY_PARTS = %w[abdomen back chest head leftArm leftEye leftFoot leftHand leftLeg neck nerves rightArm rightEye rightFoot rightHand rightLeg]
+
+      UCS_TTL = 120        # UCS data expires after 2 minutes
+      UCS_SMITE_TTL = 15   # Smite effect expires after 15 seconds
+
+      # Status effect durations (in seconds) for auto-cleanup
+      # nil = no auto-cleanup (waits for removal message)
+      STATUS_DURATIONS = {
+        'breeze'      => 6, # 6 seconds roundtime
+        'bind'        => 10, # 10 seconds typical
+        'web'         => 8, # 8 seconds typical
+        'entangle'    => 10, # 10 seconds typical
+        'hypnotism'   => 12, # 12 seconds typical
+        'calm'        => 15, # 15 seconds typical
+        'mass_calm'   => 15, # 15 seconds typical
+        'sleep'       => 8, # 8 seconds typical (can wake early)
+        # Statuses with reliable removal messages - no duration needed
+        'stunned'     => nil, # Has removal messages
+        'immobilized' => nil, # Has removal messages
+        'prone'       => nil,         # Has removal messages
+        'blind'       => nil,         # Has removal messages
+        'sunburst'    => nil, # Has removal messages
+        'webbed'      => nil, # Has removal messages
+        'poisoned'    => nil # Has removal messages
+      }.freeze
+
+      # Initialize a new creature instance
+      #
+      # @param id [Integer, String] Unique creature ID from game
+      # @param noun [String] Creature noun (short name)
+      # @param name [String] Full creature name for template lookup
+      def initialize(id, noun, name)
+        @id = id.to_i
+        @noun = noun
+        @name = name
+        @status = []
+        @injuries = Hash.new(0)
+        @health = nil
+        @damage_taken = 0
+        @created_at = Time.now
+        @fatal_crit = false
+        @status_timestamps = {}
+        @ucs_position = nil
+        @ucs_tierup = nil
+        @ucs_smote = nil
+        @ucs_updated = nil
+      end
+
+      # Get the static template for this creature
+      #
+      # @return [CreatureTemplate, nil] Associated template or nil if none found
+      # @note Result is memoized for performance
+      def template
+        @template ||= CreatureTemplate[@name]
+      end
+
+      # Check if creature has template data
+      def has_template?
+        !template.nil?
+      end
+
+      # Add a status effect to the creature
+      #
+      # Status effects like :stunned, :prone, :webbed are tracked with
+      # optional auto-expiration based on STATUS_DURATIONS.
+      #
+      # @param status [String, Symbol] Status effect to add
+      # @param duration [Integer, nil] Duration in seconds (overrides default)
+      # @return [void]
+      # @example
+      #   creature.add_status(:stunned)
+      #   creature.add_status(:custom_debuff, 30)
+      def add_status(status, duration = nil)
+        return if @status.include?(status)
+
+        @status << status
+
+        # Set expiration timestamp for timed statuses
+        status_key = status.to_s.downcase
+        duration ||= STATUS_DURATIONS[status_key]
+        if duration
+          @status_timestamps[status] = Time.now + duration
+          puts "  +status: #{status} (expires in #{duration}s)" if $creature_debug
+        else
+          puts "  +status: #{status} (no auto-expiry)" if $creature_debug
+        end
+      end
+
+      # Remove status from creature
+      def remove_status(status)
+        @status.delete(status)
+        @status_timestamps.delete(status)
+        puts "  -status: #{status}" if $creature_debug
+      end
+
+      # Clean up expired status effects
+      #
+      # Called automatically by has_status? and statuses methods.
+      # Removes any status whose expiration timestamp has passed.
+      #
+      # @return [void]
+      # @note This is called frequently - performance sensitive
+      def cleanup_expired_statuses
+        return unless @status_timestamps && !@status_timestamps.empty?
+
+        now = Time.now
+        @status_timestamps.select { |_status, expires_at| expires_at <= now }.keys.each do |expired_status|
+          @status.delete(expired_status)
+          @status_timestamps.delete(expired_status)
+          puts "  ~status: #{expired_status} (auto-expired)" if $creature_debug
+        end
+      end
+
+      # Check if creature has a specific status
+      def has_status?(status)
+        cleanup_expired_statuses # Clean up expired statuses first
+        @status.include?(status.to_s)
+      end
+
+      # Get all current statuses
+      def statuses
+        cleanup_expired_statuses # Clean up expired statuses first
+        @status.dup
+      end
+
+      # UCS (Unarmed Combat System) tracking methods
+
+      # Convert UCS position string/number to tier (1-3)
+      #
+      # @param pos [String, Integer] Position value ("decent"/"good"/"excellent" or 1/2/3)
+      # @return [Integer, nil] Tier number (1-3) or nil if invalid
+      def position_to_tier(pos)
+        case pos
+        when "decent", 1, "1" then 1
+        when "good", 2, "2" then 2
+        when "excellent", 3, "3" then 3
+        else nil
+        end
+      end
+
+      # Set UCS position tier
+      def set_ucs_position(position)
+        new_tier = position_to_tier(position)
+        return unless new_tier
+
+        # Clear tierup if tier changed
+        @ucs_tierup = nil if new_tier != @ucs_position
+
+        @ucs_position = new_tier
+        @ucs_updated = Time.now
+        puts "  UCS: position=#{new_tier}" if $creature_debug
+      end
+
+      # Set UCS tierup vulnerability
+      def set_ucs_tierup(attack_type)
+        @ucs_tierup = attack_type
+        @ucs_updated = Time.now
+        puts "  UCS: tierup=#{attack_type}" if $creature_debug
+      end
+
+      # Mark creature as smote (crimson mist applied)
+      def smite!
+        @ucs_smote = Time.now
+        @ucs_updated = Time.now
+        puts "  UCS: smote!" if $creature_debug
+      end
+
+      # Check if creature is currently smote
+      def smote?
+        return false unless @ucs_smote
+
+        # Check if smite effect has expired
+        if Time.now - @ucs_smote > UCS_SMITE_TTL
+          @ucs_smote = nil
+          return false
+        end
+
+        true
+      end
+
+      # Clear smote status
+      def clear_smote
+        @ucs_smote = nil
+        @ucs_updated = Time.now
+        puts "  UCS: smote cleared" if $creature_debug
+      end
+
+      # Check if UCS data has expired
+      def ucs_expired?
+        return true unless @ucs_updated
+        (Time.now - @ucs_updated) > UCS_TTL
+      end
+
+      # Get UCS position tier (1-3, or nil if expired)
+      def ucs_position
+        return nil if ucs_expired?
+        @ucs_position
+      end
+
+      # Get UCS tierup vulnerability (or nil if expired)
+      def ucs_tierup
+        return nil if ucs_expired?
+        @ucs_tierup
+      end
+
+      # Add injury/wound to a body part
+      #
+      # @param body_part [String, Symbol] Body part from BODY_PARTS constant
+      # @param amount [Integer] Wound rank to add (default 1)
+      # @raise [ArgumentError] If body part is invalid
+      # @example
+      #   creature.add_injury('leftArm', 3)  # Rank 3 wound to left arm
+      def add_injury(body_part, amount = 1)
+        unless BODY_PARTS.include?(body_part.to_s)
+          raise ArgumentError, "Invalid body part: #{body_part}"
+        end
+        @injuries[body_part.to_sym] += amount
+      end
+
+      # Check if injured at location
+      def injured?(location, threshold = 1)
+        @injuries[location.to_sym] >= threshold
+      end
+
+      # Mark creature as killed by fatal critical hit
+      def mark_fatal_crit!
+        @fatal_crit = true
+      end
+
+      # Check if creature died from fatal crit
+      def fatal_crit?
+        @fatal_crit
+      end
+
+      # Get all injured locations
+      def injured_locations(threshold = 1)
+        @injuries.select { |_, value| value >= threshold }.keys
+      end
+
+      # Add damage to creature's health pool
+      #
+      # @param amount [Integer, String] Damage points to add
+      # @return [void]
+      # @example
+      #   creature.add_damage(50)
+      #   puts creature.current_hp  # => 350 (if max_hp is 400)
+      def add_damage(amount)
+        @damage_taken += amount.to_i
+      end
+
+      # Get maximum HP from template, with fallback
+      def max_hp
+        # Try template first
+        hp = template&.max_hp
+        return hp if hp && hp > 0
+
+        # Fall back to combat tracker setting if available
+        begin
+          if defined?(Lich::Gemstone::Combat::Tracker) &&
+             Lich::Gemstone::Combat::Tracker.respond_to?(:fallback_hp)
+            fallback = Lich::Gemstone::Combat::Tracker.fallback_hp
+            return fallback if fallback && fallback > 0
+          end
+        rescue
+          # Ignore errors accessing tracker
+        end
+
+        # Last resort: hardcoded fallback
+        400
+      end
+
+      # Calculate current hit points
+      #
+      # @return [Integer, nil] Current HP (max_hp - damage_taken), or nil if max_hp unknown
+      def current_hp
+        return nil unless max_hp
+        [max_hp - @damage_taken, 0].max
+      end
+
+      # Calculate HP percentage (0-100)
+      def hp_percent
+        return nil unless max_hp && max_hp > 0
+        ((current_hp.to_f / max_hp) * 100).round(1)
+      end
+
+      # Check if creature is below HP threshold
+      def low_hp?(threshold = 25)
+        return false unless hp_percent
+        hp_percent <= threshold
+      end
+
+      # Check if creature is dead (0 HP)
+      def dead?
+        current_hp == 0
+      end
+
+      # Reset damage (creature healed or respawned)
+      def reset_damage
+        @damage_taken = 0
+      end
+
+      # Essential data for this instance
+      def essential_data
+        {
+          id: @id,
+          noun: @noun,
+          name: @name,
+          status: @status,
+          injuries: @injuries,
+          health: @health,
+          damage_taken: @damage_taken,
+          max_hp: max_hp,
+          current_hp: current_hp,
+          hp_percent: hp_percent,
+          has_template: has_template?,
+          created_at: @created_at,
+          ucs_position: ucs_position,
+          ucs_tierup: ucs_tierup,
+          ucs_smote: smote?
+        }
+      end
+
+      # Class methods for registry management
+      class << self
+        # Configure registry
+        def configure(max_size: 1000, auto_register: true)
+          @@max_size = max_size
+          @@auto_register = auto_register
+        end
+
+        # Check if auto-registration is enabled
+        def auto_register?
+          @@auto_register
+        end
+
+        # Get current registry size
+        def size
+          @@instances.size
+        end
+
+        # Check if registry is full
+        def full?
+          size >= @@max_size
+        end
+
+        # Register a new creature instance in the global registry
+        #
+        # Auto-cleanup triggers if registry is full, progressively removing
+        # older creatures (15min, 10min, 5min, 2min thresholds).
+        #
+        # @param name [String] Creature name for template lookup
+        # @param id [Integer, String] Unique creature ID
+        # @param noun [String, nil] Creature noun (short name)
+        # @return [CreatureInstance, nil] New instance or existing if already registered
+        # @note Returns nil if registry is full after cleanup attempts
+        def register(name, id, noun = nil)
+          return nil unless auto_register?
+          return @@instances[id.to_i] if @@instances[id.to_i] # Already exists
+
+          # Auto-cleanup old instances if registry is full - get progressively more aggressive
+          if full?
+            # Try 15 minutes, then 10, then 5, then 2, then give up
+            [900, 600, 300, 120].each do |age_threshold|
+              removed = cleanup_old(age_threshold)
+              puts "--- Auto-cleanup: removed #{removed} old creatures (threshold: #{age_threshold}s)" if removed > 0 && $creature_debug
+              break unless full?
+            end
+            return nil if full? # Still full after all cleanup attempts
+          end
+
+          instance = new(id, noun, name)
+          @@instances[id.to_i] = instance
+          puts "--- Creature registered: #{name} (#{id})" if $creature_debug
+          instance
+        end
+
+        # Lookup creature by ID
+        def [](id)
+          @@instances[id.to_i]
+        end
+
+        # Get all registered instances
+        def all
+          @@instances.values
+        end
+
+        # Clear all instances (session reset)
+        def clear
+          @@instances.clear
+        end
+
+        # Remove old instances (cleanup)
+        def cleanup_old(max_age_seconds = 600)
+          cutoff = Time.now - max_age_seconds
+          removed = @@instances.select { |_id, instance| instance.created_at < cutoff }.size
+          @@instances.reject! { |_id, instance| instance.created_at < cutoff }
+          removed
+        end
+
+        # Generate damage statistics report for HP analysis
+        #
+        # Analyzes damage data from all tracked creatures to estimate max HP.
+        # Fatal crit deaths are excluded by default (they skew max HP calculations).
+        #
+        # @param options [Hash] Report options
+        # @option options [Integer] :min_samples Minimum samples per creature (default 2)
+        # @option options [Symbol] :sort_by Sort order (:name, :max_damage, :avg_damage)
+        # @option options [Boolean] :include_fatal Include fatal crit deaths in analysis
+        # @return [Array<Hash>] Array of stat hashes with :name, :count, :min_damage, etc.
+        def damage_report(options = {})
+          min_samples = options[:min_samples] || 2
+          sort_by = options[:sort_by] || :name # :name, :max_damage, :avg_damage
+          include_fatal = options[:include_fatal] || false
+
+          # Group creatures by name and collect damage data
+          creature_data = {}
+          fatal_crit_data = {}
+
+          @@instances.values.each do |instance|
+            next if instance.damage_taken <= 0
+
+            name = instance.name
+
+            if instance.fatal_crit?
+              # Track fatal crit deaths separately
+              fatal_crit_data[name] ||= []
+              fatal_crit_data[name] << instance.damage_taken
+
+              # Include in main data only if requested
+              next unless include_fatal
+            end
+
+            creature_data[name] ||= []
+            creature_data[name] << instance.damage_taken
+          end
+
+          # Calculate statistics for each creature type
+          results = []
+          creature_data.each do |name, damages|
+            next if damages.size < min_samples
+
+            damages.sort!
+            count = damages.size
+            min_dmg = damages.first
+            max_dmg = damages.last
+            avg_dmg = damages.sum.to_f / count
+            median_dmg = if count.odd?
+                           damages[count / 2]
+                         else
+                           (damages[count / 2 - 1] + damages[count / 2]) / 2.0
+                         end
+
+            # Count fatal crit deaths for this creature type
+            fatal_count = fatal_crit_data[name]&.size || 0
+
+            results << {
+              name: name,
+              count: count,
+              min_damage: min_dmg,
+              max_damage: max_dmg,
+              avg_damage: avg_dmg.round(1),
+              median_damage: median_dmg.round(1),
+              fatal_crits: fatal_count
+            }
+          end
+
+          # Sort results
+          case sort_by
+          when :max_damage
+            results.sort_by! { |r| -r[:max_damage] }
+          when :avg_damage
+            results.sort_by! { |r| -r[:avg_damage] }
+          else
+            results.sort_by! { |r| r[:name] }
+          end
+
+          results
+        end
+
+        # Print formatted damage report
+        def print_damage_report(options = {})
+          results = damage_report(options)
+
+          if results.empty?
+            puts "No damage data available (need at least #{options[:min_samples] || 2} samples per creature)"
+            return
+          end
+
+          puts
+          puts "=" * 90
+          puts "CREATURE DAMAGE ANALYSIS REPORT"
+          puts "=" * 90
+          puts "Total creature instances tracked: #{@@instances.size}"
+          puts "Creature types with damage data: #{results.size}"
+          puts "Fatal crits excluded from analysis (they skew max HP calculations)"
+          puts
+
+          # Print header
+          puts "%-35s %5s %5s %5s %7s %7s %6s" % ["Creature Name", "Count", "Min", "Max", "Avg", "Median", "Fatal"]
+          puts "-" * 90
+
+          # Print data rows
+          results.each do |data|
+            puts "%-35s %5d %5d %5d %7.1f %7.1f %6d" % [
+              data[:name].length > 35 ? data[:name][0, 32] + "..." : data[:name],
+              data[:count],
+              data[:min_damage],
+              data[:max_damage],
+              data[:avg_damage],
+              data[:median_damage],
+              data[:fatal_crits]
+            ]
+          end
+
+          puts "-" * 90
+          puts "Max damage likely indicates creature's max HP (fatal crits excluded)"
+          puts "Fatal = number of creatures killed by fatal crits (not HP loss)"
+          puts "Use ;creature_report sort:max to sort by highest max damage"
+          puts "Use ;creature_report include_fatal to include fatal crit deaths in analysis"
+          puts
+        end
+      end
+    end
+
+    # Main Creature module - provides the public API
+    #
+    # This module serves as the primary interface for creature tracking.
+    # It delegates to CreatureInstance for runtime tracking and CreatureTemplate
+    # for static creature data.
+    #
+    # @example Basic usage
+    #   # Register a creature encountered in combat
+    #   creature = Creature.register("troll", 1234, "troll")
+    #
+    #   # Track damage and status
+    #   creature.add_damage(50)
+    #   creature.add_status(:stunned)
+    #
+    #   # Check creature state
+    #   puts creature.hp_percent      # => 75.0
+    #   puts creature.has_status?(:stunned)  # => true
+    #
+    #   # Get statistics
+    #   puts Creature.stats
+    #   Creature.print_damage_report
+    #
+    module Creature
+      # Lookup creature instance by ID
+      def self.[](id)
+        CreatureInstance[id]
+      end
+
+      # Register a new creature
+      def self.register(name, id, noun = nil)
+        CreatureInstance.register(name, id, noun)
+      end
+
+      # Configure the system
+      def self.configure(**options)
+        CreatureInstance.configure(**options)
+      end
+
+      # Get registry stats
+      def self.stats
+        {
+          instances: CreatureInstance.size,
+          templates: CreatureTemplate.all.size,
+          max_size: CreatureInstance.class_variable_get(:@@max_size),
+          auto_register: CreatureInstance.auto_register?
+        }
+      end
+
+      # Clear all instances
+      def self.clear
+        CreatureInstance.clear
+      end
+
+      # Cleanup old instances
+      def self.cleanup_old(**options)
+        CreatureInstance.cleanup_old(**options)
+      end
+
+      # Generate damage report for HP analysis
+      def self.damage_report(**options)
+        CreatureInstance.damage_report(**options)
+      end
+
+      # Print formatted damage report
+      def self.print_damage_report(**options)
+        CreatureInstance.print_damage_report(**options)
+      end
+
+      # Get all creature instances
+      def self.all
+        CreatureInstance.all
+      end
+    end
+
+    # Represents a creature's special ability
+    #
+    # @attr_accessor [String] name Ability name
+    # @attr_accessor [String] note Additional ability notes
+    class SpecialAbility
+      attr_accessor :name, :note
+
+      def initialize(data)
+        @name = data[:name]
+        @note = data[:note]
+      end
+    end
+
+    # Creature treasure/loot information
+    #
+    # Tracks what types of treasure a creature drops (coins, gems, boxes, skins).
+    class Treasure
+      # Initialize treasure data
+      #
+      # @param data [Hash] Treasure configuration
+      # @option data [Boolean] :coins Drops coins
+      # @option data [Boolean] :gems Drops gems
+      # @option data [Boolean] :boxes Drops lockboxes
+      # @option data [String] :skin Skinnable item
+      # @option data [Boolean] :blunt_required Requires blunt weapon to skin
+      def initialize(data = {})
+        @data = {
+          coins: false,
+          gems: false,
+          boxes: false,
+          skin: nil,
+          magic_items: nil,
+          other: nil,
+          blunt_required: false
+        }.merge(data)
+      end
+
+      def has_coins? = !!@data[:coins]
+      def has_gems? = !!@data[:gems]
+      def has_boxes? = !!@data[:boxes]
+      def has_skin? = !!@data[:skin]
+      def blunt_required? = !!@data[:blunt_required]
+
+      def to_h = @data
+    end
+
+    # Creature messaging and flavor text
+    #
+    # Stores creature-specific messages with placeholder support.
+    # Messages can contain placeholders like {Pronoun}, {direction}, {weapon}
+    # that are replaced at runtime.
+    class Messaging
+      attr_accessor :description, :arrival, :flee, :death,
+                    :spell_prep, :frenzy, :sympathy, :bite,
+                    :claw, :attack, :enrage, :mstrike
+
+      PLACEHOLDER_MAP = {
+        Pronoun: %w[He Her His It She],
+        pronoun: %w[he her his it she],
+        direction: %w[north south east west up down northeast northwest southeast southwest],
+        weapon: %w[RAW:.+?]
+      }
+
+      def initialize(data)
+        data.each do |key, value|
+          instance_variable_set("@#{key}", normalize(value))
+        end
+      end
+
+      def normalize(value)
+        if value.is_a?(Array)
+          value.map { |v| normalize(v) }
+        elsif value.is_a?(String) && value.match?(/\{[a-zA-Z_]+\}/)
+          phs = value.scan(/\{([a-zA-Z_]+)\}/).flatten.map(&:to_sym)
+          placeholders = phs.map { |ph| [ph, PLACEHOLDER_MAP[ph] || []] }.to_h
+          PlaceholderTemplate.new(value, placeholders)
+        else
+          value
+        end
+      end
+
+      def display(field, subs = {})
+        msg = send(field)
+        if msg.is_a?(Array)
+          msg.map { |m| m.is_a?(PlaceholderTemplate) ? m.to_display(subs) : m }.join("\n")
+        elsif msg.is_a?(PlaceholderTemplate)
+          msg.to_display(subs)
+        else
+          msg
+        end
+      end
+
+      def match(field, str)
+        msg = send(field)
+        if msg.is_a?(PlaceholderTemplate)
+          msg.match(str)
+        else
+          msg == str ? {} : nil
+        end
+      end
+    end
+
+    # Creature defensive attributes and resistances
+    #
+    # Stores defense values including armor, TD values for all spell circles,
+    # immunities, and special defensive abilities.
+    class DefenseAttributes
+      attr_accessor :asg, :melee, :ranged, :bolt, :udf,
+                    :bar_td, :cle_td, :emp_td, :pal_td,
+                    :ran_td, :sor_td, :wiz_td, :mje_td, :mne_td,
+                    :mjs_td, :mns_td, :mnm_td, :immunities,
+                    :defensive_spells, :defensive_abilities, :special_defenses
+
+      def initialize(data)
+        @asg = data[:asg]
+        @melee = parse_td(data[:melee])
+        @ranged = parse_td(data[:ranged])
+        @bolt = parse_td(data[:bolt])
+        @udf = parse_td(data[:udf])
+
+        %i[bar_td cle_td emp_td pal_td ran_td sor_td wiz_td mje_td mne_td mjs_td mns_td mnm_td].each do |key|
+          instance_variable_set("@#{key}", parse_td(data[key]))
+        end
+
+        @immunities = data[:immunities] || []
+        @defensive_spells = data[:defensive_spells] || []
+        @defensive_abilities = data[:defensive_abilities] || []
+        @special_defenses = data[:special_defenses] || []
+      end
+
+      private
+
+      def parse_td(val)
+        return nil if val.nil?
+        return val if val.is_a?(Range)
+
+        # Parse range strings without eval (safer)
+        if val.is_a?(String) && val.match?(/\A(\d+)\.\.(\d+)\z/)
+          start_val, end_val = val.split('..').map(&:to_i)
+          return start_val..end_val
+        end
+
+        val
+      end
+    end
+
+    # Template string with placeholder substitution
+    #
+    # Supports placeholders like {Pronoun}, {direction}, {weapon} that can be
+    # replaced with actual values or matched against game text.
+    # Implements regex caching for efficient repeated matching.
+    class PlaceholderTemplate
+      # Initialize a placeholder template
+      #
+      # @param template [String] Template string with {placeholder} markers
+      # @param placeholders [Hash] Map of placeholder names to possible values
+      def initialize(template, placeholders = {})
+        @template = template
+        @placeholders = placeholders
+        @regex_cache = {}
+      end
+
+      def template
+        @template
+      end
+
+      def placeholders
+        @placeholders
+      end
+
+      def to_display(subs = {})
+        line = @template.dup
+        @placeholders.each do |key, options|
+          value = subs[key] || options.sample || ""
+          line.gsub!("{#{key}}", value.to_s)
+        end
+        line
+      end
+
+      def to_regex(literals = {})
+        # Use cache to avoid rebuilding regex on every call
+        cache_key = literals.hash
+        return @regex_cache[cache_key] if @regex_cache[cache_key]
+
+        regex = if @template.is_a?(Array)
+                  regexes = @template.map { |t| self.class.new(t, @placeholders).to_regex(literals) }
+                  Regexp.union(*regexes)
+                else
+                  build_regex(literals)
+                end
+
+        @regex_cache[cache_key] = regex
+      end
+
+      private
+
+      def build_regex(literals)
+        pattern = Regexp.escape(@template)
+        @placeholders.each do |key, options|
+          if options == [:wildcard] || options.first&.start_with?('RAW:')
+            raw = options.first.start_with?('RAW:') ? options.first[4..-1] : options.first
+            pattern.gsub!(/\\\{#{key}\\\}/, raw)
+          else
+            regex_group = "(?<#{key}>#{(literals[key] || options).map { |opt| Regexp.escape(opt) }.join('|')})"
+            pattern.gsub!(/\\\{#{key}\\\}/, regex_group)
+          end
+        end
+        Regexp.new("#{pattern}")
+      end
+
+      def match(str, literals = {})
+        regex = to_regex(literals)
+        m = regex.match(str)
+        return nil unless m
+        m.names.any? ? m.named_captures.transform_keys(&:to_sym) : m.captures
+      end
+    end
+  end
+end
