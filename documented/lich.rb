@@ -1,8 +1,140 @@
-# Provides functionality for managing Lich settings and database interactions.
-# This module contains methods for handling mutexes, database operations, and user settings.
+require 'time'
+# Provides methods for database maintenance and settings management.
 # @example Using the Lich module
-#   Lich.init_db
+#   Lich.db_maint_set!(Time.now.utc.iso8601, "Maintenance completed")
 module Lich
+  # Returns the path to the database maintenance lock file.
+  # @return [String] The path to the maintenance lock file.
+  # @example
+  #   path = Lich.db_maint_lock_path
+  def Lich.db_maint_lock_path
+    File.join(DATA_DIR, 'lich.db3.maint.lock')
+  end
+
+  # Retrieves the last maintenance timestamp from the database.
+  # @return [String, nil] The last maintenance timestamp or nil if not found.
+  # @raise [SQLite3::BusyException] If the database is busy.
+  # @example
+  #   last_at = Lich.db_maint_last_at
+  def Lich.db_maint_last_at
+    ts = nil
+    begin
+      ts = Lich.db.get_first_value("SELECT value FROM lich_settings WHERE name='db_maint_last_at';")
+    rescue SQLite3::BusyException
+      sleep 0.1
+      retry
+    rescue => e
+      Lich.log "db_maint_last_at error: #{e}"
+    end
+    ts
+  end
+
+  # Sets the last maintenance timestamp and note in the database.
+  # @param iso_utc [String] The ISO 8601 formatted timestamp of the last maintenance.
+  # @param note [String] An optional note regarding the maintenance.
+  # @raise [SQLite3::BusyException] If the database is busy.
+  # @example
+  #   Lich.db_maint_set!(Time.now.utc.iso8601, "Maintenance completed")
+  def Lich.db_maint_set!(iso_utc, note = '')
+    begin
+      Lich.db.execute("CREATE TABLE IF NOT EXISTS lich_settings (name TEXT NOT NULL, value TEXT, PRIMARY KEY(name));")
+      Lich.db.execute("INSERT OR REPLACE INTO lich_settings(name, value) VALUES('db_maint_last_at', ?);", [iso_utc])
+      Lich.db.execute("INSERT OR REPLACE INTO lich_settings(name, value) VALUES('db_maint_last_note', ?);", [note.to_s.encode('UTF-8')])
+    rescue SQLite3::BusyException
+      sleep 0.1
+      retry
+    rescue => e
+      Lich.log "db_maint_set! error: #{e}"
+    end
+  end
+
+  # Checks if the database maintenance is due based on the last maintenance timestamp.
+  # @param months [Integer] The number of months to check against (default is 6).
+  # @return [Boolean] True if maintenance is due, false otherwise.
+  # @raise [StandardError] If there is an error parsing the timestamp.
+  # @example
+  #   due = Lich.db_maint_due?(12)
+  def Lich.db_maint_due?(months = 6)
+    last = Lich.db_maint_last_at
+    return true if last.nil? || last.empty?
+    begin
+      cutoff = Time.now.utc - (months * 30 * 24 * 60 * 60)
+      last_t = Time.parse(last) rescue nil
+      return true if last_t.nil?
+      last_t < cutoff
+    rescue => e
+      Lich.log "db_maint_due? parse error: #{e}"
+      true
+    end
+  end
+
+  # Performs a VACUUM operation on the database if maintenance is due.
+  # @param months [Integer] The number of months to check against (default is 6).
+  # @param lock_timeout_s [Float] The timeout for acquiring the lock (default is 0.5 seconds).
+  # @return [Symbol] A symbol indicating the result of the operation.
+  # @raise [StandardError] If there is an error during the VACUUM operation.
+  # @example
+  #   result = Lich.db_vacuum_if_due!(months: 12)
+  def Lich.db_vacuum_if_due!(months: 6, lock_timeout_s: 0.5)
+    return :skipped_recent unless Lich.db_maint_due?(months)
+
+    lock_path = Lich.db_maint_lock_path
+    File.open(lock_path, File::RDWR | File::CREAT, 0o644) do |f|
+      start = Time.now
+      got = false
+      begin
+        got = f.flock(File::LOCK_EX | File::LOCK_NB)
+      rescue => e
+        Lich.log "db_maint flock error: #{e}"
+      end
+      unless got
+        while (Time.now - start) < lock_timeout_s && !got
+          sleep 0.1
+          begin
+            got = f.flock(File::LOCK_EX | File::LOCK_NB)
+          rescue SystemCallError, IOError
+            # Transient error acquiring lock on some filesystems; back off and retry.
+            sleep 0.05
+          end
+        end
+      end
+      return :skipped_lock_held unless got
+
+      begin
+        page_count_before     = Lich.db.get_first_value('PRAGMA page_count;').to_i
+        freelist_count_before = Lich.db.get_first_value('PRAGMA freelist_count;').to_i
+      rescue SQLite3::BusyException
+        Lich.log "db_maint: busy reading stats; skipping"
+        return :skipped_busy
+      end
+
+      begin
+        mode = Lich.db.get_first_value('PRAGMA journal_mode;')
+        if mode && mode.to_s.strip.upcase == 'WAL'
+          Lich.db.execute('PRAGMA wal_checkpoint(TRUNCATE);')
+        end
+      rescue SQLite3::SQLException => e
+        Lich.log "db_maint: checkpoint skipped (#{e.class}: #{e.message})"
+      end
+
+      begin
+        Lich.db.execute('VACUUM;')
+      rescue SQLite3::BusyException => e
+        Lich.log "db_maint: VACUUM busy; skipping (#{e.message})"
+        return :skipped_busy
+      rescue => e
+        Lich.log "db_maint: VACUUM error: #{e}"
+        return :error
+      end
+
+      page_count_after     = Lich.db.get_first_value('PRAGMA page_count;').to_i rescue 0
+      freelist_count_after = Lich.db.get_first_value('PRAGMA freelist_count;').to_i rescue 0
+      note = "VACUUM ok pages #{page_count_before}->#{page_count_after}, free #{freelist_count_before}->#{freelist_count_after}"
+      Lich.db_maint_set!(Time.now.utc.iso8601, note)
+      :vacuum_ok
+    end
+  end
+
   @@hosts_file           = nil
   @@lich_db              = nil
   @@last_warn_deprecated = 0
@@ -21,15 +153,17 @@ module Lich
   @@track_layout_state   = nil # boolean
   @@debug_messaging      = nil # boolean
 
-  # Returns the database mutex for thread safety.
-  # @return [Mutex] The mutex used for database operations.
+  # Returns the mutex used for database operations.
+  # @return [Mutex] The mutex for database access.
+  # @example
+  #   mutex = Lich.db_mutex
   def self.db_mutex
     @@db_mutex
   end
 
-  # Locks the database mutex to ensure thread safety during operations.
-  # @raise [StandardError] If an error occurs while locking the mutex.
-  # @example Locking the mutex
+  # Locks the database mutex to ensure thread-safe access.
+  # @raise [StandardError] If there is an error while locking the mutex.
+  # @example
   #   Lich.mutex_lock
   def self.mutex_lock
     begin
@@ -40,9 +174,9 @@ module Lich
     end
   end
 
-  # Unlocks the database mutex after operations are complete.
-  # @raise [StandardError] If an error occurs while unlocking the mutex.
-  # @example Unlocking the mutex
+  # Unlocks the database mutex to allow other threads access.
+  # @raise [StandardError] If there is an error while unlocking the mutex.
+  # @example
   #   Lich.mutex_unlock
   def self.mutex_unlock
     begin
@@ -53,12 +187,6 @@ module Lich
     end
   end
 
-  # Handles calls to undefined methods, providing a warning for deprecated usage.
-  # @param arg1 [Symbol] The name of the method being called.
-  # @param arg2 [String] An optional second argument.
-  # @return [Object] The result of the Vars.method_missing call.
-  # @example Calling a missing method
-  #   Lich.some_missing_method
   def Lich.method_missing(arg1, arg2 = '')
     if (Time.now.to_i - @@last_warn_deprecated) > 300
       respond "--- warning: Lich.* variables will stop working in a future version of Lich.  Use Vars.* (offending script: #{Script.current.name || 'unknown'})"
@@ -67,11 +195,6 @@ module Lich
     Vars.method_missing(arg1, arg2)
   end
 
-  # Determines the location of the front-end based on the provided identifier.
-  # @param fe [String] The front-end identifier (e.g., 'wizard', 'stormfront').
-  # @return [String, nil] The location of the front-end or nil if not found.
-  # @example Seeking a front-end location
-  #   location = Lich.seek("wizard")
   def Lich.seek(fe)
     if fe =~ /wizard/
       return $wiz_fe_loc
@@ -81,16 +204,10 @@ module Lich
     pp "Landed in get_simu_launcher method"
   end
 
-  # Initializes and returns the SQLite3 database connection.
-  # @return [SQLite3::Database] The database connection.
   def Lich.db
     @@lich_db ||= SQLite3::Database.new("#{DATA_DIR}/lich.db3")
   end
 
-  # Initializes the database and creates necessary tables if they do not exist.
-  # @raise [SQLite3::BusyException] If the database is busy.
-  # @example Initializing the database
-  #   Lich.init_db
   def Lich.init_db
     begin
       Lich.db.execute("CREATE TABLE IF NOT EXISTS script_setting (script TEXT NOT NULL, name TEXT NOT NULL, value BLOB, PRIMARY KEY(script, name));")
@@ -116,21 +233,20 @@ module Lich
 
   # Logs a message to standard error with a timestamp.
   # @param msg [String] The message to log.
-  # @example Logging a message
+  # @example
   #   Lich.log("This is a log message")
   def Lich.log(msg)
     $stderr.puts "#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}: #{msg}"
   end
 
-  # Logs a deprecation warning for the use of old objects.
+  # Logs a deprecation warning for an old object.
   # @param old_object [String] The deprecated object name.
-  # @param new_object [String] The recommended replacement object name.
-  # @param script_location [String] The location of the script using the deprecated object.
-  # @param debug_log [Boolean] Whether to log the message for debugging.
-  # @param fe_log [Boolean] Whether to send the message to the front-end.
-  # @param limit_log [Boolean] Whether to limit logging of the same message.
-  # @return [nil]
-  # @example Logging a deprecation
+  # @param new_object [String] The new object name to use instead.
+  # @param script_location [String] The location of the script where the deprecation occurred.
+  # @param debug_log [Boolean] Whether to log the message for debugging (default is true).
+  # @param fe_log [Boolean] Whether to log the message for front-end (default is false).
+  # @param limit_log [Boolean] Whether to limit logging of the same message (default is true).
+  # @example
   #   Lich.deprecated("old_method", "new_method")
   def Lich.deprecated(old_object = '', new_object = '', script_location = "#{Script.current.name || 'unknown'}", debug_log: true, fe_log: false, limit_log: true)
     msg = "Deprecated call to #{old_object} used in #{script_location}. Please change to #{new_object} instead!"
@@ -141,8 +257,7 @@ module Lich
   end
 
   # Displays the log of deprecated messages.
-  # @return [nil]
-  # @example Showing the deprecated log
+  # @example
   #   Lich.show_deprecated_log
   def Lich.show_deprecated_log
     @@deprecated_log.each do |msg|
@@ -150,15 +265,11 @@ module Lich
     end
   end
 
-  # Displays a message box with the specified options.
-  # @param args [Hash] Options for the message box.
-  # @option args [String] :message The message to display.
-  # @option args [String] :title The title of the message box.
-  # @option args [Symbol] :buttons The buttons to display (:ok_cancel, :yes_no).
-  # @option args [Symbol] :icon The icon to display (:error, :question, :warning).
-  # @return [Symbol, nil] The response from the message box (:ok, :cancel, :yes, :no) or nil.
-  # @example Displaying a message box
-  #   response = Lich.msgbox(:message => "Hello, World!", :title => "Greeting")
+  # Displays a message box with the specified arguments.
+  # @param args [Hash] The arguments for the message box, including :message, :title, :buttons, and :icon.
+  # @return [Symbol, nil] The response from the message box.
+  # @example
+  #   response = Lich.msgbox(message: "Are you sure?", title: "Confirmation", buttons: :yes_no)
   def Lich.msgbox(args)
     if defined?(Win32)
       if args[:buttons] == :ok_cancel
@@ -232,8 +343,10 @@ module Lich
     end
   end
 
-  # Retrieves the command for launching the Simutronics game.
+  # Retrieves the command for launching the simulation based on the operating system.
   # @return [String, nil] The launcher command or nil if not found.
+  # @example
+  #   command = Lich.get_simu_launcher
   def Lich.get_simu_launcher
     if defined?(Win32)
       begin
@@ -257,8 +370,10 @@ module Lich
     end
   end
 
-  # Links the Lich application to the Simutronics game environment.
+  # Links the Lich application to the Simutronics Game Engine (SGE).
   # @return [Boolean] True if linked successfully, false otherwise.
+  # @example
+  #   linked = Lich.link_to_sge
   def Lich.link_to_sge
     if defined?(Win32)
       if Win32.admin?
@@ -327,8 +442,10 @@ module Lich
     end
   end
 
-  # Unlinks the Lich application from the Simutronics game environment.
+  # Unlinks the Lich application from the Simutronics Game Engine (SGE).
   # @return [Boolean] True if unlinked successfully, false otherwise.
+  # @example
+  #   unlinked = Lich.unlink_from_sge
   def Lich.unlink_from_sge
     if defined?(Win32)
       if Win32.admin?
@@ -379,8 +496,10 @@ module Lich
     end
   end
 
-  # Links the Lich application to the Simutronics Autolaunch environment.
+  # Links the Lich application to the Simutronics Auto Launcher (SAL).
   # @return [Boolean] True if linked successfully, false otherwise.
+  # @example
+  #   linked = Lich.link_to_sal
   def Lich.link_to_sal
     if defined?(Win32)
       if Win32.admin?
@@ -450,8 +569,10 @@ module Lich
     end
   end
 
-  # Unlinks the Lich application from the Simutronics Autolaunch environment.
+  # Unlinks the Lich application from the Simutronics Auto Launcher (SAL).
   # @return [Boolean] True if unlinked successfully, false otherwise.
+  # @example
+  #   unlinked = Lich.unlink_from_sal
   def Lich.unlink_from_sal
     if defined?(Win32)
       if Win32.admin?
@@ -502,8 +623,10 @@ module Lich
     end
   end
 
-  # Finds and returns the path to the hosts file used by the system.
+  # Retrieves the path to the hosts file used by the application.
   # @return [String, false] The path to the hosts file or false if not found.
+  # @example
+  #   path = Lich.hosts_file
   def Lich.hosts_file
     Lich.find_hosts_file if @@hosts_file.nil?
     return @@hosts_file
@@ -546,9 +669,11 @@ module Lich
     return (@@hosts_file = false)
   end
 
-  # Modifies the hosts file to include the specified game host.
-  # @param game_host [String] The game host to add to the hosts file.
-  # @return [Boolean] True if modified successfully, false otherwise.
+  # Modifies the hosts file to redirect the specified game host.
+  # @param game_host [String] The game host to redirect.
+  # @return [Boolean] True if the modification was successful, false otherwise.
+  # @example
+  #   success = Lich.modify_hosts("game.example.com")
   def Lich.modify_hosts(game_host)
     if Lich.hosts_file and File.exist?(Lich.hosts_file)
       at_exit { Lich.restore_hosts }
@@ -572,8 +697,7 @@ module Lich
   end
 
   # Restores the original hosts file from the backup.
-  # @return [nil]
-  # @example Restoring hosts
+  # @example
   #   Lich.restore_hosts
   def Lich.restore_hosts
     if Lich.hosts_file and File.exist?(Lich.hosts_file)
@@ -596,8 +720,11 @@ module Lich
   end
 
   # Checks if inventory boxes are enabled for the specified player.
-  # @param player_id [Integer] The ID of the player.
+  # @param player_id [Integer] The ID of the player to check.
   # @return [Boolean] True if inventory boxes are enabled, false otherwise.
+  # @raise [SQLite3::BusyException] If the database is busy.
+  # @example
+  #   enabled = Lich.inventory_boxes(12345)
   def Lich.inventory_boxes(player_id)
     begin
       v = Lich.db.get_first_value('SELECT player_id FROM enable_inventory_boxes WHERE player_id=?;', [player_id.to_i])
@@ -613,9 +740,11 @@ module Lich
   end
 
   # Sets the inventory boxes state for the specified player.
-  # @param player_id [Integer] The ID of the player.
+  # @param player_id [Integer] The ID of the player to set.
   # @param enabled [Boolean] Whether to enable or disable inventory boxes.
-  # @return [nil]
+  # @raise [SQLite3::BusyException] If the database is busy.
+  # @example
+  #   Lich.set_inventory_boxes(12345, true)
   def Lich.set_inventory_boxes(player_id, enabled)
     if enabled
       begin
@@ -635,8 +764,10 @@ module Lich
     nil
   end
 
-  # Retrieves the current Windows launch method setting.
-  # @return [String] The launch method setting.
+  # Retrieves the Windows launch method setting from the database.
+  # @return [String] The launch method or nil if not found.
+  # @example
+  #   method = Lich.win32_launch_method
   def Lich.win32_launch_method
     begin
       val = Lich.db.get_first_value("SELECT value FROM lich_settings WHERE name='win32_launch_method';")
@@ -647,9 +778,11 @@ module Lich
     val
   end
 
-  # Sets the Windows launch method setting.
-  # @param val [String] The new launch method setting.
-  # @return [nil]
+  # Sets the Windows launch method in the database.
+  # @param val [String] The launch method to set.
+  # @raise [SQLite3::BusyException] If the database is busy.
+  # @example
+  #   Lich.win32_launch_method = "method_name"
   def Lich.win32_launch_method=(val)
     begin
       Lich.db.execute("INSERT OR REPLACE INTO lich_settings(name,value) values('win32_launch_method',?);", [val.to_s.encode('UTF-8')])
@@ -660,9 +793,11 @@ module Lich
   end
 
   # Fixes the game host and port based on known mappings.
-  # @param gamehost [String] The original game host.
-  # @param gameport [Integer] The original game port.
+  # @param gamehost [String] The game host to fix.
+  # @param gameport [Integer] The game port to fix.
   # @return [Array] The fixed game host and port.
+  # @example
+  #   fixed = Lich.fix_game_host_port("gs-plat.simutronics.net", 10121)
   def Lich.fix_game_host_port(gamehost, gameport)
     if (gamehost == 'gs-plat.simutronics.net') and (gameport.to_i == 10121)
       gamehost = 'storm.gs4.game.play.net'
@@ -680,10 +815,12 @@ module Lich
     [gamehost, gameport]
   end
 
-  # Reverts the game host and port to their original values based on known mappings.
-  # @param gamehost [String] The current game host.
-  # @param gameport [Integer] The current game port.
-  # @return [Array] The reverted game host and port.
+  # Breaks the game host and port back to their original values based on known mappings.
+  # @param gamehost [String] The game host to break.
+  # @param gameport [Integer] The game port to break.
+  # @return [Array] The broken game host and port.
+  # @example
+  #   broken = Lich.break_game_host_port("storm.gs4.game.play.net", 10324)
   def Lich.break_game_host_port(gamehost, gameport)
     if (gamehost == 'storm.gs4.game.play.net') and (gameport.to_i == 10324)
       gamehost = 'gs4.simutronics.net'
@@ -701,10 +838,11 @@ module Lich
     [gamehost, gameport]
   end
 
-  # new feature GUI / internal settings states
 
-  # Retrieves the current debug messaging setting.
+  # Retrieves the debug messaging setting from the database.
   # @return [Boolean] True if debug messaging is enabled, false otherwise.
+  # @example
+  #   debug_enabled = Lich.debug_messaging
   def Lich.debug_messaging
     if @@debug_messaging.nil?
       begin
@@ -719,9 +857,11 @@ module Lich
     return @@debug_messaging
   end
 
-  # Sets the debug messaging setting.
-  # @param val [Boolean] The new debug messaging setting.
-  # @return [nil]
+  # Sets the debug messaging setting in the database.
+  # @param val [Boolean] The value to set for debug messaging.
+  # @raise [SQLite3::BusyException] If the database is busy.
+  # @example
+  #   Lich.debug_messaging = true
   def Lich.debug_messaging=(val)
     @@debug_messaging = (val.to_s =~ /on|true|yes/ ? true : false)
     begin
@@ -730,11 +870,12 @@ module Lich
       sleep 0.1
       retry
     end
-    return nil
   end
 
-  # Retrieves the current display Lich ID setting.
+  # Retrieves the display Lich ID setting from the database.
   # @return [Boolean] True if display Lich ID is enabled, false otherwise.
+  # @example
+  #   display_enabled = Lich.display_lichid
   def Lich.display_lichid
     if @@display_lichid.nil?
       begin
@@ -749,9 +890,11 @@ module Lich
     return @@display_lichid
   end
 
-  # Sets the display Lich ID setting.
-  # @param val [Boolean] The new display Lich ID setting.
-  # @return [nil]
+  # Sets the display Lich ID setting in the database.
+  # @param val [Boolean] The value to set for display Lich ID.
+  # @raise [SQLite3::BusyException] If the database is busy.
+  # @example
+  #   Lich.display_lichid = false
   def Lich.display_lichid=(val)
     @@display_lichid = (val.to_s =~ /on|true|yes/ ? true : false)
     begin
@@ -760,11 +903,12 @@ module Lich
       sleep 0.1
       retry
     end
-    return nil
   end
 
-  # Retrieves the current hide UID flag setting.
+  # Retrieves the hide UID flag setting from the database.
   # @return [Boolean] True if hide UID flag is enabled, false otherwise.
+  # @example
+  #   hide_enabled = Lich.hide_uid_flag
   def Lich.hide_uid_flag
     if @@hide_uid_flag.nil?
       begin
@@ -779,9 +923,11 @@ module Lich
     return @@hide_uid_flag
   end
 
-  # Sets the hide UID flag setting.
-  # @param val [Boolean] The new hide UID flag setting.
-  # @return [nil]
+  # Sets the hide UID flag setting in the database.
+  # @param val [Boolean] The value to set for hide UID flag.
+  # @raise [SQLite3::BusyException] If the database is busy.
+  # @example
+  #   Lich.hide_uid_flag = true
   def Lich.hide_uid_flag=(val)
     @@hide_uid_flag = (val.to_s =~ /on|true|yes/ ? true : false)
     begin
@@ -790,11 +936,12 @@ module Lich
       sleep 0.1
       retry
     end
-    return nil
   end
 
-  # Retrieves the version with which the core was last updated.
-  # @return [String] The version string.
+  # Retrieves the core updated with Lich version setting from the database.
+  # @return [String] The version or nil if not found.
+  # @example
+  #   version = Lich.core_updated_with_lich_version
   def Lich.core_updated_with_lich_version
     begin
       val = Lich.db.get_first_value("SELECT value FROM lich_settings WHERE name='core_updated_with_lich_version';")
@@ -805,9 +952,11 @@ module Lich
     return val.to_s
   end
 
-  # Sets the version with which the core was last updated.
-  # @param val [String] The new version string.
-  # @return [nil]
+  # Sets the core updated with Lich version in the database.
+  # @param val [String] The version to set.
+  # @raise [SQLite3::BusyException] If the database is busy.
+  # @example
+  #   Lich.core_updated_with_lich_version = "1.0.0"
   def Lich.core_updated_with_lich_version=(val)
     begin
       Lich.db.execute("INSERT OR REPLACE INTO lich_settings(name,value) values('core_updated_with_lich_version',?);", [val.to_s.encode('UTF-8')])
@@ -815,11 +964,12 @@ module Lich
       sleep 0.1
       retry
     end
-    return nil
   end
 
-  # Retrieves the current display UID setting.
+  # Retrieves the display UID setting from the database.
   # @return [Boolean] True if display UID is enabled, false otherwise.
+  # @example
+  #   display_enabled = Lich.display_uid
   def Lich.display_uid
     if @@display_uid.nil?
       begin
@@ -834,9 +984,11 @@ module Lich
     return @@display_uid
   end
 
-  # Sets the display UID setting.
-  # @param val [Boolean] The new display UID setting.
-  # @return [nil]
+  # Sets the display UID setting in the database.
+  # @param val [Boolean] The value to set for display UID.
+  # @raise [SQLite3::BusyException] If the database is busy.
+  # @example
+  #   Lich.display_uid = false
   def Lich.display_uid=(val)
     @@display_uid = (val.to_s =~ /on|true|yes/ ? true : false)
     begin
@@ -845,11 +997,12 @@ module Lich
       sleep 0.1
       retry
     end
-    return nil
   end
 
-  # Retrieves the current display exits setting.
+  # Retrieves the display exits setting from the database.
   # @return [Boolean] True if display exits is enabled, false otherwise.
+  # @example
+  #   display_enabled = Lich.display_exits
   def Lich.display_exits
     if @@display_exits.nil?
       begin
@@ -864,9 +1017,11 @@ module Lich
     return @@display_exits
   end
 
-  # Sets the display exits setting.
-  # @param val [Boolean] The new display exits setting.
-  # @return [nil]
+  # Sets the display exits setting in the database.
+  # @param val [Boolean] The value to set for display exits.
+  # @raise [SQLite3::BusyException] If the database is busy.
+  # @example
+  #   Lich.display_exits = true
   def Lich.display_exits=(val)
     @@display_exits = (val.to_s =~ /on|true|yes/ ? true : false)
     begin
@@ -875,11 +1030,12 @@ module Lich
       sleep 0.1
       retry
     end
-    return nil
   end
 
-  # Retrieves the current display string procs setting.
+  # Retrieves the display string procs setting from the database.
   # @return [Boolean] True if display string procs is enabled, false otherwise.
+  # @example
+  #   display_enabled = Lich.display_stringprocs
   def Lich.display_stringprocs
     if @@display_stringprocs.nil?
       begin
@@ -894,9 +1050,11 @@ module Lich
     return @@display_stringprocs
   end
 
-  # Sets the display string procs setting.
-  # @param val [Boolean] The new display string procs setting.
-  # @return [nil]
+  # Sets the display string procs setting in the database.
+  # @param val [Boolean] The value to set for display string procs.
+  # @raise [SQLite3::BusyException] If the database is busy.
+  # @example
+  #   Lich.display_stringprocs = true
   def Lich.display_stringprocs=(val)
     @@display_stringprocs = (val.to_s =~ /on|true|yes/ ? true : false)
     begin
@@ -905,11 +1063,12 @@ module Lich
       sleep 0.1
       retry
     end
-    return nil
   end
 
-  # Retrieves the current track autosort state setting.
+  # Retrieves the track autosort state setting from the database.
   # @return [Boolean] True if track autosort state is enabled, false otherwise.
+  # @example
+  #   track_enabled = Lich.track_autosort_state
   def Lich.track_autosort_state
     if @@track_autosort_state.nil?
       begin
@@ -923,9 +1082,11 @@ module Lich
     return @@track_autosort_state
   end
 
-  # Sets the track autosort state setting.
-  # @param val [Boolean] The new track autosort state setting.
-  # @return [nil]
+  # Sets the track autosort state setting in the database.
+  # @param val [Boolean] The value to set for track autosort state.
+  # @raise [SQLite3::BusyException] If the database is busy.
+  # @example
+  #   Lich.track_autosort_state = true
   def Lich.track_autosort_state=(val)
     @@track_autosort_state = (val.to_s =~ /on|true|yes/ ? true : false)
     begin
@@ -934,11 +1095,12 @@ module Lich
       sleep 0.1
       retry
     end
-    return nil
   end
 
-  # Retrieves the current track dark mode setting.
+  # Retrieves the track dark mode setting from the database.
   # @return [Boolean] True if track dark mode is enabled, false otherwise.
+  # @example
+  #   dark_mode_enabled = Lich.track_dark_mode
   def Lich.track_dark_mode
     if @@track_dark_mode.nil?
       begin
@@ -952,9 +1114,11 @@ module Lich
     return @@track_dark_mode
   end
 
-  # Sets the track dark mode setting.
-  # @param val [Boolean] The new track dark mode setting.
-  # @return [nil]
+  # Sets the track dark mode setting in the database.
+  # @param val [Boolean] The value to set for track dark mode.
+  # @raise [SQLite3::BusyException] If the database is busy.
+  # @example
+  #   Lich.track_dark_mode = true
   def Lich.track_dark_mode=(val)
     @@track_dark_mode = (val.to_s =~ /on|true|yes/ ? true : false)
     begin
@@ -963,11 +1127,12 @@ module Lich
       sleep 0.1
       retry
     end
-    return nil
   end
 
-  # Retrieves the current track layout state setting.
+  # Retrieves the track layout state setting from the database.
   # @return [Boolean] True if track layout state is enabled, false otherwise.
+  # @example
+  #   layout_enabled = Lich.track_layout_state
   def Lich.track_layout_state
     if @@track_layout_state.nil?
       begin
@@ -981,9 +1146,11 @@ module Lich
     return @@track_layout_state
   end
 
-  # Sets the track layout state setting.
-  # @param val [Boolean] The new track layout state setting.
-  # @return [nil]
+  # Sets the track layout state setting in the database.
+  # @param val [Boolean] The value to set for track layout state.
+  # @raise [SQLite3::BusyException] If the database is busy.
+  # @example
+  #   Lich.track_layout_state = true
   def Lich.track_layout_state=(val)
     @@track_layout_state = (val.to_s =~ /on|true|yes/ ? true : false)
     begin
@@ -992,6 +1159,5 @@ module Lich
       sleep 0.1
       retry
     end
-    return nil
   end
 end

@@ -1,7 +1,7 @@
 module Lich
   module Common
     # Represents a map in the Lich game.
-    # This class manages the rooms, their connections, and various properties.
+    # This class handles the management of rooms, their properties, and navigation.
     # @example Creating a new map
     #   map = Lich::Common::Map.new(1, "Room Title", "Room Description", ["path1", "path2"])
     class Map
@@ -30,81 +30,81 @@ module Lich
       # @param title [String] The title of the room.
       # @param description [String] A description of the room.
       # @param paths [Array<String>] The paths leading from this room.
-      # @param uid [Array<Integer>] Unique identifiers associated with the room (default: []).
-      # @param location [String, nil] The location of the room (default: nil).
-      # @param climate [String, nil] The climate of the room (default: nil).
-      # @param terrain [String, nil] The terrain of the room (default: nil).
-      # @param wayto [Hash<String, String>] Directions to other rooms (default: {}).
-      # @param timeto [Hash<String, Float>] Time to travel to other rooms (default: {}).
-      # @param image [String, nil] The image associated with the room (default: nil).
-      # @param image_coords [Array<Integer>, nil] Coordinates for the image (default: nil).
-      # @param tags [Array<String>] Tags associated with the room (default: []).
-      # @param check_location [String, nil] A check for the room's location (default: nil).
-      # @param unique_loot [Array<String>, nil] Unique loot available in the room (default: nil).
-      # @return [Map] The newly created map room.
+      # @param uid [Array<Integer>] The unique identifiers associated with this room.
+      # @param location [String, nil] The location of the room.
+      # @param climate [String, nil] The climate of the room.
+      # @param terrain [String, nil] The terrain type of the room.
+      # @param wayto [Hash<String, String>] The ways to other rooms.
+      # @param timeto [Hash<String, Float>] The time to travel to other rooms.
+      # @param image [String, nil] The image associated with the room.
+      # @param image_coords [Array<Integer>, nil] The coordinates for the image.
+      # @param tags [Array<String>] Tags associated with the room.
+      # @param check_location [String, nil] A check for the location.
+      # @param unique_loot [Array<String>, nil] Unique loot available in the room.
+      # @return [Map]
       def initialize(id, title, description, paths, uid = [], location = nil, climate = nil, terrain = nil, wayto = {}, timeto = {}, image = nil, image_coords = nil, tags = [], check_location = nil, unique_loot = nil)
         @id, @title, @description, @paths, @uid, @location, @climate, @terrain, @wayto, @timeto, @image, @image_coords, @tags, @check_location, @unique_loot = id, title, description, paths, uid, location, climate, terrain, wayto, timeto, image, image_coords, tags, check_location, unique_loot
         @@list[@id] = self
       end
 
-      # Retrieves the current room ID.
+      # Gets the current room ID.
       # @return [Integer] The ID of the current room.
-      # @example
-      #   current_id = Map.current_room_id
       def Map.current_room_id; return @@current_room_id; end
       # Sets the current room ID.
-      # @param id [Integer] The new current room ID.
-      # @return [Integer] The set current room ID.
-      def Map.current_room_id=(id); return @@current_room_id = id; end
-      # Checks if the map has been loaded.
+      # @param id [Integer] The ID to set as the current room.
+      def Map.current_room_id=(id); @@current_room_id = id; end
+      # Checks if the map is loaded.
       # @return [Boolean] True if the map is loaded, false otherwise.
       def Map.loaded; return @@loaded; end
-      # Retrieves the previous room ID.
-      # @return [Integer, nil] The ID of the previous room or nil if none.
+      # Gets the previous room ID.
+      # @return [Integer, nil] The ID of the previous room or nil if not set.
       def Map.previous_room_id; return @@previous_room_id; end
       # Sets the previous room ID.
-      # @param id [Integer] The new previous room ID.
-      # @return [Integer] The set previous room ID.
-      def Map.previous_room_id=(id); return @@previous_room_id = id; end
+      # @param id [Integer] The ID to set as the previous room.
+      def Map.previous_room_id=(id); @@previous_room_id = id; end
+      # Gets the fuzzy room ID.
+      # @return [Integer] The fuzzy room ID.
       def fuzzy_room_id; return @@current_room_id; end
-      # Checks if the current room is outside.
+      # Checks if the room is outside.
       # @return [Boolean] True if the room is outside, false otherwise.
       def outside?; return @paths.last =~ /^Obvious paths:/ ? true : false; end
-      # Converts the map room to an integer ID.
+      # Converts the room to an integer ID.
       # @return [Integer] The ID of the room.
       def to_i; return @id; end
 
-      # Converts the map room to a string representation.
-      # @return [String] A string describing the room.
+      # Converts the room to a string representation.
+      # @return [String] A string representation of the room.
       def to_s
         return "##{@id} (u#{@uid[-1]}):\n#{@title[-1]} (#{@location})\n#{@description[-1]}\n#{@paths[-1]}"
       end
 
-      # Inspects the map room, showing its instance variables.
-      # @return [String] A string representation of the room's instance variables.
+      # Inspects the room object.
+      # @return [String] A string containing the instance variables and their values.
       def inspect
         return self.instance_variables.collect { |var| var.to_s + "=" + self.instance_variable_get(var).inspect }.join("\n")
       end
 
+      # Gets the fuzzy room ID.
+      # @return [Integer] The fuzzy room ID.
       def Map.fuzzy_room_id; return @@fuzzy_room_id; end
 
-      # Retrieves a free ID for a new map room.
-      # @return [Integer] A unique ID for a new room.
+      # Gets a free ID for a new room.
+      # @return [Integer] A free ID for a new room.
       def Map.get_free_id
         Map.load unless @@loaded
         return @@list.compact.max_by { |r| r.id }.id + 1
       end
 
-      # Retrieves the list of all map rooms.
-      # @return [Array<Map>] An array of all map rooms.
+      # Gets the list of all rooms.
+      # @return [Array<Map>] An array of all rooms.
       def Map.list
         Map.load unless @@loaded
         return @@list
       end
 
-      # Retrieves a map room by its ID or UID.
-      # @param val [Integer, String] The room ID or UID.
-      # @return [Map, nil] The corresponding map room or nil if not found.
+      # Accesses a room by its ID or UID.
+      # @param val [Integer, String] The ID or UID of the room to access.
+      # @return [Map, nil] The room if found, nil otherwise.
       def Map.[](val)
         Map.load unless @@loaded
         if (val.is_a?(Integer) or val =~ /^[0-9]+$/)
@@ -119,8 +119,8 @@ module Lich
         end
       end
 
-      # Retrieves the current location based on the game state.
-      # @return [String, nil] The current location or nil if not determined.
+      # Gets the current location based on the game state.
+      # @return [String, nil] The current location or nil if not set.
       def Map.get_location
         unless XMLData.room_count == @@current_location_count
           if (script = Script.current)
@@ -142,21 +142,21 @@ module Lich
         return @@current_location
       end
 
-      # Retrieves the previous map room.
-      # @return [Map, nil] The previous map room or nil if none.
+      # Gets the previous room based on the previous room ID.
+      # @return [Map, nil] The previous room if found, nil otherwise.
       def Map.previous
         return nil if @@previous_room_id.nil?
         return @@list[@@previous_room_id]
       end
 
-      # Retrieves the previous room's UID.
-      # @return [Integer, nil] The UID of the previous room or nil if none.
+      # Gets the previous room UID.
+      # @return [Integer] The previous room UID.
       def Map.previous_uid
         return XMLData.previous_nav_rm
       end
 
-      # Retrieves the current map room.
-      # @return [Map, nil] The current map room or nil if not found.
+      # Gets the current room based on the game state.
+      # @return [Map, nil] The current room if found, nil otherwise.
       def Map.current # returns Map/Room
         Map.load unless @@loaded
         if Script.current
@@ -172,9 +172,9 @@ module Lich
         return Map.match_no_uid()
       end
 
-      # Sets the current map room.
+      # Sets the current room based on the given ID.
       # @param id [Integer] The ID of the room to set as current.
-      # @return [Map, nil] The newly set current map room or nil if not found.
+      # @return [Map, nil] The room if found, nil otherwise.
       def Map.set_current(id) # returns Map/Room
         @@previous_room_id = @@current_room_id if id != @@current_room_id;
         @@current_room_id  = id
@@ -182,9 +182,9 @@ module Lich
         return @@list[id]
       end
 
-      # Sets a fuzzy current room ID.
-      # @param id [Integer] The ID of the room to set as fuzzy current.
-      # @return [Map, nil] The newly set fuzzy current map room or nil if not found.
+      # Sets the fuzzy room based on the given ID.
+      # @param id [Integer] The ID of the room to set as fuzzy.
+      # @return [Map, nil] The room if found, nil otherwise.
       def Map.set_fuzzy(id) # returns Map/Room
         @@previous_room_id = @@current_room_id if !id.nil? and id != @@current_room_id;
         @@current_room_id  = id
@@ -192,17 +192,17 @@ module Lich
         return @@list[id]
       end
 
-      # Matches multiple room IDs to find a valid one.
-      # @param ids [Array<Integer>] The list of room IDs to match.
-      # @return [Integer, nil] The matched room ID or nil if none matched.
+      # Matches multiple room IDs based on the current room's wayto.
+      # @param ids [Array<Integer>] The array of IDs to match.
+      # @return [Integer, nil] The matched ID if found, nil otherwise.
       def Map.match_multi_ids(ids) # returns id
         matches = ids.find_all { |s| @@list[@@current_room_id].wayto.keys.include?(s.to_s) }
         return matches[0] if matches.size == 1;
         return nil;
       end
 
-      # Matches a room without a UID.
-      # @return [Map, nil] The matched map room or nil if none matched.
+      # Matches the current room based on the game state without a UID.
+      # @return [Map, nil] The matched room if found, nil otherwise.
       def Map.match_no_uid() # returns Map/Room
         if (script = Script.current)
           return Map.set_current(Map.match_current(script))
@@ -211,7 +211,7 @@ module Lich
         end
       end
 
-      # Matches the current room based on the game state.
+      # Matches the current room based on the script's state.
       # @param script [Script] The current script context.
       # @return [Integer] The ID of the matched room.
       def Map.match_current(script) # returns id
@@ -322,8 +322,8 @@ module Lich
         }
       end
 
-      # Matches a room using fuzzy logic.
-      # @return [Integer, nil] The matched room ID or nil if none matched.
+      # Matches a room based on fuzzy logic.
+      # @return [Integer, nil] The matched room ID if found, nil otherwise.
       def Map.match_fuzzy() # returns id
         @@fuzzy_room_mutex.synchronize {
           @@fuzzy_room_count = XMLData.room_count
@@ -367,8 +367,8 @@ module Lich
         }
       end
 
-      # Retrieves the current room or creates a new one if it doesn't exist.
-      # @return [Map, nil] The current or newly created map room.
+      # Gets the current room or creates a new one if it doesn't exist.
+      # @return [Map, nil] The current room if found, nil otherwise.
       def Map.current_or_new # returns Map/Room
         return nil unless Script.current
         Map.load unless @@loaded
@@ -457,7 +457,7 @@ module Lich
         return Map.set_current(id)
       end
 
-      # Retrieves unique locations from the map rooms.
+      # Gets the unique locations from all rooms.
       # @return [Array<String>] An array of unique locations.
       def Map.locations
         Map.load unless @@loaded
@@ -465,7 +465,7 @@ module Lich
         return @@locations.dup
       end
 
-      # Retrieves unique images from the map rooms.
+      # Gets the unique images from all rooms.
       # @return [Array<String>] An array of unique images.
       def Map.images
         Map.load unless @@loaded
@@ -473,7 +473,7 @@ module Lich
         return @@images.dup
       end
 
-      # Retrieves unique tags from the map rooms.
+      # Gets the unique tags from all rooms.
       # @return [Array<String>] An array of unique tags.
       def Map.tags
         Map.load unless @@loaded
@@ -481,18 +481,18 @@ module Lich
         return @@tags.dup
       end
 
-      # Retrieves the mapping of UIDs to room IDs.
+      # Gets the unique IDs mapping.
       # @return [Hash<Integer, Array<Integer>>] A hash mapping UIDs to room IDs.
       def Map.uids(); return @@uids; end
       def Map.uids_clear(); @@uids.clear; end
-      # Retrieves room IDs associated with a given UID.
+      # Gets the room IDs associated with a given UID.
       # @param n [Integer] The UID to look up.
       # @return [Array<Integer>] An array of room IDs associated with the UID.
       def Map.ids_from_uid(n); return (@@uids[n].nil? ? [] : @@uids[n]); end
 
-      # Adds a room ID to the list of IDs associated with a given UID.
-      # @param uid [Integer] The UID to associate with.
-      # @param id [Integer] The room ID to add.
+      # Adds a room ID to the UID mapping.
+      # @param uid [Integer] The UID to associate with a room ID.
+      # @param id [Integer] The room ID to associate with the UID.
       def Map.uids_add(uid, id)
         if !@@uids.key?(uid)
           @@uids[uid] = [id]
@@ -501,8 +501,7 @@ module Lich
         end
       end
 
-      # Loads UIDs from the current map rooms into the UID mapping.
-      # @return [void]
+      # Loads the UID mappings from the current list of rooms.
       def Map.load_uids()
         Map.load unless @@loaded
         @@uids.clear
@@ -511,8 +510,8 @@ module Lich
         }
       end
 
-      # Clears all map data and resets the state.
-      # @return [Boolean] True if cleared successfully.
+      # Clears the map data, including rooms and their properties.
+      # @return [Boolean] True if the clear operation was successful.
       def Map.clear
         @@load_mutex.synchronize {
           @@list.clear
@@ -526,15 +525,15 @@ module Lich
       end
 
       # Reloads the map data from the source.
-      # @return [Boolean] True if reloaded successfully.
+      # @return [Boolean] True if the reload operation was successful.
       def Map.reload
         Map.clear
         Map.load
       end
 
-      # Loads map data from files.
-      # @param filename [String, nil] The filename to load from (default: nil).
-      # @return [Boolean] True if loaded successfully.
+      # Loads the map data from files.
+      # @param filename [String, nil] The optional filename to load from.
+      # @return [Boolean] True if the load operation was successful.
       def Map.load(filename = nil)
         if filename.nil?
           file_list = Dir.entries("#{DATA_DIR}/#{XMLData.game}").find_all { |fn| fn =~ /^map\-[0-9]+\.(?:dat|xml|json)$/i }.collect { |fn| "#{DATA_DIR}/#{XMLData.game}/#{fn}" }.sort.reverse
@@ -564,8 +563,8 @@ module Lich
       end
 
       # Loads map data from a JSON file.
-      # @param filename [String, nil] The filename to load from (default: nil).
-      # @return [Boolean] True if loaded successfully.
+      # @param filename [String, nil] The optional filename to load from.
+      # @return [Boolean] True if the load operation was successful.
       def Map.load_json(filename = nil)
         @@load_mutex.synchronize {
           if @@loaded
@@ -619,8 +618,8 @@ module Lich
       end
 
       # Loads map data from a DAT file.
-      # @param filename [String, nil] The filename to load from (default: nil).
-      # @return [Boolean] True if loaded successfully.
+      # @param filename [String, nil] The optional filename to load from.
+      # @return [Boolean] True if the load operation was successful.
       def Map.load_dat(filename = nil)
         @@load_mutex.synchronize {
           if @@loaded
@@ -657,8 +656,8 @@ module Lich
       end
 
       # Loads map data from an XML file.
-      # @param filename [String] The filename to load from (default: "#{DATA_DIR}/#{XMLData.game}/map.xml").
-      # @return [Boolean] True if loaded successfully.
+      # @param filename [String] The filename to load from.
+      # @return [Boolean] True if the load operation was successful.
       def Map.load_xml(filename = "#{DATA_DIR}/#{XMLData.game}/map.xml")
         @@load_mutex.synchronize {
           if @@loaded
@@ -778,8 +777,8 @@ module Lich
       end
 
       # Saves the current map data to a DAT file.
-      # @param filename [String] The filename to save to (default: "#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.dat").
-      # @return [void]
+      # @param filename [String] The filename to save to.
+      # @return [Boolean] True if the save operation was successful.
       def Map.save(filename = "#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.dat")
         if File.exist?(filename)
           respond "--- Backing up map database"
@@ -804,6 +803,7 @@ module Lich
       end
 
       # Converts the map data to JSON format.
+      # @param args [Array] Additional arguments for JSON generation.
       # @return [String] The JSON representation of the map.
       def Map.to_json(*args)
         @@list.delete_if { |r| r.nil? }
@@ -811,6 +811,7 @@ module Lich
       end
 
       # Converts the room data to JSON format.
+      # @param args [Array] Additional arguments for JSON generation.
       # @return [String] The JSON representation of the room.
       def to_json(*_args)
         mapjson = ({
@@ -835,8 +836,8 @@ module Lich
       end
 
       # Saves the current map data to a JSON file.
-      # @param filename [String] The filename to save to (default: "#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.json").
-      # @return [void]
+      # @param filename [String] The filename to save to.
+      # @return [Boolean] True if the save operation was successful.
       def Map.save_json(filename = "#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.json")
         if File.exist?(filename)
           respond "File exists!  Backing it up before proceeding..."
@@ -859,8 +860,8 @@ module Lich
       end
 
       # Saves the current map data to an XML file.
-      # @param filename [String] The filename to save to (default: "#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.xml").
-      # @return [void]
+      # @param filename [String] The filename to save to.
+      # @return [Boolean] True if the save operation was successful.
       def Map.save_xml(filename = "#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.xml")
         if File.exist?(filename)
           respond "File exists!  Backing it up before proceeding..."
@@ -931,7 +932,7 @@ module Lich
       end
 
       # Estimates the time to travel through a series of rooms.
-      # @param array [Array<Integer>] The list of room IDs to estimate time for.
+      # @param array [Array<Integer>] The array of room IDs to estimate time for.
       # @return [Float] The estimated time to travel through the rooms.
       def Map.estimate_time(array)
         Map.load unless @@loaded
@@ -954,9 +955,8 @@ module Lich
         return time
       end
 
-      # Performs Dijkstra's algorithm to find the shortest path.
-      # @param source [Map, Integer] The source room or its ID.
-      # @param destination [Integer, nil] The destination room ID (default: nil).
+      # Performs Dijkstra's algorithm to find the shortest path from the source room.
+      # @param destination [Integer, nil] The optional destination room ID.
       # @return [Array<Integer>, Array<Float>] The previous room IDs and shortest distances.
       def Map.dijkstra(source, destination = nil)
         if source.is_a?(Map)
@@ -969,113 +969,138 @@ module Lich
         end
       end
 
-      # Performs Dijkstra's algorithm for the current room.
-      # @param destination [Integer, nil] The destination room ID (default: nil).
-      # @return [Array<Integer>, Array<Float>] The previous room IDs and shortest distances.
+      class MinHeap
+        def initialize
+          @heap = []
+        end
+
+        def push(priority, value)
+          @heap << [priority, value]
+          bubble_up(@heap.size - 1)
+        end
+
+        def pop
+          return nil if @heap.empty?
+          swap(0, @heap.size - 1)
+          min = @heap.pop
+          bubble_down(0) unless @heap.empty?
+          min
+        end
+
+        def empty?
+          @heap.empty?
+        end
+
+        private
+
+        def bubble_up(index)
+          while index > 0
+            parent_index = (index - 1) / 2
+            break if @heap[index][0] >= @heap[parent_index][0]
+
+            swap(index, parent_index)
+            index = parent_index
+          end
+        end
+
+        def bubble_down(index)
+          loop do
+            left_child = 2 * index + 1
+            right_child = 2 * index + 2
+            break if left_child >= @heap.size
+
+            min_child = if right_child >= @heap.size || @heap[left_child][0] < @heap[right_child][0]
+                          left_child
+                        else
+                          right_child
+                        end
+
+            break if @heap[index][0] <= @heap[min_child][0]
+
+            swap(index, min_child)
+            index = min_child
+          end
+        end
+
+        def swap(i, j)
+          @heap[i], @heap[j] = @heap[j], @heap[i]
+        end
+      end
+
       def dijkstra(destination = nil)
         begin
           Map.load unless @@loaded
           source = @id
-          visited = Array.new
-          shortest_distances = Array.new
-          previous = Array.new
-          pq = [source]
-          pq_push = proc { |val|
-            for i in 0...pq.size
-              if shortest_distances[val] <= shortest_distances[pq[i]]
-                pq.insert(i, val)
-                break
+          visited = {}
+          shortest_distances_hash = {}
+          previous_hash = {}
+
+          pq = MinHeap.new
+          pq.push(0, source)
+          shortest_distances_hash[source] = 0
+
+          # Early termination check
+          check_destination = proc { |v, dist|
+            case destination
+            when Integer
+              v == destination
+            when Array
+              destination.include?(v) && dist < 20
+            else
+              false
+            end
+          }
+
+          until pq.empty?
+            current_dist, v = pq.pop
+
+            next if visited[v]
+            break if check_destination.call(v, current_dist)
+
+            visited[v] = true
+
+            @@list[v].wayto.keys.each do |adj_room|
+              adj_room_i = adj_room.to_i
+              next if visited[adj_room_i]
+
+              edge_weight = if @@list[v].timeto[adj_room].is_a?(StringProc)
+                              @@list[v].timeto[adj_room].call
+                            else
+                              @@list[v].timeto[adj_room]
+                            end
+
+              next unless edge_weight
+
+              new_distance = current_dist + edge_weight
+
+              if !shortest_distances_hash[adj_room_i] || shortest_distances_hash[adj_room_i] > new_distance
+                shortest_distances_hash[adj_room_i] = new_distance
+                previous_hash[adj_room_i] = v
+                pq.push(new_distance, adj_room_i)
               end
             end
-            pq.push(val) if i.nil? or (i == pq.size - 1)
-          }
-          visited[source] = true
-          shortest_distances[source] = 0
-          if destination.nil?
-            until pq.size == 0
-              v = pq.shift
-              visited[v] = true
-              @@list[v].wayto.keys.each { |adj_room|
-                adj_room_i = adj_room.to_i
-                unless visited[adj_room_i]
-                  if @@list[v].timeto[adj_room].is_a?(StringProc)
-                    nd = @@list[v].timeto[adj_room].call
-                  else
-                    nd = @@list[v].timeto[adj_room]
-                  end
-                  if nd
-                    nd += shortest_distances[v]
-                    if shortest_distances[adj_room_i].nil? or (shortest_distances[adj_room_i] > nd)
-                      shortest_distances[adj_room_i] = nd
-                      previous[adj_room_i] = v
-                      pq_push.call(adj_room_i)
-                    end
-                  end
-                end
-              }
-            end
-          elsif destination.is_a?(Integer)
-            until pq.size == 0
-              v = pq.shift
-              break if v == destination
-              visited[v] = true
-              @@list[v].wayto.keys.each { |adj_room|
-                adj_room_i = adj_room.to_i
-                unless visited[adj_room_i]
-                  if @@list[v].timeto[adj_room].is_a?(StringProc)
-                    nd = @@list[v].timeto[adj_room].call
-                  else
-                    nd = @@list[v].timeto[adj_room]
-                  end
-                  if nd
-                    nd += shortest_distances[v]
-                    if shortest_distances[adj_room_i].nil? or (shortest_distances[adj_room_i] > nd)
-                      shortest_distances[adj_room_i] = nd
-                      previous[adj_room_i] = v
-                      pq_push.call(adj_room_i)
-                    end
-                  end
-                end
-              }
-            end
-          elsif destination.is_a?(Array)
-            dest_list = destination.collect { |dest| dest.to_i }
-            until pq.size == 0
-              v = pq.shift
-              break if dest_list.include?(v) and (shortest_distances[v] < 20)
-              visited[v] = true
-              @@list[v].wayto.keys.each { |adj_room|
-                adj_room_i = adj_room.to_i
-                unless visited[adj_room_i]
-                  if @@list[v].timeto[adj_room].is_a?(StringProc)
-                    nd = @@list[v].timeto[adj_room].call
-                  else
-                    nd = @@list[v].timeto[adj_room]
-                  end
-                  if nd
-                    nd += shortest_distances[v]
-                    if shortest_distances[adj_room_i].nil? or (shortest_distances[adj_room_i] > nd)
-                      shortest_distances[adj_room_i] = nd
-                      previous[adj_room_i] = v
-                      pq_push.call(adj_room_i)
-                    end
-                  end
-                end
-              }
-            end
           end
+
+          # Convert hashes back to arrays for backward compatibility
+          max_room_id = [previous_hash.keys.max, shortest_distances_hash.keys.max].compact.max || 0
+          previous = Array.new(max_room_id + 1)
+          shortest_distances = Array.new(max_room_id + 1)
+
+          previous_hash.each { |key, value| previous[key] = value }
+          shortest_distances_hash.each { |key, value| shortest_distances[key] = value }
+
           return previous, shortest_distances
-        rescue
-          echo "Map.dijkstra: error: #{$!}"
-          respond $!.backtrace
+        rescue => e
+          echo "Map.dijkstra: error: #{e}"
+          respond e.backtrace
           nil
         end
       end
 
-      # Finds a path from the source room to the destination.
-      # @param source [Map, Integer] The source room or its ID.
-      # @param destination [Map, Integer] The destination room or its ID.
-      # @return [Array<Integer>, nil] The path as an array of room IDs or nil if no path found.
+      # Finds the path from the source room to the destination room.
+      # @param source [Integer, Map] The source room ID or Map object.
+      # @param destination [Integer] The destination room ID.
+      # @return [Array<Integer>, nil] The path as an array of room IDs or nil if not found.
       def Map.findpath(source, destination)
         if source.is_a?(Map)
           source.path_to(destination)
@@ -1087,9 +1112,9 @@ module Lich
         end
       end
 
-      # Finds a path to a specified destination.
+      # Finds the path to a destination room.
       # @param destination [Integer] The destination room ID.
-      # @return [Array<Integer>, nil] The path as an array of room IDs or nil if no path found.
+      # @return [Array<Integer>, nil] The path as an array of room IDs or nil if not found.
       def path_to(destination)
         Map.load unless @@loaded
         destination = destination.to_i
@@ -1149,7 +1174,6 @@ module Lich
       end
     end
 
-    # deprecated
     class Map
       def desc; return @description; end
       def map_name; return @image; end

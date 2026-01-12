@@ -5,16 +5,13 @@ module Lich
     # @example Creating a bounty parser
     #   bounty_parser = Lich::Gemstone::Bounty::Parser.new(description)
     class Bounty
-      # Parses bounty descriptions to extract task information.
+      # Parses bounty descriptions to extract task details.
       # This class uses regular expressions to match various task types.
       # @example Parsing a bounty description
       #   result = Lich::Gemstone::Bounty::Parser.parse(description)
       class Parser
-        # Regular expression to match the 'Hmm' phrase in task descriptions.
         HMM_REGEX = /(?:Hmm, I've got a task here from .*?(?<town>[A-Z].*?)\..*?)?/
-        # Regular expression to match location descriptions in tasks.
         LOCATION_REGEX = /(?:on|in|near) (?:the\s+)?(?<area>[^.]+?)(?:\s+(?:near|between|under) (?<town>[^.]+))?/
-        # Regular expression to match various guard descriptions.
         GUARD_REGEX = Regexp.union(
           /one of the guardsmen just inside the (?<town>Ta'Illistim) City Gate/,
           /one of the guardsmen just inside the Sapphire Gate/,
@@ -27,13 +24,12 @@ module Lich
           /the sentry just outside (?<town>Kraken's Fall)/,
           /the purser of (?<town>River's Rest)/,
           /the tavernkeeper at Rawknuckle's Common House/,
-          /the captain of the (?<town>Contempt)/
+          /the captain of the (?<town>Contempt)/,
+          /the elderly guard in the East Guardtower/
         )
-        # Regular expression to match descriptions of concoctions required for tasks.
         CONCOCTION_REGEX = /is working on a concoction that requires (?:an?|some|several) (?<herb>[^.]+?) found [oi]n (?:the\s+)?(?<area>[^.]+?)(?:\s+(?:near|under|between) [^.]+)?\.  These samples must be in pristine condition\.  You have been tasked to retrieve (?<number>\d+) (?:more\s+)?samples?\./
         TASK_MAYBE_REGEX = /^(?:The taskmaster told you:  ")/
 
-        # A hash mapping task types to their corresponding regular expressions.
         TASK_MATCHERS = {
           :none                => /^You are not currently assigned a task/,
           :bandit_assignment   => /#{HMM_REGEX}It appears they have a bandit problem they'd like you to solve/,
@@ -90,19 +86,20 @@ module Lich
           ),
         }
 
-        # Initializes a new Parser instance with a description.
-        # @param description [String] The description of the bounty task.
-        # @return [Parser]
+        # Initializes a new Parser instance.
+        # @param description [String] The description of the bounty to parse.
         def initialize(description)
           @description = description
         end
 
+        # Returns the description of the bounty.
+        # @return [String] The bounty description.
         attr_reader :description
 
-        # Parses the description to identify the task type and details.
-        # @return [Hash, nil] A hash containing task type and details or nil if no match is found.
-        # @example Parsing a description
-        #   task_details = parser.parse
+        # Parses the bounty description and returns task details.
+        # @return [Hash, nil] A hash containing task details or nil if no match is found.
+        # @example
+        #   task_details = bounty_parser.parse
         def parse
           TASK_MATCHERS.each do |(task_type, regex)|
             if (md = regex.match(description))
@@ -117,11 +114,9 @@ module Lich
           end
         end
 
-        # Extracts task details from named captures.
+        # Extracts task details from the captured regex groups.
         # @param captures [Hash] The named captures from the regex match.
-        # @return [Hash] A hash containing task requirements and details.
-        # @example Extracting task details
-        #   details = task_details_from(captures)
+        # @return [Hash] A hash containing the task requirements.
         def task_details_from(captures)
           {
             requirements: {}
@@ -152,8 +147,6 @@ module Lich
         # Normalizes the creature name based on specific patterns.
         # @param raw_creature_name [String] The raw creature name to normalize.
         # @return [String] The normalized creature name.
-        # @example Normalizing a creature name
-        #   normalized_name = normalized_creature_name("some creature")
         def normalized_creature_name(raw_creature_name)
           case raw_creature_name
           when /^\w+ being$/
@@ -165,16 +158,16 @@ module Lich
           end
         end
 
-        # Determines the town based on captured town name and description context.
+        # Determines the town based on the captured town name and description.
         # @param captured_town [String] The town name captured from the regex.
         # @return [String] The determined town name.
-        # @example Determining a town
-        #   town = determine_town(captured_town)
         def determine_town(captured_town)
           if description =~ /the sentry just outside town\.$/
             "Kraken's Fall"
           elsif description =~ /the tavernkeeper at Rawknuckle's Common House\.$/
             "Cold River"
+          elsif description =~ /the elderly guard in the East Guardtower\.$/
+            "Mist Harbor"
           elsif description =~ /\b(?:Captain|Reiya|Ataum|Galeb)\b/ || description =~ /gem dealer in has received/
             # the latter is a temporary workaround because of an actual typo in the messaging
             # that should be removed if it is ever actually fixed
@@ -184,11 +177,9 @@ module Lich
           end
         end
 
-        # Parses a bounty description from a string.
-        # @param desc [String, nil] The description of the bounty task. Defaults to checkbounty.
-        # @return [Hash, nil] A hash containing task type and details or nil if no match is found.
-        # @example Parsing a bounty description
-        #   result = Lich::Gemstone::Bounty::Parser.parse(description)
+        # Parses a bounty description string and returns task details.
+        # @param desc [String, nil] The description of the bounty to parse. Defaults to checkbounty.
+        # @return [Hash, nil] A hash containing task details or nil if no match is found.
         def self.parse(desc = checkbounty)
           if desc&.empty?
             return

@@ -3,24 +3,29 @@ module Lich
     # Represents a skill in the DragonRealms game.
     # This class manages skill data, including experience and rank.
     # @example Creating a new skill
-    #   skill = Lich::DragonRealms::DRSkill.new("Evasion", 10, 100, 50)
+    #   skill = Lich::DragonRealms::DRSkill.new("Evasion", 10, 150, 75)
     class DRSkill
       @@skills_data ||= DR_SKILLS_DATA
       @@gained_skills ||= []
       @@start_time ||= Time.now
       @@list ||= []
       @@exp_modifiers ||= {}
+      # stored in seconds for easier manipulation with Time objects.  values will
+      #   always be divisible by 60 as we don't get any further precision then that,
+      #   and heuristically getting finer precision isn't worth the effort
+      @@rexp_stored ||= 0
+      @@rexp_usable ||= 0
+      @@rexp_refresh ||= 0
 
       attr_reader :name, :skillset
       attr_accessor :rank, :exp, :percent, :current, :baseline
 
       # Initializes a new DRSkill instance.
       # @param name [String] The name of the skill.
-      # @param rank [Integer] The earned ranks in the skill.
-      # @param exp [Integer] The experience points for the skill.
-      # @param percent [Integer] The percentage to the next rank (0 to 100).
+      # @param rank [Integer] The earned rank in the skill.
+      # @param exp [Integer] The experience points in the skill.
+      # @param percent [Integer] The percentage to the next rank from 0 to 100.
       # @return [DRSkill]
-      # @note Skills are capped at 34 ranks.
       def initialize(name, rank, exp, percent)
         @name = name # skill name like 'Evasion'
         @rank = rank.to_i # earned ranks in the skill
@@ -35,40 +40,28 @@ module Lich
       end
 
       # Resets the gained skills and start time.
-      # This method is used to clear the current session's skill data.
+      # @return [void]
       def self.reset
         @@gained_skills = []
         @@start_time = Time.now
         @@list.each { |skill| skill.baseline = skill.current }
       end
 
-      # Primarily used by `learned` script to track how long it's
-      # been tracking your experience gains this session.
-      # Returns the start time of the current session.
-      # @return [Time] The time when tracking started.
+      # Returns the start time of the skill tracking.
+      # @return [Time] The start time.
       def self.start_time
         @@start_time
       end
 
-      # List of skills that have increased their learning rates.
-      # Primarily used by `exp-monitor` script to echo which skills
-      # gained experience after you performed an action.
-      # Returns the list of skills that have increased their learning rates.
-      # @return [Array<Hash>] An array of hashes containing skill names and their experience changes.
+      # Returns the list of gained skills.
+      # @return [Array<Hash>] An array of hashes containing skill names and changes.
       def self.gained_skills
         @@gained_skills
       end
 
-      # Returns the amount of ranks that have been gained since
-      # the baseline was last reset. This allows you to track
-      # rank gain for a given play session.
-      #
-      # Note, don't confuse the 'exp' in this method name with DRSkill.getxp(..)
-      # which returns the current learning rate of the skill.
-      # Returns the amount of ranks gained since the last reset.
+      # Calculates the gained experience for a skill.
       # @param val [String] The name of the skill.
-      # @return [Float] The amount of ranks gained.
-      # @note This method should not be confused with DRSkill.getxp(..) which returns the current learning rate.
+      # @return [Float] The gained experience, rounded to two decimal places.
       def self.gained_exp(val)
         skill = self.find_skill(val)
         if skill
@@ -76,9 +69,7 @@ module Lich
         end
       end
 
-      # Updates DRStats.gained_skills if the learning rate increased.
-      # The original consumer of this data is the `exp-monitor` script.
-      # Updates gained skills if the learning rate increased.
+      # Handles the experience change for a skill and records it if increased.
       # @param name [String] The name of the skill.
       # @param new_exp [Integer] The new experience value.
       # @return [void]
@@ -102,7 +93,7 @@ module Lich
       # Updates the skill's rank, experience, and percentage.
       # @param name [String] The name of the skill.
       # @param rank [Integer] The new rank of the skill.
-      # @param exp [Integer] The new experience points.
+      # @param exp [Integer] The new experience points of the skill.
       # @param percent [Integer] The new percentage to the next rank.
       # @return [void]
       def self.update(name, rank, exp, percent)
@@ -120,35 +111,70 @@ module Lich
 
       # Updates the experience modifiers for a skill.
       # @param name [String] The name of the skill.
-      # @param rank [Integer] The new rank to set as a modifier.
+      # @param rank [Integer] The new rank modifier.
       # @return [void]
       def self.update_mods(name, rank)
         self.exp_modifiers[self.lookup_alias(name)] = rank.to_i
       end
 
-      # Returns the current experience modifiers.
+      # Updates the rested experience values.
+      # @param stored [String] The stored rested experience as a string.
+      # @param usable [String] The usable rested experience as a string.
+      # @param refresh [String] The refresh time for rested experience as a string.
+      # @return [void]
+      def self.update_rested_exp(stored, usable, refresh)
+        @@rexp_stored = self.convert_rexp_str_to_seconds(stored)
+        @@rexp_usable = self.convert_rexp_str_to_seconds(usable)
+        @@rexp_refresh = self.convert_rexp_str_to_seconds(refresh)
+      end
+
+      # Returns the experience modifiers for skills.
       # @return [Hash] A hash of skill names and their corresponding modifiers.
       def self.exp_modifiers
         @@exp_modifiers
       end
 
-      # Resets the experience of a skill to zero.
+      # Returns the stored rested experience.
+      # @return [Integer] The stored rested experience in seconds.
+      def self.rested_exp_stored
+        @@rexp_stored
+      end
+
+      # Returns the usable rested experience.
+      # @return [Integer] The usable rested experience in seconds.
+      def self.rested_exp_usable
+        @@rexp_usable
+      end
+
+      # Returns the refresh time for rested experience.
+      # @return [Integer] The refresh time in seconds.
+      def self.rested_exp_refresh
+        @@rexp_refresh
+      end
+
+      # Checks if rested experience is active.
+      # @return [Boolean] True if both stored and usable rested experience are greater than zero.
+      def self.rested_active?
+        @@rexp_stored > 0 && @@rexp_usable > 0
+      end
+
+      # Clears the experience of a specified skill.
       # @param val [String] The name of the skill.
       # @return [void]
       def self.clear_mind(val)
         self.find_skill(val).exp = 0
       end
 
-      # Returns the rank of a specified skill.
+      # Retrieves the rank of a specified skill.
       # @param val [String] The name of the skill.
       # @return [Integer] The rank of the skill.
       def self.getrank(val)
         self.find_skill(val).rank.to_i
       end
 
-      # Returns the modified rank of a specified skill, including any modifiers.
+      # Retrieves the modified rank of a specified skill, including modifiers.
       # @param val [String] The name of the skill.
-      # @return [Integer] The modified rank of the skill.
+      # @return [Integer, nil] The modified rank of the skill or nil if not found.
       def self.getmodrank(val)
         skill = self.find_skill(val)
         if skill
@@ -158,7 +184,7 @@ module Lich
         end
       end
 
-      # Returns the experience points of a specified skill.
+      # Retrieves the experience points of a specified skill.
       # @param val [String] The name of the skill.
       # @return [Integer] The experience points of the skill.
       def self.getxp(val)
@@ -166,21 +192,21 @@ module Lich
         skill.exp.to_i
       end
 
-      # Returns the percentage to the next rank for a specified skill.
+      # Retrieves the percentage to the next rank of a specified skill.
       # @param val [String] The name of the skill.
       # @return [Integer] The percentage to the next rank.
       def self.getpercent(val)
         self.find_skill(val).percent.to_i
       end
 
-      # Returns the skillset associated with a specified skill.
+      # Retrieves the skillset associated with a specified skill.
       # @param val [String] The name of the skill.
       # @return [String] The skillset of the skill.
       def self.getskillset(val)
         self.find_skill(val).skillset
       end
 
-      # Lists all skills with their ranks and experience.
+      # Lists all skills with their details.
       # @return [void]
       def self.listall
         @@list.each do |i|
@@ -194,28 +220,54 @@ module Lich
         @@list
       end
 
-      # Finds a skill by its name.
-      # @param val [String] The name of the skill.
+      # Finds a skill by its name or alias.
+      # @param val [String] The name or alias of the skill.
       # @return [DRSkill, nil] The DRSkill instance if found, nil otherwise.
       def self.find_skill(val)
         @@list.find { |data| data.name == self.lookup_alias(val) }
       end
 
-      # Some guilds rename skills, like Barbarians call "Primary Magic" as "Inner Fire".
-      # Given the canonical or colloquial name, this method returns the value
-      # that's usable with the other methods like `getxp(skill)` and `getrank(skill)`.
-      # Looks up the alias for a skill based on the guild.
+      # Converts a rested experience time string to seconds.
+      # @param time_string [String] The time string to convert.
+      # @return [Integer] The total seconds represented by the time string.
+      def self.convert_rexp_str_to_seconds(time_string)
+        # Handle empty, nil, or specific "zero" cases (less than a minute is zero because it can get stuck there)
+        return 0 if time_string.nil? ||
+                    time_string.to_s.strip.empty? ||
+                    time_string.include?("none") ||
+                    time_string.include?("less than a minute")
+
+        total_seconds = 0
+
+        # Extract hours and optional minutes (e.g., "4:38 hours" or "6 hour")
+        # Ruby's match returns a MatchData object or nil
+        if (hour_match = time_string.match(/(\d+):?(\d+)?\s*hour/))
+          hours = hour_match[1].to_i
+          total_seconds += hours * 60 * 60
+
+          # Handle the minutes part of a "4:38" format
+          if hour_match[2]
+            total_seconds += hour_match[2].to_i * 60
+            return total_seconds
+          end
+        end
+
+        # Extract standalone minutes (e.g., "38 minutes")
+        if (minute_match = time_string.match(/(\d+)\s*minute/))
+          total_seconds += minute_match[1].to_i * 60
+        end
+
+        total_seconds
+      end
+
+      # Looks up the alias for a skill based on the guild's skill aliases.
       # @param skill [String] The name of the skill.
-      # @return [String] The canonical name of the skill.
+      # @return [String] The resolved skill name or alias.
       def self.lookup_alias(skill)
         @@skills_data[:guild_skill_aliases][DRStats.guild][skill] || skill
       end
 
-      # This is an instance method, do not prefix with `self`.
-      # It is called from the initialize method (constructor).
-      # When it was defined as a class method then the initialize method
-      # complained that this method didn't yet exist.
-      # Looks up the skillset for an instance's skill.
+      # Looks up the skillset for a given skill.
       # @param skill [String] The name of the skill.
       # @return [String] The skillset associated with the skill.
       def lookup_skillset(skill)

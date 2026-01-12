@@ -1,31 +1,22 @@
-# handles instances of modules that are game dependent
 
-# Namespace for the Lich project
-# This module contains common functionality and game loaders.
-# @example Using the Lich module
-#   Lich::Common::GameLoader.load!
 module Lich
   module Common
-    # Handles instances of modules that are game dependent
-    # This module provides methods to load game-specific resources.
-    # @example Loading a game
+    # Module responsible for loading game-specific resources.
+    # @example Loading the Gemstone game
     #   Lich::Common::GameLoader.load!
     module GameLoader
-      # Loads common dependencies before game-specific loading.
+      # Loads common dependencies required for the game.
       # @return [void]
-      # @example Loading common dependencies
-      #   Lich::Common::GameLoader.common_before
       def self.common_before
         require File.join(LIB_DIR, 'common', 'log.rb')
         require File.join(LIB_DIR, 'common', 'spell.rb')
         require File.join(LIB_DIR, 'util', 'util.rb')
+        require File.join(LIB_DIR, 'util', 'textstripper.rb')
         require File.join(LIB_DIR, 'common', 'hmr.rb')
       end
 
-      # Loads game-specific resources for GemStone.
+      # Loads all resources specific to the Gemstone game.
       # @return [void]
-      # @example Loading GemStone resources
-      #   Lich::Common::GameLoader.gemstone
       def self.gemstone
         self.common_before
         require File.join(LIB_DIR, 'gemstone', 'sk.rb')
@@ -49,19 +40,21 @@ module Lich
         # require File.join(LIB_DIR, 'gemstone', 'character', 'disk.rb') # dup
         require File.join(LIB_DIR, 'gemstone', 'group.rb')
         require File.join(LIB_DIR, 'gemstone', 'critranks')
+        require File.join(LIB_DIR, 'gemstone', 'injured')
         require File.join(LIB_DIR, 'gemstone', 'wounds.rb')
         require File.join(LIB_DIR, 'gemstone', 'scars.rb')
         require File.join(LIB_DIR, 'gemstone', 'gift.rb')
+        # require File.join(LIB_DIR, 'gemstone', 'creature.rb') # combat tracker below loads this so not needed to preload
+        require File.join(LIB_DIR, 'gemstone', 'combat', 'tracker.rb')
         require File.join(LIB_DIR, 'gemstone', 'readylist.rb')
         require File.join(LIB_DIR, 'gemstone', 'stowlist.rb')
+        require File.join(LIB_DIR, 'gemstone', 'armaments.rb')
         ActiveSpell.watch!
         self.common_after
       end
 
-      # Loads game-specific resources for Dragon Realms.
+      # Loads all resources specific to the Dragon Realms game.
       # @return [void]
-      # @example Loading Dragon Realms resources
-      #   Lich::Common::GameLoader.dragon_realms
       def self.dragon_realms
         self.common_before
         require File.join(LIB_DIR, 'common', 'map', 'map_dr.rb')
@@ -71,17 +64,15 @@ module Lich
         self.common_after
       end
 
-      # Placeholder for actions to perform after loading.
+      # Placeholder for any cleanup or finalization after loading.
       # @return [void]
-      # @example Finalizing after loading
-      #   Lich::Common::GameLoader.common_after
       def self.common_after
         # nil
       end
 
-      # Loads the appropriate game based on XMLData.
+      # Loads the appropriate game based on the XMLData configuration.
       # @return [void]
-      # @raise [RuntimeError] if the game cannot be loaded
+      # @raise [RuntimeError] if the game cannot be loaded.
       # @example Loading a game
       #   Lich::Common::GameLoader.load!
       def self.load!

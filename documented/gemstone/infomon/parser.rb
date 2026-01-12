@@ -1,260 +1,370 @@
-# frozen_string_literal: true
 
 module Lich
-  # This module contains functionality related to the Gemstone project.
-  # @example Including the Gemstone module
-  #   include Lich::Gemstone
   module Gemstone
-    # This module handles information monitoring for the game.
-    # @example Including the Infomon module
-    #   include Lich::Gemstone::Infomon
     module Infomon
-      # this module handles all of the logic for parsing game lines that infomon depends on
       module Parser
         module Pattern
           # Regex patterns grouped for Info, Exp, Skill and PSM parsing - calls upsert_batch to reduce db impact
-          # Regex pattern for character race and profession.
-          # Used for parsing character information.
+          # Regex pattern for character race and profession
+          # @example
+          #   match = CharRaceProf.match("Name: John Doe Race: Human Profession: Warrior")
           CharRaceProf = /^Name:\s+(?<name>[A-z\s'-]+)\s+Race:\s+(?<race>[A-z]+|[A-z]+(?: |-)[A-z]+)\s+Profession:\s+(?<profession>[-A-z]+)/.freeze
-          # Regex pattern for character gender, age, experience, and level.
-          # Used for parsing character information.
+          # Regex pattern for character gender, age, experience, and level
+          # @example
+          #   match = CharGenderAgeExpLevel.match("Gender: Male Age: 30 Expr: 1000 Level: 10")
           CharGenderAgeExpLevel = /^Gender:\s+(?<gender>[A-z]+)\s+Age:\s+(?<age>[,0-9]+)\s+Expr:\s+(?<experience>[0-9,]+)\s+Level:\s+(?<level>[0-9]+)/.freeze
-          # Regex pattern for character statistics.
-          # Used for parsing character stats.
+          # Regex pattern for character stats
+          # @example
+          #   match = Stat.match("STR (STR): 10 (0) ... 10 (0)")
           Stat = /^\s*(?<stat>[A-z]+)\s\((?:STR|CON|DEX|AGI|DIS|AUR|LOG|INT|WIS|INF)\):\s+(?<value>[0-9]+)\s\((?<bonus>-?[0-9]+)\)\s+[.]{3}\s+(?<enhanced_value>\d+)\s+\((?<enhanced_bonus>-?\d+)\)/.freeze
-          # Regex pattern for the end of character statistics.
-          # Used for parsing character stats.
+          # Regex pattern for the end of character stats
+          # @example
+          #   match = StatEnd.match("Mana: 100 Silver: 500")
           StatEnd = /^Mana:\s+-?\d+\s+Silver:\s(?<silver>-?[\d,]+)$/.freeze
-          # Regex pattern for character fame.
-          # Used for parsing character fame information.
+          # Regex pattern for character fame
+          # @example
+          #   match = Fame.match("Level: 10 Fame: 1000")
           Fame = /^\s+Level: \d+\s+Fame: (?<fame>-?[\d,]+)$/.freeze # serves as ExprStart
-          # Regex pattern for real experience.
-          # Used for parsing experience information.
+          # Regex pattern for real experience
+          # @example
+          #   match = RealExp.match("Experience: 2000 Field Exp: 1500/3000")
           RealExp = %r{^\s+Experience: [\d,]+\s+Field Exp: (?<fxp_current>[\d,]+)/(?<fxp_max>[\d,]+)$}.freeze
-          # Regex pattern for ascension experience.
-          # Used for parsing ascension experience information.
+          # Regex pattern for ascension experience
+          # @example
+          #   match = AscExp.match("Ascension Exp: 500 Recent Deaths: 2")
           AscExp = /^\s+Ascension Exp: (?<ascension_experience>[\d,]+)\s+Recent Deaths: [\d,]+$/.freeze
-          # Regex pattern for total experience.
-          # Used for parsing total experience information.
+          # Regex pattern for total experience
+          # @example
+          #   match = TotalExp.match("Total Exp: 3000 Death's Sting: Light")
           TotalExp = /^\s+Total Exp: (?<total_experience>[\d,]+)\s+Death's Sting: (?<deaths_sting>None|Light|Moderate|Sharp|Harsh|Piercing|Crushing)$/.freeze
-          # Regex pattern for long-term experience.
-          # Used for parsing long-term experience information.
+          # Regex pattern for long-term experience
+          # @example
+          #   match = LTE.match("Long-Term Exp: 1000 Deeds: 5")
           LTE = /^\s+Long-Term Exp: (?<long_term_experience>[\d,]+)\s+Deeds: (?<deeds>\d+)$/.freeze
-          # Regex pattern for the end of experience parsing.
-          # Used for parsing experience information.
+          # Regex pattern for expression end
+          # @example
+          #   match = ExprEnd.match("Exp until lvl: -100")
           ExprEnd = /^\s+Exp (?:until lvl|to next TP): -?[\d,]+/.freeze
-          # Regex pattern for the start of skill parsing.
-          # Used for parsing skill information.
+          # Regex pattern for the start of skill information
+          # @example
+          #   match = SkillStart.match("Your current skill bonuses and ranks:")
           SkillStart = /^\s\w+\s\(at level \d+\), your current skill bonuses and ranks/.freeze
-          # Regex pattern for individual skills.
-          # Used for parsing skill information.
+          # Regex pattern for individual skills
+          # @example
+          #   match = Skill.match("Skill Name: 5 10")
           Skill = /^\s+(?<name>[[a-zA-Z]\s\-']+)\.+\|\s+(?<bonus>\d+)\s+(?<ranks>\d+)/.freeze
-          # Regex pattern for spell ranks.
-          # Used for parsing spell rank information.
+          # Regex pattern for spell ranks
+          # @example
+          #   match = SpellRanks.match("Spell Name: 3")
           SpellRanks = /^\s+(?<name>[\w\s\-']+)\.+\|\s+(?<rank>\d+).*$/.freeze
-          # Regex pattern for the end of skill parsing.
-          # Used for parsing skill information.
+          # Regex pattern for the end of skill information
+          # @example
+          #   match = SkillEnd.match("Training Points: 5 Phy 3 Mnt")
           SkillEnd = /^Training Points: \d+ Phy \d+ Mnt/.freeze
-          # Regex pattern for detecting skill goals.
-          # Used for parsing skill goal information.
+          # Regex pattern for detected skill goals
+          # @example
+          #   match = GoalsDetected.match("Skill goals updated!")
           GoalsDetected = /^Skill goals updated!$/.freeze
-          # Regex pattern for the end of skill goals.
-          # Used for parsing skill goal information.
+          # Regex pattern for the end of goals
+          # @example
+          #   match = GoalsEnded.match("Further information can be found in the FAQs.")
           GoalsEnded = /^Further information can be found in the FAQs\.$/.freeze
-          # Regex pattern for the start of PSM parsing.
-          # Used for parsing PSM information.
+          # Regex pattern for the start of PSM information
+          # @example
+          #   match = PSMStart.match("John, the following Ascension Abilities are available:")
           PSMStart = /^\w+, the following (?<cat>Ascension Abilities|Armor Specializations|Combat Maneuvers|Feats|Shield Specializations|Weapon Techniques) are available:$/.freeze
-          # Regex pattern for individual PSMs.
-          # Used for parsing PSM information.
+          # Regex pattern for PSM information
+          # @example
+          #   match = PSM.match("Ability Name: command 1/5")
           PSM = /^\s+(?<name>[A-z\s\-':]+)\s+(?<command>[a-z]+)\s+(?<ranks>\d+)\/(?<max>\d+).*$/.freeze
-          # Regex pattern for the end of PSM parsing.
-          # Used for parsing PSM information.
+          # Regex pattern for the end of PSM information
+          # @example
+          #   match = PSMEnd.match("   Subcategory: all")
           PSMEnd = /^   Subcategory: all$/.freeze
 
           # Single / low impact - single db write
-          # Regex pattern for level-up messages.
-          # Used for parsing level-up information.
+          # Regex pattern for level up information
+          # @example
+          #   match = Levelup.match("Stat (STR) : 10 +1 ... 10 (0)")
           Levelup = /^\s+(?<stat>\w+)\s+\(\w{3}\)\s+:\s+(?<value>\d+)\s+(?:\+1)\s+\.\.\.\s+(?<bonus>\d+)(?:\s+\+1)?$/.freeze
-          # Regex pattern for solo spells.
-          # Used for parsing spell information.
+          # Regex pattern for solo spells
+          # @example
+          #   match = SpellsSolo.match("Bard: 5")
           SpellsSolo = /^(?<name>Bard|Cleric|Empath|Minor (?:Elemental|Mental|Spiritual)|Major (?:Elemental|Mental|Spiritual)|Paladin|Ranger|Savant|Sorcerer|Wizard)(?: Base)?\.+(?<rank>\d+).*$/.freeze # from SPELL command
-          # Regex pattern for citizenship status.
-          # Used for parsing citizenship information.
+          # Regex pattern for citizenship information
+          # @example
+          #   match = Citizenship.match("You currently have citizenship in Town.")
           Citizenship = /^You currently have .*? citizenship in (?<town>.*)\.$/.freeze
-          # Regex pattern for no citizenship status.
-          # Used for parsing citizenship information.
+          # Regex pattern for no citizenship
+          # @example
+          #   match = NoCitizenship.match("You don't seem to have citizenship.")
           NoCitizenship = /^You don't seem to have citizenship\./.freeze
-          # Regex pattern for society membership.
-          # Used for parsing society information.
+          # Regex pattern for society information
+          # @example
+          #   match = Society.match("You are a Master in the Order of Voln.")
           Society = /^\s+You are a (?<standing>Master|member) (?:in|of) the (?<society>Order of Voln|Council of Light|Guardians of Sunfist)(?: at (?:rank|step) (?<rank>[0-9]+))?\.$/.freeze
-          # Regex pattern for no society membership.
-          # Used for parsing society information.
+          # Regex pattern for no society
+          # @example
+          #   match = NoSociety.match("You are not a member of any society at this time.")
           NoSociety = /^\s+You are not a member of any society at this time./.freeze
-          # Regex pattern for society steps.
-          # Used for parsing society information.
+          # Regex pattern for society step information
+          # @example
+          #   match = SocietyStep.match("Zarak traces the outline of a sigil into the air.")
           SocietyStep = /^(?:Zarak|Faylanna|Draelox|Marl|Vindar|Taryn|Meaha|Oxanna|Cyndelle) traces the outline of a sigil into the air before you and says|^The High Taskmaster looks at you, consults (?:her|his) notes, and then announces in a loud voice|^The monk concludes ceremoniously,/.freeze
-          # Regex pattern for joining a society.
-          # Used for parsing society information.
+          # Regex pattern for society join information
+          # @example
+          #   match = SocietyJoin.match("The Grandmaster says, 'Welcome to the Order' ")
           SocietyJoin = /^The Grandmaster says, "Welcome to the Order|^The Grandmaster says, "You are now a member of the Guardians of Sunfist|^The Grand Poohbah smiles broadly.  "Welcome to the Lodge," he cries/.freeze
-          # Regex pattern for resigning from a society.
-          # Used for parsing society information.
+          # Regex pattern for society resignation
+          # @example
+          #   match = SocietyResign.match("The Grandmaster says, 'I'm sorry to hear that.'")
           SocietyResign = /^The Grandmaster says, "I'm sorry to hear that.  You are no longer in our service.|^The Poohbah looks at you sternly.  "I had high hopes for you," he says, "but if this be your decision, so be it\.  I hereby strip you of membership|^The Grandmaster says, "I'm sorry to hear that,.+I wish you well with any of your future endeavors./.freeze
-          # Regex pattern for warcries.
-          # Used for parsing warcry information.
+          # Regex pattern for warcries
+          # @example
+          #   match = Warcries.match("Bertrandt's Bellow")
           Warcries = /^\s+(?<name>(?:Bertrandt's Bellow|Yertie's Yowlp|Gerrelle's Growl|Seanette's Shout|Carn's Cry|Horland's Holler))$/.freeze
-          # Regex pattern for no warcries.
-          # Used for parsing warcry information.
+          # Regex pattern for no warcries
+          # @example
+          #   match = NoWarcries.match("You must be an active member of the Warrior Guild to use this skill.")
           NoWarcries = /^You must be an active member of the Warrior Guild to use this skill\.$/.freeze
-          # Regex pattern for learning PSMs.
-          # Used for parsing PSM information.
+          # Regex pattern for learning PSM
+          # @example
+          #   match = LearnPSM.match("You have now achieved rank 1 of Ability Name, costing 10 points.")
           LearnPSM = /^You have now achieved rank (?<rank>\d+) of (?<psm>[A-z\s]+), costing \d+ (?<cat>[A-z]+) .*?points\.$/
           # Technique covers Specialization (Armor and Shield), Technique (Weapon), and Feat
-          # Regex pattern for learning techniques.
-          # Used for parsing technique information.
+          # Regex pattern for learning techniques
+          # @example
+          #   match = LearnTechnique.match("You have gained rank 1 of Technique Name.")
           LearnTechnique = /^\[You have (?:gained|increased to) rank (?<rank>\d+) of (?<cat>[A-z]+).*: (?<psm>[A-z\s\-':]+)\.\]$/.freeze
-          # Regex pattern for unlearning PSMs.
-          # Used for parsing PSM information.
+          # Regex pattern for unlearning PSM
+          # @example
+          #   match = UnlearnPSM.match("You decide to unlearn rank 1 of Ability Name.")
           UnlearnPSM = /^You decide to unlearn rank (?<rank>\d+) of (?<psm>[A-z\s\-':]+), regaining \d+ (?<cat>[A-z]+) .*?points\.$/
-          # Regex pattern for unlearning techniques.
-          # Used for parsing technique information.
+          # Regex pattern for unlearning techniques
+          # @example
+          #   match = UnlearnTechnique.match("You have decreased to rank 1 of Technique Name.")
           UnlearnTechnique = /^\[You have decreased to rank (?<rank>\d+) of (?<cat>[A-z]+).*: (?<psm>[A-z\s\-':]+)\.\]$/.freeze
-          # Regex pattern for losing techniques.
-          # Used for parsing technique information.
+          # Regex pattern for losing techniques
+          # @example
+          #   match = LostTechnique.match("You are no longer trained in Technique Name.")
           LostTechnique = /^\[You are no longer trained in (?<cat>[A-z]+) .*: (?<psm>[A-z\s\-':]+)\.\]$/.freeze
-          # Regex pattern for resources.
-          # Used for parsing resource information.
+          # Regex pattern for resources
+          # @example
+          #   match = Resource.match("Essence: 10000/50000 (Weekly) 20000/200000 (Total)")
           Resource = /^(?:Essence|Necrotic Energy|Lore Knowledge|Motes of Tranquility|Devotion|Nature's Grace|Grit|Luck Inspiration|Guile|Vitality): (?<weekly>[0-9,]+)\/50,000 \(Weekly\)\s+(?<total>[0-9,]+)\/200,000 \(Total\)$/.freeze
-          # Regex pattern for suffused resources.
-          # Used for parsing resource information.
+          # Regex pattern for suffused resources
+          # @example
+          #   match = Suffused.match("Suffused Essence: 5000")
           Suffused = /^Suffused (?<type>(?:Essence|Necrotic Energy|Lore Knowledge|Motes of Tranquility|Devotion|Nature's Grace|Grit|Luck Inspiration|Guile|Vitality)): (?<suffused>[0-9,]+)$/.freeze
-          # Regex pattern for Voln favor.
-          # Used for parsing resource information.
+          # Regex pattern for Voln favor
+          # @example
+          #   match = VolnFavor.match("Voln Favor: 100")
           VolnFavor = /^Voln Favor: (?<favor>[-\d,]+)$/.freeze
-          # Regex pattern for Covert Arts charges.
-          # Used for parsing resource information.
+          # Regex pattern for Covert Arts charges
+          # @example
+          #   match = CovertArtsCharges.match("Covert Arts Charges: 10/200")
           CovertArtsCharges = /^Covert Arts Charges: (?<charges>[-\d,]+)\/200$/.freeze
-          # Regex pattern for gigas artifact fragments.
-          # Used for parsing resource information.
+          # Regex pattern for shadow essence
+          # @example
+          #   match = ShadowEssence.match("Accumulated Shadow Essence: 5")
+          ShadowEssence = /^Accumulated Shadow (?:E|e)ssence: (?<essence>\d)/.freeze
+          # Regex pattern for gaining shadow essence
+          # @example
+          #   match = ShadowEssenceGain.match("You violently shatter the bond on the soul of the victim.")
+          ShadowEssenceGain = /^You violently shatter the bond on the soul of the .+\.  As you draw it into yourself, you manipulate the chaotic and broken life forces, forming shadow essence\./.freeze
+          # Regex pattern for shadow essence cap
+          # @example
+          #   match = ShadowEssenceCap.match("You begin to sacrifice your victim but immediately sense that it would overwhelm you.")
+          ShadowEssenceCap = /^You begin to sacrifice your victim but immediately sense that it would overwhelm you with shadow essence\./.freeze
+          # Regex pattern for sacrificing mana
+          # @example
+          #   match = SacrificeMana.match("You summon the shadow essence from the inner depths of your body.")
+          SacrificeMana = /^You summon the shadow essence from the inner depths of your body, surrounding yourself in a dark halo of power\.  You will the shadows into the eddies and currents of the flows of essence around you, spreading through them like blackened veins of corruption\.  The surroundings glow with silent anguish\.  Everything around you becomes pale and enervated with discoloration, like the life has been drained out of the world\.  There is a flood of power as you feel (?<amount>\d+) mana surge into you!$/.freeze
+          # Regex pattern for sacrificing channel
+          # @example
+          #   match = SacrificeChannel.match("Focusing on the bond to your animate.")
+          SacrificeChannel = /^Focusing on the bond to your animate, you force shadow essence into .+, leveraging its broken life forces\.  The backlash of sorcerous violence with the necrotic energy of the \w+ ends in the unnatural revitalization of its animate matter\.$/.freeze
+          # Regex pattern for sacrificing infest
+          # @example
+          #   match = SacrificeInfest.match("You unleash a dark haze of necrosis upon your unfortunate victim.")
+          SacrificeInfest = /^Mastering the struggle against the frantic rush of stolen power, you unleash a dark haze of necrosis upon your unfortunate victim\.  With a small smirk, you force the sickly currents of shadow essence from your body, commanding them to seek and infest .+\.$/.freeze
+          # Regex pattern for sacrificing fate
+          # @example
+          #   match = SacrificeFate.match("You close your eyes momentarily and visualize the strands of fate.")
+          SacrificeFate = /^You close your eyes momentarily and visualize the strands of fate that tie together the firmament\.  Identifying a susceptible star, you compel the shadow essence within you to corrupt it\.$/.freeze
+          # Regex pattern for sacrificing shift
+          # @example
+          #   match = SacrificeShift.match("Summoning the shadow essence within yourself.")
+          SacrificeShift = /^Summoning the shadow essence within yourself, you will it to bleed through the veil, exposing your mind to the vast abyss of cosmic horror\.  Countless possible gateways reveal themselves, with runes hidden in the fabric of reality\.$/.freeze
+          # Regex pattern for gigas artifact fragments
+          # @example
+          #   match = GigasArtifactFragments.match("You are carrying 5 gigas artifact fragments.")
           GigasArtifactFragments = /^You are carrying (?<gigas_artifact_fragments>[\d,]+) gigas artifact fragments?\.$/.freeze
-          # Regex pattern for redsteel marks.
-          # Used for parsing resource information.
+          # Regex pattern for redsteel marks
+          # @example
+          #   match = RedsteelMarks.match("You are carrying 10 redsteel marks.")
           RedsteelMarks = /^(?:\s* Redsteel Marks:           |You are carrying) (?<redsteel_marks>[\d,]+)(?: redsteel marks?\.)?$/.freeze
-          # Regex pattern for gemstone dust.
-          # Used for parsing resource information.
+          # Regex pattern for gemstone dust
+          # @example
+          #   match = GemstoneDust.match("You are carrying 20 Dust in your reserves.")
           GemstoneDust = /^You are carrying (?<gemstone_dust>[\d,]+) Dust in your reserves?\.$/.freeze
-          # Regex pattern for general tickets.
-          # Used for parsing resource information.
+          # Regex pattern for general tickets
+          # @example
+          #   match = TicketGeneral.match("General - 5 tickets.")
           TicketGeneral = /^\s*General - (?<tickets>[\d,]+) tickets?\.$/.freeze
-          # Regex pattern for blackscrip tickets.
-          # Used for parsing resource information.
+          # Regex pattern for blackscrip tickets
+          # @example
+          #   match = TicketBlackscrip.match("Troubled Waters - 3 blackscrip.")
           TicketBlackscrip = /^\s*Troubled Waters - (?<blackscrip>[\d,]+) blackscrip\.$/.freeze
-          # Regex pattern for bloodscrip tickets.
-          # Used for parsing resource information.
+          # Regex pattern for bloodscrip tickets
+          # @example
+          #   match = TicketBloodscrip.match("Duskruin Arena - 2 bloodscrip.")
           TicketBloodscrip = /^\s*Duskruin Arena - (?<bloodscrip>[\d,]+) bloodscrip\.$/.freeze
-          # Regex pattern for ethereal scrip tickets.
-          # Used for parsing resource information.
+          # Regex pattern for ethereal scrip tickets
+          # @example
+          #   match = TicketEtherealScrip.match("Reim - 4 ethereal scrip.")
           TicketEtherealScrip = /^\s*Reim - (?<ethereal_scrip>[\d,]+) ethereal scrip\.$/.freeze
-          # Regex pattern for soul shards.
-          # Used for parsing resource information.
+          # Regex pattern for soul shards
+          # @example
+          #   match = TicketSoulShards.match("Ebon Gate - 3 soul shards.")
           TicketSoulShards = /^\s*Ebon Gate - (?<soul_shards>[\d,]+) soul shards?\.$/.freeze
-          # Regex pattern for Raikhen tickets.
-          # Used for parsing resource information.
+          # Regex pattern for raikhen tickets
+          # @example
+          #   match = TicketRaikhen.match("Rumor Woods - 2 raikhen.")
           TicketRaikhen = /^\s*Rumor Woods - (?<raikhen>[\d,]+) raikhen\.$/.freeze
-          # Regex pattern for wealth in silver.
-          # Used for parsing wealth information.
+          # Regex pattern for gold
+          # @example
+          #   match = TicketGold.match("Gold - 100 gold.")
+          TicketGold = /^\s*Gold - (?<gold>[\d,]+) gold\.$/.freeze
+          # Regex pattern for wealth in silver
+          # @example
+          #   match = WealthSilver.match("You have 50 silver with you.")
           WealthSilver = /^You have (?<silver>no|[,\d]+|but one) silver with you\./.freeze
-          # Regex pattern for wealth in silver containers.
-          # Used for parsing wealth information.
+          # Regex pattern for wealth in silver stored in a container
+          # @example
+          #   match = WealthSilverContainer.match("You are carrying 100 silver stored within your backpack.")
           WealthSilverContainer = /^You are carrying (?<silver>[\d,]+) silver stored within your /.freeze
-          # Regex pattern for account name.
-          # Used for parsing account information.
+          # Regex pattern for account name
+          # @example
+          #   match = AccountName.match("Account Name:     user123")
           AccountName = /^Account Name:     (?<name>[\w\d\-\_]+)$/.freeze
-          # Regex pattern for account subscription type.
-          # Used for parsing account information.
+          # Regex pattern for account subscription type
+          # @example
+          #   match = AccountSubscription.match("Account Type:     Premium")
           AccountSubscription = /^Account Type:     (?<subscription>F2P|Standard|Premium|Platinum)(?: with Shattered)?(?: \(\w+\))?$/.freeze
-          # Regex pattern for the start of profile information.
-          # Used for parsing profile information.
+          # Regex pattern for the start of profile information
+          # @example
+          #   match = ProfileStart.match("PERSONAL INFORMATION")
           ProfileStart = /^PERSONAL INFORMATION$/.freeze
-          # Regex pattern for profile name.
-          # Used for parsing profile information.
+          # Regex pattern for profile name
+          # @example
+          #   match = ProfileName.match("Name: John Doe")
           ProfileName = /^Name: (?<name>[\w\s]+)$/.freeze
-          # Regex pattern for profile house.
-          # Used for parsing profile information.
+          # Regex pattern for profile house information
+          # @example
+          #   match = ProfileHouseCHE.match("House of House of the Argent Aspis")
           ProfileHouseCHE = /^[A-Za-z\- ]+? (?:of House of the |of House of |of House |of )(?<house>Argent Aspis|Rising Phoenix|Paupers|Arcane Masters|Brigatta|Twilight Hall|Silvergate Inn|Sovyn|Sylvanfair|Helden Hall|White Haven|Beacon Hall|Rone Academy|Willow Hall|Moonstone Abbey|Obsidian Tower|Cairnfang Manor)(?: Archive)?$|^(?<none>No House affiliation)$/.freeze
-          # Regex pattern for resigning from a house.
-          # Used for parsing profile information.
-          ResignCHE = /^(?:Once you have resigned from your House, you will be unable to rejoin without being inducted again by the |If you wish to renounce your membership in the |Before you can resign from the )(?<house>Argent Aspis|Rising Phoenix|Paupers|Arcane Masters|Brigatta|Twilight Hall|Silvergate Inn|Sovyn|Sylvanfair|Helden Hall|White Haven|Beacon Hall|Rone Academy|Willow Hall|Moonstone Abbey|Obsidian Tower|Cairnfang Manor)(?: Archive)?|^(?<none>The RESIGN command is for resigning your membership in a House, but you don't currently belong to any of the Cooperative Houses of Elanthia)\.$/.freeze
+          # Regex pattern for resigning from a house
+          # @example
+          #   match = ResignCHE.match("Once you have resigned from your House, you will be unable to rejoin.")
+          ResignCHE = /^(?:Once you have resigned from your House, you will be unable to rejoin without being inducted again by the |If you wish to renounce your membership in the |Before you can resign from the )(?:House |of House of the |of House of |of House |of )?(?<house>Argent Aspis|Rising Phoenix|Paupers|Arcane Masters|Brigatta|Twilight Hall|Silvergate Inn|Sovyn|Sylvanfair|Helden Hall|White Haven|Beacon Hall|Rone Academy|Willow Hall|Moonstone Abbey|Obsidian Tower|Cairnfang Manor)(?: Archive)?|^(?<none>The RESIGN command is for resigning your membership in a House, but you don't currently belong to any of the Cooperative Houses of Elanthia)\.$/.freeze
+          # Regex pattern for confirming resignation from a house
+          # @example
+          #   match = ResignConfirmCHE.match("[You have resigned from the House of Argent Aspis.]")
+          ResignConfirmCHE = /^\[You have resigned from the (?:House |of House of the |of House of |of House |of )?(?<house>Argent Aspis|Rising Phoenix|Paupers|Arcane Masters|Brigatta|Twilight Hall|Silvergate Inn|Sovyn|Sylvanfair|Helden Hall|White Haven|Beacon Hall|Rone Academy|Willow Hall|Moonstone Abbey|Obsidian Tower|Cairnfang Manor)(?: Archive)?\.\]$/.freeze
 
           # TODO: refactor / streamline?
-          # Regex pattern for active sleep status.
-          # Used for parsing sleep information.
+          # Regex pattern for active sleep state
+          # @example
+          #   match = SleepActive.match("Your mind goes completely blank.")
           SleepActive = /^Your mind goes completely blank\.$|^You close your eyes and slowly drift off to sleep\.$|^You slump to the ground and immediately fall asleep\.  You must have been exhausted!$|^That is impossible to do while unconscious$/.freeze
-          # Regex pattern for inactive sleep status.
-          # Used for parsing sleep information.
+          # Regex pattern for no active sleep state
+          # @example
+          #   match = SleepNoActive.match("You wake up from your slumber.")
           SleepNoActive = /^Your thoughts slowly come back to you as you find yourself lying on the ground\.  You must have been sleeping\.$|^You wake up from your slumber\.$|^You are awoken|^You awake|^You slowly come back to alertness and realize you must have been sleeping\.$/.freeze
-          # Regex pattern for active bind status.
-          # Used for parsing bind information.
+          # Regex pattern for active bind state
+          # @example
+          #   match = BindActive.match("An unseen force envelops you, restricting your movement.")
           BindActive = /^An unseen force (?:envelops|entangles) you, restricting (?:all|your) movement|^You are caught fast, the light of (?:Liabo|Lornon|Tilaok|Makiri|the moon) arresting your movements/.freeze
-          # Regex pattern for inactive bind status.
-          # Used for parsing bind information.
+          # Regex pattern for no active bind state
+          # @example
+          #   match = BindNoActive.match("The restricting force that envelops you dissolves away.")
           BindNoActive = /^The restricting force that envelops you dissolves away\.|^You shake off the immobilization that was restricting your movements!|^The restricting force enveloping you fades away\./.freeze
-          # Regex pattern for active silence status.
-          # Used for parsing silence information.
+          # Regex pattern for active silence state
+          # @example
+          #   match = SilenceActive.match("A pall of silence settles over you.")
           SilenceActive = /^A pall of silence settles over you\.|^The pall of silence settles more heavily over you\./.freeze
-          # Regex pattern for inactive silence status.
-          # Used for parsing silence information.
+          # Regex pattern for no active silence state
+          # @example
+          #   match = SilenceNoActive.match("The pall of silence leaves you.")
           SilenceNoActive = /^The pall of silence leaves you\./.freeze
-          # Regex pattern for active calm status.
-          # Used for parsing calm information.
+          # Regex pattern for active calm state
+          # @example
+          #   match = CalmActive.match("A calm washes over you.")
           CalmActive = /^A calm washes over you\./.freeze
-          # Regex pattern for inactive calm status.
-          # Used for parsing calm information.
+          # Regex pattern for no active calm state
+          # @example
+          #   match = CalmNoActive.match("You are enraged by an attack!")
           CalmNoActive = /^You are enraged by .*? attack!|^The feeling of calm leaves you\./.freeze
-          # Regex pattern for active cutthroat status.
-          # Used for parsing cutthroat information.
+          # Regex pattern for active cutthroat state
+          # @example
+          #   match = CutthroatActive.match("slices deep into your vocal cords!")
           CutthroatActive = /slices deep into your vocal cords!$|^All you manage to do is cough up some blood\.$/.freeze
-          # Regex pattern for inactive cutthroat status.
-          # Used for parsing cutthroat information.
+          # Regex pattern for no active cutthroat state
+          # @example
+          #   match = CutthroatNoActive.match("The horrible pain in your vocal cords subsides.")
           CutthroatNoActive = /^\s*The horrible pain in your vocal cords subsides as you spit out the last of the blood clogging your throat\.$|^That tingles, but there are no head injuries to repair\.$/.freeze
-          # Regex pattern for the start of thorn poison status.
-          # Used for parsing thorn poison information.
+          # Regex pattern for starting thorn poison
+          # @example
+          #   match = ThornPoisonStart.match("One of the vines lashes out at you, driving a thorn into your skin!")
           ThornPoisonStart = /^One of the vines surrounding .*? lashes out at you, driving a thorn into your skin!  You feel poison coursing through your veins\.$/.freeze
-          # Regex pattern for thorn poison progression status.
-          # Used for parsing thorn poison information.
+          # Regex pattern for thorn poison progression
+          # @example
+          #   match = ThornPoisonProgression.match("You begin to feel a strange fatigue, spreading throughout your body.")
           ThornPoisonProgression = /^You begin to feel a strange fatigue, spreading throughout your body\.$|^The strange lassitude is growing worse, making it difficult to keep up with any strenuous activities\.$|^You find yourself gradually slowing down, your muscles trembling with fatigue\.$|^It\'s getting increasingly difficult to move. It feels almost as if the air itself is growing thick as molasses\.$|^No longer able to fight this odd paralysis, you collapse to the ground, as limp as an old washrag\.$/.freeze
-          # Regex pattern for thorn poison deprogression status.
-          # Used for parsing thorn poison information.
+          # Regex pattern for thorn poison deprogression
+          # @example
+          #   match = ThornPoisonDeprogression.match("With a shaky gasp and trembling muscles, you regain at least some small ability to move.")
           ThornPoisonDeprogression = /^With a shaky gasp and trembling muscles, you regain at least some small ability to move, however slowly\.$|Although you can\'t seem to move as quickly as you usually can, you\'re feeling better than you were just moments ago\.$|^Fine coordination is difficult, but at least you can move at something close to your normal speed again\.$|^While you\'re still a bit shaky, your muscles are responding better than they were\.$/.freeze
-          # Regex pattern for the end of thorn poison status.
-          # Used for parsing thorn poison information.
+          # Regex pattern for ending thorn poison
+          # @example
+          #   match = ThornPoisonEnd.match("Your body begins to respond normally again.")
           ThornPoisonEnd = /^Your body begins to respond normally again\.$|^Your skin takes on a more pinkish tint\.$/.freeze
 
           # Adding spell regexes.  Does not save to infomon.db.  Used by Spell and by ActiveSpells
-          # Regex pattern for spell up messages.
-          # Used for parsing spell information.
+          # Regex pattern for spell up messages
+          # @example
+          #   match = SpellUpMsgs.match("Your spells renew.")
           SpellUpMsgs = /^#{Lich::Common::Spell.upmsgs.join('$|^')}$/o.freeze
-          # Regex pattern for spell down messages.
-          # Used for parsing spell information.
+          # Regex pattern for spell down messages
+          # @example
+          #   match = SpellDnMsgs.match("Your spells fade.")
           SpellDnMsgs = /^#{Lich::Common::Spell.dnmsgs.join('$|^')}$/o.freeze
-          # Regex pattern for renewed spellsong messages.
-          # Used for parsing spellsong information.
+          # Regex pattern for renewed spellsong
+          # @example
+          #   match = SpellsongRenewed.match("Your songs renew.")
           SpellsongRenewed = /^Your songs? renews?/.freeze
 
+          # Union of all regex patterns for parsing
+          # @example
+          #   match = All.match("Your character information...")
           All = Regexp.union(CharRaceProf, CharGenderAgeExpLevel, Stat, StatEnd, Fame, RealExp, AscExp, TotalExp, LTE,
                              ExprEnd, SkillStart, Skill, SpellRanks, SkillEnd, PSMStart, PSM, PSMEnd, Levelup, SpellsSolo,
                              Citizenship, NoCitizenship, Society, NoSociety, SleepActive, SleepNoActive, BindActive,
                              BindNoActive, SilenceActive, SilenceNoActive, CalmActive, CalmNoActive, CutthroatActive,
                              CutthroatNoActive, SpellUpMsgs, SpellDnMsgs, Warcries, NoWarcries, SocietyJoin, SocietyStep,
                              SocietyResign, LearnPSM, UnlearnPSM, LostTechnique, LearnTechnique, UnlearnTechnique,
-                             Resource, Suffused, VolnFavor, GigasArtifactFragments, RedsteelMarks, TicketGeneral,
+                             Resource, Suffused, VolnFavor, GigasArtifactFragments, RedsteelMarks, TicketGeneral, TicketGold,
                              TicketBlackscrip, TicketBloodscrip, TicketEtherealScrip, TicketSoulShards, TicketRaikhen,
                              WealthSilver, WealthSilverContainer, GoalsDetected, GoalsEnded, SpellsongRenewed,
                              ThornPoisonStart, ThornPoisonProgression, ThornPoisonDeprogression, ThornPoisonEnd, CovertArtsCharges,
-                             AccountName, AccountSubscription, ProfileStart, ProfileName, ProfileHouseCHE, ResignCHE, GemstoneDust)
+                             AccountName, AccountSubscription, ProfileStart, ProfileName, ProfileHouseCHE, ResignCHE, ResignConfirmCHE,
+                             ShadowEssence, ShadowEssenceGain, ShadowEssenceCap, SacrificeMana, SacrificeChannel, SacrificeInfest,
+                             SacrificeFate, SacrificeShift, GemstoneDust)
         end
 
-        # This module manages the state of the parser.
-        # @example Setting the state
+        # Module for managing parser state
+        # @example
         #   State.set(State::Goals)
         module State
           @state = :ready
@@ -262,12 +372,12 @@ module Lich
           Profile = :profile
           Ready = :ready
 
-          # Sets the current state of the parser.
-          # @param state [Symbol] The state to set.
+          # Sets the current state
+          # @param state [Symbol] The state to set
           # @return [void]
-          # @raise [RuntimeError] if the state is invalid.
-          # @example Setting the state
-          #   State.set(State::Goals)
+          # @raise [RuntimeError] if the state is invalid
+          # @example
+          #   State.set(State::Profile)
           def self.set(state)
             case state
             when Goals, Profile
@@ -279,16 +389,20 @@ module Lich
             @state = state
           end
 
-          # Retrieves the current state of the parser.
-          # @return [Symbol] The current state.
+          # Gets the current state
+          # @return [Symbol] The current state
+          # @example
+          #   current_state = State.get
           def self.get
             @state
           end
         end
 
-        # Finds the category based on the given string.
-        # @param category [String] The category string to match.
-        # @return [String] The matched category.
+        # Finds the category based on the given string
+        # @param category [String] The category string to match
+        # @return [String] The matched category
+        # @example
+        #   category = find_cat("Armor")
         def self.find_cat(category)
           case category
           when /Armor/
@@ -306,12 +420,12 @@ module Lich
           end
         end
 
-        # Parses a line of input and updates the state accordingly.
-        # @param line [String] The line to parse.
-        # @return [Symbol] The result of the parsing operation.
-        # @raise [StandardError] if an error occurs during parsing.
-        # @example Parsing a line
-        #   result = Parser.parse("Your character has leveled up!")
+        # Parses a line of input and updates the state accordingly
+        # @param line [String] The line to parse
+        # @return [Symbol] The result of the parsing
+        # @raise [StandardError] if an error occurs during parsing
+        # @example
+        #   result = parse("Your character information...")
         def self.parse(line)
           # O(1) vs O(N)
           return :noop unless line =~ Pattern::All
@@ -542,6 +656,34 @@ module Lich
               match = Regexp.last_match
               Infomon.set('resources.covert_arts_charges', match[:charges].delete(',').to_i)
               :ok
+            when Pattern::ShadowEssence
+              match = Regexp.last_match
+              Infomon.set('resources.shadow_essence', match[:essence].to_i.clamp(0, 5))
+              :ok
+            when Pattern::ShadowEssenceGain
+              Infomon.set('resources.shadow_essence', (Lich::Resources.shadow_essence.to_i + 1).clamp(0, 5))
+              :ok
+            when Pattern::ShadowEssenceCap
+              Infomon.set('resources.shadow_essence', 5)
+              :ok
+            when Pattern::SacrificeMana
+              match = Regexp.last_match
+              # Calculate effective mana control ranks
+              effective_mana_ranks = [Skills.elemental_mana_control, Skills.spirit_mana_control].max + [Skills.elemental_mana_control, Skills.spirit_mana_control].min / 2
+
+              # Base mana for first essence
+              base_mana = Char.level + 20
+
+              # Mana per essence after
+              mana_per_essence = (base_mana * (0.5 + effective_mana_ranks.clamp(0, 60) / 120))
+
+              # Estimate of essences used
+              essences_used = (((match[:amount].to_i - mana_per_essence) / (base_mana * 0.5))).round.clamp(1, 5)
+              Infomon.set('resources.shadow_essence', (Lich::Resources.shadow_essence.to_i - essences_used).clamp(0, 5))
+              :ok
+            when Pattern::SacrificeChannel, Pattern::SacrificeInfest, Pattern::SacrificeFate, Pattern::SacrificeShift
+              Infomon.set('resources.shadow_essence', (Lich::Resources.shadow_essence.to_i - 1).clamp(0, 5))
+              :ok
             when Pattern::GigasArtifactFragments
               match = Regexp.last_match
               Infomon.set('currency.gigas_artifact_fragments', match[:gigas_artifact_fragments].delete(',').to_i)
@@ -573,6 +715,10 @@ module Lich
             when Pattern::TicketSoulShards
               match = Regexp.last_match
               Infomon.set('currency.soul_shards', match[:soul_shards].delete(',').to_i)
+              :ok
+            when Pattern::TicketGold
+              match = Regexp.last_match
+              Infomon.set('currency.gold', match[:gold].delete(',').to_i)
               :ok
             when Pattern::TicketRaikhen
               match = Regexp.last_match
@@ -633,6 +779,9 @@ module Lich
             when Pattern::ResignCHE
               match = Regexp.last_match
               Infomon.set('che', (match[:none] ? 'none' : Lich::Util.normalize_name(match[:house])))
+              :ok
+            when Pattern::ResignConfirmCHE
+              Infomon.set('che', 'none')
               :ok
 
             # TODO: refactor / streamline?

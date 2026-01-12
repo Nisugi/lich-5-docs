@@ -1,27 +1,20 @@
 module Lich
   module Common
-    # SettingsProxy is defined here but relies on Settings module being fully defined first,
-    # especially Settings._log. The actual require_relative for settings_proxy.rb
-    # is now at the end of settings.rb.
-    # Proxy class for managing settings with a target object.
-    # This class allows for delegation of method calls to a target object,
-    # while providing additional functionality such as logging and handling
-    # detached states.
+    # A proxy class for managing settings with a target object.
+    # This class allows for delegation of method calls to the target object,
+    # while providing additional functionality such as logging and path management.
     # @example Creating a SettingsProxy instance
-    #   proxy = SettingsProxy.new(Settings, scope, path, target)
+    #   proxy = SettingsProxy.new(SettingsModule, scope, path, target)
     class SettingsProxy
       LOG_PREFIX = "[SettingsProxy]".freeze
 
-      # Minimal change: add detached flag (default false)
       # Initializes a new SettingsProxy instance.
-      # @param settings_module [Module] The Settings module itself.
+      # @param settings_module [Module] The settings module that this proxy belongs to.
       # @param scope [Object] The scope in which the settings are defined.
       # @param path [Array] The path to the settings.
-      # @param target [Object] The target object to delegate to.
-      # @param detached [Boolean] Whether the proxy is detached (default: false).
+      # @param target [Object] The target object that the proxy will delegate to.
+      # @param detached [Boolean] Whether the proxy is detached from the target.
       # @return [SettingsProxy]
-      # @example
-      #   proxy = SettingsProxy.new(Settings, scope, path, target, detached: true)
       def initialize(settings_module, scope, path, target, detached: false)
         @settings_module = settings_module # This should be the Settings module itself
         @scope  = scope
@@ -31,28 +24,24 @@ module Lich
         @settings_module._log(Settings::LOG_LEVEL_DEBUG, LOG_PREFIX, -> { "INIT scope: #{@scope.inspect}, path: #{@path.inspect}, target_class: #{@target.class}, target_object_id: #{@target.object_id}, detached: #{@detached}" })
       end
 
+      # Provides read access to the target, path, and scope attributes.
       attr_reader :target, :path, :scope
 
-      # Minimal change: expose detached? status
-      # Checks if the proxy is in a detached state.
-      # @return [Boolean] Returns true if the proxy is detached, false otherwise.
-      # @example
-      #   if proxy.detached?
-      #     puts "Proxy is detached"
-      #   end
+      # Checks if the proxy is detached from the target.
+      # @return [Boolean] True if the proxy is detached, false otherwise.
       def detached?
         !!@detached
       end
 
       # Checks if the target is nil.
-      # @return [Boolean] Returns true if the target is nil, false otherwise.
+      # @return [Boolean] True if the target is nil, false otherwise.
       def nil?
         @target.nil?
       end
 
       # Performs a binary operation with the target and another value.
-      # @param operator [Symbol] The operator to apply (e.g., :+, :-).
-      # @param other [Object] The other operand for the operation.
+      # @param operator [Symbol] The operator to use for the operation.
+      # @param other [Object] The other value to operate with.
       # @return [Object] The result of the operation.
       def binary_op(operator, other)
         other_value = other.is_a?(SettingsProxy) ? other.target : other
@@ -71,11 +60,7 @@ module Lich
         @target.hash
       end
 
-      # Helper method for delegating conversion methods with appropriate return types.
-      # @param method [Symbol] The conversion method to delegate.
-      # @param options [Hash] Options for delegation, including :strict and :default.
-      # @return [Object] The result of the delegated method.
-      # @raise [NoMethodError] If strict is true and the method is not supported.
+      # Helper method for delegating conversion methods with appropriate return types
       private def delegate_conversion(method, options = {})
         if @target.respond_to?(method)
           @settings_module._log(Settings::LOG_LEVEL_DEBUG, LOG_PREFIX, -> { "#{method}: delegating" })
@@ -93,10 +78,6 @@ module Lich
         end
       end
 
-      # Rebinds this proxy to a new live target and clears the detached state.
-      # This centralizes target swaps so invariants/logging stay consistent.
-      # @param new_target [Hash, Array] The live container resolved from root+path.
-      # @return [self] Returns the current instance.
       private def rebind_to_live!(new_target)
         @settings_module._log(Settings::LOG_LEVEL_DEBUG, LOG_PREFIX, -> {
           "REBIND to live: old_target_oid=#{@target&.object_id}, new_target_oid=#{new_target&.object_id}, scope=#{@scope.inspect}, path=#{@path.inspect}"
@@ -106,72 +87,88 @@ module Lich
         self
       end
 
-      # String conversions
       # Converts the target to a string.
       # @return [String] The string representation of the target.
       def to_s
         delegate_conversion(:to_s, default: '')
       end
 
-      # Converts the target to a string, strict version.
+      # Converts the target to a string, raising an error if not possible.
       # @return [String] The string representation of the target.
       # @raise [NoMethodError] If the target does not respond to to_str.
       def to_str
         delegate_conversion(:to_str, strict: true)
       end
 
+      # Converts the target to a symbol, raising an error if not possible.
+      # @return [Symbol] The symbol representation of the target.
+      # @raise [NoMethodError] If the target does not respond to to_sym.
       def to_sym
         delegate_conversion(:to_sym, strict: true)
       end
 
-      # Numeric conversions
-      # Converts the target to an integer.
-      # @return [Integer] The integer representation of the target.
-      # @note Returns 0 if the target does not respond to to_i.
+      # Converts the target to an integer, returning a default value if not possible.
+      # @return [Integer] The integer representation of the target, or 0 if not convertible.
       def to_i
         delegate_conversion(:to_i, default: 0)
       end
 
+      # Converts the target to an integer, raising an error if not possible.
+      # @return [Integer] The integer representation of the target.
+      # @raise [NoMethodError] If the target does not respond to to_int.
       def to_int
         delegate_conversion(:to_int, strict: true)
       end
 
+      # Converts the target to a float, returning a default value if not possible.
+      # @return [Float] The float representation of the target, or 0.0 if not convertible.
       def to_f
         delegate_conversion(:to_f, default: 0.0)
       end
 
+      # Converts the target to a rational number, raising an error if not possible.
+      # @return [Rational] The rational representation of the target.
+      # @raise [NoMethodError] If the target does not respond to to_r.
       def to_r
         delegate_conversion(:to_r, strict: true)
       end
 
+      # Converts the target to a complex number, returning a default value if not possible.
+      # @return [Complex] The complex representation of the target, or Complex(0, 0) if not convertible.
       def to_c
         delegate_conversion(:to_c, default: Complex(0, 0))
       end
 
-      # Collection conversions
+      # Converts the target to an array, returning a default value if not possible.
+      # @return [Array] The array representation of the target, or [] if not convertible.
       def to_a
         delegate_conversion(:to_a, default: [])
       end
 
+      # Converts the target to an array, raising an error if not possible.
+      # @return [Array] The array representation of the target.
+      # @raise [NoMethodError] If the target does not respond to to_ary.
       def to_ary
         delegate_conversion(:to_ary, strict: true)
       end
 
+      # Converts the target to a hash, returning a default value if not possible.
+      # @return [Hash] The hash representation of the target, or {} if not convertible.
       def to_h
         delegate_conversion(:to_h, default: {})
       end
 
+      # Converts the target to a hash, raising an error if not possible.
+      # @return [Hash] The hash representation of the target.
+      # @raise [NoMethodError] If the target does not respond to to_hash.
       def to_hash
         delegate_conversion(:to_hash, strict: true)
       end
 
-      # added 20250620 for JSON.pretty_generate
       # Converts the target to JSON format.
       # @param args [Array] Additional arguments for JSON conversion.
       # @return [String] The JSON representation of the target.
       # @raise [NoMethodError] If the target does not respond to to_json.
-      # @example
-      #   json_output = proxy.to_json
       def to_json(*args)
         if @target.respond_to?(:to_json)
           @settings_module._log(Settings::LOG_LEVEL_DEBUG, LOG_PREFIX, -> { "to_json: delegating with args" })
@@ -181,20 +178,31 @@ module Lich
         end
       end
 
-      # Other common conversions
+      # Converts the target to a Proc, raising an error if not possible.
+      # @return [Proc] The Proc representation of the target.
+      # @raise [NoMethodError] If the target does not respond to to_proc.
       def to_proc
         delegate_conversion(:to_proc, strict: true)
       end
 
+      # Converts the target to an IO object, raising an error if not possible.
+      # @return [IO] The IO representation of the target.
+      # @raise [NoMethodError] If the target does not respond to to_io.
       def to_io
         delegate_conversion(:to_io, strict: true)
       end
 
+      # Converts the target to a path, raising an error if not possible.
+      # @return [String] The path representation of the target.
+      # @raise [NoMethodError] If the target does not respond to to_path.
       def to_path
         delegate_conversion(:to_path, strict: true)
       end
 
-      # Special case for to_enum
+      # Converts the target to an enumerator, using default if not possible.
+      # @param args [Array] Additional arguments for enumerator conversion.
+      # @param block [Proc] An optional block for enumerator.
+      # @return [Enumerator] The enumerator representation of the target.
       def to_enum(*args, &block)
         if @target.respond_to?(:to_enum)
           @settings_module._log(Settings::LOG_LEVEL_DEBUG, LOG_PREFIX, -> { "to_enum: delegating" })
@@ -205,20 +213,20 @@ module Lich
         end
       end
 
-      # Updated inspect method to show the target's inspect string
-      # Returns a string representation of the proxy's target.
-      # @return [String] The inspect string of the target.
+      # Returns a string representation of the target for inspection.
+      # @return [String] The inspected string of the target.
       def inspect
         @target.inspect
       end
 
-      # New method to show the proxy's internal details
-      # Returns a string with the proxy's internal details.
-      # @return [String] A detailed string representation of the proxy.
+      # Returns a string with details about the proxy.
+      # @return [String] A string representation of the proxy details.
       def proxy_details
         "<SettingsProxy scope=#{@scope.inspect} path=#{@path.inspect} target_class=#{@target.class} target_object_id=#{@target.object_id} detached=#{@detached}>"
       end
 
+      # Pretty prints the target object.
+      # @param pp [PP] The pretty print object to use.
       def pretty_print(pp)
         pp.pp(@target)
       end
@@ -239,12 +247,6 @@ module Lich
         super || @target.respond_to?(method, include_private)
       end
 
-      # Minimal change: items yielded from #each are "views" over the container.
-      # Mark them detached so mutations during a derived iteration won't clobber root.
-      # Iterates over the target, yielding each item.
-      # Items yielded from #each are "views" over the container.
-      # @yield [Object] Each item in the target.
-      # @return [self] Returns the current instance.
       def each(&_block)
         return enum_for(:each) unless block_given?
         if @target.respond_to?(:each)
@@ -259,6 +261,7 @@ module Lich
         self
       end
 
+      # A list of non-destructive methods that can be called on the target.
       NON_DESTRUCTIVE_METHODS = [
         :+, :-, :&, :|, :*,
         :all?, :any?, :assoc, :at, :bsearch, :bsearch_index, :chunk, :chunk_while,
@@ -277,6 +280,7 @@ module Lich
       ].freeze
 
       # Subset of non-destructive methods that return container "views"
+      # A subset of non-destructive methods that return container "views".
       NON_DESTRUCTIVE_CONTAINER_VIEWS = [
         :map, :collect, :select, :filter, :reject, :find_all, :grep, :grep_v,
         :sort, :sort_by, :uniq, :compact, :flatten, :slice, :take, :drop, :values
@@ -315,10 +319,10 @@ module Lich
         # rubocop:enable Lint/Void
       end
 
-      # Handles calls to methods that are not explicitly defined.
-      # @param method [Symbol] The method name being called.
-      # @param args [Array] The arguments for the method.
-      # @param block [Proc] An optional block for the method.
+      # Handles calls to methods that are not explicitly defined in the proxy.
+      # @param method [Symbol] The name of the method being called.
+      # @param args [Array] The arguments for the method call.
+      # @param block [Proc] An optional block for the method call.
       # @return [Object] The result of the method call, or raises NoMethodError if not found.
       def method_missing(method, *args, &block)
         @settings_module._log(Settings::LOG_LEVEL_DEBUG, LOG_PREFIX, -> { "CALL scope: #{@scope.inspect}, path: #{@path.inspect}, method: #{method}, args: #{args.inspect}, target_object_id: #{@target.object_id}" })
@@ -355,13 +359,31 @@ module Lich
         end
       end
 
-      # Minimal change: keep path (not []), and tag view proxies as detached.
       def handle_non_destructive_result(method, result)
         @settings_module.reset_path_and_return(
           if @settings_module.container?(result)
-            is_view = NON_DESTRUCTIVE_CONTAINER_VIEWS.include?(method)
-            SettingsProxy.new(@settings_module, @scope, @path.dup, result, detached: is_view)
+            if @target.is_a?(Array) && [:find, :detect].include?(method)
+              # For Array#find / Array#detect, identify the element index in the
+              # original array and create a proxy that points to that element.
+              idx = @target.index(result)
+
+              if !idx.nil?
+                element_path = @path.dup
+                element_path << idx
+                SettingsProxy.new(@settings_module, @scope, element_path, result)
+              else
+                # Fallback: if we somehow can't locate the element, preserve
+                # the old behavior (path == @path, no index).
+                is_view = NON_DESTRUCTIVE_CONTAINER_VIEWS.include?(method)
+                SettingsProxy.new(@settings_module, @scope, @path.dup, result, detached: is_view)
+              end
+            else
+              # Existing behavior for all other non-destructive container methods
+              is_view = NON_DESTRUCTIVE_CONTAINER_VIEWS.include?(method)
+              SettingsProxy.new(@settings_module, @scope, @path.dup, result, detached: is_view)
+            end
           else
+            # Non-container results (e.g., Hash#keys) stay as plain values
             result
           end
         )
@@ -379,10 +401,10 @@ module Lich
         end
       end
 
-      # Checks if the target responds to a method, including private methods.
-      # @param method [Symbol] The method name to check.
+      # Checks if the target responds to a method that is not explicitly defined.
+      # @param method [Symbol] The name of the method to check.
       # @param include_private [Boolean] Whether to include private methods in the check.
-      # @return [Boolean] Returns true if the method is found, false otherwise.
+      # @return [Boolean] True if the target responds to the method, false otherwise.
       def respond_to_missing?(method, include_private = false)
         @target.respond_to?(method, include_private) || super
       end

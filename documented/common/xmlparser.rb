@@ -33,8 +33,8 @@ xmlparser.rb: Core lich file that defines the data extracted from SIMU's XML.
 
 module Lich
   module Common
-    # Parses XML data from the game.
-    # This class is responsible for extracting and managing game state information from XML streams.
+    # Parses XML data for the Lich game.
+    # This class handles the extraction and management of game data from XML streams.
     # @example Creating an XML parser
     #   parser = Lich::Common::XMLParser.new
     class XMLParser
@@ -56,9 +56,6 @@ module Lich
 
       include REXML::StreamListener
 
-      # Initializes a new XMLParser instance.
-      # Sets up the necessary instance variables for parsing XML data.
-      # @return [XMLParser] A new instance of XMLParser.
       def initialize
         @buffer = String.new
         # @unescape = { 'lt' => '<', 'gt' => '>', 'quot' => '"', 'apos' => "'", 'amp' => '&' }
@@ -157,10 +154,9 @@ module Lich
         @room_player_hidden = false
       end
 
-      # for backwards compatibility
-      # Retrieves the currently active spells.
-      # @return [Hash] A hash of active spells with their durations.
-      # @example
+      # Retrieves the active spells from the XML data.
+      # @return [Hash] A hash containing active spells and their details.
+      # @example Getting active spells
       #   spells = parser.active_spells
       def active_spells
         z = {}
@@ -188,9 +184,10 @@ module Lich
         z
       end
 
-      # Resets the parser's state.
-      # Clears all active tags and resets the current stream.
-      # @return [void]
+      # Resets the internal state of the XML parser.
+      # This method clears all active tags and resets the current stream.
+      # @example Resetting the parser
+      #   parser.reset
       def reset
         @active_tags = Array.new
         @active_ids = Array.new
@@ -198,8 +195,12 @@ module Lich
         @current_style = String.new
       end
 
-      # Checks if the parser is in a safe state to respond to input.
+      # Checks if the parser is in a state to respond to XML data.
       # @return [Boolean] True if safe to respond, false otherwise.
+      # @example Checking response safety
+      #   if parser.safe_to_respond?
+      #     # safe to respond
+      #   end
       def safe_to_respond?
         if @game =~ /^DR/
           !in_stream && !@bold && (!@current_style || @current_style.empty?)
@@ -210,12 +211,16 @@ module Lich
 
       # Generates a binary string representation of wounds.
       # @return [String] A binary string representing the wound state.
+      # @example Generating wound GSL
+      #   wound_gsl = parser.make_wound_gsl
       def make_wound_gsl
         @wound_gsl = sprintf("0b0%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b", @injuries['nsys']['wound'], @injuries['leftEye']['wound'], @injuries['rightEye']['wound'], @injuries['back']['wound'], @injuries['abdomen']['wound'], @injuries['chest']['wound'], @injuries['leftHand']['wound'], @injuries['rightHand']['wound'], @injuries['leftLeg']['wound'], @injuries['rightLeg']['wound'], @injuries['leftArm']['wound'], @injuries['rightArm']['wound'], @injuries['neck']['wound'], @injuries['head']['wound'])
       end
 
       # Generates a binary string representation of scars.
       # @return [String] A binary string representing the scar state.
+      # @example Generating scar GSL
+      #   scar_gsl = parser.make_scar_gsl
       def make_scar_gsl
         @scar_gsl = sprintf("0b0%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b", @injuries['nsys']['scar'], @injuries['leftEye']['scar'], @injuries['rightEye']['scar'], @injuries['back']['scar'], @injuries['abdomen']['scar'], @injuries['chest']['scar'], @injuries['leftHand']['scar'], @injuries['rightHand']['scar'], @injuries['leftLeg']['scar'], @injuries['rightLeg']['scar'], @injuries['leftArm']['scar'], @injuries['rightArm']['scar'], @injuries['neck']['scar'], @injuries['head']['scar'])
       end
@@ -240,15 +245,14 @@ module Lich
       #   }
       # end
 
-      # Constant representing the number of seconds in a decade.
       DECADE = 10 * 31_536_000
 
-      # Parses progress bar data from the XML stream.
+      # Parses the progress bar data from the XML stream.
       # @param kind [String] The type of progress bar.
       # @param attributes [Hash] The attributes of the progress bar.
       # @return [void]
-      # @example
-      #   parser.parse_psm3_progressbar("Buffs", {"id" => "1", "text" => "Buff Name", "time" => "10:00"})
+      # @example Parsing a progress bar
+      #   parser.parse_psm3_progressbar("Buffs", {"id" => "1", "text" => "Mana", "time" => "10:00"})
       def parse_psm3_progressbar(kind, attributes)
         @dialogs[kind] ||= {}
         id = attributes["id"].to_i
@@ -269,7 +273,8 @@ module Lich
       # @param name [String] The name of the tag.
       # @param attributes [Hash] The attributes of the tag.
       # @return [void]
-      # @raise [StandardError] If an error occurs during processing.
+      # @example Handling a tag start
+      #   parser.tag_start("nav", {"rm" => "123"})
       def tag_start(name, attributes)
         # This is called once per element by REXML in games.rb
         # https://ruby-doc.org/stdlib-2.6.1/libdoc/rexml/rdoc/REXML/StreamListener.html
@@ -357,7 +362,9 @@ module Lich
           if name == 'pushStream'
             @in_stream = true
             @current_stream = attributes['id'].to_s
-            GameObj.clear_inv if attributes['id'].to_s == 'inv'
+            if XMLData.game =~ /^GS/
+              GameObj.clear_inv if attributes['id'].to_s == 'inv'
+            end
           end
           if name == 'popStream'
             if attributes['id'] == 'room'
@@ -694,10 +701,11 @@ module Lich
         end
       end
 
-      # Processes text content within an XML tag.
-      # @param text_string [String] The text content to process.
+      # Processes text data from an XML element.
+      # @param text_string [String] The text content of the XML element.
       # @return [void]
-      # @note This method is called once per element with text in it.
+      # @example Processing text
+      #   parser.text("This is a sample text.")
       def text(text_string)
         # This is called once per element with text in it by REXML in games.rb
         # https://ruby-doc.org/stdlib-2.6.1/libdoc/rexml/rdoc/REXML/StreamListener.html
@@ -782,6 +790,7 @@ module Lich
               if @active_tags.include?('a')
                 if @bold
                   GameObj.new_npc(@obj_exist, @obj_noun, text_string)
+                  Creature.register(text_string, @obj_exist, @obj_noun) if XMLData.current_target_ids.include?(@obj_exist)
                 else
                   GameObj.new_loot(@obj_exist, @obj_noun, text_string)
                 end
@@ -918,9 +927,10 @@ module Lich
       end
 
       # Handles the end of an XML tag.
-      # @param name [String] The name of the tag that is ending.
+      # @param name [String] The name of the tag that ended.
       # @return [void]
-      # @raise [StandardError] If an error occurs during processing.
+      # @example Handling a tag end
+      #   parser.tag_end("nav")
       def tag_end(name)
         # This is called once per element by REXML in games.rb
         # https://ruby-doc.org/stdlib-2.6.1/libdoc/rexml/rdoc/REXML/StreamListener.html
@@ -966,10 +976,12 @@ module Lich
             end
             @room_description = @room_description.strip
             @room_exits_string.concat " #{@room_exits.join(', ')}" unless @room_exits.empty?
-            gsl_exits = String.new
-            @room_exits.each { |exit| gsl_exits.concat(DIRMAP[SHORTDIR[exit]].to_s) }
-            $_CLIENT_.puts "\034GSj#{sprintf('%-20s', gsl_exits)}\r\n"
-            gsl_exits = nil
+            if @send_fake_tags
+              gsl_exits = String.new
+              @room_exits.each { |exit| gsl_exits.concat(DIRMAP[SHORTDIR[exit]].to_s) }
+              $_CLIENT_.puts "\034GSj#{sprintf('%-20s', gsl_exits)}\r\n"
+              gsl_exits = nil
+            end
             @room_count += 1
             $room_count += 1
           end
@@ -983,7 +995,10 @@ module Lich
         end
       end
 
-      # here for backwards compatibility, but spellfront xml isn't sent by the game anymore
+      # Retrieves the current active spells from the deprecated spellfront method.
+      # @return [Array] An array of active spell names.
+      # @example Getting active spells from spellfront
+      #   spells = parser.spellfront
       def spellfront
         if (Time.now.to_i - @@warned_deprecated_spellfront) > 300
           @@warned_deprecated_spellfront = Time.now.to_i

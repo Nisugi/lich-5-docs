@@ -18,10 +18,10 @@ require_relative 'infomon/cache'
 
 module Lich
   module Gemstone
-    # Replacement for the venerable infomon.lic script used in Lich4 and Lich5 (03/01/23)
-    # Supports Ruby 3.X builds
-    # @example Usage
-    #   Lich::Gemstone::Infomon.set("key", "value")
+    # Module for Infomon functionality
+    # This module provides methods to manage and interact with the Infomon database.
+    # @example Using Infomon
+    #   Infomon.set("key", "value")
     module Infomon
       $infomon_debug = ENV["DEBUG"]
       # use temp dir in ci context
@@ -34,26 +34,26 @@ module Lich
       @sql_queue ||= Queue.new
       @sql_mutex ||= Mutex.new
 
-      # Returns the cache instance used by Infomon
-      # @return [Cache] The cache instance
+      # Returns the cache object
+      # @return [Cache] The cache instance used by Infomon
       def self.cache
         @cache
       end
 
       # Returns the file path for the Infomon database
-      # @return [String] The database file path
+      # @return [String] The path to the Infomon database file
       def self.file
         @file
       end
 
-      # Returns the Sequel database instance
-      # @return [Sequel::Database] The database instance
+      # Returns the database connection
+      # @return [Sequel::Database] The Sequel database connection instance
       def self.db
         @db
       end
 
-      # Returns the mutex used for thread safety
-      # @return [Mutex] The mutex instance
+      # Returns the mutex for thread safety
+      # @return [Mutex] The mutex used for synchronizing access
       def self.mutex
         @sql_mutex
       end
@@ -80,8 +80,8 @@ module Lich
         end
       end
 
-      # Returns the SQL queue for database operations
-      # @return [Queue] The SQL queue instance
+      # Returns the SQL queue
+      # @return [Queue] The queue for SQL statements
       def self.queue
         @sql_queue
       end
@@ -94,14 +94,14 @@ module Lich
         fail "cannot access Infomon before XMLData.name is loaded"
       end
 
-      # Generates the table name based on game and XMLData
-      # @return [Symbol] The generated table name
+      # Returns the table name based on the game and XMLData
+      # @return [Symbol] The table name for the Infomon data
       def self.table_name
         self.context!
         ("%s_%s" % [XMLData.game, XMLData.name]).to_sym
       end
 
-      # Resets the Infomon state, clearing the cache and database table
+      # Resets the Infomon state by dropping the table and clearing the cache
       # @return [void]
       def self.reset!
         self.mutex_lock
@@ -111,19 +111,31 @@ module Lich
         Infomon.setup!
       end
 
-      # Returns the database table for Infomon
-      # @return [Sequel::Dataset] The dataset for the table
+      # Returns the Infomon table
+      # @return [Sequel::Dataset] The dataset for the Infomon table
       def self.table
         @_table ||= self.setup!
       end
 
-      # Sets up the database table for Infomon
-      # @return [Sequel::Dataset] The dataset for the created table
+      # Sets up the Infomon table if it does not exist
+      # @return [Sequel::Dataset] The dataset for the Infomon table
       def self.setup!
         self.mutex_lock
+
+        # Check if table exists but missing updated_at column
+        if @db.table_exists?(self.table_name)
+          columns = @db.schema(self.table_name).map { |col| col[0] }
+          unless columns.include?(:updated_at)
+            self.mutex_unlock
+            self.reset!
+            return
+          end
+        end
+
         @db.create_table?(self.table_name) do
           text :key, primary_key: true
           any :value
+          float :updated_at
         end
         self.mutex_unlock
         @_table = @db[self.table_name]
@@ -134,13 +146,13 @@ module Lich
       def self.cache_load
         sleep(0.01) if XMLData.name.empty?
         dataset = Infomon.table
-        h = Hash[dataset.map(:key).zip(dataset.map(:value))]
+        h = dataset.map(:key).zip(dataset.map(:value)).to_h
         self.cache.merge!(h)
         @cache_loaded = true
       end
 
       # Normalizes the key for storage
-      # @param key [String, Symbol] The key to normalize
+      # @param key [String] The key to normalize
       # @return [String] The normalized key
       def self._key(key)
         key = key.to_s.downcase
@@ -158,12 +170,13 @@ module Lich
       end
 
       # Allowed types for values in Infomon
+      # This constant defines the types that can be stored in the Infomon database.
       AllowedTypes = [Integer, String, NilClass, FalseClass, TrueClass]
-      # Validates the key and value types
+      # Validates the key and value before insertion
       # @param key [String] The key to validate
       # @param value [Object] The value to validate
       # @return [Object] The validated value
-      # @raise [RuntimeError] If the value type is not allowed
+      # @raise [RuntimeError] If the value is of an invalid type
       def self._validate!(key, value)
         return self._value(value) if AllowedTypes.include?(value.class)
         raise "infomon:insert(%s) was called with %s\nmust be %s\nvalue=%s" % [key, value.class, AllowedTypes.map(&:name).join("|"), value]
@@ -173,7 +186,7 @@ module Lich
       # @param key [String] The key to retrieve
       # @return [Object] The value associated with the key
       # @raise [StandardError] If an error occurs during retrieval
-      # @example
+      # @example Retrieving a value
       #   value = Infomon.get("key")
       def self.get(key)
         self.cache_load if !@cache_loaded
@@ -216,8 +229,30 @@ module Lich
         end
       end
 
-      # Inserts or replaces a key-value pair in the database
-      # @param args [Array] The key-value pairs to insert
+      # Retrieves the updated_at timestamp for a key
+      # @param key [String] The key to retrieve the timestamp for
+      # @return [Float, nil] The updated_at timestamp or nil if not found
+      # @raise [StandardError] If an error occurs during retrieval
+      def self.get_updated_at(key)
+        key = self._key(key)
+        begin
+          self.mutex.synchronize do
+            db_result = self.table[key: key]
+            if db_result
+              db_result[:updated_at]
+            else
+              nil
+            end
+          end
+        rescue StandardError
+          respond "--- Lich: error: Infomon.get_updated_at(#{key}): #{$!}"
+          Lich.log "error: Infomon.get_updated_at(#{key}): #{$!}\n\t#{$!.backtrace.join("\n\t")}"
+          nil
+        end
+      end
+
+      # Inserts or replaces a record in the database
+      # @param args [Array] The arguments for the insert operation
       # @return [void]
       def self.upsert(*args)
         self.table
@@ -228,7 +263,7 @@ module Lich
       # Sets a key-value pair in the cache and database
       # @param key [String] The key to set
       # @param value [Object] The value to set
-      # @return [Symbol] :noop if the value is unchanged, otherwise performs the operation
+      # @return [Symbol] :noop if the value is unchanged, otherwise performs the insert operation
       def self.set(key, value)
         key = self._key(key)
         value = self._validate!(key, value)
@@ -247,8 +282,8 @@ module Lich
         self.queue << "DELETE FROM %s WHERE key = (%s);" % [self.db.literal(self.table_name), self.db.literal(key)]
       end
 
-      # Inserts or replaces multiple key-value pairs in the database
-      # @param blob [Array] An array of key-value pairs to insert
+      # Inserts or replaces multiple records in the database
+      # @param blob [Array] An array of key-value pairs to upsert
       # @return [void]
       def self.upsert_batch(*blob)
         updated = (blob.first.map { |k, v| [self._key(k), self._validate!(k, v)] } - self.cache.to_a)
@@ -264,10 +299,6 @@ module Lich
       on conflict(`key`) do update set value = excluded.value;" % [self.db.literal(self.table_name), pairs]
       end
 
-      # @!method Background SQL Queue Processor
-      # Background thread for processing SQL statements from the queue.
-      # This thread continuously processes queued SQL statements asynchronously.
-      # @return [void]
       Thread.new do
         loop do
           sql_statement = Infomon.queue.pop

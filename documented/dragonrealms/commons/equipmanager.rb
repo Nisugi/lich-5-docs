@@ -1,8 +1,8 @@
 module Lich
   module DragonRealms
-    # Manages the equipment for the player in the DragonRealms game.
-    # This class handles the wearing, removing, and organizing of items.
-    # @example
+    # Manages equipment for the DragonRealms game.
+    # This class handles the initialization, wearing, and removing of equipment.
+    # @example Creating an equipment manager
     #   manager = Lich::DragonRealms::EquipmentManager.new
     class EquipmentManager
       # Initializes a new EquipmentManager instance.
@@ -12,7 +12,7 @@ module Lich
         items(settings)
       end
 
-      # Retrieves the list of items managed by the EquipmentManager.
+      # Retrieves the list of items managed by the equipment manager.
       # @param settings [Object, nil] Optional settings to initialize items.
       # @return [Array<Item>] The list of items managed.
       # @example
@@ -28,10 +28,8 @@ module Lich
       end
 
       # Removes gear based on a given condition.
-      # @yield [Item] A block that receives each item to determine if it should be removed.
-      # @return [Array<Item>] The list of removed items.
-      # @example
-      #   removed = manager.remove_gear_by { |item| item.worn? }
+      # @param block [Proc] A block that defines the condition for removing gear.
+      # @return [Array<Item>] The list of removed gear.
       def remove_gear_by(&_block)
         combat_items = get_combat_items
         gear = desc_to_items(combat_items).select { |item| yield(item) }
@@ -50,11 +48,11 @@ module Lich
         DRC.bput('sort auto head', /^Your inventory is now arranged/) if @sort_head
       end
 
-      # Wears an entire set of equipment.
-      # @param set_name [String] The name of the gear set to wear.
-      # @return [Boolean] True if all items were successfully worn, false otherwise.
+      # Wears a set of equipment by name.
+      # @param set_name [String] The name of the equipment set to wear.
+      # @return [Boolean] True if the set was successfully worn, false otherwise.
       # @example
-      #   success = manager.wear_equipment_set?("default")
+      #   success = manager.wear_equipment_set?("standard")
       def wear_equipment_set?(set_name)
         return false unless set_name
 
@@ -77,29 +75,23 @@ module Lich
         lost_items.empty?
       end
 
-      # Converts descriptions to item objects.
+      # Converts descriptions to items.
       # @param descs [Array<String>] The descriptions to convert.
       # @return [Array<Item>] The corresponding items.
-      # @example
-      #   items = manager.desc_to_items(descriptions)
       def desc_to_items(descs)
         descs.map { |description| item_by_desc(description) }.compact
       end
 
       # Finds an item by its description.
-      # @param description [String] The description to match against.
-      # @return [Item, nil] The matched item or nil if not found.
-      # @example
-      #   item = manager.item_by_desc("a shiny sword")
+      # @param description [String] The description of the item.
+      # @return [Item, nil] The found item or nil if not found.
       def item_by_desc(description)
         items.find { |item| item.short_regex =~ description }
       end
 
       # Notifies the user of missing items.
-      # @param lost_items [Array<Item>] The list of items that are missing.
+      # @param lost_items [Array<Item>] The list of missing items.
       # @return [void]
-      # @example
-      #   manager.notify_missing(missing_items)
       def notify_missing(lost_items)
         return unless lost_items && !lost_items.empty?
 
@@ -114,8 +106,6 @@ module Lich
       # @param worn_items [Array<Item>] The items that should be worn.
       # @param combat_items [Array<Item>] The current combat items.
       # @return [Array<Item>] The list of items that could not be worn.
-      # @example
-      #   missing = manager.wear_missing_items(worn_items, combat_items)
       def wear_missing_items(worn_items, combat_items)
         if UserVars.equipmanager_debug
           echo('wearing missing items between these two sets')
@@ -135,8 +125,6 @@ module Lich
       # @param combat_items [Array<String>] The current combat items.
       # @param worn_items [Array<Item>] The items that are currently worn.
       # @return [Array<Item>] The list of removed items.
-      # @example
-      #   removed = manager.remove_unmatched_items(combat_items, worn_items)
       def remove_unmatched_items(combat_items, worn_items)
         if UserVars.equipmanager_debug
           echo('removing unmatched items between these two sets')
@@ -152,8 +140,6 @@ module Lich
 
       # Retrieves the list of combat items currently worn.
       # @return [Array<String>] The list of combat items.
-      # @example
-      #   combat_items = manager.get_combat_items
       def get_combat_items
         snapshot = Lich::Util.issue_command("inv combat", /All of your worn combat|You aren't wearing anything like that/, /Use INVENTORY HELP for more options/, usexml: false, include_end: false)
                              .map(&:strip)
@@ -163,8 +149,6 @@ module Lich
       # Filters the worn items based on a given list.
       # @param list [Array<String>] The list of item descriptions to filter.
       # @return [Array<Item>] The list of worn items that match the descriptions.
-      # @example
-      #   worn = manager.worn_items(item_descriptions)
       def worn_items(list)
         filter_gear = desc_to_items(list)
         gear = desc_to_items(get_combat_items)
@@ -174,8 +158,6 @@ module Lich
       # Removes a specific item from the inventory.
       # @param item [Item] The item to remove.
       # @return [Boolean] True if the item was successfully removed, false otherwise.
-      # @example
-      #   success = manager.remove_item(item)
       def remove_item(item)
         result = DRC.bput("remove my #{item.short_name}", "You .*#{item.name}", 'The leather gauntlets slide', 'Without any effort', 'you manage to loosen', "You need a free hand for that", "You'll need both hands free to do that", "then constricts tighter around your")
         waitrt?
@@ -225,8 +207,6 @@ module Lich
       # Wears a specific item if it is available.
       # @param item [Item] The item to wear.
       # @return [Boolean] True if the item was successfully worn, false otherwise.
-      # @example
-      #   success = manager.wear_item?(item)
       def wear_item?(item)
         if item.nil?
           echo("failed to match an item, try turning on debugging with #{$clean_lich_char}e UserVars.equipmanager_debug = true")
@@ -239,25 +219,14 @@ module Lich
         return false
       end
 
-      # This method is deprecated in favor of the one that follows the `?` predicate convention.
-      # Wields a weapon into the left hand.
+      # Wields a weapon in the offhand.
       # @param description [String] The description of the weapon to wield.
-      # @param skill [String, nil] Optional skill to swap to.
+      # @param skill [String, nil] Optional skill associated with the weapon.
       # @return [Boolean] True if the weapon was successfully wielded, false otherwise.
-      # @example
-      #   success = manager.wield_weapon_offhand("a dagger", "edged")
       def wield_weapon_offhand(description, skill = nil)
         wield_weapon_offhand?(description, skill)
       end
 
-      # Wields weapon into your left hand.
-      # Handles swapping the weapon to desired weapon skill (e.g. bastard swords, bar maces, ristes).
-      # Wields a weapon into the left hand with skill handling.
-      # @param description [String] The description of the weapon to wield.
-      # @param skill [String, nil] Optional skill to swap to.
-      # @return [Boolean] True if the weapon was successfully wielded, false otherwise.
-      # @example
-      #   success = manager.wield_weapon_offhand?("a dagger", "edged")
       def wield_weapon_offhand?(description, skill = nil)
         return unless description && !description.empty?
 
@@ -282,26 +251,14 @@ module Lich
         return false
       end
 
-      # This method is deprecated in favor of the one that follows the `?` predicate convention.
-      # Wields a weapon into the right hand.
+      # Wields a weapon in the main hand.
       # @param description [String] The description of the weapon to wield.
-      # @param skill [String, nil] Optional skill to swap to.
+      # @param skill [String, nil] Optional skill associated with the weapon.
       # @return [Boolean] True if the weapon was successfully wielded, false otherwise.
-      # @example
-      #   success = manager.wield_weapon("a sword", "two-handed")
       def wield_weapon(description, skill = nil)
         wield_weapon?(description, skill)
       end
 
-      # Wields weapon into your right hand.
-      # If the skill to swap to is 'Offhand Weapon' then will swap it to your left hand.
-      # Handles swapping the weapon to desired weapon skill (e.g. bastard swords, bar maces, ristes).
-      # Wields a weapon into the right hand with skill handling.
-      # @param description [String] The description of the weapon to wield.
-      # @param skill [String, nil] Optional skill to swap to.
-      # @return [Boolean] True if the weapon was successfully wielded, false otherwise.
-      # @example
-      #   success = manager.wield_weapon?("a sword", "two-handed")
       def wield_weapon?(description, skill = nil)
         return unless description && !description.empty?
 
@@ -332,11 +289,9 @@ module Lich
         return false
       end
 
-      # Checks if an item can be obtained and handles the necessary actions.
+      # Checks if an item can be retrieved from the inventory.
       # @param item [Item] The item to check.
-      # @return [Boolean] True if the item can be obtained, false otherwise.
-      # @example
-      #   can_get = manager.get_item?(item)
+      # @return [Boolean] True if the item can be retrieved, false otherwise.
       def get_item?(item)
         return true if DRCI.in_hands?(item)
 
@@ -361,18 +316,14 @@ module Lich
 
       # Checks if a description matches a listed item.
       # @param desc [String] The description to check.
-      # @return [Item, nil] The matched item or nil if not found.
-      # @example
-      #   item = manager.is_listed_item?("a shiny sword")
+      # @return [Item, nil] The matching item or nil if not found.
       def is_listed_item?(desc)
         items.find { |item| item.short_regex =~ desc }
       end
 
       # Returns held gear to the specified gear set.
       # @param gear_set [String] The name of the gear set to return to.
-      # @return [Boolean] True if all held gear was returned, false otherwise.
-      # @example
-      #   success = manager.return_held_gear("standard")
+      # @return [Boolean] True if all held gear was successfully returned, false otherwise.
       def return_held_gear(gear_set = 'standard')
         return unless DRC.right_hand || DRC.left_hand
 
@@ -405,8 +356,6 @@ module Lich
 
       # Empties the hands by returning held gear or stowing hands.
       # @return [void]
-      # @example
-      #   manager.empty_hands
       def empty_hands
         return_held_gear || DRCI.stow_hands
       end
@@ -414,13 +363,11 @@ module Lich
       # Retrieves verb data for a specific item.
       # @param item [Item] The item to retrieve verb data for.
       # @return [Hash] A hash containing verb data for the item.
-      # @example
-      #   data = manager.verb_data(item)
       def verb_data(item)
         {
           worn: {
             verb: 'remove',
-            matches: [/^You .*#{item.short_regex}/, /^You (get|sling|pull|work|loosen|slide|remove|yank|unbuckle).*#{item.name}/, 'you tug', 'Remove what', "You aren't wearing that", 'slide themselves off of your', 'you manage to loosen', /^A brisk chill leaves you as you/],
+            matches: [/^You .*#{item.short_regex}/, /^You (get|sling|pull|work|loosen|slide|remove|yank|unbuckle).*#{item.name}/, 'you tug', 'Remove what', "You aren't wearing that", 'slide themselves off of your', 'you manage to loosen', 'you ready the', /^A brisk chill leaves you as you/],
             failures: [/^You (get|sling|pull|work|slide|remove|yank|unbuckle) $/],
             failure_recovery: proc { |noun| DRC.bput("wear my #{noun}", '^You ') },
             exhausted: ['Remove what', "You aren't wearing that"]
@@ -465,12 +412,10 @@ module Lich
         }
       end
 
-      # Helper method to get an item based on its type.
-      # @param item [Item] The item to get.
-      # @param type [Symbol] The type of action to perform (e.g., :worn, :stowed).
-      # @return [Boolean] True if the item was successfully obtained, false otherwise.
-      # @example
-      #   success = manager.get_item_helper(item, :worn)
+      # Helper method to retrieve an item based on its type.
+      # @param item [Item] The item to retrieve.
+      # @param type [Symbol] The type of retrieval (e.g., :worn, :stowed).
+      # @return [Boolean] True if the item was successfully retrieved, false otherwise.
       def get_item_helper(item, type)
         return false unless item
 
@@ -479,6 +424,13 @@ module Lich
         waitrt?
         response = DRC.bput("#{data[:verb]} my #{item.short_name}", *data[:matches])
         waitrt?
+
+        # Handle empty/nil response (bput timeout) as failure
+        if response.nil? || response.empty?
+          DRC.message("*** No response from game for '#{data[:verb]} my #{item.short_name}' - command may have been lost ***")
+          return false
+        end
+
         case response
         when 'You are already holding'
           return true
@@ -487,19 +439,21 @@ module Lich
         when *data[:failures]
           data[:failure_recovery].call(item.name, item, response)
         else
-          pause 0.05 while snapshot == [DRC.left_hand, DRC.right_hand]
+          # Wait for hands to change with a timeout to prevent infinite loop
+          timeout = Time.now + 5
+          pause 0.05 while snapshot == [DRC.left_hand, DRC.right_hand] && Time.now < timeout
+          if snapshot == [DRC.left_hand, DRC.right_hand]
+            DRC.message("*** Hands did not change after '#{data[:verb]} my #{item.short_name}' - item may not have been retrieved ***")
+            return false
+          end
           return true
         end
       end
 
-      # Turns a weapon so that it can be used as a different weapon.
-      # Examples include Damaris weapons.
-      # Turns a weapon to be used as a different weapon.
-      # @param old_noun [String] The current name of the weapon.
-      # @param new_noun [String] The new name of the weapon.
+      # Turns a weapon from one type to another.
+      # @param old_noun [String] The current weapon description.
+      # @param new_noun [String] The new weapon description.
       # @return [Boolean] True if the weapon was successfully turned, false otherwise.
-      # @example
-      #   success = manager.turn_to_weapon?("a sword", "a dagger")
       def turn_to_weapon?(old_noun, new_noun)
         return true if old_noun == new_noun
 
@@ -513,14 +467,10 @@ module Lich
         end
       end
 
-      # Swaps a weapon so that it can be used for a different skill.
-      # Examples include bastard swords, bar maces, and ristes.
-      # Swaps a weapon to be used for a different skill.
-      # @param noun [String] The name of the weapon to swap.
+      # Swaps a weapon to a specified skill.
+      # @param noun [String] The weapon description to swap.
       # @param skill [String] The skill to swap to.
       # @return [Boolean] True if the weapon was successfully swapped, false otherwise.
-      # @example
-      #   success = manager.swap_to_skill?("a sword", "two-handed")
       def swap_to_skill?(noun, skill)
         if noun =~ /\bfan\b/i
           command = skill =~ /edged/i ? 'open' : 'close'
@@ -600,11 +550,9 @@ module Lich
         end
       end
 
-      # Unloads a weapon from the player's hands.
+      # Unloads a weapon from the inventory.
       # @param name [String] The name of the weapon to unload.
       # @return [void]
-      # @example
-      #   manager.unload_weapon("a bow")
       def unload_weapon(name)
         # Phrases to match:
         #   (hidden) You remain concealed by your surroundings, convinced that your unloading of the <weapon> went unobserved.
@@ -628,11 +576,9 @@ module Lich
         waitrt?
       end
 
-      # Stows a weapon, optionally specifying which weapon to stow.
-      # @param description [String, nil] The description of the weapon to stow.
+      # Stows a weapon in the inventory.
+      # @param description [String, nil] Optional description of the weapon to stow.
       # @return [void]
-      # @example
-      #   manager.stow_weapon("a sword")
       def stow_weapon(description = nil)
         unless description
           return unless DRC.right_hand || DRC.left_hand
@@ -665,13 +611,11 @@ module Lich
         end
       end
 
-      # Helper method to perform stowing actions with error handling.
+      # Helper method to assist in stowing a weapon.
       # @param action [String] The action to perform for stowing.
       # @param weapon_name [String] The name of the weapon to stow.
-      # @param accept_strings [Array<String>] The strings to match against for success.
+      # @param accept_strings [Array<String>] The strings to accept as successful stowing responses.
       # @return [void]
-      # @example
-      #   manager.stow_helper("stow my sword", "sword", ["You put", "You should unload"])
       def stow_helper(action, weapon_name, *accept_strings)
         case DRC.bput(action, accept_strings)
         when /unload/

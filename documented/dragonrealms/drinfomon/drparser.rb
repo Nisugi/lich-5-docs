@@ -1,161 +1,83 @@
-# frozen_string_literal: true
 
+# The Lich module serves as a namespace for the DragonRealms parser.
 module Lich
-  # Provides functionality for parsing DragonRealms game data
-  # This module contains methods and patterns used to parse various
-  # aspects of the game, including skills, spells, and player stats.
-  # @example Including the module
-  #   include Lich::DragonRealms::DRParser
   module DragonRealms
-    # Handles the parsing of DragonRealms server output
-    # This module contains methods to interpret server messages and
-    # update game state accordingly.
-    # @example Using the DRParser
-    #   DRParser.parse(server_output)
+    # The DRParser module contains methods and patterns for parsing DragonRealms game data.
     module DRParser
       module Pattern
-        # Regular expression pattern for experience columns
-        # This pattern matches skill experience data in the format:
-        #   Skill: Rank Percent Rate
-        # @example
-        #   line.match(DRParser::Pattern::ExpColumns)
+        # Regular expression pattern for experience columns.
+        # This pattern captures skill, rank, percent, and rate.
         ExpColumns = /(?:\s*(?<skill>[a-zA-Z\s]+)\b:\s*(?<rank>\d+)\s+(?<percent>\d+)%\s+(?<rate>[a-zA-Z\s]+)\b)/.freeze
-        # Regular expression pattern for brief experience on
-        # This pattern matches the XML component for skills with experience on.
-        # @example
-        #   line.match(DRParser::Pattern::BriefExpOn)
+        # Regular expression pattern for brief experience on.
+        # This pattern captures skill, rank, percent, and rate from the server output.
         BriefExpOn = %r{<component id='exp .*?<d cmd='skill (?<skill>[a-zA-Z\s]+)'.*:\s+(?<rank>\d+)\s+(?<percent>\d+)%\s*\[\s?(?<rate>\d+)\/34\].*?<\/component>}.freeze
-        # Regular expression pattern for brief experience off
-        # This pattern matches the XML component for skills with experience off.
-        # @example
-        #   line.match(DRParser::Pattern::BriefExpOff)
+        # Regular expression pattern for brief experience off.
+        # This pattern captures skill, rank, percent, and rate from the server output.
         BriefExpOff = %r{<component id='exp .*?\b(?<skill>[a-zA-Z\s]+)\b:\s+(?<rank>\d+)\s+(?<percent>\d+)%\s+\b(?<rate>[a-zA-Z\s]+)\b.*?<\/component>}.freeze
-        # Regular expression pattern for name, race, and guild
-        # This pattern captures the player's name, race, and guild from the output.
-        # @example
-        #   line.match(DRParser::Pattern::NameRaceGuild)
+        # Regular expression pattern for capturing name, race, and guild information.
         NameRaceGuild = /^Name:\s+\b(?<name>.+)\b\s+Race:\s+\b(?<race>.+)\b\s+Guild:\s+\b(?<guild>.+)\b\s+/.freeze
-        # Regular expression pattern for gender, age, and circle
-        # This pattern captures the player's gender, age, and circle from the output.
-        # @example
-        #   line.match(DRParser::Pattern::GenderAgeCircle)
+        # Regular expression pattern for capturing gender, age, and circle information.
         GenderAgeCircle = /^Gender:\s+\b(?<gender>.+)\b\s+Age:\s+\b(?<age>.+)\b\s+Circle:\s+\b(?<circle>.+)/.freeze
-        # Regular expression pattern for stat values
-        # This pattern captures individual stat values and their corresponding numbers.
-        # @example
-        #   line.scan(DRParser::Pattern::StatValue)
+        # Regular expression pattern for capturing stat values.
         StatValue = /(?<stat>Strength|Agility|Discipline|Intelligence|Reflex|Charisma|Wisdom|Stamina|Favors|TDPs)\s+:\s+(?<value>\d+)/.freeze
-        # Regular expression pattern for TDP values
-        # This pattern captures the total number of TDPs available.
-        # @example
-        #   line.match(DRParser::Pattern::TDPValue)
+        # Regular expression pattern for capturing TDP values.
         TDPValue = /You have (\d+) TDPs\./.freeze
-        # Regular expression pattern for encumbrance values
-        # This pattern captures the player's current encumbrance status.
-        # @example
-        #   line.match(DRParser::Pattern::EncumbranceValue)
+        # Regular expression pattern for capturing encumbrance values.
         EncumbranceValue = /^\s*Encumbrance\s+:\s+(?<encumbrance>[\w\s'?!]+)$/.freeze
-        # Regular expression pattern for luck values
-        # This pattern captures the player's luck status.
-        # @example
-        #   line.match(DRParser::Pattern::LuckValue)
+        # Regular expression pattern for capturing luck values.
         LuckValue = /^\s*Luck\s+:\s+.*\((?<luck>[-\d]+)\/3\)/.freeze
-        # Regular expression pattern for balance values
-        # This pattern captures the player's balance status.
-        # @example
-        #   line.match(DRParser::Pattern::BalanceValue)
+        # Regular expression pattern for capturing balance values.
         BalanceValue = /^(?:You are|\[You're) (?<balance>#{Regexp.union(DR_BALANCE_VALUES)}) balanced?/.freeze
-        # Regular expression pattern for clearing mindstate
-        # This pattern matches the XML component indicating a skill has no experience.
-        # @example
-        #   line.match(DRParser::Pattern::ExpClearMindstate)
+        # Regular expression pattern for clearing experience mindstate.
         ExpClearMindstate = %r{<component id='exp (?<skill>[a-zA-Z\s]+)'><\/component>}.freeze
-        # Regular expression pattern for room players
-        # This pattern captures the list of players present in the room.
-        # @example
-        #   line.match(DRParser::Pattern::RoomPlayers)
+        # Regular expression pattern for capturing room players.
         RoomPlayers = %r{\'room players\'>Also here: (.*)\.</component>}.freeze
-        # Regular expression pattern for empty room players
-        # This pattern matches the case where no players are present in the room.
-        # @example
-        #   line.match(DRParser::Pattern::RoomPlayersEmpty)
+        # Regular expression pattern for empty room players.
         RoomPlayersEmpty = %r{\'room players\'></component>}.freeze
-        # Regular expression pattern for room objects
-        # This pattern captures the list of objects present in the room.
-        # @example
-        #   line.match(DRParser::Pattern::RoomObjs)
+        # Regular expression pattern for capturing room objects.
         RoomObjs = %r{\'room objs\'>(.*)</component>}.freeze
-        # Regular expression pattern for empty room objects
-        # This pattern matches the case where no objects are present in the room.
-        # @example
-        #   line.match(DRParser::Pattern::RoomObjsEmpty)
+        # Regular expression pattern for empty room objects.
         RoomObjsEmpty = %r{\'room objs\'></component>}.freeze
-        # Regular expression pattern for group members
-        # This pattern captures the list of members in the player's group.
-        # @example
-        #   line.match(DRParser::Pattern::GroupMembers)
+        # Regular expression pattern for capturing group members.
         GroupMembers = %r{<pushStream id="group"/>  (\w+):}.freeze
-        # Regular expression pattern for empty group members
-        # This pattern matches the case where no group members are present.
-        # @example
-        #   line.match(DRParser::Pattern::GroupMembersEmpty)
+        # Regular expression pattern for empty group members.
         GroupMembersEmpty = %r{<pushStream id="group"/>Members of your group:}.freeze
-        # Regular expression pattern for the start of experience modifiers
-        # This pattern indicates the beginning of a list of skills under modifiers.
-        # @example
-        #   line.match(DRParser::Pattern::ExpModsStart)
+        # Regular expression pattern for the start of experience modifiers.
         ExpModsStart = /^(<.*?\/>)?The following skills are currently under the influence of a modifier/.freeze
-        # Regular expression pattern for known spells
-        # This pattern indicates the start of the known spells list for magic users.
-        # @example
-        #   line.match(DRParser::Pattern::KnownSpellsStart)
+        # Regular expression pattern for the start of known spells.
         KnownSpellsStart = /^You recall the spells you have learned/.freeze
-        # Regular expression pattern for barbarian abilities
-        # This pattern indicates the start of the list of known barbarian abilities.
-        # @example
-        #   line.match(DRParser::Pattern::BarbarianAbilitiesStart)
+        # Regular expression pattern for the start of barbarian abilities.
         BarbarianAbilitiesStart = /^You know the (Berserks:)/.freeze
-        # Regular expression pattern for thief khri
-        # This pattern indicates the start of the list of known khri for thieves.
-        # @example
-        #   line.match(DRParser::Pattern::ThiefKhriStart)
+        # Regular expression pattern for the start of thief khri.
         ThiefKhriStart = /^From the Subtlety tree, you know the following khri:/.freeze
-        # Regular expression pattern for spellbook format
-        # This pattern captures the format type of the spellbook output.
-        # @example
-        #   line.match(DRParser::Pattern::SpellBookFormat)
+        # Regular expression pattern for capturing spellbook format.
         SpellBookFormat = /^You will .* (?<format>column-formatted|non-column) output for the SPELLS verb/.freeze
-        # Regular expression pattern for played account
-        # This pattern captures the account information of the player.
-        # @example
-        #   line.match(DRParser::Pattern::PlayedAccount)
+        # Regular expression pattern for capturing played account information.
         PlayedAccount = /^(?:<.*?\/>)?Account Info for (?<account>.+):/.freeze
-        # Regular expression pattern for played subscription
-        # This pattern captures the subscription status of the player's account.
-        # @example
-        #   line.match(DRParser::Pattern::PlayedSubscription)
+        # Regular expression pattern for capturing played subscription status.
         PlayedSubscription = /Current Account Status: (?<subscription>F2P|Basic|Premium|Platinum)/.freeze
-        # Regular expression pattern for last logoff
-        # This pattern captures the last logoff time of the player.
-        # @example
-        #   line.match(DRParser::Pattern::LastLogoff)
+        # Regular expression pattern for capturing last logoff time.
         LastLogoff = /^\s+Logoff :  (?<weekday>[A-Z][a-z]{2}) (?<month>[A-Z][a-z]{2}) (?<day>[\s\d]{2}) (?<hour>\d{2}):(?<minute>\d{2}):(?<second>\d{2}) ET (?<year>\d{4})/.freeze
-        # Regular expression pattern for room ID off
-        # This pattern indicates that room IDs are no longer visible.
-        # @example
-        #   line.match(DRParser::Pattern::RoomIDOff)
+        # Regular expression pattern for disabling room IDs.
         RoomIDOff = /^You will no longer see room IDs when LOOKing in the game and room windows\./.freeze
+        # Regular expression pattern for capturing rested experience.
+        Rested_EXP = %r{^<component id='exp rexp'>Rested EXP Stored:\s*(?<stored>.*?)\s*Usable This Cycle:\s*(?<usable>.*?)\s*Cycle Refreshes:\s*(?<refresh>.*)</component>}.freeze
+        # Regular expression pattern for capturing rested experience for free-to-play characters.
+        Rested_EXP_F2P = %r{^<component id='exp rexp'>\[Unlock Rested Experience}.freeze
+        # Regular expression pattern for capturing TDP values in the XP window.
+        TDPValue_XPWindow = %r{^<component id='exp tdp'>\s*TDPs:\s*(?<tdp>\d+)</component>}.freeze
+        # Regular expression pattern for capturing favor values in the XP window.
+        FavorValue_XPWindow = %r{^<component id='exp favor'>\s*Favors:\s*(?<favor>\d+)</component>}.freeze
+        # Regular expression pattern for the start of inventory get.
+        InventoryGetStart = %r{You rummage about your person, looking for}.freeze
       end
 
       @parsing_exp_mods_output = false
+      @parsing_inventory_get = false
 
-      # Checks for events in the server string
-      # This method iterates through defined matchers and updates flags
-      # based on the server output.
-      # @param server_string [String] The server output string to check
-      # @return [String] The original server string
-      # @example
-      #   DRParser.check_events(server_output)
+      # Checks the server string for events and updates flags accordingly.
+      # @param server_string [String] The server string to check for events.
+      # @return [String] The original server string.
       def self.check_events(server_string)
         Flags.matchers.each do |key, regexes|
           regexes.each do |regex|
@@ -168,14 +90,67 @@ module Lich
         server_string
       end
 
-      # Parses the output from `exp mods` command
-      # This method updates the DRSkill.exp_modifiers hash with the skill
-      # and value based on the server output.
-      # @param server_string [String] The server output string to parse
-      # @return [String] The original server string
-      # @example
-      #   DRParser.check_exp_mods(server_output)
-      # @note This method is primarily used by the `skill-recorder` script.
+      # Populates the inventory based on the server string received.
+      # @param server_string [String] The server string containing inventory data.
+      # @return [String] The original server string.
+      def self.populate_inventory_get(server_string)
+        case server_string
+        when %r{^<output class=""/>}
+          if @parsing_inventory_get
+            @parsing_inventory_get = false
+          end
+        else
+          # This block parses a single line from the output of the `inv search <string>` verb,
+          # which lists items on your character. Each line is an XML-like string.
+          # Example: <d cmd='get #12345'>a small pouch</d>
+          if @parsing_inventory_get && server_string.strip.start_with?('<d cmd=')
+            # The server string is an XML fragment, so we wrap it in a root element to make it parsable.
+            document = REXML::Document.new("<root>#{server_string.strip}</root>")
+            d_element = document.root.elements["d"]
+
+            return unless d_element
+
+            # Extract the item name from the text inside the <d> tag.
+            # Normalize it by lowercasing and removing leading articles ('a', 'an', 'some').
+            item_name = d_element.text.sub(/^(?:a|an|some)\s/, '').strip
+
+            # Extract the command and the unique item ID from the 'cmd' attribute.
+            cmd = d_element.attributes["cmd"].downcase.strip
+            id_match = /get (?<itemID>#\d+)(?: in (?<container1>#\d+|[^']+))?(?: in (?<container2>#\d+|[^']+))?/.match(cmd)
+            # <!-- Regex to capture item and container IDs: cmd='get (?<itemID>#\d+)(?: in (?<container1>#\d+|[^']+))?(?: in (?<container2>#\d+|[^']+))?' -->
+            # <d cmd='get #8286821 in #8286816 in #8286762'>A papyrus parchment</d> is in a black winter cloak crafted from thick cashmere, which is in a scuffed traveler's pack.
+            # <d cmd='get #8735861 in #8735860 in watery portal'>Some arzumodine cloth</d> is in a lumpy canvas sack, which is in an effervescent eddy of honey-hued light captured by a sungold frame.
+            # <d cmd='get #8761784'>A seagull feather quill with dyed snowy white barbs</d> is lying at your feet.
+            # <d cmd='get #8761784'>A seagull feather quill with dyed snowy white barbs</d> is in your right hand.
+
+            if id_match
+              id = id_match[:itemID].strip.delete('#').to_s
+              noun = nil # This isn't exposed in the DR XML stream
+              name = item_name
+              container1 = id_match[:container1].strip.delete('#') if id_match[:container1]
+              container2 = id_match[:container2].strip.delete('#') if id_match[:container2]
+              container = container1 || nil
+              before = cmd
+              after = nil
+
+              # Store the parsed item information.
+              # DRItems.update_item(item, id, cmd, full_description)
+              Lich.log("DRParser: Adding inventory item - ID: #{id}, Noun: #{noun}, Name: #{name}, Container: #{container}, Before: #{before}, After: #{after}")
+              GameObj.new_inv(id, noun, name, container, before, after)
+              if container2
+                before = cmd.sub(/get \#\d+ in/, "get")
+                name = nil # We don't know the name of the item in container2
+                GameObj.new_inv(container1, noun, name, container2, before, after)
+              end
+            end
+          end
+        end
+        server_string
+      end
+
+      # Parses the output from the `exp mods` command and updates skill modifiers.
+      # @param server_string [String] The server string containing experience modifiers.
+      # @return [String] The original server string.
       def self.check_exp_mods(server_string)
         # This method parses the output from `exp mods` command
         # and updates the DRSkill.exp_modifiers hash with the skill and value.
@@ -205,8 +180,10 @@ module Lich
           end
         else
           if @parsing_exp_mods_output
-            # https://regex101.com/r/5ZE8lq/1
-            match = /^(?<sign>[+-])(?<value>\d+)\s+(?<skill>[\w\s]+)$/.match(server_string)
+            # https://rubular.com/r/hg7SFvVNUtdLdh
+            # Sample line
+            # <preset id="speech">+79 Attunement</preset>
+            match = /^(?:<preset id="speech">)?(?<sign>[+-])(?<value>\d+)\s+(?<skill>[\w\s]+)(?:<\/preset>)?$/.match(server_string.strip)
             if match
               skill = match[:skill].strip
               sign = match[:sign]
@@ -219,13 +196,9 @@ module Lich
         server_string
       end
 
-      # Parses the output from `spells` command for magic users
-      # This method populates the known spells/feats based on the output.
-      # @param server_string [String] The server output string to parse
-      # @return [String] The original server string
-      # @example
-      #   DRParser.check_known_spells(server_output)
-      # @note As of June 2022, there are two different output formats: column-formatted and non-column.
+      # Parses the output from the `spells` command for magic users and populates known spells.
+      # @param server_string [String] The server string containing known spells data.
+      # @return [String] The original server string.
       def self.check_known_spells(server_string)
         # This method parses the output from `spells` command for magic users
         # and populates the known spells/feats based on the output.
@@ -326,12 +299,9 @@ module Lich
         server_string
       end
 
-      # Parses the output from `ability` command for Barbarians
-      # This method populates the known spells/feats based on the known abilities/masteries.
-      # @param server_string [String] The server output string to parse
-      # @return [String] The original server string
-      # @example
-      #   DRParser.check_known_barbarian_abilities(server_output)
+      # Parses the output from the `ability` command for Barbarians and populates known abilities.
+      # @param server_string [String] The server string containing known barbarian abilities.
+      # @return [String] The original server string.
       def self.check_known_barbarian_abilities(server_string)
         # This method parses the output from `ability` command for Barbarians
         # and populates the known spells/feats based on the known abilities/masteries.
@@ -374,12 +344,9 @@ module Lich
         server_string
       end
 
-      # Parses the output from `ability` command for Thieves
-      # This method populates the known spells/feats based on the known khri.
-      # @param server_string [String] The server output string to parse
-      # @return [String] The original server string
-      # @example
-      #   DRParser.check_known_thief_khri(server_output)
+      # Parses the output from the `ability` command for Thieves and populates known khri.
+      # @param server_string [String] The server string containing known thief khri.
+      # @return [String] The original server string.
       def self.check_known_thief_khri(server_string)
         # This method parses the output from `ability` command for Thieves
         # and populates the known spells/feats based on the known khri.
@@ -409,18 +376,16 @@ module Lich
         server_string
       end
 
-      # Parses a line of server output
-      # This method checks for various patterns in the server output and
-      # updates the game state accordingly.
-      # @param line [String] The server output line to parse
-      # @return [String] The original server line
-      # @example
-      #   DRParser.parse(server_line)
-      # @raise [StandardError] If an error occurs during parsing.
+      # Parses a line of server output and updates game state accordingly.
+      # @param line [String] The line of server output to parse.
+      # @return [void]
       def self.parse(line)
         check_events(line)
         begin
           case line
+          when Pattern::InventoryGetStart
+            GameObj.clear_inv
+            @parsing_inventory_get = true
           when Pattern::GenderAgeCircle
             DRStats.gender = Regexp.last_match[:gender]
             DRStats.age = Regexp.last_match[:age].to_i
@@ -523,10 +488,23 @@ module Lich
             put("flag showroomid on")
             respond("Lich requires ShowRoomID to be ON for mapping to work, please do not turn this off.")
             respond("If you wish to hide the Real ID#, you can toggle it off by doing ;display flaguid")
+          when Pattern::Rested_EXP
+            matches = Regexp.last_match
+            DRSkill.update_rested_exp(matches[:stored].strip, matches[:usable].strip, matches[:refresh].strip)
+          when Pattern::Rested_EXP_F2P
+            # f2p characters without brain boost don't get rested exp
+            DRSkill.update_rested_exp('none', 'none', 'none')
+          when Pattern::TDPValue_XPWindow
+            matches = Regexp.last_match
+            DRStats.tdps = matches[:tdp].to_i
+          when Pattern::FavorValue_XPWindow
+            matches = Regexp.last_match
+            DRStats.favors = matches[:favor].to_i
           else
             :noop
           end
 
+          populate_inventory_get(line) if @parsing_inventory_get
           check_exp_mods(line) if @parsing_exp_mods_output
           check_known_barbarian_abilities(line) if DRSpells.check_known_barbarian_abilities
           check_known_thief_khri(line) if DRSpells.grabbing_known_khri

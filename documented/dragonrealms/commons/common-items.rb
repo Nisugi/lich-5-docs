@@ -1,21 +1,14 @@
-# This module should be 'bottom-level' and only depend on common.
-# Any modules that deal with items and <something> should be somewhere else
 
-# Lich module for DragonRealms item handling
-# This module should be 'bottom-level' and only depend on common.
-# Any modules that deal with items and <something> should be somewhere else
-# @example Usage
-#   Lich::DragonRealms::DRCI.dispose_trash(item)
 module Lich
   module DragonRealms
     module DRCI
       module_function
 
       ## How to add new trash receptacles https://github.com/elanthia-online/dr-scripts/wiki/Adding-new-trash-receptacles
-      # List of trash receptacles available in the game.
+      ## List of trash receptacles
+      ## This constant holds the various types of trash receptacles available in the game.
       TRASH_STORAGE = %w[arms barrel basin basket bin birdbath bucket chamberpot gloop hole log puddle statue stump tangle tree turtle urn gelapod]
 
-      # Patterns for successful trash drop messages.
       DROP_TRASH_SUCCESS_PATTERNS = [
         /^You drop/,
         /^You put/,
@@ -27,7 +20,6 @@ module Lich
         /^You feed .* a bit warily to the domesticated gelapod/
       ]
 
-      # Patterns for failed trash drop messages.
       DROP_TRASH_FAILURE_PATTERNS = [
         /^What were you referring to/,
         /^I could not find/,
@@ -50,7 +42,6 @@ module Lich
 
       # Messages that when trying to drop an item you're warned.
       # To continue you must retry the command.
-      # Patterns for retry messages when dropping trash.
       DROP_TRASH_RETRY_PATTERNS = [
         # You may get the next message if the item would be damaged upon dropping.
         /^If you still wish to drop it/,
@@ -62,14 +53,12 @@ module Lich
         /perhaps try doing that again/
       ]
 
-      # Patterns for actions performed on worn trashcans.
       WORN_TRASHCAN_VERB_PATTERNS = [
         /^You drum your fingers/,
         /^You pull a lever/,
         /^You poke your finger around/
       ]
 
-      # Patterns for successful item retrieval messages.
       GET_ITEM_SUCCESS_PATTERNS = [
         /you draw (?!\w+'s wounds)/i,
         /^You get/,
@@ -85,7 +74,6 @@ module Lich
         /^With a flick of your wrist, you stealthily unsheath/
       ]
 
-      # Patterns for failed item retrieval messages.
       GET_ITEM_FAILURE_PATTERNS = [
         /^A magical force keeps you from grasping/,
         /^You'll need both hands free/,
@@ -110,7 +98,6 @@ module Lich
         /^You should stop practicing your Athletics skill before you do that/
       ]
 
-      # Patterns for successful item wear messages.
       WEAR_ITEM_SUCCESS_PATTERNS = [
         /^You put/,
         /^You pull/,
@@ -143,7 +130,6 @@ module Lich
         /Gritting your teeth/ # Gritting your teeth, you grip each of your heavy combat boots in turn by the straps, and drive your feet into them for a secure fit.
       ]
 
-      # Patterns for failed item wear messages.
       WEAR_ITEM_FAILURE_PATTERNS = [
         /^You can't wear/,
         /^You (need to|should) unload/,
@@ -154,13 +140,11 @@ module Lich
         /^What were you/
       ]
 
-      # Patterns for successful item tie messages.
       TIE_ITEM_SUCCESS_PATTERNS = [
         /^You .* tie/,
         /^You attach/
       ]
 
-      # Patterns for failed item tie messages.
       TIE_ITEM_FAILURE_PATTERNS = [
         /^You don't seem to be able to move/,
         /^There's no more free ties/,
@@ -172,13 +156,11 @@ module Lich
         /^Tie what/
       ]
 
-      # Patterns for successful item untie messages.
       UNTIE_ITEM_SUCCESS_PATTERNS = [
         /^You remove/,
         /You untie/i
       ]
 
-      # Patterns for failed item untie messages.
       UNTIE_ITEM_FAILURE_PATTERNS = [
         /^You don't seem to be able to move/,
         /^You fumble with the ties/,
@@ -186,7 +168,6 @@ module Lich
         /^What were you referring/
       ]
 
-      # Patterns for successful item removal messages.
       REMOVE_ITEM_SUCCESS_PATTERNS = [
         /^Dropping your shoulder/,
         /^The .* slide/,
@@ -211,7 +192,6 @@ module Lich
         /^With masterful grace, you ready/
       ]
 
-      # Patterns for failed item removal messages.
       REMOVE_ITEM_FAILURE_PATTERNS = [
         /^You'll need both hands free/,
         /^You need a free hand/,
@@ -223,7 +203,6 @@ module Lich
         /^What were you/
       ]
 
-      # Patterns for successful item stow messages.
       PUT_AWAY_ITEM_SUCCESS_PATTERNS = [
         /^You put your .* in/,
         /^You hold out/,
@@ -254,7 +233,6 @@ module Lich
         /^You toss .* into/ # You toss the alcohol into the bowl and mix it in thoroughly
       ]
 
-      # Patterns for failed item stow messages.
       PUT_AWAY_ITEM_FAILURE_PATTERNS = [
         /^Stow what/,
         /^I can't find your container for stowing things in/,
@@ -292,7 +270,6 @@ module Lich
 
       # Messages that when trying to put away an item you're warned.
       # To continue you must retry the command.
-      # Patterns for retry messages when putting away items.
       PUT_AWAY_ITEM_RETRY_PATTERNS = [
         # You may get the next messages when an outdated item is updated upon use.
         # "Something appears different about the <item>, perhaps try doing that again."
@@ -301,31 +278,26 @@ module Lich
         /perhaps try doing that again/
       ]
 
-      # Combined patterns for successful stow actions.
       STOW_ITEM_SUCCESS_PATTERNS = [
         *GET_ITEM_SUCCESS_PATTERNS,
         *PUT_AWAY_ITEM_SUCCESS_PATTERNS
       ]
 
-      # Combined patterns for failed stow actions.
       STOW_ITEM_FAILURE_PATTERNS = [
         *GET_ITEM_FAILURE_PATTERNS,
         *PUT_AWAY_ITEM_FAILURE_PATTERNS,
       ]
 
-      # Combined patterns for retry actions when stowing items.
       STOW_ITEM_RETRY_PATTERNS = [
         *PUT_AWAY_ITEM_RETRY_PATTERNS
       ]
 
-      # Patterns for successful rummage messages.
       RUMMAGE_SUCCESS_PATTERNS = [
         /^You rummage through .* and see (.*)\./,
         /^In the .* you see (.*)\./,
         /there is nothing/i
       ]
 
-      # Patterns for failed rummage messages.
       RUMMAGE_FAILURE_PATTERNS = [
         /^You don't seem to be able to move/,
         /^I could not find/,
@@ -333,7 +305,6 @@ module Lich
         /^What were you referring to/
       ]
 
-      # Patterns for successful tap messages.
       TAP_SUCCESS_PATTERNS = [
         /^You tap\s(?!into).*/, # The `.*` is needed to capture entire phrase. Methods parse it to know if an item is worn, stowed, etc.
         /^You (thump|drum) your finger/, # You tapped an item with fancy verbiage, ohh la la!
@@ -343,7 +314,6 @@ module Lich
         /^You suddenly forget what you were doing/ # "tap my tessera" messaging when hands are full
       ]
 
-      # Patterns for failed tap messages.
       TAP_FAILURE_PATTERNS = [
         /^You don't seem to be able to move/,
         /^I could not find/,
@@ -351,7 +321,6 @@ module Lich
         /^What were you referring to/
       ]
 
-      # Patterns for successful open container messages.
       OPEN_CONTAINER_SUCCESS_PATTERNS = [
         /^You open/,
         /^You slowly open/,
@@ -361,7 +330,6 @@ module Lich
         /^You spread your arms, carefully holding your bag well away from your body/
       ]
 
-      # Patterns for failed open container messages.
       OPEN_CONTAINER_FAILURE_PATTERNS = [
         /^Please rephrase that command/,
         /^What were you referring to/,
@@ -375,7 +343,6 @@ module Lich
         /^Open what/
       ]
 
-      # Patterns for successful close container messages.
       CLOSE_CONTAINER_SUCCESS_PATTERNS = [
         /^You close/,
         /^You quickly close/,
@@ -383,7 +350,6 @@ module Lich
         /is already closed/
       ]
 
-      # Patterns for failed close container messages.
       CLOSE_CONTAINER_FAILURE_PATTERNS = [
         /^Please rephrase that command/,
         /^What were you referring to/,
@@ -396,21 +362,18 @@ module Lich
         /^You can't do that/
       ]
 
-      # Patterns indicating that a container is closed.
       CONTAINER_IS_CLOSED_PATTERNS = [
         /^But that's closed/,
         /^That is closed/,
         /^While it's closed/
       ]
 
-      # Patterns for successful lower item messages.
       LOWER_SUCCESS_PATTERNS = [
         /^You lower/,
         # The next message is when item crumbles when leaves your hand, like a moonblade.
         /^As you open your hand to release the/
       ]
 
-      # Patterns for failed lower item messages.
       LOWER_FAILURE_PATTERNS = [
         /^You don't seem to be able to move/,
         /^But you aren't holding anything/,
@@ -419,12 +382,10 @@ module Lich
         /^I could not find what you were referring to/
       ]
 
-      # Patterns for successful lift item messages.
       LIFT_SUCCESS_PATTERNS = [
         /^You pick up/
       ]
 
-      # Patterns for failed lift item messages.
       LIFT_FAILURE_PATTERNS = [
         /^There are no items lying at your feet/,
         /^What did you want to try and lift/,
@@ -432,7 +393,6 @@ module Lich
         /^You are not strong enough to pick that up/
       ]
 
-      # Patterns for successful give item messages.
       GIVE_ITEM_SUCCESS_PATTERNS = [
         /has accepted your offer/,
         /your ticket and are handed back/,
@@ -441,7 +401,6 @@ module Lich
         /^You hand .* your ticket and are handed back/
       ]
 
-      # Patterns for failed give item messages.
       GIVE_ITEM_FAILURE_PATTERNS = [
         /I don't repair those here/,
         /There isn't a scratch on that/,
@@ -456,33 +415,62 @@ module Lich
       ]
 
       #########################################
-      # TRASH ITEM
       #########################################
 
-      # Disposes of an item in a trash receptacle.
-      # @param item [String] The item to dispose of.
-      # @param worn_trashcan [String, nil] The worn trashcan to use, if any.
-      # @param worn_trashcan_verb [String, nil] The verb to use with the worn trashcan.
-      # @return [Boolean] Returns true if the item was successfully disposed of.
-      # @note If the item is not held, it will not be disposed.
+      # Disposes of a specified trash item into a trash receptacle.
+      # @param item [String] The item to be disposed of.
+      # @param worn_trashcan [String, nil] The name of the worn trashcan, if any.
+      # @param worn_trashcan_verb [String, nil] The verb associated with the worn trashcan.
+      # @return [Boolean] Returns true if the item was successfully disposed of, false otherwise.
       # @example
-      #   dispose_trash("old shoe")
+      #   dispose_trash("old newspaper")
       def dispose_trash(item, worn_trashcan = nil, worn_trashcan_verb = nil)
         return unless item
         return unless DRCI.get_item_if_not_held?(item)
 
         if worn_trashcan
-          case DRC.bput("put my #{item} in my #{worn_trashcan}", DROP_TRASH_RETRY_PATTERNS, DROP_TRASH_SUCCESS_PATTERNS, DROP_TRASH_FAILURE_PATTERNS, /^Perhaps you should be holding that first/)
-          when /^Perhaps you should be holding that first/
-            return (DRCI.get_item?(item) && DRCI.dispose_trash(item, worn_trashcan, worn_trashcan_verb))
-          when *DROP_TRASH_RETRY_PATTERNS
-            return DRCI.dispose_trash(item, worn_trashcan, worn_trashcan_verb)
+          case DRC.bput("put my #{item} in my #{worn_trashcan}", DROP_TRASH_SUCCESS_PATTERNS, DROP_TRASH_FAILURE_PATTERNS, DROP_TRASH_RETRY_PATTERNS, /^Perhaps you should be holding that first/)
           when *DROP_TRASH_SUCCESS_PATTERNS
             if worn_trashcan_verb
               DRC.bput("#{worn_trashcan_verb} my #{worn_trashcan}", *WORN_TRASHCAN_VERB_PATTERNS)
               DRC.bput("#{worn_trashcan_verb} my #{worn_trashcan}", *WORN_TRASHCAN_VERB_PATTERNS)
             end
             return true
+          when *DROP_TRASH_FAILURE_PATTERNS
+            # NOOP, try next trashcan option
+          when *DROP_TRASH_RETRY_PATTERNS
+            return DRCI.dispose_trash(item, worn_trashcan, worn_trashcan_verb)
+          when /^Perhaps you should be holding that first/
+            return (DRCI.get_item?(item) && DRCI.dispose_trash(item, worn_trashcan, worn_trashcan_verb))
+          end
+        end
+
+        # Check for meta:trashcan tag on the room to identify a specific trashcan to use.
+        if Room.current.tags.find { |t| t =~ /meta:trashcan:(.*)/ }
+          metatag_trashcan = Regexp.last_match(1)
+
+          # Gelapod needs special handling since you feed it, and it disappears in winter
+          metatag_trash_command = nil
+          if metatag_trashcan == 'gelapod'
+            metatag_trash_command = "feed my #{item} to gelapod" if DRRoom.room_objs.include?('gelapod')
+          else
+            metatag_trash_command = "put my #{item} in #{metatag_trashcan}"
+          end
+
+          # gelapod is not here - probably winter move on to next attempt to get rid of
+          unless metatag_trash_command.nil?
+            case DRC.bput(metatag_trash_command, DROP_TRASH_SUCCESS_PATTERNS, DROP_TRASH_FAILURE_PATTERNS, DROP_TRASH_RETRY_PATTERNS, /^Perhaps you should be holding that first/)
+            when *DROP_TRASH_SUCCESS_PATTERNS
+              return true
+            when *DROP_TRASH_FAILURE_PATTERNS
+              # NOOP, try next trashcan option
+            when *DROP_TRASH_RETRY_PATTERNS
+              # If still didn't dispose of trash after retry
+              # then don't return yet, will try to drop it later.
+              return dispose_trash(item)
+            when /^Perhaps you should be holding that first/
+              return (DRCI.get_item?(item) && DRCI.dispose_trash(item))
+            end
           end
         end
 
@@ -523,71 +511,72 @@ module Lich
           trash_command = "put my #{item} in #{trashcan}" unless trashcan == 'gelapod'
 
           case DRC.bput(trash_command, DROP_TRASH_SUCCESS_PATTERNS, DROP_TRASH_FAILURE_PATTERNS, DROP_TRASH_RETRY_PATTERNS, /^Perhaps you should be holding that first/)
-          when /^Perhaps you should be holding that first/
-            return (DRCI.get_item?(item) && DRCI.dispose_trash(item))
+          when *DROP_TRASH_SUCCESS_PATTERNS
+            return true
+          when *DROP_TRASH_FAILURE_PATTERNS
+            # NOOP, try next trashcan option
           when *DROP_TRASH_RETRY_PATTERNS
             # If still didn't dispose of trash after retry
             # then don't return yet, will try to drop it later.
             return true if dispose_trash(item)
-          when *DROP_TRASH_SUCCESS_PATTERNS
-            return true
+          when /^Perhaps you should be holding that first/
+            return (DRCI.get_item?(item) && DRCI.dispose_trash(item))
           end
         end
 
         # No trash bins or not able to put item in a bin, just drop it.
         case DRC.bput("drop my #{item}", DROP_TRASH_SUCCESS_PATTERNS, DROP_TRASH_FAILURE_PATTERNS, DROP_TRASH_RETRY_PATTERNS, /^Perhaps you should be holding that first/, /^But you aren't holding that/)
-        when /^Perhaps you should be holding that first/, /^But you aren't holding that/
-          return (DRCI.get_item?(item) && DRCI.dispose_trash(item))
-        when *DROP_TRASH_RETRY_PATTERNS
-          return dispose_trash(item)
         when *DROP_TRASH_SUCCESS_PATTERNS
           return true
+        when *DROP_TRASH_FAILURE_PATTERNS
+          return false
+        when *DROP_TRASH_RETRY_PATTERNS
+          return dispose_trash(item)
+        when /^Perhaps you should be holding that first/, /^But you aren't holding that/
+          return (DRCI.get_item?(item) && DRCI.dispose_trash(item))
         else
+          # failure of match patterns in the bput, but still need to return a value
           return false
         end
       end
 
       #########################################
-      # SEARCH FOR ITEM
       #########################################
 
-      # Searches for an item in the inventory.
+      # Checks if a specified item is present in the inventory.
       # @param item [String] The item to search for.
-      # @return [Boolean] Returns true if the item is found.
+      # @return [Boolean] Returns true if the item is found, false otherwise.
       # @example
-      #   found = search?("sword")
+      #   search?("sword")
       def search?(item)
         /(?:An?|Some) .+ is (?:in|being)/ =~ DRC.bput("inv search #{item}", /^You can't seem to find anything/, /(?:An?|Some) .+ is (?:in|being)/)
       end
 
-      # Taps items to check if you're wearing it.
-      # Checks if an item is currently being worn.
+      # Checks if a specified item is currently being worn.
       # @param item [String] The item to check.
-      # @return [Boolean] Returns true if the item is worn.
+      # @return [Boolean] Returns true if the item is being worn, false otherwise.
       # @example
-      #   is_wearing = wearing?("hat")
+      #   wearing?("armor")
       def wearing?(item)
         tap(item) =~ /wearing/
       end
 
-      # Taps item to determine if it's in the given container.
-      # Checks if an item is inside a specified container.
+      # Checks if a specified item is inside a container.
       # @param item [String] The item to check.
       # @param container [String, nil] The container to check inside.
-      # @return [Boolean] Returns true if the item is inside the container.
+      # @return [Boolean] Returns true if the item is inside the container, false otherwise.
       # @example
-      #   is_inside = inside?("book", "bag")
+      #   inside?("key", "box")
       def inside?(item, container = nil)
         tap(item, container) =~ /inside/
       end
 
-      # Taps an item to confirm it exists.
-      # Checks if an item exists in the inventory or container.
-      # @param item [String] The item to check.
+      # Checks if a specified item exists in the inventory or container.
+      # @param item [String] The item to check for.
       # @param container [String, nil] The container to check inside.
-      # @return [Boolean] Returns true if the item exists.
+      # @return [Boolean] Returns true if the item exists, false otherwise.
       # @example
-      #   exists = exists?("ring")
+      #   exists?("potion")
       def exists?(item, container = nil)
         case tap(item, container)
         when *TAP_SUCCESS_PATTERNS
@@ -597,14 +586,12 @@ module Lich
         end
       end
 
-      # Taps an item and returns the match string.
-      # If no container specified then generically taps whatever's in your immediate inventory.
-      # Taps an item to check its status.
+      # Taps a specified item, optionally from a container.
       # @param item [String] The item to tap.
       # @param container [String, nil] The container to tap the item from.
-      # @return [String, nil] Returns the response from tapping the item.
+      # @return [String, nil] Returns the result of the tap action or nil if unsuccessful.
       # @example
-      #   response = tap("sword")
+      #   tap("gem", "pouch")
       def tap(item, container = nil)
         return nil unless item
 
@@ -613,41 +600,39 @@ module Lich
         DRC.bput("tap my #{item} #{from}", *TAP_SUCCESS_PATTERNS, *TAP_FAILURE_PATTERNS)
       end
 
-      # Checks if an item is in either hand.
+      # Checks if a specified item is in either hand.
       # @param item [String] The item to check.
-      # @return [Boolean] Returns true if the item is in either hand.
+      # @return [Boolean] Returns true if the item is in either hand, false otherwise.
       # @example
-      #   is_in_hands = in_hands?("shield")
+      #   in_hands?("sword")
       def in_hands?(item)
         in_hand?(item, 'either')
       end
 
-      # Checks if an item is in the left hand.
+      # Checks if a specified item is in the left hand.
       # @param item [String] The item to check.
-      # @return [Boolean] Returns true if the item is in the left hand.
+      # @return [Boolean] Returns true if the item is in the left hand, false otherwise.
       # @example
-      #   is_in_left_hand = in_left_hand?("dagger")
+      #   in_left_hand?("shield")
       def in_left_hand?(item)
         in_hand?(item, 'left')
       end
 
-      # Checks if an item is in the right hand.
+      # Checks if a specified item is in the right hand.
       # @param item [String] The item to check.
-      # @return [Boolean] Returns true if the item is in the right hand.
+      # @return [Boolean] Returns true if the item is in the right hand, false otherwise.
       # @example
-      #   is_in_right_hand = in_right_hand?("sword")
+      #   in_right_hand?("dagger")
       def in_right_hand?(item)
         in_hand?(item, 'right')
       end
 
-      # Checks if the item is in one or more hands.
-      # Hand options are: left, right, either, both.
-      # Checks if an item is in one or both hands.
+      # Checks if a specified item is in a specified hand.
       # @param item [String] The item to check.
       # @param which_hand [String] The hand to check ('left', 'right', 'either', 'both').
-      # @return [Boolean] Returns true if the item is in the specified hand(s).
+      # @return [Boolean] Returns true if the item is in the specified hand, false otherwise.
       # @example
-      #   is_in_hand = in_hand?("axe", "left")
+      #   in_hand?("axe", "left")
       def in_hand?(item, which_hand = 'either')
         return false unless item
 
@@ -667,12 +652,12 @@ module Lich
         end
       end
 
-      # Checks if an item is present by looking at it.
+      # Checks if a specified item is present by looking at it in a container.
       # @param item [String] The item to check.
-      # @param container [String] The container to check inside.
-      # @return [Boolean] Returns true if the item is found.
+      # @param container [String] The container to look in.
+      # @return [Boolean] Returns true if the item is found, false otherwise.
       # @example
-      #   found = have_item_by_look?("potion", "bag")
+      #   have_item_by_look?("scroll", "bag")
       def have_item_by_look?(item, container)
         return false unless item
 
@@ -688,14 +673,13 @@ module Lich
       end
 
       #########################################
-      # COUNT ITEMS
       #########################################
 
-      # Counts the parts of a stackable item.
-      # @param item [String] The item to count.
+      # Counts the number of parts left of a specified item.
+      # @param item [String] The item to count parts of.
       # @return [Integer] Returns the number of parts left.
       # @example
-      #   count = count_item_parts("wood")
+      #   count_item_parts("wood")
       def count_item_parts(item)
         match_messages = [
           /and see there (?:is|are) (.+) left\./,
@@ -731,13 +715,11 @@ module Lich
         count
       end
 
-      # Counts items in a container that is inferred by first tapping the item.
-      # If you want to count items in a specific container, use `count_items_in_container(item, container)`
-      # Counts items in a container inferred from the item.
+      # Counts the number of specified items in the inventory.
       # @param item [String] The item to count.
-      # @return [Integer] Returns the number of items found.
+      # @return [Integer] Returns the count of items found.
       # @example
-      #   count = count_items("arrows")
+      #   count_items("arrows")
       def count_items(item)
         /inside your (.*)/ =~ tap(item)
         container = Regexp.last_match(1)
@@ -746,14 +728,12 @@ module Lich
         count_items_in_container(item, container)
       end
 
-      # Counts items in a container.
-      # If you don't know which container the items are in, use `count_items(item)` to infer it.
-      # Counts items in a specified container.
+      # Counts the number of specified items in a given container.
       # @param item [String] The item to count.
       # @param container [String] The container to check.
-      # @return [Integer] Returns the number of items found.
+      # @return [Integer] Returns the count of items found in the container.
       # @example
-      #   count = count_items_in_container("gems", "pouch")
+      #   count_items_in_container("gems", "pouch")
       def count_items_in_container(item, container)
         contents = DRC.bput("rummage /C #{item.split.last} in my #{container}", /^You rummage .*/, /That would accomplish nothing/)
         # This regexp avoids counting the quoted item name in the message, as
@@ -761,53 +741,49 @@ module Lich
         contents.scan(/ #{item}\W/).size
       end
 
-      # Identifies how many more lockpicks that the container can hold.
-      # Designed to work on lockpick stackers.
-      # https://elanthipedia.play.net/Lockpick_rings
-      # Counts how many more lockpicks a container can hold.
+      # Counts the number of lockpicks that can fit in a specified container.
       # @param container [String] The container to check.
-      # @return [Integer] Returns the number of additional lockpicks that can fit.
+      # @return [Integer] Returns the number of lockpicks that can fit in the container.
       # @example
-      #   count = count_lockpick_container("lockpick ring")
+      #   count_lockpick_container("lockpick box")
       def count_lockpick_container(container)
         count = DRC.bput("appraise my #{container} quick", /it appears to be full/, /it might hold an additional \d+/, /\d+ lockpicks would probably fit/).scan(/\d+/).first.to_i
         waitrt?
         count
       end
 
-      # Gets a list of boxes in a specified container.
+      # Retrieves a list of boxes in a specified container.
       # @param container [String] The container to check.
-      # @return [Array] Returns an array of box descriptions.
+      # @return [Array] Returns an array of box names found in the container.
       # @example
-      #   boxes = get_box_list_in_container("chest")
+      #   get_box_list_in_container("chest")
       def get_box_list_in_container(container)
         DRC.rummage('B', container)
       end
 
-      # Gets a list of scrolls in a specified container.
+      # Retrieves a list of scrolls in a specified container.
       # @param container [String] The container to check.
-      # @return [Array] Returns an array of scroll descriptions.
+      # @return [Array] Returns an array of scroll names found in the container.
       # @example
-      #   scrolls = get_scroll_list_in_container("bookcase")
+      #   get_scroll_list_in_container("bookcase")
       def get_scroll_list_in_container(container)
         DRC.rummage('SC', container)
       end
 
-      # Takes in the noun of the configured necro material stacker, and returns the current material item count.
-      # Counts the current material item count in a necromancer's material stacker.
-      # @param necro_stacker [String] The necro stacker to check.
+      # Counts the number of items in a necromancer's stacker.
+      # @param necro_stacker [String] The necromancer's stacker to check.
       # @return [Integer] Returns the number of items in the stacker.
       # @example
-      #   count = count_necro_stacker("necro stacker")
+      #   count_necro_stacker("necro stacker")
       def count_necro_stacker(necro_stacker)
         DRC.bput("study my #{necro_stacker}", /currently holds \d+ items/).scan(/\d+/).first.to_i
       end
 
-      # Counts all boxes from various sources.
+      # Counts all boxes across various specified sources.
       # @param settings [Object] The settings object containing box sources.
-      # @return [Integer] Returns the total count of boxes.
+      # @return [Integer] Returns the total count of boxes found.
       # @example
-      #   total_boxes = count_all_boxes(settings)
+      #   count_all_boxes(settings)
       def count_all_boxes(settings)
         current_box_count = 0
 
@@ -826,13 +802,12 @@ module Lich
       end
 
       #########################################
-      # STOW ITEM
       #########################################
 
       # Stows items in both hands if possible.
-      # @return [Boolean] Returns true if both hands were stowed successfully.
+      # @return [Boolean] Returns true if both hands were stowed successfully, false otherwise.
       # @example
-      #   success = stow_hands
+      #   stow_hands
       def stow_hands
         (!DRC.left_hand || stow_hand('left')) &&
           (!DRC.right_hand || stow_hand('right'))
@@ -840,9 +815,9 @@ module Lich
 
       # Stows an item from a specified hand.
       # @param hand [String] The hand to stow from ('left' or 'right').
-      # @return [Boolean] Returns true if the item was stowed successfully.
+      # @return [Boolean] Returns true if the item was stowed successfully, false otherwise.
       # @example
-      #   success = stow_hand("left")
+      #   stow_hand("left")
       def stow_hand(hand)
         braid_regex = /The braided (.+) is too long/
         case DRC.bput("stow #{hand}", braid_regex, CONTAINER_IS_CLOSED_PATTERNS, STOW_ITEM_SUCCESS_PATTERNS, STOW_ITEM_FAILURE_PATTERNS, STOW_ITEM_RETRY_PATTERNS)
@@ -858,21 +833,14 @@ module Lich
       end
 
       #########################################
-      # GET ITEM
       #########################################
 
-      # Gets an item unless you are already hold it.
-      # Use this method to avoid having two of an item
-      # in your hands when you only want one.
-      #
-      # Returns true if the item is in your hand
-      # or we were able to get it to your hand.
-      # Gets an item unless it is already held.
-      # @param item [String] The item to get.
-      # @param container [String, nil] The container to get the item from.
-      # @return [Boolean] Returns true if the item is in hand or was successfully retrieved.
+      # Retrieves an item if it is not currently held.
+      # @param item [String] The item to retrieve.
+      # @param container [String, nil] The container to retrieve the item from, if applicable.
+      # @return [Boolean] Returns true if the item was retrieved, false otherwise.
       # @example
-      #   success = get_item_if_not_held?("sword")
+      #   get_item_if_not_held?("sword")
       def get_item_if_not_held?(item, container = nil)
         return false unless item
         return true if in_hands?(item)
@@ -880,26 +848,22 @@ module Lich
         return get_item(item, container)
       end
 
-      # Provide a predicate-named method to follow convention.
-      # Provides a predicate-named method to get an item.
-      # @param item [String] The item to get.
-      # @param container [String, nil] The container to get the item from.
-      # @return [Boolean] Returns true if the item was successfully retrieved.
+      # Retrieves a specified item from a container.
+      # @param item [String] The item to retrieve.
+      # @param container [String, nil] The container to retrieve the item from.
+      # @return [Boolean] Returns true if the item was retrieved, false otherwise.
       # @example
-      #   success = get_item?("shield")
+      #   get_item?("potion", "bag")
       def get_item?(item, container = nil)
         get_item(item, container)
       end
 
-      # Gets an item, optionally from a specific container.
-      # If no container specified then generically grabs from the room/your person.
-      # Can provide an array of containers to try, too, in case some might be empty.
-      # Gets an item from a specified container.
-      # @param item [String] The item to get.
-      # @param container [String, nil] The container to get the item from.
-      # @return [Boolean] Returns true if the item was successfully retrieved.
+      # Retrieves a specified item from a container or inventory.
+      # @param item [String] The item to retrieve.
+      # @param container [String, nil] The container to retrieve the item from.
+      # @return [Boolean] Returns true if the item was retrieved, false otherwise.
       # @example
-      #   success = get_item("potion", "bag")
+      #   get_item("gem", "pouch")
       def get_item(item, container = nil)
         if container.is_a?(Array)
           container.each do |c|
@@ -910,32 +874,34 @@ module Lich
         get_item_safe(item, container)
       end
 
-      # Same as 'get_item_unsafe' but ensures that
-      # the container argument is prefixed with 'my' qualifier.
+      # Safely retrieves a specified item from a container.
+      # @param item [String] The item to retrieve.
+      # @param container [String, nil] The container to retrieve the item from.
+      # @return [Boolean] Returns true if the item was retrieved safely, false otherwise.
+      # @example
+      #   get_item_safe?("ring", "box")
       def get_item_safe?(item, container = nil)
         item = "my #{item}" if item && !(item =~ /^my /i)
         container = "my #{container}" if container && !(container =~ /^((in|on|under|behind|from) )?my /i)
         get_item_unsafe(item, container)
       end
 
-      # Gets an item safely with 'my' prefix from a specified container.
-      # @param item [String] The item to get.
-      # @param container [String, nil] The container to get the item from.
-      # @return [Boolean] Returns true if the item was successfully retrieved.
+      # Safely retrieves a specified item from a container.
+      # @param item [String] The item to retrieve.
+      # @param container [String, nil] The container to retrieve the item from.
+      # @return [Boolean] Returns true if the item was retrieved safely, false otherwise.
       # @example
-      #   success = get_item_safe("ring", "box")
+      #   get_item_safe("amulet", "pouch")
       def get_item_safe(item, container = nil)
         get_item_safe?(item, container)
       end
 
-      # Gets an item, optionally from a specific container.
-      # If no container specified then generically grabs from the room/your person.
-      # Gets an item without safety checks from a specified container.
-      # @param item [String] The item to get.
-      # @param container [String, nil] The container to get the item from.
-      # @return [Boolean] Returns true if the item was successfully retrieved.
+      # Retrieves a specified item from a container without safety checks.
+      # @param item [String] The item to retrieve.
+      # @param container [String, nil] The container to retrieve the item from.
+      # @return [Boolean] Returns true if the item was retrieved, false otherwise.
       # @example
-      #   success = get_item_unsafe("sword", "chest")
+      #   get_item_unsafe("scroll", "chest")
       def get_item_unsafe(item, container = nil)
         from = container
         from = "from #{container}" if container && !(container =~ /^(in|on|under|behind|from) /i)
@@ -951,15 +917,12 @@ module Lich
         end
       end
 
-      # Workaround to game changes where you must periodically look in
-      # the portal for the contents to be available.
-      # http://forums.play.net/forums/DragonRealms/Discussions%20with%20DragonRealms%20Staff%20and%20Players/Game%20Master%20and%20Official%20Announcements/view/1899
-      # Gets an item from an eddy portal, ensuring the portal is open.
-      # @param item [String] The item to get.
-      # @param container [String] The container to get the item from.
-      # @return [Boolean] Returns true if the item was successfully retrieved.
+      # Retrieves an item from an eddy portal.
+      # @param item [String] The item to retrieve.
+      # @param container [String] The container to retrieve the item from.
+      # @return [Boolean] Returns true if the item was retrieved from the portal, false otherwise.
       # @example
-      #   success = get_item_from_eddy_portal?("gem", "portal")
+      #   get_item_from_eddy_portal?("gem", "portal")
       def get_item_from_eddy_portal?(item, container)
         # Ensure the eddy is open then look in it to force the contents to be loaded.
         return false unless DRCI.open_container?('my eddy') && DRCI.look_in_container('portal in my eddy')
@@ -975,15 +938,14 @@ module Lich
       end
 
       #########################################
-      # TIE/UNTIE ITEM
       #########################################
 
-      # Ties an item to a specified container.
+      # Ties a specified item to a container.
       # @param item [String] The item to tie.
       # @param container [String, nil] The container to tie the item to.
-      # @return [Boolean] Returns true if the item was successfully tied.
+      # @return [Boolean] Returns true if the item was tied successfully, false otherwise.
       # @example
-      #   success = tie_item?("rope", "tree")
+      #   tie_item?("rope", "tree")
       def tie_item?(item, container = nil)
         place = container ? "to my #{container}" : nil
         case DRC.bput("tie my #{item} #{place}", TIE_ITEM_SUCCESS_PATTERNS, TIE_ITEM_FAILURE_PATTERNS)
@@ -994,12 +956,12 @@ module Lich
         end
       end
 
-      # Unties an item from a specified container.
+      # Unties a specified item from a container.
       # @param item [String] The item to untie.
       # @param container [String, nil] The container to untie the item from.
-      # @return [Boolean] Returns true if the item was successfully untied.
+      # @return [Boolean] Returns true if the item was untied successfully, false otherwise.
       # @example
-      #   success = untie_item?("rope", "tree")
+      #   untie_item?("rope", "tree")
       def untie_item?(item, container = nil)
         place = container ? "from my #{container}" : nil
         case DRC.bput("untie my #{item} #{place}", UNTIE_ITEM_SUCCESS_PATTERNS, UNTIE_ITEM_FAILURE_PATTERNS)
@@ -1011,37 +973,32 @@ module Lich
       end
 
       #########################################
-      # WEAR ITEM
       #########################################
 
-      # Wears an item from your hands.
-      # Wears an item from your hands.
+      # Wears a specified item.
       # @param item [String] The item to wear.
-      # @return [Boolean] Returns true if the item was successfully worn.
+      # @return [Boolean] Returns true if the item was worn successfully, false otherwise.
       # @example
-      #   success = wear_item?("hat")
+      #   wear_item?("armor")
       def wear_item?(item)
         wear_item_safe?(item)
       end
 
-      # Same as 'wear_item_unsafe?' but ensures that
-      # the item name is prefixed with 'my' qualifier.
-      # Safely wears an item with 'my' prefix.
+      # Safely wears a specified item.
       # @param item [String] The item to wear.
-      # @return [Boolean] Returns true if the item was successfully worn.
+      # @return [Boolean] Returns true if the item was worn successfully, false otherwise.
       # @example
-      #   success = wear_item_safe?("cloak")
+      #   wear_item_safe?("helmet")
       def wear_item_safe?(item)
         item = "my #{item}" if item && !(item =~ /^my /i)
         wear_item_unsafe?(item)
       end
 
-      # Wears an item from your hands.
-      # Wears an item without safety checks.
+      # Wears a specified item without safety checks.
       # @param item [String] The item to wear.
-      # @return [Boolean] Returns true if the item was successfully worn.
+      # @return [Boolean] Returns true if the item was worn, false otherwise.
       # @example
-      #   success = wear_item_unsafe?("armor")
+      #   wear_item_unsafe?("cloak")
       def wear_item_unsafe?(item)
         case DRC.bput("wear #{item}", WEAR_ITEM_SUCCESS_PATTERNS, WEAR_ITEM_FAILURE_PATTERNS)
         when *WEAR_ITEM_SUCCESS_PATTERNS
@@ -1052,37 +1009,32 @@ module Lich
       end
 
       #########################################
-      # REMOVE ITEM
       #########################################
 
-      # Removes an item you're wearing.
-      # Removes an item you're wearing.
+      # Removes a specified item.
       # @param item [String] The item to remove.
-      # @return [Boolean] Returns true if the item was successfully removed.
+      # @return [Boolean] Returns true if the item was removed successfully, false otherwise.
       # @example
-      #   success = remove_item?("hat")
+      #   remove_item?("ring")
       def remove_item?(item)
         remove_item_safe?(item)
       end
 
-      # Same as 'remove_item_unsafe?' but ensures that
-      # the item name is prefixed with 'my' qualifier.
-      # Safely removes an item with 'my' prefix.
+      # Safely removes a specified item.
       # @param item [String] The item to remove.
-      # @return [Boolean] Returns true if the item was successfully removed.
+      # @return [Boolean] Returns true if the item was removed successfully, false otherwise.
       # @example
-      #   success = remove_item_safe?("cloak")
+      #   remove_item_safe?("amulet")
       def remove_item_safe?(item)
         item = "my #{item}" if item && !(item =~ /^my /i)
         remove_item_unsafe?(item)
       end
 
-      # Removes an item you're wearing.
-      # Removes an item without safety checks.
+      # Removes a specified item without safety checks.
       # @param item [String] The item to remove.
-      # @return [Boolean] Returns true if the item was successfully removed.
+      # @return [Boolean] Returns true if the item was removed, false otherwise.
       # @example
-      #   success = remove_item_unsafe?("armor")
+      #   remove_item_unsafe?("belt")
       def remove_item_unsafe?(item)
         case DRC.bput("remove #{item}", REMOVE_ITEM_SUCCESS_PATTERNS, REMOVE_ITEM_FAILURE_PATTERNS)
         when *REMOVE_ITEM_SUCCESS_PATTERNS
@@ -1093,41 +1045,32 @@ module Lich
       end
 
       #########################################
-      # STOW ITEM
       #########################################
 
-      # Stows an item into its default container. See STORE HELP for details.
-      # Same as 'stow_item_safe?'.
-      # Stows an item into its default container.
+      # Stows a specified item.
       # @param item [String] The item to stow.
-      # @return [Boolean] Returns true if the item was successfully stowed.
+      # @return [Boolean] Returns true if the item was stowed successfully, false otherwise.
       # @example
-      #   success = stow_item?("sword")
+      #   stow_item?("sword")
       def stow_item?(item)
         stow_item_safe?(item)
       end
 
-      # Stows an item into its default container. See STORE HELP for details.
-      # Same as 'stow_item_unsafe?' but ensures that
-      # the item argument is prefixed with 'my '.
-      # Safely stows an item with 'my' prefix.
+      # Safely stows a specified item.
       # @param item [String] The item to stow.
-      # @return [Boolean] Returns true if the item was successfully stowed.
+      # @return [Boolean] Returns true if the item was stowed successfully, false otherwise.
       # @example
-      #   success = stow_item_safe?("shield")
+      #   stow_item_safe?("shield")
       def stow_item_safe?(item)
         item = "my #{item}" if item && !(item =~ /^my /i)
         stow_item_unsafe?(item)
       end
 
-      # Stows an item into its default container. See STORE HELP for details.
-      # Unless you include the 'my ' prefix in the item then this may
-      # try to stow an item on the ground rather than something in your inventory.
-      # Stows an item without safety checks.
+      # Stows a specified item without safety checks.
       # @param item [String] The item to stow.
-      # @return [Boolean] Returns true if the item was successfully stowed.
+      # @return [Boolean] Returns true if the item was stowed, false otherwise.
       # @example
-      #   success = stow_item_unsafe?("potion")
+      #   stow_item_unsafe?("dagger")
       def stow_item_unsafe?(item)
         case DRC.bput("stow #{item}", CONTAINER_IS_CLOSED_PATTERNS, STOW_ITEM_SUCCESS_PATTERNS, STOW_ITEM_FAILURE_PATTERNS, STOW_ITEM_RETRY_PATTERNS)
         when *STOW_ITEM_RETRY_PATTERNS
@@ -1140,16 +1083,13 @@ module Lich
       end
 
       #########################################
-      # LOWER ITEM
       #########################################
 
-      # Lowers the item to the ground.
-      # Determines which hand is holding the item then lowers it to your feet slot.
-      # Lowers an item to the ground from your hands.
+      # Lowers a specified item to the ground.
       # @param item [String] The item to lower.
-      # @return [Boolean] Returns true if the item was successfully lowered.
+      # @return [Boolean] Returns true if the item was lowered successfully, false otherwise.
       # @example
-      #   success = lower_item?("sword")
+      #   lower_item?("spear")
       def lower_item?(item)
         return false unless in_hands?(item)
 
@@ -1167,12 +1107,12 @@ module Lich
       ## You can pass this only an item and it will attempt to lift that item and return true/false
       ## You can pass this both an item and true and it will lift that item and return the result of stow_item? on that item
       ## You can pass this both an item and the name of a container and return the result of put_away_item? on that item and that container
-      # Lifts an item and optionally stows it.
+      # Lifts a specified item and optionally stows it.
       # @param item [String, nil] The item to lift.
       # @param stow [Boolean, nil] Whether to stow the item after lifting.
-      # @return [Boolean] Returns true if the item was successfully lifted.
+      # @return [Boolean] Returns true if the item was lifted successfully, false otherwise.
       # @example
-      #   success = lift?("box", true)
+      #   lift?("box", true)
       def lift?(item = nil, stow = nil)
         item = item.split.last # Necessary until adjectives are implemented for lift
         case DRC.bput("lift #{item}", LIFT_SUCCESS_PATTERNS, LIFT_FAILURE_PATTERNS)
@@ -1190,31 +1130,23 @@ module Lich
       end
 
       #########################################
-      # CHECK CONTAINER CONTENTS
       #########################################
 
-      # Checks if the container is empty.
-      # Returns true if certain the container is empty.
-      # Returns false if certain the container is not empty.
-      # Returns nil if unable to determine either way (e.g. can't open container or look in it).
-      # Checks if a container is empty.
+      # Checks if a specified container is empty.
       # @param container [String] The container to check.
-      # @return [Boolean, nil] Returns true if empty, false if not, or nil if undetermined.
+      # @return [Boolean] Returns true if the container is empty, false otherwise.
       # @example
-      #   is_empty = container_is_empty?("chest")
+      #   container_is_empty?("chest")
       def container_is_empty?(container)
         look_in_container(container).empty?
       end
 
-      # Returns a list of item descriptions from the `INVENTORY <type|slot>` verb output.
-      # Where <type> can be armor, weapon, fluff, container, or combat.
-      # Where <slot> can be any phrase from INV SLOTS LIST command.
-      # Returns a list of item descriptions from the inventory by type.
-      # @param type [String] The type of items to retrieve (e.g., 'combat').
-      # @param line_count [Integer] The number of lines to check in the inventory.
-      # @return [Array] Returns an array of item descriptions.
+      # Retrieves the inventory of a specified type.
+      # @param type [String] The type of inventory to retrieve (e.g., 'combat').
+      # @param line_count [Integer] The number of lines to retrieve from the inventory.
+      # @return [Array] Returns an array of items in the specified inventory type.
       # @example
-      #   items = get_inventory_by_type("armor")
+      #   get_inventory_by_type("combat")
       def get_inventory_by_type(type = 'combat', line_count = 40)
         case DRC.bput("inventory #{type}", /Use INVENTORY HELP for more options/, /The INVENTORY command is the best way/, /You can't do that/)
         when /The INVENTORY command is the best way/, /You can't do that/
@@ -1243,15 +1175,12 @@ module Lich
         end
       end
 
-      # Gets a list of items found in a container via RUMMAGE or LOOK.
-      # Default is 'rummage' which returns the full item tap descriptions (e.g. some grey ice skates with black laces)
-      # You can pass in 'LOOK' to get back the short item names, which is easier to parse to know the adjective and noun (e.g. some grey ice skates)
-      # Gets a list of items found in a container via RUMMAGE or LOOK.
-      # @param container [String] The container to check.
-      # @param verb [String] The verb to use ('rummage' or 'look').
-      # @return [Array] Returns an array of item descriptions.
+      # Retrieves a list of items from a specified container using a verb.
+      # @param container [String] The container to retrieve items from.
+      # @param verb [String] The verb to use for retrieval (e.g., 'rummage' or 'look').
+      # @return [Array] Returns an array of item names found in the container.
       # @example
-      #   items = get_item_list("chest", "look")
+      #   get_item_list("bag", "rummage")
       def get_item_list(container, verb = 'rummage')
         case verb
         when /^(r|rummage)$/i
@@ -1261,14 +1190,11 @@ module Lich
         end
       end
 
-      # Gets a list of items by RUMMAGE the container.
-      # Returns a list (empty or otherwise) if able to rummage the container.
-      # Returns nil if unable to determine if container's contents (e.g. can't open it or rummage it).
-      # Gets a list of items by rummaging the container.
-      # @param container [String] The container to rummage.
-      # @return [Array, nil] Returns an array of items or nil if unable to determine.
+      # Rummages through a specified container to find items.
+      # @param container [String] The container to rummage through.
+      # @return [Array, nil] Returns an array of items found or nil if unsuccessful.
       # @example
-      #   items = rummage_container("bag")
+      #   rummage_container("chest")
       def rummage_container(container)
         container = "my #{container}" unless container.nil? || container =~ /^my /i
         contents = DRC.bput("rummage #{container}", CONTAINER_IS_CLOSED_PATTERNS, RUMMAGE_SUCCESS_PATTERNS, RUMMAGE_FAILURE_PATTERNS)
@@ -1287,14 +1213,11 @@ module Lich
         end
       end
 
-      # Gets a list of items by LOOK in the container.
-      # Returns a list (empty or otherwise) if able to look in the container.
-      # Returns nil if unable to determine if container's contents (e.g. can't open it or look in it).
-      # Gets a list of items by looking in the container.
+      # Looks inside a specified container to find items.
       # @param container [String] The container to look in.
-      # @return [Array, nil] Returns an array of items or nil if unable to determine.
+      # @return [Array, nil] Returns an array of items found or nil if unsuccessful.
       # @example
-      #   items = look_in_container("box")
+      #   look_in_container("box")
       def look_in_container(container)
         container = "my #{container}" unless container.nil? || container =~ /^my /i
         contents = DRC.bput("look in #{container}", CONTAINER_IS_CLOSED_PATTERNS, RUMMAGE_SUCCESS_PATTERNS, RUMMAGE_FAILURE_PATTERNS)
@@ -1314,18 +1237,14 @@ module Lich
       end
 
       #########################################
-      # PUT AWAY ITEM
       #########################################
 
-      # Puts away an item, optionally into a specific container.
-      # If no container specified then uses the default stow location.
-      # Can provide an array of containers to try, too, in case some might be full.
-      # Puts away an item into a specified container.
+      # Puts away a specified item into a container.
       # @param item [String] The item to put away.
-      # @param container [String, nil] The container to put the item in.
-      # @return [Boolean] Returns true if the item was successfully put away.
+      # @param container [String, nil] The container to put the item into.
+      # @return [Boolean] Returns true if the item was put away successfully, false otherwise.
       # @example
-      #   success = put_away_item?("sword", "chest")
+      #   put_away_item?("gem", "pouch")
       def put_away_item?(item, container = nil)
         if container.is_a?(Array)
           container.each do |c|
@@ -1336,31 +1255,25 @@ module Lich
         put_away_item_safe?(item, container)
       end
 
-      # Same as 'put_away_item_unsafe?' but ensures that
-      # the container argument is prefixed with 'my' qualifier.
-      # Safely puts away an item with 'my' prefix.
+      # Safely puts away a specified item into a container.
       # @param item [String] The item to put away.
-      # @param container [String, nil] The container to put the item in.
-      # @return [Boolean] Returns true if the item was successfully put away.
+      # @param container [String, nil] The container to put the item into.
+      # @return [Boolean] Returns true if the item was put away successfully, false otherwise.
       # @example
-      #   success = put_away_item_safe?("shield", "bag")
+      #   put_away_item_safe?("ring", "box")
       def put_away_item_safe?(item, container = nil)
         item = "my #{item}" if item && !(item =~ /^my /i)
         container = "my #{container}" unless container.nil? || container =~ /^my /i
         put_away_item_unsafe?(item, container)
       end
 
-      # Puts away an item, optionally into a specific container, optionally
-      # using a container preposition (e.g. "ON shelf")
-      # If no container specified then uses the default stow location.
-      # If no preposition specified, defaults to "in" (e.g. "IN cabinet")
-      # Puts away an item without safety checks.
+      # Puts away a specified item into a container without safety checks.
       # @param item [String] The item to put away.
-      # @param container [String, nil] The container to put the item in.
+      # @param container [String, nil] The container to put the item into.
       # @param preposition [String] The preposition to use (default is 'in').
-      # @return [Boolean] Returns true if the item was successfully put away.
+      # @return [Boolean] Returns true if the item was put away, false otherwise.
       # @example
-      #   success = put_away_item_unsafe?("potion", "bag", "on")
+      #   put_away_item_unsafe?("scroll", "bag")
       def put_away_item_unsafe?(item, container = nil, preposition = "in")
         command = "put #{item} #{preposition} #{container}" if container
         command = "stow #{item}" unless container
@@ -1382,14 +1295,13 @@ module Lich
       end
 
       #########################################
-      # OPEN/CLOSE CONTAINERS
       #########################################
 
       # Opens a specified container.
       # @param container [String] The container to open.
-      # @return [Boolean] Returns true if the container was successfully opened.
+      # @return [Boolean] Returns true if the container was opened successfully, false otherwise.
       # @example
-      #   success = open_container?("chest")
+      #   open_container?("chest")
       def open_container?(container)
         case DRC.bput("open #{container}", OPEN_CONTAINER_SUCCESS_PATTERNS, OPEN_CONTAINER_FAILURE_PATTERNS)
         when *OPEN_CONTAINER_SUCCESS_PATTERNS
@@ -1400,9 +1312,9 @@ module Lich
 
       # Closes a specified container.
       # @param container [String] The container to close.
-      # @return [Boolean] Returns true if the container was successfully closed.
+      # @return [Boolean] Returns true if the container was closed successfully, false otherwise.
       # @example
-      #   success = close_container?("chest")
+      #   close_container?("chest")
       def close_container?(container)
         case DRC.bput("close #{container}", CLOSE_CONTAINER_SUCCESS_PATTERNS, CLOSE_CONTAINER_FAILURE_PATTERNS)
         when *CLOSE_CONTAINER_SUCCESS_PATTERNS
@@ -1412,15 +1324,14 @@ module Lich
       end
 
       #########################################
-      # GIVE/ACCEPT ITEM
       #########################################
 
-      # Gives an item to a target.
+      # Gives a specified item to a target.
       # @param target [String] The target to give the item to.
       # @param item [String, nil] The item to give.
-      # @return [Boolean] Returns true if the item was successfully given.
+      # @return [Boolean] Returns true if the item was given successfully, false otherwise.
       # @example
-      #   success = give_item?("John", "sword")
+      #   give_item?("merchant", "gem")
       def give_item?(target, item = nil)
         command = item ? "give my #{item} to #{target}" : "give #{target}"
         case DRC.bput(command, { 'timeout' => 35 }, /GIVE it again/, /give it to me again/, /^You don't need to specify the object/, /already has an outstanding offer/, GIVE_ITEM_SUCCESS_PATTERNS, GIVE_ITEM_FAILURE_PATTERNS)
@@ -1446,12 +1357,10 @@ module Lich
         end
       end
 
-      # If you accept then returns the name of the person whose offer you accepted. This serves as a "truthy" value, too.
-      # If you don't, or aren't able to, accept then returns false.
-      # Accepts an item offer from another player.
-      # @return [String, false] Returns the name of the person whose offer was accepted or false if not accepted.
+      # Accepts an item offer from a target.
+      # @return [String, false] Returns the name of the item accepted or false if no offer was accepted.
       # @example
-      #   name = accept_item?
+      #   accept_item?
       def accept_item?
         case DRC.bput("accept", "You accept .* offer and are now holding", "You have no offers", "Both of your hands are full", "would push you over your item limit")
         when /You accept (?<name>\w+)'s offer and are now holding/
@@ -1462,17 +1371,16 @@ module Lich
       end
 
       #########################################
-      # GEM POUCH HANDLING ROUTINES
       #########################################
-      # Swaps out a full gem pouch for a spare.
-      # @param gem_pouch_adjective [String] The adjective of the gem pouch.
-      # @param gem_pouch_noun [String] The noun of the gem pouch.
-      # @param full_pouch_container [String, nil] The container for the full pouch.
-      # @param spare_gem_pouch_container [String, nil] The container for the spare pouch.
+      # Swaps out a full gem pouch for a spare one.
+      # @param gem_pouch_adjective [String] The adjective describing the gem pouch.
+      # @param gem_pouch_noun [String] The noun describing the gem pouch.
+      # @param full_pouch_container [String, nil] The container holding the full pouch.
+      # @param spare_gem_pouch_container [String, nil] The container holding the spare pouch.
       # @param should_tie_gem_pouches [Boolean] Whether to tie the gem pouches.
-      # @return [Boolean] Returns true if the swap was successful.
+      # @return [Boolean] Returns true if the swap was successful, false otherwise.
       # @example
-      #   success = swap_out_full_gempouch?("red", "pouch")
+      #   swap_out_full_gempouch?("red", "gem pouch")
       def swap_out_full_gempouch?(gem_pouch_adjective, gem_pouch_noun, full_pouch_container = nil, spare_gem_pouch_container = nil, should_tie_gem_pouches = false)
         unless DRC.left_hand.nil? || DRC.right_hand.nil?
           DRC.message("No free hand. Not swapping pouches now.")
@@ -1499,13 +1407,13 @@ module Lich
         return true
       end
 
-      # Removes and stows a gem pouch.
-      # @param gem_pouch_adjective [String] The adjective of the gem pouch.
-      # @param gem_pouch_noun [String] The noun of the gem pouch.
-      # @param full_pouch_container [String, nil] The container for the full pouch.
-      # @return [Boolean] Returns true if the pouch was successfully removed and stowed.
+      # Removes and stows a specified gem pouch.
+      # @param gem_pouch_adjective [String] The adjective describing the gem pouch.
+      # @param gem_pouch_noun [String] The noun describing the gem pouch.
+      # @param full_pouch_container [String, nil] The container holding the full pouch.
+      # @return [Boolean] Returns true if the pouch was removed and stowed successfully, false otherwise.
       # @example
-      #   success = remove_and_stow_pouch?("red", "pouch")
+      #   remove_and_stow_pouch?("blue", "gem pouch")
       def remove_and_stow_pouch?(gem_pouch_adjective, gem_pouch_noun, full_pouch_container = nil)
         unless remove_item?("#{gem_pouch_adjective} #{gem_pouch_noun}")
           DRC.message("Unable to remove existing pouch.")
@@ -1520,26 +1428,26 @@ module Lich
         end
       end
 
-      # Ties a gem pouch.
-      # @param gem_pouch_adjective [String] The adjective of the gem pouch.
-      # @param gem_pouch_noun [String] The noun of the gem pouch.
-      # @return [Boolean] Returns true if the pouch was successfully tied.
+      # Ties a specified gem pouch.
+      # @param gem_pouch_adjective [String] The adjective describing the gem pouch.
+      # @param gem_pouch_noun [String] The noun describing the gem pouch.
+      # @return [Boolean] Returns true if the pouch was tied successfully, false otherwise.
       # @example
-      #   success = tie_gem_pouch("red", "pouch")
+      #   tie_gem_pouch("green", "gem pouch")
       def tie_gem_pouch(gem_pouch_adjective, gem_pouch_noun)
         DRC.bput("tie my #{gem_pouch_adjective} #{gem_pouch_noun}", 'you tie', "it's empty?", 'has already been tied off')
       end
 
-      # Fills a gem pouch with items from a specified container.
-      # @param gem_pouch_adjective [String] The adjective of the gem pouch.
-      # @param gem_pouch_noun [String] The noun of the gem pouch.
-      # @param source_container [String] The container to fill from.
-      # @param full_pouch_container [String, nil] The container for the full pouch.
-      # @param spare_gem_pouch_container [String, nil] The container for the spare pouch.
+      # Fills a specified gem pouch with items from a container.
+      # @param gem_pouch_adjective [String] The adjective describing the gem pouch.
+      # @param gem_pouch_noun [String] The noun describing the gem pouch.
+      # @param source_container [String] The container to fill the pouch from.
+      # @param full_pouch_container [String, nil] The container holding the full pouch.
+      # @param spare_gem_pouch_container [String, nil] The container holding the spare pouch.
       # @param should_tie_gem_pouches [Boolean] Whether to tie the gem pouches.
-      # @return [void] No return value.
+      # @return [void] This method does not return a value.
       # @example
-      #   fill_gem_pouch_with_container("red", "pouch", "chest")
+      #   fill_gem_pouch_with_container("yellow", "gem pouch", "bag")
       def fill_gem_pouch_with_container(gem_pouch_adjective, gem_pouch_noun, source_container, full_pouch_container = nil, spare_gem_pouch_container = nil, should_tie_gem_pouches = false)
         Flags.add("pouch-full", /is too full to fit any more/)
         case DRC.bput("fill my #{gem_pouch_adjective} #{gem_pouch_noun} with my #{source_container}",

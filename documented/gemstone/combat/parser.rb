@@ -12,38 +12,31 @@ require_relative 'defs/ucs'
 
 module Lich
   module Gemstone
+    # Combat Parser - Core parsing methods for combat events
+    # Performance-optimized with lazy loading and selective pattern matching
+    # @example Usage
+    #   result = Lich::Gemstone::Combat::Parser.parse_attack(line)
     module Combat
-      # Combat event parser
-      #
-      # Parses game lines to extract combat events including attacks, damage,
-      # status effects, and UCS (Unarmed Combat System) data. Uses lazy-loaded
-      # pattern matching for performance.
-      #
-      # @example Parse an attack
-      #   attack = Parser.parse_attack(line)
-      #   # => { name: :swing, target: { id: 1234, noun: 'troll', name: 'troll' }, damaging: true }
-      #
-      # @example Parse damage
-      #   damage = Parser.parse_damage(line)  # => 50
-      #
       module Parser
+        # Target link pattern - extract creatures/players from XML
         # Target link pattern - extract creatures/players from XML
         TARGET_LINK_PATTERN = /<a exist="(?<id>[^"]+)" noun="(?<noun>[^"]+)">(?<name>[^<]+)<\/a>/i.freeze
 
         # Bold tag pattern - creatures are wrapped in bold tags
         # Non-greedy match to avoid spanning multiple creatures
-        BOLD_WRAPPER_PATTERN = /<pushBold\/>([^<]+<a exist="[^"]+"[^>]+>[^<]+<\/a>)<popBold\/>/i.freeze
+        # Allow zero or more characters before <a> tag (e.g., "a creature" or just "creature")
+        # Bold tag pattern - creatures are wrapped in bold tags
+        # Non-greedy match to avoid spanning multiple creatures
+        # Allow zero or more characters before <a> tag (e.g., "a creature" or just "creature")
+        BOLD_WRAPPER_PATTERN = /<pushBold\/>([^<]*<a exist="[^"]+"[^>]+>[^<]+<\/a>)<popBold\/>/i.freeze
 
         class << self
-          # Parse attack initiation from a game line
+          # Parses an attack line and extracts relevant information.
           #
-          # Identifies the type of attack and extracts target information.
-          #
-          # @param line [String] Game line to parse
-          # @return [Hash, nil] Attack data with :name, :target, :damaging or nil if no attack
-          # @option return [Symbol] :name Attack type (:swing, :cast, :thrust, etc.)
-          # @option return [Hash] :target Target info with :id, :noun, :name
-          # @option return [Boolean] :damaging Whether attack deals damage
+          # @param line [String] The line containing the attack information.
+          # @return [Hash, nil] A hash containing attack details or nil if no attack is detected.
+          # @example
+          #   attack_info = Lich::Gemstone::Combat::Parser.parse_attack("You attack the creature.")
           def parse_attack(line)
             return nil unless attack_detector.match?(line)
 
@@ -60,54 +53,42 @@ module Lich
             nil
           end
 
-          # Parse damage amount from a game line
+          # Parses a damage line and extracts the damage value.
           #
-          # @param line [String] Game line to parse
-          # @return [Integer, nil] Damage points or nil if no damage found
+          # @param line [String] The line containing the damage information.
+          # @return [Integer, nil] The damage value or nil if not found.
+          # @example
+          #   damage = Lich::Gemstone::Combat::Parser.parse_damage("You deal 10 damage.")
           def parse_damage(line)
             result = Definitions::Damage.parse(line)
             result ? result[:damage] : nil
           end
 
-          # Parse status effects from a game line
+          # Parses a status line and extracts the status information.
           #
-          # Only active if track_statuses setting is enabled.
-          #
-          # @param line [String] Game line to parse
-          # @return [Hash, nil] Status data with :status, :target, :action or nil
-          # @option return [Symbol] :status Status effect type (:stunned, :prone, etc.)
-          # @option return [String] :target Target creature name
-          # @option return [Symbol] :action :add or :remove
+          # @param line [String] The line containing the status information.
+          # @return [Hash, nil] A hash containing status details or nil if not found.
+          # @example
+          #   status_info = Lich::Gemstone::Combat::Parser.parse_status("You are now stunned.")
           def parse_status(line)
             return nil unless Tracker.settings[:track_statuses]
 
             # Return the full result including action field
             Definitions::Statuses.parse(line)
           end
-          
-          # Parse UCS (Unarmed Combat System) events
+
+          # Parses a UCS line and extracts the UCS information.
           #
-          # Detects position changes, tierup vulnerabilities, and smite effects.
-          # Only active if track_ucs setting is enabled.
-          #
-          # @param line [String] Game line to parse
-          # @return [Hash, nil] UCS event data or nil
-          # @option return [Symbol] :type Event type (:position, :tierup, :smite_on, :smite_off)
-          # @option return [Object] :value Event-specific value
-          # @option return [Integer] :target_id Target creature ID if available
+          # @param line [String] The line containing the UCS information.
+          # @return [Hash, nil] A hash containing UCS details or nil if not found.
+          # @example
+          #   ucs_info = Lich::Gemstone::Combat::Parser.parse_ucs("You are now under a curse.")
           def parse_ucs(line)
             return nil unless Tracker.settings[:track_ucs]
 
             Definitions::UCS.parse(line)
           end
 
-          # Extract creature target from game line
-          #
-          # Creatures must be wrapped in bold tags (<pushBold/> ... <popBold/>)
-          # and contain a valid creature link with ID.
-          #
-          # @param line [String] Game line to parse
-          # @return [Hash, nil] Target data with :id, :noun, :name or nil
           def extract_creature_target(line)
             # Check if line contains a bolded link
             bold_match = BOLD_WRAPPER_PATTERN.match(line)
@@ -128,7 +109,6 @@ module Lich
             }
           end
 
-          # Try to extract target from regex match first, then from line
           def extract_target_from_match(match)
             return nil unless match.names.include?('target')
             target_text = match[:target]
@@ -157,8 +137,6 @@ module Lich
 
           private
 
-          # Lazy-loaded pattern lookups for performance
-          # @api private
           def attack_lookup
             @attack_lookup ||= Definitions::Attacks::ATTACK_LOOKUP
           end
@@ -167,7 +145,6 @@ module Lich
             @attack_detector ||= Definitions::Attacks::ATTACK_DETECTOR
           end
 
-          # Clear cached patterns when settings change
           def reset_cache!
             @attack_lookup = nil
             @attack_detector = nil

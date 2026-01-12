@@ -1,9 +1,4 @@
-# frozen_string_literal: true
 
-#
-# Attack Pattern Definitions
-# Converted from ctparser/AttackDefs.rb to Lich::Gemstone::Combat namespace
-#
 
 module Lich
   module Gemstone
@@ -13,15 +8,18 @@ module Lich
           AttackDef = Struct.new(:name, :patterns)
 
           # Core attack patterns - most common combat actions
+          # Core attack patterns - most common combat actions
           BASIC_ATTACKS = [
             AttackDef.new(:attack, [/You(?<aimed> take aim and)? swing .+? at (?<target>[^!]+)!/].freeze),
             AttackDef.new(:fire, [/You(?<aimed> take aim and)? fire .+? at (?<target>[^!]+)!/].freeze),
             AttackDef.new(:grapple, [/You(?: make a precise)? attempt to grapple (?<target>[^!]+)!/].freeze),
             AttackDef.new(:jab, [/You(?: make a precise)? attempt to jab (?<target>[^!]+)!/].freeze),
             AttackDef.new(:kick, [/You(?: make a precise)? attempt to kick (?<target>[^!]+)!/].freeze),
-            AttackDef.new(:punch, [/You(?: make a precise)? attempt to punch (?<target>[^!]+)!/].freeze)
+            AttackDef.new(:punch, [/You(?: make a precise)? attempt to punch (?<target>[^!]+)!/].freeze),
+            AttackDef.new(:wand, [/You wave your .+ at (?<target>[^\.]+)\./].freeze)
           ].freeze
 
+          # Spell-based attacks
           # Spell-based attacks
           SPELL_ATTACKS = [
             AttackDef.new(:balefire, [/You hurl a ball of greenish-black flame at (?<target>[^!]+)!/].freeze),
@@ -33,6 +31,7 @@ module Lich
               /The earth cracks beneath (?<target>[^,]+), releasing a column of frigid air!/,
               /Icy stalagmites burst from the ground beneath (?<target>[^!]+)!/
             ].freeze),
+            AttackDef.new(:ewave, [/(?:An?|Some) (?<target>.+?) is buffeted by the \w+ ethereal waves(?: and is knocked to the ground)?\./].freeze),
             AttackDef.new(:natures_fury, [/The surroundings advance upon (?<target>.+?) with relentless fury!/].freeze),
             AttackDef.new(:searing_light, [/The radiant burst of light engulfs (?<target>[^!]+)!/].freeze),
             AttackDef.new(:spikethorn, [/Dozens of long thorns suddenly grow out from the ground underneath (?<target>[^!]+)!/].freeze),
@@ -47,6 +46,7 @@ module Lich
             AttackDef.new(:web, [/Cloudy wisps swirl about (?<target>.+?)\./].freeze),
           ].freeze
 
+          # Weapon maneuvers
           # Weapon maneuvers
           WEAPON_ATTACKS = [
             AttackDef.new(:cripple, [/You reverse your grip on your .+? and dart toward (?<target>.+?) at an angle!/].freeze),
@@ -64,12 +64,14 @@ module Lich
           ].freeze
 
           # Combat maneuvers
+          # Combat maneuvers
           MANEUVER_ATTACKS = [
             # AttackDef.new(:hamstring, [/You(?: make a precise)? attempt to grapple (?<target>[^!]+)!/].freeze),
           ].freeze
 
           SHIELD_ATTACKS = [].freeze
 
+          # Companion/pet attacks
           # Companion/pet attacks
           COMPANION_ATTACKS = [
             AttackDef.new(:companion, [
@@ -80,17 +82,21 @@ module Lich
           ].freeze
 
           # Environmental attacks
+          # Environmental attacks
           ENVIRONMENTAL_ATTACKS = [].freeze
 
+          # All attack definitions combined
           # All attack definitions combined
           ALL_ATTACKS = (BASIC_ATTACKS + SPELL_ATTACKS + MANEUVER_ATTACKS + WEAPON_ATTACKS +
                         SHIELD_ATTACKS + COMPANION_ATTACKS + ENVIRONMENTAL_ATTACKS).freeze
 
           # Create lookup table for fast pattern matching
+          # Create lookup table for fast pattern matching
           ATTACK_LOOKUP = ALL_ATTACKS.flat_map do |attack_def|
             attack_def.patterns.compact.map { |pattern| [pattern, attack_def.name] }
           end.freeze
 
+          # Compiled regex for fast detection
           # Compiled regex for fast detection
           ATTACK_DETECTOR = Regexp.union(ATTACK_LOOKUP.map(&:first)).freeze
         end

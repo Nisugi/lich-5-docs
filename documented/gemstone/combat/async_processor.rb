@@ -9,39 +9,37 @@ require 'concurrent'
 module Lich
   module Gemstone
     module Combat
-      # Asynchronous combat event processor
+      # Async Combat Processor - Thread-safe combat processing for performance
       #
-      # Processes combat events in parallel using a thread pool for improved
-      # performance during large combat encounters. Uses atomic operations
-      # for thread-safe tracking.
-      #
-      # @example Basic usage
-      #   processor = AsyncProcessor.new(max_threads: 2)
-      #   processor.process_async(combat_lines)
-      #   processor.shutdown  # Wait for all threads to complete
-      #
+      # This class manages asynchronous processing of combat actions using a thread pool.
+      # It ensures thread safety and efficient resource management.
+      # @example Creating an AsyncProcessor instance
+      #   processor = Lich::Gemstone::Combat::AsyncProcessor.new(4)
       class AsyncProcessor
-        # Initialize async processor
+        # Initializes a new AsyncProcessor instance.
         #
-        # @param max_threads [Integer] Maximum number of concurrent processing threads
+        # @param max_threads [Integer] The maximum number of threads to use for processing.
+        # @return [AsyncProcessor]
         def initialize(max_threads = 2)
           @max_threads = max_threads
           @active_count = Concurrent::AtomicFixnum.new(0)
           @thread_pool = []
+          @last_cleanup = Time.now
+          @last_compact = Time.now
         end
 
-        # Process a chunk of combat lines asynchronously
+        # Processes a chunk of combat actions asynchronously.
         #
-        # Spawns a new thread to process the chunk if capacity allows.
-        # Waits if thread pool is at max capacity.
-        #
-        # @param chunk [Array<String>] Array of game lines to process
-        # @return [Thread, nil] The processing thread or nil if chunk was empty
+        # @param chunk [Array] An array of combat actions to process.
+        # @return [Thread] The thread that is processing the chunk.
+        # @raise [StandardError] If an error occurs during processing.
+        # @example Processing a chunk of actions
+        #   processor.process_async(actions)
         def process_async(chunk)
           return if chunk.empty?
 
-          # Clean up dead threads
-          @thread_pool.reject!(&:alive?)
+          # Periodic cleanup of dead threads (safety net)
+          cleanup_dead_threads if Time.now - @last_cleanup > 30
 
           # Wait if at capacity
           while @active_count.value >= @max_threads
@@ -50,6 +48,7 @@ module Lich
 
           @active_count.increment
 
+          # Create thread and store reference for self-cleanup
           thread = Thread.new do
             begin
               Thread.current[:start_time] = Time.now
@@ -59,13 +58,15 @@ module Lich
 
               elapsed = Time.now - Thread.current[:start_time]
               if elapsed > 0.5 && Tracker.debug?
-                puts "[Combat] Processed #{chunk.size} lines in #{elapsed.round(3)}s"
+                respond "[Combat] Processed #{chunk.size} lines in #{elapsed.round(3)}s"
               end
             rescue => e
-              puts "[Combat] Processing error: #{e.message}" if Tracker.debug?
-              puts e.backtrace.first(3) if Tracker.debug?
+              respond "[Combat] Processing error: #{e.message}" if Tracker.debug?
+              respond e.backtrace.first(3) if Tracker.debug?
             ensure
               @active_count.decrement
+              # Thread cleans itself up from pool when done (use Thread.current to avoid race)
+              @thread_pool.delete(Thread.current)
             end
           end
 
@@ -73,24 +74,32 @@ module Lich
           thread
         end
 
-        # Shutdown the processor and wait for all threads to complete
-        #
-        # Blocks until all active processing threads finish.
+        # Shuts down the AsyncProcessor, waiting for all threads to finish.
         #
         # @return [void]
+        # @example Shutting down the processor
+        #   processor.shutdown
         def shutdown
-          puts "[Combat] Waiting for #{@thread_pool.count(&:alive?)} threads..." if Tracker.debug?
+          respond "[Combat] Waiting for #{@thread_pool.count(&:alive?)} threads..." if Tracker.debug?
           @thread_pool.each(&:join)
           @thread_pool.clear
+
+          # Force GC after shutdown to help with memory fragmentation
+          GC.start
+          GC.compact if GC.respond_to?(:compact) # Ruby 2.7+
         end
 
-        # Get current processing statistics
+        # Returns statistics about the current state of the AsyncProcessor.
         #
-        # @return [Hash] Stats including :active, :total, :max_threads, :processing
+        # @return [Hash] A hash containing statistics such as active threads, total alive threads, and processing details.
+        # @example Getting processor statistics
+        #   stats = processor.stats
         def stats
           {
             active: @active_count.value,
-            total: @thread_pool.count(&:alive?),
+            total_alive: @thread_pool.count(&:alive?),
+            pool_size: @thread_pool.size, # ACTUAL array size (includes dead threads if not cleaned)
+            dead_threads: @thread_pool.count { |t| !t.alive? }, # Count dead threads still in pool
             max_threads: @max_threads,
             processing: @thread_pool.select(&:alive?).map do |thread|
               {
@@ -99,6 +108,30 @@ module Lich
               }
             end
           }
+        end
+
+        private
+
+        def cleanup_dead_threads
+          dead_count = @thread_pool.count { |t| !t.alive? }
+          # Keep only alive threads (remove dead ones)
+          @thread_pool.select!(&:alive?)
+
+          # If we cleaned up dead threads, suggest GC to help with fragmentation
+          if dead_count > 10
+            GC.start
+            respond "[Combat] Cleaned #{dead_count} dead threads, triggered GC" if Tracker.debug?
+          end
+
+          # Periodic heap compaction to reduce fragmentation (every hour)
+          if GC.respond_to?(:compact) && (Time.now - @last_compact) > 3600
+            GC.start
+            GC.compact
+            @last_compact = Time.now
+            respond "[Combat] Triggered hourly GC compaction" if Tracker.debug?
+          end
+
+          @last_cleanup = Time.now
         end
       end
     end

@@ -8,47 +8,37 @@
 require_relative '../creature'
 require_relative '../critranks'
 
+# Contains the Lich module and its submodules
+# @example Including the Lich module
+#   include Lich
 module Lich
   module Gemstone
+    # Contains the Combat submodule of Gemstone
+    # @example Including the Combat module
+    #   include Lich::Gemstone::Combat
     module Combat
-      # Combat event processor
-      #
-      # Uses a state machine to parse combat events from game lines.
-      # Handles multi-target attacks, status effects, wounds, and UCS data.
-      #
-      # State transitions: SEEKING_ATTACK -> SEEKING_DAMAGE -> (repeat)
-      # Status effects and UCS events are checked on every line regardless of state.
-      #
-      # @example Process combat lines
-      #   Processor.process(game_lines)
-      #   # Automatically updates creature instances with damage, wounds, status
-      #
       module Processor
         module_function
 
-        # Process a chunk of game lines for combat events
-        #
-        # Parses lines using a state machine, extracts events, and updates
-        # creature instances with damage, wounds, and status effects.
-        #
-        # @param chunk [Array<String>] Array of game lines to process
+        # Processes a chunk of combat data
+        # @param chunk [String] The raw combat data to process
         # @return [void]
+        # @example Processing combat data
+        #   process("<combat_data>")
         def process(chunk)
           events = parse_events(chunk)
           return if events.empty?
 
           events.each { |event| persist_event(event) }
 
-          puts "[Combat] Processed #{events.size} events" if Tracker.debug?
+          respond "[Combat] Processed #{events.size} events" if Tracker.debug?
         end
 
-        # State machine parser for combat events
-        #
-        # Iterates through lines extracting attacks, damage, crits, status effects.
-        # Handles multi-target attacks (e.g., volley) by tracking target switches.
-        #
-        # @param lines [Array<String>] Game lines to parse
-        # @return [Array<Hash>] Array of combat events with :name, :target, :damages, :crits, :statuses
+        # Parses lines of combat data into events
+        # @param lines [Array<String>] The lines of combat data to parse
+        # @return [Array<Hash>] An array of parsed events
+        # @example Parsing combat lines
+        #   events = parse_events(lines)
         def parse_events(lines)
           events = []
           current_event = nil
@@ -84,7 +74,7 @@ module Lich
             if Tracker.settings[:track_ucs]
               if (ucs_result = Parser.parse_ucs(line))
                 apply_ucs_to_target(ucs_result, current_target)
-                puts "[Combat] Found UCS event: #{ucs_result}" if Tracker.debug?
+                respond "[Combat] Found UCS event: #{ucs_result}" if Tracker.debug?
               end
             end
 
@@ -99,7 +89,7 @@ module Lich
                 if current_event && current_event[:target][:id] &&
                    (!current_event[:damages].empty? || !current_event[:crits].empty? || !current_event[:statuses].empty?)
                   events << current_event
-                  puts "[Combat] Saved event for #{current_event[:target][:name]}: #{current_event[:damages].size} damages, #{current_event[:crits].size} crits, #{current_event[:statuses].size} statuses" if Tracker.debug?
+                  respond "[Combat] Saved event for #{current_event[:target][:name]}: #{current_event[:damages].size} damages, #{current_event[:crits].size} crits, #{current_event[:statuses].size} statuses" if Tracker.debug?
                 end
 
                 # Create new event for this target (inherit attack name from previous)
@@ -111,13 +101,13 @@ module Lich
                   statuses: []
                 }
                 current_target = line_target
-                puts "[Combat] Switched to target: #{line_target[:name]} (#{line_target[:id]})" if Tracker.debug?
+                respond "[Combat] Switched to target: #{line_target[:name]} (#{line_target[:id]})" if Tracker.debug?
 
               elsif current_target.nil?
                 # First target for current event - just set it, don't discard data
                 current_event[:target] = line_target
                 current_target = line_target
-                puts "[Combat] Found target: #{line_target[:name]} (#{line_target[:id]})" if Tracker.debug?
+                respond "[Combat] Found target: #{line_target[:name]} (#{line_target[:id]})" if Tracker.debug?
               end
               # If current_target[:id] == line_target[:id], do nothing (same target)
             end
@@ -137,7 +127,7 @@ module Lich
                   statuses: []
                 }
 
-                puts "[Combat] Found attack: #{attack[:name]}" if Tracker.debug?
+                respond "[Combat] Found attack: #{attack[:name]}" if Tracker.debug?
                 parse_state = :seeking_damage
               end
 
@@ -147,7 +137,7 @@ module Lich
               # Always check for damage (accumulate all damage lines)
               if (damage = Parser.parse_damage(line))
                 current_event[:damages] << damage
-                puts "[Combat] Found damage: #{damage}" if Tracker.debug?
+                respond "[Combat] Found damage: #{damage}" if Tracker.debug?
 
                 # When we find damage, look ahead 2-3 lines for related crit
                 if Tracker.settings[:track_wounds]
@@ -159,7 +149,7 @@ module Lich
 
                     # Stop looking if we hit another damage line (belongs to next damage)
                     if Parser.parse_damage(next_line)
-                      puts "[Combat] Stopped crit search - found next damage line" if Tracker.debug?
+                      respond "[Combat] Stopped crit search - found next damage line" if Tracker.debug?
                       break
                     end
 
@@ -172,7 +162,7 @@ module Lich
                         wound_rank: c[:wound_rank],
                         fatal: c[:fatal]
                       }
-                      puts "[Combat] Found critical hit: #{c[:location]} rank #{c[:wound_rank]}" if Tracker.debug?
+                      respond "[Combat] Found critical hit: #{c[:location]} rank #{c[:wound_rank]}" if Tracker.debug?
                       break # Only take first crit found after this damage
                     end
                   end
@@ -187,7 +177,7 @@ module Lich
                 if current_event && current_event[:target][:id] &&
                    (!current_event[:damages].empty? || !current_event[:crits].empty?)
                   events << current_event
-                  puts "[Combat] Completed event for #{current_event[:target][:name]}: #{current_event[:damages].size} damages, #{current_event[:crits].size} crits" if Tracker.debug?
+                  respond "[Combat] Completed event for #{current_event[:target][:name]}: #{current_event[:damages].size} damages, #{current_event[:crits].size} crits" if Tracker.debug?
                 end
                 parse_state = :seeking_attack
                 redo # Process this line as new attack
@@ -201,35 +191,29 @@ module Lich
           events
         end
 
-        # Apply combat event to creature instance
-        #
-        # Updates the creature with damage, wounds, and status effects from the event.
-        # Maps critical hit locations to body parts and tracks fatal crits.
-        #
-        # @param event [Hash] Combat event data
-        # @option event [Hash] :target Target creature info with :id
-        # @option event [Array<Integer>] :damages Damage amounts
-        # @option event [Array<Hash>] :crits Critical hit data
-        # @option event [Array<Symbol>] :statuses Status effects
+        # Persists a combat event to the creature
+        # @param event [Hash] The event data to persist
         # @return [void]
+        # @example Persisting an event
+        #   persist_event(event)
         def persist_event(event)
           target = event[:target]
           return unless target[:id]
 
           creature = Creature[target[:id].to_i]
           unless creature
-            puts "[Combat] No creature found for ID #{target[:id]}" if Tracker.debug?
+            respond "[Combat] No creature found for ID #{target[:id]}" if Tracker.debug?
             return
           end
 
-          puts "[Combat] Applying to #{creature.name} (#{target[:id]})" if Tracker.debug?
+          respond "[Combat] Applying to #{creature.name} (#{target[:id]})" if Tracker.debug?
 
           # Apply direct damage
           total_damage = 0
           event[:damages].each do |damage|
             creature.add_damage(damage)
             total_damage += damage
-            puts "  +#{damage} damage" if Tracker.debug?
+            respond "  +#{damage} damage" if Tracker.debug?
           end
 
           # Apply critical wounds
@@ -240,16 +224,16 @@ module Lich
                 body_part = map_critranks_to_body_part(crit[:location])
                 if body_part
                   creature.add_injury(body_part, crit[:wound_rank])
-                  puts "  +wound: #{body_part} rank #{crit[:wound_rank]}" if Tracker.debug?
+                  respond "  +wound: #{body_part} rank #{crit[:wound_rank]}" if Tracker.debug?
                 else
-                  puts "  !unknown body part: #{crit[:location]}" if Tracker.debug?
+                  respond "  !unknown body part: #{crit[:location]}" if Tracker.debug?
                 end
               end
 
               # Check for fatal critical hit
               if crit[:fatal]
                 creature.mark_fatal_crit!
-                puts "  +FATAL CRIT: #{crit[:location]} - creature died from crit, not HP loss" if Tracker.debug?
+                respond "  +FATAL CRIT: #{crit[:location]} - creature died from crit, not HP loss" if Tracker.debug?
               end
             end
           end
@@ -258,20 +242,19 @@ module Lich
           if Tracker.settings[:track_statuses]
             event[:statuses].each do |status|
               creature.add_status(status)
-              puts "  +status: #{status}" if Tracker.debug?
+              respond "  +status: #{status}" if Tracker.debug?
             end
           end
 
-          puts "  Total damage applied: #{total_damage}" if total_damage > 0 && Tracker.debug?
+          respond "  Total damage applied: #{total_damage}" if total_damage > 0 && Tracker.debug?
         end
 
-        # Apply UCS event to a creature instance
-        #
-        # Updates creature with UCS position, tierup vulnerability, or smite status.
-        #
-        # @param ucs_result [Hash] UCS event data with :type, :value, :target_id
-        # @param current_target [Hash, nil] Current combat target (fallback for tierup)
+        # Applies UCS (Universal Combat System) updates to a target
+        # @param ucs_result [Hash] The UCS result data
+        # @param current_target [Hash, nil] The current target, if any
         # @return [void]
+        # @example Applying UCS to a target
+        #   apply_ucs_to_target(ucs_result, current_target)
         def apply_ucs_to_target(ucs_result, current_target = nil)
           target_id = ucs_result[:target_id]
 
@@ -286,34 +269,32 @@ module Lich
           case ucs_result[:type]
           when :position
             creature.set_ucs_position(ucs_result[:value])
-            puts "[Combat] Set UCS position #{ucs_result[:value]} on #{creature.name} (#{creature.id})" if Tracker.debug?
+            respond "[Combat] Set UCS position #{ucs_result[:value]} on #{creature.name} (#{creature.id})" if Tracker.debug?
 
           when :tierup
             creature.set_ucs_tierup(ucs_result[:value])
-            puts "[Combat] Set UCS tierup #{ucs_result[:value]} on #{creature.name} (#{creature.id})" if Tracker.debug?
+            respond "[Combat] Set UCS tierup #{ucs_result[:value]} on #{creature.name} (#{creature.id})" if Tracker.debug?
 
           when :smite_on
             creature.smite!
-            puts "[Combat] Applied smite to #{creature.name} (#{creature.id})" if Tracker.debug?
+            respond "[Combat] Applied smite to #{creature.name} (#{creature.id})" if Tracker.debug?
 
           when :smite_off
             creature.clear_smote
-            puts "[Combat] Cleared smite from #{creature.name} (#{creature.id})" if Tracker.debug?
+            respond "[Combat] Cleared smite from #{creature.name} (#{creature.id})" if Tracker.debug?
           end
         rescue => e
-          puts "[Combat] Error applying UCS: #{e.message}" if Tracker.debug?
+          respond "[Combat] Error applying UCS: #{e.message}" if Tracker.debug?
         end
-        
-        # Apply status effect directly to a creature
-        #
-        # Used for status effects detected outside of combat events.
-        # Attempts ID-based lookup first, falls back to name matching.
-        #
-        # @param status [Symbol] Status effect to apply
-        # @param target_name_or_id [String, Integer] Creature name or ID
-        # @param target_id [Integer, nil] Direct creature ID if available
-        # @param action [Symbol] :add or :remove
+
+        # Applies a status effect to a target creature
+        # @param status [Symbol] The status to apply
+        # @param target_name_or_id [String] The target's name or ID
+        # @param target_id [Integer, nil] The target's ID, if known
+        # @param action [Symbol] The action to perform (:add or :remove)
         # @return [void]
+        # @example Applying a status to a target
+        #   apply_status_to_target(:stunned, "Goblin", nil, :add)
         def apply_status_to_target(status, target_name_or_id, target_id = nil, action = :add)
           # Handle both name lookup and direct ID
           if target_id
@@ -329,25 +310,21 @@ module Lich
           if creature
             if action == :remove
               creature.remove_status(status)
-              puts "[Combat] Removed status #{status} from #{creature.name} (#{creature.id})" if Tracker.debug?
+              respond "[Combat] Removed status #{status} from #{creature.name} (#{creature.id})" if Tracker.debug?
             else
               creature.add_status(status)
-              puts "[Combat] Applied status #{status} to #{creature.name} (#{creature.id})" if Tracker.debug?
+              respond "[Combat] Applied status #{status} to #{creature.name} (#{creature.id})" if Tracker.debug?
             end
           else
-            puts "[Combat] Could not find creature for status: #{status} -> #{target_name_or_id}" if Tracker.debug?
+            respond "[Combat] Could not find creature for status: #{status} -> #{target_name_or_id}" if Tracker.debug?
           end
         end
 
-        # Map CritRanks location strings to creature body part constants
-        #
-        # Converts various critical hit location formats to standardized body part names.
-        #
-        # @param location [String, Symbol] Critical hit location
-        # @return [String, nil] Body part name from CreatureInstance::BODY_PARTS or nil
-        # @example
-        #   map_critranks_to_body_part("left arm")  # => "leftArm"
-        #   map_critranks_to_body_part("r. leg")    # => "rightLeg"
+        # Maps critical hit locations to body part format
+        # @param location [String, nil] The location string to map
+        # @return [String, nil] The mapped body part or nil if not found
+        # @example Mapping a critical hit location
+        #   body_part = map_critranks_to_body_part("leftarm")
         def map_critranks_to_body_part(location)
           return nil unless location
 

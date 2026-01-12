@@ -1,16 +1,14 @@
-# Provides functionality for the Lich5 project
-# This module serves as a namespace for the DragonRealms functionalities.
+# Contains the Lich framework for DragonRealms
+# This module serves as a namespace for the DragonRealms project.
 module Lich
-  # Contains DragonRealms specific functionalities
-  # This module encapsulates methods and constants related to the DragonRealms game.
+  # Contains functionality specific to the DragonRealms game
+  # This module encapsulates game mechanics and interactions.
   module DragonRealms
-    # Provides methods for managing spells and abilities in DragonRealms
-    # This module includes methods for casting spells, managing mana, and handling various game mechanics.
+    # Provides methods for managing spells and magical interactions
+    # This module includes methods for casting spells, managing mana, and handling spell effects.
     module DRCA
       module_function
 
-      # Patterns for successful cyclic spell release messages
-      # These patterns are used to identify successful releases of cyclic spells.
       @@cyclic_release_success_patterns = [
         # Ranger spells
         /^The world seems to accelerate around you as the spirit of the cheetah escapes you/, # Cheetah Swiftness
@@ -71,8 +69,8 @@ module Lich
       # @param harness [Boolean] Indicates whether to harness mana
       # @param amount [Integer] The amount of mana to infuse
       # @return [nil] Returns nothing
-      # @note This method only works if the Osrel Mera spell is active and below 90% capacity.
-      # @example infuse_om(true, 50)
+      # @example
+      #   infuse_om(true, 50)
       def infuse_om(harness, amount)
         return unless DRSpells.active_spells['Osrel Meraud'] && DRSpells.active_spells['Osrel Meraud'] < 90
         return unless amount
@@ -90,10 +88,11 @@ module Lich
         end
       end
 
-      # Checks if mana can be harnessed
-      # @param mana [Integer] The amount of mana to harness
-      # @return [Boolean] Returns true if harnessing is successful, false otherwise
-      # @example harness?(100)
+      # Checks if the specified amount of mana can be harnessed
+      # @param mana [Integer] The amount of mana to check
+      # @return [Boolean] Returns true if the mana can be harnessed, false otherwise
+      # @example
+      #   harness?(100)
       def harness?(mana)
         result = DRC.bput("harness #{mana}", 'You tap into', 'Strain though you may')
         pause 0.5
@@ -101,10 +100,11 @@ module Lich
         return result =~ /You tap into/
       end
 
-      # Harnesses specified amounts of mana
-      # @param amounts [Array<Integer>] An array of mana amounts to harness
+      # Harnesses the specified amounts of mana
+      # @param amounts [Array<Integer>] The amounts of mana to harness
       # @return [nil] Returns nothing
-      # @example harness_mana([50, 100])
+      # @example
+      #   harness_mana([50, 100])
       def harness_mana(amounts)
         amounts.each do |mana|
           break unless harness?(mana)
@@ -115,7 +115,8 @@ module Lich
       # @param khris [Array<String>] The list of Khri abilities to activate
       # @param settings [Object] The settings object containing configuration
       # @return [nil] Returns nothing
-      # @example start_khris(['Khri Hasten', 'Khri Delay Hasten'], settings)
+      # @example
+      #   start_khris(['Khri A', 'Khri B'], settings)
       def start_khris(khris, settings)
         khris
           .each do |khri_set|
@@ -123,19 +124,12 @@ module Lich
           end
       end
 
-      # Needs to handle (based on current usage):
-      # - Hasten
-      # - Delay Hasten
-      # - Hasten Focus
-      # - Delay Hasten Focus
-      # - Khri Hasten
-      # - Khri Delay Hasten
-      # - Khri Delay Hasten Focus
       # Activates a specific Khri ability
       # @param settings_kneel [Boolean] Indicates if kneeling is required
-      # @param ability [String] The ability to activate
-      # @return [Boolean] Returns true if activation was successful, false otherwise
-      # @example activate_khri?(true, 'Khri Hasten')
+      # @param ability [String] The name of the ability to activate
+      # @return [Boolean] Returns true if the ability was activated, false otherwise
+      # @example
+      #   activate_khri?(true, 'Khri A')
       def activate_khri?(settings_kneel, ability)
         abilities = ability.split.map(&:capitalize)
 
@@ -161,11 +155,12 @@ module Lich
         return ['Your mind and body are willing', 'Your body is willing', 'You have not recovered'].none?(result)
       end
 
-      # Determines if kneeling is required for a Khri ability
+      # Determines if kneeling is required for a specific Khri ability
       # @param kneel [Array<String>, Boolean] The kneeling settings
       # @param ability [String] The ability to check
       # @return [Boolean] Returns true if kneeling is required, false otherwise
-      # @example kneel_for_khri?(['khri hasten'], 'Khri Hasten')
+      # @example
+      #   kneel_for_khri?(['khri a'], 'Khri A')
       def kneel_for_khri?(kneel, ability)
         if kneel.is_a? Array
           kneel.map(&:downcase).include? ability.downcase.sub('khri ', '')
@@ -175,10 +170,11 @@ module Lich
       end
 
       # Activates a set of Barbarian abilities
-      # @param abilities [Array<String>] The list of Barbarian abilities to activate
+      # @param abilities [Array<String>] The list of abilities to activate
       # @param settings [Object] The settings object containing configuration
       # @return [nil] Returns nothing
-      # @example start_barb_abilities(['Ability1', 'Ability2'], settings)
+      # @example
+      #   start_barb_abilities(['Ability A', 'Ability B'], settings)
       def start_barb_abilities(abilities, settings)
         abilities.each { |name| activate_barb_buff?(name, settings.meditation_pause_timer, settings.sit_to_meditate) }
       end
@@ -186,9 +182,10 @@ module Lich
       # Activates a specific Barbarian buff
       # @param name [String] The name of the buff to activate
       # @param meditation_pause_timer [Integer] The pause time for meditation
-      # @param sit_to_meditate [Boolean] Indicates if sitting is required
-      # @return [Boolean] Returns true if activation was successful, false otherwise
-      # @example activate_barb_buff?('BuffName', 20, true)
+      # @param sit_to_meditate [Boolean] Indicates if sitting is required to meditate
+      # @return [Boolean] Returns true if the buff was activated, false otherwise
+      # @example
+      #   activate_barb_buff?('Buff A')
       def activate_barb_buff?(name, meditation_pause_timer = 20, sit_to_meditate = false)
         # Note, you must know Power meditation or Powermonger mastery
         # for your active abilities to be detected by DRSpells.
@@ -233,28 +230,30 @@ module Lich
 
       # Prepares a spell for casting
       # @param abbrev [String] The abbreviation of the spell
-      # @param mana [Integer] The amount of mana required
-      # @param symbiosis [Boolean] Indicates if symbiosis is involved
-      # @param command [String] The command to prepare
-      # @param tattoo_tm [Boolean] Indicates if tattoo time is involved
-      # @param runestone_name [String, nil] The name of the runestone, if applicable
-      # @param runestone_tm [Boolean] Indicates if runestone time is involved
-      # @return [Boolean] Returns true if preparation was successful, false otherwise
-      # @example prepare?('spell_abbrev', 100, false, 'prepare')
-      def prepare?(abbrev, mana, symbiosis = false, command = 'prepare', tattoo_tm = false, runestone_name = nil, runestone_tm = false)
+      # @param mana [Integer] The amount of mana to prepare
+      # @param symbiosis [Boolean] Indicates if symbiosis is being used
+      # @param command [String] The command to use for preparation
+      # @param tattoo_tm [Boolean] Indicates if a tattoo is used
+      # @param runestone_name [String] The name of the runestone
+      # @param runestone_tm [Boolean] Indicates if a runestone is used
+      # @param custom_prep [String] Custom preparation message
+      # @return [String, nil] Returns the preparation message or nil on failure
+      # @example
+      #   prepare?('spell_abbrev', 100)
+      def prepare?(abbrev, mana, symbiosis = false, command = 'prepare', tattoo_tm = false, runestone_name = nil, runestone_tm = false, custom_prep = nil)
         return false unless abbrev
+        spell_prep_messages = !custom_prep ? get_data('spells').prep_messages : (get_data('spells').prep_messages + [custom_prep])
 
         DRC.bput('prepare symbiosis', 'You recall the exact details of the', 'But you\'ve already prepared', 'Please don\'t do that here') if symbiosis
-
         if runestone_name.nil?
-          match = DRC.bput("#{command} #{abbrev} #{mana}", get_data('spells').prep_messages)
+          match = DRC.bput("#{command} #{abbrev} #{mana}", spell_prep_messages)
         else
           match = DRC.bput("#{command} my #{runestone_name}", get_data('spells').invoke_messages)
         end
         case match
         when 'Your desire to prepare this offensive spell suddenly slips away'
           pause 1
-          return prepare?(abbrev, mana, symbiosis, command, tattoo_tm, runestone_name, runestone_tm)
+          return prepare?(abbrev, mana, symbiosis, command, tattoo_tm, runestone_name, runestone_tm, custom_prep)
         when 'Something in the area interferes with your spell preparations', 'You shouldn\'t disrupt the area right now', 'You have no idea how to cast that spell', 'You have yet to receive any training in the magical arts', 'Please don\'t do that here', 'You cannot use the tattoo while maintaining the effort to stay hidden'
           DRC.bput('release symbiosis', 'You release the', 'But you haven\'t') if symbiosis
           return false
@@ -265,32 +264,31 @@ module Lich
           return false
         end
 
-        DRC.bput("target", get_data('spells').prep_messages) if tattoo_tm || runestone_tm
+        DRC.bput("target", spell_prep_messages) if tattoo_tm || runestone_tm
 
         match
       end
 
-      # Returns true if preparing a spell, false otherwise.
       # Checks if a spell is currently being prepared
       # @return [Boolean] Returns true if a spell is being prepared, false otherwise
-      # @example spell_preparing?
+      # @example
+      #   spell_preparing?
       def spell_preparing?
         !spell_preparing.nil?
       end
 
-      # Returns true if you're prepared to cast your spell.
-      # Infers this if you're preparing a spell and there's no more prep time to wait.
-      # Checks if a spell is prepared for casting
-      # @return [Boolean] Returns true if the spell is prepared, false otherwise
-      # @example spell_prepared?
+      # Checks if a spell is fully prepared
+      # @return [Boolean] Returns true if the spell is fully prepared, false otherwise
+      # @example
+      #   spell_prepared?
       def spell_prepared?
         spell_preparing? && checkcastrt <= 0
       end
 
-      # Returns name of the spell being prepared, or nil if not preparing one.
-      # Returns the name of the spell being prepared
-      # @return [String, nil] The name of the prepared spell, or nil if none
-      # @example spell_preparing
+      # Retrieves the name of the currently prepared spell
+      # @return [String, nil] Returns the name of the prepared spell or nil if none
+      # @example
+      #   spell_preparing
       def spell_preparing
         name = XMLData.prepared_spell
         name = nil if name.empty? || name.eql?('None')
@@ -301,7 +299,8 @@ module Lich
       # @param data [Hash] The data for the ritual
       # @param settings [Object] The settings object containing configuration
       # @return [nil] Returns nothing
-      # @example ritual(data, settings)
+      # @example
+      #   ritual(data, settings)
       def ritual(data, settings)
         DRC.retreat(settings.ignored_npcs) unless data['skip_retreat']
         DRC.release_invisibility
@@ -311,7 +310,7 @@ module Lich
         command = data['prep'] if data['prep']
         command = data['prep_type'] if data['prep_type']
 
-        return unless prepare?(data['abbrev'], data['mana'], data['symbiosis'], command, data['tattoo_tm'], data['runestone_name'], data['runestone_tm'])
+        return unless prepare?(data['abbrev'], data['mana'], data['symbiosis'], command, data['tattoo_tm'], data['runestone_name'], data['runestone_tm'], settings['custom_spell_prep'])
 
         prepare_time = Time.now
         find_focus(data['focus'], data['worn_focus'], data['tied_focus'], data['sheathed_focus'])
@@ -335,7 +334,8 @@ module Lich
       # @param spell [Hash] The spell data
       # @param settings [Object] The settings object containing configuration
       # @return [Boolean] Returns true if preparation was successful, false otherwise
-      # @example prepare_to_cast_runestone?(spell_data, settings)
+      # @example
+      #   prepare_to_cast_runestone?(spell, settings)
       def prepare_to_cast_runestone?(spell, settings)
         if DRCI.inside?("#{spell['runestone_name']}", settings.runestone_storage)
           return false if !get_runestone?(spell['runestone_name'], settings)
@@ -350,7 +350,8 @@ module Lich
       # @param runestone [String] The name of the runestone to retrieve
       # @param settings [Object] The settings object containing configuration
       # @return [Boolean] Returns true if the runestone was successfully retrieved, false otherwise
-      # @example get_runestone?('RunestoneName', settings)
+      # @example
+      #   get_runestone?('Runestone A', settings)
       def get_runestone?(runestone, settings)
         return true if DRCI.in_hands?(runestone)
 
@@ -364,18 +365,20 @@ module Lich
 
       # Checks if the last spell cast backfired
       # @return [Boolean] Returns true if the last spell backfired, false otherwise
-      # @example backfired?
+      # @example
+      #   backfired?
       def backfired?
         return @@backfired_status || false
       end
 
-      # Casts a spell based on the provided command
-      # @param cast_command [String] The command to cast
-      # @param symbiosis [Boolean] Indicates if symbiosis is involved
+      # Casts a spell with the specified command
+      # @param cast_command [String] The command to cast the spell
+      # @param symbiosis [Boolean] Indicates if symbiosis is being used
       # @param before [Array<Hash>] Actions to perform before casting
       # @param after [Array<Hash>] Actions to perform after casting
-      # @return [Boolean] Returns true if the cast was successful, false otherwise
-      # @example cast?('cast', false, [], [])
+      # @return [Boolean] Returns true if the spell was successfully cast, false otherwise
+      # @example
+      #   cast?('cast', false, [], [])
       def cast?(cast_command = 'cast', symbiosis = false, before = [], after = [])
         before.each { |action| DRC.bput(action['message'], action['matches']) }
 
@@ -420,15 +423,16 @@ module Lich
         !Flags['spell-fail']
       end
 
-      # Finds, charges, invokes, and stows cambrinth
-      # @param cambrinth [String] The name of the cambrinth
+      # Finds, charges, invokes, and stows a cambrinth item
+      # @param cambrinth [String] The name of the cambrinth item
       # @param stored_cambrinth [Boolean] Indicates if the cambrinth is stored
       # @param cambrinth_cap [Integer] The capacity of the cambrinth
       # @param dedicated_camb_use [Boolean] Indicates if dedicated cambrinth use is required
       # @param charges [Array<Integer>] The charges to use
-      # @param invoke_exact_amount [Integer, nil] The exact amount to invoke, if applicable
+      # @param invoke_exact_amount [Integer, nil] The exact amount to invoke, or nil for default
       # @return [nil] Returns nothing
-      # @example find_charge_invoke_stow('CambrinthName', true, 100, false, [50, 100])
+      # @example
+      #   find_charge_invoke_stow('Cambrinth A', true, 100, false, [50, 100])
       def find_charge_invoke_stow(cambrinth, stored_cambrinth, cambrinth_cap, dedicated_camb_use, charges, invoke_exact_amount = nil)
         # TODO: Remove default nil argument once all users are up to date with common-arcana
         return unless charges
@@ -444,7 +448,8 @@ module Lich
       # @param tied [String] The item to which the focus is tied
       # @param sheathed [Boolean] Indicates if the focus is sheathed
       # @return [nil] Returns nothing
-      # @example find_focus('FocusName', true, 'TiedItem', false)
+      # @example
+      #   find_focus('Focus A', true, 'Item B', false)
       def find_focus(focus, worn, tied, sheathed)
         return unless focus
 
@@ -465,7 +470,8 @@ module Lich
       # @param tied [String] The item to which the focus is tied
       # @param sheathed [Boolean] Indicates if the focus is sheathed
       # @return [nil] Returns nothing
-      # @example stow_focus('FocusName', true, 'TiedItem', false)
+      # @example
+      #   stow_focus('Focus A', true, 'Item B', false)
       def stow_focus(focus, worn, tied, sheathed)
         return unless focus
 
@@ -484,12 +490,13 @@ module Lich
         end
       end
 
-      # Finds a cambrinth item based on storage settings
-      # @param cambrinth [String] The name of the cambrinth
+      # Finds a cambrinth item based on the configuration
+      # @param cambrinth [String] The name of the cambrinth item
       # @param stored_cambrinth [Boolean] Indicates if the cambrinth is stored
       # @param cambrinth_cap [Integer] The capacity of the cambrinth
-      # @return [nil] Returns nothing
-      # @example find_cambrinth('CambrinthName', true, 100)
+      # @return [Boolean] Returns true if the cambrinth was found, false otherwise
+      # @example
+      #   find_cambrinth('Cambrinth A', true, 100)
       def find_cambrinth(cambrinth, stored_cambrinth, cambrinth_cap)
         if stored_cambrinth
           # Your config says you keep your cambrinth stowed.
@@ -511,12 +518,13 @@ module Lich
         end
       end
 
-      # Stows a cambrinth item based on storage settings
-      # @param cambrinth [String] The name of the cambrinth
+      # Stows a cambrinth item based on the configuration
+      # @param cambrinth [String] The name of the cambrinth item
       # @param stored_cambrinth [Boolean] Indicates if the cambrinth is stored
-      # @param _cambrinth_cap [Integer] The capacity of the cambrinth
+      # @param _cambrinth_cap [Integer] The capacity of the cambrinth (not used)
       # @return [nil] Returns nothing
-      # @example stow_cambrinth('CambrinthName', true, 100)
+      # @example
+      #   stow_cambrinth('Cambrinth A', true, 100)
       def stow_cambrinth(cambrinth, stored_cambrinth, _cambrinth_cap)
         if stored_cambrinth
           # Your config says you keep your cambrinth stowed.
@@ -537,21 +545,23 @@ module Lich
         end
       end
 
-      # Checks if the user is skilled enough to charge cambrinth while worn
+      # Checks if the user is skilled enough to charge a cambrinth while worn
       # @param cambrinth_cap [Integer] The capacity of the cambrinth
-      # @return [Boolean] Returns true if skilled, false otherwise
-      # @example skilled_to_charge_while_worn?(100)
+      # @return [Boolean] Returns true if skilled enough, false otherwise
+      # @example
+      #   skilled_to_charge_while_worn?(100)
       def skilled_to_charge_while_worn?(cambrinth_cap)
         DRSkill.getrank('Arcana').to_i >= ((cambrinth_cap.to_i * 2) + 100)
       end
 
       # Charges and invokes a cambrinth item
-      # @param cambrinth [String] The name of the cambrinth
+      # @param cambrinth [String] The name of the cambrinth item
       # @param dedicated_camb_use [Boolean] Indicates if dedicated cambrinth use is required
       # @param charges [Array<Integer>] The charges to use
-      # @param invoke_exact_amount [Integer, nil] The exact amount to invoke, if applicable
+      # @param invoke_exact_amount [Integer, nil] The exact amount to invoke, or nil for default
       # @return [nil] Returns nothing
-      # @example charge_and_invoke('CambrinthName', false, [50, 100])
+      # @example
+      #   charge_and_invoke('Cambrinth A', false, [50, 100])
       def charge_and_invoke(cambrinth, dedicated_camb_use, charges, invoke_exact_amount = nil)
         # TODO: Remove default nil argument once all users are up to date with common-arcana
         charges.each do |mana|
@@ -563,12 +573,13 @@ module Lich
         invoke(cambrinth, dedicated_camb_use, invoke_amount)
       end
 
-      # Invokes a cambrinth item
-      # @param cambrinth [String] The name of the cambrinth
+      # Invokes a cambrinth item with the specified amount
+      # @param cambrinth [String] The name of the cambrinth item
       # @param dedicated_camb_use [Boolean] Indicates if dedicated cambrinth use is required
-      # @param invoke_amount [Integer, nil] The amount to invoke, if applicable
+      # @param invoke_amount [Integer, nil] The amount to invoke, or nil for default
       # @return [nil] Returns nothing
-      # @example invoke('CambrinthName', false, 100)
+      # @example
+      #   invoke('Cambrinth A', false, 100)
       def invoke(cambrinth, dedicated_camb_use, invoke_amount)
         return unless cambrinth
 
@@ -592,11 +603,12 @@ module Lich
         end
       end
 
-      # Charges a cambrinth item
-      # @param cambrinth [String] The name of the cambrinth
+      # Charges a cambrinth item with the specified amount of mana
+      # @param cambrinth [String] The name of the cambrinth item
       # @param mana [Integer] The amount of mana to charge
-      # @return [Boolean] Returns true if charging was successful, false otherwise
-      # @example charge?('CambrinthName', 50)
+      # @return [Boolean] Returns true if the charge was successful, false otherwise
+      # @example
+      #   charge?('Cambrinth A', 50)
       def charge?(cambrinth, mana)
         charged = false
         result = DRC.bput("charge my #{cambrinth} #{mana}", get_data('spells').charge_messages, 'I could not find')
@@ -633,10 +645,11 @@ module Lich
         return charged
       end
 
-      # Releases active cyclic spells
-      # @param cyclic_no_release [Array<String>] A list of cyclic spells not to release
+      # Releases all active cyclic spells
+      # @param cyclic_no_release [Array<String>] A list of cyclic spells that should not be released
       # @return [nil] Returns nothing
-      # @example release_cyclics(['SpellName'])
+      # @example
+      #   release_cyclics(['Cyclic A'])
       def release_cyclics(cyclic_no_release = [])
         get_data('spells')
           .spell_data
@@ -649,7 +662,8 @@ module Lich
 
       # Parses and retrieves currently worn regalia armor nouns
       # @return [Array<String>] An array of regalia armor nouns
-      # @example parse_regalia
+      # @example
+      #   parse_regalia
       def parse_regalia # generates an array of currently-worn regalia armor nouns
         return unless DRStats.trader?
 
@@ -659,10 +673,11 @@ module Lich
                                                                                                      .map { |item| DRC.get_noun(item) }
       end
 
-      # Removes worn regalia armor
-      # @param worn_regalia [Array<String>, nil] An array of armor nouns to remove
-      # @return [Boolean] Returns true if removal was successful, false otherwise
-      # @example shatter_regalia?(nil)
+      # Shatters the specified regalia items
+      # @param worn_regalia [Array<String>, nil] The worn regalia items to shatter, or nil to parse
+      # @return [Boolean] Returns true if successful, false otherwise
+      # @example
+      #   shatter_regalia?(['Regalia A', 'Regalia B'])
       def shatter_regalia?(worn_regalia = nil) # takes an array of armor nouns to remove or gets its own from parse_regalia
         return false unless DRStats.trader?
 
@@ -675,10 +690,11 @@ module Lich
         true
       end
 
-      # Parses a mana message to determine mana level
+      # Parses a mana message to determine the mana level
       # @param mana_msg [String] The mana message to parse
       # @return [Integer] The parsed mana level
-      # @example parse_mana_message('Your mana is weak')
+      # @example
+      #   parse_mana_message('You feel weak')
       def parse_mana_message(mana_msg)
         manalevels = if mana_msg.include? 'weak'
                        $MANA_MAP['weak']
@@ -695,9 +711,10 @@ module Lich
         manalevels.index(adj).to_i + 1
       end
 
-      # Perceives the current mana levels
-      # @return [Hash, nil] A hash of mana levels or nil if not applicable
-      # @example perc_mana
+      # Retrieves the current mana percentage
+      # @return [Hash, nil] Returns a hash of mana levels or nil if not applicable
+      # @example
+      #   perc_mana
       def perc_mana
         return nil if DRStats.barbarian? || DRStats.thief? || DRStats.trader? || DRStats.commoner?
 
@@ -721,9 +738,10 @@ module Lich
         end
       end
 
-      # Perceives the current aura state
-      # @return [Hash, nil] A hash containing aura level, capped status, and growth status
-      # @example perc_aura
+      # Retrieves the current aura status
+      # @return [Hash, nil] Returns a hash containing aura level, capped status, and growth status, or nil if not applicable
+      # @example
+      #   perc_aura
       def perc_aura
         return unless DRStats.trader?
 
@@ -753,13 +771,14 @@ module Lich
         aura
       end
 
-      # Casts a series of spells based on provided settings
-      # @param spells [Hash] A hash of spells to cast
+      # Casts a series of spells based on the provided settings
+      # @param spells [Hash] The spells to cast
       # @param settings [Object] The settings object containing configuration
-      # @param force_cambrinth [Boolean] Indicates if cambrinth usage is forced
+      # @param force_cambrinth [Boolean] Indicates if cambrinth should be forced
       # @param cast_lifecycle_lambda [Proc, nil] A lambda for lifecycle events
       # @return [nil] Returns nothing
-      # @example cast_spells(spells, settings)
+      # @example
+      #   cast_spells(spells, settings)
       def cast_spells(spells, settings, force_cambrinth = false, cast_lifecycle_lambda = nil)
         infuse_om(!settings.osrel_no_harness, settings.osrel_amount)
         spells.each do |name, data|
@@ -773,25 +792,27 @@ module Lich
         end
       end
 
-      # Attempts to cast a spell and returns success status
+      # Attempts to cast a spell and returns the result
       # @param data [Hash] The spell data
       # @param settings [Object] The settings object containing configuration
-      # @param force_cambrinth [Boolean] Indicates if cambrinth usage is forced
+      # @param force_cambrinth [Boolean] Indicates if cambrinth should be forced
       # @param cast_lifecycle_lambda [Proc, nil] A lambda for lifecycle events
       # @return [Boolean] Returns true if the spell was cast successfully, false otherwise
-      # @example cast_spell?(spell_data, settings)
+      # @example
+      #   cast_spell?(data, settings)
       def cast_spell?(data, settings, force_cambrinth = false, cast_lifecycle_lambda = nil)
         result = cast_spell(data, settings, force_cambrinth, cast_lifecycle_lambda)
         result ? true : false
       end
 
-      # Casts a spell based on provided data and settings
+      # Casts a spell based on the provided data and settings
       # @param data [Hash] The spell data
       # @param settings [Object] The settings object containing configuration
-      # @param force_cambrinth [Boolean] Indicates if cambrinth usage is forced
+      # @param force_cambrinth [Boolean] Indicates if cambrinth should be forced
       # @param cast_lifecycle_lambda [Proc, nil] A lambda for lifecycle events
       # @return [Boolean] Returns true if the spell was cast successfully, false otherwise
-      # @example cast_spell(spell_data, settings)
+      # @example
+      #   cast_spell(data, settings)
       def cast_spell(data, settings, force_cambrinth = false, cast_lifecycle_lambda = nil)
         return unless data
         return unless settings
@@ -830,7 +851,7 @@ module Lich
         DRC.bput('release spell', 'You let your concentration lapse', "You aren't preparing a spell") unless checkprep == 'None'
         DRC.bput('release mana', 'You release all', "You aren't harnessing any mana")
 
-        return unless prepare?(data['abbrev'], data['mana'], data['symbiosis'], command, data['tattoo_tm'], data['runestone_name'], data['runestone_tm'])
+        return unless prepare?(data['abbrev'], data['mana'], data['symbiosis'], command, data['tattoo_tm'], data['runestone_name'], data['runestone_tm'], settings['custom_spell_prep'])
 
         DRCI.put_away_item?(data['runestone_name'], settings.runestone_storage) if DRCI.in_hands?(data['runestone_name'])
         prepare_time = Time.now
@@ -870,11 +891,12 @@ module Lich
         return spell_cast
       end
 
-      # Checks if a segue can be performed from a cyclic spell
+      # Checks if a segue can be performed from the current spell
       # @param abbrev [String] The abbreviation of the spell
-      # @param mana [Integer] The amount of mana to use
-      # @return [Boolean] Returns true if segue is possible, false otherwise
-      # @example segue?('spell_abbrev', 100)
+      # @param mana [Integer] The amount of mana to use for the segue
+      # @return [Boolean] Returns true if the segue can be performed, false otherwise
+      # @example
+      #   segue?('spell_abbrev', 100)
       def segue?(abbrev, mana)
         case DRC.bput("segue #{abbrev} #{mana}", get_data('spells').segue_messages)
         when 'You must be performing a cyclic spell to segue from', 'It is too soon to segue', 'You are lacking the bardic flair'
@@ -887,9 +909,10 @@ module Lich
       # @param data [Hash] The spell data
       # @param settings [Object] The settings object containing configuration
       # @param spell_is_sorcery [Boolean] Indicates if the spell is sorcery
-      # @param more_override [Integer, nil] Additional mana requirements
-      # @return [Hash] The updated spell data with discernment information
-      # @example check_discern(spell_data, settings)
+      # @param more_override [Integer, nil] Additional mana override
+      # @return [Hash] Returns the updated spell data with discernment information
+      # @example
+      #   check_discern(data, settings)
       def check_discern(data, settings, spell_is_sorcery = false, more_override = nil)
         UserVars.discerns = {} unless UserVars.discerns
         discern_data = UserVars.discerns[data['abbrev']] || {}
@@ -922,14 +945,15 @@ module Lich
         data
       end
 
-      # Calculates the mana requirements based on discernment data
+      # Calculates the mana required for a spell based on discernment
       # @param min [Integer] The minimum mana required
-      # @param more [Integer] Additional mana requirements
+      # @param more [Integer] Additional mana required
       # @param discern_data [Hash] The discernment data
       # @param cyclic_or_ritual [Boolean] Indicates if the spell is cyclic or a ritual
       # @param settings [Object] The settings object containing configuration
       # @return [nil] Returns nothing
-      # @example calculate_mana(10, 5, discern_data, false, settings)
+      # @example
+      #   calculate_mana(10, 5, discern_data, false, settings)
       def calculate_mana(min, more, discern_data, cyclic_or_ritual, settings)
         total = min + more
         total = (total * settings.prep_scaling_factor).floor
@@ -973,10 +997,11 @@ module Lich
         end
       end
 
-      # Checks if mana should be harnessed based on user settings
-      # @param should_harness [Boolean] Indicates if harnessing is desired
+      # Checks if the user should harness mana based on their skills
+      # @param should_harness [Boolean] Indicates if harnessing should be checked
       # @return [Boolean] Returns true if harnessing is allowed, false otherwise
-      # @example check_to_harness(true)
+      # @example
+      #   check_to_harness(true)
       def check_to_harness(should_harness)
         return false unless should_harness
         return false if DRSkill.getxp('Attunement') > DRSkill.getxp('Arcana')
@@ -984,11 +1009,12 @@ module Lich
         true
       end
 
-      # Casts a spell during crafting
+      # Casts a spell as part of a crafting routine
       # @param data [Hash] The spell data
       # @param settings [Object] The settings object containing configuration
       # @return [nil] Returns nothing
-      # @example crafting_cast_spell(spell_data, settings)
+      # @example
+      #   crafting_cast_spell(data, settings)
       def crafting_cast_spell(data, settings)
         return unless data
         return unless settings
@@ -1016,11 +1042,12 @@ module Lich
         cast?(data['cast'], data['symbiosis'], data['before'], data['after'])
       end
 
-      # Prepares a spell during crafting
+      # Prepares a spell as part of a crafting routine
       # @param data [Hash] The spell data
       # @param settings [Object] The settings object containing configuration
       # @return [nil] Returns nothing
-      # @example crafting_prepare_spell(spell_data, settings)
+      # @example
+      #   crafting_prepare_spell(data, settings)
       def crafting_prepare_spell(data, settings)
         return unless data
         return unless settings
@@ -1036,13 +1063,14 @@ module Lich
         command = data['prep'] if data['prep']
         command = data['prep_type'] if data['prep_type']
 
-        prepare?(data['abbrev'], data['mana'], data['symbiosis'], command, data['tattoo_tm'], data['runestone_name'], data['runestone_tm'])
+        prepare?(data['abbrev'], data['mana'], data['symbiosis'], command, data['tattoo_tm'], data['runestone_name'], data['runestone_tm'], settings['custom_spell_prep'])
       end
 
-      # Executes the crafting magic routine
+      # Executes a magic routine for crafting
       # @param settings [Object] The settings object containing configuration
       # @return [nil] Returns nothing
-      # @example crafting_magic_routine(settings)
+      # @example
+      #   crafting_magic_routine(settings)
       def crafting_magic_routine(settings)
         training_spells = settings.crafting_training_spells
 
@@ -1072,11 +1100,12 @@ module Lich
         crafting_prepare_spell(training_spells[needs_training], settings)
       end
 
-      # Executes buffs based on provided settings
+      # Executes a series of buffs based on the provided settings
       # @param settings [Object] The settings object containing configuration
       # @param set_name [String] The name of the buff set to execute
       # @return [nil] Returns nothing
-      # @example do_buffs(settings, 'set_name')
+      # @example
+      #   do_buffs(settings, 'set_name')
       def do_buffs(settings, set_name)
         # takes a waggle and sends it to the appropriate helper
         return unless settings.waggle_sets[set_name]
@@ -1100,20 +1129,22 @@ module Lich
         end
       end
 
-      # Updates the Avtalia focus
+      # Updates the Avtalia focus status
       # @return [nil] Returns nothing
-      # @example update_avtalia
+      # @example
+      #   update_avtalia
       def update_avtalia
         DRC.bput("focus cambrinth", /^The .+ pulses? .+ (\d+)/, 'dim, almost magically null', '^You let your magical senses wander')
         waitrt?
       end
 
-      # Invokes Avtalia with specified parameters
-      # @param cambrinth [String] The name of the cambrinth
+      # Invokes the Avtalia focus with the specified parameters
+      # @param cambrinth [String] The name of the cambrinth item
       # @param dedicated_camb_use [Boolean] Indicates if dedicated cambrinth use is required
       # @param invoke_amount [Integer] The amount to invoke
       # @return [nil] Returns nothing
-      # @example invoke_avtalia('CambrinthName', false, 100)
+      # @example
+      #   invoke_avtalia('Cambrinth A', false, 100)
       def invoke_avtalia(cambrinth, dedicated_camb_use, invoke_amount)
         return unless cambrinth
         return unless Script.running?('avtalia')
@@ -1122,11 +1153,12 @@ module Lich
         UserVars.avtalia[cambrinth]['mana'] -= [DRStats.mana, invoke_amount].min
       end
 
-      # Charges Avtalia with specified parameters
-      # @param cambrinth [String] The name of the cambrinth
+      # Charges the Avtalia focus with the specified amount
+      # @param cambrinth [String] The name of the cambrinth item
       # @param charge_amount [Integer] The amount to charge
       # @return [nil] Returns nothing
-      # @example charge_avtalia('CambrinthName', 50)
+      # @example
+      #   charge_avtalia('Cambrinth A', 50)
       def charge_avtalia(cambrinth, charge_amount)
         return unless cambrinth
         return unless Script.running?('avtalia')
@@ -1145,11 +1177,12 @@ module Lich
         UserVars.avtalia[cambrinth]['time_seen'] = Time.now
       end
 
-      # Chooses an Avtalia based on charge and mana percentage
+      # Chooses an Avtalia cambrinth based on the specified criteria
       # @param charge_needed [Integer] The amount of charge needed
       # @param mana_percentage [Integer] The minimum mana percentage required
-      # @return [Hash] The chosen Avtalia data
-      # @example choose_avtalia(100, 50)
+      # @return [Hash] Returns the chosen cambrinth data
+      # @example
+      #   choose_avtalia(100, 50)
       def choose_avtalia(charge_needed, mana_percentage)
         camb_to_use = UserVars.avtalia.select { |_camb, data| data['time_seen'] && data['cap'] && data['mana'] }
                               .select { |_camb, data| Time.now - data['time_seen'] < 600.0 }
@@ -1160,13 +1193,10 @@ module Lich
         return camb_to_use ? camb_to_use : {}
       end
 
-      # Determine the numerical range of a Warrior Mage's elemental charge.
-      # This can be used to know if the mage is ready to perform certain abilities, like barrage.
-      # Returns a number between 0 (no charge) and 11 (max charge).
-      # https://elanthipedia.play.net/Summoning_skill#Charge_levels
-      # Determines the elemental charge level of a Warrior Mage
-      # @return [Integer] A number between 0 (no charge) and 11 (max charge)
-      # @example check_elemental_charge
+      # Checks the current elemental charge level
+      # @return [Integer] Returns the charge level index
+      # @example
+      #   check_elemental_charge
       def check_elemental_charge
         return 0 unless DRStats.warrior_mage?
 
@@ -1188,10 +1218,10 @@ module Lich
         charge_levels.find_index { |pattern| pattern =~ result }
       end
 
-      # check which symbiotic research is active
-      # Checks which symbiotic research is currently active
-      # @return [String, nil] The name of the active symbiosis or nil if none
-      # @example perc_symbiotic_research
+      # Retrieves the current symbiotic research status
+      # @return [String, nil] Returns the type of symbiosis or nil if not applicable
+      # @example
+      #   perc_symbiotic_research
       def perc_symbiotic_research
         case DRC.bput('perceive', /combine the weaves of the (\w+) symbiosis/, /Roundtime/)
         when /combine the weaves of the (\w+) symbiosis/
@@ -1201,10 +1231,10 @@ module Lich
         end
       end
 
-      # release symbiotic research
-      # Releases the current magical research
+      # Releases the magical research symbiosis
       # @return [nil] Returns nothing
-      # @example release_magical_research
+      # @example
+      #   release_magical_research
       def release_magical_research
         2.times { DRC.bput("release symbiosis", "Are you sure", "You intentionally wipe", "But you haven't") }
       end

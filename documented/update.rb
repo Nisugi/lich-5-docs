@@ -9,10 +9,12 @@ module Lich
       require 'zlib'
 
       # Update channel constants
-      # Update channel constant for the stable version
+      # Update channel constants
+      # The stable reference branch for updates.
       STABLE_REF = 'main'
-      # Fallback branch prefix for beta updates
+      # Fallback branch prefix for beta updates.
       BETA_BRANCH_PREFIX = 'pre/beta' # fallback branch prefix for beta
+      # The name of the asset tarball for updates.
       ASSET_TARBALL_NAME = 'lich-5.tar.gz'
 
       # simple in-memory cache for GitHub API responses
@@ -23,7 +25,12 @@ module Lich
       @snapshot_core_script = ["alias.lic", "autostart.lic", "dependency.lic", "ewaggle.lic", "foreach.lic", "go2.lic", "infomon.lic",
                                "jinx.lic", "lnet.lic", "log.lic", "logxml.lic", "map.lic", "repository.lic", "vars.lic", "version.lic"]
 
-      # Handles various update commands based on the provided type.
+      # Handles various update requests based on the command type.
+      # @param type [String] The type of request to process.
+      # @return [void]
+      # @raise [StandardError] If the command is unknown.
+      # @example
+      #   Lich::Util::Update.request('--update')
       def self.request(type = '--announce')
         case type
         when /^(?:--announce|-a)\b/
@@ -48,6 +55,9 @@ module Lich
       end
 
       # Announces the availability of a new version if applicable.
+      # @return [void]
+      # @example
+      #   Lich::Util::Update.announce
       def self.announce
         self.prep_update
         if "#{LICH_VERSION}".chr == '5'
@@ -69,7 +79,10 @@ module Lich
         end
       end
 
-      # Displays help information for the update commands.
+      # Displays help information for update commands.
+      # @return [void]
+      # @example
+      #   Lich::Util::Update.help
       def self.help
         respond "
     --help                   Display this message
@@ -98,6 +111,9 @@ module Lich
       end
 
       # Creates a snapshot of the current Lich core files.
+      # @return [void]
+      # @example
+      #   Lich::Util::Update.snapshot
       def self.snapshot
         respond
         respond 'Creating a snapshot of current Lich core files ONLY.'
@@ -133,7 +149,12 @@ module Lich
         respond "    #{snapshot_subdir}"
       end
 
-      # Prepares for beta testing by confirming user participation.
+      # Prepares for beta testing of the next Lich release.
+      # @param type [String, nil] The type of beta test to prepare for.
+      # @param requested_file [String, nil] The specific file to update for beta testing.
+      # @return [void]
+      # @example
+      #   Lich::Util::Update.prep_betatest('--beta')
       def self.prep_betatest(type = nil, requested_file = nil)
         if type.nil?
           respond 'You are electing to participate in the beta testing of the next Lich release.'
@@ -204,8 +225,11 @@ module Lich
         end
       end
 
-      # Resolve a Git ref for stable/beta everywhere it's needed
-      # Resolves a Git reference for stable or beta channels.
+      # Resolves the reference for the specified update channel.
+      # @param channel [Symbol, String] The channel to resolve (e.g., :stable, :beta).
+      # @return [String, nil] The resolved reference or nil if not found.
+      # @example
+      #   Lich::Util::Update.resolve_channel_ref(:beta)
       def self.resolve_channel_ref(channel)
         case channel
         when :stable, 'production'
@@ -226,8 +250,12 @@ module Lich
         end
       end
 
-      # Minimal GitHub JSON fetch with tiny cache and friendly errors
-      # Fetches JSON data from GitHub with caching and error handling.
+      # Fetches JSON data from the specified GitHub URL with caching.
+      # @param url [String] The URL to fetch JSON data from.
+      # @return [Hash, nil] The parsed JSON data or nil on error.
+      # @raise [StandardError] If there is a network error.
+      # @example
+      #   Lich::Util::Update.fetch_github_json('https://api.github.com/repos/elanthia-online/lich-5/releases')
       def self.fetch_github_json(url)
         now = Time.now.to_i
         entry = @_http_cache[url]
@@ -246,6 +274,9 @@ module Lich
       end
 
       # Retrieves the latest stable tag from GitHub releases.
+      # @return [String, nil] The latest stable tag or nil if not found.
+      # @example
+      #   Lich::Util::Update.latest_stable_tag
       def self.latest_stable_tag
         releases = fetch_github_json('https://api.github.com/repos/elanthia-online/lich-5/releases')
         return nil unless releases.is_a?(Array)
@@ -253,7 +284,12 @@ module Lich
         stable && stable['tag_name']
       end
 
-      # Finds the latest prerelease tag that is greater than the specified stable version.
+      # Finds the latest prerelease tag greater than the specified stable version.
+      # @param stable_major [Integer] The major version of the stable release.
+      # @param stable_minor [Integer] The minor version of the stable release.
+      # @return [String, nil] The latest prerelease tag or nil if not found.
+      # @example
+      #   Lich::Util::Update.latest_prerelease_tag_greater_than(5, 0)
       def self.latest_prerelease_tag_greater_than(stable_major, stable_minor)
         releases = fetch_github_json('https://api.github.com/repos/elanthia-online/lich-5/releases')
         return nil unless releases.is_a?(Array)
@@ -269,10 +305,13 @@ module Lich
         tag.sub(/^v/, '')
       end
 
-      # Optional fallback: newest branch whose name starts with prefix and encodes a version
-      # Only branches with (major,minor) > stable's (major,minor) are considered.
-      # Accepts names like "pre/beta/5.15" or "pre/beta-5.15.0".
-      # Finds the latest branch with a name starting with the specified prefix and greater version.
+      # Finds the latest branch with the specified prefix that is greater than the stable version.
+      # @param prefix [String] The prefix to filter branches.
+      # @param stable_major [Integer] The major version of the stable release.
+      # @param stable_minor [Integer] The minor version of the stable release.
+      # @return [String, nil] The latest branch name or nil if not found.
+      # @example
+      #   Lich::Util::Update.latest_prefixed_branch_greater_than('pre/beta', 5, 0)
       def self.latest_prefixed_branch_greater_than(prefix, stable_major, stable_minor)
         branches = fetch_github_json('https://api.github.com/repos/elanthia-online/lich-5/branches?per_page=100')
         return nil unless branches.is_a?(Array)
@@ -292,6 +331,10 @@ module Lich
       end
 
       # Generates a version key from a tag or branch name for comparison.
+      # @param tag_or_name [String] The tag or branch name to generate a key from.
+      # @return [Gem::Version] The version key for comparison.
+      # @example
+      #   Lich::Util::Update.version_key('v5.0.0')
       def self.version_key(tag_or_name)
         s = tag_or_name.to_s
         # strip leading 'v'
@@ -307,6 +350,10 @@ module Lich
       end
 
       # Extracts the major and minor version numbers from a version string.
+      # @param str [String] The version string to parse.
+      # @return [Array<Integer, Integer>] An array containing the major and minor version numbers.
+      # @example
+      #   Lich::Util::Update.major_minor_from('v5.0.0')
       def self.major_minor_from(str)
         return [nil, nil] if str.nil?
         s = str.to_s
@@ -321,6 +368,9 @@ module Lich
       end
 
       # Prepares for an update by fetching the latest release information.
+      # @return [void]
+      # @example
+      #   Lich::Util::Update.prep_update
       def self.prep_update
         latest = fetch_github_json("https://api.github.com/repos/elanthia-online/lich-5/releases/latest")
         if latest.is_a?(Hash) && latest['prerelease']
@@ -343,6 +393,9 @@ module Lich
       end
 
       # Downloads and applies the update to the Lich5 ecosystem.
+      # @return [void]
+      # @example
+      #   Lich::Util::Update.download_update
       def self.download_update
         ## This is the workhorse routine that does the file moves from an update
         self.prep_update if @update_to.nil? or @update_to.empty?
@@ -399,6 +452,9 @@ module Lich
       end
 
       # Reverts the Lich5 ecosystem to the most recent snapshot.
+      # @return [void]
+      # @example
+      #   Lich::Util::Update.revert
       def self.revert
         ## Since the request is to roll-back, we will do so destructively
         ## without another snapshot and without worrying about saving files
@@ -444,7 +500,14 @@ module Lich
         end
       end
 
-      # Updates a specific file (script, library, or data) from the remote repository.
+      # Updates a specific file based on the type and requested file name.
+      # @param type [String] The type of file to update (script, library, or data).
+      # @param rf [String] The name of the file to update.
+      # @param version [String] The version channel to use (default is 'production').
+      # @return [void]
+      # @raise [StandardError] If the file cannot be updated.
+      # @example
+      #   Lich::Util::Update.update_file('script', 'alias.lic')
       def self.update_file(type, rf, version = 'production')
         if version =~ /^(?:staging|master)$/i
           respond 'Requested channel %s mapped to main (stable).' % [version]
@@ -480,20 +543,59 @@ module Lich
           requested_file =~ /(\.(?:xml|ui))$/ ? requested_file_ext = $1&.dup : requested_file_ext = "bad extension"
         end
         unless requested_file_ext == "bad extension"
-          File.delete(File.join(location, requested_file)) if File.exist?(File.join(location, requested_file))
+          file_path = File.join(location, requested_file)
+          tmp_file_path = file_path + ".tmp"
+          old_file_path = file_path + ".old"
+
+          # Rename existing file to .old if it exists
+          if File.exist?(file_path)
+            File.rename(file_path, old_file_path)
+          end
+
           begin
-            File.open(File.join(location, requested_file), "wb") do |file|
+            # Download to .tmp file first
+            File.open(tmp_file_path, "wb") do |file|
               file.write URI.parse(File.join(remote_repo, requested_file)).open.read
             end
+
+            # If successful, move .tmp to final location
+            File.rename(tmp_file_path, file_path)
+
+            # Clean up .old file if everything succeeded
+            File.delete(old_file_path) if File.exist?(old_file_path)
+
             respond
             respond "#{requested_file} has been updated."
-          rescue
-            # we created a garbage file (zero bytes filename) so let's clean it up and inform.
-            sleep 1
-            File.delete(File.join(location, requested_file)) if File.exist?(File.join(location, requested_file))
-            respond; respond "The filename #{requested_file} is not available via lich5-update."
+          rescue StandardError => e
+            # Log the actual error for debugging
+            respond
+            respond "Error updating #{requested_file}: #{e.class} - #{e.message}"
+            respond "Backtrace: #{e.backtrace.first(3).join(' | ')}" if $debug
+
+            # Clean up the .tmp file if it exists
+            if File.exist?(tmp_file_path)
+              begin
+                File.delete(tmp_file_path)
+                respond "Cleaned up incomplete temporary file."
+              rescue => cleanup_error
+                respond "Warning: Could not delete temporary file: #{cleanup_error.message}"
+              end
+            end
+
+            # Restore the .old file if it exists
+            if File.exist?(old_file_path)
+              begin
+                File.rename(old_file_path, file_path)
+                respond "Restored original file."
+              rescue => restore_error
+                respond "Warning: Could not restore original file: #{restore_error.message}"
+              end
+            end
+
+            respond
+            respond "The filename #{requested_file} is not available via lich5-update."
             respond "Check the spelling of your requested file, or use '#{$clean_lich_char}jinx' to"
-            respond "to download #{requested_file} from another respository."
+            respond "download #{requested_file} from another repository."
           end
         else
           respond
@@ -503,7 +605,11 @@ module Lich
         end
       end
 
-      # Updates core data and scripts based on the current game type.
+      # Updates core data and scripts for the specified version.
+      # @param version [String] The version to update to (default is the current LICH_VERSION).
+      # @return [void]
+      # @example
+      #   Lich::Util::Update.update_core_data_and_scripts('5.0.0')
       def self.update_core_data_and_scripts(version = LICH_VERSION)
         if XMLData.game !~ /^GS|^DR/
           respond "invalid game type, unsure what scripts to update via Update.update_core_scripts"

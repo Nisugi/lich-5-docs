@@ -1,9 +1,4 @@
-# frozen_string_literal: true
 
-#
-# UCS (Unarmed Combat System) tracking definitions
-# Patterns for position tiers, tierup vulnerabilities, and smite status
-#
 
 module Lich
   module Gemstone
@@ -12,25 +7,41 @@ module Lich
         module UCS
           # Pattern for position updates - use .+ not .*
           # Example: "You have good positioning against a kobold."
+          # Pattern for position updates - use .+ not .* 
+          # Example: "You have good positioning against a kobold."
           POSITION_PATTERN = /^You have (decent|good|excellent) positioning against.+<a exist="([0-9]+)"/i.freeze
 
+          # Pattern for tierup vulnerability
+          # Example: "Strike leaves foe vulnerable to a followup jab attack!"
           # Pattern for tierup vulnerability
           # Example: "Strike leaves foe vulnerable to a followup jab attack!"
           TIERUP_PATTERN = /Strike leaves foe vulnerable to a followup (jab|grapple|punch|kick) attack!/i.freeze
 
           # Pattern for smite applied (crimson mist)
           # Use .+ not .*
+          # Pattern for smite applied (crimson mist)
+          # Use .+ not .*
           SMITE_APPLIED_PATTERN = /^ *A crimson mist suddenly surrounds .+<a exist="([0-9]+)"/i.freeze
 
+          # Pattern for smite held in corporeal plane
           # Pattern for smite held in corporeal plane
           SMITE_HELD_PATTERN = /The crimson mist surrounding .+<a exist="([0-9]+)".+held in the corporeal plane/i.freeze
 
           # Pattern for smite removed
+          # Pattern for smite removed
           SMITE_REMOVED_PATTERN = /^ *The crimson mist surrounding .+<a exist="([0-9]+)".+returns to an ethereal state/i.freeze
 
           class << self
-            # Parse UCS-related events from a line
-            # Returns: { type: :position|:tierup|:smite_on|:smite_off, target_id: id, value: ... }
+            # Parses a line of text to extract combat information.
+            # 
+            # This method matches the line against various patterns to determine
+            # the type of combat event and returns relevant data.
+            # 
+            # @param line [String] The line of text to parse.
+            # @return [Hash, nil] A hash containing the parsed data or nil if no match is found.
+            # @example Parsing a position update
+            #   result = UCS.parse("You have good positioning against a kobold.")
+            #   # => {:type=>:position, :target_id=>1, :value=>"good"}
             def parse(line)
               # Position update
               if (match = POSITION_PATTERN.match(line))

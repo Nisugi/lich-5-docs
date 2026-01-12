@@ -1,47 +1,20 @@
-# frozen_string_literal: true
 
-# Modernized version of games.rb with separated DR and GS functionality
-# Original module carve out from lich.rbw
-# Refactored on 2025-04-01
 
 module Lich
-  # Base module for game-specific functionality
-  # Unknown game type module
-  # Base module for game-specific functionality
-  # Unknown game type module
-  # @example Including the Unknown module
-  #   include Lich::Unknown
   module Unknown
     module Game
       # Placeholder for unknown game types
     end
   end
 
-  # Common module for shared functionality
-  # Common module for shared functionality
-  # Placeholder for common game functionality
-  # @example Including the Common module
-  #   include Lich::Common
   module Common
     # Placeholder for common game functionality
   end
 
-  # Base module for game instances
-  # Provides factory methods and shared functionality for game instances
-  # @example Using GameBase
-  #   instance = GameBase::GameInstanceFactory.create("GS")
+  # Base module for game instances and related functionality
+  # This module contains factories and base classes for game instances.
   module GameBase
-    # Factory for creating game-specific objects
-    # Factory for creating game-specific objects
-    # @example Creating a game instance
-    #   instance = GameInstanceFactory.create("GS")
     module GameInstanceFactory
-      # Creates a game instance based on the game type
-      # @param game_type [String] The type of game (e.g., "GS", "DR")
-      # @return [GameInstance] The created game instance
-      # @raise [NotImplementedError] If the game type is unknown
-      # @example
-      #   instance = GameInstanceFactory.create("GS")
       def self.create(game_type)
         case game_type
         when /^GS/
@@ -55,25 +28,11 @@ module Lich
       end
     end
 
-    # Game instance interface for game-specific behaviors
-    # Game instance interface for game-specific behaviors
-    # Provides methods that must be implemented by game instances
-    # @example Creating a game instance
-    #   class MyGameInstance < GameBase::GameInstance::Base
-    #     def clean_serverstring(server_string)
-    #       # Implementation here
-    #     end
-    #   end
+    # Module containing game instance classes
+    # This module provides the base class for game instances.
     module GameInstance
-      # Base instance class that defines the interface
-      # Base instance class that defines the interface
-      # This class provides the basic structure for game instances
-      # @example Subclassing Base
-      #   class MyGameInstance < GameInstance::Base
-      #     def clean_serverstring(server_string)
-      #       # Implementation here
-      #     end
-      #   end
+      # Base class for game instances
+      # This class provides common functionality for all game instances.
       class Base
         def initialize
           @atmospherics = false
@@ -81,30 +40,71 @@ module Lich
           @end_combat_tags = ["<prompt", "<clearStream", "<component", "<pushStream id=\"percWindow"]
         end
 
+        # Cleans the server string for processing
+        # @param server_string [String] The raw server string to clean
+        # @raise [NotImplementedError] If not implemented in a subclass
+        # @return [String] The cleaned server string
+        # @example
+        #   cleaned_string = instance.clean_serverstring(raw_string)
         def clean_serverstring(server_string)
           raise NotImplementedError, "#{self.class} must implement #clean_serverstring"
         end
 
+        # Handles combat tags in the server string
+        # @param server_string [String] The server string containing combat tags
+        # @raise [NotImplementedError] If not implemented in a subclass
+        # @return [String] The processed server string
+        # @example
+        #   processed_string = instance.handle_combat_tags(raw_string)
         def handle_combat_tags(server_string)
           raise NotImplementedError, "#{self.class} must implement #handle_combat_tags"
         end
 
+        # Handles atmospherics in the server string
+        # @param server_string [String] The server string containing atmospherics
+        # @raise [NotImplementedError] If not implemented in a subclass
+        # @return [String] The processed server string
+        # @example
+        #   processed_string = instance.handle_atmospherics(raw_string)
         def handle_atmospherics(server_string)
           raise NotImplementedError, "#{self.class} must implement #handle_atmospherics"
         end
 
+        # Retrieves the documentation URL for the game instance
+        # @raise [NotImplementedError] If not implemented in a subclass
+        # @return [String] The documentation URL
+        # @example
+        #   url = instance.get_documentation_url
         def get_documentation_url
           raise NotImplementedError, "#{self.class} must implement #get_documentation_url"
         end
 
+        # Processes game-specific data from the server string
+        # @param server_string [String] The server string containing game-specific data
+        # @raise [NotImplementedError] If not implemented in a subclass
+        # @return [void]
+        # @example
+        #   instance.process_game_specific_data(raw_string)
         def process_game_specific_data(server_string)
           raise NotImplementedError, "#{self.class} must implement #process_game_specific_data"
         end
 
+        # Modifies the room display string
+        # @param alt_string [String] The room display string to modify
+        # @raise [NotImplementedError] If not implemented in a subclass
+        # @return [String] The modified room display string
+        # @example
+        #   modified_string = instance.modify_room_display(room_string)
         def modify_room_display(alt_string, uid_from_string, lichid_from_uid_string)
           raise NotImplementedError, "#{self.class} must implement #modify_room_display"
         end
 
+        # Processes the room display string
+        # @param alt_string [String] The room display string to process
+        # @raise [NotImplementedError] If not implemented in a subclass
+        # @return [String] The processed room display string
+        # @example
+        #   processed_string = instance.process_room_display(room_string)
         def process_room_display(alt_string)
           raise NotImplementedError, "#{self.class} must implement #process_room_display"
         end
@@ -131,18 +131,8 @@ module Lich
       end
     end
 
-    # XML string cleaner module
-    # XML string cleaner module
-    # Provides methods to clean and fix XML strings
-    # @example Using XMLCleaner
-    #   cleaned_string = XMLCleaner.clean_nested_quotes(raw_string)
     module XMLCleaner
       class << self
-        # Cleans nested quotes in the server string
-        # @param server_string [String] The server string to clean
-        # @return [String] The cleaned server string
-        # @example
-        #   cleaned_string = XMLCleaner.clean_nested_quotes(raw_string)
         def clean_nested_quotes(server_string)
           # Fix nested single quotes
           unless (matches = server_string.scan(/'([^=>]*'[^=>]*)'/)).empty?
@@ -165,11 +155,6 @@ module Lich
           server_string
         end
 
-        # Fixes invalid characters in the server string
-        # @param server_string [String] The server string to fix
-        # @return [String] The fixed server string
-        # @example
-        #   fixed_string = XMLCleaner.fix_invalid_characters(raw_string)
         def fix_invalid_characters(server_string)
           # Fix ampersands
           if server_string.include?('&') && !server_string.include?('&amp;') && !server_string.include?('&gt;') && !server_string.include?('&lt;') && !server_string.include?('&apos;') && !server_string.include?('&quot;')
@@ -195,11 +180,6 @@ module Lich
           server_string
         end
 
-        # Fixes open-ended XML tags in the server string
-        # @param server_string [String] The server string to fix
-        # @return [String] The fixed server string
-        # @example
-        #   fixed_string = XMLCleaner.fix_xml_tags(raw_string)
         def fix_xml_tags(server_string)
           # Fix open-ended XML tags
           if /^<(?<xmltag>dynaStream|component) id='.*'>[^<]*(?!<\/\k<xmltag>>)\r\n$/ =~ server_string
@@ -225,16 +205,14 @@ module Lich
       end
     end
 
-    # Base Game class with common functionality
-    # Base Game class with common functionality
-    # Provides methods and properties for game management
-    # @example Creating a game instance
-    #   game = Game.new
+    # Main game class for managing game state and interactions
+    # This class handles the overall game logic and state management.
     class Game
       class << self
         attr_reader :thread, :buffer, :_buffer, :game_instance
 
         # Initializes the buffers for the game
+        # Sets up necessary buffers for socket communication and game state.
         # @return [void]
         # @example
         #   Game.initialize_buffers
@@ -255,28 +233,55 @@ module Lich
         end
 
         # Sets the game instance based on the game type
-        # @param game_type [String] The type of game (e.g., "GS", "DR")
+        # @param game_type [String] The type of game to set the instance for
         # @return [void]
         # @example
-        #   Game.set_game_instance("GS")
+        #   Game.set_game_instance('GS')
         def set_game_instance(game_type)
           @game_instance = GameInstanceFactory.create(game_type)
         end
 
-        # Opens a connection to the game server
-        # @param host [String] The host of the game server
-        # @param port [Integer] The port of the game server
-        # @return [TCPSocket] The socket connection to the server
-        # @raise [StandardError] If there is an error opening the socket
+        # Opens a socket connection to the specified host and port
+        # @param host [String] The hostname or IP address of the server
+        # @param port [Integer] The port number to connect to
+        # @return [TCPSocket] The opened socket
+        # @raise [StandardError] If there is an error during socket configuration
         # @example
-        #   socket = Game.open("localhost", 1234)
+        #   socket = Game.open('localhost', 1234)
         def open(host, port)
           @socket = TCPSocket.open(host, port)
+
+          # Configure socket with error handling
+          # More forgiving settings for Windows reliability under network stress
           begin
-            @socket.setsockopt(Socket::SOL_SOCKET, Socket::SO_KEEPALIVE, true)
+            SocketConfigurator.configure(@socket,
+                                         keepalive: {
+                                           enable: true,
+                                           idle: 120,      # 2 minutes before first keepalive
+                                           interval: 30    # 30 seconds between keepalive probes
+                                         },
+                                         linger: {
+                                           enable: true,
+                                           timeout: 5      # Wait 5 seconds for data to send on close
+                                         },
+                                         timeout: {
+                                           recv: 30,       # 30 second receive timeout (increased from 10)
+                                           send: 30        # 30 second send timeout (increased from 10)
+                                         },
+                                         buffer_size: {
+                                           recv: 32768,    # 32KB receive buffer (reduced from 65536)
+                                           send: 32768     # 32KB send buffer (reduced from 65536)
+                                         },
+                                         tcp_nodelay: true, # Disable Nagle's algorithm for low latency
+                                         tcp_maxrt: 10)     # Windows: max 10 retransmissions before giving up
+
+            Lich.log("Socket configured successfully for #{host}:#{port}") if ARGV.include?("--debug")
           rescue StandardError => e
-            log_error("Socket option error", e)
+            # Log the error but continue - socket may still work with default settings
+            log_error("Socket configuration error (continuing with defaults)", e)
+            Lich.log("WARNING: Socket running with default OS settings - may be less reliable under network stress")
           end
+
           @socket.sync = true
 
           start_wrap_thread
@@ -285,11 +290,13 @@ module Lich
           @socket
         end
 
-        # Starts a thread to wrap the game connection
-        # @return [void]
-        # @example
-        #   Game.start_wrap_thread
         def start_wrap_thread
+          begin
+            Lich.db_vacuum_if_due!(months: 6)
+          rescue => e
+            Lich.log "db_maint(startup): #{e.class}: #{e.message}"
+          end
+
           @wrap_thread = Thread.new do
             @last_recv = Time.now
             until @autostarted || (Time.now - @last_recv >= 6)
@@ -301,15 +308,17 @@ module Lich
           end
         end
 
-        # Checks if the game connection is closed
-        # @return [Boolean] True if the connection is closed, false otherwise
+        # Checks if the socket is closed
+        # @return [Boolean] True if the socket is closed, false otherwise
         # @example
-        #   is_closed = Game.closed?
+        #   if Game.closed?
+        #     puts 'Socket is closed'
+        #   end
         def closed?
           @socket.nil? || @socket.closed?
         end
 
-        # Closes the game connection
+        # Closes the socket connection
         # @return [void]
         # @example
         #   Game.close
@@ -320,22 +329,17 @@ module Lich
           end
         end
 
-        # Sends a string to the game server
-        # @param str [String] The string to send
-        # @return [void]
-        # @example
-        #   Game._puts("Hello, world!")
         def _puts(str)
           @mutex.synchronize do
             @socket.puts(str)
           end
         end
 
-        # Sends a formatted string to the game server
+        # Sends a string to the server
         # @param str [String] The string to send
         # @return [void]
         # @example
-        #   Game.puts("Hello, world!")
+        #   Game.puts('Hello, server!')
         def puts(str)
           if Script.current&.file_name
             script_name = "#{Script.current.custom? ? 'custom/' : ''}#{Script.current&.name}"
@@ -353,7 +357,7 @@ module Lich
           $_LASTUPSTREAM_ = "[#{script_name}]#{$SEND_CHARACTER}#{str}"
         end
 
-        # Retrieves a string from the game server
+        # Receives a string from the server
         # @return [String] The received string
         # @example
         #   response = Game.gets
@@ -361,40 +365,85 @@ module Lich
           @buffer.gets
         end
 
-        # Retrieves a string from the internal buffer
-        # @return [String] The retrieved string
-        # @example
-        #   internal_response = Game._gets
         def _gets
           @_buffer.gets
         end
 
-        # Starts the main thread for processing server messages
+        # Starts the main thread for handling server communication
         # @return [void]
         # @example
         #   Game.start_main_thread
         def start_main_thread
           @thread = Thread.new do
-            begin
-              while (server_string = @socket.gets)
-                @last_recv = Time.now
-                @_buffer.update(server_string) if defined?(TESTING) && TESTING
+            consecutive_timeouts = 0
+            max_consecutive_timeouts = 3 # Allow 3 timeouts before giving up
 
+            begin
+              while true
                 begin
-                  process_server_string(server_string)
-                rescue StandardError => e
-                  log_error("Error processing server string", e)
+                  # Try to read from socket with timeout
+                  server_string = @socket.gets
+
+                  # Successfully received data - reset timeout counter
+                  consecutive_timeouts = 0
+
+                  # Break if socket closed (gets returns nil)
+                  break if server_string.nil?
+
+                  @last_recv = Time.now
+                  @_buffer.update(server_string) if defined?(TESTING) && TESTING
+
+                  begin
+                    process_server_string(server_string)
+                  rescue StandardError => e
+                    log_error("Error processing server string", e)
+                  end
+                rescue Errno::ETIMEDOUT, Errno::EWOULDBLOCK, IO::TimeoutError => timeout_error
+                  # Socket read timed out - this is expected if server is quiet
+                  consecutive_timeouts += 1
+
+                  Lich.log "Socket read timeout #{consecutive_timeouts}/#{max_consecutive_timeouts} (no data for 30s)"
+
+                  if consecutive_timeouts >= max_consecutive_timeouts
+                    Lich.log "Too many consecutive timeouts, connection may be dead"
+                    raise timeout_error # Let the outer rescue handle it
+                  end
+
+                  # Check if socket is still alive
+                  if @socket.closed?
+                    Lich.log "Socket is closed, exiting thread"
+                    break
+                  end
+
+                  # Small sleep before retry
+                  sleep 0.1
+                  retry
+                rescue Errno::ECONNRESET, Errno::EPIPE, Errno::ECONNABORTED => conn_error
+                  # Connection was reset/broken - these are fatal
+                  Lich.log "Connection error: #{conn_error.class} - #{conn_error.message}"
+                  raise conn_error
                 end
               end
             rescue StandardError => e
-              handle_thread_error(e)
+              # Handle any other errors
+              should_continue = handle_thread_error(e)
+
+              # Only retry if handle_thread_error says it's safe and socket is still open
+              if should_continue && !@socket.closed? && !$_CLIENT_.closed?
+                Lich.log "Retrying server thread after error..."
+                consecutive_timeouts = 0 # Reset counter on retry
+                sleep 1 # Brief pause before retry
+                retry
+              else
+                Lich.log "Server thread exiting due to unrecoverable error"
+              end
             end
           end
           @thread.priority = 4
         end
 
-        # Processes the server string received from the game
-        # @param server_string [String] The server string to process
+        # Processes the server string received from the socket
+        # @param server_string [String] The raw server string to process
         # @return [void]
         # @example
         #   Game.process_server_string(raw_string)
@@ -465,7 +514,7 @@ module Lich
           display_ruby_warning if defined?(RECOMMENDED_RUBY) && Gem::Version.new(RUBY_VERSION) < Gem::Version.new(RECOMMENDED_RUBY)
         end
 
-        # Displays a warning if the Ruby version is outdated
+        # Displays a warning if the Ruby version is below the recommended version
         # @return [void]
         # @example
         #   Game.display_ruby_warning
@@ -492,7 +541,7 @@ module Lich
           end
         end
 
-        # Starts CLI scripts if specified
+        # Starts CLI scripts based on command line arguments
         # @return [void]
         # @example
         #   Game.start_cli_scripts
@@ -614,11 +663,6 @@ module Lich
           end
         end
 
-        # Processes room information from the server string
-        # @param alt_string [String] The room display string to process
-        # @return [String] The processed room display string
-        # @example
-        #   processed_string = Game.process_room_information(alt_string)
         def process_room_information(alt_string)
           if alt_string =~ /^(<pushStream id="familiar" ifClosedStyle="watching"\/>)?(?:<resource picture="\d+"\/>|<popBold\/>)?<style id="roomName"\s+\/>/
             if (Lich.display_lichid == true || Lich.display_uid == true || Lich.hide_uid_flag == true)
@@ -629,11 +673,6 @@ module Lich
           end
         end
 
-        # Sends a string to the client
-        # @param alt_string [String] The string to send to the client
-        # @return [void]
-        # @example
-        #   Game.send_to_client(alt_string)
         def send_to_client(alt_string)
           if $_DETACHABLE_CLIENT_
             begin
@@ -650,18 +689,34 @@ module Lich
           end
         end
 
-        # Handles errors that occur in the server thread
-        # @param error [StandardError] The error that occurred
-        # @return [Boolean] True if the thread should retry, false otherwise
-        # @example
-        #   should_retry = Game.handle_thread_error(error)
         def handle_thread_error(error)
           Lich.log "error: server_thread: #{error}\n\t#{error.backtrace.join("\n\t")}"
           $stdout.puts "error: server_thread: #{error}\n\t#{error.backtrace.slice(0..10).join("\n\t")}"
           sleep 0.2
-          # Cannot use retry here as it's not in a rescue block
-          # Instead, we'll return a boolean indicating whether to retry
-          return !($_CLIENT_.closed? || @socket.closed? || (error.to_s =~ /invalid argument|A connection attempt failed|An existing connection was forcibly closed|An established connection was aborted by the software in your host machine./i))
+
+          # Determine if we should retry
+          case error
+          when Errno::ETIMEDOUT, Errno::EWOULDBLOCK, IO::TimeoutError
+            # Timeout errors are potentially recoverable if we haven't seen too many
+            Lich.log "Timeout error detected - may attempt retry"
+            return true
+          when Errno::ECONNRESET, Errno::EPIPE, Errno::ECONNABORTED
+            # Connection errors are fatal
+            Lich.log "Fatal connection error - will not retry"
+            return false
+          else
+            # Check if socket/client are closed or if it's a known fatal error
+            if $_CLIENT_.closed? || @socket.closed?
+              Lich.log "Client or socket closed - will not retry"
+              return false
+            elsif error.to_s =~ /invalid argument|A connection attempt failed|An existing connection was forcibly closed|An established connection was aborted by the software in your host machine./i
+              Lich.log "Fatal error pattern detected - will not retry"
+              return false
+            else
+              Lich.log "Unknown error - will attempt retry"
+              return true
+            end
+          end
         end
 
         protected
@@ -673,27 +728,11 @@ module Lich
     end
   end
 
-  # Gemstone game module
-  # Gemstone game module
-  # Contains classes and methods specific to the Gemstone game
-  # @example Including the Gemstone module
-  #   include Lich::Gemstone
   module Gemstone
     include Lich
 
-    # Base class for character status tracking
-    # Base class for character status tracking
-    # Provides methods to manage character injuries and statuses
-    # @example Using CharacterStatus
-    #   CharacterStatus.fix_injury_mode("scar")
     class CharacterStatus
       class << self
-        # Fixes the injury mode for the character
-        # @param mode [String] The mode to set ('scar', 'wound', or 'both')
-        # @return [void]
-        # @raise [ArgumentError] If an invalid mode is provided
-        # @example
-        #   CharacterStatus.fix_injury_mode("scar")
         def fix_injury_mode(mode = 'both') # Default mode 'both' handles wounds (precedence) then scars
           case mode
           when 'scar', 'scars'
@@ -716,11 +755,6 @@ module Lich
           end
         end
 
-        # Handles missing methods for character status
-        # @param _method_name [Symbol] The name of the missing method
-        # @return [String] A message indicating the invalid area
-        # @example
-        #   result = CharacterStatus.new.some_invalid_method
         def method_missing(_method_name = nil)
           result = Lich::Messaging.mono(Lich::Messaging.msg_format("bold", "#{self.name.split('::').last}: Invalid area, try one of these: arms, limbs, torso, #{XMLData.injuries.keys.join(', ')}"))
           # the _respond method used in Lich::Messaging returns nil upon success
@@ -729,7 +763,6 @@ module Lich
       end
     end
 
-    # Gemstone-specific game instance
     class GameInstance < GameBase::GameInstance::Base
       def clean_serverstring(server_string)
         # The Rift, Scatter is broken...
@@ -847,7 +880,6 @@ module Lich
       end
     end
 
-    # Game class for Gemstone
     class Game < GameBase::Game
       class << self
         def initialize
@@ -861,25 +893,10 @@ module Lich
     end
   end
 
-  # DragonRealms game module
-  # DragonRealms game module
-  # Contains classes and methods specific to the DragonRealms game
-  # @example Including the DragonRealms module
-  #   include Lich::DragonRealms
   module DragonRealms
     include Lich
 
-    # DragonRealms-specific game instance
-    # DragonRealms-specific game instance
-    # Inherits from GameBase::GameInstance::Base and implements game-specific logic
-    # @example Creating a DragonRealms game instance
-    #   instance = DragonRealms::GameInstance.new
     class GameInstance < GameBase::GameInstance::Base
-      # Cleans the server string for DragonRealms
-      # @param server_string [String] The raw server string to clean
-      # @return [String] The cleaned server string
-      # @example
-      #   cleaned_string = dragonrealms_instance.clean_serverstring(raw_string)
       def clean_serverstring(server_string)
         # Clear out superfluous tags
         server_string = server_string.gsub("<pushStream id=\"combat\" /><popStream id=\"combat\" />", "")
@@ -906,11 +923,6 @@ module Lich
         server_string
       end
 
-      # Handles combat tags specific to DragonRealms
-      # @param server_string [String] The server string containing combat tags
-      # @return [String] The processed server string
-      # @example
-      #   processed_string = dragonrealms_instance.handle_combat_tags(raw_string)
       def handle_combat_tags(server_string)
         if @combat_count > 0
           @end_combat_tags.each do |tag|
@@ -928,11 +940,6 @@ module Lich
         server_string
       end
 
-      # Handles atmospherics specific to DragonRealms
-      # @param server_string [String] The server string containing atmospherics
-      # @return [String] The processed server string
-      # @example
-      #   processed_string = dragonrealms_instance.handle_atmospherics(raw_string)
       def handle_atmospherics(server_string)
         if @atmospherics
           @atmospherics = false
@@ -950,29 +957,15 @@ module Lich
         server_string
       end
 
-      # Retrieves the documentation URL for the DragonRealms game instance
-      # @return [String] The documentation URL
-      # @example
-      #   url = dragonrealms_instance.get_documentation_url
       def get_documentation_url
         "https://github.com/elanthia-online/lich-5/wiki/Documentation-for-Installing-and-Upgrading-Lich"
       end
 
-      # Processes game-specific data for DragonRealms
-      # @param server_string [String] The server string containing game-specific data
-      # @return [void]
-      # @example
-      #   dragonrealms_instance.process_game_specific_data(raw_string)
       def process_game_specific_data(server_string)
         infomon_serverstring = server_string.dup
         DRParser.parse(infomon_serverstring)
       end
 
-      # Modifies the room display string for DragonRealms
-      # @param alt_string [String] The room display string to modify
-      # @return [String] The modified room display string
-      # @example
-      #   modified_string = dragonrealms_instance.modify_room_display(alt_string)
       def modify_room_display(alt_string)
         if Lich.display_uid == true
           alt_string.sub!(/] \((?:\d+|\*\*)\)/) { "]" }
@@ -983,11 +976,6 @@ module Lich
         alt_string
       end
 
-      # Processes the room display string for DragonRealms
-      # @param alt_string [String] The room display string to process
-      # @return [String] The processed room display string
-      # @example
-      #   processed_string = dragonrealms_instance.process_room_display(alt_string)
       def process_room_display(alt_string)
         if Lich.display_stringprocs == true
           room_exits = []
@@ -1035,7 +1023,6 @@ module Lich
       end
     end
 
-    # Game class for DragonRealms
     class Game < GameBase::Game
       class << self
         def initialize

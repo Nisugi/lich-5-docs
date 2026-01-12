@@ -4,38 +4,32 @@ require_relative 'account'
 
 module Lich
   # Provides common functionality for the Lich project
-  #
-  # This module contains methods for handling SSL connections and authentication.
-  # @example Using the EAccess module
-  #   Lich::Common::EAccess.auth(password: "my_password", account: "my_account")
+  # @example Usage
+  #   include Lich::Common
   module Common
-    # Handles EAccess related operations
-    #
-    # This module provides methods for downloading and verifying PEM files, as well as authenticating users.
-    # @example Authenticating a user
-    #   Lich::Common::EAccess.auth(password: "password", account: "account_name")
+    # Module for handling EAccess related operations
+    # @example Usage
+    #   Lich::Common::EAccess.download_pem
     module EAccess
-      # The path to the PEM file used for SSL connections.
-      PEM = File.join(DATA_DIR, "simu.pem")
-      # pp PEM
-      # The size of packets to read from the connection.
+      # The size of the packet for reading data
       PACKET_SIZE = 8192
 
+      # Returns the path to the PEM file
+      # @return [String] The path to the PEM file
+      def self.pem
+        @pem ||= File.join(DATA_DIR, "simu.pem")
+      end
+
       # Checks if the PEM file exists
-      # @return [Boolean] true if the PEM file exists, false otherwise
-      # @example Checking for PEM existence
-      #   exists = Lich::Common::EAccess.pem_exist?
+      # @return [Boolean] True if the PEM file exists, false otherwise
       def self.pem_exist?
-        File.exist? PEM
+        File.exist? pem
       end
 
       # Downloads the PEM file from the specified hostname and port
       # @param hostname [String] The hostname to connect to (default: "eaccess.play.net")
       # @param port [Integer] The port to connect to (default: 7910)
       # @return [void]
-      # @raise [StandardError] if the connection fails
-      # @example Downloading the PEM file
-      #   Lich::Common::EAccess.download_pem
       def self.download_pem(hostname = "eaccess.play.net", port = 7910)
         # Create an OpenSSL context
         ctx = OpenSSL::SSL::SSLContext.new
@@ -46,33 +40,28 @@ module Lich
         # establish connection, if possible
         ssl.connect
         # write the .pem to disk
-        File.write(EAccess::PEM, ssl.peer_cert)
+        File.write(pem, ssl.peer_cert)
       end
 
-      # Verifies the PEM certificate against the stored PEM file
+      # Verifies the PEM certificate against the connection's peer certificate
       # @param conn [OpenSSL::SSL::SSLSocket] The SSL connection to verify
-      # @return [Boolean] true if the certificate matches, false otherwise
-      # @raise [StandardError] if the certificate does not match and download fails
-      # @example Verifying a PEM certificate
-      #   Lich::Common::EAccess.verify_pem(conn)
+      # @return [Boolean] True if the certificates match, false otherwise
+      # @raise [StandardError] If the certificates do not match and downloading fails
       def self.verify_pem(conn)
-        # return if conn.peer_cert.to_s = File.read(EAccess::PEM)
-        if !(conn.peer_cert.to_s == File.read(EAccess::PEM))
-          Lich.log "Exception, \nssl peer certificate did not match #{EAccess::PEM}\nwas:\n#{conn.peer_cert}"
+        # return if conn.peer_cert.to_s = File.read(pem)
+        if !(conn.peer_cert.to_s == File.read(pem))
+          Lich.log "Exception, \nssl peer certificate did not match #{pem}\nwas:\n#{conn.peer_cert}"
           download_pem
         else
           return true
         end
-        #     fail Exception, "\nssl peer certificate did not match #{EAccess::PEM}\nwas:\n#{conn.peer_cert}"
+        #     fail Exception, "\nssl peer certificate did not match #{pem}\nwas:\n#{conn.peer_cert}"
       end
 
       # Establishes a secure socket connection to the specified hostname and port
       # @param hostname [String] The hostname to connect to (default: "eaccess.play.net")
       # @param port [Integer] The port to connect to (default: 7910)
       # @return [OpenSSL::SSL::SSLSocket] The established SSL socket
-      # @raise [StandardError] if the PEM verification fails
-      # @example Creating a secure socket
-      #   ssl_socket = Lich::Common::EAccess.socket
       def self.socket(hostname = "eaccess.play.net", port = 7910)
         download_pem unless pem_exist?
         socket = TCPSocket.open(hostname, port)
@@ -80,7 +69,7 @@ module Lich
         ssl_context             = OpenSSL::SSL::SSLContext.new
         ssl_context.cert_store  = cert_store
         ssl_context.verify_mode = OpenSSL::SSL::VERIFY_PEER
-        cert_store.add_file(EAccess::PEM) if pem_exist?
+        cert_store.add_file(pem) if pem_exist?
         ssl_socket = OpenSSL::SSL::SSLSocket.new(socket, ssl_context)
         ssl_socket.sync_close = true
         EAccess.verify_pem(ssl_socket.connect)
@@ -93,10 +82,7 @@ module Lich
       # @param character [String, nil] The character name (optional)
       # @param game_code [String, nil] The game code (optional)
       # @param legacy [Boolean] Whether to use legacy authentication (default: false)
-      # @return [String, Array<Hash>] An error message or an array of login information
-      # @raise [StandardError] if authentication fails
-      # @example Authenticating a user
-      #   login_info = Lich::Common::EAccess.auth(password: "password", account: "account_name")
+      # @return [String, Array] The authentication result or error message
       def self.auth(password:, account:, character: nil, game_code: nil, legacy: false)
         Account.name = account
         Account.game_code = game_code
@@ -149,12 +135,12 @@ module Lich
           fail StandardError, response unless response =~ /^L\t/
           # pp "L:response=%s" % response
           conn.close unless conn.closed?
-          login_info = Hash[response.sub(/^L\tOK\t/, '')
-                                    .split("\t")
-                                    .map { |kv|
-                              k, v = kv.split("=")
-                              [k.downcase, v]
-                            }]
+          login_info = response.sub(/^L\tOK\t/, '')
+                               .split("\t")
+                               .map { |kv|
+                                 k, v = kv.split("=")
+                                 [k.downcase, v]
+                               }.to_h
         else
           login_info = Array.new
           for game in response.sub(/^M\t/, '').scan(/[^\t]+\t[^\t^\n]+/)
@@ -191,8 +177,6 @@ module Lich
       # Reads data from the connection
       # @param conn [TCPSocket] The connection to read from
       # @return [String] The data read from the connection
-      # @example Reading data from a connection
-      #   data = Lich::Common::EAccess.read(conn)
       def self.read(conn)
         conn.sysread(PACKET_SIZE)
       end

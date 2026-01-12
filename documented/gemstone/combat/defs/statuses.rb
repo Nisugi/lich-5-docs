@@ -1,9 +1,4 @@
-# frozen_string_literal: true
 
-#
-# Status Effect Pattern Definitions
-# Combat status effects like stun, prone, blind, etc.
-#
 
 module Lich
   module Gemstone
@@ -12,6 +7,7 @@ module Lich
         module Statuses
           StatusDef = Struct.new(:name, :add_patterns, :remove_patterns)
 
+          # Core status effects with both add and remove patterns
           # Core status effects with both add and remove patterns
           STATUS_EFFECTS = [
             StatusDef.new(:blind,
@@ -109,6 +105,7 @@ module Lich
           ].freeze
 
           # Create lookup tables for fast pattern matching
+          # Create lookup tables for fast pattern matching
           ADD_LOOKUP = STATUS_EFFECTS.flat_map do |status_def|
             status_def.add_patterns.compact.map { |pattern| [pattern, status_def.name, :add] }
           end.freeze
@@ -120,9 +117,16 @@ module Lich
           ALL_LOOKUP = (ADD_LOOKUP + REMOVE_LOOKUP).freeze
 
           # Compiled regex for fast detection
+          # Compiled regex for fast detection
           STATUS_DETECTOR = Regexp.union(ALL_LOOKUP.map(&:first)).freeze
 
-          # Parse status effect from line
+          # Parses a line to detect status effects.
+          #
+          # @param line [String] The line to parse for status effects.
+          # @return [Hash, nil] A hash containing the detected status and action, or nil if no status is detected.
+          # @example Detecting a status effect
+          #   result = Lich::Gemstone::Combat::Definitions::Statuses.parse("You blinded the enemy!")
+          #   # result => { status: :blind, action: :add, target: "the enemy" }
           def self.parse(line)
             ALL_LOOKUP.each do |pattern, name, action|
               if (match = pattern.match(line))
