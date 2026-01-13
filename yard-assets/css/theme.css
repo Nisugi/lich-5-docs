@@ -452,8 +452,50 @@ body[data-theme="dark"] {
 }
 
 /* Defined in section */
-[data-theme="dark"] .defined_in {
+[data-theme="dark"] .defined_in,
+[data-theme="dark"] .defines,
+[data-theme="dark"] .box_info,
+[data-theme="dark"] .docstring-only,
+[data-theme="dark"] dl.box {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
   color: var(--text-muted) !important;
+}
+
+/* Expand/collapse buttons */
+[data-theme="dark"] .summary_toggle,
+[data-theme="dark"] .toggleSource,
+[data-theme="dark"] .showSource,
+[data-theme="dark"] a.toggle,
+[data-theme="dark"] .collapse,
+[data-theme="dark"] .expand,
+[data-theme="dark"] span.showSource,
+[data-theme="dark"] span.toggleSource {
+  background-color: var(--bg-tertiary) !important;
+  border-color: var(--border-color) !important;
+  color: var(--link-color) !important;
+}
+
+[data-theme="dark"] .summary_toggle:hover,
+[data-theme="dark"] a.toggle:hover {
+  background-color: var(--bg-secondary) !important;
+  color: var(--link-hover) !important;
+}
+
+/* Method summary badges/links */
+[data-theme="dark"] .summary_signature a,
+[data-theme="dark"] .method_summary a,
+[data-theme="dark"] ul.summary a,
+[data-theme="dark"] .summary a {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+  color: var(--link-color) !important;
+}
+
+[data-theme="dark"] .summary_signature a:hover,
+[data-theme="dark"] .method_summary a:hover,
+[data-theme="dark"] ul.summary a:hover {
+  background-color: var(--bg-tertiary) !important;
 }
 
 /* Scroll bar for dark mode */
