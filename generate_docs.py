@@ -31,6 +31,15 @@ except ImportError:
     ConfigManager = None
     get_config = None
 
+# Import validation (optional - falls back to skipping validation)
+try:
+    from validation import YARDValidator, ValidationResult
+    HAS_VALIDATION = True
+except ImportError:
+    HAS_VALIDATION = False
+    YARDValidator = None
+    ValidationResult = None
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -243,8 +252,16 @@ class Lich5DocumentationGenerator:
 
         return False
 
-    def mark_file_processed(self, file_path: Path, success: bool = True, content: str = None):
-        """Mark a file as processed in the manifest with content hash (thread-safe)"""
+    def mark_file_processed(self, file_path: Path, success: bool = True, content: str = None,
+                            validation_status: str = None):
+        """Mark a file as processed in the manifest with content hash (thread-safe)
+
+        Args:
+            file_path: Path to the file
+            success: Whether processing was successful
+            content: Optional content for hash computation
+            validation_status: Validation result ('passed', 'warnings', 'failed', 'skipped')
+        """
         with self.manifest_lock:
             relative_path = str(file_path)
             if success:
@@ -262,12 +279,18 @@ class Lich5DocumentationGenerator:
                     except Exception as e:
                         logger.warning(f"Could not compute hash for {file_path}: {e}")
 
-                self.manifest['processed_files'][relative_path] = {
+                entry = {
                     'timestamp': datetime.now().isoformat(),
                     'provider': self.provider_name,
                     'content_hash': content_hash,
                     'file_name': file_path.name
                 }
+
+                # Add validation status if provided
+                if validation_status:
+                    entry['validation_status'] = validation_status
+
+                self.manifest['processed_files'][relative_path] = entry
             else:
                 if 'failed_files' not in self.manifest:
                     self.manifest['failed_files'] = []
@@ -1035,6 +1058,45 @@ IMPORTANT:
 
         return '\n'.join(lines)
 
+    def _validate_documented_code(self, content: str, filename: str) -> tuple:
+        """
+        Validate documented code using YARD.
+
+        Args:
+            content: The documented Ruby code
+            filename: Original filename for error messages
+
+        Returns:
+            Tuple of (validation_status, validation_result)
+            validation_status: 'passed', 'warnings', 'failed', or 'skipped'
+        """
+        if not HAS_VALIDATION:
+            return 'skipped', None
+
+        try:
+            validator = YARDValidator()
+            result = validator.validate_content(content, filename)
+
+            if result.has_errors:
+                return 'failed', result
+            elif result.has_warnings:
+                return 'warnings', result
+            else:
+                return 'passed', result
+        except Exception as e:
+            logger.warning(f"Validation error for {filename}: {e}")
+            return 'skipped', None
+
+    def _get_retry_on_failure(self) -> bool:
+        """Check if retry on validation failure is enabled."""
+        if HAS_CONFIG:
+            try:
+                config = get_config()
+                return config.validation.retry_on_failure
+            except Exception:
+                pass
+        return True  # Default to enabled
+
     def _process_single_file(self, file_path: Path, index: int, total: int) -> bool:
         """Process a single file (used for parallel processing)"""
         try:
@@ -1042,6 +1104,36 @@ IMPORTANT:
 
             result = self.process_file(file_path)
             if result:
+                # Validate before saving
+                validation_status, validation_result = self._validate_documented_code(
+                    result, file_path.name
+                )
+
+                # If validation failed and retry is enabled, try once more
+                if validation_status == 'failed' and self._get_retry_on_failure():
+                    logger.warning(f"  Validation failed for {file_path.name}, retrying...")
+                    if validation_result:
+                        for error in validation_result.errors[:3]:  # Show first 3 errors
+                            logger.warning(f"    Error: {error.message}")
+
+                    # Regenerate documentation
+                    result = self.process_file(file_path)
+                    if result:
+                        validation_status, validation_result = self._validate_documented_code(
+                            result, file_path.name
+                        )
+                        if validation_status == 'failed':
+                            logger.warning(f"  Validation still failed after retry for {file_path.name}")
+
+                # Log validation result
+                if validation_status == 'passed':
+                    logger.info(f"  Validation: passed")
+                elif validation_status == 'warnings':
+                    logger.info(f"  Validation: passed with {len(validation_result.warnings)} warnings")
+                elif validation_status == 'failed':
+                    logger.warning(f"  Validation: failed with {len(validation_result.errors)} errors (saving anyway)")
+                # 'skipped' - no log needed
+
                 # Save documented file
                 output_file = self.get_output_file_path(file_path)
                 output_file.parent.mkdir(exist_ok=True, parents=True)
@@ -1050,8 +1142,8 @@ IMPORTANT:
                     with open(output_file, 'w', encoding='utf-8') as f:
                         f.write(result)
 
-                # Mark file as successfully processed
-                self.mark_file_processed(file_path, success=True)
+                # Mark file as successfully processed with validation status
+                self.mark_file_processed(file_path, success=True, validation_status=validation_status)
                 return True
             else:
                 # Mark file as failed
