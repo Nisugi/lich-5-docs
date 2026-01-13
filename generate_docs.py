@@ -20,7 +20,16 @@ from pathlib import Path
 from datetime import datetime
 from typing import List, Dict, Any, Optional
 
-from providers import get_provider, ProviderFactory
+from providers import get_provider, ProviderFactory, get_parallel_workers
+
+# Import config (optional - falls back to defaults if not available)
+try:
+    from config import ConfigManager, get_config
+    HAS_CONFIG = True
+except ImportError:
+    HAS_CONFIG = False
+    ConfigManager = None
+    get_config = None
 
 # Configure logging
 logging.basicConfig(
@@ -58,14 +67,9 @@ class Lich5DocumentationGenerator:
         self.manifest_lock = threading.RLock()
         self.file_lock = threading.RLock()
 
-        # Auto-detect parallel workers based on provider rate limits
+        # Get parallel workers from config or use provided value
         if parallel_workers is None:
-            if self.provider_name == 'openai':
-                self.parallel_workers = 8  # With 400 RPM, we can handle 8 parallel workers easily
-            elif self.provider_name == 'anthropic':
-                self.parallel_workers = 4  # More conservative with 50 RPM
-            else:
-                self.parallel_workers = 1  # Sequential for other providers
+            self.parallel_workers = get_parallel_workers(self.provider_name)
         else:
             self.parallel_workers = parallel_workers
 
@@ -893,8 +897,17 @@ IMPORTANT:
         # Start with nearby lines first, then expand outward
         search_order = []
 
-        # First check nearby lines (±5)
-        for offset in range(-5, 6):
+        # Get line_offset from config
+        line_offset = 5  # default
+        if HAS_CONFIG:
+            try:
+                config = get_config()
+                line_offset = config.anchor_matching.line_offset
+            except Exception:
+                pass
+
+        # First check nearby lines (±line_offset)
+        for offset in range(-line_offset, line_offset + 1):
             if offset == 0:
                 continue
             idx = expected_idx + offset
@@ -911,7 +924,7 @@ IMPORTANT:
             if idx not in inserted_at_lines:
                 if self.soft_match_anchor(anchor, lines[idx]):
                     offset = idx - expected_idx
-                    if abs(offset) <= 5:
+                    if abs(offset) <= line_offset:
                         logger.info(f"Found anchor at line {idx + 1} (expected {line_number}, offset {offset:+d})")
                     else:
                         logger.warning(f"Found anchor at line {idx + 1} (expected {line_number}, offset {offset:+d})")
@@ -1075,13 +1088,25 @@ IMPORTANT:
         # Find all Ruby files recursively
         all_ruby_files = list(directory.rglob(pattern))
 
-        # Exclude critranks directory (large data tables that consume too many tokens)
-        # Use /critranks/ to only exclude the directory, not critranks.rb file
-        ruby_files = [f for f in all_ruby_files if '/critranks/' not in str(f).replace('\\', '/')]
+        # Get exclusion patterns from config
+        exclusion_patterns = ['/critranks/', '/creatures/']  # defaults
+        if HAS_CONFIG:
+            try:
+                config = get_config()
+                exclusion_patterns = config.processing.exclusions
+            except Exception as e:
+                logger.debug(f"Could not load exclusions from config: {e}")
+
+        # Exclude directories based on config patterns
+        ruby_files = []
+        for f in all_ruby_files:
+            path_str = str(f).replace('\\', '/')
+            if not any(pattern in path_str for pattern in exclusion_patterns):
+                ruby_files.append(f)
 
         excluded_count = len(all_ruby_files) - len(ruby_files)
         if excluded_count > 0:
-            logger.info(f"Excluded {excluded_count} files from /critranks/ directory")
+            logger.info(f"Excluded {excluded_count} files matching patterns: {exclusion_patterns}")
 
         logger.info(f"Found {len(ruby_files)} Ruby files to process")
 
@@ -1260,12 +1285,28 @@ def main():
         help='Force reprocessing of all files (disable incremental mode)'
     )
     parser.add_argument(
+        '--config',
+        help='Path to config.yaml file (default: config.yaml in repo root)'
+    )
+    parser.add_argument(
         '--no-incremental',
         action='store_true',
         help='Disable incremental processing (same as --force-rebuild)'
     )
 
     args = parser.parse_args()
+
+    # Load config if specified or available
+    if HAS_CONFIG:
+        if args.config:
+            ConfigManager.load(args.config)
+            logger.info(f"Loaded configuration from {args.config}")
+        else:
+            try:
+                ConfigManager.load()
+                logger.debug("Loaded configuration from default location")
+            except Exception as e:
+                logger.debug(f"Could not load config: {e}")
 
     # Validate that either input or --file is provided
     if not args.input and not args.file:

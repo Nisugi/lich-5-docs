@@ -1,0 +1,127 @@
+# Lich 5 Documentation Generator Configuration
+# All values can be overridden via environment variables or CLI arguments
+
+# Directory paths
+paths:
+  output_dir: "output/latest"
+  documented_dir: "documented"
+  docs_dir: "docs"
+  manifest_file: "output/latest/manifest.json"
+
+# File processing settings
+processing:
+  # Patterns to exclude from processing (matched against file path)
+  exclusions:
+    - "/critranks/"    # Large data tables - too many tokens
+    - "/creatures/"    # Creature data files
+
+  # File pattern to match
+  file_pattern: "*.rb"
+
+  # Output structure: 'flat' (all files in one dir) or 'mirror' (preserve source hierarchy)
+  output_structure: "mirror"
+
+# Provider configurations
+providers:
+  openai:
+    model: "gpt-4o-mini"
+    max_tokens: 16384
+    temperature: 0.0
+    parallel_workers: 8
+    requests_per_minute: 400
+    requests_per_day: null
+    cost_per_1m_input: 0.15
+    cost_per_1m_output: 0.60
+    structured_output: true
+
+  anthropic:
+    model: "claude-3-haiku-20240307"
+    max_tokens: 4096
+    temperature: 0.0
+    parallel_workers: 4
+    requests_per_minute: 50
+    requests_per_day: null
+    cost_per_1m_input: 0.25
+    cost_per_1m_output: 1.25
+    structured_output: true
+    max_retries: 3
+    base_retry_delay: 5
+
+  gemini:
+    model: "gemini-2.0-flash-exp"
+    max_tokens: 8192
+    temperature: 0.0
+    parallel_workers: 1
+    requests_per_minute: 8
+    requests_per_day: 150
+    cost_per_1m_input: 0
+    cost_per_1m_output: 0
+    structured_output: true
+    max_retries: 5
+    base_retry_delay: 30
+
+  mock:
+    model: "mock-model"
+    max_tokens: 4096
+    temperature: 0.0
+    parallel_workers: 4
+    requests_per_minute: 15
+    requests_per_day: 1500
+    cost_per_1m_input: 0
+    cost_per_1m_output: 0
+    structured_output: false
+
+# Anchor matching parameters for inserting comments
+anchor_matching:
+  # Search +/- N lines from expected line number
+  line_offset: 5
+  # Max lines to look ahead for YARD description blocks
+  lookahead_lines: 10
+
+# Timeouts in seconds
+timeouts:
+  yard_version_check: 10
+  yard_stats: 30
+  yard_doc_build: 300
+
+# Pre-save validation settings
+validation:
+  # Run YARD validation before saving documented files
+  pre_save_enabled: true
+  # Retry generation once if validation fails
+  retry_on_failure: true
+  # Max retry attempts
+  max_retries: 1
+  # Strict mode: exit with error on any warnings
+  strict_mode: false
+
+# JSON schema for structured LLM outputs
+json_schema:
+  name: "yard_comments"
+  schema:
+    type: "object"
+    properties:
+      comments:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            line_number:
+              type: "integer"
+              description: "1-indexed line number to insert comment before"
+            anchor:
+              type: "string"
+              description: "Code snippet for validation (e.g., 'def method_name', 'class ClassName')"
+            indent:
+              type: "integer"
+              description: "Number of spaces for indentation"
+            comment:
+              type: "string"
+              description: "YARD comment block with newlines as \\n"
+          required:
+            - "line_number"
+            - "anchor"
+            - "indent"
+            - "comment"
+    required:
+      - "comments"

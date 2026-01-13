@@ -5,7 +5,7 @@ Supports multiple LLM providers with a unified interface
 
 from .base import LLMProvider, ProviderConfig
 from .mock import MockProvider
-from .factory import ProviderFactory, get_provider
+from .factory import ProviderFactory, get_provider, get_parallel_workers
 
 # Note: GeminiProvider and OpenAIProvider are imported lazily in factory.py
 # to avoid dependency issues when packages aren't installed
@@ -15,5 +15,6 @@ __all__ = [
     'ProviderConfig',
     'MockProvider',
     'ProviderFactory',
-    'get_provider'
+    'get_provider',
+    'get_parallel_workers',
 ]

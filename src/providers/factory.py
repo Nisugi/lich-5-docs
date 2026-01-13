@@ -9,7 +9,45 @@ from typing import Optional, Dict, Any
 from .base import LLMProvider, ProviderConfig
 from .mock import MockProvider
 
+# Import config module (handles case when config.yaml doesn't exist)
+try:
+    from config import ConfigManager, get_provider_config
+    HAS_CONFIG = True
+except ImportError:
+    HAS_CONFIG = False
+
 logger = logging.getLogger(__name__)
+
+
+def _build_provider_config(provider_name: str) -> ProviderConfig:
+    """
+    Build a ProviderConfig from ConfigManager settings.
+
+    Args:
+        provider_name: Name of the provider
+
+    Returns:
+        ProviderConfig with values from config.yaml or defaults
+    """
+    if not HAS_CONFIG:
+        # Fall back to None, let provider use its own defaults
+        return None
+
+    try:
+        cfg = get_provider_config(provider_name)
+        return ProviderConfig(
+            name=provider_name,
+            model=cfg.model,
+            max_tokens=cfg.max_tokens,
+            temperature=cfg.temperature,
+            requests_per_minute=cfg.requests_per_minute,
+            requests_per_day=cfg.requests_per_day,
+            cost_per_1m_input=cfg.cost_per_1m_input,
+            cost_per_1m_output=cfg.cost_per_1m_output,
+        )
+    except (KeyError, AttributeError) as e:
+        logger.debug(f"Could not load config for {provider_name}: {e}")
+        return None
 
 
 class ProviderFactory:
@@ -40,10 +78,13 @@ class ProviderFactory:
 
         logger.info(f"Initializing {provider_name} provider")
 
-        # Create provider-specific config if provided
+        # Create provider-specific config
+        # Priority: 1) Explicit config dict, 2) ConfigManager, 3) Provider defaults
         provider_config = None
         if config:
             provider_config = ProviderConfig(**config)
+        else:
+            provider_config = _build_provider_config(provider_name)
 
         # Create provider instance (with lazy imports)
         if provider_name == 'gemini':
@@ -205,3 +246,30 @@ def get_provider(provider_name: Optional[str] = None) -> LLMProvider:
         LLMProvider instance
     """
     return ProviderFactory.create_provider(provider_name)
+
+
+def get_parallel_workers(provider_name: str) -> int:
+    """
+    Get the number of parallel workers for a provider from config.
+
+    Args:
+        provider_name: Name of the provider
+
+    Returns:
+        Number of parallel workers (defaults based on provider if no config)
+    """
+    if HAS_CONFIG:
+        try:
+            cfg = get_provider_config(provider_name)
+            return cfg.parallel_workers
+        except (KeyError, AttributeError):
+            pass
+
+    # Default fallbacks
+    defaults = {
+        'openai': 8,
+        'anthropic': 4,
+        'gemini': 1,
+        'mock': 4,
+    }
+    return defaults.get(provider_name, 1)

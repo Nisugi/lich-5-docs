@@ -34,7 +34,7 @@ The system uses a **manifest-based incremental build** to avoid reprocessing unc
 documented/               # Committed YARD-documented Ruby files (mirrors lich-5/lib structure)
 ├── common/
 ├── gemstone/
-├── attributes/
+├── dragonrealms/
 └── ...
 
 docs/                     # Generated HTML documentation (for GitHub Pages)
@@ -45,6 +45,7 @@ output/latest/            # Build artifacts
 
 src/providers/            # LLM provider implementations
 ├── base.py               # Abstract provider interface
+├── factory.py            # Provider selection and validation
 ├── openai_provider.py
 ├── anthropic_provider.py
 ├── gemini.py
@@ -59,6 +60,7 @@ src/providers/            # LLM provider implementations
 - Returns structured JSON: `[{line_number, anchor, indent, comment}, ...]`
 - **Output structure:** Mirror mode (preserves source directory hierarchy)
 - **Incremental logic:** Compares SHA256 hashes, checks `documented/` for existing files
+- **Exclusions:** Skips `/critranks/` directory (large data tables consume too many tokens)
 
 **validate_docs.py** - YARD validation wrapper
 - Runs `yard stats` on documented files
@@ -120,18 +122,22 @@ src/providers/            # LLM provider implementations
 
 ## Common Development Commands
 
-### Local Documentation Generation
+### Local Setup
 
-**Setup:**
 ```bash
+# Python dependencies
 pip install -r requirements.txt
 
-# Add API key to .env (copy from .env.example)
+# Ruby YARD gem (required for validation and HTML generation)
+gem install yard
+
+# API key configuration
 cp .env.example .env
-# Edit .env and add your API key
+# Edit .env and add your API key (OPENAI_API_KEY, ANTHROPIC_API_KEY, or GEMINI_API_KEY)
 ```
 
-**Generate docs locally:**
+### Local Documentation Generation
+
 ```bash
 # Full rebuild
 python generate_docs.py /path/to/lich-5/lib \
@@ -271,12 +277,17 @@ When building HTML, you may see "Cannot resolve link" warnings for references li
 **Cause:** YARD parser issue with `def ClassName.method` inside class definition
 **Fix:** Replace with `def self.method` (standard Ruby convention)
 
-## Project Goals
+## Maintenance Notes
 
-1. **Automate documentation:** Use AI to generate YARD comments for 120 Ruby files ✅
-2. **Incremental builds:** Only reprocess changed files (saves time and API costs) ✅
-3. **Validation:** Achieve 100% YARD validation success ✅ (120/120 files clean)
-4. **GitHub Pages:** Publish HTML documentation website automatically ✅
-5. **Modular workflow:** Separate generate → validate → build stages for flexibility ✅
+### When lich-5 Source Changes
 
-All goals achieved! The system now successfully generates, validates, and publishes complete YARD documentation for the Lich 5 Ruby project.
+1. Run **generate-batch.yml** workflow (incremental mode detects changes via SHA256 hash)
+2. Run **validate-docs.yml** to check for YARD issues
+3. Run **build-html.yml** to regenerate HTML documentation
+
+### Provider Costs
+
+- **OpenAI (gpt-4o-mini):** ~$0.50 full rebuild, ~$0.00 incremental
+- **Anthropic (claude-3-haiku):** ~$0.25-1.00 full rebuild
+- **Gemini (gemini-2.0-flash-exp):** Free but severe rate limits (~200 req/day)
+- **Mock:** Free, for testing pipeline without API calls

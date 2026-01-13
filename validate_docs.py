@@ -18,10 +18,22 @@ Exit Codes:
 import argparse
 import subprocess
 import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+
 from pathlib import Path
 import re
 from typing import List, Dict, Tuple
 import logging
+
+# Import config (optional)
+try:
+    from config import ConfigManager, get_config
+    HAS_CONFIG = True
+except ImportError:
+    HAS_CONFIG = False
+    ConfigManager = None
+    get_config = None
 
 # Configure logging
 logging.basicConfig(
@@ -29,6 +41,17 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+
+def _get_timeout(timeout_name: str, default: int) -> int:
+    """Get timeout value from config or use default."""
+    if HAS_CONFIG:
+        try:
+            config = get_config()
+            return getattr(config.timeouts, timeout_name, default)
+        except Exception:
+            pass
+    return default
 
 
 class YARDValidator:
@@ -46,11 +69,12 @@ class YARDValidator:
     def check_yard_installed(self) -> bool:
         """Check if YARD is installed and available."""
         try:
+            timeout = _get_timeout('yard_version_check', 10)
             result = subprocess.run(
                 ['yard', '--version'],
                 capture_output=True,
                 text=True,
-                timeout=10
+                timeout=timeout
             )
             if result.returncode == 0:
                 logger.info(f"YARD version: {result.stdout.strip()}")
@@ -148,11 +172,12 @@ class YARDValidator:
 
         try:
             # Run YARD in stats mode (doesn't generate HTML, just checks documentation)
+            timeout = _get_timeout('yard_stats', 30)
             result = subprocess.run(
                 ['yard', 'stats', '--list-undoc', str(file_path)],
                 capture_output=True,
                 text=True,
-                timeout=30
+                timeout=timeout
             )
 
             # Parse both stdout and stderr
@@ -270,7 +295,23 @@ Examples:
         help='Exit with error code if any warnings found'
     )
 
+    parser.add_argument(
+        '--config',
+        help='Path to config.yaml file (default: config.yaml in repo root)'
+    )
+
     args = parser.parse_args()
+
+    # Load config if specified or available
+    if HAS_CONFIG:
+        if args.config:
+            ConfigManager.load(args.config)
+            logger.info(f"Loaded configuration from {args.config}")
+        else:
+            try:
+                ConfigManager.load()
+            except Exception:
+                pass
 
     # Initialize validator
     documented_dir = Path(args.dir) if args.dir else None

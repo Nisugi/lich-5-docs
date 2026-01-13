@@ -15,9 +15,21 @@ Usage:
 import argparse
 import subprocess
 import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+
 from pathlib import Path
 import logging
 import shutil
+
+# Import config (optional)
+try:
+    from config import ConfigManager, get_config
+    HAS_CONFIG = True
+except ImportError:
+    HAS_CONFIG = False
+    ConfigManager = None
+    get_config = None
 
 # Configure logging
 logging.basicConfig(
@@ -25,6 +37,17 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+
+def _get_timeout(timeout_name: str, default: int) -> int:
+    """Get timeout value from config or use default."""
+    if HAS_CONFIG:
+        try:
+            config = get_config()
+            return getattr(config.timeouts, timeout_name, default)
+        except Exception:
+            pass
+    return default
 
 
 class YARDHTMLBuilder:
@@ -51,11 +74,12 @@ class YARDHTMLBuilder:
     def check_yard_installed(self) -> bool:
         """Check if YARD is installed and available."""
         try:
+            timeout = _get_timeout('yard_version_check', 10)
             result = subprocess.run(
                 ['yard', '--version'],
                 capture_output=True,
                 text=True,
-                timeout=10
+                timeout=timeout
             )
             if result.returncode == 0:
                 logger.info(f"YARD version: {result.stdout.strip()}")
@@ -117,11 +141,12 @@ class YARDHTMLBuilder:
         try:
             # Run YARD
             logger.info("Running YARD documentation generator...")
+            timeout = _get_timeout('yard_doc_build', 300)
             result = subprocess.run(
                 yard_cmd,
                 capture_output=True,
                 text=True,
-                timeout=300  # 5 minute timeout
+                timeout=timeout
             )
 
             # Log YARD output
@@ -242,7 +267,23 @@ Examples:
         help='Verify output after building'
     )
 
+    parser.add_argument(
+        '--config',
+        help='Path to config.yaml file (default: config.yaml in repo root)'
+    )
+
     args = parser.parse_args()
+
+    # Load config if specified or available
+    if HAS_CONFIG:
+        if args.config:
+            ConfigManager.load(args.config)
+            logger.info(f"Loaded configuration from {args.config}")
+        else:
+            try:
+                ConfigManager.load()
+            except Exception:
+                pass
 
     # Initialize builder
     try:
