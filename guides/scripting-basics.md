@@ -102,19 +102,29 @@ end
 ### Starting and Stopping Scripts
 
 ```ruby
-# Start another script
-start_script("scriptname")
-start_script("scriptname", ["arg1", "arg2"])
+# Start another script (returns immediately)
+Script.start("scriptname")
+Script.start("scriptname", "arg1 arg2")
 
-# Force start (even if already running)
-force_start_script("scriptname")
+# Start script and wait for it to finish
+Script.run("scriptname")
+Script.run("scriptname", "arg1 arg2")
+
+# Key difference:
+# - Script.start: Launches script, continues immediately
+# - Script.run: Launches script, waits until it completes
 
 # Stop a running script
-stop_script("scriptname")
+Script.kill("scriptname")
 
 # Check if a script is running
-if running?("bigshot")
+if Script.running?("bigshot")
   echo "Bigshot is running"
+end
+
+# Get list of running scripts
+Script.running.each do |s|
+  echo "Running: #{s.name}"
 end
 ```
 
@@ -143,14 +153,26 @@ no_pause_all
 ## Script Variables
 
 ```ruby
-# Access script arguments
-script.vars[0]    # First argument
-script.vars[1]    # Second argument
-script.vars       # All arguments as array
+# Access script arguments (note: capital S!)
+Script.current.vars[0]    # All arguments as single string
+Script.current.vars[1]    # First argument
+Script.current.vars[2]    # Second argument
+
+# Example: script called with ";myscript foo bar"
+# Script.current.vars[0] => "foo bar"
+# Script.current.vars[1] => "foo"
+# Script.current.vars[2] => "bar"
 
 # Check for specific arguments
-if script.vars.include?("--debug")
+if Script.current.vars[1] == "--debug"
   echo "Debug mode enabled"
+end
+
+# Common pattern using variable
+args = Script.current.vars
+if args[1] == "help"
+  echo "Usage: ;myscript <target>"
+  exit
 end
 ```
 
@@ -249,14 +271,15 @@ wait_until(timeout: 30) { Char.health >= Char.max_health }
 4. **Clean up** - Use `before_dying` to clean up on exit
 5. **Be resource-friendly** - Add small sleeps in tight loops
 6. **Log important events** - Use `echo` to help with debugging
+7. **Case matters** - Ruby is case-sensitive: `Script` not `script`
 
 ## Debugging
 
 ```ruby
 # Toggle echo to see script output
-toggle_echo
-echo_on
-echo_off
+toggle_echo   # Toggles between on/off
+echo_on       # Turn echo on
+echo_off      # Turn echo off
 
 # Print debug information
 echo "DEBUG: Current room = #{Room.current.id}"
