@@ -78,59 +78,147 @@
   background-color: var(--code-bg) !important;
 }
 
-/* Sidebar */
-[data-theme="dark"] #full_list {
-  background-color: var(--bg-secondary) !important;
-}
-
+/* Sidebar - comprehensive targeting */
+[data-theme="dark"] #menu,
+[data-theme="dark"] .menu,
+[data-theme="dark"] nav,
+[data-theme="dark"] #full_list,
 [data-theme="dark"] .full_list,
-[data-theme="dark"] #full_list_content {
+[data-theme="dark"] #full_list_content,
+[data-theme="dark"] .sidebar,
+[data-theme="dark"] #class_list,
+[data-theme="dark"] #file_list,
+[data-theme="dark"] #method_list {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-secondary) !important;
+}
+
+/* Sidebar header */
+[data-theme="dark"] #menu h1,
+[data-theme="dark"] .menu h1,
+[data-theme="dark"] #full_list h1 {
+  color: var(--text-primary) !important;
   background-color: var(--bg-secondary) !important;
 }
 
+/* Tree structure */
+[data-theme="dark"] .objects,
+[data-theme="dark"] .objects li,
+[data-theme="dark"] #menu li,
+[data-theme="dark"] .menu li,
 [data-theme="dark"] #full_list li {
   background-color: transparent !important;
 }
 
-[data-theme="dark"] #full_list li.clicked,
-[data-theme="dark"] #full_list li:hover {
+[data-theme="dark"] .objects li:hover,
+[data-theme="dark"] #menu li:hover,
+[data-theme="dark"] #full_list li:hover,
+[data-theme="dark"] #full_list li.clicked {
   background-color: var(--bg-tertiary) !important;
 }
 
+/* Sidebar links */
+[data-theme="dark"] .objects a,
+[data-theme="dark"] #menu a,
+[data-theme="dark"] .menu a,
 [data-theme="dark"] #full_list a {
   color: var(--text-secondary) !important;
 }
 
+[data-theme="dark"] .objects a:hover,
+[data-theme="dark"] #menu a:hover,
+[data-theme="dark"] .menu a:hover,
 [data-theme="dark"] #full_list a:hover,
 [data-theme="dark"] #full_list li.clicked > a {
   color: var(--link-color) !important;
 }
 
+/* Type indicators (< Object, etc) */
+[data-theme="dark"] .objects small,
+[data-theme="dark"] #menu small,
+[data-theme="dark"] #full_list small {
+  color: var(--text-muted) !important;
+}
+
+/* Toggle arrows */
+[data-theme="dark"] .toggle,
+[data-theme="dark"] .arrow {
+  color: var(--text-muted) !important;
+}
+
 /* Search box */
-[data-theme="dark"] #search input {
+[data-theme="dark"] #search,
+[data-theme="dark"] .search {
+  background-color: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] #search input,
+[data-theme="dark"] .search input,
+[data-theme="dark"] input[type="search"],
+[data-theme="dark"] input[type="text"] {
   background-color: var(--bg-primary) !important;
   border-color: var(--border-color) !important;
   color: var(--text-primary) !important;
 }
 
-/* Tables */
-[data-theme="dark"] table {
+/* Search results dropdown */
+[data-theme="dark"] #search_results,
+[data-theme="dark"] .search_results {
+  background-color: var(--bg-secondary) !important;
   border-color: var(--border-color) !important;
 }
 
-[data-theme="dark"] table th {
+[data-theme="dark"] #search_results li,
+[data-theme="dark"] .search_results li {
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] #search_results li:hover,
+[data-theme="dark"] .search_results li:hover {
   background-color: var(--bg-tertiary) !important;
+}
+
+/* Tables - comprehensive dark styling */
+[data-theme="dark"] table {
+  border-color: var(--border-color) !important;
+  background-color: var(--bg-primary) !important;
+}
+
+[data-theme="dark"] table th,
+[data-theme="dark"] table thead th,
+[data-theme="dark"] table thead td,
+[data-theme="dark"] thead {
+  background-color: #1e3a5f !important;
+  background: #1e3a5f !important;
   color: var(--text-primary) !important;
   border-color: var(--border-color) !important;
 }
 
-[data-theme="dark"] table td {
+[data-theme="dark"] table td,
+[data-theme="dark"] table tbody td {
+  background-color: var(--bg-primary) !important;
   border-color: var(--border-color) !important;
   color: var(--text-secondary) !important;
 }
 
-[data-theme="dark"] table tr:nth-child(even) {
+[data-theme="dark"] table tr,
+[data-theme="dark"] table tbody tr {
+  background-color: var(--bg-primary) !important;
+}
+
+[data-theme="dark"] table tr:nth-child(even),
+[data-theme="dark"] table tbody tr:nth-child(even),
+[data-theme="dark"] table tr:nth-child(even) td {
   background-color: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] table tr:hover,
+[data-theme="dark"] table tbody tr:hover {
+  background-color: var(--bg-tertiary) !important;
+}
+
+[data-theme="dark"] table tr:hover td {
+  background-color: var(--bg-tertiary) !important;
 }
 
 /* Method/class boxes */
