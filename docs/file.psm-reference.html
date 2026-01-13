@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: psm-reference
+  
+    &mdash; Lich 5 Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "psm-reference";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: psm-reference</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'>
+<h1 id="label-PSM+Reference+Guide">PSM Reference Guide</h1>
+
+<p>Player System Manager (PSM) skills are combat abilities in GemStone IV that your character can learn and use. This guide covers how to work with PSMs in Lich scripts.</p>
+
+<h2 id="label-What+are+PSMs-3F">What are PSMs?</h2>
+
+<p>PSMs include:</p>
+
+<table role="table">
+<thead>
+<tr>
+<th>Category</th>
+<th>Description</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CMan</strong></td>
+<td>Combat Maneuvers</td>
+<td>Bull Rush, Feint, Coup de Grace</td>
+</tr>
+<tr>
+<td><strong>Shield</strong></td>
+<td>Shield Specializations</td>
+<td>Shield Bash, Bulwark, Phalanx</td>
+</tr>
+<tr>
+<td><strong>Feat</strong></td>
+<td>Character Feats</td>
+<td>Cunning Defense, Combat Mastery</td>
+</tr>
+<tr>
+<td><strong>Weapon</strong></td>
+<td>Weapon Techniques</td>
+<td>Cripple, Whirling Blade</td>
+</tr>
+<tr>
+<td><strong>Armor</strong></td>
+<td>Armor Specializations</td>
+<td>Armor Spike, Armored Stealth</td>
+</tr>
+<tr>
+<td><strong>Warcry</strong></td>
+<td>Battle Cries</td>
+<td>Bertrandt’s Bellow, Yertie’s Yowlp</td>
+</tr>
+<tr>
+<td><strong>Ascension</strong></td>
+<td>Ascension Abilities</td>
+<td>Various ascension skills</td>
+</tr>
+<tr>
+<td><strong>QStrike</strong></td>
+<td>Quick Strikes</td>
+<td>Rapid attack abilities</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="label-Skill+Types">Skill Types</h2>
+
+<p>Each PSM has a type that determines how it works:</p>
+<ul><li>
+<p><strong>:passive</strong> - Always active once learned, no activation needed</p>
+</li><li>
+<p><strong>:attack</strong> - Offensive action against a target</p>
+</li><li>
+<p><strong>:buff</strong> - Temporary enhancement to your character</p>
+</li><li>
+<p><strong>:stance</strong> / <strong>:martial_stance</strong> - Combat stance that modifies behavior</p>
+</li><li>
+<p><strong>:setup</strong> - Prepares for a follow-up action</p>
+</li><li>
+<p><strong>:area_of_effect</strong> - Affects multiple targets</p>
+</li><li>
+<p><strong>:concentration</strong> - Requires focus to maintain</p>
+</li></ul>
+
+<h2 id="label-Using+PSMs+in+Scripts">Using PSMs in Scripts</h2>
+
+<h3 id="label-Check+if+You+Can+Use+a+Skill">Check if You Can Use a Skill</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Check if you have enough stamina for Bull Rush
+</span><span class='kw'>if</span> <span class='const'>PSMS</span><span class='period'>.</span><span class='id identifier rubyid_assess'>assess</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bullrush</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CMan</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_fput'><span class='object_link'><a href="top-level-namespace.html#fput-instance_method" title="#fput (method)">fput</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bullrush</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+
+<span class='comment'># Check with forced RT consideration
+</span><span class='kw'>if</span> <span class='const'>PSMS</span><span class='period'>.</span><span class='id identifier rubyid_assess'>assess</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>feint</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CMan</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>forcert_count:</span> <span class='int'>2</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_fput'><span class='object_link'><a href="top-level-namespace.html#fput-instance_method" title="#fput (method)">fput</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>feint</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h3 id="label-Check+Skill+Availability">Check Skill Availability</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Is the skill off cooldown and not overexerted?
+</span><span class='kw'>if</span> <span class='const'>PSMS</span><span class='period'>.</span><span class='id identifier rubyid_available?'>available?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bullrush</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='comment'># Safe to use
+</span><span class='kw'>end</span>
+
+<span class='comment'># Ignore cooldown check (for skills with ignorable cooldowns)
+</span><span class='kw'>if</span> <span class='const'>PSMS</span><span class='period'>.</span><span class='id identifier rubyid_available?'>available?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>burst</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='comment'># Use even if on cooldown
+</span><span class='kw'>end</span>
+</code></pre>
+
+<h3 id="label-Get+Skill+Information">Get Skill Information</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Find a skill by name
+</span><span class='id identifier rubyid_skill'>skill</span> <span class='op'>=</span> <span class='const'>PSMS</span><span class='period'>.</span><span class='id identifier rubyid_find_name'>find_name</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>feint</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CMan</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; { :long_name =&gt; &quot;combat_feint&quot;, :short_name =&gt; &quot;feint&quot;, :cost =&gt; {...} }
+</span>
+<span class='comment'># Normalize a skill name for lookup
+</span><span class='const'>PSMS</span><span class='period'>.</span><span class='id identifier rubyid_name_normal'>name_normal</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bull Rush</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; &quot;bull_rush&quot;
+</span></code></pre>
+
+<h3 id="label-Forced+Roundtime+-28Multi-Opponent+Combat-29">Forced Roundtime (Multi-Opponent Combat)</h3>
+
+<p>Characters with Multi-Opponent Combat training can perform multiple actions:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Check max forcert rounds based on MOC ranks
+</span><span class='const'>PSMS</span><span class='period'>.</span><span class='id identifier rubyid_max_forcert_count'>max_forcert_count</span>
+<span class='comment'># =&gt; 0 (0-9 ranks), 1 (10-34), 2 (35-74), 3 (75-124), 4 (125+)
+</span>
+<span class='comment'># Can I do 2 forcert rounds?
+</span><span class='kw'>if</span> <span class='const'>PSMS</span><span class='period'>.</span><span class='id identifier rubyid_can_forcert?'>can_forcert?</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span>
+  <span class='comment'># Yes, MOC is 35+
+</span><span class='kw'>end</span>
+</code></pre>
+
+<h3 id="label-Handle+Failures">Handle Failures</h3>
+
+<p>PSMs can fail for various reasons. Use the built-in failure detection:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_dothistimeout'><span class='object_link'><a href="top-level-namespace.html#dothistimeout-instance_method" title="#dothistimeout (method)">dothistimeout</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bullrush</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>3</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You |</span><span class='embexpr_beg'>#{</span><span class='const'>PSMS</span><span class='op'>::</span><span class='const'>FAILURES_REGEXES</span><span class='embexpr_end'>}</span><span class='regexp_end'>/</span></span>
+
+<span class='kw'>if</span> <span class='const'>PSMS</span><span class='op'>::</span><span class='const'>FAILURES_REGEXES</span><span class='period'>.</span><span class='id identifier rubyid_match?'>match?</span><span class='lparen'>(</span><span class='id identifier rubyid_result'>result</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Action failed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_result'>result</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<p>Common failure messages: - “You are unable to do that right now.” - “You don’t seem to be able to move to do that.” - “You are still stunned.” - “You lack the momentum to attempt another skill.”</p>
+
+<h2 id="label-Combat+Maneuvers+-28CMan-29">Combat Maneuvers (CMan)</h2>
+
+<p>Combat Maneuvers are trained through the Combat Maneuvers skill. Key maneuvers include:</p>
+
+<h3 id="label-Offensive">Offensive</h3>
+<ul><li>
+<p><strong>Bull Rush</strong> - Area attack, 14 stamina</p>
+</li><li>
+<p><strong>Berserk</strong> - Rage mode, 20 stamina</p>
+</li><li>
+<p><strong>Coup de Grace</strong> - Finishing move, 20 stamina</p>
+</li><li>
+<p><strong>Feint</strong> - Setup attack, stamina varies</p>
+</li></ul>
+
+<h3 id="label-Defensive-2FUtility">Defensive/Utility</h3>
+<ul><li>
+<p><strong>Burst of Swiftness</strong> - Speed buff, 30/60 stamina</p>
+</li><li>
+<p><strong>Combat Mobility</strong> - Passive defense</p>
+</li><li>
+<p><strong>Combat Toughness</strong> - Passive health</p>
+</li></ul>
+
+<h3 id="label-Passive+-28Always+Active-29">Passive (Always Active)</h3>
+<ul><li>
+<p>Acrobat’s Leap</p>
+</li><li>
+<p>Block Specialization</p>
+</li><li>
+<p>Combat Focus</p>
+</li><li>
+<p>Combat Movement</p>
+</li></ul>
+
+<h2 id="label-Shield+Specializations">Shield Specializations</h2>
+
+<p>Shield skills require wielding the appropriate shield type.</p>
+
+<h3 id="label-Passive+Abilities">Passive Abilities</h3>
+<ul><li>
+<p><strong>Adamantine Bulwark</strong> - Enhanced blocking</p>
+</li><li>
+<p><strong>Block the Elements</strong> - Elemental resistance</p>
+</li><li>
+<p><strong>Deflect Magic</strong> - Spell deflection (requires 3 ranks in Shield Focus)</p>
+</li><li>
+<p><strong>Deflect Missiles</strong> - Ranged deflection</p>
+</li></ul>
+
+<h3 id="label-Active+Abilities">Active Abilities</h3>
+<ul><li>
+<p><strong>Shield Bash</strong> - Offensive shield attack</p>
+</li><li>
+<p><strong>Shield Charge</strong> - Rushing attack</p>
+</li><li>
+<p><strong>Disarming Presence</strong> - Martial stance, 20 stamina</p>
+</li></ul>
+
+<h3 id="label-Shield+Focus+Types">Shield Focus Types</h3>
+<ul><li>
+<p>Small Shield Focus</p>
+</li><li>
+<p>Medium Shield Focus</p>
+</li><li>
+<p>Large Shield Focus</p>
+</li><li>
+<p>Tower Shield Focus</p>
+</li></ul>
+
+<h2 id="label-Script+Integration+Example">Script Integration Example</h2>
+
+<p>Here’s a complete example of using PSMs in a hunting script:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Check resources before engaging
+</span><span class='kw'>def</span> <span class='id identifier rubyid_can_attack?'>can_attack?</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='const'>Spell</span><span class='lbracket'>[</span><span class='int'>9007</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span>  <span class='comment'># No attacking while dead
+</span>  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_stunned?'>stunned?</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='const'>PSMS</span><span class='period'>.</span><span class='id identifier rubyid_available?'>available?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bullrush</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='const'>PSMS</span><span class='period'>.</span><span class='id identifier rubyid_assess'>assess</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bullrush</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CMan</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='kw'>true</span>
+<span class='kw'>end</span>
+
+<span class='comment'># Attempt a combat maneuver with error handling
+</span><span class='kw'>def</span> <span class='id identifier rubyid_try_bullrush'>try_bullrush</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_can_attack?'>can_attack?</span>
+
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_dothistimeout'><span class='object_link'><a href="top-level-namespace.html#dothistimeout-instance_method" title="#dothistimeout (method)">dothistimeout</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bullrush</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>3</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You |</span><span class='embexpr_beg'>#{</span><span class='const'>PSMS</span><span class='op'>::</span><span class='const'>FAILURES_REGEXES</span><span class='embexpr_end'>}</span><span class='regexp_end'>/</span></span>
+
+  <span class='kw'>if</span> <span class='const'>PSMS</span><span class='op'>::</span><span class='const'>FAILURES_REGEXES</span><span class='period'>.</span><span class='id identifier rubyid_match?'>match?</span><span class='lparen'>(</span><span class='id identifier rubyid_result'>result</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bull Rush failed</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>true</span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h2 id="label-See+Also">See Also</h2>
+<ul><li>
+<p><span class='object_link'><a href="Lich/Gemstone/PSMS.html" title="Lich::Gemstone::PSMS (module)">Lich::Gemstone::PSMS</a></span> - Main PSM module</p>
+</li><li>
+<p><span class='object_link'><a href="Lich/Gemstone/CMan.html" title="Lich::Gemstone::CMan (module)">Lich::Gemstone::CMan</a></span> - Combat Maneuvers</p>
+</li><li>
+<p><span class='object_link'><a href="Lich/Gemstone/Shield.html" title="Lich::Gemstone::Shield (module)">Lich::Gemstone::Shield</a></span> - Shield Specializations</p>
+</li><li>
+<p><span class='object_link'><a href="Lich/Gemstone/Feat.html" title="Lich::Gemstone::Feat (module)">Lich::Gemstone::Feat</a></span> - Feats</p>
+</li><li>
+<p><span class='object_link'><a href="Lich/Gemstone/Weapon.html" title="Lich::Gemstone::Weapon (module)">Lich::Gemstone::Weapon</a></span> - Weapon Techniques</p>
+</li><li>
+<p><span class='object_link'><a href="Lich/Gemstone/Armor.html" title="Lich::Gemstone::Armor (module)">Lich::Gemstone::Armor</a></span> - Armor Specializations</p>
+</li><li>
+<p><span class='object_link'><a href="Lich/Gemstone/Warcry.html" title="Lich::Gemstone::Warcry (class)">Lich::Gemstone::Warcry</a></span> - Warcries</p>
+</li></ul>
+</div></div>
+
+      <div id="footer">
+  Generated on Tue Jan 13 03:56:19 2026 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.38 (ruby-3.2.9).
+</div>
+
+    </div>
+  </body>
+</html>
