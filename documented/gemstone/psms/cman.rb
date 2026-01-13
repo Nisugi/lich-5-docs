@@ -4,8 +4,8 @@ module Lich
   module Gemstone
     # Provides combat maneuvers for characters
     # This module contains various combat maneuvers that can be used in the game.
-    # @example Accessing combat maneuvers
-    #   Lich::Gemstone::CMan.cman_lookups
+    # @example Using a combat maneuver
+    #   CMan.use("bearhug")
     module CMan
       @@combat_mans = {
         "acrobats_leap"          => {

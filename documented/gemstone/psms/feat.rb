@@ -12,8 +12,8 @@ module Lich
     # - optional usage string for execution
     #
     # Dynamic accessor methods are created for each feat's long and short name.
-    # @example Accessing a feat's rank
-    #   Feat["covert_art_escape_artist"]
+    # @example Using a feat
+    #   Feat.use("covert_art_escape_artist")
     module Feat
       # A registry of all known feats and their properties.
       #
