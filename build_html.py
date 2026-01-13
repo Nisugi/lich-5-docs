@@ -214,6 +214,48 @@ class YARDHTMLBuilder:
             logger.info(f"Cleaning existing output: {self.output_dir}")
             shutil.rmtree(self.output_dir)
 
+    def inject_nav_helper(self) -> int:
+        """
+        Inject navigation helper JavaScript into generated HTML files.
+
+        Returns:
+            Number of files modified
+        """
+        assets_dir = Path(__file__).parent / 'yard-assets'
+        nav_helper = assets_dir / 'js' / 'nav-helper.js'
+
+        if not nav_helper.exists():
+            logger.warning(f"Navigation helper not found: {nav_helper}")
+            return 0
+
+        # Read the JavaScript
+        with open(nav_helper, 'r', encoding='utf-8') as f:
+            js_content = f.read()
+
+        # Create the script tag to inject
+        script_tag = f'<script type="text/javascript">\n{js_content}\n</script>\n</body>'
+
+        # Find all HTML files
+        html_files = list(self.output_dir.rglob("*.html"))
+        modified_count = 0
+
+        for html_file in html_files:
+            try:
+                with open(html_file, 'r', encoding='utf-8') as f:
+                    content = f.read()
+
+                # Replace </body> with script + </body>
+                if '</body>' in content and 'quick-nav' not in content:
+                    new_content = content.replace('</body>', script_tag)
+                    with open(html_file, 'w', encoding='utf-8') as f:
+                        f.write(new_content)
+                    modified_count += 1
+            except Exception as e:
+                logger.warning(f"Could not inject nav helper into {html_file}: {e}")
+
+        logger.info(f"Injected navigation helper into {modified_count} HTML files")
+        return modified_count
+
     def verify_output(self) -> dict:
         """
         Verify the generated HTML documentation.
@@ -337,6 +379,9 @@ Examples:
     if not success:
         logger.error("Failed to build HTML documentation")
         sys.exit(1)
+
+    # Inject navigation helper
+    builder.inject_nav_helper()
 
     # Verify output if requested
     if args.verify:
