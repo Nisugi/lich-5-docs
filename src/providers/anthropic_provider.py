@@ -4,15 +4,64 @@ High-quality documentation generation using Claude models
 """
 
 import os
+import json
 import logging
 import time
 from typing import Optional
 from .base import LLMProvider, ProviderConfig
 
+# Import config for structured output settings
+try:
+    from config import get_config, get_provider_config
+    HAS_CONFIG = True
+except ImportError:
+    HAS_CONFIG = False
+
 logger = logging.getLogger(__name__)
 
 # Lazy import to avoid dependency issues when not using Anthropic
 anthropic_client = None
+
+
+def _get_structured_output_enabled() -> bool:
+    """Check if structured output is enabled for Anthropic."""
+    if HAS_CONFIG:
+        try:
+            cfg = get_provider_config('anthropic')
+            return cfg.structured_output
+        except Exception:
+            pass
+    return True  # Default to enabled
+
+
+def _get_json_schema() -> dict:
+    """Get the JSON schema for structured output."""
+    if HAS_CONFIG:
+        try:
+            config = get_config()
+            return config.json_schema.get('schema', {})
+        except Exception:
+            pass
+    # Default schema
+    return {
+        "type": "object",
+        "properties": {
+            "comments": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "line_number": {"type": "integer"},
+                        "anchor": {"type": "string"},
+                        "indent": {"type": "integer"},
+                        "comment": {"type": "string"},
+                    },
+                    "required": ["line_number", "anchor", "indent", "comment"],
+                },
+            },
+        },
+        "required": ["comments"],
+    }
 
 
 class AnthropicProvider(LLMProvider):
@@ -79,7 +128,8 @@ class AnthropicProvider(LLMProvider):
 
         for attempt in range(max_retries):
             try:
-                logger.info(f"Sending request to Claude ({self.request_count} total requests)")
+                # Check if structured output is enabled
+                use_structured = _get_structured_output_enabled()
 
                 # Create message with proper format for Claude
                 messages = [{"role": "user", "content": prompt}]
@@ -96,11 +146,47 @@ class AnthropicProvider(LLMProvider):
                 if system_prompt:
                     kwargs["system"] = system_prompt
 
-                # Generate response
-                response = self.client.messages.create(**kwargs)
+                if use_structured:
+                    logger.info(f"Sending request to Claude ({self.request_count} total) with tool use")
+                    schema = _get_json_schema()
 
-                # Extract text from response
-                result_text = response.content[0].text
+                    # Add tool for structured output
+                    kwargs["tools"] = [{
+                        "name": "generate_yard_documentation",
+                        "description": "Generate YARD documentation comments for Ruby code. Returns structured JSON with line numbers, anchors, indentation, and comment content.",
+                        "input_schema": schema
+                    }]
+                    # Force the model to use the tool
+                    kwargs["tool_choice"] = {"type": "tool", "name": "generate_yard_documentation"}
+
+                    # Generate response
+                    response = self.client.messages.create(**kwargs)
+
+                    # Extract from tool use response
+                    result_text = None
+                    for block in response.content:
+                        if block.type == "tool_use" and block.name == "generate_yard_documentation":
+                            # The tool input is already parsed - convert back to JSON string
+                            result_text = json.dumps(block.input)
+                            break
+
+                    if result_text is None:
+                        # Fallback: try to get text response
+                        for block in response.content:
+                            if hasattr(block, 'text'):
+                                result_text = block.text
+                                break
+
+                    if result_text is None:
+                        raise Exception("No valid response from Claude tool use")
+                else:
+                    logger.info(f"Sending request to Claude ({self.request_count} total requests)")
+
+                    # Generate response without tool use
+                    response = self.client.messages.create(**kwargs)
+
+                    # Extract text from response
+                    result_text = response.content[0].text
 
                 # Track usage and costs
                 input_tokens = response.usage.input_tokens if hasattr(response, 'usage') else len(prompt) // 4

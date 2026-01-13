@@ -701,9 +701,27 @@ IMPORTANT:
         """
         Extract JSON array of comments from LLM response
 
+        Tries direct JSON parsing first (for structured outputs), then falls back
+        to regex-based extraction strategies.
+
         Returns:
             List of comment entries with anchor, indent, and comment fields
         """
+        # Strategy 0: Try direct JSON parse first (for structured output responses)
+        # This handles both wrapped {"comments": [...]} and direct [...] formats
+        try:
+            data = json.loads(response.strip())
+            # Handle wrapped format from structured outputs
+            if isinstance(data, dict) and "comments" in data:
+                logger.debug("Direct JSON parse succeeded (wrapped format)")
+                return data["comments"]
+            # Handle direct array format
+            if isinstance(data, list):
+                logger.debug("Direct JSON parse succeeded (array format)")
+                return data
+        except json.JSONDecodeError:
+            pass  # Fall through to extraction strategies
+
         extraction_attempts = []
 
         # Strategy 1: Try to find JSON code blocks first

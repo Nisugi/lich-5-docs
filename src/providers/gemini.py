@@ -9,10 +9,58 @@ import time
 from typing import Optional
 from .base import LLMProvider, ProviderConfig
 
+# Import config for structured output settings
+try:
+    from config import get_config, get_provider_config
+    HAS_CONFIG = True
+except ImportError:
+    HAS_CONFIG = False
+
 logger = logging.getLogger(__name__)
 
 # Lazy import to avoid dependency issues when not using Gemini
 genai = None
+
+
+def _get_structured_output_enabled() -> bool:
+    """Check if structured output is enabled for Gemini."""
+    if HAS_CONFIG:
+        try:
+            cfg = get_provider_config('gemini')
+            return cfg.structured_output
+        except Exception:
+            pass
+    return True  # Default to enabled
+
+
+def _get_json_schema() -> dict:
+    """Get the JSON schema for structured output."""
+    if HAS_CONFIG:
+        try:
+            config = get_config()
+            return config.json_schema.get('schema', {})
+        except Exception:
+            pass
+    # Default schema
+    return {
+        "type": "object",
+        "properties": {
+            "comments": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "line_number": {"type": "integer"},
+                        "anchor": {"type": "string"},
+                        "indent": {"type": "integer"},
+                        "comment": {"type": "string"},
+                    },
+                    "required": ["line_number", "anchor", "indent", "comment"],
+                },
+            },
+        },
+        "required": ["comments"],
+    }
 
 
 class GeminiProvider(LLMProvider):
@@ -114,17 +162,34 @@ class GeminiProvider(LLMProvider):
 
         for attempt in range(max_retries):
             try:
-                logger.info(f"Sending request to Gemini ({self.daily_request_count}/{self.config.requests_per_day} daily)")
+                # Check if structured output is enabled
+                use_structured = _get_structured_output_enabled()
 
-                # Generate response
-                response = self.model.generate_content(
-                    full_prompt,
-                    generation_config=genai.types.GenerationConfig(
-                        max_output_tokens=self.config.max_tokens,
-                        temperature=self.config.temperature,
-                    ),
-                    safety_settings=self.safety_settings
-                )
+                if use_structured:
+                    logger.info(f"Sending request to Gemini ({self.daily_request_count}/{self.config.requests_per_day} daily) with JSON mode")
+
+                    # Generate response with JSON mode
+                    response = self.model.generate_content(
+                        full_prompt,
+                        generation_config=genai.types.GenerationConfig(
+                            max_output_tokens=self.config.max_tokens,
+                            temperature=self.config.temperature,
+                            response_mime_type="application/json",
+                        ),
+                        safety_settings=self.safety_settings
+                    )
+                else:
+                    logger.info(f"Sending request to Gemini ({self.daily_request_count}/{self.config.requests_per_day} daily)")
+
+                    # Generate response without JSON mode
+                    response = self.model.generate_content(
+                        full_prompt,
+                        generation_config=genai.types.GenerationConfig(
+                            max_output_tokens=self.config.max_tokens,
+                            temperature=self.config.temperature,
+                        ),
+                        safety_settings=self.safety_settings
+                    )
 
                 # Extract text
                 result_text = response.text

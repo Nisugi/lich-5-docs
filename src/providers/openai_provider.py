@@ -8,10 +8,60 @@ import logging
 from typing import Optional
 from .base import LLMProvider, ProviderConfig
 
+# Import config for structured output settings
+try:
+    from config import get_config, get_provider_config
+    HAS_CONFIG = True
+except ImportError:
+    HAS_CONFIG = False
+
 logger = logging.getLogger(__name__)
 
 # Lazy import to avoid dependency issues when not using OpenAI
 OpenAI = None
+
+
+def _get_structured_output_enabled() -> bool:
+    """Check if structured output is enabled for OpenAI."""
+    if HAS_CONFIG:
+        try:
+            cfg = get_provider_config('openai')
+            return cfg.structured_output
+        except Exception:
+            pass
+    return True  # Default to enabled
+
+
+def _get_json_schema() -> dict:
+    """Get the JSON schema for structured output."""
+    if HAS_CONFIG:
+        try:
+            config = get_config()
+            return config.json_schema.get('schema', {})
+        except Exception:
+            pass
+    # Default schema
+    return {
+        "type": "object",
+        "properties": {
+            "comments": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "line_number": {"type": "integer"},
+                        "anchor": {"type": "string"},
+                        "indent": {"type": "integer"},
+                        "comment": {"type": "string"},
+                    },
+                    "required": ["line_number", "anchor", "indent", "comment"],
+                    "additionalProperties": False,
+                },
+            },
+        },
+        "required": ["comments"],
+        "additionalProperties": False,
+    }
 
 
 class OpenAIProvider(LLMProvider):
@@ -83,15 +133,38 @@ class OpenAIProvider(LLMProvider):
                 messages.append({"role": "system", "content": system_prompt})
             messages.append({"role": "user", "content": prompt})
 
-            logger.info(f"Sending request to OpenAI ({self.config.model})")
+            # Check if structured output is enabled
+            use_structured = _get_structured_output_enabled()
 
-            # Make API call
-            response = self.client.chat.completions.create(
-                model=self.config.model,
-                messages=messages,
-                max_tokens=self.config.max_tokens,
-                temperature=self.config.temperature,
-            )
+            if use_structured:
+                logger.info(f"Sending request to OpenAI ({self.config.model}) with structured output")
+                schema = _get_json_schema()
+
+                # Make API call with JSON schema response format
+                response = self.client.chat.completions.create(
+                    model=self.config.model,
+                    messages=messages,
+                    max_tokens=self.config.max_tokens,
+                    temperature=self.config.temperature,
+                    response_format={
+                        "type": "json_schema",
+                        "json_schema": {
+                            "name": "yard_comments",
+                            "strict": True,
+                            "schema": schema,
+                        }
+                    }
+                )
+            else:
+                logger.info(f"Sending request to OpenAI ({self.config.model})")
+
+                # Make API call without structured output
+                response = self.client.chat.completions.create(
+                    model=self.config.model,
+                    messages=messages,
+                    max_tokens=self.config.max_tokens,
+                    temperature=self.config.temperature,
+                )
 
             # Extract response
             result_text = response.choices[0].message.content
