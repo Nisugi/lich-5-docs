@@ -46,7 +46,6 @@
     var saved = localStorage.getItem('yard-theme');
     if (saved) return saved;
 
-    // Check system preference
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       return 'dark';
     }
@@ -58,7 +57,6 @@
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('yard-theme', theme);
 
-    // Update button text
     var btn = document.getElementById('theme-toggle');
     if (btn) {
       btn.textContent = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
@@ -81,18 +79,15 @@
 
     var rootPath = getRootPath();
 
-    // Create nav element
     var nav = document.createElement('div');
     nav.id = 'quick-nav';
     nav.style.cssText = 'padding: 8px 15px; margin-bottom: 15px; border-radius: 4px; border: 1px solid #ddd; font-size: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;';
 
-    // Navigation links
     var links = document.createElement('div');
     links.innerHTML = '<a href="' + rootPath + 'index.html" style="margin-right: 15px; text-decoration: none;">Home</a> | ' +
                       '<a href="' + rootPath + '_index.html" style="margin-left: 15px; margin-right: 15px; text-decoration: none;">All Classes</a> | ' +
                       '<a href="' + rootPath + 'file.psm-reference.html" style="margin-left: 15px; text-decoration: none;">PSM Guide</a>';
 
-    // Theme toggle button
     var themeBtn = document.createElement('button');
     themeBtn.id = 'theme-toggle';
     themeBtn.type = 'button';
@@ -103,65 +98,94 @@
 
     content.insertBefore(nav, content.firstChild);
 
-    // Set initial button state
     var currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
     themeBtn.textContent = currentTheme === 'dark' ? '☀️ Light' : '🌙 Dark';
     themeBtn.title = 'Switch to ' + (currentTheme === 'dark' ? 'light' : 'dark') + ' mode';
   }
 
-  // Fix sidebar navigation
-  function fixSidebarNavigation() {
-    var fullList = document.getElementById('full_list');
-    if (!fullList) return;
+  // Aggressively fix ALL sidebar links
+  function fixAllSidebarLinks() {
+    // Get all possible sidebar/menu containers
+    var selectors = [
+      '#full_list',
+      '#menu',
+      '.menu',
+      '#full_list_content',
+      '.class_list',
+      '.objects',
+      'nav',
+      '.sidebar',
+      '#list',
+      '.y_list'
+    ];
 
-    fullList.addEventListener('click', function(e) {
-      var link = e.target.closest('a');
-      if (link && link.href) {
-        var href = link.getAttribute('href');
-        if (href && !href.startsWith('#') && !href.startsWith('javascript:')) {
-          e.preventDefault();
-          e.stopPropagation();
-          window.location.href = link.href;
+    selectors.forEach(function(selector) {
+      var containers = document.querySelectorAll(selector);
+      containers.forEach(function(container) {
+        // Add click handler to container that forces navigation
+        if (!container.dataset.navFixed) {
+          container.dataset.navFixed = 'true';
+
+          container.addEventListener('click', function(e) {
+            // Find the clicked link
+            var target = e.target;
+            while (target && target !== container) {
+              if (target.tagName === 'A') {
+                var href = target.getAttribute('href');
+                if (href && href !== '#' && !href.startsWith('javascript:')) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  e.stopImmediatePropagation();
+
+                  // Use the resolved href (full URL)
+                  window.location.href = target.href;
+                  return false;
+                }
+              }
+              target = target.parentNode;
+            }
+          }, true); // Capture phase
         }
-      }
-    }, true);
-  }
 
-  function fixClassListLinks() {
-    var listContent = document.getElementById('full_list_content') ||
-                      document.querySelector('.full_list_content') ||
-                      document.getElementById('full_list');
+        // Also fix individual links
+        var links = container.querySelectorAll('a');
+        links.forEach(function(link) {
+          if (!link.dataset.navFixed) {
+            link.dataset.navFixed = 'true';
+            var href = link.getAttribute('href');
+            if (href && href !== '#' && !href.startsWith('javascript:')) {
+              // Store the original href
+              var fullHref = link.href;
 
-    if (!listContent) return;
-
-    var observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        mutation.addedNodes.forEach(function(node) {
-          if (node.nodeType === 1) {
-            var links = node.querySelectorAll ? node.querySelectorAll('a[href]') : [];
-            links.forEach(function(link) {
-              ensureLinkWorks(link);
-            });
+              // Override onclick
+              link.onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                window.location.href = fullHref;
+                return false;
+              };
+            }
           }
         });
       });
     });
-
-    observer.observe(listContent, { childList: true, subtree: true });
-
-    var existingLinks = listContent.querySelectorAll('a[href]');
-    existingLinks.forEach(function(link) {
-      ensureLinkWorks(link);
-    });
   }
 
-  function ensureLinkWorks(link) {
-    var href = link.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+  // Watch for dynamically loaded content
+  function observeForNewLinks() {
+    var observer = new MutationObserver(function(mutations) {
+      var hasNewNodes = mutations.some(function(m) {
+        return m.addedNodes.length > 0;
+      });
+      if (hasNewNodes) {
+        // Delay slightly to let YARD's JS run first
+        setTimeout(fixAllSidebarLinks, 10);
+      }
+    });
 
-    link.onclick = null;
-    link.addEventListener('click', function(e) {
-      e.stopPropagation();
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
     });
   }
 
@@ -170,8 +194,8 @@
     injectThemeCSS();
     applyTheme(getPreferredTheme());
     addNavLinks();
-    fixSidebarNavigation();
-    fixClassListLinks();
+    fixAllSidebarLinks();
+    observeForNewLinks();
   }
 
   // Run when DOM is ready
@@ -181,16 +205,31 @@
     init();
   }
 
-  // Also run after delay for dynamic content
-  setTimeout(function() {
-    fixSidebarNavigation();
-    fixClassListLinks();
-  }, 500);
+  // Run periodically to catch all dynamic content
+  var intervals = [50, 100, 250, 500, 1000, 2000, 3000];
+  intervals.forEach(function(ms) {
+    setTimeout(fixAllSidebarLinks, ms);
+  });
+
+  // Also run on any click anywhere (last resort)
+  document.addEventListener('click', function(e) {
+    if (e.target.tagName === 'A') {
+      var href = e.target.getAttribute('href');
+      if (href && href !== '#' && !href.startsWith('javascript:')) {
+        // Check if it's a sidebar link
+        var inSidebar = e.target.closest('#full_list, #menu, .menu, nav, .sidebar');
+        if (inSidebar) {
+          e.preventDefault();
+          e.stopPropagation();
+          window.location.href = e.target.href;
+        }
+      }
+    }
+  }, true);
 
   // Listen for system theme changes
   if (window.matchMedia) {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-      // Only auto-switch if user hasn't manually set a preference
       if (!localStorage.getItem('yard-theme')) {
         applyTheme(e.matches ? 'dark' : 'light');
       }
