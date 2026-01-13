@@ -6,13 +6,41 @@ Welcome to the Lich 5 scripting documentation for GemStone IV and DragonRealms.
 
 Lich is a scripting engine that allows players to automate and enhance their gameplay experience in Simutronics text games. It provides a Ruby-based API for interacting with the game.
 
-## Quick Links
+## Guides
 
-### For Players
+### Getting Started
 
-- **{file:guides/psm-reference.md PSM Reference}** - Combat Maneuvers, Shield skills, Feats, and more
+| Guide | Description |
+|-------|-------------|
+| {file:guides/scripting-basics.md Scripting Basics} | Core concepts for writing Lich scripts |
 
-### Module Reference
+### Character & Combat
+
+| Guide | Description |
+|-------|-------------|
+| {file:guides/character-stats.md Character Stats} | Stats, Skills, and character resources |
+| {file:guides/spells-guide.md Spells} | Working with spells and magic |
+| {file:guides/psm-reference.md PSM Reference} | Combat Maneuvers, Shield skills, Feats, Warcries |
+| {file:guides/society-guide.md Societies} | Voln, Council of Light, Guardians of Sunfist |
+
+### Game World
+
+| Guide | Description |
+|-------|-------------|
+| {file:guides/game-data.md Game Data} | Rooms, Maps, NPCs, Items, and Players |
+| {file:guides/bounty-guide.md Bounty System} | Adventurer's Guild bounty tasks |
+
+## Module Reference
+
+### Character
+
+| Module | Description |
+|--------|-------------|
+| {Lich::Common::Char} | Character health, mana, stamina |
+| {Lich::Gemstone::Stats} | Character statistics (STR, DEX, etc.) |
+| {Lich::Gemstone::Skills} | Trained skills and ranks |
+
+### Combat
 
 | Module | Description |
 |--------|-------------|
@@ -23,6 +51,27 @@ Lich is a scripting engine that allows players to automate and enhance their gam
 | {Lich::Gemstone::Weapon} | Weapon Techniques |
 | {Lich::Gemstone::Armor} | Armor Specializations |
 | {Lich::Gemstone::Warcry} | Battle Cries |
+
+### Magic
+
+| Module | Description |
+|--------|-------------|
+| {Lich::Common::Spell} | Spell management and casting |
+| {Lich::Gemstone::Spells} | Spell circle utilities |
+
+### Game World
+
+| Module | Description |
+|--------|-------------|
+| {Lich::Common::GameObj} | Game objects (NPCs, items, players) |
+| {Lich::Common::Map} | Map and room navigation |
+
+### Systems
+
+| Module | Description |
+|--------|-------------|
+| {Lich::Gemstone::Bounty} | Adventurer's Guild bounties |
+| {Lich::Gemstone::Society} | Society membership and abilities |
 
 ## Getting Help
 
