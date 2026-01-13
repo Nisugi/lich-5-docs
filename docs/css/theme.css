@@ -462,7 +462,7 @@ body[data-theme="dark"] {
   color: var(--text-muted) !important;
 }
 
-/* Expand/collapse buttons */
+/* Expand/collapse buttons and show/hide links */
 [data-theme="dark"] .summary_toggle,
 [data-theme="dark"] .toggleSource,
 [data-theme="dark"] .showSource,
@@ -470,14 +470,32 @@ body[data-theme="dark"] {
 [data-theme="dark"] .collapse,
 [data-theme="dark"] .expand,
 [data-theme="dark"] span.showSource,
-[data-theme="dark"] span.toggleSource {
+[data-theme="dark"] span.toggleSource,
+[data-theme="dark"] .show_all,
+[data-theme="dark"] .hide_all,
+[data-theme="dark"] a.show,
+[data-theme="dark"] a.hide,
+[data-theme="dark"] .more,
+[data-theme="dark"] a.more,
+[data-theme="dark"] .less,
+[data-theme="dark"] a.less,
+[data-theme="dark"] dl.box a,
+[data-theme="dark"] .box_info a,
+[data-theme="dark"] .inheritanceTree a,
+[data-theme="dark"] .showAll,
+[data-theme="dark"] .hideAll {
   background-color: var(--bg-tertiary) !important;
   border-color: var(--border-color) !important;
   color: var(--link-color) !important;
 }
 
 [data-theme="dark"] .summary_toggle:hover,
-[data-theme="dark"] a.toggle:hover {
+[data-theme="dark"] a.toggle:hover,
+[data-theme="dark"] .show_all:hover,
+[data-theme="dark"] .hide_all:hover,
+[data-theme="dark"] a.more:hover,
+[data-theme="dark"] a.less:hover,
+[data-theme="dark"] dl.box a:hover {
   background-color: var(--bg-secondary) !important;
   color: var(--link-hover) !important;
 }
