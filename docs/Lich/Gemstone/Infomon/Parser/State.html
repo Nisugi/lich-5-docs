@@ -83,26 +83,7 @@
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-<p>Module for managing parser state</p>
 
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'>State</span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="#set-class_method" title="Lich::Gemstone::Infomon::Parser::State.set (method)">set</a></span></span><span class='lparen'>(</span><span class='const'>State</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#Goals-constant" title="Lich::Gemstone::Infomon::Parser::State::Goals (constant)">Goals</a></span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-
-
-</div>
   
     <h2>
       Constant Summary
@@ -126,6 +107,42 @@
         </dt>
         <dd><pre class="code"><span class='symbol'>:ready</span></pre></dd>
       
+        <dt id="EnhanciveStats-constant" class="">EnhanciveStats =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Enhancive parsing states</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='symbol'>:enhancive_stats</span></pre></dd>
+      
+        <dt id="EnhanciveSkills-constant" class="">EnhanciveSkills =
+          
+        </dt>
+        <dd><pre class="code"><span class='symbol'>:enhancive_skills</span></pre></dd>
+      
+        <dt id="EnhanciveResources-constant" class="">EnhanciveResources =
+          
+        </dt>
+        <dd><pre class="code"><span class='symbol'>:enhancive_resources</span></pre></dd>
+      
+        <dt id="EnhanciveSpells-constant" class="">EnhanciveSpells =
+          
+        </dt>
+        <dd><pre class="code"><span class='symbol'>:enhancive_spells</span></pre></dd>
+      
+        <dt id="EnhanciveStatistics-constant" class="">EnhanciveStatistics =
+          
+        </dt>
+        <dd><pre class="code"><span class='symbol'>:enhancive_statistics</span></pre></dd>
+      
     </dl>
   
 
@@ -146,7 +163,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get-class_method" title="get (class method)">.<strong>get</strong>  &#x21d2; Symbol </a>
+      <a href="#enhancive_state%3F-class_method" title="enhancive_state? (class method)">.<strong>enhancive_state?</strong>  &#x21d2; Boolean </a>
     
 
     
@@ -160,9 +177,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Gets the current state.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -170,7 +185,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set-class_method" title="set (class method)">.<strong>set</strong>(state)  &#x21d2; void </a>
+      <a href="#get-class_method" title="get (class method)">.<strong>get</strong>  &#x21d2; Object </a>
     
 
     
@@ -184,9 +199,29 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the current state.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set-class_method" title="set (class method)">.<strong>set</strong>(state)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -201,9 +236,9 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="get-class_method">
+  <h3 class="signature first" id="enhancive_state?-class_method">
   
-    .<strong>get</strong>  &#x21d2; <tt>Symbol</tt> 
+    .<strong>enhancive_state?</strong>  &#x21d2; <tt>Boolean</tt> 
   
 
   
@@ -212,35 +247,20 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Gets the current state</p>
-
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_current_state'>current_state</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>Symbol</tt>)</span>
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
-      
-        &mdash;
-        <div class='inline'>
-<p>The current state</p>
-</div>
       
     </li>
   
@@ -252,12 +272,44 @@
       <pre class="lines">
 
 
-396
-397
-398</pre>
+162
+163
+164
+165</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/parser.rb', line 396</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/parser.rb', line 162</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_enhancive_state?'>enhancive_state?</span>
+  <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#EnhanciveStats-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveStats (constant)">EnhanciveStats</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveSkills-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveSkills (constant)">EnhanciveSkills</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveResources-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveResources (constant)">EnhanciveResources</a></span></span><span class='comma'>,</span>
+   <span class='const'><span class='object_link'><a href="#EnhanciveSpells-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveSpells (constant)">EnhanciveSpells</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveStatistics-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveStatistics (constant)">EnhanciveStatistics</a></span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='ivar'>@state</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get-class_method">
+  
+    .<strong>get</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+167
+168
+169</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/parser.rb', line 167</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="../../../../top-level-namespace.html#get-instance_method" title="#get (method)">get</a></span></span>
   <span class='ivar'>@state</span>
@@ -270,92 +322,35 @@
       <div class="method_details ">
   <h3 class="signature " id="set-class_method">
   
-    .<strong>set</strong>(state)  &#x21d2; <tt>void</tt> 
+    .<strong>set</strong>(state)  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the current state</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="#Profile-constant" title="Lich::Gemstone::Infomon::Parser::State::Profile (constant)">Profile</a></span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>state</span>
-      
-      
-        <span class='type'>(<tt>Symbol</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The state to set</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>RuntimeError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>if the state is invalid</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-381
-382
-383
-384
-385
-386
-387
-388
-389
-390</pre>
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/parser.rb', line 381</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/parser.rb', line 151</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='id identifier rubyid_state'>state</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_state'>state</span>
-  <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="#Goals-constant" title="Lich::Gemstone::Infomon::Parser::State::Goals (constant)">Goals</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#Profile-constant" title="Lich::Gemstone::Infomon::Parser::State::Profile (constant)">Profile</a></span></span>
+  <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="#Goals-constant" title="Lich::Gemstone::Infomon::Parser::State::Goals (constant)">Goals</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#Profile-constant" title="Lich::Gemstone::Infomon::Parser::State::Profile (constant)">Profile</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveStats-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveStats (constant)">EnhanciveStats</a></span></span>
     <span class='kw'>unless</span> <span class='ivar'>@state</span><span class='period'>.</span><span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#Ready-constant" title="Lich::Gemstone::Infomon::Parser::State::Ready (constant)">Ready</a></span></span><span class='rparen'>)</span>
       <span class='const'><span class='object_link'><a href="../../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Infomon::Parser::State is in invalid state(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@state</span><span class='embexpr_end'>}</span><span class='tstring_content'>) - caller: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
       <span class='id identifier rubyid_fail'>fail</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- Lich: error: Infomon::Parser::State is in invalid state(</span><span class='embexpr_beg'>#{</span><span class='ivar'>@state</span><span class='embexpr_end'>}</span><span class='tstring_content'>) - caller: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_caller'>caller</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -373,7 +368,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 02:35:07 2026 by
+  Generated on Tue Jan 13 03:40:12 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-3.2.9).
 </div>
