@@ -34,23 +34,10 @@ require_relative('./psms/shield.rb')
 require_relative('./psms/weapon.rb')
 require_relative('./psms/warcry.rb')
 require_relative('./psms/ascension.rb')
+require_relative('./psms/qstrike.rb')
 
 module Lich
   module Gemstone
-    # Provides a unified interface for interacting with Player System Manager (PSM) skills
-    # in GemStone IV, such as Combat Maneuvers, Shield Specializations, Feats, Warcries,
-    # Weapon Techniques, and Armor Specializations.
-    #
-    # This module acts as a central registry and utility for:
-    # - Normalizing skill names for lookup.
-    # - Querying and validating available PSM skills by type.
-    # - Determining stamina costs and eligibility for use.
-    # - Evaluating the character's ability to perform forced roundtime actions.
-    # - Detecting common PSM failure responses using pattern matching.
-    #
-    # Each PSM category (e.g., `CMan`, `Shield`, `Feat`) is defined in its own file and loaded as a submodule.
-    # @example Check if a skill can be used with current stamina
-    #   PSMS.assess("bullrush", "CMan", true)
     module PSMS
       # Normalizes a name for internal lookup consistency.
       #
@@ -97,8 +84,10 @@ module Lich
       # @param type [String] The category of the PSM skill (e.g., "Armor", "CMan", "Feat", "Shield", "Warcry", "Weapon").
       # @param costcheck [Boolean] If true, check whether the character has enough stamina to use the skill.
       # @param forcert_count [Integer] Optional. Number of forced RT applications, affecting stamina cost calculation (default: 0).
+      #
       # @return [Boolean, Object] Returns a boolean if `costcheck` is true (indicating stamina sufficiency),
       # or the Infomon rank of the skill otherwise.
+      #
       # @raise [StandardError] If the skill name is invalid or not found in the given category.
       #
       # @example Check if a combat maneuver can be used with current stamina
