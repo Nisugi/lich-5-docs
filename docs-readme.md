@@ -20,6 +20,7 @@ Lich is a scripting engine that allows players to automate and enhance their gam
 |-------|-------------|
 | {file:guides/character-stats.md Character Stats} | Stats, Skills, and character resources |
 | {file:guides/spells-guide.md Spells} | Working with spells and magic |
+| {file:guides/effects-guide.md Effects} | Active spells, buffs, debuffs, and cooldowns |
 | {file:guides/psm-reference.md PSM Reference} | Combat Maneuvers, Shield skills, Feats, Warcries |
 | {file:guides/society-guide.md Societies} | Voln, Council of Light, Guardians of Sunfist |
 
@@ -58,6 +59,7 @@ Lich is a scripting engine that allows players to automate and enhance their gam
 |--------|-------------|
 | {Lich::Common::Spell} | Spell management and casting |
 | {Lich::Gemstone::Spells} | Spell circle utilities |
+| {Lich::Gemstone::Effects} | Active effects tracking (spells, buffs, debuffs, cooldowns) |
 
 ### Game World
 
