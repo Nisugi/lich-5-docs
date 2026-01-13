@@ -1,4 +1,4 @@
-name: Build HTML Documentation
+name: Build HTML & Deploy
 
 on:
   workflow_dispatch:
@@ -13,20 +13,37 @@ on:
         required: false
         type: boolean
         default: true
+      deploy:
+        description: 'Deploy to GitHub Pages after build'
+        required: false
+        type: boolean
+        default: true
+
+# Permissions for both committing and deploying to Pages
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  build-html:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    name: Build HTML with YARD
+    name: Build HTML & Deploy to Pages
 
-    permissions:
-      contents: write  # Required to commit HTML to repo
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full history for proper git operations
+          fetch-depth: 0
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -51,7 +68,7 @@ jobs:
             echo "Found $file_count documented Ruby files"
           else
             echo "file_count=0" >> $GITHUB_OUTPUT
-            echo "documented/ directory not found"
+            echo "❌ documented/ directory not found"
           fi
 
       - name: Build HTML documentation
@@ -62,11 +79,28 @@ jobs:
             args="$args --clean"
           fi
 
-          # Use the updated input path (documented/ at root now, not output/latest/documented)
-          python build_html.py --input ./documented --output ./docs --title "${{ inputs.title }}" --verify $args
+          python build_html.py \
+            --input ./documented \
+            --output ./docs \
+            --title "${{ inputs.title }}" \
+            --verify $args
+
+      - name: Verify docs output
+        if: steps.check-files.outputs.file_count > 0
+        id: verify-docs
+        run: |
+          if [ -d "docs" ] && [ -f "docs/index.html" ]; then
+            html_count=$(find docs -name "*.html" | wc -l)
+            echo "html_count=$html_count" >> $GITHUB_OUTPUT
+            echo "has_docs=true" >> $GITHUB_OUTPUT
+            echo "✅ Generated $html_count HTML files"
+          else
+            echo "has_docs=false" >> $GITHUB_OUTPUT
+            echo "❌ docs/index.html not found"
+          fi
 
       - name: Check for changes
-        if: steps.check-files.outputs.file_count > 0
+        if: steps.verify-docs.outputs.has_docs == 'true'
         id: check-changes
         run: |
           git add docs/
@@ -79,16 +113,15 @@ jobs:
           fi
 
       - name: Commit HTML documentation
-        if: steps.check-files.outputs.file_count > 0 && steps.check-changes.outputs.has_changes == 'true'
+        if: steps.check-changes.outputs.has_changes == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add docs/
           git commit -m "$(cat <<'EOF'
-          Build HTML documentation from documented Ruby files
+          Build HTML documentation
 
-          Generated HTML documentation using YARD from documented/ directory.
+          Generated ${{ steps.verify-docs.outputs.html_count }} HTML files from documented Ruby files.
 
           🤖 Generated with [Claude Code](https://claude.com/claude-code)
 
@@ -97,9 +130,26 @@ jobs:
           )"
 
           git push
+          echo "✅ HTML documentation committed"
 
-      - name: Upload HTML artifacts
-        if: steps.check-files.outputs.file_count > 0
+      # Deploy to GitHub Pages
+      - name: Setup Pages
+        if: inputs.deploy && steps.verify-docs.outputs.has_docs == 'true'
+        uses: actions/configure-pages@v4
+
+      - name: Upload Pages artifact
+        if: inputs.deploy && steps.verify-docs.outputs.has_docs == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'docs'
+
+      - name: Deploy to GitHub Pages
+        if: inputs.deploy && steps.verify-docs.outputs.has_docs == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Upload build artifacts
+        if: always() && steps.verify-docs.outputs.has_docs == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: html-documentation
@@ -111,17 +161,36 @@ jobs:
         run: |
           echo "### HTML Documentation Build" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Title:** ${{ inputs.title }}" >> $GITHUB_STEP_SUMMARY
           echo "**Ruby files:** ${{ steps.check-files.outputs.file_count }}" >> $GITHUB_STEP_SUMMARY
 
-          if [ "${{ steps.check-changes.outputs.has_changes }}" == "true" ]; then
-            echo "**Status:** ✅ Built and committed" >> $GITHUB_STEP_SUMMARY
-          elif [ "${{ steps.check-files.outputs.file_count }}" == "0" ]; then
-            echo "**Status:** ⚠️ No documented files found" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "**Status:** ℹ️ No changes (HTML already up to date)" >> $GITHUB_STEP_SUMMARY
-          fi
-
-          if [ -f "docs/index.html" ]; then
+          if [ "${{ steps.verify-docs.outputs.has_docs }}" == "true" ]; then
+            echo "**HTML files:** ${{ steps.verify-docs.outputs.html_count }}" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "📖 **View documentation:** Configure GitHub Pages to serve from \`docs/\` directory" >> $GITHUB_STEP_SUMMARY
+
+            if [ "${{ steps.check-changes.outputs.has_changes }}" == "true" ]; then
+              echo "**Build:** ✅ Committed" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "**Build:** ℹ️ No changes (already up to date)" >> $GITHUB_STEP_SUMMARY
+            fi
+
+            if [ "${{ inputs.deploy }}" == "true" ]; then
+              if [ -n "${{ steps.deployment.outputs.page_url }}" ]; then
+                echo "**Deploy:** ✅ Published" >> $GITHUB_STEP_SUMMARY
+                echo "" >> $GITHUB_STEP_SUMMARY
+                echo "📖 **URL:** ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "**Deploy:** ⚠️ Skipped or failed" >> $GITHUB_STEP_SUMMARY
+              fi
+            else
+              echo "**Deploy:** ⏭️ Skipped (disabled)" >> $GITHUB_STEP_SUMMARY
+            fi
+          elif [ "${{ steps.check-files.outputs.file_count }}" == "0" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Status:** ⚠️ No documented files found" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Run **generate-docs** first to create documented Ruby files." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Status:** ❌ Build failed" >> $GITHUB_STEP_SUMMARY
           fi

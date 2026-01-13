@@ -1,0 +1,241 @@
+name: Generate Documentation
+
+on:
+  workflow_dispatch:
+    inputs:
+      file_path:
+        description: 'Single file path (e.g., lib/gemstone/psms/feat.rb) - leave empty for batch'
+        required: false
+        type: string
+      provider:
+        description: 'LLM Provider'
+        required: true
+        default: 'openai'
+        type: choice
+        options:
+          - openai
+          - anthropic
+          - gemini
+          - mock
+      source_repo:
+        description: 'Source repository (owner/repo)'
+        required: false
+        type: string
+        default: 'elanthia-online/lich-5'
+      source_branch:
+        description: 'Branch to document'
+        required: false
+        type: string
+        default: 'main'
+      full_rebuild:
+        description: 'Full rebuild (ignored for single file)'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+    name: ${{ inputs.file_path && 'Generate Single File' || 'Generate Batch' }}
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Clone source repository
+        run: |
+          git clone https://github.com/${{ inputs.source_repo }}.git lich-source
+          cd lich-source
+          git checkout ${{ inputs.source_branch }}
+          echo "✅ Cloned ${{ inputs.source_repo }} (branch: ${{ inputs.source_branch }})"
+
+      - name: Validate file exists (single file mode)
+        if: inputs.file_path != ''
+        run: |
+          if [ ! -f "lich-source/${{ inputs.file_path }}" ]; then
+            echo "❌ File not found: lich-source/${{ inputs.file_path }}"
+            exit 1
+          fi
+          echo "✅ File found: lich-source/${{ inputs.file_path }}"
+
+      - name: Validate environment
+        env:
+          LLM_PROVIDER: ${{ inputs.provider }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python -c "
+          import os
+          import sys
+          sys.path.insert(0, 'src')
+          from providers import ProviderFactory
+
+          validation = ProviderFactory.validate_environment()
+          print(f'Provider: {validation[\"provider\"]}')
+          print(f'Valid: {validation[\"valid\"]}')
+
+          if not validation['valid']:
+              print(f'Missing: {validation[\"missing\"]}')
+              sys.exit(1)
+
+          for warning in validation.get('warnings', []):
+              print(f'Warning: {warning}')
+          "
+
+      - name: Generate documentation
+        env:
+          LLM_PROVIDER: ${{ inputs.provider }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          echo "Provider: ${{ inputs.provider }}"
+          echo "Output structure: mirror"
+
+          if [ -n "${{ inputs.file_path }}" ]; then
+            # Single file mode
+            echo "Mode: Single file"
+            echo "File: ${{ inputs.file_path }}"
+            python generate_docs.py \
+              --file "lich-source/${{ inputs.file_path }}" \
+              --provider ${{ inputs.provider }} \
+              --output-structure mirror
+          else
+            # Batch mode
+            if [ "${{ inputs.full_rebuild }}" == "true" ]; then
+              echo "Mode: Full rebuild (all files)"
+              python generate_docs.py lich-source/lib \
+                --provider ${{ inputs.provider }} \
+                --output-structure mirror \
+                --force-rebuild \
+                --output output/latest
+            else
+              echo "Mode: Incremental (skip unchanged)"
+              python generate_docs.py lich-source/lib \
+                --provider ${{ inputs.provider }} \
+                --output-structure mirror \
+                --output output/latest
+            fi
+          fi
+
+      - name: Copy documented files to repo root
+        run: |
+          if [ -d "output/latest/documented" ]; then
+            echo "Copying documented files to documented/"
+            mkdir -p documented
+            cp -r output/latest/documented/* documented/ 2>/dev/null || true
+          fi
+
+          echo "Documented files:"
+          find documented/ -name "*.rb" | head -20 || echo "No files found"
+
+      - name: Clean up cloned repository
+        run: rm -rf lich-source
+
+      - name: Check for changes
+        id: check-changes
+        run: |
+          git add documented/ output/latest/manifest.json 2>/dev/null || true
+
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No changes to commit"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            DOCUMENTED_COUNT=$(find documented/ -name "*.rb" | wc -l)
+            echo "doc_count=$DOCUMENTED_COUNT" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit changes
+        if: steps.check-changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if [ -n "${{ inputs.file_path }}" ]; then
+            # Single file commit message
+            git commit -m "$(cat <<'EOF'
+          Generate documentation for $(basename ${{ inputs.file_path }})
+
+          File: ${{ inputs.file_path }}
+          Provider: ${{ inputs.provider }}
+
+          🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+          Co-Authored-By: Claude <noreply@anthropic.com>
+          EOF
+          )"
+          else
+            # Batch commit message
+            git commit -m "$(cat <<'EOF'
+          Generate documentation from ${{ inputs.source_repo }}
+
+          Provider: ${{ inputs.provider }}
+          Source: ${{ inputs.source_repo }} @ ${{ inputs.source_branch }}
+          Type: ${{ inputs.full_rebuild && 'Full rebuild' || 'Incremental' }}
+          Files: ${{ steps.check-changes.outputs.doc_count }}
+
+          🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+          Co-Authored-By: Claude <noreply@anthropic.com>
+          EOF
+          )"
+          fi
+
+          git push
+          echo "✅ Changes committed and pushed"
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-${{ github.run_number }}
+          path: |
+            output/
+            documented/
+          retention-days: 7
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### Documentation Generation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -n "${{ inputs.file_path }}" ]; then
+            echo "**Mode:** Single file" >> $GITHUB_STEP_SUMMARY
+            echo "**File:** \`${{ inputs.file_path }}\`" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "**Mode:** Batch (${{ inputs.full_rebuild && 'full rebuild' || 'incremental' }})" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "**Provider:** ${{ inputs.provider }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Source:** ${{ inputs.source_repo }} @ ${{ inputs.source_branch }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ steps.check-changes.outputs.has_changes }}" == "true" ]; then
+            echo "**Status:** ✅ Changes committed" >> $GITHUB_STEP_SUMMARY
+            echo "**Files documented:** ${{ steps.check-changes.outputs.doc_count }}" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "**Status:** ℹ️ No changes (already up to date)" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "1. Run **validate-docs** to check YARD syntax" >> $GITHUB_STEP_SUMMARY
+          echo "2. Run **build-html** to generate HTML + deploy" >> $GITHUB_STEP_SUMMARY
