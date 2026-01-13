@@ -52,7 +52,7 @@ def _get_timeout(timeout_name: str, default: int) -> int:
 
 class YARDHTMLBuilder:
     def __init__(self, input_dir: Path = None, output_dir: Path = None,
-                 title: str = None, readme_file: Path = None):
+                 title: str = None, readme_file: Path = None, guides_dir: Path = None):
         """
         Initialize YARD HTML builder.
 
@@ -61,11 +61,25 @@ class YARDHTMLBuilder:
             output_dir: Output directory for HTML documentation
             title: Project title for documentation
             readme_file: Path to README file for documentation homepage
+            guides_dir: Directory containing guide markdown files
         """
         self.input_dir = input_dir or Path(__file__).parent / "output" / "latest" / "documented"
         self.output_dir = output_dir or Path(__file__).parent / "docs"
         self.title = title or "Lich 5 Documentation"
-        self.readme_file = readme_file
+
+        # Default to docs-readme.md if it exists and no readme specified
+        if readme_file:
+            self.readme_file = readme_file
+        else:
+            default_readme = Path(__file__).parent / "docs-readme.md"
+            self.readme_file = default_readme if default_readme.exists() else None
+
+        # Default to guides/ directory if it exists
+        if guides_dir:
+            self.guides_dir = guides_dir
+        else:
+            default_guides = Path(__file__).parent / "guides"
+            self.guides_dir = default_guides if default_guides.exists() else None
 
         # Ensure input directory exists
         if not self.input_dir.exists():
@@ -137,6 +151,14 @@ class YARDHTMLBuilder:
         if self.readme_file and self.readme_file.exists():
             yard_cmd.extend(['--readme', str(self.readme_file)])
             logger.info(f"  Using README: {self.readme_file}")
+
+        # Add guides if directory exists
+        if self.guides_dir and self.guides_dir.exists():
+            guide_files = list(self.guides_dir.glob('*.md'))
+            if guide_files:
+                # YARD --files takes comma-separated list or multiple --files flags
+                yard_cmd.extend(['--files', ','.join(str(f) for f in guide_files)])
+                logger.info(f"  Including {len(guide_files)} guide(s) from {self.guides_dir}")
 
         try:
             # Run YARD
