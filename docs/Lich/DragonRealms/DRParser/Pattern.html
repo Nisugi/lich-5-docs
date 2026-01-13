@@ -602,7 +602,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 04:15:18 2026 by
+  Generated on Tue Jan 13 04:30:46 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-3.2.9).
 </div>
@@ -610,28 +610,18 @@
     </div>
   <script type="text/javascript">
 // Navigation helper for YARD docs
-// Adds persistent navigation links and fixes sidebar navigation issues
+// Adds persistent navigation links, fixes sidebar navigation, and theme toggle
 
 (function() {
   'use strict';
 
-  function addNavLinks() {
-    // Find the content area
-    var content = document.getElementById('content');
-    if (!content) return;
-
-    // Check if we already added the nav
-    if (document.getElementById('quick-nav')) return;
-
-    // Calculate the relative path to root
-    var depth = (window.location.pathname.match(/\//g) || []).length;
+  // Calculate root path for assets
+  function getRootPath() {
+    var path = window.location.pathname;
     var rootPath = '';
 
-    // Check if we're in a subdirectory
-    var path = window.location.pathname;
     if (path.includes('/Lich/')) {
-      // Count depth after /lich-5-docs/
-      var parts = path.split('/').filter(p => p);
+      var parts = path.split('/').filter(function(p) { return p; });
       var docsIndex = parts.indexOf('lich-5-docs');
       if (docsIndex >= 0) {
         var subParts = parts.slice(docsIndex + 1);
@@ -639,112 +629,223 @@
       }
     }
 
-    // If rootPath is empty and we're not at root, calculate from depth
     if (!rootPath && !path.endsWith('/index.html') && !path.endsWith('/')) {
-      var pathParts = path.split('/').filter(p => p && p !== 'index.html');
+      var pathParts = path.split('/').filter(function(p) { return p && p !== 'index.html'; });
       var docsIdx = pathParts.indexOf('lich-5-docs');
       if (docsIdx >= 0) {
         rootPath = '../'.repeat(pathParts.length - docsIdx - 2);
       }
     }
 
-    // Create nav element
+    return rootPath;
+  }
+
+  // Inject theme CSS
+  function injectThemeCSS() {
+    if (document.getElementById('theme-css')) return;
+
+    var rootPath = getRootPath();
+    var link = document.createElement('link');
+    link.id = 'theme-css';
+    link.rel = 'stylesheet';
+    link.href = rootPath + 'css/theme.css';
+    document.head.appendChild(link);
+  }
+
+  // Get saved theme or detect system preference
+  function getPreferredTheme() {
+    var saved = localStorage.getItem('yard-theme');
+    if (saved) return saved;
+
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
+    return 'light';
+  }
+
+  // Apply theme
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('yard-theme', theme);
+
+    var btn = document.getElementById('theme-toggle');
+    if (btn) {
+      btn.textContent = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+      btn.title = 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode';
+    }
+  }
+
+  // Toggle theme
+  function toggleTheme() {
+    var current = document.documentElement.getAttribute('data-theme') || 'light';
+    var newTheme = current === 'dark' ? 'light' : 'dark';
+    applyTheme(newTheme);
+  }
+
+  function addNavLinks() {
+    var content = document.getElementById('content');
+    if (!content) return;
+
+    if (document.getElementById('quick-nav')) return;
+
+    var rootPath = getRootPath();
+
     var nav = document.createElement('div');
     nav.id = 'quick-nav';
-    nav.style.cssText = 'background: #f8f9fa; padding: 8px 15px; margin-bottom: 15px; border-radius: 4px; border: 1px solid #ddd; font-size: 14px;';
-    nav.innerHTML = '<a href="' + rootPath + 'index.html" style="margin-right: 15px; color: #0066cc; text-decoration: none;">Home</a> | ' +
-                    '<a href="' + rootPath + '_index.html" style="margin-left: 15px; margin-right: 15px; color: #0066cc; text-decoration: none;">All Classes</a> | ' +
-                    '<a href="' + rootPath + 'file.psm-reference.html" style="margin-left: 15px; color: #0066cc; text-decoration: none;">PSM Guide</a>';
+    nav.style.cssText = 'padding: 8px 15px; margin-bottom: 15px; border-radius: 4px; border: 1px solid #ddd; font-size: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;';
 
-    // Insert at the beginning of content
+    var links = document.createElement('div');
+    links.innerHTML = '<a href="' + rootPath + 'index.html" style="margin-right: 15px; text-decoration: none;">Home</a> | ' +
+                      '<a href="' + rootPath + '_index.html" style="margin-left: 15px; margin-right: 15px; text-decoration: none;">All Classes</a> | ' +
+                      '<a href="' + rootPath + 'file.psm-reference.html" style="margin-left: 15px; text-decoration: none;">PSM Guide</a>';
+
+    var themeBtn = document.createElement('button');
+    themeBtn.id = 'theme-toggle';
+    themeBtn.type = 'button';
+    themeBtn.onclick = toggleTheme;
+
+    nav.appendChild(links);
+    nav.appendChild(themeBtn);
+
     content.insertBefore(nav, content.firstChild);
+
+    var currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    themeBtn.textContent = currentTheme === 'dark' ? '☀️ Light' : '🌙 Dark';
+    themeBtn.title = 'Switch to ' + (currentTheme === 'dark' ? 'light' : 'dark') + ' mode';
   }
 
-  // Fix sidebar navigation - YARD's default JS sometimes prevents link clicks
-  function fixSidebarNavigation() {
-    var fullList = document.getElementById('full_list');
-    if (!fullList) return;
+  // Aggressively fix ALL sidebar links
+  function fixAllSidebarLinks() {
+    // Get all possible sidebar/menu containers
+    var selectors = [
+      '#full_list',
+      '#menu',
+      '.menu',
+      '#full_list_content',
+      '.class_list',
+      '.objects',
+      'nav',
+      '.sidebar',
+      '#list',
+      '.y_list'
+    ];
 
-    // Use event delegation on the sidebar container
-    fullList.addEventListener('click', function(e) {
-      var link = e.target.closest('a');
-      if (link && link.href) {
-        // Check if this is an internal link that should navigate
-        var href = link.getAttribute('href');
-        if (href && !href.startsWith('#') && !href.startsWith('javascript:')) {
-          // Force navigation by setting window.location
-          e.preventDefault();
-          e.stopPropagation();
-          window.location.href = link.href;
+    selectors.forEach(function(selector) {
+      var containers = document.querySelectorAll(selector);
+      containers.forEach(function(container) {
+        // Add click handler to container that forces navigation
+        if (!container.dataset.navFixed) {
+          container.dataset.navFixed = 'true';
+
+          container.addEventListener('click', function(e) {
+            // Find the clicked link
+            var target = e.target;
+            while (target && target !== container) {
+              if (target.tagName === 'A') {
+                var href = target.getAttribute('href');
+                if (href && href !== '#' && !href.startsWith('javascript:')) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  e.stopImmediatePropagation();
+
+                  // Use the resolved href (full URL)
+                  window.location.href = target.href;
+                  return false;
+                }
+              }
+              target = target.parentNode;
+            }
+          }, true); // Capture phase
         }
-      }
-    }, true); // Use capture phase to intercept before YARD's handlers
-  }
 
-  // Also fix any links in the class list content area
-  function fixClassListLinks() {
-    // Find the class list content div
-    var listContent = document.getElementById('full_list_content') ||
-                      document.querySelector('.full_list_content') ||
-                      document.getElementById('full_list');
+        // Also fix individual links
+        var links = container.querySelectorAll('a');
+        links.forEach(function(link) {
+          if (!link.dataset.navFixed) {
+            link.dataset.navFixed = 'true';
+            var href = link.getAttribute('href');
+            if (href && href !== '#' && !href.startsWith('javascript:')) {
+              // Store the original href
+              var fullHref = link.href;
 
-    if (!listContent) return;
-
-    // Observe for dynamically loaded content
-    var observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        mutation.addedNodes.forEach(function(node) {
-          if (node.nodeType === 1) { // Element node
-            var links = node.querySelectorAll ? node.querySelectorAll('a[href]') : [];
-            links.forEach(function(link) {
-              ensureLinkWorks(link);
-            });
+              // Override onclick
+              link.onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                window.location.href = fullHref;
+                return false;
+              };
+            }
           }
         });
       });
     });
+  }
 
-    observer.observe(listContent, { childList: true, subtree: true });
+  // Watch for dynamically loaded content
+  function observeForNewLinks() {
+    var observer = new MutationObserver(function(mutations) {
+      var hasNewNodes = mutations.some(function(m) {
+        return m.addedNodes.length > 0;
+      });
+      if (hasNewNodes) {
+        // Delay slightly to let YARD's JS run first
+        setTimeout(fixAllSidebarLinks, 10);
+      }
+    });
 
-    // Fix existing links
-    var existingLinks = listContent.querySelectorAll('a[href]');
-    existingLinks.forEach(function(link) {
-      ensureLinkWorks(link);
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
     });
   }
 
-  function ensureLinkWorks(link) {
-    var href = link.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
-
-    // Remove any existing click handlers that might prevent navigation
-    link.onclick = null;
-
-    // Add our own handler
-    link.addEventListener('click', function(e) {
-      e.stopPropagation();
-      // Allow default behavior (navigation) to proceed
-    });
+  // Initialize
+  function init() {
+    injectThemeCSS();
+    applyTheme(getPreferredTheme());
+    addNavLinks();
+    fixAllSidebarLinks();
+    observeForNewLinks();
   }
 
   // Run when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      addNavLinks();
-      fixSidebarNavigation();
-      fixClassListLinks();
-    });
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    addNavLinks();
-    fixSidebarNavigation();
-    fixClassListLinks();
+    init();
   }
 
-  // Also run after a short delay to catch dynamically loaded content
-  setTimeout(function() {
-    fixSidebarNavigation();
-    fixClassListLinks();
-  }, 500);
+  // Run periodically to catch all dynamic content
+  var intervals = [50, 100, 250, 500, 1000, 2000, 3000];
+  intervals.forEach(function(ms) {
+    setTimeout(fixAllSidebarLinks, ms);
+  });
+
+  // Also run on any click anywhere (last resort)
+  document.addEventListener('click', function(e) {
+    if (e.target.tagName === 'A') {
+      var href = e.target.getAttribute('href');
+      if (href && href !== '#' && !href.startsWith('javascript:')) {
+        // Check if it's a sidebar link
+        var inSidebar = e.target.closest('#full_list, #menu, .menu, nav, .sidebar');
+        if (inSidebar) {
+          e.preventDefault();
+          e.stopPropagation();
+          window.location.href = e.target.href;
+        }
+      }
+    }
+  }, true);
+
+  // Listen for system theme changes
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+      if (!localStorage.getItem('yard-theme')) {
+        applyTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  }
 })();
 
 </script>

@@ -156,19 +156,29 @@
 
 <h3 id="label-Starting+and+Stopping+Scripts">Starting and Stopping Scripts</h3>
 
-<pre class="code ruby"><code class="ruby"><span class='comment'># Start another script
-</span><span class='id identifier rubyid_start_script'><span class='object_link'><a href="top-level-namespace.html#start_script-instance_method" title="#start_script (method)">start_script</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scriptname</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='id identifier rubyid_start_script'><span class='object_link'><a href="top-level-namespace.html#start_script-instance_method" title="#start_script (method)">start_script</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scriptname</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>arg1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>arg2</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<pre class="code ruby"><code class="ruby"><span class='comment'># Start another script (returns immediately)
+</span><span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scriptname</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scriptname</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>arg1 arg2</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
-<span class='comment'># Force start (even if already running)
-</span><span class='id identifier rubyid_force_start_script'><span class='object_link'><a href="top-level-namespace.html#force_start_script-instance_method" title="#force_start_script (method)">force_start_script</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scriptname</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># Start script and wait for it to finish
+</span><span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scriptname</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scriptname</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>arg1 arg2</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
+<span class='comment'># Key difference:
+</span><span class='comment'># - Script.start: Launches script, continues immediately
+</span><span class='comment'># - Script.run: Launches script, waits until it completes
+</span>
 <span class='comment'># Stop a running script
-</span><span class='id identifier rubyid_stop_script'><span class='object_link'><a href="top-level-namespace.html#stop_script-instance_method" title="#stop_script (method)">stop_script</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scriptname</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+</span><span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_kill'>kill</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scriptname</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
 <span class='comment'># Check if a script is running
-</span><span class='kw'>if</span> <span class='id identifier rubyid_running?'><span class='object_link'><a href="top-level-namespace.html#running%3F-instance_method" title="#running? (method)">running?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bigshot</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+</span><span class='kw'>if</span> <span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_running?'>running?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bigshot</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bigshot is running</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+
+<span class='comment'># Get list of running scripts
+</span><span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_running'>running</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span>
+  <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Running: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_s'><span class='object_link'><a href="top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
 
@@ -195,14 +205,26 @@
 
 <h2 id="label-Script+Variables">Script Variables</h2>
 
-<pre class="code ruby"><code class="ruby"><span class='comment'># Access script arguments
-</span><span class='id identifier rubyid_script'>script</span><span class='period'>.</span><span class='id identifier rubyid_vars'>vars</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>    <span class='comment'># First argument
-</span><span class='id identifier rubyid_script'>script</span><span class='period'>.</span><span class='id identifier rubyid_vars'>vars</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>    <span class='comment'># Second argument
-</span><span class='id identifier rubyid_script'>script</span><span class='period'>.</span><span class='id identifier rubyid_vars'>vars</span>       <span class='comment'># All arguments as array
+<pre class="code ruby"><code class="ruby"><span class='comment'># Access script arguments (note: capital S!)
+</span><span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_vars'>vars</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>    <span class='comment'># All arguments as single string
+</span><span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_vars'>vars</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>    <span class='comment'># First argument
+</span><span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_vars'>vars</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span>    <span class='comment'># Second argument
+</span>
+<span class='comment'># Example: script called with &quot;;myscript foo bar&quot;
+</span><span class='comment'># Script.current.vars[0] =&gt; &quot;foo bar&quot;
+</span><span class='comment'># Script.current.vars[1] =&gt; &quot;foo&quot;
+</span><span class='comment'># Script.current.vars[2] =&gt; &quot;bar&quot;
 </span>
 <span class='comment'># Check for specific arguments
-</span><span class='kw'>if</span> <span class='id identifier rubyid_script'>script</span><span class='period'>.</span><span class='id identifier rubyid_vars'>vars</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+</span><span class='kw'>if</span> <span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_vars'>vars</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Debug mode enabled</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+
+<span class='comment'># Common pattern using variable
+</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_vars'>vars</span>
+<span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>help</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Usage: ;myscript &lt;target&gt;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_exit'>exit</span>
 <span class='kw'>end</span>
 </code></pre>
 
@@ -301,15 +323,17 @@
 <p><strong>Be resource-friendly</strong> - Add small sleeps in tight loops</p>
 </li><li>
 <p><strong>Log important events</strong> - Use <code>echo</code> to help with debugging</p>
+</li><li>
+<p><strong>Case matters</strong> - Ruby is case-sensitive: <code>Script</code> not <code>script</code></p>
 </li></ol>
 
 <h2 id="label-Debugging">Debugging</h2>
 
 <pre class="code ruby"><code class="ruby"><span class='comment'># Toggle echo to see script output
-</span><span class='id identifier rubyid_toggle_echo'><span class='object_link'><a href="top-level-namespace.html#toggle_echo-instance_method" title="#toggle_echo (method)">toggle_echo</a></span></span>
-<span class='id identifier rubyid_echo_on'><span class='object_link'><a href="top-level-namespace.html#echo_on-instance_method" title="#echo_on (method)">echo_on</a></span></span>
-<span class='id identifier rubyid_echo_off'><span class='object_link'><a href="top-level-namespace.html#echo_off-instance_method" title="#echo_off (method)">echo_off</a></span></span>
-
+</span><span class='id identifier rubyid_toggle_echo'><span class='object_link'><a href="top-level-namespace.html#toggle_echo-instance_method" title="#toggle_echo (method)">toggle_echo</a></span></span>   <span class='comment'># Toggles between on/off
+</span><span class='id identifier rubyid_echo_on'><span class='object_link'><a href="top-level-namespace.html#echo_on-instance_method" title="#echo_on (method)">echo_on</a></span></span>       <span class='comment'># Turn echo on
+</span><span class='id identifier rubyid_echo_off'><span class='object_link'><a href="top-level-namespace.html#echo_off-instance_method" title="#echo_off (method)">echo_off</a></span></span>      <span class='comment'># Turn echo off
+</span>
 <span class='comment'># Print debug information
 </span><span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DEBUG: Current room = </span><span class='embexpr_beg'>#{</span><span class='const'>Room</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DEBUG: Health = </span><span class='embexpr_beg'>#{</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_health'>health</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_max_health'>max_health</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -333,7 +357,7 @@
 </div></div>
 
       <div id="footer">
-  Generated on Tue Jan 13 04:15:10 2026 by
+  Generated on Tue Jan 13 04:30:38 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-3.2.9).
 </div>
@@ -341,28 +365,18 @@
     </div>
   <script type="text/javascript">
 // Navigation helper for YARD docs
-// Adds persistent navigation links and fixes sidebar navigation issues
+// Adds persistent navigation links, fixes sidebar navigation, and theme toggle
 
 (function() {
   'use strict';
 
-  function addNavLinks() {
-    // Find the content area
-    var content = document.getElementById('content');
-    if (!content) return;
-
-    // Check if we already added the nav
-    if (document.getElementById('quick-nav')) return;
-
-    // Calculate the relative path to root
-    var depth = (window.location.pathname.match(/\//g) || []).length;
+  // Calculate root path for assets
+  function getRootPath() {
+    var path = window.location.pathname;
     var rootPath = '';
 
-    // Check if we're in a subdirectory
-    var path = window.location.pathname;
     if (path.includes('/Lich/')) {
-      // Count depth after /lich-5-docs/
-      var parts = path.split('/').filter(p => p);
+      var parts = path.split('/').filter(function(p) { return p; });
       var docsIndex = parts.indexOf('lich-5-docs');
       if (docsIndex >= 0) {
         var subParts = parts.slice(docsIndex + 1);
@@ -370,112 +384,223 @@
       }
     }
 
-    // If rootPath is empty and we're not at root, calculate from depth
     if (!rootPath && !path.endsWith('/index.html') && !path.endsWith('/')) {
-      var pathParts = path.split('/').filter(p => p && p !== 'index.html');
+      var pathParts = path.split('/').filter(function(p) { return p && p !== 'index.html'; });
       var docsIdx = pathParts.indexOf('lich-5-docs');
       if (docsIdx >= 0) {
         rootPath = '../'.repeat(pathParts.length - docsIdx - 2);
       }
     }
 
-    // Create nav element
+    return rootPath;
+  }
+
+  // Inject theme CSS
+  function injectThemeCSS() {
+    if (document.getElementById('theme-css')) return;
+
+    var rootPath = getRootPath();
+    var link = document.createElement('link');
+    link.id = 'theme-css';
+    link.rel = 'stylesheet';
+    link.href = rootPath + 'css/theme.css';
+    document.head.appendChild(link);
+  }
+
+  // Get saved theme or detect system preference
+  function getPreferredTheme() {
+    var saved = localStorage.getItem('yard-theme');
+    if (saved) return saved;
+
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
+    return 'light';
+  }
+
+  // Apply theme
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('yard-theme', theme);
+
+    var btn = document.getElementById('theme-toggle');
+    if (btn) {
+      btn.textContent = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+      btn.title = 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode';
+    }
+  }
+
+  // Toggle theme
+  function toggleTheme() {
+    var current = document.documentElement.getAttribute('data-theme') || 'light';
+    var newTheme = current === 'dark' ? 'light' : 'dark';
+    applyTheme(newTheme);
+  }
+
+  function addNavLinks() {
+    var content = document.getElementById('content');
+    if (!content) return;
+
+    if (document.getElementById('quick-nav')) return;
+
+    var rootPath = getRootPath();
+
     var nav = document.createElement('div');
     nav.id = 'quick-nav';
-    nav.style.cssText = 'background: #f8f9fa; padding: 8px 15px; margin-bottom: 15px; border-radius: 4px; border: 1px solid #ddd; font-size: 14px;';
-    nav.innerHTML = '<a href="' + rootPath + 'index.html" style="margin-right: 15px; color: #0066cc; text-decoration: none;">Home</a> | ' +
-                    '<a href="' + rootPath + '_index.html" style="margin-left: 15px; margin-right: 15px; color: #0066cc; text-decoration: none;">All Classes</a> | ' +
-                    '<a href="' + rootPath + 'file.psm-reference.html" style="margin-left: 15px; color: #0066cc; text-decoration: none;">PSM Guide</a>';
+    nav.style.cssText = 'padding: 8px 15px; margin-bottom: 15px; border-radius: 4px; border: 1px solid #ddd; font-size: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;';
 
-    // Insert at the beginning of content
+    var links = document.createElement('div');
+    links.innerHTML = '<a href="' + rootPath + 'index.html" style="margin-right: 15px; text-decoration: none;">Home</a> | ' +
+                      '<a href="' + rootPath + '_index.html" style="margin-left: 15px; margin-right: 15px; text-decoration: none;">All Classes</a> | ' +
+                      '<a href="' + rootPath + 'file.psm-reference.html" style="margin-left: 15px; text-decoration: none;">PSM Guide</a>';
+
+    var themeBtn = document.createElement('button');
+    themeBtn.id = 'theme-toggle';
+    themeBtn.type = 'button';
+    themeBtn.onclick = toggleTheme;
+
+    nav.appendChild(links);
+    nav.appendChild(themeBtn);
+
     content.insertBefore(nav, content.firstChild);
+
+    var currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    themeBtn.textContent = currentTheme === 'dark' ? '☀️ Light' : '🌙 Dark';
+    themeBtn.title = 'Switch to ' + (currentTheme === 'dark' ? 'light' : 'dark') + ' mode';
   }
 
-  // Fix sidebar navigation - YARD's default JS sometimes prevents link clicks
-  function fixSidebarNavigation() {
-    var fullList = document.getElementById('full_list');
-    if (!fullList) return;
+  // Aggressively fix ALL sidebar links
+  function fixAllSidebarLinks() {
+    // Get all possible sidebar/menu containers
+    var selectors = [
+      '#full_list',
+      '#menu',
+      '.menu',
+      '#full_list_content',
+      '.class_list',
+      '.objects',
+      'nav',
+      '.sidebar',
+      '#list',
+      '.y_list'
+    ];
 
-    // Use event delegation on the sidebar container
-    fullList.addEventListener('click', function(e) {
-      var link = e.target.closest('a');
-      if (link && link.href) {
-        // Check if this is an internal link that should navigate
-        var href = link.getAttribute('href');
-        if (href && !href.startsWith('#') && !href.startsWith('javascript:')) {
-          // Force navigation by setting window.location
-          e.preventDefault();
-          e.stopPropagation();
-          window.location.href = link.href;
+    selectors.forEach(function(selector) {
+      var containers = document.querySelectorAll(selector);
+      containers.forEach(function(container) {
+        // Add click handler to container that forces navigation
+        if (!container.dataset.navFixed) {
+          container.dataset.navFixed = 'true';
+
+          container.addEventListener('click', function(e) {
+            // Find the clicked link
+            var target = e.target;
+            while (target && target !== container) {
+              if (target.tagName === 'A') {
+                var href = target.getAttribute('href');
+                if (href && href !== '#' && !href.startsWith('javascript:')) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  e.stopImmediatePropagation();
+
+                  // Use the resolved href (full URL)
+                  window.location.href = target.href;
+                  return false;
+                }
+              }
+              target = target.parentNode;
+            }
+          }, true); // Capture phase
         }
-      }
-    }, true); // Use capture phase to intercept before YARD's handlers
-  }
 
-  // Also fix any links in the class list content area
-  function fixClassListLinks() {
-    // Find the class list content div
-    var listContent = document.getElementById('full_list_content') ||
-                      document.querySelector('.full_list_content') ||
-                      document.getElementById('full_list');
+        // Also fix individual links
+        var links = container.querySelectorAll('a');
+        links.forEach(function(link) {
+          if (!link.dataset.navFixed) {
+            link.dataset.navFixed = 'true';
+            var href = link.getAttribute('href');
+            if (href && href !== '#' && !href.startsWith('javascript:')) {
+              // Store the original href
+              var fullHref = link.href;
 
-    if (!listContent) return;
-
-    // Observe for dynamically loaded content
-    var observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        mutation.addedNodes.forEach(function(node) {
-          if (node.nodeType === 1) { // Element node
-            var links = node.querySelectorAll ? node.querySelectorAll('a[href]') : [];
-            links.forEach(function(link) {
-              ensureLinkWorks(link);
-            });
+              // Override onclick
+              link.onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                window.location.href = fullHref;
+                return false;
+              };
+            }
           }
         });
       });
     });
+  }
 
-    observer.observe(listContent, { childList: true, subtree: true });
+  // Watch for dynamically loaded content
+  function observeForNewLinks() {
+    var observer = new MutationObserver(function(mutations) {
+      var hasNewNodes = mutations.some(function(m) {
+        return m.addedNodes.length > 0;
+      });
+      if (hasNewNodes) {
+        // Delay slightly to let YARD's JS run first
+        setTimeout(fixAllSidebarLinks, 10);
+      }
+    });
 
-    // Fix existing links
-    var existingLinks = listContent.querySelectorAll('a[href]');
-    existingLinks.forEach(function(link) {
-      ensureLinkWorks(link);
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
     });
   }
 
-  function ensureLinkWorks(link) {
-    var href = link.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
-
-    // Remove any existing click handlers that might prevent navigation
-    link.onclick = null;
-
-    // Add our own handler
-    link.addEventListener('click', function(e) {
-      e.stopPropagation();
-      // Allow default behavior (navigation) to proceed
-    });
+  // Initialize
+  function init() {
+    injectThemeCSS();
+    applyTheme(getPreferredTheme());
+    addNavLinks();
+    fixAllSidebarLinks();
+    observeForNewLinks();
   }
 
   // Run when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      addNavLinks();
-      fixSidebarNavigation();
-      fixClassListLinks();
-    });
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    addNavLinks();
-    fixSidebarNavigation();
-    fixClassListLinks();
+    init();
   }
 
-  // Also run after a short delay to catch dynamically loaded content
-  setTimeout(function() {
-    fixSidebarNavigation();
-    fixClassListLinks();
-  }, 500);
+  // Run periodically to catch all dynamic content
+  var intervals = [50, 100, 250, 500, 1000, 2000, 3000];
+  intervals.forEach(function(ms) {
+    setTimeout(fixAllSidebarLinks, ms);
+  });
+
+  // Also run on any click anywhere (last resort)
+  document.addEventListener('click', function(e) {
+    if (e.target.tagName === 'A') {
+      var href = e.target.getAttribute('href');
+      if (href && href !== '#' && !href.startsWith('javascript:')) {
+        // Check if it's a sidebar link
+        var inSidebar = e.target.closest('#full_list, #menu, .menu, nav, .sidebar');
+        if (inSidebar) {
+          e.preventDefault();
+          e.stopPropagation();
+          window.location.href = e.target.href;
+        }
+      }
+    }
+  }, true);
+
+  // Listen for system theme changes
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+      if (!localStorage.getItem('yard-theme')) {
+        applyTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  }
 })();
 
 </script>
