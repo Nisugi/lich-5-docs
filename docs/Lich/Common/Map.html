@@ -109,18 +109,40 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>deprecated</p>
+<p>Represents a map in the Lich game. This class handles the management of rooms, their properties, and navigation.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Creating a new map</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_map'>map</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'>Map</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::Map#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='int'>1</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Room Title</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Room Description</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>path1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>path2</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
   <p class="children"><span class='object_link'><a href="Room.html" title="Lich::Common::Room (class)">Room</a></span></p>
 </div>
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Map/MinHeap.html" title="Lich::Common::Map::MinHeap (class)">MinHeap</a></span>
+    
+  
+</p>
 
   
     <h2>
@@ -185,7 +207,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The title of the map room.</p>
+<p>Returns the value of attribute check_location.</p>
 </div></span>
   
 </li>
@@ -212,7 +234,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The title of the map room.</p>
+<p>Returns the value of attribute climate.</p>
 </div></span>
   
 </li>
@@ -239,7 +261,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The title of the map room.</p>
+<p>Returns the value of attribute description.</p>
 </div></span>
   
 </li>
@@ -268,7 +290,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The unique identifier for the map room.</p>
+<p>Returns the value of attribute id.</p>
 </div></span>
   
 </li>
@@ -295,7 +317,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The title of the map room.</p>
+<p>Returns the value of attribute image.</p>
 </div></span>
   
 </li>
@@ -322,7 +344,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The title of the map room.</p>
+<p>Returns the value of attribute image_coords.</p>
 </div></span>
   
 </li>
@@ -349,7 +371,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The title of the map room.</p>
+<p>Returns the value of attribute location.</p>
 </div></span>
   
 </li>
@@ -376,7 +398,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The title of the map room.</p>
+<p>Returns the value of attribute paths.</p>
 </div></span>
   
 </li>
@@ -403,7 +425,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The title of the map room.</p>
+<p>Returns the value of attribute room_objects.</p>
 </div></span>
   
 </li>
@@ -430,7 +452,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The title of the map room.</p>
+<p>Returns the value of attribute tags.</p>
 </div></span>
   
 </li>
@@ -457,7 +479,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The title of the map room.</p>
+<p>Returns the value of attribute terrain.</p>
 </div></span>
   
 </li>
@@ -484,7 +506,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The title of the map room.</p>
+<p>Returns the value of attribute timeto.</p>
 </div></span>
   
 </li>
@@ -511,7 +533,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The title of the map room.</p>
+<p>Returns the value of attribute title.</p>
 </div></span>
   
 </li>
@@ -538,7 +560,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The title of the map room.</p>
+<p>Returns the value of attribute uid.</p>
 </div></span>
   
 </li>
@@ -565,7 +587,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The title of the map room.</p>
+<p>Returns the value of attribute unique_loot.</p>
 </div></span>
   
 </li>
@@ -592,7 +614,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The title of the map room.</p>
+<p>Returns the value of attribute wayto.</p>
 </div></span>
   
 </li>
@@ -629,7 +651,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves a map room by its ID or UID.</p>
+<p>Accesses a room by its ID or UID.</p>
 </div></span>
   
 </li>
@@ -653,7 +675,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Clears all map data and resets the state.</p>
+<p>Clears the map data, including rooms and their properties.</p>
 </div></span>
   
 </li>
@@ -677,7 +699,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves the current map room.</p>
+<p>Gets the current room based on the game state.</p>
 </div></span>
   
 </li>
@@ -701,7 +723,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves the current room or creates a new one if it doesn’t exist.</p>
+<p>Gets the current room or creates a new one if it doesn’t exist.</p>
 </div></span>
   
 </li>
@@ -725,7 +747,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves the current room ID.</p>
+<p>Gets the current room ID.</p>
 </div></span>
   
 </li>
@@ -734,7 +756,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#current_room_id=-class_method" title="current_room_id= (class method)">.<strong>current_room_id=</strong>(id)  &#x21d2; Integer </a>
+      <a href="#current_room_id=-class_method" title="current_room_id= (class method)">.<strong>current_room_id=</strong>(id)  &#x21d2; Object </a>
     
 
     
@@ -773,7 +795,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Performs Dijkstra’s algorithm to find the shortest path.</p>
+<p>Performs Dijkstra’s algorithm to find the shortest path from the source room.</p>
 </div></span>
   
 </li>
@@ -821,7 +843,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Finds a path from the source room to the destination.</p>
+<p>Finds the path from the source room to the destination room.</p>
 </div></span>
   
 </li>
@@ -830,7 +852,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#fuzzy_room_id-class_method" title="fuzzy_room_id (class method)">.<strong>fuzzy_room_id</strong>  &#x21d2; Object </a>
+      <a href="#fuzzy_room_id-class_method" title="fuzzy_room_id (class method)">.<strong>fuzzy_room_id</strong>  &#x21d2; Integer </a>
     
 
     
@@ -844,7 +866,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets the fuzzy room ID.</p>
+</div></span>
   
 </li>
 
@@ -867,7 +891,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves a free ID for a new map room.</p>
+<p>Gets a free ID for a new room.</p>
 </div></span>
   
 </li>
@@ -891,7 +915,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves the current location based on the game state.</p>
+<p>Gets the current location based on the game state.</p>
 </div></span>
   
 </li>
@@ -915,7 +939,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves room IDs associated with a given UID.</p>
+<p>Gets the room IDs associated with a given UID.</p>
 </div></span>
   
 </li>
@@ -939,7 +963,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves unique images from the map rooms.</p>
+<p>Gets the unique images from all rooms.</p>
 </div></span>
   
 </li>
@@ -963,7 +987,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves the list of all map rooms.</p>
+<p>Gets the list of all rooms.</p>
 </div></span>
   
 </li>
@@ -987,7 +1011,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Loads map data from files.</p>
+<p>Loads the map data from files.</p>
 </div></span>
   
 </li>
@@ -1044,7 +1068,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#load_uids-class_method" title="load_uids (class method)">.<strong>load_uids</strong>  &#x21d2; void </a>
+      <a href="#load_uids-class_method" title="load_uids (class method)">.<strong>load_uids</strong>  &#x21d2; Object </a>
     
 
     
@@ -1059,7 +1083,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Loads UIDs from the current map rooms into the UID mapping.</p>
+<p>Loads the UID mappings from the current list of rooms.</p>
 </div></span>
   
 </li>
@@ -1107,7 +1131,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if the map has been loaded.</p>
+<p>Checks if the map is loaded.</p>
 </div></span>
   
 </li>
@@ -1131,7 +1155,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves unique locations from the map rooms.</p>
+<p>Gets the unique locations from all rooms.</p>
 </div></span>
   
 </li>
@@ -1155,7 +1179,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Matches the current room based on the game state.</p>
+<p>Matches the current room based on the script’s state.</p>
 </div></span>
   
 </li>
@@ -1179,7 +1203,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Matches a room using fuzzy logic.</p>
+<p>Matches a room based on fuzzy logic.</p>
 </div></span>
   
 </li>
@@ -1203,7 +1227,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Matches multiple room IDs to find a valid one.</p>
+<p>Matches multiple room IDs based on the current room’s wayto.</p>
 </div></span>
   
 </li>
@@ -1227,7 +1251,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Matches a room without a UID.</p>
+<p>Matches the current room based on the game state without a UID.</p>
 </div></span>
   
 </li>
@@ -1251,7 +1275,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves the previous map room.</p>
+<p>Gets the previous room based on the previous room ID.</p>
 </div></span>
   
 </li>
@@ -1275,7 +1299,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves the previous room ID.</p>
+<p>Gets the previous room ID.</p>
 </div></span>
   
 </li>
@@ -1284,7 +1308,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#previous_room_id=-class_method" title="previous_room_id= (class method)">.<strong>previous_room_id=</strong>(id)  &#x21d2; Integer </a>
+      <a href="#previous_room_id=-class_method" title="previous_room_id= (class method)">.<strong>previous_room_id=</strong>(id)  &#x21d2; Object </a>
     
 
     
@@ -1308,7 +1332,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#previous_uid-class_method" title="previous_uid (class method)">.<strong>previous_uid</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#previous_uid-class_method" title="previous_uid (class method)">.<strong>previous_uid</strong>  &#x21d2; Integer </a>
     
 
     
@@ -1323,7 +1347,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves the previous room’s UID.</p>
+<p>Gets the previous room UID.</p>
 </div></span>
   
 </li>
@@ -1356,7 +1380,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#save-class_method" title="save (class method)">.<strong>save</strong>(filename = &quot;#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.dat&quot;)  &#x21d2; void </a>
+      <a href="#save-class_method" title="save (class method)">.<strong>save</strong>(filename = &quot;#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.dat&quot;)  &#x21d2; Boolean </a>
     
 
     
@@ -1380,7 +1404,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#save_json-class_method" title="save_json (class method)">.<strong>save_json</strong>(filename = &quot;#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.json&quot;)  &#x21d2; void </a>
+      <a href="#save_json-class_method" title="save_json (class method)">.<strong>save_json</strong>(filename = &quot;#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.json&quot;)  &#x21d2; Boolean </a>
     
 
     
@@ -1404,7 +1428,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#save_xml-class_method" title="save_xml (class method)">.<strong>save_xml</strong>(filename = &quot;#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.xml&quot;)  &#x21d2; void </a>
+      <a href="#save_xml-class_method" title="save_xml (class method)">.<strong>save_xml</strong>(filename = &quot;#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.xml&quot;)  &#x21d2; Boolean </a>
     
 
     
@@ -1443,7 +1467,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Sets the current map room.</p>
+<p>Sets the current room based on the given ID.</p>
 </div></span>
   
 </li>
@@ -1467,7 +1491,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Sets a fuzzy current room ID.</p>
+<p>Sets the fuzzy room based on the given ID.</p>
 </div></span>
   
 </li>
@@ -1491,7 +1515,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves unique tags from the map rooms.</p>
+<p>Gets the unique tags from all rooms.</p>
 </div></span>
   
 </li>
@@ -1539,7 +1563,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves the mapping of UIDs to room IDs.</p>
+<p>Gets the unique IDs mapping.</p>
 </div></span>
   
 </li>
@@ -1563,7 +1587,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Adds a room ID to the list of IDs associated with a given UID.</p>
+<p>Adds a room ID to the UID mapping.</p>
 </div></span>
   
 </li>
@@ -1603,7 +1627,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#desc-instance_method" title="#desc (instance method)">#<strong>desc</strong>  &#x21d2; String </a>
+      <a href="#desc-instance_method" title="#desc (instance method)">#<strong>desc</strong>  &#x21d2; Object </a>
     
 
     
@@ -1617,9 +1641,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the description of the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1627,7 +1649,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#dijkstra-instance_method" title="#dijkstra (instance method)">#<strong>dijkstra</strong>(destination = nil)  &#x21d2; Array&lt;Integer&gt;, Array&lt;Float&gt; </a>
+      <a href="#dijkstra-instance_method" title="#dijkstra (instance method)">#<strong>dijkstra</strong>(destination = nil)  &#x21d2; Object </a>
     
 
     
@@ -1641,9 +1663,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Performs Dijkstra’s algorithm for the current room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1723,29 +1743,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#fuzzy_room_id-instance_method" title="#fuzzy_room_id (instance method)">#<strong>fuzzy_room_id</strong>  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#geo-instance_method" title="#geo (instance method)">#<strong>geo</strong>  &#x21d2; nil </a>
+      <a href="#fuzzy_room_id-instance_method" title="#fuzzy_room_id (instance method)">#<strong>fuzzy_room_id</strong>  &#x21d2; Integer </a>
     
 
     
@@ -1760,8 +1758,30 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns geographical information for the room.</p>
+<p>Gets the fuzzy room ID.</p>
 </div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#geo-instance_method" title="#geo (instance method)">#<strong>geo</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1810,7 +1830,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Inspects the map room, showing its instance variables.</p>
+<p>Inspects the room object.</p>
 </div></span>
   
 </li>
@@ -1819,7 +1839,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#map_name-instance_method" title="#map_name (instance method)">#<strong>map_name</strong>  &#x21d2; String </a>
+      <a href="#map_name-instance_method" title="#map_name (instance method)">#<strong>map_name</strong>  &#x21d2; Object </a>
     
 
     
@@ -1833,9 +1853,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the name of the map.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1843,7 +1861,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#map_roomsize-instance_method" title="#map_roomsize (instance method)">#<strong>map_roomsize</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#map_roomsize-instance_method" title="#map_roomsize (instance method)">#<strong>map_roomsize</strong>  &#x21d2; Object </a>
     
 
     
@@ -1857,9 +1875,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the size of the room based on image coordinates.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1867,7 +1883,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#map_x-instance_method" title="#map_x (instance method)">#<strong>map_x</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#map_x-instance_method" title="#map_x (instance method)">#<strong>map_x</strong>  &#x21d2; Object </a>
     
 
     
@@ -1881,9 +1897,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the X coordinate of the map image.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1891,7 +1905,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#map_y-instance_method" title="#map_y (instance method)">#<strong>map_y</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#map_y-instance_method" title="#map_y (instance method)">#<strong>map_y</strong>  &#x21d2; Object </a>
     
 
     
@@ -1905,9 +1919,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the Y coordinate of the map image.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1930,7 +1942,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if the current room is outside.</p>
+<p>Checks if the room is outside.</p>
 </div></span>
   
 </li>
@@ -1954,7 +1966,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Finds a path to a specified destination.</p>
+<p>Finds the path to a destination room.</p>
 </div></span>
   
 </li>
@@ -1978,7 +1990,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Converts the map room to an integer ID.</p>
+<p>Converts the room to an integer ID.</p>
 </div></span>
   
 </li>
@@ -2026,7 +2038,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Converts the map room to a string representation.</p>
+<p>Converts the room to a string representation.</p>
 </div></span>
   
 </li>
@@ -2137,7 +2149,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Unique identifiers associated with the room (default: []).</p>
+<p>The unique identifiers associated with this room.</p>
 </div>
       
     </li>
@@ -2155,7 +2167,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The location of the room (default: nil).</p>
+<p>The location of the room.</p>
 </div>
       
     </li>
@@ -2173,7 +2185,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The climate of the room (default: nil).</p>
+<p>The climate of the room.</p>
 </div>
       
     </li>
@@ -2191,7 +2203,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The terrain of the room (default: nil).</p>
+<p>The terrain type of the room.</p>
 </div>
       
     </li>
@@ -2209,7 +2221,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Directions to other rooms (default: {}).</p>
+<p>The ways to other rooms.</p>
 </div>
       
     </li>
@@ -2227,7 +2239,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Time to travel to other rooms (default: {}).</p>
+<p>The time to travel to other rooms.</p>
 </div>
       
     </li>
@@ -2245,7 +2257,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The image associated with the room (default: nil).</p>
+<p>The image associated with the room.</p>
 </div>
       
     </li>
@@ -2263,7 +2275,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Coordinates for the image (default: nil).</p>
+<p>The coordinates for the image.</p>
 </div>
       
     </li>
@@ -2281,7 +2293,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Tags associated with the room (default: []).</p>
+<p>Tags associated with the room.</p>
 </div>
       
     </li>
@@ -2299,7 +2311,7 @@
       
         &mdash;
         <div class='inline'>
-<p>A check for the room’s location (default: nil).</p>
+<p>A check for the location.</p>
 </div>
       
     </li>
@@ -2317,7 +2329,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Unique loot available in the room (default: nil).</p>
+<p>Unique loot available in the room.</p>
 </div>
       
     </li>
@@ -2331,13 +2343,13 @@
       <pre class="lines">
 
 
-42
-43
-44
-45</pre>
+45
+46
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span><span class='comma'>,</span> <span class='id identifier rubyid_paths'>paths</span><span class='comma'>,</span> <span class='id identifier rubyid_uid'>uid</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_location'>location</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_climate'>climate</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_terrain'>terrain</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_wayto'>wayto</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_timeto'>timeto</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_image'>image</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_image_coords'>image_coords</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_tags'>tags</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_check_location'>check_location</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_unique_loot'>unique_loot</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid__room_objects'>_room_objects</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='ivar'>@id</span><span class='comma'>,</span> <span class='ivar'>@title</span><span class='comma'>,</span> <span class='ivar'>@description</span><span class='comma'>,</span> <span class='ivar'>@paths</span><span class='comma'>,</span> <span class='ivar'>@uid</span><span class='comma'>,</span> <span class='ivar'>@location</span><span class='comma'>,</span> <span class='ivar'>@climate</span><span class='comma'>,</span> <span class='ivar'>@terrain</span><span class='comma'>,</span> <span class='ivar'>@wayto</span><span class='comma'>,</span> <span class='ivar'>@timeto</span><span class='comma'>,</span> <span class='ivar'>@image</span><span class='comma'>,</span> <span class='ivar'>@image_coords</span><span class='comma'>,</span> <span class='ivar'>@tags</span><span class='comma'>,</span> <span class='ivar'>@check_location</span><span class='comma'>,</span> <span class='ivar'>@unique_loot</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span><span class='comma'>,</span> <span class='id identifier rubyid_paths'>paths</span><span class='comma'>,</span> <span class='id identifier rubyid_uid'>uid</span><span class='comma'>,</span> <span class='id identifier rubyid_location'>location</span><span class='comma'>,</span> <span class='id identifier rubyid_climate'>climate</span><span class='comma'>,</span> <span class='id identifier rubyid_terrain'>terrain</span><span class='comma'>,</span> <span class='id identifier rubyid_wayto'>wayto</span><span class='comma'>,</span> <span class='id identifier rubyid_timeto'>timeto</span><span class='comma'>,</span> <span class='id identifier rubyid_image'>image</span><span class='comma'>,</span> <span class='id identifier rubyid_image_coords'>image_coords</span><span class='comma'>,</span> <span class='id identifier rubyid_tags'>tags</span><span class='comma'>,</span> <span class='id identifier rubyid_check_location'>check_location</span><span class='comma'>,</span> <span class='id identifier rubyid_unique_loot'>unique_loot</span>
@@ -2367,7 +2379,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The title of the map room.</p>
+<p>Returns the value of attribute check_location.</p>
 
 
   </div>
@@ -2381,12 +2393,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_location'>check_location</span>
   <span class='ivar'>@check_location</span>
@@ -2410,7 +2422,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The title of the map room.</p>
+<p>Returns the value of attribute climate.</p>
 
 
   </div>
@@ -2424,12 +2436,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_climate'>climate</span>
   <span class='ivar'>@climate</span>
@@ -2453,7 +2465,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The title of the map room.</p>
+<p>Returns the value of attribute description.</p>
 
 
   </div>
@@ -2467,12 +2479,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_description'>description</span>
   <span class='ivar'>@description</span>
@@ -2496,7 +2508,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The unique identifier for the map room.</p>
+<p>Returns the value of attribute id.</p>
 
 
   </div>
@@ -2510,12 +2522,12 @@
       <pre class="lines">
 
 
-21
-22
-23</pre>
+25
+26
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_id'>id</span>
   <span class='ivar'>@id</span>
@@ -2539,7 +2551,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The title of the map room.</p>
+<p>Returns the value of attribute image.</p>
 
 
   </div>
@@ -2553,12 +2565,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_image'>image</span>
   <span class='ivar'>@image</span>
@@ -2582,7 +2594,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The title of the map room.</p>
+<p>Returns the value of attribute image_coords.</p>
 
 
   </div>
@@ -2596,12 +2608,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_image_coords'>image_coords</span>
   <span class='ivar'>@image_coords</span>
@@ -2625,7 +2637,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The title of the map room.</p>
+<p>Returns the value of attribute location.</p>
 
 
   </div>
@@ -2639,12 +2651,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_location'>location</span>
   <span class='ivar'>@location</span>
@@ -2668,7 +2680,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The title of the map room.</p>
+<p>Returns the value of attribute paths.</p>
 
 
   </div>
@@ -2682,12 +2694,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_paths'>paths</span>
   <span class='ivar'>@paths</span>
@@ -2711,7 +2723,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The title of the map room.</p>
+<p>Returns the value of attribute room_objects.</p>
 
 
   </div>
@@ -2725,12 +2737,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_room_objects'>room_objects</span>
   <span class='ivar'>@room_objects</span>
@@ -2754,7 +2766,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The title of the map room.</p>
+<p>Returns the value of attribute tags.</p>
 
 
   </div>
@@ -2768,12 +2780,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tags'>tags</span>
   <span class='ivar'>@tags</span>
@@ -2797,7 +2809,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The title of the map room.</p>
+<p>Returns the value of attribute terrain.</p>
 
 
   </div>
@@ -2811,12 +2823,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_terrain'>terrain</span>
   <span class='ivar'>@terrain</span>
@@ -2840,7 +2852,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The title of the map room.</p>
+<p>Returns the value of attribute timeto.</p>
 
 
   </div>
@@ -2854,12 +2866,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_timeto'>timeto</span>
   <span class='ivar'>@timeto</span>
@@ -2883,7 +2895,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The title of the map room.</p>
+<p>Returns the value of attribute title.</p>
 
 
   </div>
@@ -2897,12 +2909,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_title'>title</span>
   <span class='ivar'>@title</span>
@@ -2926,7 +2938,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The title of the map room.</p>
+<p>Returns the value of attribute uid.</p>
 
 
   </div>
@@ -2940,12 +2952,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_uid'>uid</span>
   <span class='ivar'>@uid</span>
@@ -2969,7 +2981,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The title of the map room.</p>
+<p>Returns the value of attribute unique_loot.</p>
 
 
   </div>
@@ -2983,12 +2995,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unique_loot'>unique_loot</span>
   <span class='ivar'>@unique_loot</span>
@@ -3012,7 +3024,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The title of the map room.</p>
+<p>Returns the value of attribute wayto.</p>
 
 
   </div>
@@ -3026,12 +3038,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_wayto'>wayto</span>
   <span class='ivar'>@wayto</span>
@@ -3060,7 +3072,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Retrieves a map room by its ID or UID.</p>
+<p>Accesses a room by its ID or UID.</p>
 
 
   </div>
@@ -3080,7 +3092,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The room ID or UID.</p>
+<p>The ID or UID of the room to access.</p>
 </div>
       
     </li>
@@ -3099,7 +3111,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The corresponding map room or nil if not found.</p>
+<p>The room if found, nil otherwise.</p>
 </div>
       
     </li>
@@ -3112,7 +3124,6 @@
       <pre class="lines">
 
 
-82
 83
 84
 85
@@ -3124,10 +3135,11 @@
 91
 92
 93
-94</pre>
+94
+95</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Map.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -3159,7 +3171,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Clears all map data and resets the state.</p>
+<p>Clears the map data, including rooms and their properties.</p>
 
 
   </div>
@@ -3178,7 +3190,7 @@
       
         &mdash;
         <div class='inline'>
-<p>True if cleared successfully.</p>
+<p>True if the clear operation was successful.</p>
 </div>
       
     </li>
@@ -3191,18 +3203,18 @@
       <pre class="lines">
 
 
-356
-357
-358
 359
 360
 361
 362
 363
-364</pre>
+364
+365
+366
+367</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 356</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 359</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
   <span class='cvar'>@@load_mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span>
@@ -3230,7 +3242,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Retrieves the current map room.</p>
+<p>Gets the current room based on the game state.</p>
 
 
   </div>
@@ -3249,7 +3261,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The current map room or nil if not found.</p>
+<p>The current room if found, nil otherwise.</p>
 </div>
       
     </li>
@@ -3262,7 +3274,6 @@
       <pre class="lines">
 
 
-110
 111
 112
 113
@@ -3275,10 +3286,11 @@
 120
 121
 122
-123</pre>
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 110</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 111</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span> <span class='comment'># returns Map/Room
 </span>  <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Map.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -3311,7 +3323,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Retrieves the current room or creates a new one if it doesn’t exist.</p>
+<p>Gets the current room or creates a new one if it doesn’t exist.</p>
 
 
   </div>
@@ -3330,7 +3342,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The current or newly created map room.</p>
+<p>The current room if found, nil otherwise.</p>
 </div>
       
     </li>
@@ -3343,7 +3355,6 @@
       <pre class="lines">
 
 
-257
 258
 259
 260
@@ -3373,10 +3384,11 @@
 284
 285
 286
-287</pre>
+287
+288</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 257</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 258</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current_or_new'>current_or_new</span> <span class='comment'># returns Map/Room
 </span>  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="Script.html" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current'><span class='object_link'><a href="Script.html#current-class_method" title="Lich::Common::Script.current (method)">current</a></span></span>
@@ -3426,21 +3438,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Retrieves the current room ID.</p>
+<p>Gets the current room ID.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_current_id'>current_id</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current_room_id'>current_room_id</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -3466,10 +3470,10 @@
       <pre class="lines">
 
 
-54</pre>
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_gs.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_gs.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current_room_id'>current_room_id</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='cvar'>@@current_room_id</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -3480,7 +3484,7 @@
       <div class="method_details ">
   <h3 class="signature " id="current_room_id=-class_method">
   
-    .<strong>current_room_id=</strong>(id)  &#x21d2; <tt>Integer</tt> 
+    .<strong>current_room_id=</strong>(id)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -3509,31 +3513,13 @@
       
         &mdash;
         <div class='inline'>
-<p>The new current room ID.</p>
+<p>The ID to set as the current room.</p>
 </div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The set current room ID.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -3541,12 +3527,12 @@
       <pre class="lines">
 
 
-58</pre>
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_gs.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_gs.rb', line 55</span>
 
-<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current_room_id='>current_room_id=</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='cvar'>@@current_room_id</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current_room_id='>current_room_id=</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='cvar'>@@current_room_id</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -3564,7 +3550,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Performs Dijkstra’s algorithm to find the shortest path.</p>
+<p>Performs Dijkstra’s algorithm to find the shortest path from the source room.</p>
 
 
   </div>
@@ -3572,22 +3558,6 @@
 <div class="tags">
   <p class="tag_title">Parameters:</p>
 <ul class="param">
-  
-    <li>
-      
-        <span class='name'>source</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></tt>, <tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The source room or its ID.</p>
-</div>
-      
-    </li>
   
     <li>
       
@@ -3602,7 +3572,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The destination room ID (default: nil).</p>
+<p>The optional destination room ID.</p>
 </div>
       
     </li>
@@ -3634,6 +3604,7 @@
       <pre class="lines">
 
 
+798
 799
 800
 801
@@ -3642,11 +3613,10 @@
 804
 805
 806
-807
-808</pre>
+807</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 799</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 798</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dijkstra'>dijkstra</span><span class='lparen'>(</span><span class='id identifier rubyid_source'>source</span><span class='comma'>,</span> <span class='id identifier rubyid_destination'>destination</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_source'>source</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='rparen'>)</span>
@@ -3695,7 +3665,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The list of room IDs to estimate time for.</p>
+<p>The array of room IDs to estimate time for.</p>
 </div>
       
     </li>
@@ -3788,7 +3758,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Finds a path from the source room to the destination.</p>
+<p>Finds the path from the source room to the destination room.</p>
 
 
   </div>
@@ -3802,13 +3772,13 @@
         <span class='name'>source</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></tt>, <tt>Integer</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>, <tt><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The source room or its ID.</p>
+<p>The source room ID or Map object.</p>
 </div>
       
     </li>
@@ -3818,13 +3788,13 @@
         <span class='name'>destination</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></tt>, <tt>Integer</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The destination room or its ID.</p>
+<p>The destination room ID.</p>
 </div>
       
     </li>
@@ -3843,7 +3813,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The path as an array of room IDs or nil if no path found.</p>
+<p>The path as an array of room IDs or nil if not found.</p>
 </div>
       
     </li>
@@ -3856,19 +3826,19 @@
       <pre class="lines">
 
 
-917
-918
-919
-920
-921
-922
-923
-924
-925
-926</pre>
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 917</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 941</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_findpath'>findpath</span><span class='lparen'>(</span><span class='id identifier rubyid_source'>source</span><span class='comma'>,</span> <span class='id identifier rubyid_destination'>destination</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_source'>source</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='rparen'>)</span>
@@ -3888,13 +3858,42 @@
       <div class="method_details ">
   <h3 class="signature " id="fuzzy_room_id-class_method">
   
-    .<strong>fuzzy_room_id</strong>  &#x21d2; <tt>Object</tt> 
+    .<strong>fuzzy_room_id</strong>  &#x21d2; <tt>Integer</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gets the fuzzy room ID.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The fuzzy room ID.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -3923,7 +3922,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Retrieves a free ID for a new map room.</p>
+<p>Gets a free ID for a new room.</p>
 
 
   </div>
@@ -3942,7 +3941,7 @@
       
         &mdash;
         <div class='inline'>
-<p>A unique ID for a new room.</p>
+<p>A free ID for a new room.</p>
 </div>
       
     </li>
@@ -3955,13 +3954,13 @@
       <pre class="lines">
 
 
-67
 68
 69
-70</pre>
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 68</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_free_id'>get_free_id</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Map.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -3984,7 +3983,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Retrieves the current location based on the game state.</p>
+<p>Gets the current location based on the game state.</p>
 
 
   </div>
@@ -4003,7 +4002,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The current location or nil if not determined.</p>
+<p>The current location or nil if not set.</p>
 </div>
       
     </li>
@@ -4077,7 +4076,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Retrieves room IDs associated with a given UID.</p>
+<p>Gets the room IDs associated with a given UID.</p>
 
 
   </div>
@@ -4129,12 +4128,12 @@
       <pre class="lines">
 
 
-351
-352
-353</pre>
+353
+354
+355</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 351</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 353</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_ids_from_uid'>ids_from_uid</span><span class='lparen'>(</span><span class='id identifier rubyid_n'><span class='object_link'><a href="../../top-level-namespace.html#n-instance_method" title="#n (method)">n</a></span></span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='lparen'>(</span><span class='cvar'>@@uids</span><span class='lbracket'>[</span><span class='id identifier rubyid_n'><span class='object_link'><a href="../../top-level-namespace.html#n-instance_method" title="#n (method)">n</a></span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_n'><span class='object_link'><a href="../../top-level-namespace.html#n-instance_method" title="#n (method)">n</a></span></span> <span class='op'>==</span> <span class='int'>0</span> <span class='op'>?</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='cvar'>@@uids</span><span class='lbracket'>[</span><span class='id identifier rubyid_n'><span class='object_link'><a href="../../top-level-namespace.html#n-instance_method" title="#n (method)">n</a></span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -4156,7 +4155,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Retrieves unique images from the map rooms.</p>
+<p>Gets the unique images from all rooms.</p>
 
 
   </div>
@@ -4219,7 +4218,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Retrieves the list of all map rooms.</p>
+<p>Gets the list of all rooms.</p>
 
 
   </div>
@@ -4238,7 +4237,7 @@
       
         &mdash;
         <div class='inline'>
-<p>An array of all map rooms.</p>
+<p>An array of all rooms.</p>
 </div>
       
     </li>
@@ -4251,13 +4250,13 @@
       <pre class="lines">
 
 
-74
 75
 76
-77</pre>
+77
+78</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Map.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -4280,7 +4279,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Loads map data from files.</p>
+<p>Loads the map data from files.</p>
 
 
   </div>
@@ -4302,7 +4301,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The filename to load from (default: nil).</p>
+<p>The optional filename to load from.</p>
 </div>
       
     </li>
@@ -4321,7 +4320,7 @@
       
         &mdash;
         <div class='inline'>
-<p>True if loaded successfully.</p>
+<p>True if the load operation was successful.</p>
 </div>
       
     </li>
@@ -4334,10 +4333,6 @@
       <pre class="lines">
 
 
-375
-376
-377
-378
 379
 380
 381
@@ -4360,10 +4355,14 @@
 398
 399
 400
-401</pre>
+401
+402
+403
+404
+405</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 375</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 379</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_filename'>filename</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -4431,7 +4430,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The filename to load from (default: nil).</p>
+<p>The optional filename to load from.</p>
 </div>
       
     </li>
@@ -4450,7 +4449,7 @@
       
         &mdash;
         <div class='inline'>
-<p>True if loaded successfully.</p>
+<p>True if the load operation was successful.</p>
 </div>
       
     </li>
@@ -4463,10 +4462,6 @@
       <pre class="lines">
 
 
-459
-460
-461
-462
 463
 464
 465
@@ -4497,10 +4492,14 @@
 490
 491
 492
-493</pre>
+493
+494
+495
+496
+497</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 459</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 463</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_dat'>load_dat</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='cvar'>@@load_mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span>
@@ -4576,7 +4575,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The filename to load from (default: nil).</p>
+<p>The optional filename to load from.</p>
 </div>
       
     </li>
@@ -4595,7 +4594,7 @@
       
         &mdash;
         <div class='inline'>
-<p>True if loaded successfully.</p>
+<p>True if the load operation was successful.</p>
 </div>
       
     </li>
@@ -4608,10 +4607,6 @@
       <pre class="lines">
 
 
-406
-407
-408
-409
 410
 411
 412
@@ -4656,10 +4651,14 @@
 451
 452
 453
-454</pre>
+454
+455
+456
+457
+458</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 406</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 410</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_json'>load_json</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='cvar'>@@load_mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span>
@@ -4718,7 +4717,7 @@
       <div class="method_details ">
   <h3 class="signature " id="load_uids-class_method">
   
-    .<strong>load_uids</strong>  &#x21d2; <tt>void</tt> 
+    .<strong>load_uids</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -4726,8 +4725,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Loads UIDs from the current map rooms into the UID mapping.</p>
+    
+<p>Loads the UID mappings from the current list of rooms.</p>
 
 
   </div>
@@ -4741,8 +4740,6 @@
       <pre class="lines">
 
 
-334
-335
 336
 337
 338
@@ -4753,10 +4750,12 @@
 343
 344
 345
-346</pre>
+346
+347
+348</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 334</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 336</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_uids'>load_uids</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Map.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -4810,7 +4809,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The filename to load from (default: “#DATA_DIR/#XMLData.game/map.xml”).</p>
+<p>The filename to load from.</p>
 </div>
       
     </li>
@@ -4829,7 +4828,7 @@
       
         &mdash;
         <div class='inline'>
-<p>True if loaded successfully.</p>
+<p>True if the load operation was successful.</p>
 </div>
       
     </li>
@@ -4842,10 +4841,6 @@
       <pre class="lines">
 
 
-498
-499
-500
-501
 502
 503
 504
@@ -4958,10 +4953,14 @@
 611
 612
 613
-614</pre>
+614
+615
+616
+617
+618</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 498</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 502</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_xml'>load_xml</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>DATA_DIR</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span><span class='embexpr_end'>}</span><span class='tstring_content'>/map.xml</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='cvar'>@@load_mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span>
@@ -5097,7 +5096,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if the map has been loaded.</p>
+<p>Checks if the map is loaded.</p>
 
 
   </div>
@@ -5129,10 +5128,10 @@
       <pre class="lines">
 
 
-61</pre>
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_gs.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_gs.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_loaded'>loaded</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='cvar'>@@loaded</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -5152,7 +5151,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Retrieves unique locations from the map rooms.</p>
+<p>Gets the unique locations from all rooms.</p>
 
 
   </div>
@@ -5215,7 +5214,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Matches the current room based on the game state.</p>
+<p>Matches the current room based on the script’s state.</p>
 
 
   </div>
@@ -5267,7 +5266,6 @@
       <pre class="lines">
 
 
-147
 148
 149
 150
@@ -5318,10 +5316,11 @@
 195
 196
 197
-198</pre>
+198
+199</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 147</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 148</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_match_current'>match_current</span><span class='lparen'>(</span><span class='id identifier rubyid__script'>_script</span><span class='rparen'>)</span> <span class='comment'># returns id
 </span>  <span class='cvar'>@@current_room_mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span>
@@ -5392,7 +5391,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Matches a room using fuzzy logic.</p>
+<p>Matches a room based on fuzzy logic.</p>
 
 
   </div>
@@ -5411,7 +5410,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The matched room ID or nil if none matched.</p>
+<p>The matched room ID if found, nil otherwise.</p>
 </div>
       
     </li>
@@ -5424,7 +5423,6 @@
       <pre class="lines">
 
 
-202
 203
 204
 205
@@ -5475,10 +5473,11 @@
 250
 251
 252
-253</pre>
+253
+254</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 202</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 203</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_match_fuzzy'>match_fuzzy</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='comment'># returns id
 </span>  <span class='cvar'>@@fuzzy_room_mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span>
@@ -5549,7 +5548,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Matches multiple room IDs to find a valid one.</p>
+<p>Matches multiple room IDs based on the current room’s wayto.</p>
 
 
   </div>
@@ -5569,7 +5568,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The list of room IDs to match.</p>
+<p>The array of IDs to match.</p>
 </div>
       
     </li>
@@ -5588,7 +5587,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The matched room ID or nil if none matched.</p>
+<p>The matched ID if found, nil otherwise.</p>
 </div>
       
     </li>
@@ -5601,14 +5600,14 @@
       <pre class="lines">
 
 
-313
 314
 315
 316
-317</pre>
+317
+318</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 313</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 314</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_match_multi_ids'>match_multi_ids</span><span class='lparen'>(</span><span class='id identifier rubyid_ids'>ids</span><span class='rparen'>)</span> <span class='comment'># returns id
 </span>  <span class='id identifier rubyid_matches'>matches</span> <span class='op'>=</span> <span class='id identifier rubyid_ids'>ids</span><span class='period'>.</span><span class='id identifier rubyid_find_all'>find_all</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span> <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='cvar'>@@current_room_id</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_wayto'>wayto</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -5632,7 +5631,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Matches a room without a UID.</p>
+<p>Matches the current room based on the game state without a UID.</p>
 
 
   </div>
@@ -5651,7 +5650,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The matched map room or nil if none matched.</p>
+<p>The matched room if found, nil otherwise.</p>
 </div>
       
     </li>
@@ -5664,16 +5663,16 @@
       <pre class="lines">
 
 
-127
 128
 129
 130
 131
 132
-133</pre>
+133
+134</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 127</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 128</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_match_no_uid'>match_no_uid</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='comment'># returns Map/Room
 </span>  <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_script'>script</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Script.html" title="Lich::Common::Script (class)">Script</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current'><span class='object_link'><a href="Script.html#current-class_method" title="Lich::Common::Script.current (method)">current</a></span></span><span class='rparen'>)</span>
@@ -5699,7 +5698,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Retrieves the previous map room.</p>
+<p>Gets the previous room based on the previous room ID.</p>
 
 
   </div>
@@ -5718,7 +5717,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The previous map room or nil if none.</p>
+<p>The previous room if found, nil otherwise.</p>
 </div>
       
     </li>
@@ -5731,12 +5730,12 @@
       <pre class="lines">
 
 
-98
 99
-100</pre>
+100
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 99</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_previous'>previous</span>
   <span class='kw'>return</span> <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='cvar'>@@previous_room_id</span><span class='rbracket'>]</span>
@@ -5758,7 +5757,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Retrieves the previous room ID.</p>
+<p>Gets the previous room ID.</p>
 
 
   </div>
@@ -5777,7 +5776,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The ID of the previous room or nil if none.</p>
+<p>The ID of the previous room or nil if not set.</p>
 </div>
       
     </li>
@@ -5790,10 +5789,10 @@
       <pre class="lines">
 
 
-64</pre>
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_gs.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_gs.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_previous_room_id'>previous_room_id</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='cvar'>@@previous_room_id</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -5804,7 +5803,7 @@
       <div class="method_details ">
   <h3 class="signature " id="previous_room_id=-class_method">
   
-    .<strong>previous_room_id=</strong>(id)  &#x21d2; <tt>Integer</tt> 
+    .<strong>previous_room_id=</strong>(id)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -5833,31 +5832,13 @@
       
         &mdash;
         <div class='inline'>
-<p>The new previous room ID.</p>
+<p>The ID to set as the previous room.</p>
 </div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The set previous room ID.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -5865,12 +5846,12 @@
       <pre class="lines">
 
 
-68</pre>
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_gs.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_gs.rb', line 64</span>
 
-<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_previous_room_id='>previous_room_id=</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='cvar'>@@previous_room_id</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_previous_room_id='>previous_room_id=</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='cvar'>@@previous_room_id</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -5879,7 +5860,7 @@
       <div class="method_details ">
   <h3 class="signature " id="previous_uid-class_method">
   
-    .<strong>previous_uid</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>previous_uid</strong>  &#x21d2; <tt>Integer</tt> 
   
 
   
@@ -5888,7 +5869,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Retrieves the previous room’s UID.</p>
+<p>Gets the previous room UID.</p>
 
 
   </div>
@@ -5901,13 +5882,13 @@
     <li>
       
       
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The UID of the previous room or nil if none.</p>
+<p>The previous room UID.</p>
 </div>
       
     </li>
@@ -5920,12 +5901,12 @@
       <pre class="lines">
 
 
-104
 105
-106</pre>
+106
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 105</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_previous_uid'>previous_uid</span>
   <span class='kw'>return</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_previous_nav_rm'>previous_nav_rm</span>
@@ -5966,7 +5947,7 @@
       
         &mdash;
         <div class='inline'>
-<p>True if reloaded successfully.</p>
+<p>True if the reload operation was successful.</p>
 </div>
       
     </li>
@@ -5979,13 +5960,13 @@
       <pre class="lines">
 
 
-367
-368
-369
-370</pre>
+371
+372
+373
+374</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 367</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 371</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reload'>reload</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear'><span class='object_link'><a href="#clear-class_method" title="Lich::Common::Map.clear (method)">clear</a></span></span>
@@ -5999,7 +5980,7 @@
       <div class="method_details ">
   <h3 class="signature " id="save-class_method">
   
-    .<strong>save</strong>(filename = &quot;#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.dat&quot;)  &#x21d2; <tt>void</tt> 
+    .<strong>save</strong>(filename = &quot;#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.dat&quot;)  &#x21d2; <tt>Boolean</tt> 
   
 
   
@@ -6007,7 +5988,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
+    
 <p>Saves the current map data to a DAT file.</p>
 
 
@@ -6030,13 +6011,31 @@
       
         &mdash;
         <div class='inline'>
-<p>The filename to save to (default: “#DATA_DIR/#XMLData.game/map-#Time.now.to_i.dat”).</p>
+<p>The filename to save to.</p>
 </div>
       
     </li>
   
 </ul>
 
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>True if the save operation was successful.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -6044,10 +6043,6 @@
       <pre class="lines">
 
 
-619
-620
-621
-622
 623
 624
 625
@@ -6065,10 +6060,14 @@
 637
 638
 639
-640</pre>
+640
+641
+642
+643
+644</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 619</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 623</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>DATA_DIR</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span><span class='embexpr_end'>}</span><span class='tstring_content'>/map-</span><span class='embexpr_beg'>#{</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='embexpr_end'>}</span><span class='tstring_content'>.dat</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
@@ -6100,7 +6099,7 @@
       <div class="method_details ">
   <h3 class="signature " id="save_json-class_method">
   
-    .<strong>save_json</strong>(filename = &quot;#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.json&quot;)  &#x21d2; <tt>void</tt> 
+    .<strong>save_json</strong>(filename = &quot;#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.json&quot;)  &#x21d2; <tt>Boolean</tt> 
   
 
   
@@ -6108,7 +6107,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
+    
 <p>Saves the current map data to a JSON file.</p>
 
 
@@ -6131,13 +6130,31 @@
       
         &mdash;
         <div class='inline'>
-<p>The filename to save to (default: “#DATA_DIR/#XMLData.game/map-#Time.now.to_i.json”).</p>
+<p>The filename to save to.</p>
 </div>
       
     </li>
   
 </ul>
 
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>True if the save operation was successful.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -6145,7 +6162,6 @@
       <pre class="lines">
 
 
-677
 678
 679
 680
@@ -6163,10 +6179,11 @@
 692
 693
 694
-695</pre>
+695
+696</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 677</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 678</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_save_json'>save_json</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>DATA_DIR</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span><span class='embexpr_end'>}</span><span class='tstring_content'>/map-</span><span class='embexpr_beg'>#{</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='embexpr_end'>}</span><span class='tstring_content'>.json</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
@@ -6195,7 +6212,7 @@
       <div class="method_details ">
   <h3 class="signature " id="save_xml-class_method">
   
-    .<strong>save_xml</strong>(filename = &quot;#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.xml&quot;)  &#x21d2; <tt>void</tt> 
+    .<strong>save_xml</strong>(filename = &quot;#{DATA_DIR}/#{XMLData.game}/map-#{Time.now.to_i}.xml&quot;)  &#x21d2; <tt>Boolean</tt> 
   
 
   
@@ -6203,7 +6220,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
+    
 <p>Saves the current map data to an XML file.</p>
 
 
@@ -6226,13 +6243,31 @@
       
         &mdash;
         <div class='inline'>
-<p>The filename to save to (default: “#DATA_DIR/#XMLData.game/map-#Time.now.to_i.xml”).</p>
+<p>The filename to save to.</p>
 </div>
       
     </li>
   
 </ul>
 
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>True if the save operation was successful.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -6240,7 +6275,6 @@
       <pre class="lines">
 
 
-700
 701
 702
 703
@@ -6308,10 +6342,11 @@
 765
 766
 767
-768</pre>
+768
+769</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 700</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 701</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_save_xml'>save_xml</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>DATA_DIR</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span><span class='embexpr_end'>}</span><span class='tstring_content'>/map-</span><span class='embexpr_beg'>#{</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='embexpr_end'>}</span><span class='tstring_content'>.xml</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
@@ -6399,7 +6434,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Sets the current map room.</p>
+<p>Sets the current room based on the given ID.</p>
 
 
   </div>
@@ -6438,7 +6473,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The newly set current map room or nil if not found.</p>
+<p>The room if found, nil otherwise.</p>
 </div>
       
     </li>
@@ -6451,15 +6486,15 @@
       <pre class="lines">
 
 
-303
 304
 305
 306
 307
-308</pre>
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 303</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 304</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_current'>set_current</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span> <span class='comment'># returns Map/Room
 </span>  <span class='cvar'>@@previous_room_id</span> <span class='op'>=</span> <span class='cvar'>@@current_room_id</span> <span class='kw'>if</span> <span class='id identifier rubyid_id'>id</span> <span class='op'>!=</span> <span class='cvar'>@@current_room_id</span><span class='semicolon'>;</span>
@@ -6484,7 +6519,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Sets a fuzzy current room ID.</p>
+<p>Sets the fuzzy room based on the given ID.</p>
 
 
   </div>
@@ -6504,7 +6539,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The ID of the room to set as fuzzy current.</p>
+<p>The ID of the room to set as fuzzy.</p>
 </div>
       
     </li>
@@ -6523,7 +6558,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The newly set fuzzy current map room or nil if not found.</p>
+<p>The room if found, nil otherwise.</p>
 </div>
       
     </li>
@@ -6536,15 +6571,15 @@
       <pre class="lines">
 
 
-138
 139
 140
 141
 142
-143</pre>
+143
+144</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 138</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 139</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_fuzzy'>set_fuzzy</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span> <span class='comment'># returns Map/Room
 </span>  <span class='cvar'>@@previous_room_id</span> <span class='op'>=</span> <span class='cvar'>@@current_room_id</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>and</span> <span class='id identifier rubyid_id'>id</span> <span class='op'>!=</span> <span class='cvar'>@@current_room_id</span><span class='semicolon'>;</span>
@@ -6569,7 +6604,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Retrieves unique tags from the map rooms.</p>
+<p>Gets the unique tags from all rooms.</p>
 
 
   </div>
@@ -6601,7 +6636,6 @@
       <pre class="lines">
 
 
-321
 322
 323
 324
@@ -6611,10 +6645,11 @@
 328
 329
 330
-331</pre>
+331
+332</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 321</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 322</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_tags'>tags</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Map.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -6650,7 +6685,27 @@
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>args</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Additional arguments for JSON generation.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -6676,13 +6731,13 @@
       <pre class="lines">
 
 
-645
-646
-647
-648</pre>
+649
+650
+651
+652</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 645</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 649</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='cvar'>@@list</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span> <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='rbrace'>}</span>
@@ -6705,7 +6760,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Retrieves the mapping of UIDs to room IDs.</p>
+<p>Gets the unique IDs mapping.</p>
 
 
   </div>
@@ -6760,7 +6815,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Adds a room ID to the list of IDs associated with a given UID.</p>
+<p>Adds a room ID to the UID mapping.</p>
 
 
   </div>
@@ -6780,7 +6835,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The UID to associate with.</p>
+<p>The UID to associate with a room ID.</p>
 </div>
       
     </li>
@@ -6796,7 +6851,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The room ID to add.</p>
+<p>The room ID to associate with the UID.</p>
 </div>
       
     </li>
@@ -6810,16 +6865,16 @@
       <pre class="lines">
 
 
-292
 293
 294
 295
 296
 297
-298</pre>
+298
+299</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 292</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 293</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_uids_add'>uids_add</span><span class='lparen'>(</span><span class='id identifier rubyid_uid'>uid</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='op'>!</span><span class='cvar'>@@uids</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_uid'>uid</span><span class='rparen'>)</span>
@@ -6868,53 +6923,24 @@
       <div class="method_details first">
   <h3 class="signature first" id="desc-instance_method">
   
-    #<strong>desc</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>desc</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the description of the room.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The description of the room.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-1000
-1001
-1002</pre>
+1015
+1016
+1017</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 1000</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 1015</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_desc'>desc</span>
   <span class='ivar'>@description</span>
@@ -6927,123 +6953,18 @@
       <div class="method_details ">
   <h3 class="signature " id="dijkstra-instance_method">
   
-    #<strong>dijkstra</strong>(destination = nil)  &#x21d2; <tt>Array&lt;Integer&gt;</tt>, <tt>Array&lt;Float&gt;</tt> 
+    #<strong>dijkstra</strong>(destination = nil)  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Performs Dijkstra’s algorithm for the current room.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>destination</span>
-      
-      
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>nil</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The destination room ID (default: nil).</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array&lt;Integer&gt;</tt>, <tt>Array&lt;Float&gt;</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The previous room IDs and shortest distances.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-813
-814
-815
-816
-817
-818
-819
-820
-821
-822
-823
-824
-825
-826
-827
-828
-829
-830
-831
-832
-833
-834
-835
-836
-837
-838
-839
-840
-841
-842
-843
-844
-845
-846
-847
-848
-849
-850
-851
-852
-853
-854
-855
-856
-857
-858
-859
-860
-861
-862
-863
-864
-865
-866
 867
 868
 869
@@ -7088,107 +7009,101 @@
 908
 909
 910
-911</pre>
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 813</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 867</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dijkstra'>dijkstra</span><span class='lparen'>(</span><span class='id identifier rubyid_destination'>destination</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>begin</span>
     <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Map.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
     <span class='id identifier rubyid_source'>source</span> <span class='op'>=</span> <span class='ivar'>@id</span>
-    <span class='id identifier rubyid_visited'>visited</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-    <span class='id identifier rubyid_shortest_distances'>shortest_distances</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-    <span class='id identifier rubyid_previous'>previous</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-    <span class='id identifier rubyid_pq'>pq</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_source'>source</span><span class='rbracket'>]</span>
-    <span class='id identifier rubyid_pq_push'>pq_push</span> <span class='op'>=</span> <span class='id identifier rubyid_proc'>proc</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_val'>val</span><span class='op'>|</span>
-      <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_pq'>pq</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
-        <span class='kw'>if</span> <span class='id identifier rubyid_shortest_distances'>shortest_distances</span><span class='lbracket'>[</span><span class='id identifier rubyid_val'>val</span><span class='rbracket'>]</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_shortest_distances'>shortest_distances</span><span class='lbracket'>[</span><span class='id identifier rubyid_pq'>pq</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='rbracket'>]</span>
-          <span class='id identifier rubyid_pq'>pq</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
-          <span class='kw'>break</span>
+    <span class='id identifier rubyid_visited'>visited</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='id identifier rubyid_shortest_distances_hash'>shortest_distances_hash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='id identifier rubyid_previous_hash'>previous_hash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+
+    <span class='id identifier rubyid_pq'>pq</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Map/MinHeap.html" title="Lich::Common::Map::MinHeap (class)">MinHeap</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Map/MinHeap.html#initialize-instance_method" title="Lich::Common::Map::MinHeap#initialize (method)">new</a></span></span>
+    <span class='id identifier rubyid_pq'>pq</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_source'>source</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_shortest_distances_hash'>shortest_distances_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_source'>source</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>0</span>
+
+    <span class='comment'># Early termination check
+</span>    <span class='id identifier rubyid_check_destination'>check_destination</span> <span class='op'>=</span> <span class='id identifier rubyid_proc'>proc</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_dist'>dist</span><span class='op'>|</span>
+      <span class='kw'>case</span> <span class='id identifier rubyid_destination'>destination</span>
+      <span class='kw'>when</span> <span class='const'>Integer</span>
+        <span class='id identifier rubyid_v'>v</span> <span class='op'>==</span> <span class='id identifier rubyid_destination'>destination</span>
+      <span class='kw'>when</span> <span class='const'>Array</span>
+        <span class='id identifier rubyid_destination'>destination</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_dist'>dist</span> <span class='op'>&lt;</span> <span class='int'>20</span>
+      <span class='kw'>else</span>
+        <span class='kw'>false</span>
+      <span class='kw'>end</span>
+    <span class='rbrace'>}</span>
+
+    <span class='kw'>until</span> <span class='id identifier rubyid_pq'>pq</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+      <span class='id identifier rubyid_current_dist'>current_dist</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_pq'>pq</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span>
+
+      <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_visited'>visited</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span>
+      <span class='kw'>break</span> <span class='kw'>if</span> <span class='id identifier rubyid_check_destination'>check_destination</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_current_dist'>current_dist</span><span class='rparen'>)</span>
+
+      <span class='id identifier rubyid_visited'>visited</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>true</span>
+
+      <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_wayto'>wayto</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_adj_room'>adj_room</span><span class='op'>|</span>
+        <span class='id identifier rubyid_adj_room_i'>adj_room_i</span> <span class='op'>=</span> <span class='id identifier rubyid_adj_room'>adj_room</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+        <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_visited'>visited</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span>
+
+        <span class='id identifier rubyid_edge_weight'>edge_weight</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_timeto'>timeto</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room'>adj_room</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="StringProc.html" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='rparen'>)</span>
+                        <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_timeto'>timeto</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room'>adj_room</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span>
+                      <span class='kw'>else</span>
+                        <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_timeto'>timeto</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room'>adj_room</span><span class='rbracket'>]</span>
+                      <span class='kw'>end</span>
+
+        <span class='kw'>next</span> <span class='kw'>unless</span> <span class='id identifier rubyid_edge_weight'>edge_weight</span>
+
+        <span class='id identifier rubyid_new_distance'>new_distance</span> <span class='op'>=</span> <span class='id identifier rubyid_current_dist'>current_dist</span> <span class='op'>+</span> <span class='id identifier rubyid_edge_weight'>edge_weight</span>
+
+        <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_shortest_distances_hash'>shortest_distances_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_shortest_distances_hash'>shortest_distances_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_new_distance'>new_distance</span>
+          <span class='id identifier rubyid_shortest_distances_hash'>shortest_distances_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_new_distance'>new_distance</span>
+          <span class='id identifier rubyid_previous_hash'>previous_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span>
+          <span class='id identifier rubyid_pq'>pq</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_new_distance'>new_distance</span><span class='comma'>,</span> <span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rparen'>)</span>
         <span class='kw'>end</span>
       <span class='kw'>end</span>
-      <span class='id identifier rubyid_pq'>pq</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span> <span class='op'>==</span> <span class='id identifier rubyid_pq'>pq</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span>
-    <span class='rbrace'>}</span>
-    <span class='id identifier rubyid_visited'>visited</span><span class='lbracket'>[</span><span class='id identifier rubyid_source'>source</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>true</span>
-    <span class='id identifier rubyid_shortest_distances'>shortest_distances</span><span class='lbracket'>[</span><span class='id identifier rubyid_source'>source</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>0</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_destination'>destination</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-      <span class='kw'>until</span> <span class='id identifier rubyid_pq'>pq</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>0</span>
-        <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_pq'>pq</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span>
-        <span class='id identifier rubyid_visited'>visited</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>true</span>
-        <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_wayto'>wayto</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_adj_room'>adj_room</span><span class='op'>|</span>
-          <span class='id identifier rubyid_adj_room_i'>adj_room_i</span> <span class='op'>=</span> <span class='id identifier rubyid_adj_room'>adj_room</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
-          <span class='kw'>unless</span> <span class='id identifier rubyid_visited'>visited</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span>
-            <span class='kw'>if</span> <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_timeto'>timeto</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room'>adj_room</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="StringProc.html" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='rparen'>)</span>
-              <span class='id identifier rubyid_nd'>nd</span> <span class='op'>=</span> <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_timeto'>timeto</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room'>adj_room</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span>
-            <span class='kw'>else</span>
-              <span class='id identifier rubyid_nd'>nd</span> <span class='op'>=</span> <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_timeto'>timeto</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room'>adj_room</span><span class='rbracket'>]</span>
-            <span class='kw'>end</span>
-            <span class='kw'>if</span> <span class='id identifier rubyid_nd'>nd</span>
-              <span class='id identifier rubyid_nd'>nd</span> <span class='op'>+=</span> <span class='id identifier rubyid_shortest_distances'>shortest_distances</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span>
-              <span class='kw'>if</span> <span class='id identifier rubyid_shortest_distances'>shortest_distances</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='lparen'>(</span><span class='id identifier rubyid_shortest_distances'>shortest_distances</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_nd'>nd</span><span class='rparen'>)</span>
-                <span class='id identifier rubyid_shortest_distances'>shortest_distances</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_nd'>nd</span>
-                <span class='id identifier rubyid_previous'>previous</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span>
-                <span class='id identifier rubyid_pq_push'>pq_push</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rparen'>)</span>
-              <span class='kw'>end</span>
-            <span class='kw'>end</span>
-          <span class='kw'>end</span>
-        <span class='rbrace'>}</span>
-      <span class='kw'>end</span>
-    <span class='kw'>elsif</span> <span class='id identifier rubyid_destination'>destination</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Integer</span><span class='rparen'>)</span>
-      <span class='kw'>until</span> <span class='id identifier rubyid_pq'>pq</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>0</span>
-        <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_pq'>pq</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span>
-        <span class='kw'>break</span> <span class='kw'>if</span> <span class='id identifier rubyid_v'>v</span> <span class='op'>==</span> <span class='id identifier rubyid_destination'>destination</span>
-        <span class='id identifier rubyid_visited'>visited</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>true</span>
-        <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_wayto'>wayto</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_adj_room'>adj_room</span><span class='op'>|</span>
-          <span class='id identifier rubyid_adj_room_i'>adj_room_i</span> <span class='op'>=</span> <span class='id identifier rubyid_adj_room'>adj_room</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
-          <span class='kw'>unless</span> <span class='id identifier rubyid_visited'>visited</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span>
-            <span class='kw'>if</span> <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_timeto'>timeto</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room'>adj_room</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="StringProc.html" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='rparen'>)</span>
-              <span class='id identifier rubyid_nd'>nd</span> <span class='op'>=</span> <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_timeto'>timeto</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room'>adj_room</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span>
-            <span class='kw'>else</span>
-              <span class='id identifier rubyid_nd'>nd</span> <span class='op'>=</span> <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_timeto'>timeto</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room'>adj_room</span><span class='rbracket'>]</span>
-            <span class='kw'>end</span>
-            <span class='kw'>if</span> <span class='id identifier rubyid_nd'>nd</span>
-              <span class='id identifier rubyid_nd'>nd</span> <span class='op'>+=</span> <span class='id identifier rubyid_shortest_distances'>shortest_distances</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span>
-              <span class='kw'>if</span> <span class='id identifier rubyid_shortest_distances'>shortest_distances</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='lparen'>(</span><span class='id identifier rubyid_shortest_distances'>shortest_distances</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_nd'>nd</span><span class='rparen'>)</span>
-                <span class='id identifier rubyid_shortest_distances'>shortest_distances</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_nd'>nd</span>
-                <span class='id identifier rubyid_previous'>previous</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span>
-                <span class='id identifier rubyid_pq_push'>pq_push</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rparen'>)</span>
-              <span class='kw'>end</span>
-            <span class='kw'>end</span>
-          <span class='kw'>end</span>
-        <span class='rbrace'>}</span>
-      <span class='kw'>end</span>
-    <span class='kw'>elsif</span> <span class='id identifier rubyid_destination'>destination</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_dest_list'>dest_list</span> <span class='op'>=</span> <span class='id identifier rubyid_destination'>destination</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_dest'>dest</span><span class='op'>|</span> <span class='id identifier rubyid_dest'>dest</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='rbrace'>}</span>
-      <span class='kw'>until</span> <span class='id identifier rubyid_pq'>pq</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>0</span>
-        <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_pq'>pq</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span>
-        <span class='kw'>break</span> <span class='kw'>if</span> <span class='id identifier rubyid_dest_list'>dest_list</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='lparen'>(</span><span class='id identifier rubyid_shortest_distances'>shortest_distances</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span> <span class='op'>&lt;</span> <span class='int'>20</span><span class='rparen'>)</span>
-        <span class='id identifier rubyid_visited'>visited</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>true</span>
-        <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_wayto'>wayto</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_adj_room'>adj_room</span><span class='op'>|</span>
-          <span class='id identifier rubyid_adj_room_i'>adj_room_i</span> <span class='op'>=</span> <span class='id identifier rubyid_adj_room'>adj_room</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
-          <span class='kw'>unless</span> <span class='id identifier rubyid_visited'>visited</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span>
-            <span class='kw'>if</span> <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_timeto'>timeto</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room'>adj_room</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="StringProc.html" title="Lich::Common::StringProc (class)">StringProc</a></span></span><span class='rparen'>)</span>
-              <span class='id identifier rubyid_nd'>nd</span> <span class='op'>=</span> <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_timeto'>timeto</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room'>adj_room</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span>
-            <span class='kw'>else</span>
-              <span class='id identifier rubyid_nd'>nd</span> <span class='op'>=</span> <span class='cvar'>@@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_timeto'>timeto</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room'>adj_room</span><span class='rbracket'>]</span>
-            <span class='kw'>end</span>
-            <span class='kw'>if</span> <span class='id identifier rubyid_nd'>nd</span>
-              <span class='id identifier rubyid_nd'>nd</span> <span class='op'>+=</span> <span class='id identifier rubyid_shortest_distances'>shortest_distances</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span>
-              <span class='kw'>if</span> <span class='id identifier rubyid_shortest_distances'>shortest_distances</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='lparen'>(</span><span class='id identifier rubyid_shortest_distances'>shortest_distances</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_nd'>nd</span><span class='rparen'>)</span>
-                <span class='id identifier rubyid_shortest_distances'>shortest_distances</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_nd'>nd</span>
-                <span class='id identifier rubyid_previous'>previous</span><span class='lbracket'>[</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span>
-                <span class='id identifier rubyid_pq_push'>pq_push</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_adj_room_i'>adj_room_i</span><span class='rparen'>)</span>
-              <span class='kw'>end</span>
-            <span class='kw'>end</span>
-          <span class='kw'>end</span>
-        <span class='rbrace'>}</span>
-      <span class='kw'>end</span>
     <span class='kw'>end</span>
+
+    <span class='comment'># Convert hashes back to arrays for backward compatibility
+</span>    <span class='id identifier rubyid_max_room_id'>max_room_id</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_previous_hash'>previous_hash</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span><span class='comma'>,</span> <span class='id identifier rubyid_shortest_distances_hash'>shortest_distances_hash</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span> <span class='op'>||</span> <span class='int'>0</span>
+    <span class='id identifier rubyid_previous'>previous</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_max_room_id'>max_room_id</span> <span class='op'>+</span> <span class='int'>1</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_shortest_distances'>shortest_distances</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_max_room_id'>max_room_id</span> <span class='op'>+</span> <span class='int'>1</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_previous_hash'>previous_hash</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span> <span class='id identifier rubyid_previous'>previous</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_shortest_distances_hash'>shortest_distances_hash</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span> <span class='id identifier rubyid_shortest_distances'>shortest_distances</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span> <span class='rbrace'>}</span>
+
     <span class='kw'>return</span> <span class='id identifier rubyid_previous'>previous</span><span class='comma'>,</span> <span class='id identifier rubyid_shortest_distances'>shortest_distances</span>
-  <span class='kw'>rescue</span>
-    <span class='id identifier rubyid_echo'><span class='object_link'><a href="../../top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Map.dijkstra: error: </span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='gvar'>$!</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span>
+  <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
+    <span class='id identifier rubyid_echo'><span class='object_link'><a href="../../top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Map.dijkstra: error: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span>
     <span class='kw'>nil</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -7261,16 +7176,16 @@
       <pre class="lines">
 
 
-961
-962
-963
-964
-965
-966
-967</pre>
+985
+986
+987
+988
+989
+990
+991</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 961</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 985</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_find_all_nearest_by_tag'>find_all_nearest_by_tag</span><span class='lparen'>(</span><span class='id identifier rubyid_tag_name'>tag_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_target_list'>target_list</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -7348,19 +7263,19 @@
       <pre class="lines">
 
 
-972
-973
-974
-975
-976
-977
-978
-979
-980
-981</pre>
+996
+997
+998
+999
+1000
+1001
+1002
+1003
+1004
+1005</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 972</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 996</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_find_nearest'>find_nearest</span><span class='lparen'>(</span><span class='id identifier rubyid_target_list'>target_list</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_target_list'>target_list</span> <span class='op'>=</span> <span class='id identifier rubyid_target_list'>target_list</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_num'>num</span><span class='op'>|</span> <span class='id identifier rubyid_num'>num</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='rbrace'>}</span>
@@ -7441,20 +7356,20 @@
       <pre class="lines">
 
 
-946
-947
-948
-949
-950
-951
-952
-953
-954
-955
-956</pre>
+970
+971
+972
+973
+974
+975
+976
+977
+978
+979
+980</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 946</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 970</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_find_nearest_by_tag'>find_nearest_by_tag</span><span class='lparen'>(</span><span class='id identifier rubyid_tag_name'>tag_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_target_list'>target_list</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -7475,33 +7390,7 @@
       <div class="method_details ">
   <h3 class="signature " id="fuzzy_room_id-instance_method">
   
-    #<strong>fuzzy_room_id</strong>  &#x21d2; <tt>Object</tt> 
-  
-
-  
-
-  
-</h3><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-69</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_gs.rb', line 69</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_fuzzy_room_id'>fuzzy_room_id</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='cvar'>@@current_room_id</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="geo-instance_method">
-  
-    #<strong>geo</strong>  &#x21d2; <tt>nil</tt> 
+    #<strong>fuzzy_room_id</strong>  &#x21d2; <tt>Integer</tt> 
   
 
   
@@ -7510,7 +7399,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns geographical information for the room.</p>
+<p>Gets the fuzzy room ID.</p>
 
 
   </div>
@@ -7523,13 +7412,13 @@
     <li>
       
       
-        <span class='type'>(<tt>nil</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Always returns nil.</p>
+<p>The fuzzy room ID.</p>
 </div>
       
     </li>
@@ -7542,12 +7431,38 @@
       <pre class="lines">
 
 
-1042
-1043
-1044</pre>
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 1042</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_gs.rb', line 67</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fuzzy_room_id'>fuzzy_room_id</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='cvar'>@@current_room_id</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="geo-instance_method">
+  
+    #<strong>geo</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1047
+1048
+1049</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 1047</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_geo'>geo</span>
   <span class='kw'>nil</span>
@@ -7569,7 +7484,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Inspects the map room, showing its instance variables.</p>
+<p>Inspects the room object.</p>
 
 
   </div>
@@ -7588,7 +7503,7 @@
       
         &mdash;
         <div class='inline'>
-<p>A string representation of the room’s instance variables.</p>
+<p>A string containing the instance variables and their values.</p>
 </div>
       
     </li>
@@ -7601,12 +7516,12 @@
       <pre class="lines">
 
 
-61
-62
-63</pre>
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_gs.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inspect'>inspect</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_instance_variables'>instance_variables</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_var'>var</span><span class='op'>|</span> <span class='id identifier rubyid_var'>var</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_instance_variable_get'>instance_variable_get</span><span class='lparen'>(</span><span class='id identifier rubyid_var'>var</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -7619,53 +7534,24 @@
       <div class="method_details ">
   <h3 class="signature " id="map_name-instance_method">
   
-    #<strong>map_name</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>map_name</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the name of the map.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The name of the map.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-1006
-1007
-1008</pre>
+1019
+1020
+1021</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 1006</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 1019</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_map_name'>map_name</span>
   <span class='ivar'>@image</span>
@@ -7678,57 +7564,28 @@
       <div class="method_details ">
   <h3 class="signature " id="map_roomsize-instance_method">
   
-    #<strong>map_roomsize</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    #<strong>map_roomsize</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the size of the room based on image coordinates.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The size of the room or nil if not set.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-1032
-1033
-1034
-1035
-1036
-1037
-1038</pre>
+1039
+1040
+1041
+1042
+1043
+1044
+1045</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 1032</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 1039</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_map_roomsize'>map_roomsize</span>
   <span class='kw'>if</span> <span class='ivar'>@image_coords</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -7745,57 +7602,28 @@
       <div class="method_details ">
   <h3 class="signature " id="map_x-instance_method">
   
-    #<strong>map_x</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    #<strong>map_x</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the X coordinate of the map image.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The X coordinate or nil if not set.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-1012
-1013
-1014
-1015
-1016
-1017
-1018</pre>
+1023
+1024
+1025
+1026
+1027
+1028
+1029</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 1012</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 1023</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_map_x'>map_x</span>
   <span class='kw'>if</span> <span class='ivar'>@image_coords</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -7812,57 +7640,28 @@
       <div class="method_details ">
   <h3 class="signature " id="map_y-instance_method">
   
-    #<strong>map_y</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    #<strong>map_y</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the Y coordinate of the map image.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The Y coordinate or nil if not set.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-1022
-1023
-1024
-1025
-1026
-1027
-1028</pre>
+1031
+1032
+1033
+1034
+1035
+1036
+1037</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 1022</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 1031</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_map_y'>map_y</span>
   <span class='kw'>if</span> <span class='ivar'>@image_coords</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -7888,7 +7687,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if the current room is outside.</p>
+<p>Checks if the room is outside.</p>
 
 
   </div>
@@ -7920,10 +7719,10 @@
       <pre class="lines">
 
 
-72</pre>
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_gs.rb', line 72</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_gs.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_outside?'><span class='object_link'><a href="../../top-level-namespace.html#outside%3F-instance_method" title="#outside? (method)">outside?</a></span></span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='ivar'>@paths</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Obvious paths:</span><span class='regexp_end'>/</span></span> <span class='op'>?</span> <span class='kw'>true</span> <span class='op'>:</span> <span class='kw'>false</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -7943,7 +7742,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Finds a path to a specified destination.</p>
+<p>Finds the path to a destination room.</p>
 
 
   </div>
@@ -7982,7 +7781,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The path as an array of room IDs or nil if no path found.</p>
+<p>The path as an array of room IDs or nil if not found.</p>
 </div>
       
     </li>
@@ -7995,20 +7794,20 @@
       <pre class="lines">
 
 
-931
-932
-933
-934
-935
-936
-937
-938
-939
-940
-941</pre>
+955
+956
+957
+958
+959
+960
+961
+962
+963
+964
+965</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 931</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 955</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_path_to'>path_to</span><span class='lparen'>(</span><span class='id identifier rubyid_destination'>destination</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="" title="Lich::Common::Map (class)">Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="#load-class_method" title="Lich::Common::Map.load (method)">load</a></span></span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -8038,7 +7837,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Converts the map room to an integer ID.</p>
+<p>Converts the room to an integer ID.</p>
 
 
   </div>
@@ -8070,12 +7869,12 @@
       <pre class="lines">
 
 
-49
-50
-51</pre>
+52
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_i'>to_i</span>
   <span class='ivar'>@id</span>
@@ -8103,7 +7902,27 @@
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>args</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Additional arguments for JSON generation.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -8129,29 +7948,29 @@
       <pre class="lines">
 
 
-653
-654
-655
-656
-657
-658
-659
-660
-661
-662
-663
-664
-665
-666
-667
-668
-669
-670
-671
-672</pre>
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 653</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_gs.rb', line 816</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_json'>to_json</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid__args'>_args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_mapjson'>mapjson</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='lbrace'>{</span>
@@ -8190,7 +8009,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Converts the map room to a string representation.</p>
+<p>Converts the room to a string representation.</p>
 
 
   </div>
@@ -8209,7 +8028,7 @@
       
         &mdash;
         <div class='inline'>
-<p>A string describing the room.</p>
+<p>A string representation of the room.</p>
 </div>
       
     </li>
@@ -8222,12 +8041,12 @@
       <pre class="lines">
 
 
-55
-56
-57</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#</span><span class='embexpr_beg'>#{</span><span class='ivar'>@id</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uid</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>):\n</span><span class='embexpr_beg'>#{</span><span class='ivar'>@title</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n</span><span class='embexpr_beg'>#{</span><span class='ivar'>@description</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n</span><span class='embexpr_beg'>#{</span><span class='ivar'>@paths</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -8242,9 +8061,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 23 03:17:27 2025 by
+  Generated on Tue Jan 13 02:35:14 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.2.9).
+  0.9.38 (ruby-3.2.9).
 </div>
 
     </div>

@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Lich::Common::GUI::ConversionUI
+  
+    &mdash; Lich 5 Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Lich::Common::GUI::ConversionUI";
+  relpath = '../../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../../_index.html">Index (C)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span>
+     &raquo; 
+    <span class="title">ConversionUI</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Lich::Common::GUI::ConversionUI
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>documented/common/gui/conversion_ui.rb</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#conversion_needed%3F-class_method" title="conversion_needed? (class method)">.<strong>conversion_needed?</strong>(data_dir)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if data conversion is needed based on the presence of entry.dat and entry.yaml files.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#show_conversion_dialog-class_method" title="show_conversion_dialog (class method)">.<strong>show_conversion_dialog</strong>(parent, data_dir, on_conversion_complete)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Displays a dialog for data conversion with options for encryption mode.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="conversion_needed?-class_method">
+  
+    .<strong>conversion_needed?</strong>(data_dir)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>This method assumes that the data directory is valid.</p>
+</div>
+  </div>
+
+
+<p>Checks if data conversion is needed based on the presence of entry.dat and entry.yaml files.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>data_dir</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The directory containing the data files.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Returns true if conversion is needed, false otherwise.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15
+16
+17
+18
+19</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/conversion_ui.rb', line 13</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_conversion_needed?'>conversion_needed?</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_dat_file'>dat_file</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>entry.dat</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_yml_file'>yml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="YamlState.html#yaml_file_path-class_method" title="Lich::Common::GUI::YamlState.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+
+  <span class='comment'># TODO: need a guard for new installs with no dat_file
+</span>  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_dat_file'>dat_file</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_yml_file'>yml_file</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="show_conversion_dialog-class_method">
+  
+    .<strong>show_conversion_dialog</strong>(parent, data_dir, on_conversion_complete)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Displays a dialog for data conversion with options for encryption mode.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_show_conversion_dialog'>show_conversion_dialog</span><span class='lparen'>(</span><span class='id identifier rubyid_parent_window'>parent_window</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Conversion done!</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>parent</span>
+      
+      
+        <span class='type'>(<tt>Gtk::Window</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The parent window for the dialog.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>data_dir</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The directory containing the data files.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>on_conversion_complete</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A callback to be executed when conversion is complete.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Raises an error if the dialog cannot be displayed.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/conversion_ui.rb', line 29</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_show_conversion_dialog'>show_conversion_dialog</span><span class='lparen'>(</span><span class='id identifier rubyid_parent'>parent</span><span class='comma'>,</span> <span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_on_conversion_complete'>on_conversion_complete</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_has_keychain'>has_keychain</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="MasterPasswordManager.html" title="Lich::Common::GUI::MasterPasswordManager (module)">MasterPasswordManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_keychain_available?'><span class='object_link'><a href="MasterPasswordManager.html#keychain_available%3F-class_method" title="Lich::Common::GUI::MasterPasswordManager.keychain_available? (method)">keychain_available?</a></span></span>
+
+  <span class='comment'># Create dialog
+</span>  <span class='id identifier rubyid_dialog'>dialog</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Dialog</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+    <span class='label'>title:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Data Conversion Required</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='label'>parent:</span> <span class='id identifier rubyid_parent'>parent</span><span class='comma'>,</span>
+    <span class='label'>flags:</span> <span class='symbol'>:modal</span><span class='comma'>,</span>
+    <span class='label'>buttons:</span> <span class='lbracket'>[</span>
+      <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cancel</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ResponseType</span><span class='op'>::</span><span class='const'>CANCEL</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Convert Data</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ResponseType</span><span class='op'>::</span><span class='const'>APPLY</span><span class='rbracket'>]</span>
+    <span class='rbracket'>]</span>
+  <span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_set_default_size'>set_default_size</span><span class='lparen'>(</span><span class='int'>500</span><span class='comma'>,</span> <span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_border_width'>border_width</span> <span class='op'>=</span> <span class='int'>10</span>
+
+  <span class='comment'># Set accessible properties for screen readers
+</span>  <span class='const'><span class='object_link'><a href="Accessibility.html" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_window_accessible'><span class='object_link'><a href="Accessibility.html#make_window_accessible-class_method" title="Lich::Common::GUI::Accessibility.make_window_accessible (method)">make_window_accessible</a></span></span><span class='lparen'>(</span>
+    <span class='id identifier rubyid_dialog'>dialog</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Data Conversion Dialog</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Dialog for converting entry.dat to entry.yaml format with encryption mode selection</span><span class='tstring_end'>&quot;</span></span>
+  <span class='rparen'>)</span>
+
+  <span class='comment'># Create content area
+</span>  <span class='id identifier rubyid_content_area'>content_area</span> <span class='op'>=</span> <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_content_area'>content_area</span>
+  <span class='id identifier rubyid_content_area'>content_area</span><span class='period'>.</span><span class='id identifier rubyid_spacing'>spacing</span> <span class='op'>=</span> <span class='int'>10</span>
+
+  <span class='comment'># Add explanatory text
+</span>  <span class='id identifier rubyid_header_label'>header_label</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_info_label'>info_label</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_header_label'>header_label</span><span class='period'>.</span><span class='id identifier rubyid_set_markup'>set_markup</span><span class='lparen'>(</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;span size=&#39;x-large&#39;&gt;Saved Entries Data Conversion\n\n&lt;/span&gt;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='rparen'>)</span>
+
+  <span class='comment'># Build info text - only show entry.dat info if it still exists (not yet converted)
+</span>  <span class='id identifier rubyid_info_text'>info_text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;span size=&#39;large&#39;&gt;Your existing saved entries data will be converted to a new format. This is a one-time process and your original saved entries data will be retained unmodified.</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='comment'># Only show entry.dat file info if conversion hasn&#39;t happened yet
+</span>  <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="YamlState.html#yaml_file_path-class_method" title="Lich::Common::GUI::YamlState.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='const'>DATA_DIR</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_info_text'>info_text</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n\nExisting:\t\t</span><span class='embexpr_beg'>#{</span><span class='const'>DATA_DIR</span><span class='embexpr_end'>}</span><span class='tstring_content'>/entry.dat\n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+                 <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Converted:\t</span><span class='embexpr_beg'>#{</span><span class='const'>DATA_DIR</span><span class='embexpr_end'>}</span><span class='tstring_content'>/entry.yaml\n\n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+                 <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>entry.dat will no longer be used, and may be deleted at your convenience</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_info_text'>info_text</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;/span&gt;</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='id identifier rubyid_info_label'>info_label</span><span class='period'>.</span><span class='id identifier rubyid_set_markup'>set_markup</span><span class='lparen'>(</span><span class='id identifier rubyid_info_text'>info_text</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_header_label'>header_label</span><span class='period'>.</span><span class='id identifier rubyid_set_line_wrap'>set_line_wrap</span><span class='lparen'>(</span><span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_info_label'>info_label</span><span class='period'>.</span><span class='id identifier rubyid_set_line_wrap'>set_line_wrap</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_header_label'>header_label</span><span class='period'>.</span><span class='id identifier rubyid_set_justify'>set_justify</span><span class='lparen'>(</span><span class='symbol'>:center</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_info_label'>info_label</span><span class='period'>.</span><span class='id identifier rubyid_set_justify'>set_justify</span><span class='lparen'>(</span><span class='symbol'>:left</span><span class='rparen'>)</span>
+
+  <span class='comment'># Set accessible properties for screen readers
+</span>  <span class='const'><span class='object_link'><a href="Accessibility.html" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_accessible'><span class='object_link'><a href="Accessibility.html#make_accessible-class_method" title="Lich::Common::GUI::Accessibility.make_accessible (method)">make_accessible</a></span></span><span class='lparen'>(</span>
+    <span class='id identifier rubyid_info_label'>info_label</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Conversion Information</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Information about converting account data from entry.dat to entry.yaml format</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='symbol'>:label</span>
+  <span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_content_area'>content_area</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='id identifier rubyid_header_label'>header_label</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_content_area'>content_area</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='id identifier rubyid_info_label'>info_label</span><span class='rparen'>)</span>
+
+  <span class='comment'># Add encryption mode selection
+</span>  <span class='id identifier rubyid_mode_frame'>mode_frame</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Frame</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Select Password Security Mode</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_mode_frame'>mode_frame</span><span class='period'>.</span><span class='id identifier rubyid_border_width'>border_width</span> <span class='op'>=</span> <span class='int'>10</span>
+  <span class='id identifier rubyid_mode_box'>mode_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:vertical</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_mode_box'>mode_box</span><span class='period'>.</span><span class='id identifier rubyid_border_width'>border_width</span> <span class='op'>=</span> <span class='int'>10</span>
+  <span class='id identifier rubyid_mode_frame'>mode_frame</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='id identifier rubyid_mode_box'>mode_box</span><span class='rparen'>)</span>
+
+  <span class='comment'># Radio buttons for mode selection
+</span>  <span class='id identifier rubyid_plaintext_radio'>plaintext_radio</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>RadioButton</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Plaintext (no encryption - least secure)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_standard_radio'>standard_radio</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>RadioButton</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>member:</span> <span class='id identifier rubyid_plaintext_radio'>plaintext_radio</span><span class='comma'>,</span> <span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Standard Encryption (basic encryption)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_has_keychain'>has_keychain</span> <span class='comment'># Disable if keychain not present on system
+</span>    <span class='id identifier rubyid_enhanced_radio'>enhanced_radio</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>RadioButton</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>member:</span> <span class='id identifier rubyid_plaintext_radio'>plaintext_radio</span><span class='comma'>,</span> <span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Enhanced Encryption (Unavailable: No secure keychain found.)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Enhanced encryption mode disabled - Keychain tools not available on this system</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_enhanced_radio'>enhanced_radio</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>RadioButton</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>member:</span> <span class='id identifier rubyid_plaintext_radio'>plaintext_radio</span><span class='comma'>,</span> <span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Enhanced Encryption (recommended)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Set standard encryption as default
+</span>  <span class='id identifier rubyid_standard_radio'>standard_radio</span><span class='period'>.</span><span class='id identifier rubyid_active'>active</span> <span class='op'>=</span> <span class='kw'>true</span>
+
+  <span class='comment'># Set accessible properties
+</span>  <span class='const'><span class='object_link'><a href="Accessibility.html" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_accessible'><span class='object_link'><a href="Accessibility.html#make_accessible-class_method" title="Lich::Common::GUI::Accessibility.make_accessible (method)">make_accessible</a></span></span><span class='lparen'>(</span>
+    <span class='id identifier rubyid_plaintext_radio'>plaintext_radio</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Plaintext Mode</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Store passwords without encryption - not recommended</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='symbol'>:radio_button</span>
+  <span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Accessibility.html" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_accessible'><span class='object_link'><a href="Accessibility.html#make_accessible-class_method" title="Lich::Common::GUI::Accessibility.make_accessible (method)">make_accessible</a></span></span><span class='lparen'>(</span>
+    <span class='id identifier rubyid_standard_radio'>standard_radio</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Standard Encryption Mode</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Encrypt passwords using account name as encryption key</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='symbol'>:radio_button</span>
+  <span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Accessibility.html" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_accessible'><span class='object_link'><a href="Accessibility.html#make_accessible-class_method" title="Lich::Common::GUI::Accessibility.make_accessible (method)">make_accessible</a></span></span><span class='lparen'>(</span>
+    <span class='id identifier rubyid_enhanced_radio'>enhanced_radio</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Enhanced Encryption Mode</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Encrypt passwords using an enhanced method - most secure option</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='symbol'>:radio_button</span>
+  <span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_mode_box'>mode_box</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='id identifier rubyid_plaintext_radio'>plaintext_radio</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_mode_box'>mode_box</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='id identifier rubyid_standard_radio'>standard_radio</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_mode_box'>mode_box</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='id identifier rubyid_enhanced_radio'>enhanced_radio</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_content_area'>content_area</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='id identifier rubyid_mode_frame'>mode_frame</span><span class='rparen'>)</span>
+
+  <span class='comment'># Add progress bar (initially hidden)
+</span>  <span class='id identifier rubyid_progress_bar'>progress_bar</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ProgressBar</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_progress_bar'>progress_bar</span><span class='period'>.</span><span class='id identifier rubyid_visible'>visible</span> <span class='op'>=</span> <span class='kw'>false</span>
+
+  <span class='comment'># Set accessible properties for screen readers
+</span>  <span class='const'><span class='object_link'><a href="Accessibility.html" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_accessible'><span class='object_link'><a href="Accessibility.html#make_accessible-class_method" title="Lich::Common::GUI::Accessibility.make_accessible (method)">make_accessible</a></span></span><span class='lparen'>(</span>
+    <span class='id identifier rubyid_progress_bar'>progress_bar</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Conversion Progress</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Shows progress of the data conversion process</span><span class='tstring_end'>&quot;</span></span>
+  <span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_content_area'>content_area</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='id identifier rubyid_progress_bar'>progress_bar</span><span class='rparen'>)</span>
+
+  <span class='comment'># Add status label (initially hidden)
+</span>  <span class='id identifier rubyid_status_label'>status_label</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_status_label'>status_label</span><span class='period'>.</span><span class='id identifier rubyid_visible'>visible</span> <span class='op'>=</span> <span class='kw'>false</span>
+
+  <span class='comment'># Set accessible properties for screen readers
+</span>  <span class='const'><span class='object_link'><a href="Accessibility.html" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_accessible'><span class='object_link'><a href="Accessibility.html#make_accessible-class_method" title="Lich::Common::GUI::Accessibility.make_accessible (method)">make_accessible</a></span></span><span class='lparen'>(</span>
+    <span class='id identifier rubyid_status_label'>status_label</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Conversion Status</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Shows the current status of the conversion process</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='symbol'>:label</span>
+  <span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_content_area'>content_area</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='id identifier rubyid_status_label'>status_label</span><span class='rparen'>)</span>
+
+  <span class='comment'># Show all widgets
+</span>  <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_show_all'>show_all</span>
+
+  <span class='comment'># Set up response handler
+</span>  <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>response</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_dlg'>dlg</span><span class='comma'>,</span> <span class='id identifier rubyid_response'>response</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span> <span class='op'>==</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ResponseType</span><span class='op'>::</span><span class='const'>APPLY</span>
+      <span class='comment'># Determine selected mode
+</span>      <span class='id identifier rubyid_selected_mode'>selected_mode</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='id identifier rubyid_plaintext_radio'>plaintext_radio</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span>
+                        <span class='symbol'>:plaintext</span>
+                      <span class='kw'>elsif</span> <span class='id identifier rubyid_standard_radio'>standard_radio</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span>
+                        <span class='symbol'>:standard</span>
+                      <span class='kw'>else</span>
+                        <span class='symbol'>:enhanced</span> <span class='comment'># Default to enhanced if somehow neither plaintext nor standard
+</span>                      <span class='kw'>end</span>
+
+      <span class='comment'># Show warning for plaintext mode
+</span>      <span class='kw'>if</span> <span class='id identifier rubyid_selected_mode'>selected_mode</span> <span class='op'>==</span> <span class='symbol'>:plaintext</span>
+        <span class='id identifier rubyid_warning'>warning</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>MessageDialog</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+          <span class='label'>parent:</span> <span class='id identifier rubyid_dialog'>dialog</span><span class='comma'>,</span>
+          <span class='label'>flags:</span> <span class='symbol'>:modal</span><span class='comma'>,</span>
+          <span class='label'>type:</span> <span class='symbol'>:warning</span><span class='comma'>,</span>
+          <span class='label'>buttons:</span> <span class='symbol'>:ok_cancel</span><span class='comma'>,</span>
+          <span class='label'>message:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Encryption Warning</span><span class='tstring_end'>&quot;</span></span>
+        <span class='rparen'>)</span>
+        <span class='id identifier rubyid_warning'>warning</span><span class='period'>.</span><span class='id identifier rubyid_secondary_text'>secondary_text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You have selected plaintext mode. Your passwords will be stored WITHOUT encryption.\n\n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+                                 <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This is NOT recommended for password protection.\n\n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+                                 <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Are you sure you want to continue?</span><span class='tstring_end'>&quot;</span></span>
+
+        <span class='const'><span class='object_link'><a href="Accessibility.html" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_window_accessible'><span class='object_link'><a href="Accessibility.html#make_window_accessible-class_method" title="Lich::Common::GUI::Accessibility.make_window_accessible (method)">make_window_accessible</a></span></span><span class='lparen'>(</span>
+          <span class='id identifier rubyid_warning'>warning</span><span class='comma'>,</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Plaintext Warning</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Warning dialog about encryption risks of plaintext password storage</span><span class='tstring_end'>&quot;</span></span>
+        <span class='rparen'>)</span>
+
+        <span class='id identifier rubyid_warning_response'>warning_response</span> <span class='op'>=</span> <span class='id identifier rubyid_warning'>warning</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span>
+        <span class='id identifier rubyid_warning'>warning</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
+
+        <span class='comment'># If user cancels, skip to next iteration
+</span>        <span class='kw'>if</span> <span class='id identifier rubyid_warning_response'>warning_response</span> <span class='op'>!=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ResponseType</span><span class='op'>::</span><span class='const'>OK</span>
+          <span class='kw'>next</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+
+      <span class='comment'># Disable buttons during conversion
+</span>      <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_set_response_sensitive'>set_response_sensitive</span><span class='lparen'>(</span><span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ResponseType</span><span class='op'>::</span><span class='const'>CANCEL</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_set_response_sensitive'>set_response_sensitive</span><span class='lparen'>(</span><span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ResponseType</span><span class='op'>::</span><span class='const'>APPLY</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
+
+      <span class='comment'># Show progress bar and status
+</span>      <span class='id identifier rubyid_progress_bar'>progress_bar</span><span class='period'>.</span><span class='id identifier rubyid_visible'>visible</span> <span class='op'>=</span> <span class='kw'>true</span>
+      <span class='id identifier rubyid_status_label'>status_label</span><span class='period'>.</span><span class='id identifier rubyid_visible'>visible</span> <span class='op'>=</span> <span class='kw'>true</span>
+
+      <span class='comment'># Use a separate thread for conversion to keep UI responsive
+</span>      <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span>
+        <span class='kw'>begin</span>
+          <span class='comment'># Simulate progress (actual conversion is quick but we want to show progress)
+</span>          <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span> <span class='kw'>do</span>
+            <span class='id identifier rubyid_progress_bar'>progress_bar</span><span class='period'>.</span><span class='id identifier rubyid_fraction'>fraction</span> <span class='op'>=</span> <span class='float'>0.2</span>
+            <span class='id identifier rubyid_status_label'>status_label</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Reading existing data...</span><span class='tstring_end'>&quot;</span></span>
+          <span class='kw'>end</span>
+          <span class='id identifier rubyid_sleep'>sleep</span><span class='lparen'>(</span><span class='float'>0.5</span><span class='rparen'>)</span>
+
+          <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span> <span class='kw'>do</span>
+            <span class='id identifier rubyid_progress_bar'>progress_bar</span><span class='period'>.</span><span class='id identifier rubyid_fraction'>fraction</span> <span class='op'>=</span> <span class='float'>0.5</span>
+            <span class='id identifier rubyid_status_label'>status_label</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Converting data format...</span><span class='tstring_end'>&quot;</span></span>
+          <span class='kw'>end</span>
+          <span class='id identifier rubyid_sleep'>sleep</span><span class='lparen'>(</span><span class='float'>0.5</span><span class='rparen'>)</span>
+
+          <span class='comment'># Perform the actual conversion using existing method with selected mode
+</span>          <span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_migrate_from_legacy'><span class='object_link'><a href="YamlState.html#migrate_from_legacy-class_method" title="Lich::Common::GUI::YamlState.migrate_from_legacy (method)">migrate_from_legacy</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='label'>encryption_mode:</span> <span class='id identifier rubyid_selected_mode'>selected_mode</span><span class='rparen'>)</span>
+
+          <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span> <span class='kw'>do</span>
+            <span class='id identifier rubyid_progress_bar'>progress_bar</span><span class='period'>.</span><span class='id identifier rubyid_fraction'>fraction</span> <span class='op'>=</span> <span class='float'>0.8</span>
+            <span class='id identifier rubyid_status_label'>status_label</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Validating conversion...</span><span class='tstring_end'>&quot;</span></span>
+          <span class='kw'>end</span>
+          <span class='id identifier rubyid_sleep'>sleep</span><span class='lparen'>(</span><span class='float'>0.5</span><span class='rparen'>)</span>
+
+          <span class='comment'># Update UI based on result
+</span>          <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span> <span class='kw'>do</span>
+            <span class='kw'>if</span> <span class='id identifier rubyid_success'>success</span>
+              <span class='id identifier rubyid_progress_bar'>progress_bar</span><span class='period'>.</span><span class='id identifier rubyid_fraction'>fraction</span> <span class='op'>=</span> <span class='float'>1.0</span>
+              <span class='id identifier rubyid_status_label'>status_label</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Conversion completed successfully!</span><span class='tstring_end'>&quot;</span></span>
+
+              <span class='comment'># Wait a moment before closing dialog
+</span>              <span class='const'>GLib</span><span class='op'>::</span><span class='const'>Timeout</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='int'>1500</span><span class='rparen'>)</span> <span class='kw'>do</span>
+                <span class='id identifier rubyid_dlg'>dlg</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
+                <span class='id identifier rubyid_on_conversion_complete'>on_conversion_complete</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='kw'>if</span> <span class='id identifier rubyid_on_conversion_complete'>on_conversion_complete</span>
+                <span class='kw'>false</span> <span class='comment'># Don&#39;t repeat the timeout
+</span>              <span class='kw'>end</span>
+            <span class='kw'>else</span>
+              <span class='id identifier rubyid_progress_bar'>progress_bar</span><span class='period'>.</span><span class='id identifier rubyid_fraction'>fraction</span> <span class='op'>=</span> <span class='float'>0.0</span>
+              <span class='id identifier rubyid_status_label'>status_label</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Conversion failed. Please try again.</span><span class='tstring_end'>&quot;</span></span>
+
+              <span class='comment'># Re-enable buttons
+</span>              <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_set_response_sensitive'>set_response_sensitive</span><span class='lparen'>(</span><span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ResponseType</span><span class='op'>::</span><span class='const'>CANCEL</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+              <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_set_response_sensitive'>set_response_sensitive</span><span class='lparen'>(</span><span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ResponseType</span><span class='op'>::</span><span class='const'>APPLY</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+            <span class='kw'>end</span>
+          <span class='kw'>end</span>
+        <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
+          <span class='comment'># Handle any exceptions
+</span>          <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span> <span class='kw'>do</span>
+            <span class='id identifier rubyid_progress_bar'>progress_bar</span><span class='period'>.</span><span class='id identifier rubyid_fraction'>fraction</span> <span class='op'>=</span> <span class='float'>0.0</span>
+            <span class='id identifier rubyid_status_label'>status_label</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error during conversion: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+
+            <span class='comment'># Re-enable buttons
+</span>            <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_set_response_sensitive'>set_response_sensitive</span><span class='lparen'>(</span><span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ResponseType</span><span class='op'>::</span><span class='const'>CANCEL</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_set_response_sensitive'>set_response_sensitive</span><span class='lparen'>(</span><span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ResponseType</span><span class='op'>::</span><span class='const'>APPLY</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+          <span class='kw'>end</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_response'>response</span> <span class='op'>==</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ResponseType</span><span class='op'>::</span><span class='const'>CANCEL</span> <span class='op'>||</span> <span class='id identifier rubyid_response'>response</span> <span class='op'>==</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ResponseType</span><span class='op'>::</span><span class='const'>DELETE_EVENT</span>
+      <span class='comment'># user opted not to use new YAML / account management
+</span>      <span class='comment'># too harsh?
+</span>      <span class='id identifier rubyid_dlg'>dlg</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
+      <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span> <span class='kw'>do</span>
+        <span class='ivar'>@done</span> <span class='op'>=</span> <span class='kw'>true</span>
+        <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_main_quit'>main_quit</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Jan 13 02:35:07 2026 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.38 (ruby-3.2.9).
+</div>
+
+    </div>
+  </body>
+</html>

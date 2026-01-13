@@ -86,7 +86,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Provides methods for managing spells and abilities in DragonRealms This module includes methods for casting spells, managing mana, and handling various game mechanics.</p>
+<p>Provides methods for managing spells and magical interactions This module includes methods for casting spells, managing mana, and handling spell effects.</p>
 
 
   </div>
@@ -104,18 +104,7 @@
     <dl class="constants">
       
         <dt id="cyclic_release_success_patterns-classvariable" class="">@@cyclic_release_success_patterns =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Patterns for successful cyclic spell release messages These patterns are used to identify successful releases of cyclic spells.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='lbracket'>[</span>
   <span class='comment'># Ranger spells
@@ -232,7 +221,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Needs to handle (based on current usage): - Hasten - Delay Hasten - Hasten Focus - Delay Hasten Focus - Khri Hasten - Khri Delay Hasten - Khri Delay Hasten Focus Activates a specific Khri ability.</p>
+<p>Activates a specific Khri ability.</p>
 </div></span>
   
 </li>
@@ -280,7 +269,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Calculates the mana requirements based on discernment data.</p>
+<p>Calculates the mana required for a spell based on discernment.</p>
 </div></span>
   
 </li>
@@ -304,7 +293,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Casts a spell based on the provided command.</p>
+<p>Casts a spell with the specified command.</p>
 </div></span>
   
 </li>
@@ -328,7 +317,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Casts a spell based on provided data and settings.</p>
+<p>Casts a spell based on the provided data and settings.</p>
 </div></span>
   
 </li>
@@ -352,7 +341,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Attempts to cast a spell and returns success status.</p>
+<p>Attempts to cast a spell and returns the result.</p>
 </div></span>
   
 </li>
@@ -376,7 +365,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Casts a series of spells based on provided settings.</p>
+<p>Casts a series of spells based on the provided settings.</p>
 </div></span>
   
 </li>
@@ -400,7 +389,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Charges a cambrinth item.</p>
+<p>Charges a cambrinth item with the specified amount of mana.</p>
 </div></span>
   
 </li>
@@ -448,7 +437,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Charges Avtalia with specified parameters.</p>
+<p>Charges the Avtalia focus with the specified amount.</p>
 </div></span>
   
 </li>
@@ -496,7 +485,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Determine the numerical range of a Warrior Mage’s elemental charge.</p>
+<p>Checks the current elemental charge level.</p>
 </div></span>
   
 </li>
@@ -520,7 +509,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if mana should be harnessed based on user settings.</p>
+<p>Checks if the user should harness mana based on their skills.</p>
 </div></span>
   
 </li>
@@ -544,7 +533,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Chooses an Avtalia based on charge and mana percentage.</p>
+<p>Chooses an Avtalia cambrinth based on the specified criteria.</p>
 </div></span>
   
 </li>
@@ -568,7 +557,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Casts a spell during crafting.</p>
+<p>Casts a spell as part of a crafting routine.</p>
 </div></span>
   
 </li>
@@ -592,7 +581,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Executes the crafting magic routine.</p>
+<p>Executes a magic routine for crafting.</p>
 </div></span>
   
 </li>
@@ -616,7 +605,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Prepares a spell during crafting.</p>
+<p>Prepares a spell as part of a crafting routine.</p>
 </div></span>
   
 </li>
@@ -640,7 +629,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Executes buffs based on provided settings.</p>
+<p>Executes a series of buffs based on the provided settings.</p>
 </div></span>
   
 </li>
@@ -649,7 +638,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#find_cambrinth-class_method" title="find_cambrinth (class method)">.<strong>find_cambrinth</strong>(cambrinth, stored_cambrinth, cambrinth_cap)  &#x21d2; nil </a>
+      <a href="#find_cambrinth-class_method" title="find_cambrinth (class method)">.<strong>find_cambrinth</strong>(cambrinth, stored_cambrinth, cambrinth_cap)  &#x21d2; Boolean </a>
     
 
     
@@ -664,7 +653,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Finds a cambrinth item based on storage settings.</p>
+<p>Finds a cambrinth item based on the configuration.</p>
 </div></span>
   
 </li>
@@ -688,7 +677,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Finds, charges, invokes, and stows cambrinth.</p>
+<p>Finds, charges, invokes, and stows a cambrinth item.</p>
 </div></span>
   
 </li>
@@ -760,7 +749,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if mana can be harnessed.</p>
+<p>Checks if the specified amount of mana can be harnessed.</p>
 </div></span>
   
 </li>
@@ -784,7 +773,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Harnesses specified amounts of mana.</p>
+<p>Harnesses the specified amounts of mana.</p>
 </div></span>
   
 </li>
@@ -832,7 +821,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Invokes a cambrinth item.</p>
+<p>Invokes a cambrinth item with the specified amount.</p>
 </div></span>
   
 </li>
@@ -856,7 +845,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Invokes Avtalia with specified parameters.</p>
+<p>Invokes the Avtalia focus with the specified parameters.</p>
 </div></span>
   
 </li>
@@ -880,7 +869,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Determines if kneeling is required for a Khri ability.</p>
+<p>Determines if kneeling is required for a specific Khri ability.</p>
 </div></span>
   
 </li>
@@ -904,7 +893,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Parses a mana message to determine mana level.</p>
+<p>Parses a mana message to determine the mana level.</p>
 </div></span>
   
 </li>
@@ -952,7 +941,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Perceives the current aura state.</p>
+<p>Retrieves the current aura status.</p>
 </div></span>
   
 </li>
@@ -976,7 +965,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Perceives the current mana levels.</p>
+<p>Retrieves the current mana percentage.</p>
 </div></span>
   
 </li>
@@ -1000,7 +989,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>check which symbiotic research is active Checks which symbiotic research is currently active.</p>
+<p>Retrieves the current symbiotic research status.</p>
 </div></span>
   
 </li>
@@ -1009,7 +998,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#prepare%3F-class_method" title="prepare? (class method)">.<strong>prepare?</strong>(abbrev, mana, symbiosis = false, command = &#39;prepare&#39;, tattoo_tm = false, runestone_name = nil, runestone_tm = false)  &#x21d2; Boolean </a>
+      <a href="#prepare%3F-class_method" title="prepare? (class method)">.<strong>prepare?</strong>(abbrev, mana, symbiosis = false, command = &#39;prepare&#39;, tattoo_tm = false, runestone_name = nil, runestone_tm = false, custom_prep = nil)  &#x21d2; String<sup>?</sup> </a>
     
 
     
@@ -1072,7 +1061,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Releases active cyclic spells.</p>
+<p>Releases all active cyclic spells.</p>
 </div></span>
   
 </li>
@@ -1096,7 +1085,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>release symbiotic research Releases the current magical research.</p>
+<p>Releases the magical research symbiosis.</p>
 </div></span>
   
 </li>
@@ -1144,7 +1133,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if a segue can be performed from a cyclic spell.</p>
+<p>Checks if a segue can be performed from the current spell.</p>
 </div></span>
   
 </li>
@@ -1168,7 +1157,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Removes worn regalia armor.</p>
+<p>Shatters the specified regalia items.</p>
 </div></span>
   
 </li>
@@ -1192,7 +1181,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if the user is skilled enough to charge cambrinth while worn.</p>
+<p>Checks if the user is skilled enough to charge a cambrinth while worn.</p>
 </div></span>
   
 </li>
@@ -1216,7 +1205,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns true if you’re prepared to cast your spell.</p>
+<p>Checks if a spell is fully prepared.</p>
 </div></span>
   
 </li>
@@ -1240,7 +1229,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns name of the spell being prepared, or nil if not preparing one.</p>
+<p>Retrieves the name of the currently prepared spell.</p>
 </div></span>
   
 </li>
@@ -1264,7 +1253,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns true if preparing a spell, false otherwise.</p>
+<p>Checks if a spell is currently being prepared.</p>
 </div></span>
   
 </li>
@@ -1336,7 +1325,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Stows a cambrinth item based on storage settings.</p>
+<p>Stows a cambrinth item based on the configuration.</p>
 </div></span>
   
 </li>
@@ -1384,7 +1373,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Updates the Avtalia focus.</p>
+<p>Updates the Avtalia focus status.</p>
 </div></span>
   
 </li>
@@ -1422,11 +1411,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>activate_barb_buff?(‘BuffName’, 20, true)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_activate_barb_buff?'>activate_barb_buff?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Buff A</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1479,7 +1464,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Indicates if sitting is required</p>
+<p>Indicates if sitting is required to meditate</p>
 </div>
       
     </li>
@@ -1498,7 +1483,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Returns true if activation was successful, false otherwise</p>
+<p>Returns true if the buff was activated, false otherwise</p>
 </div>
       
     </li>
@@ -1511,6 +1496,9 @@
       <pre class="lines">
 
 
+189
+190
+191
 192
 193
 194
@@ -1548,13 +1536,10 @@
 226
 227
 228
-229
-230
-231
-232</pre>
+229</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 192</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 189</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_activate_barb_buff?'>activate_barb_buff?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_meditation_pause_timer'>meditation_pause_timer</span> <span class='op'>=</span> <span class='int'>20</span><span class='comma'>,</span> <span class='id identifier rubyid_sit_to_meditate'>sit_to_meditate</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='comment'># Note, you must know Power meditation or Powermonger mastery
@@ -1614,23 +1599,6 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Needs to handle (based on current usage):</p>
-<ul><li>
-<p>Hasten</p>
-</li><li>
-<p>Delay Hasten</p>
-</li><li>
-<p>Hasten Focus</p>
-</li><li>
-<p>Delay Hasten Focus</p>
-</li><li>
-<p>Khri Hasten</p>
-</li><li>
-<p>Khri Delay Hasten</p>
-</li><li>
-<p>Khri Delay Hasten Focus</p>
-</li></ul>
-
 <p>Activates a specific Khri ability</p>
 
 
@@ -1642,11 +1610,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>activate_khri?(true, ‘Khri Hasten’)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_activate_khri?'>activate_khri?</span><span class='lparen'>(</span><span class='kw'>true</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Khri A</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1679,7 +1643,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The ability to activate</p>
+<p>The name of the ability to activate</p>
 </div>
       
     </li>
@@ -1698,7 +1662,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Returns true if activation was successful, false otherwise</p>
+<p>Returns true if the ability was activated, false otherwise</p>
 </div>
       
     </li>
@@ -1711,6 +1675,12 @@
       <pre class="lines">
 
 
+133
+134
+135
+136
+137
+138
 139
 140
 141
@@ -1728,16 +1698,10 @@
 153
 154
 155
-156
-157
-158
-159
-160
-161
-162</pre>
+156</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 139</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 133</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_activate_khri?'>activate_khri?</span><span class='lparen'>(</span><span class='id identifier rubyid_settings_kneel'>settings_kneel</span><span class='comma'>,</span> <span class='id identifier rubyid_ability'>ability</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_abilities'>abilities</span> <span class='op'>=</span> <span class='id identifier rubyid_ability'>ability</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:capitalize</span><span class='rparen'>)</span>
@@ -1791,11 +1755,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>backfired?</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_backfired?'>backfired?</span></code></pre>
     
   </div>
 
@@ -1824,12 +1784,12 @@
       <pre class="lines">
 
 
-368
-369
-370</pre>
+370
+371
+372</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 368</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 370</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_backfired?'>backfired?</span>
   <span class='kw'>return</span> <span class='cvar'>@@backfired_status</span> <span class='op'>||</span> <span class='kw'>false</span>
@@ -1851,7 +1811,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Calculates the mana requirements based on discernment data</p>
+<p>Calculates the mana required for a spell based on discernment</p>
 
 
   </div>
@@ -1862,11 +1822,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>calculate_mana(10, 5, discern_data, false, settings)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_calculate_mana'>calculate_mana</span><span class='lparen'>(</span><span class='int'>10</span><span class='comma'>,</span> <span class='int'>5</span><span class='comma'>,</span> <span class='id identifier rubyid_discern_data'>discern_data</span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1899,7 +1855,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Additional mana requirements</p>
+<p>Additional mana required</p>
 </div>
       
     </li>
@@ -1979,30 +1935,6 @@
       <pre class="lines">
 
 
-933
-934
-935
-936
-937
-938
-939
-940
-941
-942
-943
-944
-945
-946
-947
-948
-949
-950
-951
-952
-953
-954
-955
-956
 957
 958
 959
@@ -2020,10 +1952,34 @@
 971
 972
 973
-974</pre>
+974
+975
+976
+977
+978
+979
+980
+981
+982
+983
+984
+985
+986
+987
+988
+989
+990
+991
+992
+993
+994
+995
+996
+997
+998</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 933</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 957</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_calculate_mana'>calculate_mana</span><span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_more'>more</span><span class='comma'>,</span> <span class='id identifier rubyid_discern_data'>discern_data</span><span class='comma'>,</span> <span class='id identifier rubyid_cyclic_or_ritual'>cyclic_or_ritual</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_total'>total</span> <span class='op'>=</span> <span class='id identifier rubyid_min'>min</span> <span class='op'>+</span> <span class='id identifier rubyid_more'>more</span>
@@ -2084,7 +2040,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Casts a spell based on the provided command</p>
+<p>Casts a spell with the specified command</p>
 
 
   </div>
@@ -2095,11 +2051,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>cast?(‘cast’, false, [], [])</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_cast?'>cast?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cast</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2118,7 +2070,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The command to cast</p>
+<p>The command to cast the spell</p>
 </div>
       
     </li>
@@ -2136,7 +2088,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Indicates if symbiosis is involved</p>
+<p>Indicates if symbiosis is being used</p>
 </div>
       
     </li>
@@ -2191,7 +2143,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Returns true if the cast was successful, false otherwise</p>
+<p>Returns true if the spell was successfully cast, false otherwise</p>
 </div>
       
     </li>
@@ -2204,9 +2156,6 @@
       <pre class="lines">
 
 
-379
-380
-381
 382
 383
 384
@@ -2246,10 +2195,13 @@
 418
 419
 420
-421</pre>
+421
+422
+423
+424</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 379</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 382</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cast?'>cast?</span><span class='lparen'>(</span><span class='id identifier rubyid_cast_command'>cast_command</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cast</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_symbiosis'>symbiosis</span> <span class='op'>=</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='id identifier rubyid_before'>before</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_after'>after</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_before'>before</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_action'>action</span><span class='op'>|</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_action'>action</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>message</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_action'>action</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>matches</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -2311,7 +2263,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Casts a spell based on provided data and settings</p>
+<p>Casts a spell based on the provided data and settings</p>
 
 
   </div>
@@ -2322,11 +2274,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>cast_spell(spell_data, settings)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_cast_spell'>cast_spell</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2377,7 +2325,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Indicates if cambrinth usage is forced</p>
+<p>Indicates if cambrinth should be forced</p>
 </div>
       
     </li>
@@ -2427,27 +2375,6 @@
       <pre class="lines">
 
 
-795
-796
-797
-798
-799
-800
-801
-802
-803
-804
-805
-806
-807
-808
-809
-810
-811
-812
-813
-814
-815
 816
 817
 818
@@ -2503,10 +2430,31 @@
 868
 869
 870
-871</pre>
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 795</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 816</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cast_spell'>cast_spell</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='comma'>,</span> <span class='id identifier rubyid_force_cambrinth'>force_cambrinth</span> <span class='op'>=</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='id identifier rubyid_cast_lifecycle_lambda'>cast_lifecycle_lambda</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_data'>data</span>
@@ -2546,7 +2494,7 @@
   <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>release spell</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You let your concentration lapse</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You aren&#39;t preparing a spell</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_checkprep'><span class='object_link'><a href="../../top-level-namespace.html#checkprep-instance_method" title="#checkprep (method)">checkprep</a></span></span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>None</span><span class='tstring_end'>&#39;</span></span>
   <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>release mana</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You release all</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You aren&#39;t harnessing any mana</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
-  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_prepare?'>prepare?</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abbrev</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mana</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>symbiosis</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tattoo_tm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>runestone_name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>runestone_tm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_prepare?'>prepare?</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abbrev</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mana</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>symbiosis</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tattoo_tm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>runestone_name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>runestone_tm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>custom_spell_prep</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
 
   <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_put_away_item?'><span class='object_link'><a href="DRCI.html#put_away_item%3F-class_method" title="Lich::DragonRealms::DRCI.put_away_item? (method)">put_away_item?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>runestone_name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_runestone_storage'>runestone_storage</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_in_hands?'><span class='object_link'><a href="DRCI.html#in_hands%3F-class_method" title="Lich::DragonRealms::DRCI.in_hands? (method)">in_hands?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>runestone_name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_prepare_time'>prepare_time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span>
@@ -2602,7 +2550,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Attempts to cast a spell and returns success status</p>
+<p>Attempts to cast a spell and returns the result</p>
 
 
   </div>
@@ -2613,11 +2561,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>cast_spell?(spell_data, settings)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_cast_spell?'>cast_spell?</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2668,7 +2612,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Indicates if cambrinth usage is forced</p>
+<p>Indicates if cambrinth should be forced</p>
 </div>
       
     </li>
@@ -2718,13 +2662,13 @@
       <pre class="lines">
 
 
-783
-784
-785
-786</pre>
+803
+804
+805
+806</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 783</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 803</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cast_spell?'>cast_spell?</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='comma'>,</span> <span class='id identifier rubyid_force_cambrinth'>force_cambrinth</span> <span class='op'>=</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='id identifier rubyid_cast_lifecycle_lambda'>cast_lifecycle_lambda</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_cast_spell'>cast_spell</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='comma'>,</span> <span class='id identifier rubyid_force_cambrinth'>force_cambrinth</span><span class='comma'>,</span> <span class='id identifier rubyid_cast_lifecycle_lambda'>cast_lifecycle_lambda</span><span class='rparen'>)</span>
@@ -2747,7 +2691,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Casts a series of spells based on provided settings</p>
+<p>Casts a series of spells based on the provided settings</p>
 
 
   </div>
@@ -2758,11 +2702,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>cast_spells(spells, settings)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_cast_spells'>cast_spells</span><span class='lparen'>(</span><span class='id identifier rubyid_spells'>spells</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2779,7 +2719,7 @@
       
         &mdash;
         <div class='inline'>
-<p>A hash of spells to cast</p>
+<p>The spells to cast</p>
 </div>
       
     </li>
@@ -2813,7 +2753,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Indicates if cambrinth usage is forced</p>
+<p>Indicates if cambrinth should be forced</p>
 </div>
       
     </li>
@@ -2863,21 +2803,21 @@
       <pre class="lines">
 
 
-763
-764
-765
-766
-767
-768
-769
-770
-771
-772
-773
-774</pre>
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 763</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 782</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cast_spells'>cast_spells</span><span class='lparen'>(</span><span class='id identifier rubyid_spells'>spells</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='comma'>,</span> <span class='id identifier rubyid_force_cambrinth'>force_cambrinth</span> <span class='op'>=</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='id identifier rubyid_cast_lifecycle_lambda'>cast_lifecycle_lambda</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_infuse_om'>infuse_om</span><span class='lparen'>(</span><span class='op'>!</span><span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_osrel_no_harness'>osrel_no_harness</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_osrel_amount'>osrel_amount</span><span class='rparen'>)</span>
@@ -2908,7 +2848,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Charges a cambrinth item</p>
+<p>Charges a cambrinth item with the specified amount of mana</p>
 
 
   </div>
@@ -2919,11 +2859,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>charge?(‘CambrinthName’, 50)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_charge?'>charge?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cambrinth A</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>50</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2940,7 +2876,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the cambrinth</p>
+<p>The name of the cambrinth item</p>
 </div>
       
     </li>
@@ -2975,7 +2911,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Returns true if charging was successful, false otherwise</p>
+<p>Returns true if the charge was successful, false otherwise</p>
 </div>
       
     </li>
@@ -2988,18 +2924,6 @@
       <pre class="lines">
 
 
-600
-601
-602
-603
-604
-605
-606
-607
-608
-609
-610
-611
 612
 613
 614
@@ -3022,10 +2946,22 @@
 631
 632
 633
-634</pre>
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 600</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 612</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_charge?'>charge?</span><span class='lparen'>(</span><span class='id identifier rubyid_cambrinth'>cambrinth</span><span class='comma'>,</span> <span class='id identifier rubyid_mana'>mana</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_charged'>charged</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -3090,11 +3026,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>charge_and_invoke(‘CambrinthName’, false, [50, 100])</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_charge_and_invoke'>charge_and_invoke</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cambrinth A</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='int'>50</span><span class='comma'>,</span> <span class='int'>100</span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3111,7 +3043,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the cambrinth</p>
+<p>The name of the cambrinth item</p>
 </div>
       
     </li>
@@ -3161,7 +3093,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The exact amount to invoke, if applicable</p>
+<p>The exact amount to invoke, or nil for default</p>
 </div>
       
     </li>
@@ -3193,19 +3125,19 @@
       <pre class="lines">
 
 
-555
-556
-557
-558
-559
-560
-561
-562
-563
-564</pre>
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 555</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 565</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_charge_and_invoke'>charge_and_invoke</span><span class='lparen'>(</span><span class='id identifier rubyid_cambrinth'>cambrinth</span><span class='comma'>,</span> <span class='id identifier rubyid_dedicated_camb_use'>dedicated_camb_use</span><span class='comma'>,</span> <span class='id identifier rubyid_charges'>charges</span><span class='comma'>,</span> <span class='id identifier rubyid_invoke_exact_amount'>invoke_exact_amount</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='comment'># TODO: Remove default nil argument once all users are up to date with common-arcana
@@ -3234,7 +3166,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Charges Avtalia with specified parameters</p>
+<p>Charges the Avtalia focus with the specified amount</p>
 
 
   </div>
@@ -3245,11 +3177,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>charge_avtalia(‘CambrinthName’, 50)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_charge_avtalia'>charge_avtalia</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cambrinth A</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>50</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3266,7 +3194,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the cambrinth</p>
+<p>The name of the cambrinth item</p>
 </div>
       
     </li>
@@ -3314,26 +3242,26 @@
       <pre class="lines">
 
 
-1130
-1131
-1132
-1133
-1134
-1135
-1136
-1137
-1138
-1139
-1140
-1141
-1142
-1143
-1144
-1145
-1146</pre>
+1162
+1163
+1164
+1165
+1166
+1167
+1168
+1169
+1170
+1171
+1172
+1173
+1174
+1175
+1176
+1177
+1178</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1130</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1162</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_charge_avtalia'>charge_avtalia</span><span class='lparen'>(</span><span class='id identifier rubyid_cambrinth'>cambrinth</span><span class='comma'>,</span> <span class='id identifier rubyid_charge_amount'>charge_amount</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_cambrinth'>cambrinth</span>
@@ -3380,11 +3308,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>check_discern(spell_data, settings)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_check_discern'>check_discern</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3453,7 +3377,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Additional mana requirements</p>
+<p>Additional mana override</p>
 </div>
       
     </li>
@@ -3472,7 +3396,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The updated spell data with discernment information</p>
+<p>Returns the updated spell data with discernment information</p>
 </div>
       
     </li>
@@ -3485,29 +3409,6 @@
       <pre class="lines">
 
 
-893
-894
-895
-896
-897
-898
-899
-900
-901
-902
-903
-904
-905
-906
-907
-908
-909
-910
-911
-912
-913
-914
-915
 916
 917
 918
@@ -3515,10 +3416,33 @@
 920
 921
 922
-923</pre>
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 893</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 916</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_discern'>check_discern</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='comma'>,</span> <span class='id identifier rubyid_spell_is_sorcery'>spell_is_sorcery</span> <span class='op'>=</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='id identifier rubyid_more_override'>more_override</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='const'>UserVars</span><span class='period'>.</span><span class='id identifier rubyid_discerns'>discerns</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='const'>UserVars</span><span class='period'>.</span><span class='id identifier rubyid_discerns'>discerns</span>
@@ -3568,7 +3492,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Determine the numerical range of a Warrior Mage’s elemental charge. This can be used to know if the mage is ready to perform certain abilities, like barrage. Returns a number between 0 (no charge) and 11 (max charge). <a href="https://elanthipedia.play.net/Summoning_skill#Charge_levels">elanthipedia.play.net/Summoning_skill#Charge_levels</a> Determines the elemental charge level of a Warrior Mage</p>
+<p>Checks the current elemental charge level</p>
 
 
   </div>
@@ -3579,11 +3503,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>check_elemental_charge</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_check_elemental_charge'>check_elemental_charge</span></code></pre>
     
   </div>
 
@@ -3599,7 +3519,7 @@
       
         &mdash;
         <div class='inline'>
-<p>A number between 0 (no charge) and 11 (max charge)</p>
+<p>Returns the charge level index</p>
 </div>
       
     </li>
@@ -3612,29 +3532,29 @@
       <pre class="lines">
 
 
-1170
-1171
-1172
-1173
-1174
-1175
-1176
-1177
-1178
-1179
-1180
-1181
-1182
-1183
-1184
-1185
-1186
-1187
-1188
-1189</pre>
+1200
+1201
+1202
+1203
+1204
+1205
+1206
+1207
+1208
+1209
+1210
+1211
+1212
+1213
+1214
+1215
+1216
+1217
+1218
+1219</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1170</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1200</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_elemental_charge'>check_elemental_charge</span>
   <span class='kw'>return</span> <span class='int'>0</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="DRStats.html" title="Lich::DragonRealms::DRStats (module)">DRStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warrior_mage?'><span class='object_link'><a href="DRStats.html#warrior_mage%3F-class_method" title="Lich::DragonRealms::DRStats.warrior_mage? (method)">warrior_mage?</a></span></span>
@@ -3673,7 +3593,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if mana should be harnessed based on user settings</p>
+<p>Checks if the user should harness mana based on their skills</p>
 
 
   </div>
@@ -3684,11 +3604,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>check_to_harness(true)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_check_to_harness'>check_to_harness</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3705,7 +3621,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Indicates if harnessing is desired</p>
+<p>Indicates if harnessing should be checked</p>
 </div>
       
     </li>
@@ -3737,15 +3653,15 @@
       <pre class="lines">
 
 
-980
-981
-982
-983
-984
-985</pre>
+1005
+1006
+1007
+1008
+1009
+1010</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 980</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1005</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_to_harness'>check_to_harness</span><span class='lparen'>(</span><span class='id identifier rubyid_should_harness'>should_harness</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_should_harness'>should_harness</span>
@@ -3770,7 +3686,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Chooses an Avtalia based on charge and mana percentage</p>
+<p>Chooses an Avtalia cambrinth based on the specified criteria</p>
 
 
   </div>
@@ -3781,11 +3697,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>choose_avtalia(100, 50)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_choose_avtalia'>choose_avtalia</span><span class='lparen'>(</span><span class='int'>100</span><span class='comma'>,</span> <span class='int'>50</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3837,7 +3749,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The chosen Avtalia data</p>
+<p>Returns the chosen cambrinth data</p>
 </div>
       
     </li>
@@ -3850,18 +3762,18 @@
       <pre class="lines">
 
 
-1153
-1154
-1155
-1156
-1157
-1158
-1159
-1160
-1161</pre>
+1186
+1187
+1188
+1189
+1190
+1191
+1192
+1193
+1194</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1153</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1186</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_choose_avtalia'>choose_avtalia</span><span class='lparen'>(</span><span class='id identifier rubyid_charge_needed'>charge_needed</span><span class='comma'>,</span> <span class='id identifier rubyid_mana_percentage'>mana_percentage</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_camb_to_use'>camb_to_use</span> <span class='op'>=</span> <span class='const'>UserVars</span><span class='period'>.</span><span class='id identifier rubyid_avtalia'>avtalia</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid__camb'>_camb</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>|</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>time_seen</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cap</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mana</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
@@ -3889,7 +3801,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Casts a spell during crafting</p>
+<p>Casts a spell as part of a crafting routine</p>
 
 
   </div>
@@ -3900,11 +3812,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>crafting_cast_spell(spell_data, settings)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_crafting_cast_spell'>crafting_cast_spell</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -3969,35 +3877,35 @@
       <pre class="lines">
 
 
-992
-993
-994
-995
-996
-997
-998
-999
-1000
-1001
-1002
-1003
-1004
-1005
-1006
-1007
-1008
-1009
-1010
-1011
-1012
-1013
-1014
-1015
-1016
-1017</pre>
+1018
+1019
+1020
+1021
+1022
+1023
+1024
+1025
+1026
+1027
+1028
+1029
+1030
+1031
+1032
+1033
+1034
+1035
+1036
+1037
+1038
+1039
+1040
+1041
+1042
+1043</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 992</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1018</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_crafting_cast_spell'>crafting_cast_spell</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_data'>data</span>
@@ -4042,7 +3950,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Executes the crafting magic routine</p>
+<p>Executes a magic routine for crafting</p>
 
 
   </div>
@@ -4053,11 +3961,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>crafting_magic_routine(settings)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_crafting_magic_routine'>crafting_magic_routine</span><span class='lparen'>(</span><span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -4106,37 +4010,37 @@
       <pre class="lines">
 
 
-1046
-1047
-1048
-1049
-1050
-1051
-1052
-1053
-1054
-1055
-1056
-1057
-1058
-1059
-1060
-1061
-1062
-1063
-1064
-1065
-1066
-1067
-1068
-1069
-1070
-1071
-1072
-1073</pre>
+1074
+1075
+1076
+1077
+1078
+1079
+1080
+1081
+1082
+1083
+1084
+1085
+1086
+1087
+1088
+1089
+1090
+1091
+1092
+1093
+1094
+1095
+1096
+1097
+1098
+1099
+1100
+1101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1046</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1074</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_crafting_magic_routine'>crafting_magic_routine</span><span class='lparen'>(</span><span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_training_spells'>training_spells</span> <span class='op'>=</span> <span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_crafting_training_spells'>crafting_training_spells</span>
@@ -4183,7 +4087,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Prepares a spell during crafting</p>
+<p>Prepares a spell as part of a crafting routine</p>
 
 
   </div>
@@ -4194,11 +4098,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>crafting_prepare_spell(spell_data, settings)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_crafting_prepare_spell'>crafting_prepare_spell</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -4263,26 +4163,26 @@
       <pre class="lines">
 
 
-1024
-1025
-1026
-1027
-1028
-1029
-1030
-1031
-1032
-1033
-1034
-1035
-1036
-1037
-1038
-1039
-1040</pre>
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+1059
+1060
+1061
+1062
+1063
+1064
+1065
+1066
+1067</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1024</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1051</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_crafting_prepare_spell'>crafting_prepare_spell</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_data'>data</span>
@@ -4299,7 +4199,7 @@
   <span class='id identifier rubyid_command'>command</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prep</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prep</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_command'>command</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prep_type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prep_type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
 
-  <span class='id identifier rubyid_prepare?'>prepare?</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abbrev</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mana</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>symbiosis</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tattoo_tm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>runestone_name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>runestone_tm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_prepare?'>prepare?</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abbrev</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mana</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>symbiosis</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tattoo_tm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>runestone_name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>runestone_tm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>custom_spell_prep</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -4318,7 +4218,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Executes buffs based on provided settings</p>
+<p>Executes a series of buffs based on the provided settings</p>
 
 
   </div>
@@ -4329,11 +4229,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>do_buffs(settings, ‘set_name’)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_do_buffs'>do_buffs</span><span class='lparen'>(</span><span class='id identifier rubyid_settings'>settings</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>set_name</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -4398,31 +4294,31 @@
       <pre class="lines">
 
 
-1080
-1081
-1082
-1083
-1084
-1085
-1086
-1087
-1088
-1089
-1090
-1091
-1092
-1093
-1094
-1095
-1096
-1097
-1098
-1099
-1100
-1101</pre>
+1109
+1110
+1111
+1112
+1113
+1114
+1115
+1116
+1117
+1118
+1119
+1120
+1121
+1122
+1123
+1124
+1125
+1126
+1127
+1128
+1129
+1130</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1080</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1109</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_do_buffs'>do_buffs</span><span class='lparen'>(</span><span class='id identifier rubyid_settings'>settings</span><span class='comma'>,</span> <span class='id identifier rubyid_set_name'>set_name</span><span class='rparen'>)</span>
   <span class='comment'># takes a waggle and sends it to the appropriate helper
@@ -4454,7 +4350,7 @@
       <div class="method_details ">
   <h3 class="signature " id="find_cambrinth-class_method">
   
-    .<strong>find_cambrinth</strong>(cambrinth, stored_cambrinth, cambrinth_cap)  &#x21d2; <tt>nil</tt> 
+    .<strong>find_cambrinth</strong>(cambrinth, stored_cambrinth, cambrinth_cap)  &#x21d2; <tt>Boolean</tt> 
   
 
   
@@ -4463,7 +4359,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Finds a cambrinth item based on storage settings</p>
+<p>Finds a cambrinth item based on the configuration</p>
 
 
   </div>
@@ -4474,11 +4370,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>find_cambrinth(‘CambrinthName’, true, 100)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_find_cambrinth'>find_cambrinth</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cambrinth A</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='int'>100</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -4495,7 +4387,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the cambrinth</p>
+<p>The name of the cambrinth item</p>
 </div>
       
     </li>
@@ -4540,13 +4432,13 @@
     <li>
       
       
-        <span class='type'>(<tt>nil</tt>)</span>
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Returns nothing</p>
+<p>Returns true if the cambrinth was found, false otherwise</p>
 </div>
       
     </li>
@@ -4559,13 +4451,6 @@
       <pre class="lines">
 
 
-493
-494
-495
-496
-497
-498
-499
 500
 501
 502
@@ -4578,10 +4463,17 @@
 509
 510
 511
-512</pre>
+512
+513
+514
+515
+516
+517
+518
+519</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 493</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 500</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_find_cambrinth'>find_cambrinth</span><span class='lparen'>(</span><span class='id identifier rubyid_cambrinth'>cambrinth</span><span class='comma'>,</span> <span class='id identifier rubyid_stored_cambrinth'>stored_cambrinth</span><span class='comma'>,</span> <span class='id identifier rubyid_cambrinth_cap'>cambrinth_cap</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_stored_cambrinth'>stored_cambrinth</span>
@@ -4620,7 +4512,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Finds, charges, invokes, and stows cambrinth</p>
+<p>Finds, charges, invokes, and stows a cambrinth item</p>
 
 
   </div>
@@ -4631,11 +4523,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>find_charge_invoke_stow(‘CambrinthName’, true, 100, false, [50, 100])</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_find_charge_invoke_stow'>find_charge_invoke_stow</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cambrinth A</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='int'>100</span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='int'>50</span><span class='comma'>,</span> <span class='int'>100</span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -4652,7 +4540,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the cambrinth</p>
+<p>The name of the cambrinth item</p>
 </div>
       
     </li>
@@ -4734,7 +4622,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The exact amount to invoke, if applicable</p>
+<p>The exact amount to invoke, or nil for default</p>
 </div>
       
     </li>
@@ -4766,17 +4654,17 @@
       <pre class="lines">
 
 
-432
-433
-434
-435
 436
 437
 438
-439</pre>
+439
+440
+441
+442
+443</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 432</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 436</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_find_charge_invoke_stow'>find_charge_invoke_stow</span><span class='lparen'>(</span><span class='id identifier rubyid_cambrinth'>cambrinth</span><span class='comma'>,</span> <span class='id identifier rubyid_stored_cambrinth'>stored_cambrinth</span><span class='comma'>,</span> <span class='id identifier rubyid_cambrinth_cap'>cambrinth_cap</span><span class='comma'>,</span> <span class='id identifier rubyid_dedicated_camb_use'>dedicated_camb_use</span><span class='comma'>,</span> <span class='id identifier rubyid_charges'>charges</span><span class='comma'>,</span> <span class='id identifier rubyid_invoke_exact_amount'>invoke_exact_amount</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='comment'># TODO: Remove default nil argument once all users are up to date with common-arcana
@@ -4814,11 +4702,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>find_focus(‘FocusName’, true, ‘TiedItem’, false)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_find_focus'>find_focus</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Focus A</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Item B</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -4915,11 +4799,6 @@
       <pre class="lines">
 
 
-448
-449
-450
-451
-452
 453
 454
 455
@@ -4927,10 +4806,15 @@
 457
 458
 459
-460</pre>
+460
+461
+462
+463
+464
+465</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 448</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 453</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_find_focus'>find_focus</span><span class='lparen'>(</span><span class='id identifier rubyid_focus'>focus</span><span class='comma'>,</span> <span class='id identifier rubyid_worn'>worn</span><span class='comma'>,</span> <span class='id identifier rubyid_tied'>tied</span><span class='comma'>,</span> <span class='id identifier rubyid_sheathed'>sheathed</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_focus'>focus</span>
@@ -4973,11 +4857,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>get_runestone?(‘RunestoneName’, settings)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_get_runestone?'>get_runestone?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Runestone A</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -5042,7 +4922,6 @@
       <pre class="lines">
 
 
-354
 355
 356
 357
@@ -5051,10 +4930,11 @@
 360
 361
 362
-363</pre>
+363
+364</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 354</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 355</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_runestone?'>get_runestone?</span><span class='lparen'>(</span><span class='id identifier rubyid_runestone'>runestone</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRCI.html" title="Lich::DragonRealms::DRCI (module)">DRCI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_in_hands?'><span class='object_link'><a href="DRCI.html#in_hands%3F-class_method" title="Lich::DragonRealms::DRCI.in_hands? (method)">in_hands?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_runestone'>runestone</span><span class='rparen'>)</span>
@@ -5083,7 +4963,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if mana can be harnessed</p>
+<p>Checks if the specified amount of mana can be harnessed</p>
 
 
   </div>
@@ -5094,11 +4974,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>harness?(100)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_harness?'>harness?</span><span class='lparen'>(</span><span class='int'>100</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -5115,7 +4991,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The amount of mana to harness</p>
+<p>The amount of mana to check</p>
 </div>
       
     </li>
@@ -5134,7 +5010,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Returns true if harnessing is successful, false otherwise</p>
+<p>Returns true if the mana can be harnessed, false otherwise</p>
 </div>
       
     </li>
@@ -5147,15 +5023,15 @@
       <pre class="lines">
 
 
+96
 97
 98
 99
 100
-101
-102</pre>
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 97</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_harness?'>harness?</span><span class='lparen'>(</span><span class='id identifier rubyid_mana'>mana</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>harness </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_mana'>mana</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You tap into</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Strain though you may</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -5180,7 +5056,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Harnesses specified amounts of mana</p>
+<p>Harnesses the specified amounts of mana</p>
 
 
   </div>
@@ -5191,11 +5067,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>harness_mana([50, 100])</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_harness_mana'>harness_mana</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='int'>50</span><span class='comma'>,</span> <span class='int'>100</span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -5212,7 +5084,7 @@
       
         &mdash;
         <div class='inline'>
-<p>An array of mana amounts to harness</p>
+<p>The amounts of mana to harness</p>
 </div>
       
     </li>
@@ -5275,14 +5147,6 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method only works if the Osrel Mera spell is active and below 90% capacity.</p>
-</div>
-  </div>
-
-
 <p>Infuses a specified amount of mana into the Osrel Mera spell</p>
 
 
@@ -5294,11 +5158,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>infuse_om(true, 50)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_infuse_om'>infuse_om</span><span class='lparen'>(</span><span class='kw'>true</span><span class='comma'>,</span> <span class='int'>50</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -5363,6 +5223,8 @@
       <pre class="lines">
 
 
+74
+75
 76
 77
 78
@@ -5376,12 +5238,10 @@
 86
 87
 88
-89
-90
-91</pre>
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_infuse_om'>infuse_om</span><span class='lparen'>(</span><span class='id identifier rubyid_harness'>harness</span><span class='comma'>,</span> <span class='id identifier rubyid_amount'>amount</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="DRSpells.html" title="Lich::DragonRealms::DRSpells (module)">DRSpells</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active_spells'><span class='object_link'><a href="DRSpells.html#active_spells-class_method" title="Lich::DragonRealms::DRSpells.active_spells (method)">active_spells</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Osrel Meraud</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="DRSpells.html" title="Lich::DragonRealms::DRSpells (module)">DRSpells</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active_spells'><span class='object_link'><a href="DRSpells.html#active_spells-class_method" title="Lich::DragonRealms::DRSpells.active_spells (method)">active_spells</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Osrel Meraud</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>&lt;</span> <span class='int'>90</span>
@@ -5416,7 +5276,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Invokes a cambrinth item</p>
+<p>Invokes a cambrinth item with the specified amount</p>
 
 
   </div>
@@ -5427,11 +5287,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>invoke(‘CambrinthName’, false, 100)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_invoke'>invoke</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cambrinth A</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='int'>100</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -5448,7 +5304,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the cambrinth</p>
+<p>The name of the cambrinth item</p>
 </div>
       
     </li>
@@ -5480,7 +5336,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The amount to invoke, if applicable</p>
+<p>The amount to invoke, or nil for default</p>
 </div>
       
     </li>
@@ -5512,17 +5368,6 @@
       <pre class="lines">
 
 
-572
-573
-574
-575
-576
-577
-578
-579
-580
-581
-582
 583
 584
 585
@@ -5533,10 +5378,21 @@
 590
 591
 592
-593</pre>
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 572</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 583</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_invoke'>invoke</span><span class='lparen'>(</span><span class='id identifier rubyid_cambrinth'>cambrinth</span><span class='comma'>,</span> <span class='id identifier rubyid_dedicated_camb_use'>dedicated_camb_use</span><span class='comma'>,</span> <span class='id identifier rubyid_invoke_amount'>invoke_amount</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_cambrinth'>cambrinth</span>
@@ -5577,7 +5433,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Invokes Avtalia with specified parameters</p>
+<p>Invokes the Avtalia focus with the specified parameters</p>
 
 
   </div>
@@ -5588,11 +5444,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>invoke_avtalia(‘CambrinthName’, false, 100)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_invoke_avtalia'>invoke_avtalia</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cambrinth A</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='int'>100</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -5609,7 +5461,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the cambrinth</p>
+<p>The name of the cambrinth item</p>
 </div>
       
     </li>
@@ -5673,16 +5525,16 @@
       <pre class="lines">
 
 
-1117
-1118
-1119
-1120
-1121
-1122
-1123</pre>
+1148
+1149
+1150
+1151
+1152
+1153
+1154</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1117</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1148</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_invoke_avtalia'>invoke_avtalia</span><span class='lparen'>(</span><span class='id identifier rubyid_cambrinth'>cambrinth</span><span class='comma'>,</span> <span class='id identifier rubyid_dedicated_camb_use'>dedicated_camb_use</span><span class='comma'>,</span> <span class='id identifier rubyid_invoke_amount'>invoke_amount</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_cambrinth'>cambrinth</span>
@@ -5708,7 +5560,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Determines if kneeling is required for a Khri ability</p>
+<p>Determines if kneeling is required for a specific Khri ability</p>
 
 
   </div>
@@ -5719,11 +5571,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>kneel_for_khri?([‘khri hasten’], ‘Khri Hasten’)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_kneel_for_khri?'>kneel_for_khri?</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>khri a</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Khri A</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -5788,16 +5636,16 @@
       <pre class="lines">
 
 
+164
+165
+166
+167
+168
 169
-170
-171
-172
-173
-174
-175</pre>
+170</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 169</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 164</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_kneel_for_khri?'>kneel_for_khri?</span><span class='lparen'>(</span><span class='id identifier rubyid_kneel'>kneel</span><span class='comma'>,</span> <span class='id identifier rubyid_ability'>ability</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_kneel'>kneel</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Array</span>
@@ -5823,7 +5671,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Parses a mana message to determine mana level</p>
+<p>Parses a mana message to determine the mana level</p>
 
 
   </div>
@@ -5834,11 +5682,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>parse_mana_message(‘Your mana is weak’)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_parse_mana_message'>parse_mana_message</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You feel weak</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -5887,24 +5731,24 @@
       <pre class="lines">
 
 
-682
-683
-684
-685
-686
-687
-688
-689
-690
-691
-692
-693
-694
-695
-696</pre>
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 682</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 698</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_mana_message'>parse_mana_message</span><span class='lparen'>(</span><span class='id identifier rubyid_mana_msg'>mana_msg</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_manalevels'>manalevels</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='id identifier rubyid_mana_msg'>mana_msg</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>weak</span><span class='tstring_end'>&#39;</span></span>
@@ -5949,11 +5793,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>parse_regalia</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_parse_regalia'>parse_regalia</span></code></pre>
     
   </div>
 
@@ -5982,17 +5822,17 @@
       <pre class="lines">
 
 
-653
-654
-655
-656
-657
-658
-659
-660</pre>
+667
+668
+669
+670
+671
+672
+673
+674</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 653</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 667</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_regalia'>parse_regalia</span> <span class='comment'># generates an array of currently-worn regalia armor nouns
 </span>  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="DRStats.html" title="Lich::DragonRealms::DRStats (module)">DRStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_trader?'><span class='object_link'><a href="DRStats.html#trader%3F-class_method" title="Lich::DragonRealms::DRStats.trader? (method)">trader?</a></span></span>
@@ -6019,7 +5859,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Perceives the current aura state</p>
+<p>Retrieves the current aura status</p>
 
 
   </div>
@@ -6030,11 +5870,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>perc_aura</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_perc_aura'>perc_aura</span></code></pre>
     
   </div>
 
@@ -6050,7 +5886,7 @@
       
         &mdash;
         <div class='inline'>
-<p>A hash containing aura level, capped status, and growth status</p>
+<p>Returns a hash containing aura level, capped status, and growth status, or nil if not applicable</p>
 </div>
       
     </li>
@@ -6063,24 +5899,6 @@
       <pre class="lines">
 
 
-727
-728
-729
-730
-731
-732
-733
-734
-735
-736
-737
-738
-739
-740
-741
-742
-743
-744
 745
 746
 747
@@ -6090,10 +5908,28 @@
 751
 752
 753
-754</pre>
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 727</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 745</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_perc_aura'>perc_aura</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="DRStats.html" title="Lich::DragonRealms::DRStats (module)">DRStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_trader?'><span class='object_link'><a href="DRStats.html#trader%3F-class_method" title="Lich::DragonRealms::DRStats.trader? (method)">trader?</a></span></span>
@@ -6140,7 +5976,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Perceives the current mana levels</p>
+<p>Retrieves the current mana percentage</p>
 
 
   </div>
@@ -6151,11 +5987,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>perc_mana</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_perc_mana'>perc_mana</span></code></pre>
     
   </div>
 
@@ -6171,7 +6003,7 @@
       
         &mdash;
         <div class='inline'>
-<p>A hash of mana levels or nil if not applicable</p>
+<p>Returns a hash of mana levels or nil if not applicable</p>
 </div>
       
     </li>
@@ -6184,31 +6016,31 @@
       <pre class="lines">
 
 
-701
-702
-703
-704
-705
-706
-707
-708
-709
-710
-711
-712
-713
-714
-715
-716
-717
 718
 719
 720
 721
-722</pre>
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 701</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 718</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_perc_mana'>perc_mana</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRStats.html" title="Lich::DragonRealms::DRStats (module)">DRStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_barbarian?'><span class='object_link'><a href="DRStats.html#barbarian%3F-class_method" title="Lich::DragonRealms::DRStats.barbarian? (method)">barbarian?</a></span></span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="DRStats.html" title="Lich::DragonRealms::DRStats (module)">DRStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_thief?'><span class='object_link'><a href="DRStats.html#thief%3F-class_method" title="Lich::DragonRealms::DRStats.thief? (method)">thief?</a></span></span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="DRStats.html" title="Lich::DragonRealms::DRStats (module)">DRStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_trader?'><span class='object_link'><a href="DRStats.html#trader%3F-class_method" title="Lich::DragonRealms::DRStats.trader? (method)">trader?</a></span></span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="DRStats.html" title="Lich::DragonRealms::DRStats (module)">DRStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_commoner?'><span class='object_link'><a href="DRStats.html#commoner%3F-class_method" title="Lich::DragonRealms::DRStats.commoner? (method)">commoner?</a></span></span>
@@ -6249,7 +6081,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>check which symbiotic research is active Checks which symbiotic research is currently active</p>
+<p>Retrieves the current symbiotic research status</p>
 
 
   </div>
@@ -6260,11 +6092,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>perc_symbiotic_research</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_perc_symbiotic_research'>perc_symbiotic_research</span></code></pre>
     
   </div>
 
@@ -6280,7 +6108,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the active symbiosis or nil if none</p>
+<p>Returns the type of symbiosis or nil if not applicable</p>
 </div>
       
     </li>
@@ -6293,17 +6121,17 @@
       <pre class="lines">
 
 
-1195
-1196
-1197
-1198
-1199
-1200
-1201
-1202</pre>
+1225
+1226
+1227
+1228
+1229
+1230
+1231
+1232</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1195</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1225</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_perc_symbiotic_research'>perc_symbiotic_research</span>
   <span class='kw'>case</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>perceive</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>combine the weaves of the (\w+) symbiosis</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Roundtime</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
@@ -6321,7 +6149,7 @@
       <div class="method_details ">
   <h3 class="signature " id="prepare?-class_method">
   
-    .<strong>prepare?</strong>(abbrev, mana, symbiosis = false, command = &#39;prepare&#39;, tattoo_tm = false, runestone_name = nil, runestone_tm = false)  &#x21d2; <tt>Boolean</tt> 
+    .<strong>prepare?</strong>(abbrev, mana, symbiosis = false, command = &#39;prepare&#39;, tattoo_tm = false, runestone_name = nil, runestone_tm = false, custom_prep = nil)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt><sup>?</sup> 
   
 
   
@@ -6341,11 +6169,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>prepare?(‘spell_abbrev’, 100, false, ‘prepare’)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_prepare?'>prepare?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>spell_abbrev</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>100</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -6378,7 +6202,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The amount of mana required</p>
+<p>The amount of mana to prepare</p>
 </div>
       
     </li>
@@ -6396,7 +6220,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Indicates if symbiosis is involved</p>
+<p>Indicates if symbiosis is being used</p>
 </div>
       
     </li>
@@ -6414,7 +6238,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The command to prepare</p>
+<p>The command to use for preparation</p>
 </div>
       
     </li>
@@ -6432,7 +6256,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Indicates if tattoo time is involved</p>
+<p>Indicates if a tattoo is used</p>
 </div>
       
     </li>
@@ -6442,7 +6266,7 @@
         <span class='name'>runestone_name</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
         <em class="default">(defaults to: <tt>nil</tt>)</em>
@@ -6450,7 +6274,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the runestone, if applicable</p>
+<p>The name of the runestone</p>
 </div>
       
     </li>
@@ -6468,7 +6292,25 @@
       
         &mdash;
         <div class='inline'>
-<p>Indicates if runestone time is involved</p>
+<p>Indicates if a runestone is used</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>custom_prep</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Custom preparation message</p>
 </div>
       
     </li>
@@ -6481,13 +6323,13 @@
     <li>
       
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Returns true if preparation was successful, false otherwise</p>
+<p>Returns the preparation message or nil on failure</p>
 </div>
       
     </li>
@@ -6500,6 +6342,7 @@
       <pre class="lines">
 
 
+243
 244
 245
 246
@@ -6526,26 +6369,25 @@
 267
 268
 269
-270
-271</pre>
+270</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 244</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 243</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_prepare?'>prepare?</span><span class='lparen'>(</span><span class='id identifier rubyid_abbrev'>abbrev</span><span class='comma'>,</span> <span class='id identifier rubyid_mana'>mana</span><span class='comma'>,</span> <span class='id identifier rubyid_symbiosis'>symbiosis</span> <span class='op'>=</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='id identifier rubyid_command'>command</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prepare</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_tattoo_tm'>tattoo_tm</span> <span class='op'>=</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='id identifier rubyid_runestone_name'>runestone_name</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_runestone_tm'>runestone_tm</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_prepare?'>prepare?</span><span class='lparen'>(</span><span class='id identifier rubyid_abbrev'>abbrev</span><span class='comma'>,</span> <span class='id identifier rubyid_mana'>mana</span><span class='comma'>,</span> <span class='id identifier rubyid_symbiosis'>symbiosis</span> <span class='op'>=</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='id identifier rubyid_command'>command</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prepare</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_tattoo_tm'>tattoo_tm</span> <span class='op'>=</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='id identifier rubyid_runestone_name'>runestone_name</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_runestone_tm'>runestone_tm</span> <span class='op'>=</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='id identifier rubyid_custom_prep'>custom_prep</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_abbrev'>abbrev</span>
+  <span class='id identifier rubyid_spell_prep_messages'>spell_prep_messages</span> <span class='op'>=</span> <span class='op'>!</span><span class='id identifier rubyid_custom_prep'>custom_prep</span> <span class='op'>?</span> <span class='id identifier rubyid_get_data'>get_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>spells</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_prep_messages'>prep_messages</span> <span class='op'>:</span> <span class='lparen'>(</span><span class='id identifier rubyid_get_data'>get_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>spells</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_prep_messages'>prep_messages</span> <span class='op'>+</span> <span class='lbracket'>[</span><span class='id identifier rubyid_custom_prep'>custom_prep</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 
   <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prepare symbiosis</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You recall the exact details of the</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>But you\&#39;ve already prepared</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Please don\&#39;t do that here</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_symbiosis'>symbiosis</span>
-
   <span class='kw'>if</span> <span class='id identifier rubyid_runestone_name'>runestone_name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-    <span class='id identifier rubyid_match'><span class='object_link'><a href="../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_command'>command</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_abbrev'>abbrev</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_mana'>mana</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_get_data'>get_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>spells</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_prep_messages'>prep_messages</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_match'><span class='object_link'><a href="../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_command'>command</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_abbrev'>abbrev</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_mana'>mana</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_spell_prep_messages'>spell_prep_messages</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_match'><span class='object_link'><a href="../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_command'>command</span><span class='embexpr_end'>}</span><span class='tstring_content'> my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_runestone_name'>runestone_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_get_data'>get_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>spells</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_invoke_messages'>invoke_messages</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span>
   <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Your desire to prepare this offensive spell suddenly slips away</span><span class='tstring_end'>&#39;</span></span>
     <span class='id identifier rubyid_pause'><span class='object_link'><a href="../../top-level-namespace.html#pause-instance_method" title="#pause (method)">pause</a></span></span> <span class='int'>1</span>
-    <span class='kw'>return</span> <span class='id identifier rubyid_prepare?'>prepare?</span><span class='lparen'>(</span><span class='id identifier rubyid_abbrev'>abbrev</span><span class='comma'>,</span> <span class='id identifier rubyid_mana'>mana</span><span class='comma'>,</span> <span class='id identifier rubyid_symbiosis'>symbiosis</span><span class='comma'>,</span> <span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_tattoo_tm'>tattoo_tm</span><span class='comma'>,</span> <span class='id identifier rubyid_runestone_name'>runestone_name</span><span class='comma'>,</span> <span class='id identifier rubyid_runestone_tm'>runestone_tm</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_prepare?'>prepare?</span><span class='lparen'>(</span><span class='id identifier rubyid_abbrev'>abbrev</span><span class='comma'>,</span> <span class='id identifier rubyid_mana'>mana</span><span class='comma'>,</span> <span class='id identifier rubyid_symbiosis'>symbiosis</span><span class='comma'>,</span> <span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_tattoo_tm'>tattoo_tm</span><span class='comma'>,</span> <span class='id identifier rubyid_runestone_name'>runestone_name</span><span class='comma'>,</span> <span class='id identifier rubyid_runestone_tm'>runestone_tm</span><span class='comma'>,</span> <span class='id identifier rubyid_custom_prep'>custom_prep</span><span class='rparen'>)</span>
   <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Something in the area interferes with your spell preparations</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You shouldn\&#39;t disrupt the area right now</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You have no idea how to cast that spell</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You have yet to receive any training in the magical arts</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Please don\&#39;t do that here</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You cannot use the tattoo while maintaining the effort to stay hidden</span><span class='tstring_end'>&#39;</span></span>
     <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>release symbiosis</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You release the</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>But you haven\&#39;t</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_symbiosis'>symbiosis</span>
     <span class='kw'>return</span> <span class='kw'>false</span>
@@ -6556,7 +6398,7 @@
     <span class='kw'>return</span> <span class='kw'>false</span>
   <span class='kw'>end</span>
 
-  <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>target</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_get_data'>get_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>spells</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_prep_messages'>prep_messages</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_tattoo_tm'>tattoo_tm</span> <span class='op'>||</span> <span class='id identifier rubyid_runestone_tm'>runestone_tm</span>
+  <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>target</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_spell_prep_messages'>spell_prep_messages</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_tattoo_tm'>tattoo_tm</span> <span class='op'>||</span> <span class='id identifier rubyid_runestone_tm'>runestone_tm</span>
 
   <span class='id identifier rubyid_match'><span class='object_link'><a href="../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span>
 <span class='kw'>end</span></pre>
@@ -6588,11 +6430,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>prepare_to_cast_runestone?(spell_data, settings)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_prepare_to_cast_runestone?'>prepare_to_cast_runestone?</span><span class='lparen'>(</span><span class='id identifier rubyid_spell'>spell</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -6696,7 +6534,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Releases active cyclic spells</p>
+<p>Releases all active cyclic spells</p>
 
 
   </div>
@@ -6707,11 +6545,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p><a href="&#39;SpellName&#39;">release_cyclics(</a>)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_release_cyclics'>release_cyclics</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cyclic A</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -6730,7 +6564,7 @@
       
         &mdash;
         <div class='inline'>
-<p>A list of cyclic spells not to release</p>
+<p>A list of cyclic spells that should not be released</p>
 </div>
       
     </li>
@@ -6762,18 +6596,18 @@
       <pre class="lines">
 
 
-640
-641
-642
-643
-644
-645
-646
-647
-648</pre>
+653
+654
+655
+656
+657
+658
+659
+660
+661</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 640</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 653</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_release_cyclics'>release_cyclics</span><span class='lparen'>(</span><span class='id identifier rubyid_cyclic_no_release'>cyclic_no_release</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_get_data'>get_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>spells</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -6801,7 +6635,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>release symbiotic research Releases the current magical research</p>
+<p>Releases the magical research symbiosis</p>
 
 
   </div>
@@ -6812,11 +6646,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>release_magical_research</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_release_magical_research'>release_magical_research</span></code></pre>
     
   </div>
 
@@ -6845,12 +6675,12 @@
       <pre class="lines">
 
 
-1208
-1209
-1210</pre>
+1238
+1239
+1240</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1208</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1238</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_release_magical_research'>release_magical_research</span>
   <span class='int'>2</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='lbrace'>{</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>release symbiosis</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Are you sure</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You intentionally wipe</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>But you haven&#39;t</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -6883,11 +6713,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>ritual(data, settings)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_ritual'>ritual</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -6952,6 +6778,7 @@
       <pre class="lines">
 
 
+304
 305
 306
 307
@@ -6978,11 +6805,10 @@
 328
 329
 330
-331
-332</pre>
+331</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 305</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 304</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ritual'>ritual</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_retreat'><span class='object_link'><a href="DRC.html#retreat-class_method" title="Lich::DragonRealms::DRC.retreat (method)">retreat</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_ignored_npcs'>ignored_npcs</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>skip_retreat</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
@@ -6993,7 +6819,7 @@
   <span class='id identifier rubyid_command'>command</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prep</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prep</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_command'>command</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prep_type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prep_type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
 
-  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_prepare?'>prepare?</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abbrev</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mana</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>symbiosis</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tattoo_tm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>runestone_name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>runestone_tm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_prepare?'>prepare?</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abbrev</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mana</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>symbiosis</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tattoo_tm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>runestone_name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>runestone_tm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>custom_spell_prep</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_prepare_time'>prepare_time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span>
   <span class='id identifier rubyid_find_focus'>find_focus</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>focus</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>worn_focus</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tied_focus</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>sheathed_focus</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -7029,7 +6855,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if a segue can be performed from a cyclic spell</p>
+<p>Checks if a segue can be performed from the current spell</p>
 
 
   </div>
@@ -7040,11 +6866,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>segue?(‘spell_abbrev’, 100)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_segue?'>segue?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>spell_abbrev</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>100</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -7077,7 +6899,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The amount of mana to use</p>
+<p>The amount of mana to use for the segue</p>
 </div>
       
     </li>
@@ -7096,7 +6918,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Returns true if segue is possible, false otherwise</p>
+<p>Returns true if the segue can be performed, false otherwise</p>
 </div>
       
     </li>
@@ -7109,16 +6931,16 @@
       <pre class="lines">
 
 
-878
-879
-880
-881
-882
-883
-884</pre>
+900
+901
+902
+903
+904
+905
+906</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 878</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 900</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_segue?'>segue?</span><span class='lparen'>(</span><span class='id identifier rubyid_abbrev'>abbrev</span><span class='comma'>,</span> <span class='id identifier rubyid_mana'>mana</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>segue </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_abbrev'>abbrev</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_mana'>mana</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_get_data'>get_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>spells</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_segue_messages'>segue_messages</span><span class='rparen'>)</span>
@@ -7144,7 +6966,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Removes worn regalia armor</p>
+<p>Shatters the specified regalia items</p>
 
 
   </div>
@@ -7155,11 +6977,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>shatter_regalia?(nil)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_shatter_regalia?'>shatter_regalia?</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Regalia A</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Regalia B</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -7178,7 +6996,7 @@
       
         &mdash;
         <div class='inline'>
-<p>An array of armor nouns to remove</p>
+<p>The worn regalia items to shatter, or nil to parse</p>
 </div>
       
     </li>
@@ -7197,7 +7015,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Returns true if removal was successful, false otherwise</p>
+<p>Returns true if successful, false otherwise</p>
 </div>
       
     </li>
@@ -7210,20 +7028,20 @@
       <pre class="lines">
 
 
-666
-667
-668
-669
-670
-671
-672
-673
-674
-675
-676</pre>
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 666</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 681</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_shatter_regalia?'>shatter_regalia?</span><span class='lparen'>(</span><span class='id identifier rubyid_worn_regalia'>worn_regalia</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span> <span class='comment'># takes an array of armor nouns to remove or gets its own from parse_regalia
 </span>  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="DRStats.html" title="Lich::DragonRealms::DRStats (module)">DRStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_trader?'><span class='object_link'><a href="DRStats.html#trader%3F-class_method" title="Lich::DragonRealms::DRStats.trader? (method)">trader?</a></span></span>
@@ -7253,7 +7071,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if the user is skilled enough to charge cambrinth while worn</p>
+<p>Checks if the user is skilled enough to charge a cambrinth while worn</p>
 
 
   </div>
@@ -7264,11 +7082,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>skilled_to_charge_while_worn?(100)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_skilled_to_charge_while_worn?'>skilled_to_charge_while_worn?</span><span class='lparen'>(</span><span class='int'>100</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -7304,7 +7118,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Returns true if skilled, false otherwise</p>
+<p>Returns true if skilled enough, false otherwise</p>
 </div>
       
     </li>
@@ -7317,12 +7131,12 @@
       <pre class="lines">
 
 
-544
-545
-546</pre>
+553
+554
+555</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 544</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 553</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_skilled_to_charge_while_worn?'>skilled_to_charge_while_worn?</span><span class='lparen'>(</span><span class='id identifier rubyid_cambrinth_cap'>cambrinth_cap</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="DRSkill.html" title="Lich::DragonRealms::DRSkill (class)">DRSkill</a></span></span><span class='period'>.</span><span class='id identifier rubyid_getrank'><span class='object_link'><a href="DRSkill.html#getrank-class_method" title="Lich::DragonRealms::DRSkill.getrank (method)">getrank</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Arcana</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>&gt;=</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_cambrinth_cap'>cambrinth_cap</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>*</span> <span class='int'>2</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='int'>100</span><span class='rparen'>)</span>
@@ -7344,7 +7158,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns true if you’re prepared to cast your spell. Infers this if you’re preparing a spell and there’s no more prep time to wait. Checks if a spell is prepared for casting</p>
+<p>Checks if a spell is fully prepared</p>
 
 
   </div>
@@ -7355,11 +7169,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>spell_prepared?</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_spell_prepared?'>spell_prepared?</span></code></pre>
     
   </div>
 
@@ -7375,7 +7185,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Returns true if the spell is prepared, false otherwise</p>
+<p>Returns true if the spell is fully prepared, false otherwise</p>
 </div>
       
     </li>
@@ -7388,12 +7198,12 @@
       <pre class="lines">
 
 
-286
-287
-288</pre>
+284
+285
+286</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 286</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 284</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_spell_prepared?'>spell_prepared?</span>
   <span class='id identifier rubyid_spell_preparing?'>spell_preparing?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_checkcastrt'><span class='object_link'><a href="../../top-level-namespace.html#checkcastrt-instance_method" title="#checkcastrt (method)">checkcastrt</a></span></span> <span class='op'>&lt;=</span> <span class='int'>0</span>
@@ -7415,7 +7225,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns name of the spell being prepared, or nil if not preparing one. Returns the name of the spell being prepared</p>
+<p>Retrieves the name of the currently prepared spell</p>
 
 
   </div>
@@ -7426,11 +7236,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>spell_preparing</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_spell_preparing'>spell_preparing</span></code></pre>
     
   </div>
 
@@ -7446,7 +7252,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the prepared spell, or nil if none</p>
+<p>Returns the name of the prepared spell or nil if none</p>
 </div>
       
     </li>
@@ -7459,14 +7265,14 @@
       <pre class="lines">
 
 
+292
+293
 294
 295
-296
-297
-298</pre>
+296</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 294</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 292</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_spell_preparing'>spell_preparing</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_prepared_spell'>prepared_spell</span>
@@ -7490,7 +7296,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns true if preparing a spell, false otherwise. Checks if a spell is currently being prepared</p>
+<p>Checks if a spell is currently being prepared</p>
 
 
   </div>
@@ -7501,11 +7307,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>spell_preparing?</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_spell_preparing?'>spell_preparing?</span></code></pre>
     
   </div>
 
@@ -7534,12 +7336,12 @@
       <pre class="lines">
 
 
+276
 277
-278
-279</pre>
+278</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 277</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 276</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_spell_preparing?'>spell_preparing?</span>
   <span class='op'>!</span><span class='id identifier rubyid_spell_preparing'>spell_preparing</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -7572,11 +7374,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>start_barb_abilities([‘Ability1’, ‘Ability2’], settings)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_start_barb_abilities'>start_barb_abilities</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ability A</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ability B</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -7593,7 +7391,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The list of Barbarian abilities to activate</p>
+<p>The list of abilities to activate</p>
 </div>
       
     </li>
@@ -7641,12 +7439,12 @@
       <pre class="lines">
 
 
-182
-183
-184</pre>
+178
+179
+180</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 182</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 178</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_barb_abilities'>start_barb_abilities</span><span class='lparen'>(</span><span class='id identifier rubyid_abilities'>abilities</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_abilities'>abilities</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='op'>|</span> <span class='id identifier rubyid_activate_barb_buff?'>activate_barb_buff?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_meditation_pause_timer'>meditation_pause_timer</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_sit_to_meditate'>sit_to_meditate</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -7679,11 +7477,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>start_khris([‘Khri Hasten’, ‘Khri Delay Hasten’], settings)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_start_khris'>start_khris</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Khri A</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Khri B</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -7748,15 +7542,15 @@
       <pre class="lines">
 
 
-119
 120
 121
 122
 123
-124</pre>
+124
+125</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 120</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_khris'>start_khris</span><span class='lparen'>(</span><span class='id identifier rubyid_khris'>khris</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_khris'>khris</span>
@@ -7781,7 +7575,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Stows a cambrinth item based on storage settings</p>
+<p>Stows a cambrinth item based on the configuration</p>
 
 
   </div>
@@ -7792,11 +7586,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>stow_cambrinth(‘CambrinthName’, true, 100)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_stow_cambrinth'>stow_cambrinth</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cambrinth A</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='int'>100</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -7813,7 +7603,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the cambrinth</p>
+<p>The name of the cambrinth item</p>
 </div>
       
     </li>
@@ -7845,7 +7635,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The capacity of the cambrinth</p>
+<p>The capacity of the cambrinth (not used)</p>
 </div>
       
     </li>
@@ -7877,14 +7667,6 @@
       <pre class="lines">
 
 
-520
-521
-522
-523
-524
-525
-526
-527
 528
 529
 530
@@ -7895,10 +7677,18 @@
 535
 536
 537
-538</pre>
+538
+539
+540
+541
+542
+543
+544
+545
+546</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 520</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 528</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stow_cambrinth'>stow_cambrinth</span><span class='lparen'>(</span><span class='id identifier rubyid_cambrinth'>cambrinth</span><span class='comma'>,</span> <span class='id identifier rubyid_stored_cambrinth'>stored_cambrinth</span><span class='comma'>,</span> <span class='id identifier rubyid__cambrinth_cap'>_cambrinth_cap</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_stored_cambrinth'>stored_cambrinth</span>
@@ -7947,11 +7737,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>stow_focus(‘FocusName’, true, ‘TiedItem’, false)</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_stow_focus'>stow_focus</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Focus A</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Item B</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -8048,12 +7834,6 @@
       <pre class="lines">
 
 
-469
-470
-471
-472
-473
-474
 475
 476
 477
@@ -8064,10 +7844,16 @@
 482
 483
 484
-485</pre>
+485
+486
+487
+488
+489
+490
+491</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 469</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 475</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stow_focus'>stow_focus</span><span class='lparen'>(</span><span class='id identifier rubyid_focus'>focus</span><span class='comma'>,</span> <span class='id identifier rubyid_worn'>worn</span><span class='comma'>,</span> <span class='id identifier rubyid_tied'>tied</span><span class='comma'>,</span> <span class='id identifier rubyid_sheathed'>sheathed</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_focus'>focus</span>
@@ -8103,7 +7889,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Updates the Avtalia focus</p>
+<p>Updates the Avtalia focus status</p>
 
 
   </div>
@@ -8114,11 +7900,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>update_avtalia</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_update_avtalia'>update_avtalia</span></code></pre>
     
   </div>
 
@@ -8147,13 +7929,13 @@
       <pre class="lines">
 
 
-1106
-1107
-1108
-1109</pre>
+1136
+1137
+1138
+1139</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1106</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-arcana.rb', line 1136</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_avtalia'>update_avtalia</span>
   <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>focus cambrinth</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^The .+ pulses? .+ (\d+)</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dim, almost magically null</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>^You let your magical senses wander</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -8169,9 +7951,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 23 03:17:23 2025 by
+  Generated on Tue Jan 13 02:35:10 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.2.9).
+  0.9.38 (ruby-3.2.9).
 </div>
 
     </div>

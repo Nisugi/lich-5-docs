@@ -88,7 +88,9 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>This module handles information monitoring for the game.</p>
+<p>CLI commands for Infomon</p>
+
+<p>This module contains command-line interface (CLI) commands for managing Infomon data.</p>
 
 
   </div>
@@ -100,10 +102,10 @@
     
       
         <h5 class="example_title"><div class='inline'>
-<p>Including the Infomon module</p>
+<p>Using the Infomon CLI</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>Infomon</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>Infomon</span><span class='period'>.</span><span class='id identifier rubyid_sync'><span class='object_link'><a href="#sync-class_method" title="Lich::Gemstone::Infomon.sync (method)">sync</a></span></span></code></pre>
     
   </div>
 
@@ -133,7 +135,7 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Allowed types for values in Infomon</p>
+<p>Allowed types for values in Infomon This constant defines the types that can be stored in the Infomon database.</p>
 
 
   </div>
@@ -204,7 +206,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Validates the key and value types.</p>
+<p>Validates the key and value before insertion.</p>
 </div></span>
   
 </li>
@@ -252,7 +254,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the cache instance used by Infomon.</p>
+<p>Returns the cache object.</p>
 </div></span>
   
 </li>
@@ -324,7 +326,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the Sequel database instance.</p>
+<p>Returns the database connection.</p>
 </div></span>
   
 </li>
@@ -453,6 +455,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#get_updated_at-class_method" title="get_updated_at (class method)">.<strong>get_updated_at</strong>(key)  &#x21d2; Float<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Retrieves the updated_at timestamp for a key.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#mutex-class_method" title="mutex (class method)">.<strong>mutex</strong>  &#x21d2; Mutex </a>
     
 
@@ -468,7 +494,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the mutex used for thread safety.</p>
+<p>Returns the mutex for thread safety.</p>
 </div></span>
   
 </li>
@@ -540,7 +566,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the SQL queue for database operations.</p>
+<p>Returns the SQL queue.</p>
 </div></span>
   
 </li>
@@ -588,7 +614,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Resets the Infomon state, clearing the cache and database table.</p>
+<p>Resets the Infomon state by dropping the table and clearing the cache.</p>
 </div></span>
   
 </li>
@@ -636,7 +662,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Sets up the database table for Infomon.</p>
+<p>Sets up the Infomon table if it does not exist.</p>
 </div></span>
   
 </li>
@@ -708,7 +734,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the database table for Infomon.</p>
+<p>Returns the Infomon table.</p>
 </div></span>
   
 </li>
@@ -732,7 +758,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Generates the table name based on game and XMLData.</p>
+<p>Returns the table name based on the game and XMLData.</p>
 </div></span>
   
 </li>
@@ -756,7 +782,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Inserts or replaces a key-value pair in the database.</p>
+<p>Inserts or replaces a record in the database.</p>
 </div></span>
   
 </li>
@@ -780,40 +806,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Inserts or replaces multiple key-value pairs in the database.</p>
-</div></span>
-  
-</li>
-
-      
-    </ul>
-  
-    <h2>
-      Instance Method Summary
-      <small><a href="#" class="summary_toggle">collapse</a></small>
-    </h2>
-
-    <ul class="summary">
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#Background-instance_method" title="#Background (instance method)">#<strong>Background</strong>(SQLQueueProcessor)  &#x21d2; void </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Background thread for processing SQL statements from the queue.</p>
+<p>Inserts or replaces multiple records in the database.</p>
 </div></span>
   
 </li>
@@ -854,7 +847,7 @@
         <span class='name'>key</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>Symbol</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
@@ -892,14 +885,14 @@
       <pre class="lines">
 
 
-145
-146
-147
-148
-149</pre>
+157
+158
+159
+160
+161</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 145</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 157</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid__key'>_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
@@ -923,7 +916,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Validates the key and value types</p>
+<p>Validates the key and value before insertion</p>
 
 
   </div>
@@ -996,7 +989,7 @@
       
         &mdash;
         <div class='inline'>
-<p>If the value type is not allowed</p>
+<p>If the value is of an invalid type</p>
 </div>
       
     </li>
@@ -1009,13 +1002,13 @@
       <pre class="lines">
 
 
-167
-168
-169
-170</pre>
+180
+181
+182
+183</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 167</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 180</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid__validate!'>_validate!</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid__value'>_value</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="#AllowedTypes-constant" title="Lich::Gemstone::Infomon::AllowedTypes (constant)">AllowedTypes</a></span></span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='rparen'>)</span>
@@ -1090,14 +1083,14 @@
       <pre class="lines">
 
 
-154
-155
-156
-157
-158</pre>
+166
+167
+168
+169
+170</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 154</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 166</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid__value'>_value</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>true</span><span class='tstring_end'>&quot;</span></span>
@@ -1121,7 +1114,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the cache instance used by Infomon</p>
+<p>Returns the cache object</p>
 
 
   </div>
@@ -1140,7 +1133,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The cache instance</p>
+<p>The cache instance used by Infomon</p>
 </div>
       
     </li>
@@ -1194,21 +1187,21 @@
       <pre class="lines">
 
 
-134
-135
-136
-137
-138
-139
-140</pre>
+146
+147
+148
+149
+150
+151
+152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 134</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 146</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_cache_load'>cache_load</span>
   <span class='id identifier rubyid_sleep'>sleep</span><span class='lparen'>(</span><span class='float'>0.01</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
   <span class='id identifier rubyid_dataset'>dataset</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_table'><span class='object_link'><a href="#table-class_method" title="Lich::Gemstone::Infomon.table (method)">table</a></span></span>
-  <span class='id identifier rubyid_h'>h</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_dataset'>dataset</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='symbol'>:key</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_zip'>zip</span><span class='lparen'>(</span><span class='id identifier rubyid_dataset'>dataset</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='symbol'>:value</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_h'>h</span> <span class='op'>=</span> <span class='id identifier rubyid_dataset'>dataset</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='symbol'>:key</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_zip'>zip</span><span class='lparen'>(</span><span class='id identifier rubyid_dataset'>dataset</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='symbol'>:value</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_h'>to_h</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_cache'>cache</span><span class='period'>.</span><span class='id identifier rubyid_merge!'>merge!</span><span class='lparen'>(</span><span class='id identifier rubyid_h'>h</span><span class='rparen'>)</span>
   <span class='ivar'>@cache_loaded</span> <span class='op'>=</span> <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
@@ -1292,7 +1285,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the Sequel database instance</p>
+<p>Returns the database connection</p>
 
 
   </div>
@@ -1311,7 +1304,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The database instance</p>
+<p>The Sequel database connection instance</p>
 </div>
       
     </li>
@@ -1468,14 +1461,14 @@
       <pre class="lines">
 
 
-244
-245
-246
-247
-248</pre>
+279
+280
+281
+282
+283</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 244</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 279</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_delete!'>delete!</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid__key'>_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
@@ -1518,7 +1511,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The database file path</p>
+<p>The path to the Infomon database file</p>
 </div>
       
     </li>
@@ -1568,6 +1561,10 @@
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Retrieving a value</p>
+</div></h5>
       
       <pre class="example code"><code><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>key</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
@@ -1636,19 +1633,6 @@
       <pre class="lines">
 
 
-178
-179
-180
-181
-182
-183
-184
-185
-186
-187
-188
-189
-190
 191
 192
 193
@@ -1661,10 +1645,23 @@
 200
 201
 202
-203</pre>
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 178</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 191</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="../../top-level-namespace.html#get-instance_method" title="#get (method)">get</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_cache_load'>cache_load</span> <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@cache_loaded</span>
@@ -1761,19 +1758,19 @@
       <pre class="lines">
 
 
-208
-209
-210
-211
-212
-213
-214
-215
-216
-217</pre>
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 208</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 221</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_bool'>get_bool</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
@@ -1783,6 +1780,131 @@
     <span class='kw'>return</span> <span class='kw'>true</span>
   <span class='kw'>else</span>
     <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_updated_at-class_method">
+  
+    .<strong>get_updated_at</strong>(key)  &#x21d2; <tt>Float</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Retrieves the updated_at timestamp for a key</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The key to retrieve the timestamp for</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Float</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The updated_at timestamp or nil if not found</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>If an error occurs during retrieval</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 236</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_updated_at'>get_updated_at</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid__key'>_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+  <span class='kw'>begin</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mutex'>mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_db_result'>db_result</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_table'>table</span><span class='lbracket'>[</span><span class='label'>key:</span> <span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_db_result'>db_result</span>
+        <span class='id identifier rubyid_db_result'>db_result</span><span class='lbracket'>[</span><span class='symbol'>:updated_at</span><span class='rbracket'>]</span>
+      <span class='kw'>else</span>
+        <span class='kw'>nil</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>rescue</span> <span class='const'>StandardError</span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- Lich: error: Infomon.get_updated_at(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_content'>): </span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Infomon.get_updated_at(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_content'>): </span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\t</span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n\t</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>nil</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1802,7 +1924,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the mutex used for thread safety</p>
+<p>Returns the mutex for thread safety</p>
 
 
   </div>
@@ -1821,7 +1943,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The mutex instance</p>
+<p>The mutex used for synchronizing access</p>
 </div>
       
     </li>
@@ -1999,7 +2121,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the SQL queue for database operations</p>
+<p>Returns the SQL queue</p>
 
 
   </div>
@@ -2018,7 +2140,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The SQL queue instance</p>
+<p>The queue for SQL statements</p>
 </div>
       
     </li>
@@ -2121,7 +2243,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Resets the Infomon state, clearing the cache and database table</p>
+<p>Resets the Infomon state by dropping the table and clearing the cache</p>
 
 
   </div>
@@ -2225,7 +2347,7 @@
       
         &mdash;
         <div class='inline'>
-<p>:noop if the value is unchanged, otherwise performs the operation</p>
+<p>:noop if the value is unchanged, otherwise performs the insert operation</p>
 </div>
       
     </li>
@@ -2238,17 +2360,17 @@
       <pre class="lines">
 
 
-232
-233
-234
-235
-236
-237
-238
-239</pre>
+267
+268
+269
+270
+271
+272
+273
+274</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 232</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 267</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid__key'>_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
@@ -2275,7 +2397,7 @@ on conflict(`key`) do update set value = excluded.value;</span><span class='tstr
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Sets up the database table for Infomon</p>
+<p>Sets up the Infomon table if it does not exist</p>
 
 
   </div>
@@ -2294,7 +2416,7 @@ on conflict(`key`) do update set value = excluded.value;</span><span class='tstr
       
         &mdash;
         <div class='inline'>
-<p>The dataset for the created table</p>
+<p>The dataset for the Infomon table</p>
 </div>
       
     </li>
@@ -2315,16 +2437,40 @@ on conflict(`key`) do update set value = excluded.value;</span><span class='tstr
 127
 128
 129
-130</pre>
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 122</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_setup!'>setup!</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mutex_lock'>mutex_lock</span>
+
+  <span class='comment'># Check if table exists but missing updated_at column
+</span>  <span class='kw'>if</span> <span class='ivar'>@db</span><span class='period'>.</span><span class='id identifier rubyid_table_exists?'>table_exists?</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_table_name'>table_name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_columns'>columns</span> <span class='op'>=</span> <span class='ivar'>@db</span><span class='period'>.</span><span class='id identifier rubyid_schema'>schema</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_table_name'>table_name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_col'>col</span><span class='op'>|</span> <span class='id identifier rubyid_col'>col</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+    <span class='kw'>unless</span> <span class='id identifier rubyid_columns'>columns</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='symbol'>:updated_at</span><span class='rparen'>)</span>
+      <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mutex_unlock'>mutex_unlock</span>
+      <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_reset!'>reset!</span>
+      <span class='kw'>return</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
   <span class='ivar'>@db</span><span class='period'>.</span><span class='id identifier rubyid_create_table?'>create_table?</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_table_name'>table_name</span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_text'>text</span> <span class='symbol'>:key</span><span class='comma'>,</span> <span class='label'>primary_key:</span> <span class='kw'>true</span>
     <span class='id identifier rubyid_any'>any</span> <span class='symbol'>:value</span>
+    <span class='id identifier rubyid_float'>float</span> <span class='symbol'>:updated_at</span>
   <span class='kw'>end</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mutex_unlock'>mutex_unlock</span>
   <span class='ivar'>@_table</span> <span class='op'>=</span> <span class='ivar'>@db</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_table_name'>table_name</span><span class='rbracket'>]</span>
@@ -2592,7 +2738,7 @@ on conflict(`key`) do update set value = excluded.value;</span><span class='tstr
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the database table for Infomon</p>
+<p>Returns the Infomon table</p>
 
 
   </div>
@@ -2611,7 +2757,7 @@ on conflict(`key`) do update set value = excluded.value;</span><span class='tstr
       
         &mdash;
         <div class='inline'>
-<p>The dataset for the table</p>
+<p>The dataset for the Infomon table</p>
 </div>
       
     </li>
@@ -2651,7 +2797,7 @@ on conflict(`key`) do update set value = excluded.value;</span><span class='tstr
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Generates the table name based on game and XMLData</p>
+<p>Returns the table name based on the game and XMLData</p>
 
 
   </div>
@@ -2670,7 +2816,7 @@ on conflict(`key`) do update set value = excluded.value;</span><span class='tstr
       
         &mdash;
         <div class='inline'>
-<p>The generated table name</p>
+<p>The table name for the Infomon data</p>
 </div>
       
     </li>
@@ -2712,7 +2858,7 @@ on conflict(`key`) do update set value = excluded.value;</span><span class='tstr
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Inserts or replaces a key-value pair in the database</p>
+<p>Inserts or replaces a record in the database</p>
 
 
   </div>
@@ -2732,7 +2878,7 @@ on conflict(`key`) do update set value = excluded.value;</span><span class='tstr
       
         &mdash;
         <div class='inline'>
-<p>The key-value pairs to insert</p>
+<p>The arguments for the insert operation</p>
 </div>
       
     </li>
@@ -2746,14 +2892,14 @@ on conflict(`key`) do update set value = excluded.value;</span><span class='tstr
       <pre class="lines">
 
 
-222
-223
-224
-225
-226</pre>
+257
+258
+259
+260
+261</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 222</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 257</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_upsert'>upsert</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_table'>table</span>
@@ -2777,7 +2923,7 @@ on conflict(`key`) do update set value = excluded.value;</span><span class='tstr
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Inserts or replaces multiple key-value pairs in the database</p>
+<p>Inserts or replaces multiple records in the database</p>
 
 
   </div>
@@ -2797,7 +2943,7 @@ on conflict(`key`) do update set value = excluded.value;</span><span class='tstr
       
         &mdash;
         <div class='inline'>
-<p>An array of key-value pairs to insert</p>
+<p>An array of key-value pairs to upsert</p>
 </div>
       
     </li>
@@ -2811,22 +2957,22 @@ on conflict(`key`) do update set value = excluded.value;</span><span class='tstr
       <pre class="lines">
 
 
-253
-254
-255
-256
-257
-258
-259
-260
-261
-262
-263
-264
-265</pre>
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 253</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 288</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_upsert_batch'>upsert_batch</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_blob'>blob</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_updated'>updated</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_blob'>blob</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid__key'>_key</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid__validate!'>_validate!</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span><span class='rbracket'>]</span> <span class='rbrace'>}</span> <span class='op'>-</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_cache'>cache</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='rparen'>)</span>
@@ -2848,87 +2994,12 @@ on conflict(`key`) do update set value = excluded.value;</span><span class='tstr
     
   </div>
 
-  <div id="instance_method_details" class="method_details_list">
-    <h2>Instance Method Details</h2>
-
-    
-      <div class="method_details first">
-  <h3 class="signature first" id="Background-instance_method">
-  
-    #<strong>Background</strong>(SQLQueueProcessor)  &#x21d2; <tt>void</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Background thread for processing SQL statements from the queue. This thread continuously processes queued SQL statements asynchronously.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-271
-272
-273
-274
-275
-276
-277
-278
-279
-280
-281
-282
-283
-284
-285
-286
-287</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon.rb', line 271</span>
-
-<span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span>
-  <span class='id identifier rubyid_loop'>loop</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_sql_statement'>sql_statement</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_queue'><span class='object_link'><a href="#queue-class_method" title="Lich::Gemstone::Infomon.queue (method)">queue</a></span></span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span>
-    <span class='kw'>begin</span>
-      <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mutex'><span class='object_link'><a href="#mutex-class_method" title="Lich::Gemstone::Infomon.mutex (method)">mutex</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
-        <span class='kw'>begin</span>
-          <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_db'><span class='object_link'><a href="#db-class_method" title="Lich::Gemstone::Infomon.db (method)">db</a></span></span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='id identifier rubyid_sql_statement'>sql_statement</span><span class='rparen'>)</span>
-        <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-          <span class='id identifier rubyid_pp'>pp</span><span class='lparen'>(</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='rparen'>)</span>
-        <span class='kw'>end</span>
-      <span class='kw'>end</span>
-    <span class='kw'>rescue</span> <span class='const'>StandardError</span>
-      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- Lich: error: Infomon ThreadQueue: </span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Infomon ThreadQueue: </span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\t</span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n\t</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-    <span class='kw'>end</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-  </div>
-
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 23 03:17:20 2025 by
+  Generated on Tue Jan 13 02:35:04 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.2.9).
+  0.9.38 (ruby-3.2.9).
 </div>
 
     </div>

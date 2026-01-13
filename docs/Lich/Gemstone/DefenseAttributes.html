@@ -102,9 +102,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Creature defensive attributes and resistances</p>
-
-<p>Stores defense values including armor, TD values for all spell circles, immunities, and special defensive abilities.</p>
+<p>Represents the defensive attributes of a creature. This class manages various defensive capabilities and immunities.</p>
 
 
   </div>
@@ -719,7 +717,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>A new instance of DefenseAttributes.</p>
+<p>Initializes a new defense attributes object.</p>
 </div></span>
   
 </li>
@@ -743,13 +741,33 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a new instance of DefenseAttributes.</p>
+<p>Initializes a new defense attributes object.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>data</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The data for the defense attributes.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -757,25 +775,25 @@
       <pre class="lines">
 
 
-814
-815
-816
-817
-818
-819
-820
-821
-822
-823
-824
-825
-826
-827
-828
-829</pre>
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 814</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 770</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='ivar'>@asg</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='symbol'>:asg</span><span class='rbracket'>]</span>
@@ -831,12 +849,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_asg'>asg</span>
   <span class='ivar'>@asg</span>
@@ -874,12 +892,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_bar_td'>bar_td</span>
   <span class='ivar'>@bar_td</span>
@@ -917,12 +935,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_bolt'>bolt</span>
   <span class='ivar'>@bolt</span>
@@ -960,12 +978,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cle_td'>cle_td</span>
   <span class='ivar'>@cle_td</span>
@@ -1003,12 +1021,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_defensive_abilities'>defensive_abilities</span>
   <span class='ivar'>@defensive_abilities</span>
@@ -1046,12 +1064,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_defensive_spells'>defensive_spells</span>
   <span class='ivar'>@defensive_spells</span>
@@ -1089,12 +1107,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_emp_td'>emp_td</span>
   <span class='ivar'>@emp_td</span>
@@ -1132,12 +1150,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_immunities'>immunities</span>
   <span class='ivar'>@immunities</span>
@@ -1175,12 +1193,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_melee'>melee</span>
   <span class='ivar'>@melee</span>
@@ -1218,12 +1236,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_mje_td'>mje_td</span>
   <span class='ivar'>@mje_td</span>
@@ -1261,12 +1279,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_mjs_td'>mjs_td</span>
   <span class='ivar'>@mjs_td</span>
@@ -1304,12 +1322,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_mne_td'>mne_td</span>
   <span class='ivar'>@mne_td</span>
@@ -1347,12 +1365,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_mnm_td'>mnm_td</span>
   <span class='ivar'>@mnm_td</span>
@@ -1390,12 +1408,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_mns_td'>mns_td</span>
   <span class='ivar'>@mns_td</span>
@@ -1433,12 +1451,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pal_td'>pal_td</span>
   <span class='ivar'>@pal_td</span>
@@ -1476,12 +1494,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ran_td'>ran_td</span>
   <span class='ivar'>@ran_td</span>
@@ -1519,12 +1537,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ranged'>ranged</span>
   <span class='ivar'>@ranged</span>
@@ -1562,12 +1580,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sor_td'>sor_td</span>
   <span class='ivar'>@sor_td</span>
@@ -1605,12 +1623,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_special_defenses'>special_defenses</span>
   <span class='ivar'>@special_defenses</span>
@@ -1648,12 +1666,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_udf'>udf</span>
   <span class='ivar'>@udf</span>
@@ -1691,12 +1709,12 @@
       <pre class="lines">
 
 
-808
-809
-810</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 808</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 761</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_wiz_td'>wiz_td</span>
   <span class='ivar'>@wiz_td</span>
@@ -1712,9 +1730,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 23 03:17:27 2025 by
+  Generated on Tue Jan 13 02:35:15 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.2.9).
+  0.9.38 (ruby-3.2.9).
 </div>
 
     </div>

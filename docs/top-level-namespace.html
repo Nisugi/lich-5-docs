@@ -87,7 +87,7 @@
 <p class="children">
   
     
-      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Lich.html" title="Lich (module)">Lich</a></span>, <span class='object_link'><a href="SessionVars.html" title="SessionVars (module)">SessionVars</a></span>, <span class='object_link'><a href="Win32.html" title="Win32 (module)">Win32</a></span>, <span class='object_link'><a href="Wine.html" title="Wine (module)">Wine</a></span>
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Lich.html" title="Lich (module)">Lich</a></span>, <span class='object_link'><a href="SessionVars.html" title="SessionVars (module)">SessionVars</a></span>, <span class='object_link'><a href="Win32.html" title="Win32 (module)">Win32</a></span>, <span class='object_link'><a href="Win32Enum.html" title="Win32Enum (module)">Win32Enum</a></span>, <span class='object_link'><a href="WinAPI.html" title="WinAPI (module)">WinAPI</a></span>, <span class='object_link'><a href="Wine.html" title="Wine (module)">Wine</a></span>
     
   
     
@@ -459,6 +459,38 @@
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>IconJOINED</span><span class='tstring_end'>&#39;</span></span>    <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>P</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>IconBLEEDING</span><span class='tstring_end'>&#39;</span></span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>O</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
 <span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="KRAMDOWN_LOADED-constant" class="">KRAMDOWN_LOADED =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Attempt to install and require kramdown, tracking if it loaded successfully</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='kw'>begin</span>
+  <span class='const'><span class='object_link'><a href="Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Lich/Util.html" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_install_gem_requirements'><span class='object_link'><a href="Lich/Util.html#install_gem_requirements-class_method" title="Lich::Util.install_gem_requirements (method)">install_gem_requirements</a></span></span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>kramdown</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='kw'>false</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>kramdown</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>true</span>
+<span class='kw'>rescue</span> <span class='const'>Gem</span><span class='op'>::</span><span class='const'>ConflictError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
+  <span class='comment'># Gem version conflict - kramdown can&#39;t be activated due to dependency issues
+</span>  <span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TextStripper: Kramdown gem conflict detected (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_content'>). Restart Lich5 to resolve.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>false</span>
+<span class='kw'>rescue</span> <span class='const'>LoadError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
+  <span class='comment'># Kramdown gem not found or couldn&#39;t be loaded
+</span>  <span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TextStripper: Kramdown could not be loaded (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_content'>). Restart Lich5 to resolve.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>false</span>
+<span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
+  <span class='comment'># Catch any other gem-related errors
+</span>  <span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TextStripper: Error loading kramdown (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_content'>). Restart Lich5 to resolve.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>false</span>
+<span class='kw'>end</span></pre></dd>
       
     </dl>
   
@@ -22622,9 +22654,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 23 03:17:17 2025 by
+  Generated on Tue Jan 13 02:35:02 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.2.9).
+  0.9.38 (ruby-3.2.9).
 </div>
 
     </div>

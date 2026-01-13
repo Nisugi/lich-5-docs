@@ -102,9 +102,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Creature treasure/loot information</p>
-
-<p>Tracks what types of treasure a creature drops (coins, gems, boxes, skins).</p>
+<p>Represents the treasure associated with a creature. This class manages the treasure data, including coins, gems, and magic items.</p>
 
 
   </div>
@@ -144,7 +142,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if a blunt weapon is required to access the treasure.</p>
+</div></span>
   
 </li>
 
@@ -166,7 +166,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if the treasure has boxes.</p>
+</div></span>
   
 </li>
 
@@ -188,7 +190,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if the treasure has coins.</p>
+</div></span>
   
 </li>
 
@@ -210,7 +214,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if the treasure has gems.</p>
+</div></span>
   
 </li>
 
@@ -232,7 +238,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if the treasure has skin.</p>
+</div></span>
   
 </li>
 
@@ -257,7 +265,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Initialize treasure data.</p>
+<p>A new instance of Treasure.</p>
 </div></span>
   
 </li>
@@ -266,7 +274,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#to_h-instance_method" title="#to_h (instance method)">#<strong>to_h</strong>  &#x21d2; Object </a>
+      <a href="#to_h-instance_method" title="#to_h (instance method)">#<strong>to_h</strong>  &#x21d2; Hash </a>
     
 
     
@@ -280,7 +288,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Converts the treasure data to a hash.</p>
+</div></span>
   
 </li>
 
@@ -303,109 +313,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Initialize treasure data</p>
+<p>Returns a new instance of Treasure.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
   
-    <li>
-      
-        <span class='name'>data</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>{}</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Treasure configuration</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-  
-    
-    
-    <p class="tag_title">Options Hash (<tt>data</tt>):</p>
-    <ul class="option">
-      
-        <li>
-          <span class="name">:coins</span>
-          <span class="type">(<tt>Boolean</tt>)</span>
-          <span class="default">
-            
-          </span>
-          
-            &mdash; <div class='inline'>
-<p>Drops coins</p>
-</div>
-          
-        </li>
-      
-        <li>
-          <span class="name">:gems</span>
-          <span class="type">(<tt>Boolean</tt>)</span>
-          <span class="default">
-            
-          </span>
-          
-            &mdash; <div class='inline'>
-<p>Drops gems</p>
-</div>
-          
-        </li>
-      
-        <li>
-          <span class="name">:boxes</span>
-          <span class="type">(<tt>Boolean</tt>)</span>
-          <span class="default">
-            
-          </span>
-          
-            &mdash; <div class='inline'>
-<p>Drops lockboxes</p>
-</div>
-          
-        </li>
-      
-        <li>
-          <span class="name">:skin</span>
-          <span class="type">(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-          <span class="default">
-            
-          </span>
-          
-            &mdash; <div class='inline'>
-<p>Skinnable item</p>
-</div>
-          
-        </li>
-      
-        <li>
-          <span class="name">:blunt_required</span>
-          <span class="type">(<tt>Boolean</tt>)</span>
-          <span class="default">
-            
-          </span>
-          
-            &mdash; <div class='inline'>
-<p>Requires blunt weapon to skin</p>
-</div>
-          
-        </li>
-      
-    </ul>
-  
-
 
 </div><table class="source_code">
   <tr>
@@ -413,20 +327,20 @@
       <pre class="lines">
 
 
-726
-727
-728
-729
-730
-731
-732
-733
-734
-735
-736</pre>
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 726</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 664</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@data</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -463,6 +377,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Checks if a blunt weapon is required to access the treasure.</p>
+
 
   </div>
 </div>
@@ -478,6 +394,11 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>True if blunt is required, otherwise false.</p>
+</div>
+      
     </li>
   
 </ul>
@@ -488,10 +409,10 @@
       <pre class="lines">
 
 
-742</pre>
+690</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 742</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 690</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_blunt_required?'>blunt_required?</span> <span class='op'>=</span> <span class='op'>!</span><span class='op'>!</span><span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:blunt_required</span><span class='rbracket'>]</span></pre>
     </td>
@@ -511,6 +432,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Checks if the treasure has boxes.</p>
+
 
   </div>
 </div>
@@ -526,6 +449,11 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>True if boxes are present, otherwise false.</p>
+</div>
+      
     </li>
   
 </ul>
@@ -536,12 +464,16 @@
       <pre class="lines">
 
 
-740</pre>
+684
+685
+686</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 740</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 684</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_has_boxes?'>has_boxes?</span> <span class='op'>=</span> <span class='op'>!</span><span class='op'>!</span><span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:boxes</span><span class='rbracket'>]</span></pre>
+<span class='kw'>def</span> <span class='id identifier rubyid_has_boxes?'>has_boxes?</span> <span class='op'>=</span> <span class='op'>!</span><span class='op'>!</span><span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:boxes</span><span class='rbracket'>]</span>
+<span class='comment'># Checks if the treasure has skin.
+</span><span class='comment'># @return [Boolean] True if skin is present, otherwise false.</span></pre>
     </td>
   </tr>
 </table>
@@ -559,6 +491,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Checks if the treasure has coins.</p>
+
 
   </div>
 </div>
@@ -574,6 +508,11 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>True if coins are present, otherwise false.</p>
+</div>
+      
     </li>
   
 </ul>
@@ -584,12 +523,16 @@
       <pre class="lines">
 
 
-738</pre>
+678
+679
+680</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 738</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 678</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_has_coins?'>has_coins?</span> <span class='op'>=</span> <span class='op'>!</span><span class='op'>!</span><span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:coins</span><span class='rbracket'>]</span></pre>
+<span class='kw'>def</span> <span class='id identifier rubyid_has_coins?'>has_coins?</span> <span class='op'>=</span> <span class='op'>!</span><span class='op'>!</span><span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:coins</span><span class='rbracket'>]</span>
+<span class='comment'># Checks if the treasure has gems.
+</span><span class='comment'># @return [Boolean] True if gems are present, otherwise false.</span></pre>
     </td>
   </tr>
 </table>
@@ -607,6 +550,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Checks if the treasure has gems.</p>
+
 
   </div>
 </div>
@@ -622,6 +567,11 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>True if gems are present, otherwise false.</p>
+</div>
+      
     </li>
   
 </ul>
@@ -632,12 +582,16 @@
       <pre class="lines">
 
 
-739</pre>
+681
+682
+683</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 739</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 681</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_has_gems?'>has_gems?</span> <span class='op'>=</span> <span class='op'>!</span><span class='op'>!</span><span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:gems</span><span class='rbracket'>]</span></pre>
+<span class='kw'>def</span> <span class='id identifier rubyid_has_gems?'>has_gems?</span> <span class='op'>=</span> <span class='op'>!</span><span class='op'>!</span><span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:gems</span><span class='rbracket'>]</span>
+<span class='comment'># Checks if the treasure has boxes.
+</span><span class='comment'># @return [Boolean] True if boxes are present, otherwise false.</span></pre>
     </td>
   </tr>
 </table>
@@ -655,6 +609,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Checks if the treasure has skin.</p>
+
 
   </div>
 </div>
@@ -670,6 +626,11 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>True if skin is present, otherwise false.</p>
+</div>
+      
     </li>
   
 </ul>
@@ -680,12 +641,16 @@
       <pre class="lines">
 
 
-741</pre>
+687
+688
+689</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 741</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 687</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_has_skin?'>has_skin?</span> <span class='op'>=</span> <span class='op'>!</span><span class='op'>!</span><span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:skin</span><span class='rbracket'>]</span></pre>
+<span class='kw'>def</span> <span class='id identifier rubyid_has_skin?'>has_skin?</span> <span class='op'>=</span> <span class='op'>!</span><span class='op'>!</span><span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:skin</span><span class='rbracket'>]</span>
+<span class='comment'># Checks if a blunt weapon is required to access the treasure.
+</span><span class='comment'># @return [Boolean] True if blunt is required, otherwise false.</span></pre>
     </td>
   </tr>
 </table>
@@ -694,22 +659,51 @@
       <div class="method_details ">
   <h3 class="signature " id="to_h-instance_method">
   
-    #<strong>to_h</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>to_h</strong>  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Converts the treasure data to a hash.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The treasure data as a hash.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-744</pre>
+694</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 744</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 694</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_h'>to_h</span> <span class='op'>=</span> <span class='ivar'>@data</span></pre>
     </td>
@@ -722,9 +716,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 23 03:17:27 2025 by
+  Generated on Tue Jan 13 02:35:15 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.2.9).
+  0.9.38 (ruby-3.2.9).
 </div>
 
     </div>

@@ -102,9 +102,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Template string with placeholder substitution</p>
-
-<p>Supports placeholders like Pronoun, direction, weapon that can be replaced with actual values or matched against game text. Implements regex caching for efficient repeated matching.</p>
+<p>Represents a template with placeholders for dynamic content. This class manages the template string and its placeholders.</p>
 
 
   </div>
@@ -147,7 +145,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Initialize a placeholder template.</p>
+<p>A new instance of PlaceholderTemplate.</p>
 </div></span>
   
 </li>
@@ -200,7 +198,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#to_display-instance_method" title="#to_display (instance method)">#<strong>to_display</strong>(subs = {})  &#x21d2; Object </a>
+      <a href="#to_display-instance_method" title="#to_display (instance method)">#<strong>to_display</strong>(subs = {})  &#x21d2; String </a>
     
 
     
@@ -214,7 +212,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Converts the template to a display string, substituting placeholders with values.</p>
+</div></span>
   
 </li>
 
@@ -259,51 +259,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Initialize a placeholder template</p>
+<p>Returns a new instance of PlaceholderTemplate.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
   
-    <li>
-      
-        <span class='name'>template</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Template string with placeholder markers</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>placeholders</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>{}</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Map of placeholder names to possible values</p>
-</div>
-      
-    </li>
-  
-</ul>
-
 
 </div><table class="source_code">
   <tr>
@@ -311,14 +273,14 @@
       <pre class="lines">
 
 
-857
-858
-859
-860
-861</pre>
+806
+807
+808
+809
+810</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 857</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 806</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_template'>template</span><span class='comma'>,</span> <span class='id identifier rubyid_placeholders'>placeholders</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@template</span> <span class='op'>=</span> <span class='id identifier rubyid_template'>template</span>
@@ -352,12 +314,12 @@
       <pre class="lines">
 
 
-867
-868
-869</pre>
+816
+817
+818</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 867</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 816</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_placeholders'>placeholders</span>
   <span class='ivar'>@placeholders</span>
@@ -382,12 +344,12 @@
       <pre class="lines">
 
 
-863
-864
-865</pre>
+812
+813
+814</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 863</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 812</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_template'>template</span>
   <span class='ivar'>@template</span>
@@ -400,29 +362,80 @@
       <div class="method_details ">
   <h3 class="signature " id="to_display-instance_method">
   
-    #<strong>to_display</strong>(subs = {})  &#x21d2; <tt>Object</tt> 
+    #<strong>to_display</strong>(subs = {})  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Converts the template to a display string, substituting placeholders with values.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>subs</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Substitutions for placeholders in the template.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The formatted display string.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-871
-872
-873
-874
-875
-876
-877
-878</pre>
+823
+824
+825
+826
+827
+828
+829
+830</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 871</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 823</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_display'>to_display</span><span class='lparen'>(</span><span class='id identifier rubyid_subs'>subs</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='ivar'>@template</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
@@ -452,23 +465,23 @@
       <pre class="lines">
 
 
-880
-881
-882
-883
-884
-885
-886
-887
-888
-889
-890
-891
-892
-893</pre>
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 880</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 832</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_regex'>to_regex</span><span class='lparen'>(</span><span class='id identifier rubyid_literals'>literals</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='comment'># Use cache to avoid rebuilding regex on every call
@@ -494,9 +507,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 23 03:17:27 2025 by
+  Generated on Tue Jan 13 02:35:15 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.2.9).
+  0.9.38 (ruby-3.2.9).
 </div>
 
     </div>

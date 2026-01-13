@@ -83,18 +83,7 @@
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-<p>this module handles all of the logic for parsing game lines that infomon depends on</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><h2>Defined Under Namespace</h2>
+<h2>Defined Under Namespace</h2>
 <p class="children">
   
     
@@ -188,13 +177,21 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Finds the category based on the given string.</p>
+<p>Finds the category based on the given string</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_category'>category</span> <span class='op'>=</span> <span class='id identifier rubyid_find_cat'>find_cat</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Armor</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -208,7 +205,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The category string to match.</p>
+<p>The category string to match</p>
 </div>
       
     </li>
@@ -227,7 +224,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The matched category.</p>
+<p>The matched category</p>
 </div>
       
     </li>
@@ -240,25 +237,25 @@
       <pre class="lines">
 
 
-292
-293
-294
-295
-296
-297
-298
-299
-300
-301
-302
-303
-304
-305
-306
-307</pre>
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/parser.rb', line 292</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/parser.rb', line 406</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_cat'>find_cat</span><span class='lparen'>(</span><span class='id identifier rubyid_category'>category</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_category'>category</span>
@@ -293,7 +290,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Parses a line of input and updates the state accordingly.</p>
+<p>Parses a line of input and updates the state accordingly</p>
 
 
   </div>
@@ -304,11 +301,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Parsing a line</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Infomon::Parser (module)">Parser</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Your character has leveled up!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Your character information...</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -325,7 +318,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The line to parse.</p>
+<p>The line to parse</p>
 </div>
       
     </li>
@@ -344,7 +337,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The result of the parsing operation.</p>
+<p>The result of the parsing</p>
 </div>
       
     </li>
@@ -362,7 +355,7 @@
       
         &mdash;
         <div class='inline'>
-<p>if an error occurs during parsing.</p>
+<p>if an error occurs during parsing</p>
 </div>
       
     </li>
@@ -375,120 +368,6 @@
       <pre class="lines">
 
 
-315
-316
-317
-318
-319
-320
-321
-322
-323
-324
-325
-326
-327
-328
-329
-330
-331
-332
-333
-334
-335
-336
-337
-338
-339
-340
-341
-342
-343
-344
-345
-346
-347
-348
-349
-350
-351
-352
-353
-354
-355
-356
-357
-358
-359
-360
-361
-362
-363
-364
-365
-366
-367
-368
-369
-370
-371
-372
-373
-374
-375
-376
-377
-378
-379
-380
-381
-382
-383
-384
-385
-386
-387
-388
-389
-390
-391
-392
-393
-394
-395
-396
-397
-398
-399
-400
-401
-402
-403
-404
-405
-406
-407
-408
-409
-410
-411
-412
-413
-414
-415
-416
-417
-418
-419
-420
-421
-422
-423
-424
-425
-426
-427
-428
 429
 430
 431
@@ -761,10 +640,159 @@
 698
 699
 700
-701</pre>
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/parser.rb', line 315</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/parser.rb', line 429</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='comment'># O(1) vs O(N)
@@ -996,6 +1024,34 @@
       <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span>
       <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="../Infomon.html#set-class_method" title="Lich::Gemstone::Infomon.set (method)">set</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>resources.covert_arts_charges</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:charges</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rparen'>)</span>
       <span class='symbol'>:ok</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#ShadowEssence-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ShadowEssence (constant)">ShadowEssence</a></span></span>
+      <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span>
+      <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="../Infomon.html#set-class_method" title="Lich::Gemstone::Infomon.set (method)">set</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>resources.shadow_essence</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:essence</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='period'>.</span><span class='id identifier rubyid_clamp'>clamp</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='symbol'>:ok</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#ShadowEssenceGain-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ShadowEssenceGain (constant)">ShadowEssenceGain</a></span></span>
+      <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="../Infomon.html#set-class_method" title="Lich::Gemstone::Infomon.set (method)">set</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>resources.shadow_essence</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Resources.html" title="Lich::Resources (module)">Resources</a></span></span><span class='period'>.</span><span class='id identifier rubyid_shadow_essence'><span class='object_link'><a href="../../Resources.html#shadow_essence-class_method" title="Lich::Resources.shadow_essence (method)">shadow_essence</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>+</span> <span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_clamp'>clamp</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='symbol'>:ok</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#ShadowEssenceCap-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ShadowEssenceCap (constant)">ShadowEssenceCap</a></span></span>
+      <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="../Infomon.html#set-class_method" title="Lich::Gemstone::Infomon.set (method)">set</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>resources.shadow_essence</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>
+      <span class='symbol'>:ok</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#SacrificeMana-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SacrificeMana (constant)">SacrificeMana</a></span></span>
+      <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span>
+      <span class='comment'># Calculate effective mana control ranks
+</span>      <span class='id identifier rubyid_effective_mana_ranks'>effective_mana_ranks</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="../Skills.html" title="Lich::Gemstone::Skills (module)">Skills</a></span></span><span class='period'>.</span><span class='id identifier rubyid_elemental_mana_control'>elemental_mana_control</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../Skills.html" title="Lich::Gemstone::Skills (module)">Skills</a></span></span><span class='period'>.</span><span class='id identifier rubyid_spirit_mana_control'>spirit_mana_control</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span> <span class='op'>+</span> <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="../Skills.html" title="Lich::Gemstone::Skills (module)">Skills</a></span></span><span class='period'>.</span><span class='id identifier rubyid_elemental_mana_control'>elemental_mana_control</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../Skills.html" title="Lich::Gemstone::Skills (module)">Skills</a></span></span><span class='period'>.</span><span class='id identifier rubyid_spirit_mana_control'>spirit_mana_control</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span> <span class='op'>/</span> <span class='int'>2</span>
+
+      <span class='comment'># Base mana for first essence
+</span>      <span class='id identifier rubyid_base_mana'>base_mana</span> <span class='op'>=</span> <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span> <span class='op'>+</span> <span class='int'>20</span>
+
+      <span class='comment'># Mana per essence after
+</span>      <span class='id identifier rubyid_mana_per_essence'>mana_per_essence</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_base_mana'>base_mana</span> <span class='op'>*</span> <span class='lparen'>(</span><span class='float'>0.5</span> <span class='op'>+</span> <span class='id identifier rubyid_effective_mana_ranks'>effective_mana_ranks</span><span class='period'>.</span><span class='id identifier rubyid_clamp'>clamp</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>60</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='int'>120</span><span class='rparen'>)</span><span class='rparen'>)</span>
+
+      <span class='comment'># Estimate of essences used
+</span>      <span class='id identifier rubyid_essences_used'>essences_used</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:amount</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>-</span> <span class='id identifier rubyid_mana_per_essence'>mana_per_essence</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='lparen'>(</span><span class='id identifier rubyid_base_mana'>base_mana</span> <span class='op'>*</span> <span class='float'>0.5</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_round'>round</span><span class='period'>.</span><span class='id identifier rubyid_clamp'>clamp</span><span class='lparen'>(</span><span class='int'>1</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="../Infomon.html#set-class_method" title="Lich::Gemstone::Infomon.set (method)">set</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>resources.shadow_essence</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Resources.html" title="Lich::Resources (module)">Resources</a></span></span><span class='period'>.</span><span class='id identifier rubyid_shadow_essence'><span class='object_link'><a href="../../Resources.html#shadow_essence-class_method" title="Lich::Resources.shadow_essence (method)">shadow_essence</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>-</span> <span class='id identifier rubyid_essences_used'>essences_used</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_clamp'>clamp</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='symbol'>:ok</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#SacrificeChannel-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SacrificeChannel (constant)">SacrificeChannel</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#SacrificeInfest-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SacrificeInfest (constant)">SacrificeInfest</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#SacrificeFate-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SacrificeFate (constant)">SacrificeFate</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#SacrificeShift-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SacrificeShift (constant)">SacrificeShift</a></span></span>
+      <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="../Infomon.html#set-class_method" title="Lich::Gemstone::Infomon.set (method)">set</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>resources.shadow_essence</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Resources.html" title="Lich::Resources (module)">Resources</a></span></span><span class='period'>.</span><span class='id identifier rubyid_shadow_essence'><span class='object_link'><a href="../../Resources.html#shadow_essence-class_method" title="Lich::Resources.shadow_essence (method)">shadow_essence</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_clamp'>clamp</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='symbol'>:ok</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#GigasArtifactFragments-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::GigasArtifactFragments (constant)">GigasArtifactFragments</a></span></span>
       <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span>
       <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="../Infomon.html#set-class_method" title="Lich::Gemstone::Infomon.set (method)">set</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.gigas_artifact_fragments</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:gigas_artifact_fragments</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rparen'>)</span>
@@ -1027,6 +1083,10 @@
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#TicketSoulShards-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketSoulShards (constant)">TicketSoulShards</a></span></span>
       <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span>
       <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="../Infomon.html#set-class_method" title="Lich::Gemstone::Infomon.set (method)">set</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.soul_shards</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:soul_shards</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rparen'>)</span>
+      <span class='symbol'>:ok</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#TicketGold-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketGold (constant)">TicketGold</a></span></span>
+      <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span>
+      <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="../Infomon.html#set-class_method" title="Lich::Gemstone::Infomon.set (method)">set</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.gold</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:gold</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rparen'>)</span>
       <span class='symbol'>:ok</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#TicketRaikhen-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketRaikhen (constant)">TicketRaikhen</a></span></span>
       <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span>
@@ -1087,6 +1147,9 @@
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#ResignCHE-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ResignCHE (constant)">ResignCHE</a></span></span>
       <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span>
       <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="../Infomon.html#set-class_method" title="Lich::Gemstone::Infomon.set (method)">set</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>che</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:none</span><span class='rbracket'>]</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>none</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_normalize_name'><span class='object_link'><a href="../../Util.html#normalize_name-class_method" title="Lich::Util.normalize_name (method)">normalize_name</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:house</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='symbol'>:ok</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#ResignConfirmCHE-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ResignConfirmCHE (constant)">ResignConfirmCHE</a></span></span>
+      <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="../Infomon.html#set-class_method" title="Lich::Gemstone::Infomon.set (method)">set</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>che</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>none</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
       <span class='symbol'>:ok</span>
 
     <span class='comment'># TODO: refactor / streamline?
@@ -1163,9 +1226,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 23 03:17:20 2025 by
+  Generated on Tue Jan 13 02:35:06 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.2.9).
+  0.9.38 (ruby-3.2.9).
 </div>
 
     </div>

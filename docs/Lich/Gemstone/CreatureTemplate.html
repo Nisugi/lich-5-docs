@@ -102,9 +102,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Static creature template data (ID-less reference information)</p>
-
-<p>Manages creature templates loaded from data files. Templates contain static information about creature types (level, HP, abilities, etc.) and are shared across all instances of that creature type.</p>
+<p>Represents a template for creatures in the game. This class is responsible for loading and managing creature templates.</p>
 
 
   </div>
@@ -116,19 +114,10 @@
     
       
         <h5 class="example_title"><div class='inline'>
-<p>Load and lookup a template</p>
+<p>Loading all creature templates</p>
 </div></h5>
       
-      <pre class="example code"><code><span class='const'>CreatureTemplate</span><span class='period'>.</span><span class='id identifier rubyid_load_all'><span class='object_link'><a href="#load_all-class_method" title="Lich::Gemstone::CreatureTemplate.load_all (method)">load_all</a></span></span>
-<span class='id identifier rubyid_template'>template</span> <span class='op'>=</span> <span class='const'>CreatureTemplate</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>troll</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_template'>template</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span>  <span class='comment'># =&gt; 14</span></code></pre>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Handle boon adjectives</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_template'>template</span> <span class='op'>=</span> <span class='const'>CreatureTemplate</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>radiant troll</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>  <span class='comment'># Same as &#39;troll&#39;</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>CreatureTemplate</span><span class='period'>.</span><span class='id identifier rubyid_load_all'><span class='object_link'><a href="#load_all-class_method" title="Lich::Gemstone::CreatureTemplate.load_all (method)">load_all</a></span></span></code></pre>
     
   </div>
 
@@ -830,7 +819,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#[]-class_method" title="[] (class method)">.<strong>[]</strong>(name)  &#x21d2; CreatureTemplate<sup>?</sup> </a>
+      <a href="#[]-class_method" title="[] (class method)">.<strong>[]</strong>(name)  &#x21d2; Object </a>
     
 
     
@@ -844,9 +833,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Lookup template by creature name.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -854,7 +841,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#all-class_method" title="all (class method)">.<strong>all</strong>  &#x21d2; Object </a>
+      <a href="#all-class_method" title="all (class method)">.<strong>all</strong>  &#x21d2; Array&lt;CreatureTemplate&gt; </a>
     
 
     
@@ -869,7 +856,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Get all loaded templates.</p>
+<p>Returns all loaded creature templates.</p>
 </div></span>
   
 </li>
@@ -893,7 +880,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Remove boon adjectives from creature names for template matching.</p>
+<p>Cleans up the template name by removing boon adjectives.</p>
 </div></span>
   
 </li>
@@ -917,7 +904,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Load all creature templates from the creatures directory.</p>
+<p>Loads all creature templates from the specified directory.</p>
 </div></span>
   
 </li>
@@ -990,6 +977,16 @@
       <pre class="lines">
 
 
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
 40
 41
 42
@@ -1012,20 +1009,10 @@
 59
 60
 61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72</pre>
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span>
@@ -1098,12 +1085,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_abilities'>abilities</span>
   <span class='ivar'>@abilities</span>
@@ -1141,12 +1128,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_alchemy'>alchemy</span>
   <span class='ivar'>@alchemy</span>
@@ -1184,12 +1171,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_areas'>areas</span>
   <span class='ivar'>@areas</span>
@@ -1227,12 +1214,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_attack_attributes'>attack_attributes</span>
   <span class='ivar'>@attack_attributes</span>
@@ -1270,12 +1257,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_bcs'>bcs</span>
   <span class='ivar'>@bcs</span>
@@ -1313,12 +1300,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_defense_attributes'>defense_attributes</span>
   <span class='ivar'>@defense_attributes</span>
@@ -1356,12 +1343,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_family'>family</span>
   <span class='ivar'>@family</span>
@@ -1399,12 +1386,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_height'>height</span>
   <span class='ivar'>@height</span>
@@ -1442,12 +1429,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_level'>level</span>
   <span class='ivar'>@level</span>
@@ -1485,12 +1472,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_max_hp'>max_hp</span>
   <span class='ivar'>@max_hp</span>
@@ -1528,12 +1515,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_messaging'>messaging</span>
   <span class='ivar'>@messaging</span>
@@ -1571,12 +1558,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -1614,12 +1601,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_otherclass'>otherclass</span>
   <span class='ivar'>@otherclass</span>
@@ -1657,12 +1644,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_picture'>picture</span>
   <span class='ivar'>@picture</span>
@@ -1700,12 +1687,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_size'>size</span>
   <span class='ivar'>@size</span>
@@ -1743,12 +1730,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_special_other'>special_other</span>
   <span class='ivar'>@special_other</span>
@@ -1786,12 +1773,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_speed'>speed</span>
   <span class='ivar'>@speed</span>
@@ -1829,12 +1816,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_treasure'>treasure</span>
   <span class='ivar'>@treasure</span>
@@ -1872,12 +1859,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_type'>type</span>
   <span class='ivar'>@type</span>
@@ -1915,12 +1902,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_undead'>undead</span>
   <span class='ivar'>@undead</span>
@@ -1958,12 +1945,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_url'>url</span>
   <span class='ivar'>@url</span>
@@ -1983,93 +1970,33 @@
       <div class="method_details first">
   <h3 class="signature first" id="[]-class_method">
   
-    .<strong>[]</strong>(name)  &#x21d2; <tt><span class='object_link'><a href="" title="Lich::Gemstone::CreatureTemplate (class)">CreatureTemplate</a></span></tt><sup>?</sup> 
+    .<strong>[]</strong>(name)  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Lookup template by creature name</p>
-
-<p>Attempts exact match first, then tries with boon adjectives removed. Automatically loads templates if not yet loaded.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_template'>template</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CreatureTemplate (class)">CreatureTemplate</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>troll</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
-<span class='id identifier rubyid_template'>template</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::CreatureTemplate (class)">CreatureTemplate</a></span></span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>radiant troll</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>  <span class='comment'># Same result</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>name</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Creature name to look up</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="" title="Lich::Gemstone::CreatureTemplate (class)">CreatureTemplate</a></span></tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The template or nil if not found</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-163
-164
-165
-166
-167
-168
-169
-170
-171
-172
-173
-174</pre>
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 163</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 136</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_load_all'>load_all</span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -2091,7 +2018,7 @@
       <div class="method_details ">
   <h3 class="signature " id="all-class_method">
   
-    .<strong>all</strong>  &#x21d2; <tt>Object</tt> 
+    .<strong>all</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="" title="Lich::Gemstone::CreatureTemplate (class)">CreatureTemplate</a></span>&gt;</tt> 
   
 
   
@@ -2100,13 +2027,31 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Get all loaded templates</p>
+<p>Returns all loaded creature templates.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="" title="Lich::Gemstone::CreatureTemplate (class)">CreatureTemplate</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>An array of all creature templates.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -2114,13 +2059,13 @@
       <pre class="lines">
 
 
-177
-178
-179
-180</pre>
+151
+152
+153
+154</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 177</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 151</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
   <span class='id identifier rubyid_load_all'>load_all</span> <span class='kw'>unless</span> <span class='cvar'>@@loaded</span>
@@ -2143,23 +2088,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Remove boon adjectives from creature names for template matching</p>
-
-<p>Boon adjectives like “radiant”, “ghostly”, “shadowy” are temporary modifiers and should be stripped for template lookup.</p>
+<p>Cleans up the template name by removing boon adjectives.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_fix_template_name'>fix_template_name</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>radiant troll</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='comment'># =&gt; &quot;troll&quot;</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2173,7 +2108,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The creature name to normalize</p>
+<p>The name of the template to clean.</p>
 </div>
       
     </li>
@@ -2192,7 +2127,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Normalized name without boon adjectives</p>
+<p>The cleaned template name.</p>
 </div>
       
     </li>
@@ -2205,14 +2140,14 @@
       <pre class="lines">
 
 
-133
-134
-135
-136
-137</pre>
+112
+113
+114
+115
+116</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 133</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_fix_template_name'>fix_template_name</span><span class='lparen'>(</span><span class='id identifier rubyid_template_name'>template_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_template_name'>template_name</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
@@ -2235,18 +2170,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Only loads once; subsequent calls are no-ops</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Load all creature templates from the creatures directory</p>
-
-<p>Scans for .rb files in lib/gemstone/creatures and loads them as templates. Implements a safety limit (@@max_templates) to prevent memory exhaustion. Templates are cached in @@templates for fast lookup.</p>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Loads all creature templates from the specified directory. This method will only load templates if they haven’t been loaded already.</p>
 
 
   </div>
@@ -2260,6 +2185,21 @@
       <pre class="lines">
 
 
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
 82
 83
 84
@@ -2281,25 +2221,10 @@
 100
 101
 102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118</pre>
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_load_all'>load_all</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='cvar'>@@loaded</span>
@@ -2313,7 +2238,7 @@
 
     <span class='comment'># Check template limit
 </span>    <span class='kw'>if</span> <span class='id identifier rubyid_template_count'>template_count</span> <span class='op'>&gt;=</span> <span class='cvar'>@@max_templates</span>
-      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- warning: Template cache limit (</span><span class='embexpr_beg'>#{</span><span class='cvar'>@@max_templates</span><span class='embexpr_end'>}</span><span class='tstring_content'>) reached, skipping remaining templates</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='gvar'>$creature_debug</span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- warning: Template cache limit (</span><span class='embexpr_beg'>#{</span><span class='cvar'>@@max_templates</span><span class='embexpr_end'>}</span><span class='tstring_content'>) reached, skipping remaining templates</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='gvar'>$creature_debug</span>
       <span class='kw'>break</span>
     <span class='kw'>end</span>
 
@@ -2331,12 +2256,12 @@
       <span class='cvar'>@@templates</span><span class='lbracket'>[</span><span class='id identifier rubyid_normalized_name'>normalized_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_template'>template</span>
       <span class='id identifier rubyid_template_count'>template_count</span> <span class='op'>+=</span> <span class='int'>1</span>
     <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- error loading template </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_template_name'>template_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='gvar'>$creature_debug</span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- error loading template </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_template_name'>template_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='gvar'>$creature_debug</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
   <span class='cvar'>@@loaded</span> <span class='op'>=</span> <span class='kw'>true</span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- loaded </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_template_count'>template_count</span><span class='embexpr_end'>}</span><span class='tstring_content'> creature templates</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='gvar'>$creature_debug</span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- loaded </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_template_count'>template_count</span><span class='embexpr_end'>}</span><span class='tstring_content'> creature templates</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='gvar'>$creature_debug</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2348,9 +2273,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 23 03:17:27 2025 by
+  Generated on Tue Jan 13 02:35:14 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.2.9).
+  0.9.38 (ruby-3.2.9).
 </div>
 
     </div>

@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Lich::Gemstone::Armaments
+  
+    &mdash; Lich 5 Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Lich::Gemstone::Armaments";
+  relpath = '../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../_index.html">Index (A)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span>
+     &raquo; 
+    <span class="title">Armaments</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Lich::Gemstone::Armaments
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>documented/gemstone/armaments.rb<span class="defines">,<br />
+  documented/gemstone/armaments/armor_stats.rb,<br /> documented/gemstone/armaments/shield_stats.rb,<br /> documented/gemstone/armaments/weapon_stats.rb,<br /> documented/gemstone/armaments/weapon_stats_blunt.rb,<br /> documented/gemstone/armaments/weapon_stats_edged.rb,<br /> documented/gemstone/armaments/weapon_stats_hybrid.rb,<br /> documented/gemstone/armaments/weapon_stats_ranged.rb,<br /> documented/gemstone/armaments/weapon_stats_thrown.rb,<br /> documented/gemstone/armaments/weapon_stats_natural.rb,<br /> documented/gemstone/armaments/weapon_stats_polearm.rb,<br /> documented/gemstone/armaments/weapon_stats_unarmed.rb,<br /> documented/gemstone/armaments/weapon_stats_brawling.rb,<br /> documented/gemstone/armaments/weapon_stats_runestave.rb,<br /> documented/gemstone/armaments/weapon_stats_two_handed.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Armaments/ArmorStats.html" title="Lich::Gemstone::Armaments::ArmorStats (module)">ArmorStats</a></span>, <span class='object_link'><a href="Armaments/ShieldStats.html" title="Lich::Gemstone::Armaments::ShieldStats (module)">ShieldStats</a></span>, <span class='object_link'><a href="Armaments/WeaponStats.html" title="Lich::Gemstone::Armaments::WeaponStats (module)">WeaponStats</a></span>
+    
+  
+    
+  
+</p>
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="AG_INDEX_TO_NAME-constant" class="">AG_INDEX_TO_NAME =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>A mapping of armor group indices to their names.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Accessing armor group name</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='op'>::</span><span class='const'>AG_INDEX_TO_NAME</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span></code></pre>
+    
+  </div>
+
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+  <span class='int'>1</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cloth</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>2</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Soft Leather</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>3</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Rigid Leather</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>4</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Chain</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>5</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Plate</span><span class='tstring_end'>&quot;</span></span>
+<span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ASG_INDEX_TO_NAME-constant" class="">ASG_INDEX_TO_NAME =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>A mapping of armor subtype indices to their names.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Accessing armor subtype name</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='op'>::</span><span class='const'>ASG_INDEX_TO_NAME</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span></code></pre>
+    
+  </div>
+
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+  <span class='int'>1</span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Robes</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>2</span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Light Leather</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>3</span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Full Leather</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>4</span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Double Leather</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>5</span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Leather Breastplate</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>6</span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cuirbouilli</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>7</span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Studded Leather</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>8</span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Reinforced Leather</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>9</span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hardened Leather</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>10</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Brigandine</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>11</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Chain Mail</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>12</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Double Chain</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>13</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Augmented Chain</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>14</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Chain Hauberk</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>15</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Metal Breastplate</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>16</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Augmented Breastplate</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>17</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Half Plate</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>18</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Full Plate</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>19</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Field Plate</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='int'>20</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Augmented Plate</span><span class='tstring_end'>&quot;</span></span>
+<span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SPELL_CIRCLE_INDEX_TO_NAME-constant" class="">SPELL_CIRCLE_INDEX_TO_NAME =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>A mapping of spell circle indices to their names and abbreviations.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Accessing spell circle name</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_spell_circle'>spell_circle</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='op'>::</span><span class='const'>SPELL_CIRCLE_INDEX_TO_NAME</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span></code></pre>
+    
+  </div>
+
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+  <span class='int'>0</span>  <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Action</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>                  <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Act</span><span class='tstring_end'>&quot;</span></span>    <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>1</span>  <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Minor Spiritual</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>         <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MinSp</span><span class='tstring_end'>&quot;</span></span>  <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>2</span>  <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Major Spiritual</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>         <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MajSp</span><span class='tstring_end'>&quot;</span></span>  <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>3</span>  <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cleric</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>                  <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Clerc</span><span class='tstring_end'>&quot;</span></span>  <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>4</span>  <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Minor Elemental</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>         <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MinEl</span><span class='tstring_end'>&quot;</span></span>  <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>5</span>  <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Major Elemental</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>         <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MajEl</span><span class='tstring_end'>&quot;</span></span>  <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>6</span>  <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Ranger</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>                  <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Rngr</span><span class='tstring_end'>&quot;</span></span>   <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>7</span>  <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Sorcerer</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>                <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Sorc</span><span class='tstring_end'>&quot;</span></span>   <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>8</span>  <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Old Empath (Deprecated)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>OldEm</span><span class='tstring_end'>&quot;</span></span>  <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>9</span>  <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Wizard</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>                  <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Wiz</span><span class='tstring_end'>&quot;</span></span>    <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>10</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bard</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>                    <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bard</span><span class='tstring_end'>&quot;</span></span>   <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>11</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Empath</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>                  <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Emp</span><span class='tstring_end'>&quot;</span></span>    <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>12</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Minor Mental</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>            <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MinMn</span><span class='tstring_end'>&quot;</span></span>  <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>13</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Major Mental</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>            <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MajMn</span><span class='tstring_end'>&quot;</span></span>  <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>14</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Savant</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>                  <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Sav</span><span class='tstring_end'>&quot;</span></span>    <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>15</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unused</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>                  <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> - </span><span class='tstring_end'>&quot;</span></span>    <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>16</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Paladin</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>                 <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pal</span><span class='tstring_end'>&quot;</span></span>    <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>17</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Arcane Spells</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>           <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Arcne</span><span class='tstring_end'>&quot;</span></span>  <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>18</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unused</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>                  <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> - </span><span class='tstring_end'>&quot;</span></span>    <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='int'>19</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lost Arts</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>               <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lost</span><span class='tstring_end'>&quot;</span></span>   <span class='rbrace'>}</span><span class='comma'>,</span>
+<span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#categories-class_method" title="categories (class method)">.<strong>categories</strong>(type = nil)  &#x21d2; Array&lt;String&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Retrieves a list of categories for armaments of a specified type.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#category_for-class_method" title="category_for (class method)">.<strong>category_for</strong>(name)  &#x21d2; String<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Retrieves the category of an armament based on its name.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find-class_method" title="find (class method)">.<strong>find</strong>(name)  &#x21d2; Hash<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Finds an armament by name and returns its type and data.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#names-class_method" title="names (class method)">.<strong>names</strong>(type = nil)  &#x21d2; Array&lt;String&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Retrieves a list of names for armaments of a specified type.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#type_for-class_method" title="type_for (class method)">.<strong>type_for</strong>(name)  &#x21d2; Symbol<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Determines the type of armament based on its name.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#valid_name%3F-class_method" title="valid_name? (class method)">.<strong>valid_name?</strong>(name)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if the given name is valid by attempting to find it.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="categories-class_method">
+  
+    .<strong>categories</strong>(type = nil)  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Retrieves a list of categories for armaments of a specified type.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Getting all armament categories</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_all_categories'>all_categories</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_categories'>categories</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>type</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The type of armament (:weapon, :armor, :shield) or nil for all.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>An array of unique armament categories.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+133
+134
+135
+136
+137
+138
+139
+140
+141</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments.rb', line 133</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_categories'>categories</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='id identifier rubyid_type'>type</span>
+  <span class='kw'>when</span> <span class='symbol'>:weapon</span> <span class='kw'>then</span> <span class='const'><span class='object_link'><a href="Armaments/WeaponStats.html" title="Lich::Gemstone::Armaments::WeaponStats (module)">WeaponStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_categories'><span class='object_link'><a href="Armaments/WeaponStats.html#categories-class_method" title="Lich::Gemstone::Armaments::WeaponStats.categories (method)">categories</a></span></span>
+  <span class='kw'>when</span> <span class='symbol'>:armor</span>  <span class='kw'>then</span> <span class='const'><span class='object_link'><a href="Armaments/ArmorStats.html" title="Lich::Gemstone::Armaments::ArmorStats (module)">ArmorStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_categories'><span class='object_link'><a href="Armaments/ArmorStats.html#categories-class_method" title="Lich::Gemstone::Armaments::ArmorStats.categories (method)">categories</a></span></span>
+  <span class='kw'>when</span> <span class='symbol'>:shield</span> <span class='kw'>then</span> <span class='const'><span class='object_link'><a href="Armaments/ShieldStats.html" title="Lich::Gemstone::Armaments::ShieldStats (module)">ShieldStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_categories'><span class='object_link'><a href="Armaments/ShieldStats.html#categories-class_method" title="Lich::Gemstone::Armaments::ShieldStats.categories (method)">categories</a></span></span>
+  <span class='kw'>else</span>
+    <span class='const'><span class='object_link'><a href="Armaments/WeaponStats.html" title="Lich::Gemstone::Armaments::WeaponStats (module)">WeaponStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_categories'><span class='object_link'><a href="Armaments/WeaponStats.html#categories-class_method" title="Lich::Gemstone::Armaments::WeaponStats.categories (method)">categories</a></span></span> <span class='op'>+</span> <span class='const'><span class='object_link'><a href="Armaments/ArmorStats.html" title="Lich::Gemstone::Armaments::ArmorStats (module)">ArmorStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_categories'><span class='object_link'><a href="Armaments/ArmorStats.html#categories-class_method" title="Lich::Gemstone::Armaments::ArmorStats.categories (method)">categories</a></span></span> <span class='op'>+</span> <span class='const'><span class='object_link'><a href="Armaments/ShieldStats.html" title="Lich::Gemstone::Armaments::ShieldStats (module)">ShieldStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_categories'><span class='object_link'><a href="Armaments/ShieldStats.html#categories-class_method" title="Lich::Gemstone::Armaments::ShieldStats.categories (method)">categories</a></span></span>
+  <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="category_for-class_method">
+  
+    .<strong>category_for</strong>(name)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Retrieves the category of an armament based on its name.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Getting the category of an armament</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_armament_category'>armament_category</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_category_for'>category_for</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sword</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the armament.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The category of the armament or nil if not found.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments.rb', line 165</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_category_for'>category_for</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
+
+  <span class='id identifier rubyid_category'>category</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Armaments/WeaponStats.html" title="Lich::Gemstone::Armaments::WeaponStats (module)">WeaponStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_category_for'><span class='object_link'><a href="Armaments/WeaponStats.html#category_for-class_method" title="Lich::Gemstone::Armaments::WeaponStats.category_for (method)">category_for</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_category'>category</span> <span class='kw'>unless</span> <span class='id identifier rubyid_category'>category</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+  <span class='id identifier rubyid_category'>category</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Armaments/ArmorStats.html" title="Lich::Gemstone::Armaments::ArmorStats (module)">ArmorStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_category_for'><span class='object_link'><a href="Armaments/ArmorStats.html#category_for-class_method" title="Lich::Gemstone::Armaments::ArmorStats.category_for (method)">category_for</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_category'>category</span> <span class='kw'>unless</span> <span class='id identifier rubyid_category'>category</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+  <span class='id identifier rubyid_category'>category</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Armaments/ShieldStats.html" title="Lich::Gemstone::Armaments::ShieldStats (module)">ShieldStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_category_for'><span class='object_link'><a href="Armaments/ShieldStats.html#category_for-class_method" title="Lich::Gemstone::Armaments::ShieldStats.category_for (method)">category_for</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_category'>category</span> <span class='kw'>unless</span> <span class='id identifier rubyid_category'>category</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+  <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="find-class_method">
+  
+    .<strong>find</strong>(name)  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Finds an armament by name and returns its type and data.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Finding an armament</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sword</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the armament to find.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A hash containing the type and data of the armament, or nil if not found.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments.rb', line 80</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
+
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Armaments/WeaponStats.html" title="Lich::Gemstone::Armaments::WeaponStats (module)">WeaponStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'><span class='object_link'><a href="Armaments/WeaponStats.html#find-class_method" title="Lich::Gemstone::Armaments::WeaponStats.find (method)">find</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='symbol'>:weapon</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='id identifier rubyid_data'>data</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Armaments/ArmorStats.html" title="Lich::Gemstone::Armaments::ArmorStats (module)">ArmorStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'><span class='object_link'><a href="Armaments/ArmorStats.html#find-class_method" title="Lich::Gemstone::Armaments::ArmorStats.find (method)">find</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='symbol'>:armor</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='id identifier rubyid_data'>data</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Armaments/ShieldStats.html" title="Lich::Gemstone::Armaments::ShieldStats (module)">ShieldStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'><span class='object_link'><a href="Armaments/ShieldStats.html#find-class_method" title="Lich::Gemstone::Armaments::ShieldStats.find (method)">find</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='symbol'>:shield</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='id identifier rubyid_data'>data</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="names-class_method">
+  
+    .<strong>names</strong>(type = nil)  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Retrieves a list of names for armaments of a specified type.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Getting all armament names</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_all_names'>all_names</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_names'>names</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>type</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The type of armament (:weapon, :armor, :shield) or nil for all.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>An array of unique armament names.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+117
+118
+119
+120
+121
+122
+123
+124
+125</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments.rb', line 117</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_names'>names</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='id identifier rubyid_type'>type</span>
+  <span class='kw'>when</span> <span class='symbol'>:weapon</span> <span class='kw'>then</span> <span class='const'><span class='object_link'><a href="Armaments/WeaponStats.html" title="Lich::Gemstone::Armaments::WeaponStats (module)">WeaponStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_names'><span class='object_link'><a href="Armaments/WeaponStats.html#names-class_method" title="Lich::Gemstone::Armaments::WeaponStats.names (method)">names</a></span></span>
+  <span class='kw'>when</span> <span class='symbol'>:armor</span>  <span class='kw'>then</span> <span class='const'><span class='object_link'><a href="Armaments/ArmorStats.html" title="Lich::Gemstone::Armaments::ArmorStats (module)">ArmorStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_names'><span class='object_link'><a href="Armaments/ArmorStats.html#names-class_method" title="Lich::Gemstone::Armaments::ArmorStats.names (method)">names</a></span></span>
+  <span class='kw'>when</span> <span class='symbol'>:shield</span> <span class='kw'>then</span> <span class='const'><span class='object_link'><a href="Armaments/ShieldStats.html" title="Lich::Gemstone::Armaments::ShieldStats (module)">ShieldStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_names'><span class='object_link'><a href="Armaments/ShieldStats.html#names-class_method" title="Lich::Gemstone::Armaments::ShieldStats.names (method)">names</a></span></span>
+  <span class='kw'>else</span>
+    <span class='const'><span class='object_link'><a href="Armaments/WeaponStats.html" title="Lich::Gemstone::Armaments::WeaponStats (module)">WeaponStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_names'><span class='object_link'><a href="Armaments/WeaponStats.html#names-class_method" title="Lich::Gemstone::Armaments::WeaponStats.names (method)">names</a></span></span> <span class='op'>+</span> <span class='const'><span class='object_link'><a href="Armaments/ArmorStats.html" title="Lich::Gemstone::Armaments::ArmorStats (module)">ArmorStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_names'><span class='object_link'><a href="Armaments/ArmorStats.html#names-class_method" title="Lich::Gemstone::Armaments::ArmorStats.names (method)">names</a></span></span> <span class='op'>+</span> <span class='const'><span class='object_link'><a href="Armaments/ShieldStats.html" title="Lich::Gemstone::Armaments::ShieldStats (module)">ShieldStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_names'><span class='object_link'><a href="Armaments/ShieldStats.html#names-class_method" title="Lich::Gemstone::Armaments::ShieldStats.names (method)">names</a></span></span>
+  <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="type_for-class_method">
+  
+    .<strong>type_for</strong>(name)  &#x21d2; <tt>Symbol</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Determines the type of armament based on its name.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Getting the type of an armament</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_armament_type'>armament_type</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_type_for'>type_for</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sword</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name of the armament.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The type of the armament (:weapon, :armor, :shield) or nil if not found.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+149
+150
+151
+152
+153
+154
+155
+156
+157</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments.rb', line 149</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_type_for'>type_for</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
+
+  <span class='kw'>return</span> <span class='symbol'>:weapon</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Armaments/WeaponStats.html" title="Lich::Gemstone::Armaments::WeaponStats (module)">WeaponStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'><span class='object_link'><a href="Armaments/WeaponStats.html#find-class_method" title="Lich::Gemstone::Armaments::WeaponStats.find (method)">find</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='symbol'>:armor</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Armaments/ArmorStats.html" title="Lich::Gemstone::Armaments::ArmorStats (module)">ArmorStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'><span class='object_link'><a href="Armaments/ArmorStats.html#find-class_method" title="Lich::Gemstone::Armaments::ArmorStats.find (method)">find</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='symbol'>:shield</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Armaments/ShieldStats.html" title="Lich::Gemstone::Armaments::ShieldStats (module)">ShieldStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'><span class='object_link'><a href="Armaments/ShieldStats.html#find-class_method" title="Lich::Gemstone::Armaments::ShieldStats.find (method)">find</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+
+  <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="valid_name?-class_method">
+  
+    .<strong>valid_name?</strong>(name)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Checks if the given name is valid by attempting to find it.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Validating an armament name</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_is_valid'>is_valid</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_valid_name?'>valid_name?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shield</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The name to validate.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>True if the name is valid, false otherwise.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104
+105
+106
+107
+108
+109</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments.rb', line 104</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_valid_name?'>valid_name?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
+
+  <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'><span class='object_link'><a href="#find-class_method" title="Lich::Gemstone::Armaments.find (method)">find</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='comment'># if we found it, then it&#39;s valid
+</span>  <span class='kw'>return</span> <span class='kw'>false</span> <span class='comment'># if nil, then the name was not found and it&#39;s not a valid name
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Jan 13 02:35:05 2026 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.38 (ruby-3.2.9).
+</div>
+
+    </div>
+  </body>
+</html>

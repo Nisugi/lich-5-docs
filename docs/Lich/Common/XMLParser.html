@@ -107,7 +107,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Parses XML data from the game. This class is responsible for extracting and managing game state information from XML streams.</p>
+<p>Parses XML data for the Lich game. This class handles the extraction and management of game data from XML streams.</p>
 
 
   </div>
@@ -140,7 +140,28 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Constant representing the number of seconds in a decade.</p>
+<p>def parse(line)</p>
+
+<pre class="code ruby"><code class="ruby"><span class='ivar'>@buffer</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_loop'>loop</span> <span class='lbrace'>{</span>
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span> <span class='op'>=</span> <span class='ivar'>@buffer</span><span class='period'>.</span><span class='id identifier rubyid_slice!'>slice!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^[^&lt;]+</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_text'>text</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&amp;(lt|gt|quot|apos|amp)</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='ivar'>@unescape</span><span class='lbracket'>[</span><span class='backref'>$1</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span> <span class='op'>=</span> <span class='ivar'>@buffer</span><span class='period'>.</span><span class='id identifier rubyid_slice!'>slice!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^&lt;\/[^&lt;]+&gt;</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_element'>element</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^&lt;\/([^\s&gt;\/]+)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_captures'>captures</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
+    <span class='id identifier rubyid_tag_end'>tag_end</span><span class='lparen'>(</span><span class='id identifier rubyid_element'>element</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span> <span class='op'>=</span> <span class='ivar'>@buffer</span><span class='period'>.</span><span class='id identifier rubyid_slice!'>slice!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^&lt;[^&lt;]+&gt;</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_element'>element</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^&lt;([^\s&gt;\/]+)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_captures'>captures</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
+    <span class='id identifier rubyid_attributes'>attributes</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>([A-z][A-z0-9_\-]*)=([&quot;&#39;])(.*?)\2</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_attr'>attr</span><span class='op'>|</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='id identifier rubyid_attr'>attr</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_attr'>attr</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_tag_start'>tag_start</span><span class='lparen'>(</span><span class='id identifier rubyid_element'>element</span><span class='comma'>,</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_tag_end'>tag_end</span><span class='lparen'>(</span><span class='id identifier rubyid_element'>element</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_str'>str</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\/&gt;$</span><span class='regexp_end'>/</span></span>
+  <span class='kw'>else</span>
+    <span class='kw'>break</span>
+  <span class='kw'>end</span>
+<span class='rbrace'>}</span>
+</code></pre>
+
+<p>end</p>
 
 
   </div>
@@ -1911,7 +1932,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>for backwards compatibility Retrieves the currently active spells.</p>
+<p>Retrieves the active spells from the XML data.</p>
 </div></span>
   
 </li>
@@ -1937,7 +1958,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Initializes a new XMLParser instance.</p>
+<p>A new instance of XMLParser.</p>
 </div></span>
   
 </li>
@@ -2009,7 +2030,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Parses progress bar data from the XML stream.</p>
+<p>Parses the progress bar data from the XML stream.</p>
 </div></span>
   
 </li>
@@ -2018,7 +2039,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#reset-instance_method" title="#reset (instance method)">#<strong>reset</strong>  &#x21d2; void </a>
+      <a href="#reset-instance_method" title="#reset (instance method)">#<strong>reset</strong>  &#x21d2; Object </a>
     
 
     
@@ -2033,7 +2054,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Resets the parser’s state.</p>
+<p>Resets the internal state of the XML parser.</p>
 </div></span>
   
 </li>
@@ -2057,7 +2078,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Checks if the parser is in a safe state to respond to input.</p>
+<p>Checks if the parser is in a state to respond to XML data.</p>
 </div></span>
   
 </li>
@@ -2066,7 +2087,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#spellfront-instance_method" title="#spellfront (instance method)">#<strong>spellfront</strong>  &#x21d2; Object </a>
+      <a href="#spellfront-instance_method" title="#spellfront (instance method)">#<strong>spellfront</strong>  &#x21d2; Array </a>
     
 
     
@@ -2081,7 +2102,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>here for backwards compatibility, but spellfront xml isn’t sent by the game anymore.</p>
+<p>Retrieves the current active spells from the deprecated spellfront method.</p>
 </div></span>
   
 </li>
@@ -2153,7 +2174,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Processes text content within an XML tag.</p>
+<p>Processes text data from an XML element.</p>
 </div></span>
   
 </li>
@@ -2178,7 +2199,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Initializes a new XMLParser instance. Sets up the necessary instance variables for parsing XML data.</p>
+<p>Returns a new instance of XMLParser.</p>
 
 
   </div>
@@ -2192,6 +2213,9 @@
       <pre class="lines">
 
 
+59
+60
+61
 62
 63
 64
@@ -2285,13 +2309,10 @@
 152
 153
 154
-155
-156
-157
-158</pre>
+155</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -4956,7 +4977,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>for backwards compatibility Retrieves the currently active spells.</p>
+<p>Retrieves the active spells from the XML data.</p>
 
 
   </div>
@@ -4966,6 +4987,10 @@
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Getting active spells</p>
+</div></h5>
       
       <pre class="example code"><code><span class='id identifier rubyid_spells'>spells</span> <span class='op'>=</span> <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_active_spells'>active_spells</span></code></pre>
     
@@ -4983,7 +5008,7 @@
       
         &mdash;
         <div class='inline'>
-<p>A hash of active spells with their durations.</p>
+<p>A hash containing active spells and their details.</p>
 </div>
       
     </li>
@@ -4996,6 +5021,10 @@
       <pre class="lines">
 
 
+161
+162
+163
+164
 165
 166
 167
@@ -5016,14 +5045,10 @@
 182
 183
 184
-185
-186
-187
-188
-189</pre>
+185</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 165</span>
+      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 161</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_active_spells'>active_spells</span>
   <span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -5074,6 +5099,18 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Generating scar GSL</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_scar_gsl'>scar_gsl</span> <span class='op'>=</span> <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_make_scar_gsl'>make_scar_gsl</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -5099,12 +5136,12 @@
       <pre class="lines">
 
 
-219
-220
-221</pre>
+224
+225
+226</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 219</span>
+      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 224</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_make_scar_gsl'>make_scar_gsl</span>
   <span class='ivar'>@scar_gsl</span> <span class='op'>=</span> <span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0b0%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>nsys</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftEye</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightEye</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>back</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abdomen</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>chest</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftHand</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightHand</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftLeg</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightLeg</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftArm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightArm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>neck</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>head</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -5133,6 +5170,18 @@
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Generating wound GSL</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_wound_gsl'>wound_gsl</span> <span class='op'>=</span> <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_make_wound_gsl'>make_wound_gsl</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -5158,12 +5207,12 @@
       <pre class="lines">
 
 
-213
-214
-215</pre>
+216
+217
+218</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 213</span>
+      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 216</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_make_wound_gsl'>make_wound_gsl</span>
   <span class='ivar'>@wound_gsl</span> <span class='op'>=</span> <span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0b0%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>nsys</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wound</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftEye</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wound</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightEye</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wound</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>back</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wound</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abdomen</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wound</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>chest</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wound</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftHand</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wound</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightHand</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wound</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftLeg</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wound</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightLeg</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wound</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftArm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wound</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightArm</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wound</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>neck</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wound</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>head</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wound</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -5185,7 +5234,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Parses progress bar data from the XML stream.</p>
+<p>Parses the progress bar data from the XML stream.</p>
 
 
   </div>
@@ -5196,7 +5245,11 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_parse_psm3_progressbar'>parse_psm3_progressbar</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Buffs</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>id</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>text</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Buff Name</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>time</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>10:00</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
+        <h5 class="example_title"><div class='inline'>
+<p>Parsing a progress bar</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_parse_psm3_progressbar'>parse_psm3_progressbar</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Buffs</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>id</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>text</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Mana</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>time</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>10:00</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -5243,10 +5296,6 @@
       <pre class="lines">
 
 
-252
-253
-254
-255
 256
 257
 258
@@ -5255,10 +5304,14 @@
 261
 262
 263
-264</pre>
+264
+265
+266
+267
+268</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 252</span>
+      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 256</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_psm3_progressbar'>parse_psm3_progressbar</span><span class='lparen'>(</span><span class='id identifier rubyid_kind'>kind</span><span class='comma'>,</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='rparen'>)</span>
   <span class='ivar'>@dialogs</span><span class='lbracket'>[</span><span class='id identifier rubyid_kind'>kind</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -5281,7 +5334,7 @@
       <div class="method_details ">
   <h3 class="signature " id="reset-instance_method">
   
-    #<strong>reset</strong>  &#x21d2; <tt>void</tt> 
+    #<strong>reset</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -5289,14 +5342,26 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Resets the parser’s state. Clears all active tags and resets the current stream.</p>
+    
+<p>Resets the internal state of the XML parser. This method clears all active tags and resets the current stream.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Resetting the parser</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_reset'>reset</span></code></pre>
+    
+  </div>
+
 
 </div><table class="source_code">
   <tr>
@@ -5304,15 +5369,15 @@
       <pre class="lines">
 
 
+191
+192
+193
 194
 195
-196
-197
-198
-199</pre>
+196</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 194</span>
+      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 191</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reset'>reset</span>
   <span class='ivar'>@active_tags</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -5337,13 +5402,27 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if the parser is in a safe state to respond to input.</p>
+<p>Checks if the parser is in a state to respond to XML data.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Checking response safety</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='kw'>if</span> <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_safe_to_respond?'>safe_to_respond?</span>
+  <span class='comment'># safe to respond
+</span><span class='kw'>end</span></code></pre>
+    
+  </div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -5369,16 +5448,16 @@
       <pre class="lines">
 
 
-203
 204
 205
 206
 207
 208
-209</pre>
+209
+210</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 203</span>
+      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 204</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_safe_to_respond?'>safe_to_respond?</span>
   <span class='kw'>if</span> <span class='ivar'>@game</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^DR</span><span class='regexp_end'>/</span></span>
@@ -5395,7 +5474,7 @@
       <div class="method_details ">
   <h3 class="signature " id="spellfront-instance_method">
   
-    #<strong>spellfront</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>spellfront</strong>  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -5404,13 +5483,43 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>here for backwards compatibility, but spellfront xml isn’t sent by the game anymore</p>
+<p>Retrieves the current active spells from the deprecated spellfront method.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Getting active spells from spellfront</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_spells'>spells</span> <span class='op'>=</span> <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_spellfront'>spellfront</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>An array of active spell names.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -5418,19 +5527,19 @@
       <pre class="lines">
 
 
-987
-988
-989
-990
-991
-992
-993
-994
-995
-996</pre>
+1002
+1003
+1004
+1005
+1006
+1007
+1008
+1009
+1010
+1011</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 987</span>
+      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 1002</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_spellfront'>spellfront</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>-</span> <span class='cvar'>@@warned_deprecated_spellfront</span><span class='rparen'>)</span> <span class='op'>&gt;</span> <span class='int'>300</span>
@@ -5465,7 +5574,19 @@
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Handling a tag end</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_tag_end'>tag_end</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>nav</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -5479,31 +5600,13 @@
       
         &mdash;
         <div class='inline'>
-<p>The name of the tag that is ending.</p>
+<p>The name of the tag that ended.</p>
 </div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If an error occurs during processing.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -5511,16 +5614,6 @@
       <pre class="lines">
 
 
-924
-925
-926
-927
-928
-929
-930
-931
-932
-933
 934
 935
 936
@@ -5571,10 +5664,22 @@
 981
 982
 983
-984</pre>
+984
+985
+986
+987
+988
+989
+990
+991
+992
+993
+994
+995
+996</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 924</span>
+      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 934</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tag_end'>tag_end</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='comment'># This is called once per element by REXML in games.rb
@@ -5596,10 +5701,10 @@
     <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>inv</span><span class='tstring_end'>&#39;</span></span>
       <span class='kw'>if</span> <span class='ivar'>@obj_exist</span> <span class='op'>==</span> <span class='ivar'>@obj_location</span>
         <span class='kw'>if</span> <span class='ivar'>@obj_after_name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>is closed.</span><span class='tstring_end'>&#39;</span></span>
-          <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_delete_container'><span class='object_link'><a href="GameObj.html#delete_container-class_method" title="Lich::Common::GameObj.delete_container (method)">delete_container</a></span></span><span class='lparen'>(</span><span class='ivar'>@stow_container_id</span><span class='rparen'>)</span>
+          <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_delete_container'>delete_container</span><span class='lparen'>(</span><span class='ivar'>@stow_container_id</span><span class='rparen'>)</span>
         <span class='kw'>end</span>
       <span class='kw'>elsif</span> <span class='ivar'>@obj_exist</span>
-        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_inv'><span class='object_link'><a href="GameObj.html#new_inv-class_method" title="Lich::Common::GameObj.new_inv (method)">new_inv</a></span></span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='ivar'>@obj_name</span><span class='comma'>,</span> <span class='ivar'>@obj_location</span><span class='comma'>,</span> <span class='ivar'>@obj_before_name</span><span class='comma'>,</span> <span class='ivar'>@obj_after_name</span><span class='rparen'>)</span>
+        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_inv'>new_inv</span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='ivar'>@obj_name</span><span class='comma'>,</span> <span class='ivar'>@obj_location</span><span class='comma'>,</span> <span class='ivar'>@obj_before_name</span><span class='comma'>,</span> <span class='ivar'>@obj_after_name</span><span class='rparen'>)</span>
       <span class='kw'>end</span>
     <span class='kw'>elsif</span> <span class='ivar'>@send_fake_tags</span> <span class='kw'>and</span> <span class='lparen'>(</span><span class='ivar'>@active_ids</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>room exits</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
       <span class='id identifier rubyid_gsl_exits'>gsl_exits</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -5621,10 +5726,12 @@
       <span class='kw'>end</span>
       <span class='ivar'>@room_description</span> <span class='op'>=</span> <span class='ivar'>@room_description</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
       <span class='ivar'>@room_exits_string</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='ivar'>@room_exits</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='ivar'>@room_exits</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-      <span class='id identifier rubyid_gsl_exits'>gsl_exits</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-      <span class='ivar'>@room_exits</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_exit'>exit</span><span class='op'>|</span> <span class='id identifier rubyid_gsl_exits'>gsl_exits</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../top-level-namespace.html#DIRMAP-constant" title="DIRMAP (constant)">DIRMAP</a></span></span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="../../top-level-namespace.html#SHORTDIR-constant" title="SHORTDIR (constant)">SHORTDIR</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_exit'>exit</span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-      <span class='gvar'>$_CLIENT_</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\034GSj</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%-20s</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_gsl_exits'>gsl_exits</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span>
-      <span class='id identifier rubyid_gsl_exits'>gsl_exits</span> <span class='op'>=</span> <span class='kw'>nil</span>
+      <span class='kw'>if</span> <span class='ivar'>@send_fake_tags</span>
+        <span class='id identifier rubyid_gsl_exits'>gsl_exits</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+        <span class='ivar'>@room_exits</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_exit'>exit</span><span class='op'>|</span> <span class='id identifier rubyid_gsl_exits'>gsl_exits</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../top-level-namespace.html#DIRMAP-constant" title="DIRMAP (constant)">DIRMAP</a></span></span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="../../top-level-namespace.html#SHORTDIR-constant" title="SHORTDIR (constant)">SHORTDIR</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_exit'>exit</span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+        <span class='gvar'>$_CLIENT_</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\034GSj</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%-20s</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_gsl_exits'>gsl_exits</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_gsl_exits'>gsl_exits</span> <span class='op'>=</span> <span class='kw'>nil</span>
+      <span class='kw'>end</span>
       <span class='ivar'>@room_count</span> <span class='op'>+=</span> <span class='int'>1</span>
       <span class='gvar'>$room_count</span> <span class='op'>+=</span> <span class='int'>1</span>
     <span class='kw'>end</span>
@@ -5660,7 +5767,19 @@
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Handling a tag start</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_tag_start'>tag_start</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>nav</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rm</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>123</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -5697,24 +5816,6 @@
   
 </ul>
 
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If an error occurs during processing.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -5722,11 +5823,6 @@
       <pre class="lines">
 
 
-273
-274
-275
-276
-277
 278
 279
 280
@@ -6144,10 +6240,17 @@
 692
 693
 694
-695</pre>
+695
+696
+697
+698
+699
+700
+701
+702</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 273</span>
+      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 278</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tag_start'>tag_start</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='rparen'>)</span>
   <span class='comment'># This is called once per element by REXML in games.rb
@@ -6158,10 +6261,10 @@
 
     <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>nav</span><span class='tstring_end'>&#39;</span></span>
       <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Claim.html" title="Lich::Claim (module)">Claim</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lock'><span class='object_link'><a href="../Claim.html#lock-class_method" title="Lich::Claim.lock (method)">lock</a></span></span> <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Claim.html" title="Lich::Claim (module)">Claim</a></span></span><span class='rparen'>)</span>
-      <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_loot'><span class='object_link'><a href="GameObj.html#clear_loot-class_method" title="Lich::Common::GameObj.clear_loot (method)">clear_loot</a></span></span>
-      <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_npcs'><span class='object_link'><a href="GameObj.html#clear_npcs-class_method" title="Lich::Common::GameObj.clear_npcs (method)">clear_npcs</a></span></span>
-      <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_pcs'><span class='object_link'><a href="GameObj.html#clear_pcs-class_method" title="Lich::Common::GameObj.clear_pcs (method)">clear_pcs</a></span></span>
-      <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_room_desc'><span class='object_link'><a href="GameObj.html#clear_room_desc-class_method" title="Lich::Common::GameObj.clear_room_desc (method)">clear_room_desc</a></span></span>
+      <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_loot'>clear_loot</span>
+      <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_npcs'>clear_npcs</span>
+      <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_pcs'>clear_pcs</span>
+      <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_room_desc'>clear_room_desc</span>
       <span class='ivar'>@check_obvious_hiding</span> <span class='op'>=</span> <span class='kw'>true</span>
       <span class='kw'>unless</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^DR</span><span class='regexp_end'>/</span></span>
         <span class='ivar'>@previous_nav_rm</span> <span class='op'>=</span> <span class='ivar'>@room_id</span>
@@ -6193,16 +6296,16 @@
 
     <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>compDef</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>or</span> <span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>component</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
       <span class='kw'>if</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>room objs</span><span class='tstring_end'>&#39;</span></span>
-        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_loot'><span class='object_link'><a href="GameObj.html#clear_loot-class_method" title="Lich::Common::GameObj.clear_loot (method)">clear_loot</a></span></span>
-        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_npcs'><span class='object_link'><a href="GameObj.html#clear_npcs-class_method" title="Lich::Common::GameObj.clear_npcs (method)">clear_npcs</a></span></span>
+        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_loot'>clear_loot</span>
+        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_npcs'>clear_npcs</span>
       <span class='kw'>elsif</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>room players</span><span class='tstring_end'>&#39;</span></span>
-        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_pcs'><span class='object_link'><a href="GameObj.html#clear_pcs-class_method" title="Lich::Common::GameObj.clear_pcs (method)">clear_pcs</a></span></span>
+        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_pcs'>clear_pcs</span>
       <span class='kw'>elsif</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>room exits</span><span class='tstring_end'>&#39;</span></span>
         <span class='ivar'>@room_exits</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
         <span class='ivar'>@room_exits_string</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
       <span class='kw'>elsif</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>room desc</span><span class='tstring_end'>&#39;</span></span>
         <span class='ivar'>@room_description</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_room_desc'><span class='object_link'><a href="GameObj.html#clear_room_desc-class_method" title="Lich::Common::GameObj.clear_room_desc (method)">clear_room_desc</a></span></span>
+        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_room_desc'>clear_room_desc</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
 
@@ -6236,7 +6339,9 @@
     <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pushStream</span><span class='tstring_end'>&#39;</span></span>
       <span class='ivar'>@in_stream</span> <span class='op'>=</span> <span class='kw'>true</span>
       <span class='ivar'>@current_stream</span> <span class='op'>=</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
-      <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_inv'><span class='object_link'><a href="GameObj.html#clear_inv-class_method" title="Lich::Common::GameObj.clear_inv (method)">clear_inv</a></span></span> <span class='kw'>if</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>inv</span><span class='tstring_end'>&#39;</span></span>
+      <span class='kw'>if</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^GS</span><span class='regexp_end'>/</span></span>
+        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_inv'>clear_inv</span> <span class='kw'>if</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>inv</span><span class='tstring_end'>&#39;</span></span>
+      <span class='kw'>end</span>
     <span class='kw'>end</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>popStream</span><span class='tstring_end'>&#39;</span></span>
       <span class='kw'>if</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>room</span><span class='tstring_end'>&#39;</span></span>
@@ -6305,13 +6410,13 @@
 
     <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>clearContainer</span><span class='tstring_end'>&#39;</span></span>
       <span class='kw'>if</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stow</span><span class='tstring_end'>&#39;</span></span>
-        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_container'><span class='object_link'><a href="GameObj.html#clear_container-class_method" title="Lich::Common::GameObj.clear_container (method)">clear_container</a></span></span><span class='lparen'>(</span><span class='ivar'>@stow_container_id</span><span class='rparen'>)</span>
+        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_container'>clear_container</span><span class='lparen'>(</span><span class='ivar'>@stow_container_id</span><span class='rparen'>)</span>
       <span class='kw'>else</span>
-        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_container'><span class='object_link'><a href="GameObj.html#clear_container-class_method" title="Lich::Common::GameObj.clear_container (method)">clear_container</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_container'>clear_container</span><span class='lparen'>(</span><span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>deleteContainer</span><span class='tstring_end'>&#39;</span></span>
-      <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_delete_container'><span class='object_link'><a href="GameObj.html#delete_container-class_method" title="Lich::Common::GameObj.delete_container (method)">delete_container</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_delete_container'>delete_container</span><span class='lparen'>(</span><span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>progressBar</span><span class='tstring_end'>&#39;</span></span>
       <span class='kw'>if</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pbarStance</span><span class='tstring_end'>&#39;</span></span>
@@ -6558,8 +6663,8 @@
         <span class='gvar'>$_CLIENT_</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\034GSj</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%-20s</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_gsl_exits'>gsl_exits</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span>
         <span class='id identifier rubyid_gsl_exits'>gsl_exits</span> <span class='op'>=</span> <span class='kw'>nil</span>
         <span class='gvar'>$_CLIENT_</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\034GSn</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%-14s</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='ivar'>@prepared_spell</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span>
-        <span class='gvar'>$_CLIENT_</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\034GSm</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%-45s</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_hand'><span class='object_link'><a href="GameObj.html#right_hand-class_method" title="Lich::Common::GameObj.right_hand (method)">right_hand</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'><span class='object_link'><a href="GameObj.html#name-instance_method" title="Lich::Common::GameObj#name (method)">name</a></span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span>
-        <span class='gvar'>$_CLIENT_</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\034GSl</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%-45s</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_hand'><span class='object_link'><a href="GameObj.html#left_hand-class_method" title="Lich::Common::GameObj.left_hand (method)">left_hand</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'><span class='object_link'><a href="GameObj.html#name-instance_method" title="Lich::Common::GameObj#name (method)">name</a></span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span>
+        <span class='gvar'>$_CLIENT_</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\034GSm</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%-45s</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_hand'>right_hand</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span>
+        <span class='gvar'>$_CLIENT_</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\034GSl</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%-45s</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_hand'>left_hand</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span>
         <span class='gvar'>$_CLIENT_</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\034GSq</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%010d</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='ivar'>@server_time</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span>
         <span class='gvar'>$_CLIENT_</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\034GSQ</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%010d</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='ivar'>@roundtime_end</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@roundtime_end</span> <span class='op'>&gt;</span> <span class='int'>0</span>
       <span class='kw'>end</span>
@@ -6588,22 +6693,26 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method is called once per element with text in it.</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Processes text content within an XML tag.</p>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Processes text data from an XML element.</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Processing text</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This is a sample text.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -6617,7 +6726,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The text content to process.</p>
+<p>The text content of the XML element.</p>
 </div>
       
     </li>
@@ -6631,14 +6740,6 @@
       <pre class="lines">
 
 
-701
-702
-703
-704
-705
-706
-707
-708
 709
 710
 711
@@ -6848,10 +6949,19 @@
 915
 916
 917
-918</pre>
+918
+919
+920
+921
+922
+923
+924
+925
+926
+927</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 701</span>
+      <pre class="code"><span class="info file"># File 'documented/common/xmlparser.rb', line 709</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_text'>text</span><span class='lparen'>(</span><span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
   <span class='comment'># This is called once per element with text in it by REXML in games.rb
@@ -6924,10 +7034,10 @@
     <span class='kw'>elsif</span> <span class='ivar'>@active_tags</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prompt</span><span class='tstring_end'>&#39;</span></span>
       <span class='ivar'>@prompt</span> <span class='op'>=</span> <span class='id identifier rubyid_text_string'>text_string</span>
     <span class='kw'>elsif</span> <span class='ivar'>@active_tags</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>right</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-      <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_right_hand'><span class='object_link'><a href="GameObj.html#new_right_hand-class_method" title="Lich::Common::GameObj.new_right_hand (method)">new_right_hand</a></span></span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_right_hand'>new_right_hand</span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
       <span class='gvar'>$_CLIENT_</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\034GSm</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%-45s</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@send_fake_tags</span>
     <span class='kw'>elsif</span> <span class='ivar'>@active_tags</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>left</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-      <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_left_hand'><span class='object_link'><a href="GameObj.html#new_left_hand-class_method" title="Lich::Common::GameObj.new_left_hand (method)">new_left_hand</a></span></span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_left_hand'>new_left_hand</span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
       <span class='gvar'>$_CLIENT_</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\034GSl</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%-45s</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@send_fake_tags</span>
     <span class='kw'>elsif</span> <span class='ivar'>@active_tags</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>spell</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
       <span class='ivar'>@prepared_spell</span> <span class='op'>=</span> <span class='id identifier rubyid_text_string'>text_string</span>
@@ -6936,21 +7046,22 @@
       <span class='kw'>if</span> <span class='ivar'>@active_ids</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>room objs</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
         <span class='kw'>if</span> <span class='ivar'>@active_tags</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
           <span class='kw'>if</span> <span class='ivar'>@bold</span>
-            <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_npc'><span class='object_link'><a href="GameObj.html#new_npc-class_method" title="Lich::Common::GameObj.new_npc (method)">new_npc</a></span></span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
+            <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_npc'>new_npc</span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
+            <span class='const'>Creature</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='id identifier rubyid_text_string'>text_string</span><span class='comma'>,</span> <span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_current_target_ids'>current_target_ids</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='rparen'>)</span>
           <span class='kw'>else</span>
-            <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_loot'><span class='object_link'><a href="GameObj.html#new_loot-class_method" title="Lich::Common::GameObj.new_loot (method)">new_loot</a></span></span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
+            <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_loot'>new_loot</span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
           <span class='kw'>end</span>
         <span class='kw'>elsif</span> <span class='lparen'>(</span><span class='id identifier rubyid_text_string'>text_string</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>that (?:is|appears) ([\w\s]+)(?:,| and|\.)</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='kw'>or</span> <span class='lparen'>(</span><span class='id identifier rubyid_text_string'>text_string</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'> \(([^\(]+)\)</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
-          <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_npcs'><span class='object_link'><a href="GameObj.html#npcs-class_method" title="Lich::Common::GameObj.npcs (method)">npcs</a></span></span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='backref'>$1</span>
+          <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_npcs'>npcs</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='backref'>$1</span>
         <span class='kw'>end</span>
       <span class='kw'>elsif</span> <span class='ivar'>@active_ids</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>room players</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
         <span class='kw'>if</span> <span class='ivar'>@active_tags</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-          <span class='ivar'>@pc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_pc'><span class='object_link'><a href="GameObj.html#new_pc-class_method" title="Lich::Common::GameObj.new_pc (method)">new_pc</a></span></span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@player_title</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_text_string'>text_string</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@player_status</span><span class='rparen'>)</span>
+          <span class='ivar'>@pc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_pc'>new_pc</span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@player_title</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_text_string'>text_string</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@player_status</span><span class='rparen'>)</span>
           <span class='ivar'>@player_status</span> <span class='op'>=</span> <span class='kw'>nil</span>
           <span class='ivar'>@arrival_pcs</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='ivar'>@pc</span><span class='period'>.</span><span class='id identifier rubyid_noun'>noun</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='lparen'>(</span><span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Claim.html" title="Lich::Claim (module)">Claim</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Claim.html" title="Lich::Claim (module)">Claim</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Claim.html#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_owned?'>owned?</span><span class='rparen'>)</span>
         <span class='kw'>else</span>
           <span class='kw'>if</span> <span class='ivar'>@game</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^DR</span><span class='regexp_end'>/</span></span>
-            <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_pcs'><span class='object_link'><a href="GameObj.html#clear_pcs-class_method" title="Lich::Common::GameObj.clear_pcs (method)">clear_pcs</a></span></span>
+            <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_pcs'>clear_pcs</span>
             <span class='id identifier rubyid_text_string'>text_string</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Also here\: </span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'> and ([^,]+)\.</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>, </span><span class='embexpr_beg'>#{</span><span class='backref'>$1</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_player'>player</span><span class='op'>|</span>
               <span class='kw'>if</span> <span class='id identifier rubyid_player'>player</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'> who is (.+)</span><span class='regexp_end'>/</span></span>
                 <span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='backref'>$1</span>
@@ -6978,7 +7089,7 @@
                   <span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stunned</span><span class='tstring_end'>&#39;</span></span>
                 <span class='kw'>end</span>
               <span class='kw'>end</span>
-              <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_pc'><span class='object_link'><a href="GameObj.html#new_pc-class_method" title="Lich::Common::GameObj.new_pc (method)">new_pc</a></span></span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_noun'>noun</span><span class='comma'>,</span> <span class='id identifier rubyid_player'>player</span><span class='comma'>,</span> <span class='id identifier rubyid_status'>status</span><span class='rparen'>)</span>
+              <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_pc'>new_pc</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_noun'>noun</span><span class='comma'>,</span> <span class='id identifier rubyid_player'>player</span><span class='comma'>,</span> <span class='id identifier rubyid_status'>status</span><span class='rparen'>)</span>
             <span class='rbrace'>}</span>
           <span class='kw'>else</span>
             <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_text_string'>text_string</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^ who (?:is|appears) ([\w\s]+)(?:,| and|\.|$)</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='kw'>or</span> <span class='lparen'>(</span><span class='id identifier rubyid_text_string'>text_string</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'> \(([\w\s]+)\)(?: \(([\w\s]+)\))?</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
@@ -7002,7 +7113,7 @@
           <span class='ivar'>@room_window_disabled</span> <span class='op'>=</span> <span class='kw'>false</span>
           <span class='ivar'>@room_description</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
           <span class='kw'>if</span> <span class='ivar'>@active_tags</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-            <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_room_desc'><span class='object_link'><a href="GameObj.html#new_room_desc-class_method" title="Lich::Common::GameObj.new_room_desc (method)">new_room_desc</a></span></span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
+            <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_room_desc'>new_room_desc</span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
           <span class='kw'>end</span>
         <span class='kw'>end</span>
       <span class='kw'>elsif</span> <span class='ivar'>@active_ids</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>room exits</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -7014,7 +7125,7 @@
     <span class='kw'>elsif</span> <span class='ivar'>@current_stream</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>society</span><span class='tstring_end'>&#39;</span></span>
       <span class='ivar'>@society_task</span> <span class='op'>=</span> <span class='id identifier rubyid_text_string'>text_string</span>
     <span class='kw'>elsif</span> <span class='lparen'>(</span><span class='ivar'>@current_stream</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>inv</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='ivar'>@active_tags</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-      <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_inv'><span class='object_link'><a href="GameObj.html#new_inv-class_method" title="Lich::Common::GameObj.new_inv (method)">new_inv</a></span></span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_inv'>new_inv</span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
     <span class='kw'>elsif</span> <span class='ivar'>@check_obvious_hiding</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_text_string'>text_string</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>obvious signs of someone hiding</span><span class='regexp_end'>/</span></span>
       <span class='ivar'>@room_player_hidden</span> <span class='op'>=</span> <span class='kw'>true</span>
     <span class='kw'>elsif</span> <span class='ivar'>@current_stream</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>familiar</span><span class='tstring_end'>&#39;</span></span>
@@ -7023,15 +7134,15 @@
         <span class='ivar'>@familiar_room_title</span> <span class='op'>=</span> <span class='id identifier rubyid_text_string'>text_string</span>
         <span class='ivar'>@familiar_room_description</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
         <span class='ivar'>@familiar_room_exits</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_fam_room_desc'><span class='object_link'><a href="GameObj.html#clear_fam_room_desc-class_method" title="Lich::Common::GameObj.clear_fam_room_desc (method)">clear_fam_room_desc</a></span></span>
-        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_fam_loot'><span class='object_link'><a href="GameObj.html#clear_fam_loot-class_method" title="Lich::Common::GameObj.clear_fam_loot (method)">clear_fam_loot</a></span></span>
-        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_fam_npcs'><span class='object_link'><a href="GameObj.html#clear_fam_npcs-class_method" title="Lich::Common::GameObj.clear_fam_npcs (method)">clear_fam_npcs</a></span></span>
-        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_fam_pcs'><span class='object_link'><a href="GameObj.html#clear_fam_pcs-class_method" title="Lich::Common::GameObj.clear_fam_pcs (method)">clear_fam_pcs</a></span></span>
+        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_fam_room_desc'>clear_fam_room_desc</span>
+        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_fam_loot'>clear_fam_loot</span>
+        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_fam_npcs'>clear_fam_npcs</span>
+        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear_fam_pcs'>clear_fam_pcs</span>
         <span class='ivar'>@fam_mode</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
       <span class='kw'>elsif</span> <span class='ivar'>@current_style</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>roomDesc</span><span class='tstring_end'>&#39;</span></span>
         <span class='ivar'>@familiar_room_description</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
         <span class='kw'>if</span> <span class='ivar'>@active_tags</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-          <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_fam_room_desc'><span class='object_link'><a href="GameObj.html#new_fam_room_desc-class_method" title="Lich::Common::GameObj.new_fam_room_desc (method)">new_fam_room_desc</a></span></span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
+          <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_fam_room_desc'>new_fam_room_desc</span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
         <span class='kw'>end</span>
       <span class='kw'>elsif</span> <span class='id identifier rubyid_text_string'>text_string</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You also see</span><span class='regexp_end'>/</span></span>
         <span class='ivar'>@fam_mode</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>things</span><span class='tstring_end'>&#39;</span></span>
@@ -7042,14 +7153,14 @@
       <span class='kw'>elsif</span> <span class='ivar'>@fam_mode</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>things</span><span class='tstring_end'>&#39;</span></span>
         <span class='kw'>if</span> <span class='ivar'>@active_tags</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
           <span class='kw'>if</span> <span class='ivar'>@bold</span>
-            <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_fam_npc'><span class='object_link'><a href="GameObj.html#new_fam_npc-class_method" title="Lich::Common::GameObj.new_fam_npc (method)">new_fam_npc</a></span></span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
+            <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_fam_npc'>new_fam_npc</span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
           <span class='kw'>else</span>
-            <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_fam_loot'><span class='object_link'><a href="GameObj.html#new_fam_loot-class_method" title="Lich::Common::GameObj.new_fam_loot (method)">new_fam_loot</a></span></span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
+            <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_fam_loot'>new_fam_loot</span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
           <span class='kw'>end</span>
         <span class='kw'>end</span>
         <span class='comment'># puts &#39;things: &#39; + text_string
 </span>      <span class='kw'>elsif</span> <span class='ivar'>@fam_mode</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>people</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>and</span> <span class='ivar'>@active_tags</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_fam_pc'><span class='object_link'><a href="GameObj.html#new_fam_pc-class_method" title="Lich::Common::GameObj.new_fam_pc (method)">new_fam_pc</a></span></span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
+        <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_fam_pc'>new_fam_pc</span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
         <span class='comment'># puts &#39;people: &#39; + text_string
 </span>      <span class='kw'>elsif</span> <span class='lparen'>(</span><span class='ivar'>@fam_mode</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>paths</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='ivar'>@active_tags</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
         <span class='ivar'>@familiar_room_exits</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
@@ -7058,7 +7169,7 @@
       <span class='kw'>if</span> <span class='ivar'>@current_style</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>roomDesc</span><span class='tstring_end'>&#39;</span></span>
         <span class='ivar'>@room_description</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
         <span class='kw'>if</span> <span class='ivar'>@active_tags</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-          <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_room_desc'><span class='object_link'><a href="GameObj.html#new_room_desc-class_method" title="Lich::Common::GameObj.new_room_desc (method)">new_room_desc</a></span></span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
+          <span class='const'><span class='object_link'><a href="GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new_room_desc'>new_room_desc</span><span class='lparen'>(</span><span class='ivar'>@obj_exist</span><span class='comma'>,</span> <span class='ivar'>@obj_noun</span><span class='comma'>,</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='rparen'>)</span>
         <span class='kw'>end</span>
       <span class='kw'>elsif</span> <span class='id identifier rubyid_text_string'>text_string</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Obvious (?:paths|exits): (?:none)?$</span><span class='regexp_end'>/</span></span>
         <span class='ivar'>@room_exits_string</span> <span class='op'>=</span> <span class='id identifier rubyid_text_string'>text_string</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
@@ -7081,9 +7192,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 23 03:17:26 2025 by
+  Generated on Tue Jan 13 02:35:14 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.2.9).
+  0.9.38 (ruby-3.2.9).
 </div>
 
     </div>

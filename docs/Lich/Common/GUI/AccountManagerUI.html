@@ -1,0 +1,2371 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Lich::Common::GUI::AccountManagerUI
+  
+    &mdash; Lich 5 Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Lich::Common::GUI::AccountManagerUI";
+  relpath = '../../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../../_index.html">Index (A)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span>
+     &raquo; 
+    <span class="title">AccountManagerUI</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Lich::Common::GUI::AccountManagerUI
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Lich::Common::GUI::AccountManagerUI</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>documented/common/gui/account_manager_ui.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>User Interface for managing accounts in the Lich application. Provides functionality to create, add, and manage accounts and characters.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Creating the management window</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'>AccountManagerUI</span><span class='period'>.</span><span class='id identifier rubyid_create_management_window'><span class='object_link'><a href="#create_management_window-class_method" title="Lich::Common::GUI::AccountManagerUI.create_management_window (method)">create_management_window</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_management_window-class_method" title="create_management_window (class method)">.<strong>create_management_window</strong>(data_dir)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates and displays the account management window.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_accounts_tab-instance_method" title="#create_accounts_tab (instance method)">#<strong>create_accounts_tab</strong>(notebook, insert_at_position = nil)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates the accounts tab in the management window.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_add_account_tab-instance_method" title="#create_add_account_tab (instance method)">#<strong>create_add_account_tab</strong>(notebook)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates the add account tab in the management window.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_add_character_tab-instance_method" title="#create_add_character_tab (instance method)">#<strong>create_add_character_tab</strong>(notebook)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates the add character tab in the management window.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_encryption_management_tab-instance_method" title="#create_encryption_management_tab (instance method)">#<strong>create_encryption_management_tab</strong>(notebook)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates the encryption management tab in the management window.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(data_dir)  &#x21d2; AccountManagerUI </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of AccountManagerUI.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#refresh_accounts_display-instance_method" title="#refresh_accounts_display (instance method)">#<strong>refresh_accounts_display</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Refreshes the display of accounts in the UI.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#register_for_notifications-instance_method" title="#register_for_notifications (instance method)">#<strong>register_for_notifications</strong>(tab_communicator)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Registers the UI to receive notifications about account changes.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#register_notification_callback-instance_method" title="#register_notification_callback (instance method)">#<strong>register_notification_callback</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_data_change_callback-instance_method" title="#set_data_change_callback (instance method)">#<strong>set_data_change_callback</strong>(callback)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Sets a callback to be invoked when account data changes.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(data_dir)  &#x21d2; <tt><span class='object_link'><a href="" title="Lich::Common::GUI::AccountManagerUI (class)">AccountManagerUI</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of AccountManagerUI.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30
+31
+32
+33
+34
+35
+36</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 30</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+  <span class='ivar'>@data_dir</span> <span class='op'>=</span> <span class='id identifier rubyid_data_dir'>data_dir</span>
+  <span class='ivar'>@msgbox</span> <span class='op'>=</span> <span class='tlambda'>-&gt;</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='rparen'>)</span> <span class='tlambeg'>{</span> <span class='id identifier rubyid_show_message_dialog'>show_message_dialog</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='ivar'>@data_change_callback</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@tab_communicator</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@notifications_registered</span> <span class='op'>=</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="create_management_window-class_method">
+  
+    .<strong>create_management_window</strong>(data_dir)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Creates and displays the account management window.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::AccountManagerUI (class)">AccountManagerUI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_management_window'>create_management_window</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>data_dir</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The directory where account data is stored.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24
+25
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_management_window'>create_management_window</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+  <span class='comment'># Create instance with data directory
+</span>  <span class='id identifier rubyid_manager'>manager</span> <span class='op'>=</span> <span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create and show the management window
+</span>  <span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_show_management_window'>show_management_window</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="create_accounts_tab-instance_method">
+  
+    #<strong>create_accounts_tab</strong>(notebook, insert_at_position = nil)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Creates the accounts tab in the management window.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_create_accounts_tab'>create_accounts_tab</span><span class='lparen'>(</span><span class='id identifier rubyid_notebook'>notebook</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>notebook</span>
+      
+      
+        <span class='type'>(<tt>Gtk::Notebook</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The notebook to add the tab to.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>insert_at_position</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The position to insert the tab at, or nil to append.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 113</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_accounts_tab'>create_accounts_tab</span><span class='lparen'>(</span><span class='id identifier rubyid_notebook'>notebook</span><span class='comma'>,</span> <span class='id identifier rubyid_insert_at_position'>insert_at_position</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='comment'># Store notebook reference for use in callbacks
+</span>  <span class='ivar'>@notebook</span> <span class='op'>=</span> <span class='id identifier rubyid_notebook'>notebook</span>
+
+  <span class='comment'># Create tab content
+</span>  <span class='id identifier rubyid_accounts_box'>accounts_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:vertical</span><span class='comma'>,</span> <span class='int'>10</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_accounts_box'>accounts_box</span><span class='period'>.</span><span class='id identifier rubyid_border_width'>border_width</span> <span class='op'>=</span> <span class='int'>10</span>
+
+  <span class='comment'># Create accounts treeview with favorites support
+</span>  <span class='id identifier rubyid_accounts_store'>accounts_store</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>TreeStore</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></span><span class='rparen'>)</span> <span class='comment'># Added favorites column
+</span>  <span class='ivar'>@accounts_store</span> <span class='op'>=</span> <span class='id identifier rubyid_accounts_store'>accounts_store</span> <span class='comment'># Store reference for refresh operations
+</span>  <span class='id identifier rubyid_accounts_view'>accounts_view</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>TreeView</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_accounts_store'>accounts_store</span><span class='rparen'>)</span>
+
+  <span class='comment'># Enable sortable columns
+</span>  <span class='id identifier rubyid_accounts_view'>accounts_view</span><span class='period'>.</span><span class='id identifier rubyid_set_headers_clickable'>set_headers_clickable</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_accounts_store'>accounts_store</span><span class='period'>.</span><span class='id identifier rubyid_set_default_sort_func'>set_default_sort_func</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid__model'>_model</span><span class='comma'>,</span> <span class='id identifier rubyid__a'>_a</span><span class='comma'>,</span> <span class='id identifier rubyid__b'>_b</span><span class='op'>|</span> <span class='int'>0</span> <span class='rbrace'>}</span> <span class='comment'># Default no-op sort
+</span>
+  <span class='comment'># Add columns with sorting
+</span>  <span class='id identifier rubyid_renderer'>renderer</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>CellRendererText</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+
+  <span class='comment'># Account column (not sortable - maintains account grouping)
+</span>  <span class='id identifier rubyid_col'>col</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>TreeViewColumn</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Account</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_renderer'>renderer</span><span class='comma'>,</span> <span class='label'>text:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_col'>col</span><span class='period'>.</span><span class='id identifier rubyid_resizable'>resizable</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_accounts_view'>accounts_view</span><span class='period'>.</span><span class='id identifier rubyid_append_column'>append_column</span><span class='lparen'>(</span><span class='id identifier rubyid_col'>col</span><span class='rparen'>)</span>
+
+  <span class='comment'># Character column - sortable
+</span>  <span class='id identifier rubyid_col'>col</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>TreeViewColumn</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Character</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_renderer'>renderer</span><span class='comma'>,</span> <span class='label'>text:</span> <span class='int'>1</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_col'>col</span><span class='period'>.</span><span class='id identifier rubyid_resizable'>resizable</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_col'>col</span><span class='period'>.</span><span class='id identifier rubyid_set_sort_column_id'>set_sort_column_id</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_col'>col</span><span class='period'>.</span><span class='id identifier rubyid_clickable'>clickable</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_accounts_view'>accounts_view</span><span class='period'>.</span><span class='id identifier rubyid_append_column'>append_column</span><span class='lparen'>(</span><span class='id identifier rubyid_col'>col</span><span class='rparen'>)</span>
+
+  <span class='comment'># Game column - sortable
+</span>  <span class='id identifier rubyid_col'>col</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>TreeViewColumn</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Game</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_renderer'>renderer</span><span class='comma'>,</span> <span class='label'>text:</span> <span class='int'>2</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_col'>col</span><span class='period'>.</span><span class='id identifier rubyid_resizable'>resizable</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_col'>col</span><span class='period'>.</span><span class='id identifier rubyid_set_sort_column_id'>set_sort_column_id</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_col'>col</span><span class='period'>.</span><span class='id identifier rubyid_clickable'>clickable</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_accounts_view'>accounts_view</span><span class='period'>.</span><span class='id identifier rubyid_append_column'>append_column</span><span class='lparen'>(</span><span class='id identifier rubyid_col'>col</span><span class='rparen'>)</span>
+
+  <span class='comment'># Frontend column - sortable
+</span>  <span class='id identifier rubyid_col'>col</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>TreeViewColumn</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Frontend</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_renderer'>renderer</span><span class='comma'>,</span> <span class='label'>text:</span> <span class='int'>3</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_col'>col</span><span class='period'>.</span><span class='id identifier rubyid_resizable'>resizable</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_col'>col</span><span class='period'>.</span><span class='id identifier rubyid_set_sort_column_id'>set_sort_column_id</span><span class='lparen'>(</span><span class='int'>3</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_col'>col</span><span class='period'>.</span><span class='id identifier rubyid_clickable'>clickable</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_accounts_view'>accounts_view</span><span class='period'>.</span><span class='id identifier rubyid_append_column'>append_column</span><span class='lparen'>(</span><span class='id identifier rubyid_col'>col</span><span class='rparen'>)</span>
+
+  <span class='comment'># Favorites column with clickable star (not sortable)
+</span>  <span class='id identifier rubyid_favorites_renderer'>favorites_renderer</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>CellRendererText</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_favorites_col'>favorites_col</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>TreeViewColumn</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Favorite</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_favorites_renderer'>favorites_renderer</span><span class='comma'>,</span> <span class='label'>text:</span> <span class='int'>5</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_favorites_col'>favorites_col</span><span class='period'>.</span><span class='id identifier rubyid_resizable'>resizable</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_accounts_view'>accounts_view</span><span class='period'>.</span><span class='id identifier rubyid_append_column'>append_column</span><span class='lparen'>(</span><span class='id identifier rubyid_favorites_col'>favorites_col</span><span class='rparen'>)</span>
+
+  <span class='comment'># Set up custom sort functions that maintain account grouping
+</span>  <span class='id identifier rubyid_setup_account_aware_sorting'>setup_account_aware_sorting</span><span class='lparen'>(</span><span class='id identifier rubyid_accounts_store'>accounts_store</span><span class='rparen'>)</span>
+
+  <span class='comment'># Set up sort state persistence
+</span>  <span class='id identifier rubyid_setup_sort_state_persistence'>setup_sort_state_persistence</span><span class='lparen'>(</span><span class='id identifier rubyid_accounts_store'>accounts_store</span><span class='rparen'>)</span>
+
+  <span class='comment'># Set up favorites column click handler
+</span>  <span class='id identifier rubyid_setup_favorites_column_handler'>setup_favorites_column_handler</span><span class='lparen'>(</span><span class='id identifier rubyid_accounts_view'>accounts_view</span><span class='comma'>,</span> <span class='id identifier rubyid_favorites_col'>favorites_col</span><span class='comma'>,</span> <span class='ivar'>@data_dir</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create scrolled window
+</span>  <span class='id identifier rubyid_sw'><span class='object_link'><a href="../../../top-level-namespace.html#sw-instance_method" title="#sw (method)">sw</a></span></span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ScrolledWindow</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_sw'><span class='object_link'><a href="../../../top-level-namespace.html#sw-instance_method" title="#sw (method)">sw</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_policy'>set_policy</span><span class='lparen'>(</span><span class='symbol'>:automatic</span><span class='comma'>,</span> <span class='symbol'>:automatic</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_sw'><span class='object_link'><a href="../../../top-level-namespace.html#sw-instance_method" title="#sw (method)">sw</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='id identifier rubyid_accounts_view'>accounts_view</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_accounts_box'>accounts_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_sw'><span class='object_link'><a href="../../../top-level-namespace.html#sw-instance_method" title="#sw (method)">sw</a></span></span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create button box
+</span>  <span class='id identifier rubyid_button_box'>button_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:horizontal</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create refresh button
+</span>  <span class='id identifier rubyid_refresh_button'>refresh_button</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Button</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Refresh</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_button_box'>button_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_refresh_button'>refresh_button</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create remove button
+</span>  <span class='id identifier rubyid_remove_button'>remove_button</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Button</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Remove</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_remove_button'>remove_button</span><span class='period'>.</span><span class='id identifier rubyid_sensitive'>sensitive</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='id identifier rubyid_button_box'>button_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_remove_button'>remove_button</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create add account button
+</span>  <span class='id identifier rubyid_add_account_button'>add_account_button</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Button</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Add Account</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_button_box'>button_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_add_account_button'>add_account_button</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create add character button
+</span>  <span class='id identifier rubyid_add_character_button'>add_character_button</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Button</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Add Character</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_button_box'>button_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_add_character_button'>add_character_button</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create change password button
+</span>  <span class='id identifier rubyid_change_password_button'>change_password_button</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Button</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Change Password</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_change_password_button'>change_password_button</span><span class='period'>.</span><span class='id identifier rubyid_sensitive'>sensitive</span> <span class='op'>=</span> <span class='kw'>false</span>
+
+  <span class='comment'># Set accessible properties for screen readers
+</span>  <span class='const'><span class='object_link'><a href="Accessibility.html" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_button_accessible'><span class='object_link'><a href="Accessibility.html#make_button_accessible-class_method" title="Lich::Common::GUI::Accessibility.make_button_accessible (method)">make_button_accessible</a></span></span><span class='lparen'>(</span>
+    <span class='id identifier rubyid_change_password_button'>change_password_button</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Change Password Button</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Change the password for the selected account</span><span class='tstring_end'>&quot;</span></span>
+  <span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_button_box'>button_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_change_password_button'>change_password_button</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_accounts_box'>accounts_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_button_box'>button_box</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Add tab to notebook and store index
+</span>  <span class='ivar'>@tab_indices</span><span class='lbracket'>[</span><span class='symbol'>:accounts</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_notebook'>notebook</span><span class='period'>.</span><span class='id identifier rubyid_append_page'>append_page</span><span class='lparen'>(</span><span class='id identifier rubyid_accounts_box'>accounts_box</span><span class='comma'>,</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Accounts</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+
+  <span class='comment'># If recreating, move tab back to position 0
+</span>  <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_insert_at_position'>insert_at_position</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_notebook'>notebook</span><span class='period'>.</span><span class='id identifier rubyid_reorder_child'>reorder_child</span><span class='lparen'>(</span><span class='id identifier rubyid_accounts_box'>accounts_box</span><span class='comma'>,</span> <span class='id identifier rubyid_insert_at_position'>insert_at_position</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Set up refresh button handler
+</span>  <span class='id identifier rubyid_refresh_button'>refresh_button</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>clicked</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_populate_accounts_view'>populate_accounts_view</span><span class='lparen'>(</span><span class='id identifier rubyid_accounts_store'>accounts_store</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Set up selection handler
+</span>  <span class='id identifier rubyid_selection'>selection</span> <span class='op'>=</span> <span class='id identifier rubyid_accounts_view'>accounts_view</span><span class='period'>.</span><span class='id identifier rubyid_selection'>selection</span>
+  <span class='id identifier rubyid_selection'>selection</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>changed</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_iter'>iter</span> <span class='op'>=</span> <span class='id identifier rubyid_selection'>selection</span><span class='period'>.</span><span class='id identifier rubyid_selected'>selected</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_iter'>iter</span>
+      <span class='id identifier rubyid_account'>account</span> <span class='op'>=</span> <span class='id identifier rubyid_iter'>iter</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_character'>character</span> <span class='op'>=</span> <span class='id identifier rubyid_iter'>iter</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='comment'># Character is in column 1, not 2
+</span>
+      <span class='comment'># Enable remove button for all selections
+</span>      <span class='id identifier rubyid_remove_button'>remove_button</span><span class='period'>.</span><span class='id identifier rubyid_sensitive'>sensitive</span> <span class='op'>=</span> <span class='op'>!</span><span class='id identifier rubyid_iter'>iter</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+      <span class='comment'># Only enable change password for account nodes (not character nodes)
+</span>      <span class='id identifier rubyid_change_password_button'>change_password_button</span><span class='period'>.</span><span class='id identifier rubyid_sensitive'>sensitive</span> <span class='op'>=</span> <span class='op'>!</span><span class='id identifier rubyid_account'>account</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_character'>character</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_character'>character</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_remove_button'>remove_button</span><span class='period'>.</span><span class='id identifier rubyid_sensitive'>sensitive</span> <span class='op'>=</span> <span class='kw'>false</span>
+      <span class='id identifier rubyid_change_password_button'>change_password_button</span><span class='period'>.</span><span class='id identifier rubyid_sensitive'>sensitive</span> <span class='op'>=</span> <span class='kw'>false</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Set up remove button handler
+</span>  <span class='id identifier rubyid_remove_button'>remove_button</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>clicked</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_iter'>iter</span> <span class='op'>=</span> <span class='id identifier rubyid_selection'>selection</span><span class='period'>.</span><span class='id identifier rubyid_selected'>selected</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_iter'>iter</span>
+      <span class='id identifier rubyid_account'>account</span> <span class='op'>=</span> <span class='id identifier rubyid_iter'>iter</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_character'>character</span> <span class='op'>=</span> <span class='id identifier rubyid_iter'>iter</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='comment'># Character is in column 1, not 2
+</span>      <span class='id identifier rubyid__game_name'>_game_name</span> <span class='op'>=</span> <span class='id identifier rubyid_iter'>iter</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span> <span class='comment'># Game name is in column 2, not character
+</span>      <span class='id identifier rubyid_frontend_display'>frontend_display</span> <span class='op'>=</span> <span class='id identifier rubyid_iter'>iter</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span> <span class='comment'># Frontend display name
+</span>      <span class='id identifier rubyid_game_code'>game_code</span> <span class='op'>=</span> <span class='id identifier rubyid_iter'>iter</span><span class='lbracket'>[</span><span class='int'>4</span><span class='rbracket'>]</span> <span class='comment'># Game code is in hidden column 4
+</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_character'>character</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_character'>character</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+        <span class='comment'># This is an account node
+</span>        <span class='comment'># Confirm deletion
+</span>        <span class='id identifier rubyid_dialog'>dialog</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>MessageDialog</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+          <span class='label'>parent:</span> <span class='ivar'>@window</span><span class='comma'>,</span>
+          <span class='label'>flags:</span> <span class='symbol'>:modal</span><span class='comma'>,</span>
+          <span class='label'>type:</span> <span class='symbol'>:question</span><span class='comma'>,</span>
+          <span class='label'>buttons:</span> <span class='symbol'>:yes_no</span><span class='comma'>,</span>
+          <span class='label'>message:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Delete account </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_account'>account</span><span class='embexpr_end'>}</span><span class='tstring_content'> and all its characters?</span><span class='tstring_end'>&quot;</span></span>
+        <span class='rparen'>)</span>
+        <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span>
+        <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
+
+        <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span> <span class='op'>==</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ResponseType</span><span class='op'>::</span><span class='const'>YES</span>
+          <span class='comment'># Remove account
+</span>          <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="AccountManager.html" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_remove_account'><span class='object_link'><a href="AccountManager.html#remove_account-class_method" title="Lich::Common::GUI::AccountManager.remove_account (method)">remove_account</a></span></span><span class='lparen'>(</span><span class='ivar'>@data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_account'>account</span><span class='rparen'>)</span>
+            <span class='ivar'>@msgbox</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Account removed successfully.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_populate_accounts_view'>populate_accounts_view</span><span class='lparen'>(</span><span class='id identifier rubyid_accounts_store'>accounts_store</span><span class='rparen'>)</span>
+            <span class='comment'># Notify other tabs of data change
+</span>            <span class='id identifier rubyid_notify_data_changed'>notify_data_changed</span><span class='lparen'>(</span><span class='symbol'>:account_removed</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>account:</span> <span class='id identifier rubyid_account'>account</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+          <span class='kw'>else</span>
+            <span class='ivar'>@msgbox</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to remove account.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+          <span class='kw'>end</span>
+        <span class='kw'>end</span>
+      <span class='kw'>else</span>
+        <span class='comment'># This is a character node
+</span>        <span class='comment'># Confirm deletion
+</span>        <span class='id identifier rubyid_dialog'>dialog</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>MessageDialog</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+          <span class='label'>parent:</span> <span class='ivar'>@window</span><span class='comma'>,</span>
+          <span class='label'>flags:</span> <span class='symbol'>:modal</span><span class='comma'>,</span>
+          <span class='label'>type:</span> <span class='symbol'>:question</span><span class='comma'>,</span>
+          <span class='label'>buttons:</span> <span class='symbol'>:yes_no</span><span class='comma'>,</span>
+          <span class='label'>message:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Delete </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_character'>character</span><span class='embexpr_end'>}</span><span class='tstring_content'> from </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_account'>account</span><span class='embexpr_end'>}</span><span class='tstring_content'>?</span><span class='tstring_end'>&quot;</span></span>
+        <span class='rparen'>)</span>
+        <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span>
+        <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
+
+        <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span> <span class='op'>==</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ResponseType</span><span class='op'>::</span><span class='const'>YES</span>
+          <span class='comment'># Convert display name back to internal frontend format for precise removal
+</span>          <span class='id identifier rubyid_frontend'>frontend</span> <span class='op'>=</span> <span class='kw'>case</span> <span class='id identifier rubyid_frontend_display'>frontend_display</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
+                     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>custom</span><span class='tstring_end'>&#39;</span></span>
+                       <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stormfront</span><span class='tstring_end'>&#39;</span></span> <span class='comment'># Custom launches use stormfront as base
+</span>                     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wrayth</span><span class='tstring_end'>&#39;</span></span>
+                       <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stormfront</span><span class='tstring_end'>&#39;</span></span> <span class='comment'># Wrayth is display name for stormfront
+</span>                     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wizard</span><span class='tstring_end'>&#39;</span></span>
+                       <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wizard</span><span class='tstring_end'>&#39;</span></span>
+                     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>avalon</span><span class='tstring_end'>&#39;</span></span>
+                       <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>avalon</span><span class='tstring_end'>&#39;</span></span>
+                     <span class='kw'>else</span>
+                       <span class='id identifier rubyid_frontend_display'>frontend_display</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
+                     <span class='kw'>end</span>
+
+          <span class='comment'># Remove character with frontend precision
+</span>          <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="AccountManager.html" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_remove_character'><span class='object_link'><a href="AccountManager.html#remove_character-class_method" title="Lich::Common::GUI::AccountManager.remove_character (method)">remove_character</a></span></span><span class='lparen'>(</span><span class='ivar'>@data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_account'>account</span><span class='comma'>,</span> <span class='id identifier rubyid_character'>character</span><span class='comma'>,</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span> <span class='id identifier rubyid_frontend'>frontend</span><span class='rparen'>)</span>
+            <span class='ivar'>@msgbox</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Character removed successfully.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_populate_accounts_view'>populate_accounts_view</span><span class='lparen'>(</span><span class='id identifier rubyid_accounts_store'>accounts_store</span><span class='rparen'>)</span>
+            <span class='comment'># Notify other tabs of data change
+</span>            <span class='id identifier rubyid_notify_data_changed'>notify_data_changed</span><span class='lparen'>(</span><span class='symbol'>:character_removed</span><span class='comma'>,</span> <span class='lbrace'>{</span>
+              <span class='label'>account:</span> <span class='id identifier rubyid_account'>account</span><span class='comma'>,</span>
+              <span class='label'>character:</span> <span class='id identifier rubyid_character'>character</span><span class='comma'>,</span>
+              <span class='label'>game_code:</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span>
+              <span class='label'>frontend:</span> <span class='id identifier rubyid_frontend'>frontend</span>
+            <span class='rbrace'>}</span><span class='rparen'>)</span>
+          <span class='kw'>else</span>
+            <span class='ivar'>@msgbox</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to remove character.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+          <span class='kw'>end</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Set up add account button handler - switch to Add Account tab
+</span>  <span class='id identifier rubyid_add_account_button'>add_account_button</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>clicked</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='comment'># Switch to Add Account tab (index 2)
+</span>    <span class='id identifier rubyid_notebook'>notebook</span><span class='period'>.</span><span class='id identifier rubyid_set_page'>set_page</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Set up add character button handler - switch to Add Character tab
+</span>  <span class='id identifier rubyid_add_character_button'>add_character_button</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>clicked</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='comment'># Switch to Add Character tab (index 1)
+</span>    <span class='id identifier rubyid_notebook'>notebook</span><span class='period'>.</span><span class='id identifier rubyid_set_page'>set_page</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='comment'># Set up change password button handler
+</span>  <span class='id identifier rubyid_change_password_button'>change_password_button</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>clicked</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_iter'>iter</span> <span class='op'>=</span> <span class='id identifier rubyid_selection'>selection</span><span class='period'>.</span><span class='id identifier rubyid_selected'>selected</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_iter'>iter</span>
+      <span class='id identifier rubyid_account'>account</span> <span class='op'>=</span> <span class='id identifier rubyid_iter'>iter</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+      <span class='const'><span class='object_link'><a href="PasswordChange.html" title="Lich::Common::GUI::PasswordChange (module)">PasswordChange</a></span></span><span class='period'>.</span><span class='id identifier rubyid_show_password_change_dialog'><span class='object_link'><a href="PasswordChange.html#show_password_change_dialog-class_method" title="Lich::Common::GUI::PasswordChange.show_password_change_dialog (method)">show_password_change_dialog</a></span></span><span class='lparen'>(</span><span class='ivar'>@window</span><span class='comma'>,</span> <span class='ivar'>@data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_account'>account</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Populate accounts view
+</span>  <span class='id identifier rubyid_populate_accounts_view'>populate_accounts_view</span><span class='lparen'>(</span><span class='id identifier rubyid_accounts_store'>accounts_store</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_add_account_tab-instance_method">
+  
+    #<strong>create_add_account_tab</strong>(notebook)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Creates the add account tab in the management window.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_create_add_account_tab'>create_add_account_tab</span><span class='lparen'>(</span><span class='id identifier rubyid_notebook'>notebook</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>notebook</span>
+      
+      
+        <span class='type'>(<tt>Gtk::Notebook</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The notebook to add the tab to.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 470</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_add_account_tab'>create_add_account_tab</span><span class='lparen'>(</span><span class='id identifier rubyid_notebook'>notebook</span><span class='rparen'>)</span>
+  <span class='comment'># Create tab content
+</span>  <span class='id identifier rubyid_add_account_box'>add_account_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:vertical</span><span class='comma'>,</span> <span class='int'>10</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_add_account_box'>add_account_box</span><span class='period'>.</span><span class='id identifier rubyid_border_width'>border_width</span> <span class='op'>=</span> <span class='int'>10</span>
+
+  <span class='comment'># Create username entry
+</span>  <span class='id identifier rubyid_username_box'>username_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:horizontal</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_username_box'>username_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Username:</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_username_entry'>username_entry</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Entry</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+
+  <span class='comment'># Set accessible properties for screen readers
+</span>  <span class='const'><span class='object_link'><a href="Accessibility.html" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_entry_accessible'><span class='object_link'><a href="Accessibility.html#make_entry_accessible-class_method" title="Lich::Common::GUI::Accessibility.make_entry_accessible (method)">make_entry_accessible</a></span></span><span class='lparen'>(</span>
+    <span class='id identifier rubyid_username_entry'>username_entry</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Username Entry</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Enter your account username</span><span class='tstring_end'>&quot;</span></span>
+  <span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_username_box'>username_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_username_entry'>username_entry</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_add_account_box'>add_account_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_username_box'>username_box</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create password entry
+</span>  <span class='id identifier rubyid_password_box'>password_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:horizontal</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_password_box'>password_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Password:</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_password_entry'>password_entry</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Entry</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_password_entry'>password_entry</span><span class='period'>.</span><span class='id identifier rubyid_visibility'>visibility</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='id identifier rubyid_password_box'>password_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_password_entry'>password_entry</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_add_account_box'>add_account_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_password_box'>password_box</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create button box
+</span>  <span class='id identifier rubyid_button_box'>button_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:horizontal</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create back button to return to accounts tab
+</span>  <span class='id identifier rubyid_back_button'>back_button</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Button</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Back to Accounts</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_button_box'>button_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_back_button'>back_button</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create add button
+</span>  <span class='id identifier rubyid_add_button'>add_button</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Button</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Add Account</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_button_box'>button_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_end'>pack_end</span><span class='lparen'>(</span><span class='id identifier rubyid_add_button'>add_button</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_add_account_box'>add_account_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_button_box'>button_box</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Add tab to notebook and store index
+</span>  <span class='ivar'>@tab_indices</span><span class='lbracket'>[</span><span class='symbol'>:add_account</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_notebook'>notebook</span><span class='period'>.</span><span class='id identifier rubyid_append_page'>append_page</span><span class='lparen'>(</span><span class='id identifier rubyid_add_account_box'>add_account_box</span><span class='comma'>,</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Add Account</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+
+  <span class='comment'># Set up back button handler
+</span>  <span class='id identifier rubyid_back_button'>back_button</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>clicked</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='comment'># Switch to Accounts tab
+</span>    <span class='id identifier rubyid_notebook'>notebook</span><span class='period'>.</span><span class='id identifier rubyid_set_page'>set_page</span><span class='lparen'>(</span><span class='ivar'>@tab_indices</span><span class='lbracket'>[</span><span class='symbol'>:accounts</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Set up add button handler with automatic account information collection
+</span>  <span class='id identifier rubyid_add_button'>add_button</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>clicked</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_username'>username</span> <span class='op'>=</span> <span class='id identifier rubyid_username_entry'>username_entry</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span>
+    <span class='id identifier rubyid_password'>password</span> <span class='op'>=</span> <span class='id identifier rubyid_password_entry'>password_entry</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_username'>username</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+      <span class='ivar'>@msgbox</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Username cannot be empty.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>next</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_password'>password</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+      <span class='ivar'>@msgbox</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Password cannot be empty.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>next</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Step 1: Check if account already exists in YAML structure
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_account_already_exists?'>account_already_exists?</span><span class='lparen'>(</span><span class='id identifier rubyid_username'>username</span><span class='rparen'>)</span>
+      <span class='ivar'>@msgbox</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Account &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_username'>username</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; already exists. Use &#39;Change Password&#39; to update the password.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>next</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Step 2: Perform authentication like manual login to collect account information
+</span>    <span class='kw'>begin</span>
+      <span class='comment'># Authenticate with legacy mode to get character list (returns array of character hashes)
+</span>      <span class='id identifier rubyid_auth_data'>auth_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Authentication.html" title="Lich::Common::GUI::Authentication (module)">Authentication</a></span></span><span class='period'>.</span><span class='id identifier rubyid_authenticate'><span class='object_link'><a href="Authentication.html#authenticate-class_method" title="Lich::Common::GUI::Authentication.authenticate (method)">authenticate</a></span></span><span class='lparen'>(</span>
+        <span class='label'>account:</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span>
+        <span class='label'>password:</span> <span class='id identifier rubyid_password'>password</span><span class='comma'>,</span>
+        <span class='label'>legacy:</span> <span class='kw'>true</span>
+      <span class='rparen'>)</span>
+
+      <span class='comment'># Step 3: Collect all account information and convert to YAML format
+</span>      <span class='kw'>if</span> <span class='id identifier rubyid_auth_data'>auth_data</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_auth_data'>auth_data</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_auth_data'>auth_data</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+        <span class='comment'># Show frontend selection dialog
+</span>        <span class='id identifier rubyid_selected_frontend'>selected_frontend</span> <span class='op'>=</span> <span class='id identifier rubyid_show_frontend_selection_dialog'>show_frontend_selection_dialog</span>
+        <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_selected_frontend'>selected_frontend</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='comment'># User cancelled
+</span>
+        <span class='comment'># Convert character data to the format expected by YAML storage
+</span>        <span class='id identifier rubyid_character_list'>character_list</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="AccountManager.html" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_convert_auth_data_to_characters'><span class='object_link'><a href="AccountManager.html#convert_auth_data_to_characters-class_method" title="Lich::Common::GUI::AccountManager.convert_auth_data_to_characters (method)">convert_auth_data_to_characters</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_auth_data'>auth_data</span><span class='comma'>,</span> <span class='id identifier rubyid_selected_frontend'>selected_frontend</span><span class='rparen'>)</span>
+
+        <span class='comment'># Step 4: Save account and characters to entry.yml file
+</span>        <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="AccountManager.html" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add_or_update_account'><span class='object_link'><a href="AccountManager.html#add_or_update_account-class_method" title="Lich::Common::GUI::AccountManager.add_or_update_account (method)">add_or_update_account</a></span></span><span class='lparen'>(</span><span class='ivar'>@data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='id identifier rubyid_character_list'>character_list</span><span class='rparen'>)</span>
+          <span class='ivar'>@msgbox</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Account &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_username'>username</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; added successfully with </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_character_list'>character_list</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='embexpr_end'>}</span><span class='tstring_content'> character(s).</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_username_entry'>username_entry</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+          <span class='id identifier rubyid_password_entry'>password_entry</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+
+          <span class='comment'># Step 5: Reset window interface to display results
+</span>          <span class='comment'># Notify other tabs of data change
+</span>          <span class='id identifier rubyid_notify_data_changed'>notify_data_changed</span><span class='lparen'>(</span><span class='symbol'>:account_added</span><span class='comma'>,</span> <span class='lbrace'>{</span>
+            <span class='label'>account:</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span>
+            <span class='label'>characters:</span> <span class='id identifier rubyid_character_list'>character_list</span>
+          <span class='rbrace'>}</span><span class='rparen'>)</span>
+
+          <span class='id identifier rubyid_notebook'>notebook</span><span class='period'>.</span><span class='id identifier rubyid_set_page'>set_page</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
+          <span class='comment'># Find the accounts store in the first tab and refresh it
+</span>          <span class='id identifier rubyid_accounts_tab'>accounts_tab</span> <span class='op'>=</span> <span class='id identifier rubyid_notebook'>notebook</span><span class='period'>.</span><span class='id identifier rubyid_get_nth_page'>get_nth_page</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_accounts_view'>accounts_view</span> <span class='op'>=</span> <span class='id identifier rubyid_find_treeview_in_container'>find_treeview_in_container</span><span class='lparen'>(</span><span class='id identifier rubyid_accounts_tab'>accounts_tab</span><span class='rparen'>)</span>
+          <span class='kw'>if</span> <span class='id identifier rubyid_accounts_view'>accounts_view</span>
+            <span class='id identifier rubyid_populate_accounts_view'>populate_accounts_view</span><span class='lparen'>(</span><span class='id identifier rubyid_accounts_view'>accounts_view</span><span class='period'>.</span><span class='id identifier rubyid_model'>model</span><span class='rparen'>)</span>
+          <span class='kw'>end</span>
+        <span class='kw'>else</span>
+          <span class='ivar'>@msgbox</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to save account information.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>elsif</span> <span class='id identifier rubyid_auth_data'>auth_data</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_auth_data'>auth_data</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_auth_data'>auth_data</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+        <span class='ivar'>@msgbox</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No characters found for account &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_username'>username</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;. Account will be added without characters.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='comment'># Save account without characters
+</span>        <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="AccountManager.html" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add_or_update_account'><span class='object_link'><a href="AccountManager.html#add_or_update_account-class_method" title="Lich::Common::GUI::AccountManager.add_or_update_account (method)">add_or_update_account</a></span></span><span class='lparen'>(</span><span class='ivar'>@data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_username_entry'>username_entry</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+          <span class='id identifier rubyid_password_entry'>password_entry</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+          <span class='comment'># Notify other tabs of data change
+</span>          <span class='id identifier rubyid_notify_data_changed'>notify_data_changed</span><span class='lparen'>(</span><span class='symbol'>:account_added</span><span class='comma'>,</span> <span class='lbrace'>{</span>
+            <span class='label'>account:</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span>
+            <span class='label'>characters:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+          <span class='rbrace'>}</span><span class='rparen'>)</span>
+
+          <span class='id identifier rubyid_notebook'>notebook</span><span class='period'>.</span><span class='id identifier rubyid_set_page'>set_page</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_accounts_tab'>accounts_tab</span> <span class='op'>=</span> <span class='id identifier rubyid_notebook'>notebook</span><span class='period'>.</span><span class='id identifier rubyid_get_nth_page'>get_nth_page</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_accounts_view'>accounts_view</span> <span class='op'>=</span> <span class='id identifier rubyid_find_treeview_in_container'>find_treeview_in_container</span><span class='lparen'>(</span><span class='id identifier rubyid_accounts_tab'>accounts_tab</span><span class='rparen'>)</span>
+          <span class='kw'>if</span> <span class='id identifier rubyid_accounts_view'>accounts_view</span>
+            <span class='id identifier rubyid_populate_accounts_view'>populate_accounts_view</span><span class='lparen'>(</span><span class='id identifier rubyid_accounts_view'>accounts_view</span><span class='period'>.</span><span class='id identifier rubyid_model'>model</span><span class='rparen'>)</span>
+          <span class='kw'>end</span>
+        <span class='kw'>else</span>
+          <span class='ivar'>@msgbox</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to save account information.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>else</span>
+        <span class='ivar'>@msgbox</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Authentication failed or returned unexpected data format.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
+      <span class='ivar'>@msgbox</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Authentication failed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='comment'># Set up ENTER key handlers for username and password fields
+</span>  <span class='id identifier rubyid_username_entry'>username_entry</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>key-press-event</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid__widget'>_widget</span><span class='comma'>,</span> <span class='id identifier rubyid_event'>event</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_keyval'>keyval</span> <span class='op'>==</span> <span class='const'>Gdk</span><span class='op'>::</span><span class='const'>Keyval</span><span class='op'>::</span><span class='const'>KEY_Return</span>
+      <span class='id identifier rubyid_add_button'>add_button</span><span class='period'>.</span><span class='id identifier rubyid_clicked'>clicked</span>
+      <span class='kw'>true</span>
+    <span class='kw'>else</span>
+      <span class='kw'>false</span>
+    <span class='kw'>end</span>
+  <span class='rbrace'>}</span>
+
+  <span class='id identifier rubyid_password_entry'>password_entry</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>key-press-event</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid__widget'>_widget</span><span class='comma'>,</span> <span class='id identifier rubyid_event'>event</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_keyval'>keyval</span> <span class='op'>==</span> <span class='const'>Gdk</span><span class='op'>::</span><span class='const'>Keyval</span><span class='op'>::</span><span class='const'>KEY_Return</span>
+      <span class='id identifier rubyid_add_button'>add_button</span><span class='period'>.</span><span class='id identifier rubyid_clicked'>clicked</span>
+      <span class='kw'>true</span>
+    <span class='kw'>else</span>
+      <span class='kw'>false</span>
+    <span class='kw'>end</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_add_character_tab-instance_method">
+  
+    #<strong>create_add_character_tab</strong>(notebook)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Creates the add character tab in the management window.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_create_add_character_tab'>create_add_character_tab</span><span class='lparen'>(</span><span class='id identifier rubyid_notebook'>notebook</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>notebook</span>
+      
+      
+        <span class='type'>(<tt>Gtk::Notebook</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The notebook to add the tab to.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 357</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_add_character_tab'>create_add_character_tab</span><span class='lparen'>(</span><span class='id identifier rubyid_notebook'>notebook</span><span class='rparen'>)</span>
+  <span class='comment'># Create tab content
+</span>  <span class='id identifier rubyid_add_box'>add_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:vertical</span><span class='comma'>,</span> <span class='int'>10</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_add_box'>add_box</span><span class='period'>.</span><span class='id identifier rubyid_border_width'>border_width</span> <span class='op'>=</span> <span class='int'>10</span>
+
+  <span class='comment'># Create account selection
+</span>  <span class='id identifier rubyid_account_box'>account_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:horizontal</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_account_box'>account_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Account:</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_account_combo'>account_combo</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ComboBoxText</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_account_box'>account_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_account_combo'>account_combo</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_refresh_button'>refresh_button</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Button</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Refresh</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_account_box'>account_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_refresh_button'>refresh_button</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_add_box'>add_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_account_box'>account_box</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create character name entry
+</span>  <span class='id identifier rubyid_char_box'>char_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:horizontal</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_char_box'>char_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Character:</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_char_name_entry'>char_name_entry</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Entry</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_char_box'>char_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_char_name_entry'>char_name_entry</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_add_box'>add_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_char_box'>char_box</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create game selection
+</span>  <span class='id identifier rubyid_game_box'>game_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:horizontal</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_game_box'>game_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Game:</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_game_combo'>game_combo</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="GameSelection.html" title="Lich::Common::GUI::GameSelection (module)">GameSelection</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_game_selection_combo'><span class='object_link'><a href="GameSelection.html#create_game_selection_combo-class_method" title="Lich::Common::GUI::GameSelection.create_game_selection_combo (method)">create_game_selection_combo</a></span></span>
+  <span class='id identifier rubyid_game_box'>game_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_game_combo'>game_combo</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_add_box'>add_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_game_box'>game_box</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create frontend selection
+</span>  <span class='id identifier rubyid_frontend_box'>frontend_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:horizontal</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_frontend_box'>frontend_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Frontend:</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_frontend_radio_box'>frontend_radio_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:horizontal</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_stormfront_option'>stormfront_option</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>RadioButton</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Wrayth</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_wizard_option'>wizard_option</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>RadioButton</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Wizard</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>member:</span> <span class='id identifier rubyid_stormfront_option'>stormfront_option</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_avalon_option'>avalon_option</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>RadioButton</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Avalon</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>member:</span> <span class='id identifier rubyid_stormfront_option'>stormfront_option</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_frontend_radio_box'>frontend_radio_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_stormfront_option'>stormfront_option</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_frontend_radio_box'>frontend_radio_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_wizard_option'>wizard_option</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_frontend_radio_box'>frontend_radio_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_avalon_option'>avalon_option</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>RUBY_PLATFORM</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>darwin</span><span class='regexp_end'>/i</span></span>
+
+  <span class='id identifier rubyid_frontend_box'>frontend_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_frontend_radio_box'>frontend_radio_box</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_add_box'>add_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_frontend_box'>frontend_box</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create custom launch options
+</span>  <span class='id identifier rubyid_custom_launch_box'>custom_launch_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:horizontal</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_custom_launch_box'>custom_launch_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Custom Launch:</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_custom_launch_entry'>custom_launch_entry</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Entry</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_custom_launch_box'>custom_launch_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_custom_launch_entry'>custom_launch_entry</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_add_box'>add_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_custom_launch_box'>custom_launch_box</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create custom launch dir options
+</span>  <span class='id identifier rubyid_custom_launch_dir_box'>custom_launch_dir_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:horizontal</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_custom_launch_dir_box'>custom_launch_dir_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Custom Launch Dir:</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_custom_launch_dir_entry'>custom_launch_dir_entry</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Entry</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_custom_launch_dir_box'>custom_launch_dir_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_custom_launch_dir_entry'>custom_launch_dir_entry</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_add_box'>add_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_custom_launch_dir_box'>custom_launch_dir_box</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create add button
+</span>  <span class='id identifier rubyid_button_box'>button_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:horizontal</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_add_button'>add_button</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Button</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Add Character</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_button_box'>button_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_end'>pack_end</span><span class='lparen'>(</span><span class='id identifier rubyid_add_button'>add_button</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create back button to return to accounts tab
+</span>  <span class='id identifier rubyid_back_button'>back_button</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Button</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Back to Accounts</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_button_box'>button_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_back_button'>back_button</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_add_box'>add_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_button_box'>button_box</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Add tab to notebook and store index
+</span>  <span class='ivar'>@tab_indices</span><span class='lbracket'>[</span><span class='symbol'>:add_character</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_notebook'>notebook</span><span class='period'>.</span><span class='id identifier rubyid_append_page'>append_page</span><span class='lparen'>(</span><span class='id identifier rubyid_add_box'>add_box</span><span class='comma'>,</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Add Character</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+
+  <span class='comment'># Set up back button handler
+</span>  <span class='id identifier rubyid_back_button'>back_button</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>clicked</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='comment'># Switch to Accounts tab
+</span>    <span class='id identifier rubyid_notebook'>notebook</span><span class='period'>.</span><span class='id identifier rubyid_set_page'>set_page</span><span class='lparen'>(</span><span class='ivar'>@tab_indices</span><span class='lbracket'>[</span><span class='symbol'>:accounts</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Set up event handlers
+</span>  <span class='id identifier rubyid_setup_add_character_handlers'>setup_add_character_handlers</span><span class='lparen'>(</span>
+    <span class='id identifier rubyid_add_button'>add_button</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_account_combo'>account_combo</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_refresh_button'>refresh_button</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_char_name_entry'>char_name_entry</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_game_combo'>game_combo</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_stormfront_option'>stormfront_option</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_wizard_option'>wizard_option</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_avalon_option'>avalon_option</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_custom_launch_entry'>custom_launch_entry</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_custom_launch_dir_entry'>custom_launch_dir_entry</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_notebook'>notebook</span>
+  <span class='rparen'>)</span>
+
+  <span class='comment'># Populate account combo
+</span>  <span class='id identifier rubyid_populate_account_combo'>populate_account_combo</span><span class='lparen'>(</span><span class='id identifier rubyid_account_combo'>account_combo</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_encryption_management_tab-instance_method">
+  
+    #<strong>create_encryption_management_tab</strong>(notebook)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Creates the encryption management tab in the management window.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_create_encryption_management_tab'>create_encryption_management_tab</span><span class='lparen'>(</span><span class='id identifier rubyid_notebook'>notebook</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>notebook</span>
+      
+      
+        <span class='type'>(<tt>Gtk::Notebook</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The notebook to add the tab to.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 639</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_encryption_management_tab'>create_encryption_management_tab</span><span class='lparen'>(</span><span class='id identifier rubyid_notebook'>notebook</span><span class='rparen'>)</span>
+  <span class='comment'># Create encryption management content
+</span>  <span class='id identifier rubyid_encryption_box'>encryption_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:vertical</span><span class='comma'>,</span> <span class='int'>10</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_encryption_box'>encryption_box</span><span class='period'>.</span><span class='id identifier rubyid_border_width'>border_width</span> <span class='op'>=</span> <span class='int'>10</span>
+
+  <span class='comment'># Create header label
+</span>  <span class='id identifier rubyid_header_label'>header_label</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_header_label'>header_label</span><span class='period'>.</span><span class='id identifier rubyid_set_markup'>set_markup</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;span size=&#39;large&#39; weight=&#39;bold&#39;&gt;Encryption Management&lt;/span&gt;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_header_label'>header_label</span><span class='period'>.</span><span class='id identifier rubyid_set_xalign'>set_xalign</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='const'><span class='object_link'><a href="Accessibility.html" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_accessible'><span class='object_link'><a href="Accessibility.html#make_accessible-class_method" title="Lich::Common::GUI::Accessibility.make_accessible (method)">make_accessible</a></span></span><span class='lparen'>(</span>
+    <span class='id identifier rubyid_header_label'>header_label</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Encryption Management Header</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Title for the encryption management section</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='symbol'>:label</span>
+  <span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_encryption_box'>encryption_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_header_label'>header_label</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Add description
+</span>  <span class='id identifier rubyid_description'>description</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_description'>description</span><span class='period'>.</span><span class='id identifier rubyid_set_markup'>set_markup</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Manage your encryption settings and passwords</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_description'>description</span><span class='period'>.</span><span class='id identifier rubyid_set_xalign'>set_xalign</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_description'>description</span><span class='period'>.</span><span class='id identifier rubyid_set_line_wrap'>set_line_wrap</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span>
+
+  <span class='const'><span class='object_link'><a href="Accessibility.html" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_accessible'><span class='object_link'><a href="Accessibility.html#make_accessible-class_method" title="Lich::Common::GUI::Accessibility.make_accessible (method)">make_accessible</a></span></span><span class='lparen'>(</span>
+    <span class='id identifier rubyid_description'>description</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Encryption Management Description</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Description of encryption management options</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='symbol'>:label</span>
+  <span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_encryption_box'>encryption_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_description'>description</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>10</span><span class='rparen'>)</span>
+
+  <span class='comment'># Create button box
+</span>  <span class='id identifier rubyid_button_box'>button_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:vertical</span><span class='comma'>,</span> <span class='int'>10</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_button_box'>button_box</span><span class='period'>.</span><span class='id identifier rubyid_border_width'>border_width</span> <span class='op'>=</span> <span class='int'>10</span>
+
+  <span class='comment'># Check encryption mode and keychain availability
+</span>  <span class='id identifier rubyid_has_keychain'>has_keychain</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="MasterPasswordManager.html" title="Lich::Common::GUI::MasterPasswordManager (module)">MasterPasswordManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_keychain_available?'><span class='object_link'><a href="MasterPasswordManager.html#keychain_available%3F-class_method" title="Lich::Common::GUI::MasterPasswordManager.keychain_available? (method)">keychain_available?</a></span></span>
+  <span class='id identifier rubyid_mode'>mode</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="YamlState.html#yaml_file_path-class_method" title="Lich::Common::GUI::YamlState.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='ivar'>@data_dir</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
+    <span class='kw'>begin</span>
+      <span class='id identifier rubyid_yaml_data'>yaml_data</span> <span class='op'>=</span> <span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_load_file'>load_file</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_mode'>mode</span> <span class='op'>=</span> <span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>encryption_mode</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to load YAML for encryption management tab: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Add &quot;Change Encryption Password&quot; button (only for Enhanced mode)
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_has_keychain'>has_keychain</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_mode'>mode</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>enhanced</span><span class='tstring_end'>&#39;</span></span>
+    <span class='ivar'>@change_encryption_password_button</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Button</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Change Encryption Password</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='ivar'>@change_encryption_password_button</span><span class='period'>.</span><span class='id identifier rubyid_sensitive'>sensitive</span> <span class='op'>=</span> <span class='kw'>false</span>
+
+    <span class='const'><span class='object_link'><a href="Accessibility.html" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_button_accessible'><span class='object_link'><a href="Accessibility.html#make_button_accessible-class_method" title="Lich::Common::GUI::Accessibility.make_button_accessible (method)">make_button_accessible</a></span></span><span class='lparen'>(</span>
+      <span class='ivar'>@change_encryption_password_button</span><span class='comma'>,</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Change Encryption Password Button</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Change the encryption password for Enhanced encryption mode</span><span class='tstring_end'>&quot;</span></span>
+    <span class='rparen'>)</span>
+
+    <span class='ivar'>@change_encryption_password_button</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>clicked</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="MasterPasswordChange.html" title="Lich::Common::GUI::MasterPasswordChange (module)">MasterPasswordChange</a></span></span><span class='period'>.</span><span class='id identifier rubyid_show_change_master_password_dialog'><span class='object_link'><a href="MasterPasswordChange.html#show_change_master_password_dialog-class_method" title="Lich::Common::GUI::MasterPasswordChange.show_change_master_password_dialog (method)">show_change_master_password_dialog</a></span></span><span class='lparen'>(</span><span class='ivar'>@window</span><span class='comma'>,</span> <span class='ivar'>@data_dir</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_populate_accounts_view'>populate_accounts_view</span><span class='lparen'>(</span><span class='ivar'>@accounts_store</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_success'>success</span>
+        <span class='id identifier rubyid_update_encryption_password_button_state'>update_encryption_password_button_state</span><span class='lparen'>(</span><span class='ivar'>@change_encryption_password_button</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_button_box'>button_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='ivar'>@change_encryption_password_button</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Add &quot;Change Encryption Mode&quot; button (always visible)
+</span>  <span class='ivar'>@change_encryption_mode_button</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Button</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Change Encryption Mode</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='ivar'>@change_encryption_mode_button</span><span class='period'>.</span><span class='id identifier rubyid_sensitive'>sensitive</span> <span class='op'>=</span> <span class='kw'>false</span>
+
+  <span class='const'><span class='object_link'><a href="Accessibility.html" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_button_accessible'><span class='object_link'><a href="Accessibility.html#make_button_accessible-class_method" title="Lich::Common::GUI::Accessibility.make_button_accessible (method)">make_button_accessible</a></span></span><span class='lparen'>(</span>
+    <span class='ivar'>@change_encryption_mode_button</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Change Encryption Mode Button</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Change the encryption mode for all saved accounts</span><span class='tstring_end'>&quot;</span></span>
+  <span class='rparen'>)</span>
+
+  <span class='ivar'>@change_encryption_mode_button</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>clicked</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span> <span class='kw'>do</span>
+      <span class='comment'># Pass callback to be invoked after mode change completes
+</span>      <span class='id identifier rubyid_on_completion'>on_completion</span> <span class='op'>=</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_populate_accounts_view'>populate_accounts_view</span><span class='lparen'>(</span><span class='ivar'>@accounts_store</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_update_change_encryption_mode_button_state'>update_change_encryption_mode_button_state</span>
+        <span class='comment'># Notify that encryption mode has changed to refresh encryption management tab
+</span>        <span class='id identifier rubyid_notify_data_changed'>notify_data_changed</span><span class='lparen'>(</span><span class='symbol'>:encryption_mode_changed</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+      <span class='const'><span class='object_link'><a href="EncryptionModeChange.html" title="Lich::Common::GUI::EncryptionModeChange (module)">EncryptionModeChange</a></span></span><span class='period'>.</span><span class='id identifier rubyid_show_change_mode_dialog'><span class='object_link'><a href="EncryptionModeChange.html#show_change_mode_dialog-class_method" title="Lich::Common::GUI::EncryptionModeChange.show_change_mode_dialog (method)">show_change_mode_dialog</a></span></span><span class='lparen'>(</span><span class='ivar'>@window</span><span class='comma'>,</span> <span class='ivar'>@data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_on_completion'>on_completion</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_button_box'>button_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='ivar'>@change_encryption_mode_button</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_encryption_box'>encryption_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_button_box'>button_box</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Add spacer
+</span>  <span class='id identifier rubyid_spacer'>spacer</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_encryption_box'>encryption_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_spacer'>spacer</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Add tab to notebook and store index
+</span>  <span class='ivar'>@tab_indices</span><span class='lbracket'>[</span><span class='symbol'>:encryption_management</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_notebook'>notebook</span><span class='period'>.</span><span class='id identifier rubyid_append_page'>append_page</span><span class='lparen'>(</span><span class='id identifier rubyid_encryption_box'>encryption_box</span><span class='comma'>,</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Encryption Management</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+
+  <span class='comment'># Update button states based on current encryption mode and accounts
+</span>  <span class='kw'>if</span> <span class='ivar'>@change_encryption_password_button</span>
+    <span class='id identifier rubyid_update_encryption_password_button_state'>update_encryption_password_button_state</span><span class='lparen'>(</span><span class='ivar'>@change_encryption_password_button</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_update_change_encryption_mode_button_state'>update_change_encryption_mode_button_state</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="refresh_accounts_display-instance_method">
+  
+    #<strong>refresh_accounts_display</strong>  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Refreshes the display of accounts in the UI.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_refresh_accounts_display'>refresh_accounts_display</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>If an error occurs while refreshing the display.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 93</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_refresh_accounts_display'>refresh_accounts_display</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='ivar'>@accounts_store</span>
+
+  <span class='kw'>begin</span>
+    <span class='comment'># Clear existing data
+</span>    <span class='ivar'>@accounts_store</span><span class='period'>.</span><span class='id identifier rubyid_clear'><span class='object_link'><a href="../../../top-level-namespace.html#clear-instance_method" title="#clear (method)">clear</a></span></span>
+
+    <span class='comment'># Repopulate with current data
+</span>    <span class='id identifier rubyid_populate_accounts_view'>populate_accounts_view</span><span class='lparen'>(</span><span class='ivar'>@accounts_store</span><span class='rparen'>)</span>
+  <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error refreshing accounts display: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="register_for_notifications-instance_method">
+  
+    #<strong>register_for_notifications</strong>(tab_communicator)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Registers the UI to receive notifications about account changes.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_register_for_notifications'>register_for_notifications</span><span class='lparen'>(</span><span class='id identifier rubyid_tab_communicator'>tab_communicator</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>tab_communicator</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The communicator for tab notifications.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+52
+53
+54
+55</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 52</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_register_for_notifications'>register_for_notifications</span><span class='lparen'>(</span><span class='id identifier rubyid_tab_communicator'>tab_communicator</span><span class='rparen'>)</span>
+  <span class='ivar'>@tab_communicator</span> <span class='op'>=</span> <span class='id identifier rubyid_tab_communicator'>tab_communicator</span>
+  <span class='ivar'>@accounts_store</span> <span class='op'>=</span> <span class='kw'>nil</span> <span class='comment'># Will be set when accounts tab is created
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="register_notification_callback-instance_method">
+  
+    #<strong>register_notification_callback</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 57</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_register_notification_callback'>register_notification_callback</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='ivar'>@notifications_registered</span> <span class='op'>||</span> <span class='op'>!</span><span class='ivar'>@tab_communicator</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='ivar'>@notebook</span>
+
+  <span class='ivar'>@notifications_registered</span> <span class='op'>=</span> <span class='kw'>true</span>
+
+  <span class='comment'># Register callback to handle incoming notifications
+</span>  <span class='ivar'>@tab_communicator</span><span class='period'>.</span><span class='id identifier rubyid_register_data_change_callback'>register_data_change_callback</span><span class='lparen'>(</span><span class='tlambda'>-&gt;</span><span class='lparen'>(</span><span class='id identifier rubyid_change_type'>change_type</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='tlambeg'>{</span>
+    <span class='kw'>case</span> <span class='id identifier rubyid_change_type'>change_type</span>
+    <span class='kw'>when</span> <span class='symbol'>:favorite_toggled</span>
+      <span class='comment'># Refresh accounts view to reflect favorite changes
+</span>      <span class='id identifier rubyid_refresh_accounts_display'>refresh_accounts_display</span> <span class='kw'>if</span> <span class='ivar'>@accounts_store</span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Account manager refreshed for favorite change: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_data'>data</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>when</span> <span class='symbol'>:character_added</span><span class='comma'>,</span> <span class='symbol'>:character_removed</span><span class='comma'>,</span> <span class='symbol'>:account_added</span><span class='comma'>,</span> <span class='symbol'>:account_removed</span>
+      <span class='comment'># Refresh accounts view for structural changes
+</span>      <span class='id identifier rubyid_refresh_accounts_display'>refresh_accounts_display</span> <span class='kw'>if</span> <span class='ivar'>@accounts_store</span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Account manager refreshed for data change: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_change_type'>change_type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>when</span> <span class='symbol'>:encryption_mode_changed</span>
+      <span class='comment'># Recreate encryption management tab to update button visibility/state
+</span>      <span class='kw'>if</span> <span class='ivar'>@notebook</span>
+        <span class='ivar'>@notebook</span><span class='period'>.</span><span class='id identifier rubyid_remove_page'>remove_page</span><span class='lparen'>(</span><span class='ivar'>@tab_indices</span><span class='lbracket'>[</span><span class='symbol'>:encryption_management</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_create_encryption_management_tab'>create_encryption_management_tab</span><span class='lparen'>(</span><span class='ivar'>@notebook</span><span class='rparen'>)</span>
+        <span class='ivar'>@notebook</span><span class='period'>.</span><span class='id identifier rubyid_show_all'>show_all</span>
+        <span class='comment'># Return to encryption management tab after recreation
+</span>        <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span> <span class='lbrace'>{</span> <span class='ivar'>@notebook</span><span class='period'>.</span><span class='id identifier rubyid_set_current_page'>set_current_page</span><span class='lparen'>(</span><span class='ivar'>@tab_indices</span><span class='lbracket'>[</span><span class='symbol'>:encryption_management</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Encryption management tab recreated for mode change</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="set_data_change_callback-instance_method">
+  
+    #<strong>set_data_change_callback</strong>(callback)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Sets a callback to be invoked when account data changes.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_set_data_change_callback'>set_data_change_callback</span><span class='lparen'>(</span><span class='tlambda'>-&gt;</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='tlambeg'>{</span> <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Data changed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>callback</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The callback to be invoked on data changes.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_set_data_change_callback'>set_data_change_callback</span><span class='lparen'>(</span><span class='id identifier rubyid_callback'>callback</span><span class='rparen'>)</span>
+  <span class='ivar'>@data_change_callback</span> <span class='op'>=</span> <span class='id identifier rubyid_callback'>callback</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Jan 13 02:35:16 2026 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.38 (ruby-3.2.9).
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Lich::Common::GUI::LoginTabUtils
+  
+    &mdash; Lich 5 Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Lich::Common::GUI::LoginTabUtils";
+  relpath = '../../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../../_index.html">Index (L)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span>
+     &raquo; 
+    <span class="title">LoginTabUtils</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Lich::Common::GUI::LoginTabUtils
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>documented/common/gui/login_tab_utils.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Provides utility methods for creating and managing login tab UI elements.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Using LoginTabUtils</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_button_css'>button_css</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'>LoginTabUtils</span><span class='period'>.</span><span class='id identifier rubyid_create_button_css_provider'><span class='object_link'><a href="#create_button_css_provider-class_method" title="Lich::Common::GUI::LoginTabUtils.create_button_css_provider (method)">create_button_css_provider</a></span></span><span class='lparen'>(</span><span class='label'>font_size:</span> <span class='int'>14</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#apply_theme_to_ui_elements-class_method" title="apply_theme_to_ui_elements (class method)">.<strong>apply_theme_to_ui_elements</strong>(theme_state, ui_elements, providers)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Applies the specified theme to the given UI elements.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_button_css_provider-class_method" title="create_button_css_provider (class method)">.<strong>create_button_css_provider</strong>(font_size: 12)  &#x21d2; Gtk::CssProvider </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a CSS provider for buttons with a specified font size.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_custom_launch_dir-class_method" title="create_custom_launch_dir (class method)">.<strong>create_custom_launch_dir</strong>  &#x21d2; Gtk::ComboBoxText </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a custom launch directory entry field.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_custom_launch_entry-class_method" title="create_custom_launch_entry (class method)">.<strong>create_custom_launch_entry</strong>  &#x21d2; Gtk::ComboBoxText </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a custom launch command entry field.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_global_settings_components-class_method" title="create_global_settings_components (class method)">.<strong>create_global_settings_components</strong>(parent_container, theme_state, tab_layout_state, autosort_state, callbacks)  &#x21d2; Hash </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates the global settings components for the UI.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_toggle_button_css_provider-class_method" title="create_toggle_button_css_provider (class method)">.<strong>create_toggle_button_css_provider</strong>  &#x21d2; Gtk::CssProvider </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a CSS provider for toggle buttons.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setup_play_button_handler-class_method" title="setup_play_button_handler (class method)">.<strong>setup_play_button_handler</strong>(button, login_info, callback)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Sets up the event handler for the play button.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setup_remove_button_handler-class_method" title="setup_remove_button_handler (class method)">.<strong>setup_remove_button_handler</strong>(button, login_info, char_box, default_icon, callback)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Sets up the event handler for the remove button.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="apply_theme_to_ui_elements-class_method">
+  
+    .<strong>apply_theme_to_ui_elements</strong>(theme_state, ui_elements, providers)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Applies the specified theme to the given UI elements.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>theme_state</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Indicates whether to apply the dark theme.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ui_elements</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A hash of UI elements to style.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>providers</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A hash of CSS providers for the elements.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/login_tab_utils.rb', line 30</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_apply_theme_to_ui_elements'>apply_theme_to_ui_elements</span><span class='lparen'>(</span><span class='id identifier rubyid_theme_state'>theme_state</span><span class='comma'>,</span> <span class='id identifier rubyid_ui_elements'>ui_elements</span><span class='comma'>,</span> <span class='id identifier rubyid_providers'>providers</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_theme_state'>theme_state</span>
+    <span class='comment'># Enable dark theme
+</span>    <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Settings</span><span class='period'>.</span><span class='id identifier rubyid_default'>default</span><span class='period'>.</span><span class='id identifier rubyid_gtk_application_prefer_dark_theme'>gtk_application_prefer_dark_theme</span> <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='comment'># Remove styling providers that might conflict with dark theme
+</span>    <span class='id identifier rubyid_ui_elements'>ui_elements</span><span class='lbracket'>[</span><span class='symbol'>:play_button</span><span class='rbracket'>]</span><span class='op'>&amp;.</span><span class='id identifier rubyid_style_context'>style_context</span><span class='op'>&amp;.</span><span class='id identifier rubyid_remove_provider'>remove_provider</span><span class='lparen'>(</span><span class='id identifier rubyid_providers'>providers</span><span class='lbracket'>[</span><span class='symbol'>:button</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_providers'>providers</span><span class='lbracket'>[</span><span class='symbol'>:button</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_ui_elements'>ui_elements</span><span class='lbracket'>[</span><span class='symbol'>:play_button</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_ui_elements'>ui_elements</span><span class='lbracket'>[</span><span class='symbol'>:account_book</span><span class='rbracket'>]</span><span class='op'>&amp;.</span><span class='id identifier rubyid_style_context'>style_context</span><span class='op'>&amp;.</span><span class='id identifier rubyid_remove_provider'>remove_provider</span><span class='lparen'>(</span><span class='id identifier rubyid_providers'>providers</span><span class='lbracket'>[</span><span class='symbol'>:tab</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_providers'>providers</span><span class='lbracket'>[</span><span class='symbol'>:tab</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_ui_elements'>ui_elements</span><span class='lbracket'>[</span><span class='symbol'>:account_book</span><span class='rbracket'>]</span>
+    <span class='comment'># Reset background colors to transparent for dark theme
+</span>    <span class='id identifier rubyid_ui_elements'>ui_elements</span><span class='lbracket'>[</span><span class='symbol'>:account_book</span><span class='rbracket'>]</span><span class='op'>&amp;.</span><span class='id identifier rubyid_override_background_color'>override_background_color</span><span class='lparen'>(</span><span class='symbol'>:normal</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="ThemeUtils.html" title="Lich::Common::GUI::ThemeUtils (module)">ThemeUtils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_darkmode_background'><span class='object_link'><a href="ThemeUtils.html#darkmode_background-class_method" title="Lich::Common::GUI::ThemeUtils.darkmode_background (method)">darkmode_background</a></span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_ui_elements'>ui_elements</span><span class='lbracket'>[</span><span class='symbol'>:account_book</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_ui_elements'>ui_elements</span><span class='lbracket'>[</span><span class='symbol'>:notebook</span><span class='rbracket'>]</span><span class='op'>&amp;.</span><span class='id identifier rubyid_override_background_color'>override_background_color</span><span class='lparen'>(</span><span class='symbol'>:normal</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="ThemeUtils.html" title="Lich::Common::GUI::ThemeUtils (module)">ThemeUtils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_darkmode_background'><span class='object_link'><a href="ThemeUtils.html#darkmode_background-class_method" title="Lich::Common::GUI::ThemeUtils.darkmode_background (method)">darkmode_background</a></span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_ui_elements'>ui_elements</span><span class='lbracket'>[</span><span class='symbol'>:notebook</span><span class='rbracket'>]</span>
+  <span class='kw'>else</span>
+    <span class='comment'># Disable dark theme
+</span>    <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Settings</span><span class='period'>.</span><span class='id identifier rubyid_default'>default</span><span class='period'>.</span><span class='id identifier rubyid_gtk_application_prefer_dark_theme'>gtk_application_prefer_dark_theme</span> <span class='op'>=</span> <span class='kw'>false</span>
+    <span class='comment'># Set light grey background for light theme
+</span>    <span class='id identifier rubyid_ui_elements'>ui_elements</span><span class='lbracket'>[</span><span class='symbol'>:account_book</span><span class='rbracket'>]</span><span class='op'>&amp;.</span><span class='id identifier rubyid_override_background_color'>override_background_color</span><span class='lparen'>(</span><span class='symbol'>:normal</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="ThemeUtils.html" title="Lich::Common::GUI::ThemeUtils (module)">ThemeUtils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_light_theme_background'><span class='object_link'><a href="ThemeUtils.html#light_theme_background-class_method" title="Lich::Common::GUI::ThemeUtils.light_theme_background (method)">light_theme_background</a></span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_ui_elements'>ui_elements</span><span class='lbracket'>[</span><span class='symbol'>:account_book</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_ui_elements'>ui_elements</span><span class='lbracket'>[</span><span class='symbol'>:notebook</span><span class='rbracket'>]</span><span class='op'>&amp;.</span><span class='id identifier rubyid_override_background_color'>override_background_color</span><span class='lparen'>(</span><span class='symbol'>:normal</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="ThemeUtils.html" title="Lich::Common::GUI::ThemeUtils (module)">ThemeUtils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_light_theme_background'><span class='object_link'><a href="ThemeUtils.html#light_theme_background-class_method" title="Lich::Common::GUI::ThemeUtils.light_theme_background (method)">light_theme_background</a></span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_ui_elements'>ui_elements</span><span class='lbracket'>[</span><span class='symbol'>:notebook</span><span class='rbracket'>]</span>
+    <span class='comment'># Re-apply styling providers for light theme
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_providers'>providers</span><span class='lbracket'>[</span><span class='symbol'>:button</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_ui_elements'>ui_elements</span><span class='lbracket'>[</span><span class='symbol'>:play_button</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_ui_elements'>ui_elements</span><span class='lbracket'>[</span><span class='symbol'>:play_button</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_style_context'>style_context</span><span class='period'>.</span><span class='id identifier rubyid_add_provider'>add_provider</span><span class='lparen'>(</span><span class='id identifier rubyid_providers'>providers</span><span class='lbracket'>[</span><span class='symbol'>:button</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>StyleProvider</span><span class='op'>::</span><span class='const'>PRIORITY_USER</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_providers'>providers</span><span class='lbracket'>[</span><span class='symbol'>:tab</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_ui_elements'>ui_elements</span><span class='lbracket'>[</span><span class='symbol'>:account_book</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_ui_elements'>ui_elements</span><span class='lbracket'>[</span><span class='symbol'>:account_book</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_style_context'>style_context</span><span class='period'>.</span><span class='id identifier rubyid_add_provider'>add_provider</span><span class='lparen'>(</span><span class='id identifier rubyid_providers'>providers</span><span class='lbracket'>[</span><span class='symbol'>:tab</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>StyleProvider</span><span class='op'>::</span><span class='const'>PRIORITY_USER</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_button_css_provider-class_method">
+  
+    .<strong>create_button_css_provider</strong>(font_size: 12)  &#x21d2; <tt>Gtk::CssProvider</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates a CSS provider for buttons with a specified font size.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>font_size</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>12</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The font size for the button.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Gtk::CssProvider</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The CSS provider for the button.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+12
+13
+14
+15
+16</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/login_tab_utils.rb', line 12</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_button_css_provider'>create_button_css_provider</span><span class='lparen'>(</span><span class='label'>font_size:</span> <span class='int'>12</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_css'>css</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>CssProvider</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_css'>css</span><span class='period'>.</span><span class='id identifier rubyid_load_from_data'>load_from_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>button {border-radius: 5px; font-size: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_font_size'>font_size</span><span class='embexpr_end'>}</span><span class='tstring_content'>px;}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_css'>css</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_custom_launch_dir-class_method">
+  
+    .<strong>create_custom_launch_dir</strong>  &#x21d2; <tt>Gtk::ComboBoxText</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates a custom launch directory entry field.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Gtk::ComboBoxText</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The combo box for custom launch directories.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+239
+240
+241
+242
+243
+244
+245</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/login_tab_utils.rb', line 239</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_custom_launch_dir'>create_custom_launch_dir</span>
+  <span class='id identifier rubyid_custom_launch_dir'>custom_launch_dir</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ComboBoxText</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>entry:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_custom_launch_dir'>custom_launch_dir</span><span class='period'>.</span><span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_set_placeholder_text'>set_placeholder_text</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>(enter working directory for command)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_custom_launch_dir'>custom_launch_dir</span><span class='period'>.</span><span class='id identifier rubyid_append_text'>append_text</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>../wizard</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_custom_launch_dir'>custom_launch_dir</span><span class='period'>.</span><span class='id identifier rubyid_append_text'>append_text</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>../StormFront</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_custom_launch_dir'>custom_launch_dir</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_custom_launch_entry-class_method">
+  
+    .<strong>create_custom_launch_entry</strong>  &#x21d2; <tt>Gtk::ComboBoxText</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates a custom launch command entry field.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Gtk::ComboBoxText</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The combo box for custom launch commands.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+229
+230
+231
+232
+233
+234
+235</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/login_tab_utils.rb', line 229</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_custom_launch_entry'>create_custom_launch_entry</span>
+  <span class='id identifier rubyid_custom_launch_entry'>custom_launch_entry</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ComboBoxText</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>entry:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_custom_launch_entry'>custom_launch_entry</span><span class='period'>.</span><span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_set_placeholder_text'>set_placeholder_text</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>(enter custom launch command)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_custom_launch_entry'>custom_launch_entry</span><span class='period'>.</span><span class='id identifier rubyid_append_text'>append_text</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Wizard.Exe /GGS /H127.0.0.1 /P%port% /K%key%</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_custom_launch_entry'>custom_launch_entry</span><span class='period'>.</span><span class='id identifier rubyid_append_text'>append_text</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Stormfront.exe /GGS /Hlocalhost /P%port% /K%key%</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_custom_launch_entry'>custom_launch_entry</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_global_settings_components-class_method">
+  
+    .<strong>create_global_settings_components</strong>(parent_container, theme_state, tab_layout_state, autosort_state, callbacks)  &#x21d2; <tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates the global settings components for the UI.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>parent_container</span>
+      
+      
+        <span class='type'>(<tt>Gtk::Container</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The parent container to hold the settings components.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>theme_state</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The initial state of the theme switch.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>tab_layout_state</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The initial state of the tab layout switch.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>autosort_state</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The initial state of the auto sort switch.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>callbacks</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A hash of callback functions for state changes.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A hash containing the created UI components.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/login_tab_utils.rb', line 148</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_global_settings_components'>create_global_settings_components</span><span class='lparen'>(</span><span class='id identifier rubyid_parent_container'>parent_container</span><span class='comma'>,</span> <span class='id identifier rubyid_theme_state'>theme_state</span><span class='comma'>,</span> <span class='id identifier rubyid_tab_layout_state'>tab_layout_state</span><span class='comma'>,</span> <span class='id identifier rubyid_autosort_state'>autosort_state</span><span class='comma'>,</span> <span class='id identifier rubyid_callbacks'>callbacks</span><span class='rparen'>)</span>
+  <span class='comment'># Create toggle button styling
+</span>  <span class='id identifier rubyid_togglebutton_provider'>togglebutton_provider</span> <span class='op'>=</span> <span class='id identifier rubyid_create_toggle_button_css_provider'>create_toggle_button_css_provider</span>
+
+  <span class='comment'># Global settings components
+</span>  <span class='id identifier rubyid_slider_box'>slider_box</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Box</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:horizontal</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_theme_select'>theme_select</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Switch</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_tab_select'>tab_select</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Switch</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_sort_select'>sort_select</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Switch</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_theme_select_label'>theme_select_label</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Dark Theme</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_tab_select_label'>tab_select_label</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Tab Layout</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_sort_select_label'>sort_select_label</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AutoSort</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_theme_select'>theme_select</span><span class='period'>.</span><span class='id identifier rubyid_set_active'>set_active</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_theme_state'>theme_state</span> <span class='op'>==</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_tab_select'>tab_select</span><span class='period'>.</span><span class='id identifier rubyid_set_active'>set_active</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_tab_layout_state'>tab_layout_state</span> <span class='op'>==</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_sort_select'>sort_select</span><span class='period'>.</span><span class='id identifier rubyid_set_active'>set_active</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_autosort_state'>autosort_state</span> <span class='op'>==</span> <span class='kw'>true</span>
+
+  <span class='comment'># Add switches to slider box
+</span>  <span class='id identifier rubyid_slider_box'>slider_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_theme_select'>theme_select</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_slider_box'>slider_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_theme_select_label'>theme_select_label</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_slider_box'>slider_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_tab_select'>tab_select</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_slider_box'>slider_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_tab_select_label'>tab_select_label</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_slider_box'>slider_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_sort_select'>sort_select</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_slider_box'>slider_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_sort_select_label'>sort_select_label</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+  <span class='comment'># Settings toggle button
+</span>  <span class='id identifier rubyid_settings_option'>settings_option</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ToggleButton</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Change global GUI settings</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_settings_option'>settings_option</span><span class='period'>.</span><span class='id identifier rubyid_style_context'>style_context</span><span class='period'>.</span><span class='id identifier rubyid_add_provider'>add_provider</span><span class='lparen'>(</span><span class='id identifier rubyid_togglebutton_provider'>togglebutton_provider</span><span class='comma'>,</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>StyleProvider</span><span class='op'>::</span><span class='const'>PRIORITY_USER</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_parent_container'>parent_container</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_settings_option'>settings_option</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>5</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_parent_container'>parent_container</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_slider_box'>slider_box</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>5</span><span class='rparen'>)</span>
+
+  <span class='comment'># Settings toggle handler
+</span>  <span class='id identifier rubyid_settings_option'>settings_option</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>toggled</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span>
+    <span class='id identifier rubyid_slider_box'>slider_box</span><span class='period'>.</span><span class='id identifier rubyid_visible'>visible</span> <span class='op'>=</span> <span class='id identifier rubyid_settings_option'>settings_option</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span>
+  <span class='rbrace'>}</span>
+
+  <span class='comment'># Theme switch handler
+</span>  <span class='id identifier rubyid_theme_select'>theme_select</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>notify::active</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid__s'>_s</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_theme_select'>theme_select</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span>
+      <span class='comment'># Update state tracking variable
+</span>      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_track_dark_mode'><span class='object_link'><a href="../../../Lich.html#track_dark_mode-class_method" title="Lich.track_dark_mode (method)">track_dark_mode</a></span></span> <span class='op'>=</span> <span class='kw'>true</span>
+
+      <span class='comment'># Call the theme change callback if provided
+</span>      <span class='id identifier rubyid_callbacks'>callbacks</span><span class='lbracket'>[</span><span class='symbol'>:on_theme_change</span><span class='rbracket'>]</span><span class='op'>&amp;.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='comment'># Update state tracking variable
+</span>      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_track_dark_mode'><span class='object_link'><a href="../../../Lich.html#track_dark_mode-class_method" title="Lich.track_dark_mode (method)">track_dark_mode</a></span></span> <span class='op'>=</span> <span class='kw'>false</span>
+
+      <span class='comment'># Call the theme change callback if provided
+</span>      <span class='id identifier rubyid_callbacks'>callbacks</span><span class='lbracket'>[</span><span class='symbol'>:on_theme_change</span><span class='rbracket'>]</span><span class='op'>&amp;.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='kw'>false</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='rbrace'>}</span>
+
+  <span class='comment'># Tab layout switch handler
+</span>  <span class='id identifier rubyid_tab_select'>tab_select</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>state-set</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid__widget'>_widget</span><span class='comma'>,</span> <span class='id identifier rubyid_state'>state</span><span class='op'>|</span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_track_layout_state'><span class='object_link'><a href="../../../Lich.html#track_layout_state-class_method" title="Lich.track_layout_state (method)">track_layout_state</a></span></span> <span class='op'>=</span> <span class='id identifier rubyid_state'>state</span>
+    <span class='id identifier rubyid_callbacks'>callbacks</span><span class='lbracket'>[</span><span class='symbol'>:on_layout_change</span><span class='rbracket'>]</span><span class='op'>&amp;.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_state'>state</span><span class='rparen'>)</span>
+    <span class='kw'>false</span>
+  <span class='rbrace'>}</span>
+
+  <span class='comment'># Auto sort switch handler
+</span>  <span class='id identifier rubyid_sort_select'>sort_select</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>state-set</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid__widget'>_widget</span><span class='comma'>,</span> <span class='id identifier rubyid_state'>state</span><span class='op'>|</span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_track_autosort_state'><span class='object_link'><a href="../../../Lich.html#track_autosort_state-class_method" title="Lich.track_autosort_state (method)">track_autosort_state</a></span></span> <span class='op'>=</span> <span class='id identifier rubyid_state'>state</span>
+    <span class='id identifier rubyid_callbacks'>callbacks</span><span class='lbracket'>[</span><span class='symbol'>:on_sort_change</span><span class='rbracket'>]</span><span class='op'>&amp;.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_state'>state</span><span class='rparen'>)</span>
+    <span class='kw'>false</span>
+  <span class='rbrace'>}</span>
+
+  <span class='comment'># Initially hide the slider box
+</span>  <span class='id identifier rubyid_slider_box'>slider_box</span><span class='period'>.</span><span class='id identifier rubyid_visible'>visible</span> <span class='op'>=</span> <span class='kw'>false</span>
+
+  <span class='comment'># Return created elements
+</span>  <span class='lbrace'>{</span>
+    <span class='label'>slider_box:</span> <span class='id identifier rubyid_slider_box'>slider_box</span><span class='comma'>,</span>
+    <span class='label'>settings_option:</span> <span class='id identifier rubyid_settings_option'>settings_option</span><span class='comma'>,</span>
+    <span class='label'>theme_select:</span> <span class='id identifier rubyid_theme_select'>theme_select</span><span class='comma'>,</span>
+    <span class='label'>tab_select:</span> <span class='id identifier rubyid_tab_select'>tab_select</span><span class='comma'>,</span>
+    <span class='label'>sort_select:</span> <span class='id identifier rubyid_sort_select'>sort_select</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_toggle_button_css_provider-class_method">
+  
+    .<strong>create_toggle_button_css_provider</strong>  &#x21d2; <tt>Gtk::CssProvider</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates a CSS provider for toggle buttons.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Gtk::CssProvider</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The CSS provider for the toggle button.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22
+23
+24</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/login_tab_utils.rb', line 20</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_toggle_button_css_provider'>create_toggle_button_css_provider</span>
+  <span class='id identifier rubyid_css'>css</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>CssProvider</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_css'>css</span><span class='period'>.</span><span class='id identifier rubyid_load_from_data'>load_from_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>togglebutton {border-radius: 5px; font-size: 12px;}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_css'>css</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setup_play_button_handler-class_method">
+  
+    .<strong>setup_play_button_handler</strong>(button, login_info, callback)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Sets up the event handler for the play button.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>button</span>
+      
+      
+        <span class='type'>(<tt>Gtk::Button</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The play button to set up.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>login_info</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The login information for authentication.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>callback</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The callback to invoke on successful authentication.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/login_tab_utils.rb', line 60</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_setup_play_button_handler'>setup_play_button_handler</span><span class='lparen'>(</span><span class='id identifier rubyid_button'>button</span><span class='comma'>,</span> <span class='id identifier rubyid_login_info'>login_info</span><span class='comma'>,</span> <span class='id identifier rubyid_callback'>callback</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_button'>button</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>button-release-event</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid__owner'>_owner</span><span class='comma'>,</span> <span class='id identifier rubyid_ev'>ev</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_ev'>ev</span><span class='period'>.</span><span class='id identifier rubyid_event_type'>event_type</span> <span class='op'>==</span> <span class='const'>Gdk</span><span class='op'>::</span><span class='const'>EventType</span><span class='op'>::</span><span class='const'>BUTTON_RELEASE</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_ev'>ev</span><span class='period'>.</span><span class='id identifier rubyid_button'>button</span> <span class='op'>==</span> <span class='int'>1</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_button'>button</span><span class='period'>.</span><span class='id identifier rubyid_sensitive'>sensitive</span> <span class='op'>=</span> <span class='kw'>false</span>
+
+        <span class='comment'># Authenticate and prepare launch data
+</span>        <span class='id identifier rubyid_launch_data_hash'>launch_data_hash</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Authentication.html" title="Lich::Common::GUI::Authentication (module)">Authentication</a></span></span><span class='period'>.</span><span class='id identifier rubyid_authenticate'><span class='object_link'><a href="Authentication.html#authenticate-class_method" title="Lich::Common::GUI::Authentication.authenticate (method)">authenticate</a></span></span><span class='lparen'>(</span>
+          <span class='label'>account:</span> <span class='id identifier rubyid_login_info'>login_info</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span><span class='comma'>,</span>
+          <span class='label'>password:</span> <span class='id identifier rubyid_login_info'>login_info</span><span class='lbracket'>[</span><span class='symbol'>:password</span><span class='rbracket'>]</span><span class='comma'>,</span>
+          <span class='label'>character:</span> <span class='id identifier rubyid_login_info'>login_info</span><span class='lbracket'>[</span><span class='symbol'>:char_name</span><span class='rbracket'>]</span><span class='comma'>,</span>
+          <span class='label'>game_code:</span> <span class='id identifier rubyid_login_info'>login_info</span><span class='lbracket'>[</span><span class='symbol'>:game_code</span><span class='rbracket'>]</span>
+        <span class='rparen'>)</span>
+
+        <span class='comment'># Check if authentication succeeded (Hash) or failed (String error message)
+</span>        <span class='kw'>if</span> <span class='id identifier rubyid_launch_data_hash'>launch_data_hash</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_launch_data'>launch_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Authentication.html" title="Lich::Common::GUI::Authentication (module)">Authentication</a></span></span><span class='period'>.</span><span class='id identifier rubyid_prepare_launch_data'><span class='object_link'><a href="Authentication.html#prepare_launch_data-class_method" title="Lich::Common::GUI::Authentication.prepare_launch_data (method)">prepare_launch_data</a></span></span><span class='lparen'>(</span>
+            <span class='id identifier rubyid_launch_data_hash'>launch_data_hash</span><span class='comma'>,</span>
+            <span class='id identifier rubyid_login_info'>login_info</span><span class='lbracket'>[</span><span class='symbol'>:frontend</span><span class='rbracket'>]</span><span class='comma'>,</span>
+            <span class='id identifier rubyid_login_info'>login_info</span><span class='lbracket'>[</span><span class='symbol'>:custom_launch</span><span class='rbracket'>]</span><span class='comma'>,</span>
+            <span class='id identifier rubyid_login_info'>login_info</span><span class='lbracket'>[</span><span class='symbol'>:custom_launch_dir</span><span class='rbracket'>]</span>
+          <span class='rparen'>)</span>
+
+          <span class='comment'># Call the play callback if provided
+</span>          <span class='id identifier rubyid_callback'>callback</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_launch_data'>launch_data</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_callback'>callback</span>
+        <span class='kw'>else</span>
+          <span class='comment'># Authentication failed - show error message
+</span>          <span class='id identifier rubyid_error_dialog'>error_dialog</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>MessageDialog</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+            <span class='label'>parent:</span> <span class='id identifier rubyid_button'>button</span><span class='period'>.</span><span class='id identifier rubyid_toplevel'>toplevel</span><span class='comma'>,</span>
+            <span class='label'>flags:</span> <span class='symbol'>:modal</span><span class='comma'>,</span>
+            <span class='label'>type:</span> <span class='symbol'>:error</span><span class='comma'>,</span>
+            <span class='label'>buttons:</span> <span class='symbol'>:ok</span><span class='comma'>,</span>
+            <span class='label'>message:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Authentication Failed</span><span class='tstring_end'>&quot;</span></span>
+          <span class='rparen'>)</span>
+          <span class='id identifier rubyid_error_dialog'>error_dialog</span><span class='period'>.</span><span class='id identifier rubyid_secondary_text'>secondary_text</span> <span class='op'>=</span> <span class='id identifier rubyid_launch_data_hash'>launch_data_hash</span>
+          <span class='id identifier rubyid_error_dialog'>error_dialog</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span>
+          <span class='id identifier rubyid_error_dialog'>error_dialog</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
+          <span class='id identifier rubyid_button'>button</span><span class='period'>.</span><span class='id identifier rubyid_sensitive'>sensitive</span> <span class='op'>=</span> <span class='kw'>true</span>
+        <span class='kw'>end</span>
+      <span class='kw'>elsif</span> <span class='lparen'>(</span><span class='id identifier rubyid_ev'>ev</span><span class='period'>.</span><span class='id identifier rubyid_button'>button</span> <span class='op'>==</span> <span class='int'>3</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_pp'>pp</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>I would be adding to a team tab</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setup_remove_button_handler-class_method">
+  
+    .<strong>setup_remove_button_handler</strong>(button, login_info, char_box, default_icon, callback)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Sets up the event handler for the remove button.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>button</span>
+      
+      
+        <span class='type'>(<tt>Gtk::Button</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The remove button to set up.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>login_info</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The login information associated with the character.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>char_box</span>
+      
+      
+        <span class='type'>(<tt>Gtk::Box</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The character box to hide on removal.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>default_icon</span>
+      
+      
+        <span class='type'>(<tt>Gtk::Image</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The default icon for the confirmation dialog.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>callback</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The callback to invoke on removal.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/login_tab_utils.rb', line 112</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_setup_remove_button_handler'>setup_remove_button_handler</span><span class='lparen'>(</span><span class='id identifier rubyid_button'>button</span><span class='comma'>,</span> <span class='id identifier rubyid_login_info'>login_info</span><span class='comma'>,</span> <span class='id identifier rubyid_char_box'>char_box</span><span class='comma'>,</span> <span class='id identifier rubyid_default_icon'>default_icon</span><span class='comma'>,</span> <span class='id identifier rubyid_callback'>callback</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_button'>button</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>button-release-event</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid__owner'>_owner</span><span class='comma'>,</span> <span class='id identifier rubyid_ev'>ev</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_ev'>ev</span><span class='period'>.</span><span class='id identifier rubyid_event_type'>event_type</span> <span class='op'>==</span> <span class='const'>Gdk</span><span class='op'>::</span><span class='const'>EventType</span><span class='op'>::</span><span class='const'>BUTTON_RELEASE</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='lparen'>(</span><span class='id identifier rubyid_ev'>ev</span><span class='period'>.</span><span class='id identifier rubyid_button'>button</span> <span class='op'>==</span> <span class='int'>1</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_ev'>ev</span><span class='period'>.</span><span class='id identifier rubyid_state'>state</span> <span class='op'>&amp;</span> <span class='const'>Gdk</span><span class='op'>::</span><span class='const'>ModifierType</span><span class='op'>::</span><span class='const'>SHIFT_MASK</span><span class='rparen'>)</span> <span class='op'>!=</span> <span class='int'>0</span>
+        <span class='comment'># Call the remove callback if provided
+</span>        <span class='id identifier rubyid_callback'>callback</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_login_info'>login_info</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_callback'>callback</span>
+        <span class='id identifier rubyid_char_box'>char_box</span><span class='period'>.</span><span class='id identifier rubyid_visible'>visible</span> <span class='op'>=</span> <span class='kw'>false</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_dialog'>dialog</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>MessageDialog</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+          <span class='label'>parent:</span> <span class='kw'>nil</span><span class='comma'>,</span>
+          <span class='label'>flags:</span> <span class='symbol'>:modal</span><span class='comma'>,</span>
+          <span class='label'>type:</span> <span class='symbol'>:question</span><span class='comma'>,</span>
+          <span class='label'>buttons:</span> <span class='symbol'>:yes_no</span><span class='comma'>,</span>
+          <span class='label'>message:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Delete record?</span><span class='tstring_end'>&quot;</span></span>
+        <span class='rparen'>)</span>
+        <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_title'>title</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Confirm</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_set_icon'>set_icon</span><span class='lparen'>(</span><span class='id identifier rubyid_default_icon'>default_icon</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_default_icon'>default_icon</span>
+        <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span>
+        <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span> <span class='op'>==</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ResponseType</span><span class='op'>::</span><span class='const'>YES</span>
+          <span class='comment'># Call the remove callback if provided
+</span>          <span class='id identifier rubyid_callback'>callback</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_login_info'>login_info</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_callback'>callback</span>
+          <span class='id identifier rubyid_char_box'>char_box</span><span class='period'>.</span><span class='id identifier rubyid_visible'>visible</span> <span class='op'>=</span> <span class='kw'>false</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Jan 13 02:35:07 2026 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.38 (ruby-3.2.9).
+</div>
+
+    </div>
+  </body>
+</html>

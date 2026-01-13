@@ -83,35 +83,7 @@
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-<p>Combat event processor</p>
 
-<p>Uses a state machine to parse combat events from game lines. Handles multi-target attacks, status effects, wounds, and UCS data.</p>
-
-<p>State transitions: SEEKING_ATTACK -&gt; SEEKING_DAMAGE -&gt; (repeat) Status effects and UCS events are checked on every line regardless of state.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Process combat lines</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'>Processor</span><span class='period'>.</span><span class='id identifier rubyid_process'><span class='object_link'><a href="#process-class_method" title="Lich::Gemstone::Combat::Processor.process (method)">process</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_game_lines'>game_lines</span><span class='rparen'>)</span>
-<span class='comment'># Automatically updates creature instances with damage, wounds, status</span></code></pre>
-    
-  </div>
-
-
-</div>
 
 
 
@@ -144,7 +116,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Apply status effect directly to a creature.</p>
+<p>Applies a status effect to a target creature.</p>
 </div></span>
   
 </li>
@@ -168,7 +140,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Apply UCS event to a creature instance.</p>
+<p>Applies UCS (Universal Combat System) updates to a target.</p>
 </div></span>
   
 </li>
@@ -192,7 +164,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Map CritRanks location strings to creature body part constants.</p>
+<p>Maps critical hit locations to body part format.</p>
 </div></span>
   
 </li>
@@ -216,7 +188,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>State machine parser for combat events.</p>
+<p>Parses lines of combat data into events.</p>
 </div></span>
   
 </li>
@@ -240,7 +212,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Apply combat event to creature instance.</p>
+<p>Persists a combat event to the creature.</p>
 </div></span>
   
 </li>
@@ -264,7 +236,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Process a chunk of game lines for combat events.</p>
+<p>Processes a chunk of combat data.</p>
 </div></span>
   
 </li>
@@ -291,15 +263,25 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Apply status effect directly to a creature</p>
-
-<p>Used for status effects detected outside of combat events. Attempts ID-based lookup first, falls back to name matching.</p>
+<p>Applies a status effect to a target creature</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Applying a status to a target</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_apply_status_to_target'>apply_status_to_target</span><span class='lparen'>(</span><span class='symbol'>:stunned</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Goblin</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='symbol'>:add</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -313,7 +295,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Status effect to apply</p>
+<p>The status to apply</p>
 </div>
       
     </li>
@@ -323,13 +305,13 @@
         <span class='name'>target_name_or_id</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>, <tt>Integer</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Creature name or ID</p>
+<p>The target’s name or ID</p>
 </div>
       
     </li>
@@ -347,7 +329,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Direct creature ID if available</p>
+<p>The target’s ID, if known</p>
 </div>
       
     </li>
@@ -365,7 +347,7 @@
       
         &mdash;
         <div class='inline'>
-<p>:add or :remove</p>
+<p>The action to perform (:add or :remove)</p>
 </div>
       
     </li>
@@ -379,33 +361,33 @@
       <pre class="lines">
 
 
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
 317
 318
 319
 320
-321
-322
-323
-324
-325
-326
-327
-328
-329
-330
-331
-332
-333
-334
-335
-336
-337
-338
-339
-340</pre>
+321</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/processor.rb', line 317</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/processor.rb', line 298</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_apply_status_to_target'>apply_status_to_target</span><span class='lparen'>(</span><span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_target_name_or_id'>target_name_or_id</span><span class='comma'>,</span> <span class='id identifier rubyid_target_id'>target_id</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_action'>action</span> <span class='op'>=</span> <span class='symbol'>:add</span><span class='rparen'>)</span>
   <span class='comment'># Handle both name lookup and direct ID
@@ -422,13 +404,13 @@
   <span class='kw'>if</span> <span class='id identifier rubyid_creature'>creature</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_action'>action</span> <span class='op'>==</span> <span class='symbol'>:remove</span>
       <span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_remove_status'>remove_status</span><span class='lparen'>(</span><span class='id identifier rubyid_status'>status</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Removed status </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_status'>status</span><span class='embexpr_end'>}</span><span class='tstring_content'> from </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Removed status </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_status'>status</span><span class='embexpr_end'>}</span><span class='tstring_content'> from </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
     <span class='kw'>else</span>
       <span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_add_status'>add_status</span><span class='lparen'>(</span><span class='id identifier rubyid_status'>status</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Applied status </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_status'>status</span><span class='embexpr_end'>}</span><span class='tstring_content'> to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Applied status </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_status'>status</span><span class='embexpr_end'>}</span><span class='tstring_content'> to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
     <span class='kw'>end</span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Could not find creature for status: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_status'>status</span><span class='embexpr_end'>}</span><span class='tstring_content'> -&gt; </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target_name_or_id'>target_name_or_id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Could not find creature for status: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_status'>status</span><span class='embexpr_end'>}</span><span class='tstring_content'> -&gt; </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target_name_or_id'>target_name_or_id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -448,15 +430,25 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Apply UCS event to a creature instance</p>
-
-<p>Updates creature with UCS position, tierup vulnerability, or smite status.</p>
+<p>Applies UCS (Universal Combat System) updates to a target</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Applying UCS to a target</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_apply_ucs_to_target'>apply_ucs_to_target</span><span class='lparen'>(</span><span class='id identifier rubyid_ucs_result'>ucs_result</span><span class='comma'>,</span> <span class='id identifier rubyid_current_target'>current_target</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -470,7 +462,7 @@
       
         &mdash;
         <div class='inline'>
-<p>UCS event data with :type, :value, :target_id</p>
+<p>The UCS result data</p>
 </div>
       
     </li>
@@ -488,7 +480,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Current combat target (fallback for tierup)</p>
+<p>The current target, if any</p>
 </div>
       
     </li>
@@ -502,6 +494,23 @@
       <pre class="lines">
 
 
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
 275
 276
 277
@@ -515,27 +524,10 @@
 285
 286
 287
-288
-289
-290
-291
-292
-293
-294
-295
-296
-297
-298
-299
-300
-301
-302
-303
-304
-305</pre>
+288</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/processor.rb', line 275</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/processor.rb', line 258</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_apply_ucs_to_target'>apply_ucs_to_target</span><span class='lparen'>(</span><span class='id identifier rubyid_ucs_result'>ucs_result</span><span class='comma'>,</span> <span class='id identifier rubyid_current_target'>current_target</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_target_id'>target_id</span> <span class='op'>=</span> <span class='id identifier rubyid_ucs_result'>ucs_result</span><span class='lbracket'>[</span><span class='symbol'>:target_id</span><span class='rbracket'>]</span>
@@ -551,22 +543,22 @@
   <span class='kw'>case</span> <span class='id identifier rubyid_ucs_result'>ucs_result</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span>
   <span class='kw'>when</span> <span class='symbol'>:position</span>
     <span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_set_ucs_position'>set_ucs_position</span><span class='lparen'>(</span><span class='id identifier rubyid_ucs_result'>ucs_result</span><span class='lbracket'>[</span><span class='symbol'>:value</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Set UCS position </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ucs_result'>ucs_result</span><span class='lbracket'>[</span><span class='symbol'>:value</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Set UCS position </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ucs_result'>ucs_result</span><span class='lbracket'>[</span><span class='symbol'>:value</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
 
   <span class='kw'>when</span> <span class='symbol'>:tierup</span>
     <span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_set_ucs_tierup'>set_ucs_tierup</span><span class='lparen'>(</span><span class='id identifier rubyid_ucs_result'>ucs_result</span><span class='lbracket'>[</span><span class='symbol'>:value</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Set UCS tierup </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ucs_result'>ucs_result</span><span class='lbracket'>[</span><span class='symbol'>:value</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Set UCS tierup </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ucs_result'>ucs_result</span><span class='lbracket'>[</span><span class='symbol'>:value</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
 
   <span class='kw'>when</span> <span class='symbol'>:smite_on</span>
     <span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_smite!'>smite!</span>
-    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Applied smite to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Applied smite to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
 
   <span class='kw'>when</span> <span class='symbol'>:smite_off</span>
     <span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_clear_smote'>clear_smote</span>
-    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Cleared smite from </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Cleared smite from </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
   <span class='kw'>end</span>
 <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Error applying UCS: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Error applying UCS: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -585,9 +577,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Map CritRanks location strings to creature body part constants</p>
-
-<p>Converts various critical hit location formats to standardized body part names.</p>
+<p>Maps critical hit locations to body part format</p>
 
 
   </div>
@@ -598,8 +588,11 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_map_critranks_to_body_part'>map_critranks_to_body_part</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>left arm</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='comment'># =&gt; &quot;leftArm&quot;
-</span><span class='id identifier rubyid_map_critranks_to_body_part'>map_critranks_to_body_part</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>r. leg</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>    <span class='comment'># =&gt; &quot;rightLeg&quot;</span></code></pre>
+        <h5 class="example_title"><div class='inline'>
+<p>Mapping a critical hit location</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_body_part'>body_part</span> <span class='op'>=</span> <span class='id identifier rubyid_map_critranks_to_body_part'>map_critranks_to_body_part</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>leftarm</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -610,13 +603,13 @@
         <span class='name'>location</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>, <tt>Symbol</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Critical hit location</p>
+<p>The location string to map</p>
 </div>
       
     </li>
@@ -635,7 +628,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Body part name from CreatureInstance::BODY_PARTS or nil</p>
+<p>The mapped body part or nil if not found</p>
 </div>
       
     </li>
@@ -648,34 +641,34 @@
       <pre class="lines">
 
 
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
 351
-352
-353
-354
-355
-356
-357
-358
-359
-360
-361
-362
-363
-364
-365
-366
-367
-368
-369
-370
-371
-372
-373
-374
-375</pre>
+352</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/processor.rb', line 351</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/processor.rb', line 328</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_map_critranks_to_body_part'>map_critranks_to_body_part</span><span class='lparen'>(</span><span class='id identifier rubyid_location'>location</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_location'>location</span>
@@ -719,15 +712,25 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>State machine parser for combat events</p>
-
-<p>Iterates through lines extracting attacks, damage, crits, status effects. Handles multi-target attacks (e.g., volley) by tracking target switches.</p>
+<p>Parses lines of combat data into events</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Parsing combat lines</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_events'>events</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_events'>parse_events</span><span class='lparen'>(</span><span class='id identifier rubyid_lines'>lines</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -741,7 +744,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Game lines to parse</p>
+<p>The lines of combat data to parse</p>
 </div>
       
     </li>
@@ -760,7 +763,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Array of combat events with :name, :target, :damages, :crits, :statuses</p>
+<p>An array of parsed events</p>
 </div>
       
     </li>
@@ -773,6 +776,16 @@
       <pre class="lines">
 
 
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
 52
 53
 54
@@ -913,20 +926,10 @@
 189
 190
 191
-192
-193
-194
-195
-196
-197
-198
-199
-200
-201
-202</pre>
+192</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/processor.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/processor.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_events'>parse_events</span><span class='lparen'>(</span><span class='id identifier rubyid_lines'>lines</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_events'>events</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -963,7 +966,7 @@
 </span>    <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_settings'><span class='object_link'><a href="Tracker.html#settings-class_method" title="Lich::Gemstone::Combat::Tracker.settings (method)">settings</a></span></span><span class='lbracket'>[</span><span class='symbol'>:track_ucs</span><span class='rbracket'>]</span>
       <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_ucs_result'>ucs_result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Parser.html" title="Lich::Gemstone::Combat::Parser (module)">Parser</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse_ucs'><span class='object_link'><a href="Parser.html#parse_ucs-class_method" title="Lich::Gemstone::Combat::Parser.parse_ucs (method)">parse_ucs</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span><span class='rparen'>)</span>
         <span class='id identifier rubyid_apply_ucs_to_target'>apply_ucs_to_target</span><span class='lparen'>(</span><span class='id identifier rubyid_ucs_result'>ucs_result</span><span class='comma'>,</span> <span class='id identifier rubyid_current_target'>current_target</span><span class='rparen'>)</span>
-        <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Found UCS event: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ucs_result'>ucs_result</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+        <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Found UCS event: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ucs_result'>ucs_result</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
 
@@ -978,7 +981,7 @@
 </span>        <span class='kw'>if</span> <span class='id identifier rubyid_current_event'>current_event</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:target</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span>
            <span class='lparen'>(</span><span class='op'>!</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:damages</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>||</span> <span class='op'>!</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:crits</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>||</span> <span class='op'>!</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:statuses</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span>
           <span class='id identifier rubyid_events'>events</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_current_event'>current_event</span>
-          <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Saved event for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:target</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:damages</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> damages, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:crits</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> crits, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:statuses</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> statuses</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+          <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Saved event for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:target</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:damages</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> damages, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:crits</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> crits, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:statuses</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> statuses</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
         <span class='kw'>end</span>
 
         <span class='comment'># Create new event for this target (inherit attack name from previous)
@@ -990,13 +993,13 @@
           <span class='label'>statuses:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
         <span class='rbrace'>}</span>
         <span class='id identifier rubyid_current_target'>current_target</span> <span class='op'>=</span> <span class='id identifier rubyid_line_target'>line_target</span>
-        <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Switched to target: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line_target'>line_target</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line_target'>line_target</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+        <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Switched to target: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line_target'>line_target</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line_target'>line_target</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
 
       <span class='kw'>elsif</span> <span class='id identifier rubyid_current_target'>current_target</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
         <span class='comment'># First target for current event - just set it, don&#39;t discard data
 </span>        <span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:target</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_line_target'>line_target</span>
         <span class='id identifier rubyid_current_target'>current_target</span> <span class='op'>=</span> <span class='id identifier rubyid_line_target'>line_target</span>
-        <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Found target: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line_target'>line_target</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line_target'>line_target</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+        <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Found target: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line_target'>line_target</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line_target'>line_target</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
       <span class='kw'>end</span>
       <span class='comment'># If current_target[:id] == line_target[:id], do nothing (same target)
 </span>    <span class='kw'>end</span>
@@ -1016,7 +1019,7 @@
           <span class='label'>statuses:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
         <span class='rbrace'>}</span>
 
-        <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Found attack: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attack'>attack</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+        <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Found attack: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attack'>attack</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
         <span class='id identifier rubyid_parse_state'>parse_state</span> <span class='op'>=</span> <span class='symbol'>:seeking_damage</span>
       <span class='kw'>end</span>
 
@@ -1026,7 +1029,7 @@
       <span class='comment'># Always check for damage (accumulate all damage lines)
 </span>      <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_damage'>damage</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Parser.html" title="Lich::Gemstone::Combat::Parser (module)">Parser</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse_damage'><span class='object_link'><a href="Parser.html#parse_damage-class_method" title="Lich::Gemstone::Combat::Parser.parse_damage (method)">parse_damage</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span><span class='rparen'>)</span>
         <span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:damages</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_damage'>damage</span>
-        <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Found damage: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_damage'>damage</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+        <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Found damage: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_damage'>damage</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
 
         <span class='comment'># When we find damage, look ahead 2-3 lines for related crit
 </span>        <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_settings'><span class='object_link'><a href="Tracker.html#settings-class_method" title="Lich::Gemstone::Combat::Tracker.settings (method)">settings</a></span></span><span class='lbracket'>[</span><span class='symbol'>:track_wounds</span><span class='rbracket'>]</span>
@@ -1038,7 +1041,7 @@
 
             <span class='comment'># Stop looking if we hit another damage line (belongs to next damage)
 </span>            <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Parser.html" title="Lich::Gemstone::Combat::Parser (module)">Parser</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse_damage'><span class='object_link'><a href="Parser.html#parse_damage-class_method" title="Lich::Gemstone::Combat::Parser.parse_damage (method)">parse_damage</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_next_line'>next_line</span><span class='rparen'>)</span>
-              <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Stopped crit search - found next damage line</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+              <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Stopped crit search - found next damage line</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
               <span class='kw'>break</span>
             <span class='kw'>end</span>
 
@@ -1051,7 +1054,7 @@
                 <span class='label'>wound_rank:</span> <span class='id identifier rubyid_c'>c</span><span class='lbracket'>[</span><span class='symbol'>:wound_rank</span><span class='rbracket'>]</span><span class='comma'>,</span>
                 <span class='label'>fatal:</span> <span class='id identifier rubyid_c'>c</span><span class='lbracket'>[</span><span class='symbol'>:fatal</span><span class='rbracket'>]</span>
               <span class='rbrace'>}</span>
-              <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Found critical hit: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_c'>c</span><span class='lbracket'>[</span><span class='symbol'>:location</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> rank </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_c'>c</span><span class='lbracket'>[</span><span class='symbol'>:wound_rank</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+              <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Found critical hit: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_c'>c</span><span class='lbracket'>[</span><span class='symbol'>:location</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> rank </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_c'>c</span><span class='lbracket'>[</span><span class='symbol'>:wound_rank</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
               <span class='kw'>break</span> <span class='comment'># Only take first crit found after this damage
 </span>            <span class='kw'>end</span>
           <span class='kw'>end</span>
@@ -1066,7 +1069,7 @@
 </span>        <span class='kw'>if</span> <span class='id identifier rubyid_current_event'>current_event</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:target</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span>
            <span class='lparen'>(</span><span class='op'>!</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:damages</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>||</span> <span class='op'>!</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:crits</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span>
           <span class='id identifier rubyid_events'>events</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_current_event'>current_event</span>
-          <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Completed event for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:target</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:damages</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> damages, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:crits</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> crits</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+          <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Completed event for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:target</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:damages</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> damages, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_event'>current_event</span><span class='lbracket'>[</span><span class='symbol'>:crits</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> crits</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
         <span class='kw'>end</span>
         <span class='id identifier rubyid_parse_state'>parse_state</span> <span class='op'>=</span> <span class='symbol'>:seeking_attack</span>
         <span class='kw'>redo</span> <span class='comment'># Process this line as new attack
@@ -1096,15 +1099,25 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Apply combat event to creature instance</p>
-
-<p>Updates the creature with damage, wounds, and status effects from the event. Maps critical hit locations to body parts and tracks fatal crits.</p>
+<p>Persists a combat event to the creature</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Persisting an event</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_persist_event'>persist_event</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1118,73 +1131,12 @@
       
         &mdash;
         <div class='inline'>
-<p>Combat event data</p>
+<p>The event data to persist</p>
 </div>
       
     </li>
   
 </ul>
-
-  
-    
-    
-    <p class="tag_title">Options Hash (<tt>event</tt>):</p>
-    <ul class="option">
-      
-        <li>
-          <span class="name">:target</span>
-          <span class="type">(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
-          <span class="default">
-            
-          </span>
-          
-            &mdash; <div class='inline'>
-<p>Target creature info with :id</p>
-</div>
-          
-        </li>
-      
-        <li>
-          <span class="name">:damages</span>
-          <span class="type">(<tt>Array&lt;Integer&gt;</tt>)</span>
-          <span class="default">
-            
-          </span>
-          
-            &mdash; <div class='inline'>
-<p>Damage amounts</p>
-</div>
-          
-        </li>
-      
-        <li>
-          <span class="name">:crits</span>
-          <span class="type">(<tt>Array&lt;<span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span>&gt;</tt>)</span>
-          <span class="default">
-            
-          </span>
-          
-            &mdash; <div class='inline'>
-<p>Critical hit data</p>
-</div>
-          
-        </li>
-      
-        <li>
-          <span class="name">:statuses</span>
-          <span class="type">(<tt>Array&lt;Symbol&gt;</tt>)</span>
-          <span class="default">
-            
-          </span>
-          
-            &mdash; <div class='inline'>
-<p>Status effects</p>
-</div>
-          
-        </li>
-      
-    </ul>
-  
 
 
 </div><table class="source_code">
@@ -1193,6 +1145,22 @@
       <pre class="lines">
 
 
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
 215
 216
 217
@@ -1228,26 +1196,10 @@
 247
 248
 249
-250
-251
-252
-253
-254
-255
-256
-257
-258
-259
-260
-261
-262
-263
-264
-265
-266</pre>
+250</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/processor.rb', line 215</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/processor.rb', line 199</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_persist_event'>persist_event</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_target'>target</span> <span class='op'>=</span> <span class='id identifier rubyid_event'>event</span><span class='lbracket'>[</span><span class='symbol'>:target</span><span class='rbracket'>]</span>
@@ -1255,18 +1207,18 @@
 
   <span class='id identifier rubyid_creature'>creature</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Creature.html" title="Lich::Gemstone::Creature (module)">Creature</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_target'>target</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rbracket'>]</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_creature'>creature</span>
-    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] No creature found for ID </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target'>target</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] No creature found for ID </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target'>target</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
     <span class='kw'>return</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Applying to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target'>target</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Applying to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_target'>target</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
 
   <span class='comment'># Apply direct damage
 </span>  <span class='id identifier rubyid_total_damage'>total_damage</span> <span class='op'>=</span> <span class='int'>0</span>
   <span class='id identifier rubyid_event'>event</span><span class='lbracket'>[</span><span class='symbol'>:damages</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_damage'>damage</span><span class='op'>|</span>
     <span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_add_damage'>add_damage</span><span class='lparen'>(</span><span class='id identifier rubyid_damage'>damage</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_total_damage'>total_damage</span> <span class='op'>+=</span> <span class='id identifier rubyid_damage'>damage</span>
-    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  +</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_damage'>damage</span><span class='embexpr_end'>}</span><span class='tstring_content'> damage</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  +</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_damage'>damage</span><span class='embexpr_end'>}</span><span class='tstring_content'> damage</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
   <span class='kw'>end</span>
 
   <span class='comment'># Apply critical wounds
@@ -1277,16 +1229,16 @@
 </span>        <span class='id identifier rubyid_body_part'>body_part</span> <span class='op'>=</span> <span class='id identifier rubyid_map_critranks_to_body_part'>map_critranks_to_body_part</span><span class='lparen'>(</span><span class='id identifier rubyid_crit'>crit</span><span class='lbracket'>[</span><span class='symbol'>:location</span><span class='rbracket'>]</span><span class='rparen'>)</span>
         <span class='kw'>if</span> <span class='id identifier rubyid_body_part'>body_part</span>
           <span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_add_injury'>add_injury</span><span class='lparen'>(</span><span class='id identifier rubyid_body_part'>body_part</span><span class='comma'>,</span> <span class='id identifier rubyid_crit'>crit</span><span class='lbracket'>[</span><span class='symbol'>:wound_rank</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-          <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  +wound: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_body_part'>body_part</span><span class='embexpr_end'>}</span><span class='tstring_content'> rank </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_crit'>crit</span><span class='lbracket'>[</span><span class='symbol'>:wound_rank</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+          <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  +wound: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_body_part'>body_part</span><span class='embexpr_end'>}</span><span class='tstring_content'> rank </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_crit'>crit</span><span class='lbracket'>[</span><span class='symbol'>:wound_rank</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
         <span class='kw'>else</span>
-          <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  !unknown body part: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_crit'>crit</span><span class='lbracket'>[</span><span class='symbol'>:location</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+          <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  !unknown body part: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_crit'>crit</span><span class='lbracket'>[</span><span class='symbol'>:location</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
         <span class='kw'>end</span>
       <span class='kw'>end</span>
 
       <span class='comment'># Check for fatal critical hit
 </span>      <span class='kw'>if</span> <span class='id identifier rubyid_crit'>crit</span><span class='lbracket'>[</span><span class='symbol'>:fatal</span><span class='rbracket'>]</span>
         <span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_mark_fatal_crit!'>mark_fatal_crit!</span>
-        <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  +FATAL CRIT: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_crit'>crit</span><span class='lbracket'>[</span><span class='symbol'>:location</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> - creature died from crit, not HP loss</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+        <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  +FATAL CRIT: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_crit'>crit</span><span class='lbracket'>[</span><span class='symbol'>:location</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> - creature died from crit, not HP loss</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -1295,11 +1247,11 @@
 </span>  <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_settings'><span class='object_link'><a href="Tracker.html#settings-class_method" title="Lich::Gemstone::Combat::Tracker.settings (method)">settings</a></span></span><span class='lbracket'>[</span><span class='symbol'>:track_statuses</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_event'>event</span><span class='lbracket'>[</span><span class='symbol'>:statuses</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_status'>status</span><span class='op'>|</span>
       <span class='id identifier rubyid_creature'>creature</span><span class='period'>.</span><span class='id identifier rubyid_add_status'>add_status</span><span class='lparen'>(</span><span class='id identifier rubyid_status'>status</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  +status: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_status'>status</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  +status: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_status'>status</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  Total damage applied: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_total_damage'>total_damage</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_total_damage'>total_damage</span> <span class='op'>&gt;</span> <span class='int'>0</span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  Total damage applied: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_total_damage'>total_damage</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_total_damage'>total_damage</span> <span class='op'>&gt;</span> <span class='int'>0</span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1318,15 +1270,25 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Process a chunk of game lines for combat events</p>
-
-<p>Parses lines using a state machine, extracts events, and updates creature instances with damage, wounds, and status effects.</p>
+<p>Processes a chunk of combat data</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>Processing combat data</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_process'>process</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;combat_data&gt;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1334,13 +1296,13 @@
         <span class='name'>chunk</span>
       
       
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Array of game lines to process</p>
+<p>The raw combat data to process</p>
 </div>
       
     </li>
@@ -1354,17 +1316,17 @@
       <pre class="lines">
 
 
-36
-37
-38
-39
-40
-41
-42
-43</pre>
+28
+29
+30
+31
+32
+33
+34
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/processor.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/processor.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process'>process</span><span class='lparen'>(</span><span class='id identifier rubyid_chunk'>chunk</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_events'>events</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_events'>parse_events</span><span class='lparen'>(</span><span class='id identifier rubyid_chunk'>chunk</span><span class='rparen'>)</span>
@@ -1372,7 +1334,7 @@
 
   <span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_event'>event</span><span class='op'>|</span> <span class='id identifier rubyid_persist_event'>persist_event</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
 
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Processed </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> events</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Processed </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> events</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1384,9 +1346,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 23 03:17:21 2025 by
+  Generated on Tue Jan 13 02:35:07 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.2.9).
+  0.9.38 (ruby-3.2.9).
 </div>
 
     </div>

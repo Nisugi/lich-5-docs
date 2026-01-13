@@ -96,13 +96,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex patterns grouped for Info, Exp, Skill and PSM parsing - calls upsert_batch to reduce db impact Regex pattern for character race and profession. Used for parsing character information.</p>
+<p>Regex patterns grouped for Info, Exp, Skill and PSM parsing - calls upsert_batch to reduce db impact Regex pattern for character race and profession</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>CharRaceProf</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Name: John Doe Race: Human Profession: Warrior</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -112,13 +120,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for character gender, age, experience, and level. Used for parsing character information.</p>
+<p>Regex pattern for character gender, age, experience, and level</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>CharGenderAgeExpLevel</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gender: Male Age: 30 Expr: 1000 Level: 10</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -128,13 +144,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for character statistics. Used for parsing character stats.</p>
+<p>Regex pattern for character stats</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Stat</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>STR (STR): 10 (0) ... 10 (0)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -144,13 +168,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for the end of character statistics. Used for parsing character stats.</p>
+<p>Regex pattern for the end of character stats</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>StatEnd</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Mana: 100 Silver: 500</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -160,13 +192,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for character fame. Used for parsing character fame information.</p>
+<p>Regex pattern for character fame</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Fame</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Level: 10 Fame: 1000</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -176,13 +216,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for real experience. Used for parsing experience information.</p>
+<p>Regex pattern for real experience</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>RealExp</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Experience: 2000 Field Exp: 1500/3000</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -192,13 +240,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for ascension experience. Used for parsing ascension experience information.</p>
+<p>Regex pattern for ascension experience</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>AscExp</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Ascension Exp: 500 Recent Deaths: 2</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -208,13 +264,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for total experience. Used for parsing total experience information.</p>
+<p>Regex pattern for total experience</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>TotalExp</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Total Exp: 3000 Death&#39;s Sting: Light</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -224,13 +288,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for long-term experience. Used for parsing long-term experience information.</p>
+<p>Regex pattern for long-term experience</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>LTE</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Long-Term Exp: 1000 Deeds: 5</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -240,13 +312,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for the end of experience parsing. Used for parsing experience information.</p>
+<p>Regex pattern for expression end</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>ExprEnd</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Exp until lvl: -100</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -256,13 +336,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for the start of skill parsing. Used for parsing skill information.</p>
+<p>Regex pattern for the start of skill information</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SkillStart</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Your current skill bonuses and ranks:</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -272,13 +360,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for individual skills. Used for parsing skill information.</p>
+<p>Regex pattern for individual skills</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Skill</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Skill Name: 5 10</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -288,13 +384,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for spell ranks. Used for parsing spell rank information.</p>
+<p>Regex pattern for spell ranks</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SpellRanks</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Spell Name: 3</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -304,13 +408,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for the end of skill parsing. Used for parsing skill information.</p>
+<p>Regex pattern for the end of skill information</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SkillEnd</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Training Points: 5 Phy 3 Mnt</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -320,13 +432,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for detecting skill goals. Used for parsing skill goal information.</p>
+<p>Regex pattern for detected skill goals</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>GoalsDetected</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Skill goals updated!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -336,13 +456,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for the end of skill goals. Used for parsing skill goal information.</p>
+<p>Regex pattern for the end of goals</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>GoalsEnded</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Further information can be found in the FAQs.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -352,13 +480,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for the start of PSM parsing. Used for parsing PSM information.</p>
+<p>Regex pattern for the start of PSM information</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>PSMStart</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>John, the following Ascension Abilities are available:</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -368,13 +504,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for individual PSMs. Used for parsing PSM information.</p>
+<p>Regex pattern for PSM information</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>PSM</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Ability Name: command 1/5</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -384,13 +528,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for the end of PSM parsing. Used for parsing PSM information.</p>
+<p>Regex pattern for the end of PSM information</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>PSMEnd</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>   Subcategory: all</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -400,13 +552,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Single / low impact - single db write Regex pattern for level-up messages. Used for parsing level-up information.</p>
+<p>Single / low impact - single db write Regex pattern for level up information</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Levelup</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Stat (STR) : 10 +1 ... 10 (0)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -416,13 +576,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for solo spells. Used for parsing spell information.</p>
+<p>Regex pattern for solo spells</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SpellsSolo</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bard: 5</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -432,13 +600,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for citizenship status. Used for parsing citizenship information.</p>
+<p>Regex pattern for citizenship information</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Citizenship</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You currently have citizenship in Town.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -448,13 +624,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for no citizenship status. Used for parsing citizenship information.</p>
+<p>Regex pattern for no citizenship</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>NoCitizenship</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You don&#39;t seem to have citizenship.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -464,13 +648,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for society membership. Used for parsing society information.</p>
+<p>Regex pattern for society information</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You are a Master in the Order of Voln.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -480,13 +672,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for no society membership. Used for parsing society information.</p>
+<p>Regex pattern for no society</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>NoSociety</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You are not a member of any society at this time.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -496,13 +696,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for society steps. Used for parsing society information.</p>
+<p>Regex pattern for society step information</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SocietyStep</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Zarak traces the outline of a sigil into the air.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -512,13 +720,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for joining a society. Used for parsing society information.</p>
+<p>Regex pattern for society join information</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SocietyJoin</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The Grandmaster says, &#39;Welcome to the Order&#39; </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -528,13 +744,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for resigning from a society. Used for parsing society information.</p>
+<p>Regex pattern for society resignation</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SocietyResign</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The Grandmaster says, &#39;I&#39;m sorry to hear that.&#39;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -544,13 +768,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for warcries. Used for parsing warcry information.</p>
+<p>Regex pattern for warcries</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Warcries</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bertrandt&#39;s Bellow</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -560,13 +792,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for no warcries. Used for parsing warcry information.</p>
+<p>Regex pattern for no warcries</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>NoWarcries</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You must be an active member of the Warrior Guild to use this skill.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -576,13 +816,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for learning PSMs. Used for parsing PSM information.</p>
+<p>Regex pattern for learning PSM</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>LearnPSM</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You have now achieved rank 1 of Ability Name, costing 10 points.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -592,13 +840,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Technique covers Specialization (Armor and Shield), Technique (Weapon), and Feat Regex pattern for learning techniques. Used for parsing technique information.</p>
+<p>Technique covers Specialization (Armor and Shield), Technique (Weapon), and Feat Regex pattern for learning techniques</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>LearnTechnique</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You have gained rank 1 of Technique Name.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -608,13 +864,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for unlearning PSMs. Used for parsing PSM information.</p>
+<p>Regex pattern for unlearning PSM</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>UnlearnPSM</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You decide to unlearn rank 1 of Ability Name.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -624,13 +888,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for unlearning techniques. Used for parsing technique information.</p>
+<p>Regex pattern for unlearning techniques</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>UnlearnTechnique</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You have decreased to rank 1 of Technique Name.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -640,13 +912,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for losing techniques. Used for parsing technique information.</p>
+<p>Regex pattern for losing techniques</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>LostTechnique</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You are no longer trained in Technique Name.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -656,13 +936,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for resources. Used for parsing resource information.</p>
+<p>Regex pattern for resources</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Resource</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Essence: 10000/50000 (Weekly) 20000/200000 (Total)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -672,13 +960,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for suffused resources. Used for parsing resource information.</p>
+<p>Regex pattern for suffused resources</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Suffused</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Suffused Essence: 5000</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -688,13 +984,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for Voln favor. Used for parsing resource information.</p>
+<p>Regex pattern for Voln favor</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>VolnFavor</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Voln Favor: 100</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -704,29 +1008,237 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for Covert Arts charges. Used for parsing resource information.</p>
+<p>Regex pattern for Covert Arts charges</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>CovertArtsCharges</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Covert Arts Charges: 10/200</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Covert Arts Charges: (?&lt;charges&gt;[-\d,]+)\/200$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
-        <dt id="GigasArtifactFragments-constant" class="">GigasArtifactFragments =
+        <dt id="ShadowEssence-constant" class="">ShadowEssence =
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for gigas artifact fragments. Used for parsing resource information.</p>
+<p>Regex pattern for shadow essence</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>ShadowEssence</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Accumulated Shadow Essence: 5</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Accumulated Shadow (?:E|e)ssence: (?&lt;essence&gt;\d)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ShadowEssenceGain-constant" class="">ShadowEssenceGain =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Regex pattern for gaining shadow essence</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>ShadowEssenceGain</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You violently shatter the bond on the soul of the victim.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You violently shatter the bond on the soul of the .+\.  As you draw it into yourself, you manipulate the chaotic and broken life forces, forming shadow essence\.</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ShadowEssenceCap-constant" class="">ShadowEssenceCap =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Regex pattern for shadow essence cap</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>ShadowEssenceCap</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You begin to sacrifice your victim but immediately sense that it would overwhelm you.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You begin to sacrifice your victim but immediately sense that it would overwhelm you with shadow essence\.</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SacrificeMana-constant" class="">SacrificeMana =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Regex pattern for sacrificing mana</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SacrificeMana</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You summon the shadow essence from the inner depths of your body.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You summon the shadow essence from the inner depths of your body, surrounding yourself in a dark halo of power\.  You will the shadows into the eddies and currents of the flows of essence around you, spreading through them like blackened veins of corruption\.  The surroundings glow with silent anguish\.  Everything around you becomes pale and enervated with discoloration, like the life has been drained out of the world\.  There is a flood of power as you feel (?&lt;amount&gt;\d+) mana surge into you!$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SacrificeChannel-constant" class="">SacrificeChannel =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Regex pattern for sacrificing channel</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SacrificeChannel</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Focusing on the bond to your animate.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Focusing on the bond to your animate, you force shadow essence into .+, leveraging its broken life forces\.  The backlash of sorcerous violence with the necrotic energy of the \w+ ends in the unnatural revitalization of its animate matter\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SacrificeInfest-constant" class="">SacrificeInfest =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Regex pattern for sacrificing infest</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SacrificeInfest</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You unleash a dark haze of necrosis upon your unfortunate victim.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Mastering the struggle against the frantic rush of stolen power, you unleash a dark haze of necrosis upon your unfortunate victim\.  With a small smirk, you force the sickly currents of shadow essence from your body, commanding them to seek and infest .+\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SacrificeFate-constant" class="">SacrificeFate =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Regex pattern for sacrificing fate</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SacrificeFate</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You close your eyes momentarily and visualize the strands of fate.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You close your eyes momentarily and visualize the strands of fate that tie together the firmament\.  Identifying a susceptible star, you compel the shadow essence within you to corrupt it\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SacrificeShift-constant" class="">SacrificeShift =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Regex pattern for sacrificing shift</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SacrificeShift</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Summoning the shadow essence within yourself.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Summoning the shadow essence within yourself, you will it to bleed through the veil, exposing your mind to the vast abyss of cosmic horror\.  Countless possible gateways reveal themselves, with runes hidden in the fabric of reality\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="GigasArtifactFragments-constant" class="">GigasArtifactFragments =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Regex pattern for gigas artifact fragments</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>GigasArtifactFragments</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You are carrying 5 gigas artifact fragments.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -736,13 +1248,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for redsteel marks. Used for parsing resource information.</p>
+<p>Regex pattern for redsteel marks</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>RedsteelMarks</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You are carrying 10 redsteel marks.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -752,13 +1272,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for gemstone dust. Used for parsing resource information.</p>
+<p>Regex pattern for gemstone dust</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>GemstoneDust</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You are carrying 20 Dust in your reserves.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -768,13 +1296,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for general tickets. Used for parsing resource information.</p>
+<p>Regex pattern for general tickets</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>TicketGeneral</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>General - 5 tickets.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -784,13 +1320,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for blackscrip tickets. Used for parsing resource information.</p>
+<p>Regex pattern for blackscrip tickets</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>TicketBlackscrip</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Troubled Waters - 3 blackscrip.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -800,13 +1344,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for bloodscrip tickets. Used for parsing resource information.</p>
+<p>Regex pattern for bloodscrip tickets</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>TicketBloodscrip</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Duskruin Arena - 2 bloodscrip.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -816,13 +1368,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for ethereal scrip tickets. Used for parsing resource information.</p>
+<p>Regex pattern for ethereal scrip tickets</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>TicketEtherealScrip</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Reim - 4 ethereal scrip.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -832,13 +1392,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for soul shards. Used for parsing resource information.</p>
+<p>Regex pattern for soul shards</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>TicketSoulShards</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Ebon Gate - 3 soul shards.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -848,29 +1416,69 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for Raikhen tickets. Used for parsing resource information.</p>
+<p>Regex pattern for raikhen tickets</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>TicketRaikhen</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Rumor Woods - 2 raikhen.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*Rumor Woods - (?&lt;raikhen&gt;[\d,]+) raikhen\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
-        <dt id="WealthSilver-constant" class="">WealthSilver =
+        <dt id="TicketGold-constant" class="">TicketGold =
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for wealth in silver. Used for parsing wealth information.</p>
+<p>Regex pattern for gold</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>TicketGold</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gold - 100 gold.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*Gold - (?&lt;gold&gt;[\d,]+) gold\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="WealthSilver-constant" class="">WealthSilver =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Regex pattern for wealth in silver</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>WealthSilver</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You have 50 silver with you.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -880,13 +1488,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for wealth in silver containers. Used for parsing wealth information.</p>
+<p>Regex pattern for wealth in silver stored in a container</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>WealthSilverContainer</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You are carrying 100 silver stored within your backpack.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -896,13 +1512,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for account name. Used for parsing account information.</p>
+<p>Regex pattern for account name</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>AccountName</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Account Name:     user123</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -912,13 +1536,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for account subscription type. Used for parsing account information.</p>
+<p>Regex pattern for account subscription type</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>AccountSubscription</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Account Type:     Premium</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -928,13 +1560,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for the start of profile information. Used for parsing profile information.</p>
+<p>Regex pattern for the start of profile information</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>ProfileStart</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PERSONAL INFORMATION</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -944,13 +1584,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for profile name. Used for parsing profile information.</p>
+<p>Regex pattern for profile name</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>ProfileName</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Name: John Doe</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -960,13 +1608,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for profile house. Used for parsing profile information.</p>
+<p>Regex pattern for profile house information</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>ProfileHouseCHE</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>House of House of the Argent Aspis</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -976,29 +1632,69 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for resigning from a house. Used for parsing profile information.</p>
+<p>Regex pattern for resigning from a house</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>ResignCHE</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Once you have resigned from your House, you will be unable to rejoin.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:Once you have resigned from your House, you will be unable to rejoin without being inducted again by the |If you wish to renounce your membership in the |Before you can resign from the )(?&lt;house&gt;Argent Aspis|Rising Phoenix|Paupers|Arcane Masters|Brigatta|Twilight Hall|Silvergate Inn|Sovyn|Sylvanfair|Helden Hall|White Haven|Beacon Hall|Rone Academy|Willow Hall|Moonstone Abbey|Obsidian Tower|Cairnfang Manor)(?: Archive)?|^(?&lt;none&gt;The RESIGN command is for resigning your membership in a House, but you don&#39;t currently belong to any of the Cooperative Houses of Elanthia)\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:Once you have resigned from your House, you will be unable to rejoin without being inducted again by the |If you wish to renounce your membership in the |Before you can resign from the )(?:House |of House of the |of House of |of House |of )?(?&lt;house&gt;Argent Aspis|Rising Phoenix|Paupers|Arcane Masters|Brigatta|Twilight Hall|Silvergate Inn|Sovyn|Sylvanfair|Helden Hall|White Haven|Beacon Hall|Rone Academy|Willow Hall|Moonstone Abbey|Obsidian Tower|Cairnfang Manor)(?: Archive)?|^(?&lt;none&gt;The RESIGN command is for resigning your membership in a House, but you don&#39;t currently belong to any of the Cooperative Houses of Elanthia)\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ResignConfirmCHE-constant" class="">ResignConfirmCHE =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Regex pattern for confirming resignation from a house</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>ResignConfirmCHE</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[You have resigned from the House of Argent Aspis.]</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\[You have resigned from the (?:House |of House of the |of House of |of House |of )?(?&lt;house&gt;Argent Aspis|Rising Phoenix|Paupers|Arcane Masters|Brigatta|Twilight Hall|Silvergate Inn|Sovyn|Sylvanfair|Helden Hall|White Haven|Beacon Hall|Rone Academy|Willow Hall|Moonstone Abbey|Obsidian Tower|Cairnfang Manor)(?: Archive)?\.\]$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="SleepActive-constant" class="">SleepActive =
           <div class="docstring">
   <div class="discussion">
     
-<p>TODO: refactor / streamline? Regex pattern for active sleep status. Used for parsing sleep information.</p>
+<p>TODO: refactor / streamline? Regex pattern for active sleep state</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SleepActive</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Your mind goes completely blank.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -1008,13 +1704,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for inactive sleep status. Used for parsing sleep information.</p>
+<p>Regex pattern for no active sleep state</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SleepNoActive</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You wake up from your slumber.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -1024,13 +1728,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for active bind status. Used for parsing bind information.</p>
+<p>Regex pattern for active bind state</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>BindActive</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>An unseen force envelops you, restricting your movement.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -1040,13 +1752,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for inactive bind status. Used for parsing bind information.</p>
+<p>Regex pattern for no active bind state</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>BindNoActive</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The restricting force that envelops you dissolves away.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -1056,13 +1776,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for active silence status. Used for parsing silence information.</p>
+<p>Regex pattern for active silence state</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SilenceActive</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>A pall of silence settles over you.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -1072,13 +1800,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for inactive silence status. Used for parsing silence information.</p>
+<p>Regex pattern for no active silence state</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SilenceNoActive</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The pall of silence leaves you.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -1088,13 +1824,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for active calm status. Used for parsing calm information.</p>
+<p>Regex pattern for active calm state</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>CalmActive</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>A calm washes over you.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -1104,13 +1848,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for inactive calm status. Used for parsing calm information.</p>
+<p>Regex pattern for no active calm state</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>CalmNoActive</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You are enraged by an attack!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -1120,13 +1872,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for active cutthroat status. Used for parsing cutthroat information.</p>
+<p>Regex pattern for active cutthroat state</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>CutthroatActive</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>slices deep into your vocal cords!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -1136,13 +1896,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for inactive cutthroat status. Used for parsing cutthroat information.</p>
+<p>Regex pattern for no active cutthroat state</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>CutthroatNoActive</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The horrible pain in your vocal cords subsides.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -1152,13 +1920,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for the start of thorn poison status. Used for parsing thorn poison information.</p>
+<p>Regex pattern for starting thorn poison</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>ThornPoisonStart</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>One of the vines lashes out at you, driving a thorn into your skin!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -1168,13 +1944,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for thorn poison progression status. Used for parsing thorn poison information.</p>
+<p>Regex pattern for thorn poison progression</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>ThornPoisonProgression</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You begin to feel a strange fatigue, spreading throughout your body.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -1184,13 +1968,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for thorn poison deprogression status. Used for parsing thorn poison information.</p>
+<p>Regex pattern for thorn poison deprogression</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>ThornPoisonDeprogression</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>With a shaky gasp and trembling muscles, you regain at least some small ability to move.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -1200,13 +1992,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for the end of thorn poison status. Used for parsing thorn poison information.</p>
+<p>Regex pattern for ending thorn poison</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>ThornPoisonEnd</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Your body begins to respond normally again.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -1216,13 +2016,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Adding spell regexes.  Does not save to infomon.db.  Used by Spell and by ActiveSpells Regex pattern for spell up messages. Used for parsing spell information.</p>
+<p>Adding spell regexes.  Does not save to infomon.db.  Used by Spell and by ActiveSpells Regex pattern for spell up messages</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SpellUpMsgs</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Your spells renew.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -1232,13 +2040,21 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for spell down messages. Used for parsing spell information.</p>
+<p>Regex pattern for spell down messages</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SpellDnMsgs</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Your spells fade.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -1248,20 +2064,47 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Regex pattern for renewed spellsong messages. Used for parsing spellsong information.</p>
+<p>Regex pattern for renewed spellsong</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>SpellsongRenewed</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Your songs renew.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Your songs? renews?</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="All-constant" class="">All =
-          
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Union of all regex patterns for parsing</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>All</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Your character information...</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
+
+</div>
         </dt>
         <dd><pre class="code"><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_union'>union</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#CharRaceProf-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::CharRaceProf (constant)">CharRaceProf</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#CharGenderAgeExpLevel-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::CharGenderAgeExpLevel (constant)">CharGenderAgeExpLevel</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#Stat-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Stat (constant)">Stat</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#StatEnd-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::StatEnd (constant)">StatEnd</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#Fame-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Fame (constant)">Fame</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#RealExp-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::RealExp (constant)">RealExp</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#AscExp-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::AscExp (constant)">AscExp</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TotalExp-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TotalExp (constant)">TotalExp</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#LTE-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::LTE (constant)">LTE</a></span></span><span class='comma'>,</span>
 <span class='const'><span class='object_link'><a href="#ExprEnd-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ExprEnd (constant)">ExprEnd</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SkillStart-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SkillStart (constant)">SkillStart</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#Skill-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Skill (constant)">Skill</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SpellRanks-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SpellRanks (constant)">SpellRanks</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SkillEnd-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SkillEnd (constant)">SkillEnd</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#PSMStart-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::PSMStart (constant)">PSMStart</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#PSM-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::PSM (constant)">PSM</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#PSMEnd-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::PSMEnd (constant)">PSMEnd</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#Levelup-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Levelup (constant)">Levelup</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SpellsSolo-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SpellsSolo (constant)">SpellsSolo</a></span></span><span class='comma'>,</span>
@@ -1269,11 +2112,13 @@
 <span class='const'><span class='object_link'><a href="#BindNoActive-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::BindNoActive (constant)">BindNoActive</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SilenceActive-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SilenceActive (constant)">SilenceActive</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SilenceNoActive-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SilenceNoActive (constant)">SilenceNoActive</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#CalmActive-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::CalmActive (constant)">CalmActive</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#CalmNoActive-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::CalmNoActive (constant)">CalmNoActive</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#CutthroatActive-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::CutthroatActive (constant)">CutthroatActive</a></span></span><span class='comma'>,</span>
 <span class='const'><span class='object_link'><a href="#CutthroatNoActive-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::CutthroatNoActive (constant)">CutthroatNoActive</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SpellUpMsgs-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SpellUpMsgs (constant)">SpellUpMsgs</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SpellDnMsgs-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SpellDnMsgs (constant)">SpellDnMsgs</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#Warcries-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Warcries (constant)">Warcries</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#NoWarcries-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::NoWarcries (constant)">NoWarcries</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SocietyJoin-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SocietyJoin (constant)">SocietyJoin</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SocietyStep-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SocietyStep (constant)">SocietyStep</a></span></span><span class='comma'>,</span>
 <span class='const'><span class='object_link'><a href="#SocietyResign-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SocietyResign (constant)">SocietyResign</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#LearnPSM-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::LearnPSM (constant)">LearnPSM</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#UnlearnPSM-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::UnlearnPSM (constant)">UnlearnPSM</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#LostTechnique-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::LostTechnique (constant)">LostTechnique</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#LearnTechnique-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::LearnTechnique (constant)">LearnTechnique</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#UnlearnTechnique-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::UnlearnTechnique (constant)">UnlearnTechnique</a></span></span><span class='comma'>,</span>
-<span class='const'><span class='object_link'><a href="#Resource-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Resource (constant)">Resource</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#Suffused-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Suffused (constant)">Suffused</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#VolnFavor-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::VolnFavor (constant)">VolnFavor</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#GigasArtifactFragments-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::GigasArtifactFragments (constant)">GigasArtifactFragments</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#RedsteelMarks-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::RedsteelMarks (constant)">RedsteelMarks</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketGeneral-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketGeneral (constant)">TicketGeneral</a></span></span><span class='comma'>,</span>
+<span class='const'><span class='object_link'><a href="#Resource-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Resource (constant)">Resource</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#Suffused-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Suffused (constant)">Suffused</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#VolnFavor-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::VolnFavor (constant)">VolnFavor</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#GigasArtifactFragments-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::GigasArtifactFragments (constant)">GigasArtifactFragments</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#RedsteelMarks-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::RedsteelMarks (constant)">RedsteelMarks</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketGeneral-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketGeneral (constant)">TicketGeneral</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketGold-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketGold (constant)">TicketGold</a></span></span><span class='comma'>,</span>
 <span class='const'><span class='object_link'><a href="#TicketBlackscrip-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketBlackscrip (constant)">TicketBlackscrip</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketBloodscrip-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketBloodscrip (constant)">TicketBloodscrip</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketEtherealScrip-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketEtherealScrip (constant)">TicketEtherealScrip</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketSoulShards-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketSoulShards (constant)">TicketSoulShards</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketRaikhen-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketRaikhen (constant)">TicketRaikhen</a></span></span><span class='comma'>,</span>
 <span class='const'><span class='object_link'><a href="#WealthSilver-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::WealthSilver (constant)">WealthSilver</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#WealthSilverContainer-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::WealthSilverContainer (constant)">WealthSilverContainer</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#GoalsDetected-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::GoalsDetected (constant)">GoalsDetected</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#GoalsEnded-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::GoalsEnded (constant)">GoalsEnded</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SpellsongRenewed-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SpellsongRenewed (constant)">SpellsongRenewed</a></span></span><span class='comma'>,</span>
 <span class='const'><span class='object_link'><a href="#ThornPoisonStart-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ThornPoisonStart (constant)">ThornPoisonStart</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ThornPoisonProgression-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ThornPoisonProgression (constant)">ThornPoisonProgression</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ThornPoisonDeprogression-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ThornPoisonDeprogression (constant)">ThornPoisonDeprogression</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ThornPoisonEnd-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ThornPoisonEnd (constant)">ThornPoisonEnd</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#CovertArtsCharges-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::CovertArtsCharges (constant)">CovertArtsCharges</a></span></span><span class='comma'>,</span>
-<span class='const'><span class='object_link'><a href="#AccountName-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::AccountName (constant)">AccountName</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#AccountSubscription-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::AccountSubscription (constant)">AccountSubscription</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ProfileStart-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ProfileStart (constant)">ProfileStart</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ProfileName-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ProfileName (constant)">ProfileName</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ProfileHouseCHE-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ProfileHouseCHE (constant)">ProfileHouseCHE</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ResignCHE-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ResignCHE (constant)">ResignCHE</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#GemstoneDust-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::GemstoneDust (constant)">GemstoneDust</a></span></span><span class='rparen'>)</span></pre></dd>
+<span class='const'><span class='object_link'><a href="#AccountName-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::AccountName (constant)">AccountName</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#AccountSubscription-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::AccountSubscription (constant)">AccountSubscription</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ProfileStart-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ProfileStart (constant)">ProfileStart</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ProfileName-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ProfileName (constant)">ProfileName</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ProfileHouseCHE-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ProfileHouseCHE (constant)">ProfileHouseCHE</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ResignCHE-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ResignCHE (constant)">ResignCHE</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ResignConfirmCHE-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ResignConfirmCHE (constant)">ResignConfirmCHE</a></span></span><span class='comma'>,</span>
+<span class='const'><span class='object_link'><a href="#ShadowEssence-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ShadowEssence (constant)">ShadowEssence</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ShadowEssenceGain-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ShadowEssenceGain (constant)">ShadowEssenceGain</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ShadowEssenceCap-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ShadowEssenceCap (constant)">ShadowEssenceCap</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SacrificeMana-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SacrificeMana (constant)">SacrificeMana</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SacrificeChannel-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SacrificeChannel (constant)">SacrificeChannel</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SacrificeInfest-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SacrificeInfest (constant)">SacrificeInfest</a></span></span><span class='comma'>,</span>
+<span class='const'><span class='object_link'><a href="#SacrificeFate-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SacrificeFate (constant)">SacrificeFate</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SacrificeShift-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SacrificeShift (constant)">SacrificeShift</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#GemstoneDust-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::GemstoneDust (constant)">GemstoneDust</a></span></span><span class='rparen'>)</span></pre></dd>
       
     </dl>
   
@@ -1289,9 +2134,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 23 03:17:21 2025 by
+  Generated on Tue Jan 13 02:35:07 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.2.9).
+  0.9.38 (ruby-3.2.9).
 </div>
 
     </div>

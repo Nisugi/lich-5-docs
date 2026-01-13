@@ -116,7 +116,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Breaks the summoned weapon if it exists.</p>
+<p>Breaks a summoned weapon.</p>
 </div></span>
   
 </li>
@@ -140,7 +140,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Retrieves the specified ingot for use in summoning.</p>
+<p>Retrieves an ingot for use in summoning.</p>
 </div></span>
   
 </li>
@@ -149,7 +149,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#identify_summoned_weapon-class_method" title="identify_summoned_weapon (class method)">.<strong>identify_summoned_weapon</strong>  &#x21d2; String<sup>?</sup> </a>
+      <a href="#identify_summoned_weapon-class_method" title="identify_summoned_weapon (class method)">.<strong>identify_summoned_weapon</strong>(settings = nil)  &#x21d2; Object<sup>?</sup> </a>
     
 
     
@@ -164,7 +164,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns what kind of summoned weapon you’re holding.</p>
+<p>Identifies the summoned weapon in hand.</p>
 </div></span>
   
 </li>
@@ -188,7 +188,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Pulls the summoned weapon back.</p>
+<p>Pulls the summoned weapon.</p>
 </div></span>
   
 </li>
@@ -212,7 +212,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Pushes the summoned weapon forward.</p>
+<p>Pushes the summoned weapon.</p>
 </div></span>
   
 </li>
@@ -221,7 +221,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#shape_summoned_weapon-class_method" title="shape_summoned_weapon (class method)">.<strong>shape_summoned_weapon</strong>(skill, ingot = nil)  &#x21d2; void </a>
+      <a href="#shape_summoned_weapon-class_method" title="shape_summoned_weapon (class method)">.<strong>shape_summoned_weapon</strong>(skill, ingot = nil, settings = nil)  &#x21d2; void </a>
     
 
     
@@ -236,7 +236,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Shapes the summoned weapon to a specified skill.</p>
+<p>Shapes a summoned weapon to a specified skill.</p>
 </div></span>
   
 </li>
@@ -260,7 +260,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Stows the specified ingot back into inventory.</p>
+<p>Stows the specified ingot.</p>
 </div></span>
   
 </li>
@@ -332,7 +332,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Turns the summoned weapon in the specified direction.</p>
+<p>Turns the summoned weapon.</p>
 </div></span>
   
 </li>
@@ -358,16 +358,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method does nothing if the item is nil.</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Breaks the summoned weapon if it exists.</p>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Breaks a summoned weapon.</p>
 
 
   </div>
@@ -378,11 +370,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Breaking a summoned weapon</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_break_summoned_weapon'>break_summoned_weapon</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>moonblade</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_break_summoned_weapon'>break_summoned_weapon</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>sword</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -393,7 +381,7 @@
         <span class='name'>item</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt>Object</tt>)</span>
       
       
       
@@ -413,14 +401,14 @@
       <pre class="lines">
 
 
-69
-70
-71
-72
-73</pre>
+62
+63
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_break_summoned_weapon'>break_summoned_weapon</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -443,16 +431,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method does nothing if the ingot is nil.</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Retrieves the specified ingot for use in summoning.</p>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Retrieves an ingot for use in summoning.</p>
 
 
   </div>
@@ -463,11 +443,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Getting an ingot</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_get_ingot'>get_ingot</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iron</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_get_ingot'>get_ingot</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>iron</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -478,7 +454,7 @@
         <span class='name'>ingot</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+        <span class='type'>(<tt>Object</tt>)</span>
       
       
       
@@ -500,7 +476,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Indicates if the ingot should be swapped.</p>
+<p>Indicates whether to swap the ingot.</p>
 </div>
       
     </li>
@@ -514,15 +490,15 @@
       <pre class="lines">
 
 
-44
-45
-46
-47
-48
-49</pre>
+39
+40
+41
+42
+43
+44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_ingot'>get_ingot</span><span class='lparen'>(</span><span class='id identifier rubyid_ingot'>ingot</span><span class='comma'>,</span> <span class='id identifier rubyid_swap'>swap</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_ingot'>ingot</span>
@@ -538,7 +514,7 @@
       <div class="method_details ">
   <h3 class="signature " id="identify_summoned_weapon-class_method">
   
-    .<strong>identify_summoned_weapon</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt><sup>?</sup> 
+    .<strong>identify_summoned_weapon</strong>(settings = nil)  &#x21d2; <tt>Object</tt><sup>?</sup> 
   
 
   
@@ -547,7 +523,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns what kind of summoned weapon you’re holding. Will be the &lt;adj&gt; &lt;noun&gt; like ‘red-hot moonblade’ or ‘electric sword. Identifies the type of summoned weapon currently held.</p>
+<p>Identifies the summoned weapon in hand.</p>
 
 
   </div>
@@ -558,13 +534,31 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Identifying a summoned weapon</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_weapon'>weapon</span> <span class='op'>=</span> <span class='id identifier rubyid_identify_summoned_weapon'>identify_summoned_weapon</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_weapon'>weapon</span> <span class='op'>=</span> <span class='id identifier rubyid_identify_summoned_weapon'>identify_summoned_weapon</span><span class='lparen'>(</span><span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span></code></pre>
     
   </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>settings</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Additional settings (optional).</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
@@ -572,13 +566,13 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt>Object</tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>The description of the summoned weapon or nil if none.</p>
+<p>The identified weapon or nil if not found.</p>
 </div>
       
     </li>
@@ -591,11 +585,6 @@
       <pre class="lines">
 
 
-110
-111
-112
-113
-114
 115
 116
 117
@@ -607,17 +596,24 @@
 123
 124
 125
-126</pre>
+126
+127
+128
+129
+130
+131
+132</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 110</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 115</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_identify_summoned_weapon'>identify_summoned_weapon</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_identify_summoned_weapon'>identify_summoned_weapon</span><span class='lparen'>(</span><span class='id identifier rubyid_settings'>settings</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRStats.html" title="Lich::DragonRealms::DRStats (module)">DRStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_moon_mage?'><span class='object_link'><a href="DRStats.html#moon_mage%3F-class_method" title="Lich::DragonRealms::DRStats.moon_mage? (method)">moon_mage?</a></span></span>
     <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_hand'><span class='object_link'><a href="DRC.html#right_hand-class_method" title="Lich::DragonRealms::DRC.right_hand (method)">right_hand</a></span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRCMM.html" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_is_moon_weapon?'><span class='object_link'><a href="DRCMM.html#is_moon_weapon%3F-class_method" title="Lich::DragonRealms::DRCMM.is_moon_weapon? (method)">is_moon_weapon?</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_right_hand'><span class='object_link'><a href="DRC.html#right_hand-class_method" title="Lich::DragonRealms::DRC.right_hand (method)">right_hand</a></span></span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_hand'><span class='object_link'><a href="DRC.html#left_hand-class_method" title="Lich::DragonRealms::DRC.left_hand (method)">left_hand</a></span></span>  <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRCMM.html" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_is_moon_weapon?'><span class='object_link'><a href="DRCMM.html#is_moon_weapon%3F-class_method" title="Lich::DragonRealms::DRCMM.is_moon_weapon? (method)">is_moon_weapon?</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_left_hand'><span class='object_link'><a href="DRC.html#left_hand-class_method" title="Lich::DragonRealms::DRC.left_hand (method)">left_hand</a></span></span><span class='rparen'>)</span>
   <span class='kw'>elsif</span> <span class='const'><span class='object_link'><a href="DRStats.html" title="Lich::DragonRealms::DRStats (module)">DRStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warrior_mage?'><span class='object_link'><a href="DRStats.html#warrior_mage%3F-class_method" title="Lich::DragonRealms::DRStats.warrior_mage? (method)">warrior_mage?</a></span></span>
-    <span class='id identifier rubyid_weapon_regex'>weapon_regex</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You tap (?:a|an|some)(?:[\w\s\-]+)((stone|fiery|icy|electric) [\w\s\-]+) that you are holding.$</span><span class='regexp_end'>/</span></span>
+    <span class='id identifier rubyid_custom_adjective'>custom_adjective</span> <span class='op'>=</span> <span class='id identifier rubyid_settings'>settings</span><span class='op'>&amp;.</span><span class='id identifier rubyid_summoned_weapons_adjective'>summoned_weapons_adjective</span> <span class='op'>?</span> <span class='lparen'>(</span><span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_summoned_weapons_adjective'>summoned_weapons_adjective</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>|</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_weapon_regex'>weapon_regex</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You tap (?:a|an|some)(?:[\w\s\-]+)((</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_custom_adjective'>custom_adjective</span><span class='embexpr_end'>}</span><span class='tstring_content'>stone|fiery|icy|electric) [\w\s\-]+) that you are holding.$</span><span class='regexp_end'>/</span></span>
     <span class='comment'># For a two-worded weapon like &#39;short sword&#39; the only way to know
 </span>    <span class='comment'># which element it was summoned with is by tapping it. That&#39;s the only
 </span>    <span class='comment'># way we can infer if it&#39;s a summoned sword or a regular one.
@@ -646,7 +642,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Pulls the summoned weapon back.</p>
+<p>Pulls the summoned weapon.</p>
 
 
   </div>
@@ -657,32 +653,10 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Pulling a summoned weapon</p>
-</div></h5>
-      
       <pre class="example code"><code><span class='id identifier rubyid_pull_summoned_weapon'>pull_summoned_weapon</span></code></pre>
     
   </div>
 
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If unable to pull the weapon.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -690,18 +664,18 @@
       <pre class="lines">
 
 
-163
-164
-165
 166
 167
 168
 169
 170
-171</pre>
+171
+172
+173
+174</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 163</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 166</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pull_summoned_weapon'>pull_summoned_weapon</span>
   <span class='kw'>case</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pull my </span><span class='embexpr_beg'>#{</span><span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_right_hand'>right_hand</span><span class='period'>.</span><span class='id identifier rubyid_noun'>noun</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You lack the elemental charge</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Closing your eyes</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>That\&#39;s as</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -729,7 +703,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Pushes the summoned weapon forward.</p>
+<p>Pushes the summoned weapon.</p>
 
 
   </div>
@@ -740,32 +714,10 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Pushing a summoned weapon</p>
-</div></h5>
-      
       <pre class="example code"><code><span class='id identifier rubyid_push_summoned_weapon'>push_summoned_weapon</span></code></pre>
     
   </div>
 
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If unable to push the weapon.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -773,18 +725,18 @@
       <pre class="lines">
 
 
-148
-149
-150
-151
 152
 153
 154
 155
-156</pre>
+156
+157
+158
+159
+160</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 148</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 152</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_push_summoned_weapon'>push_summoned_weapon</span>
   <span class='kw'>case</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>push my </span><span class='embexpr_beg'>#{</span><span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_right_hand'>right_hand</span><span class='period'>.</span><span class='id identifier rubyid_noun'>noun</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You lack the elemental charge</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Closing your eyes</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>That\&#39;s as</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -803,7 +755,7 @@
       <div class="method_details ">
   <h3 class="signature " id="shape_summoned_weapon-class_method">
   
-    .<strong>shape_summoned_weapon</strong>(skill, ingot = nil)  &#x21d2; <tt>void</tt> 
+    .<strong>shape_summoned_weapon</strong>(skill, ingot = nil, settings = nil)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -812,7 +764,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Shapes the summoned weapon to a specified skill.</p>
+<p>Shapes a summoned weapon to a specified skill.</p>
 
 
   </div>
@@ -823,11 +775,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Shaping a summoned weapon</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_shape_summoned_weapon'>shape_summoned_weapon</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Staves</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iron</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_shape_summoned_weapon'>shape_summoned_weapon</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>blunt</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>iron</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -838,7 +786,7 @@
         <span class='name'>skill</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+        <span class='type'>(<tt>Object</tt>)</span>
       
       
       
@@ -854,7 +802,7 @@
         <span class='name'>ingot</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt>Object</tt>, <tt>nil</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>nil</tt>)</em>
@@ -862,31 +810,31 @@
       
         &mdash;
         <div class='inline'>
-<p>The type of ingot to use (optional).</p>
+<p>The ingot used (optional).</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>settings</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Additional settings (optional).</p>
 </div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If unable to shape the weapon.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -894,6 +842,13 @@
       <pre class="lines">
 
 
+75
+76
+77
+78
+79
+80
+81
 82
 83
 84
@@ -914,24 +869,43 @@
 99
 100
 101
-102</pre>
+102
+103
+104
+105
+106
+107
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 75</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_shape_summoned_weapon'>shape_summoned_weapon</span><span class='lparen'>(</span><span class='id identifier rubyid_skill'>skill</span><span class='comma'>,</span> <span class='id identifier rubyid_ingot'>ingot</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_shape_summoned_weapon'>shape_summoned_weapon</span><span class='lparen'>(</span><span class='id identifier rubyid_skill'>skill</span><span class='comma'>,</span> <span class='id identifier rubyid_ingot'>ingot</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_summoned_weapon'>summoned_weapon</span> <span class='op'>=</span> <span class='id identifier rubyid_identify_summoned_weapon'>identify_summoned_weapon</span><span class='lparen'>(</span><span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRStats.html" title="Lich::DragonRealms::DRStats (module)">DRStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_moon_mage?'><span class='object_link'><a href="DRStats.html#moon_mage%3F-class_method" title="Lich::DragonRealms::DRStats.moon_mage? (method)">moon_mage?</a></span></span>
     <span class='id identifier rubyid_skill_to_shape'>skill_to_shape</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Staves</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>blunt</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Twohanded Edged</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>huge</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Large Edged</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>heavy</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Small Edged</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>normal</span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span>
     <span class='id identifier rubyid_shape'>shape</span> <span class='op'>=</span> <span class='id identifier rubyid_skill_to_shape'>skill_to_shape</span><span class='lbracket'>[</span><span class='id identifier rubyid_skill'>skill</span><span class='rbracket'>]</span>
     <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRCMM.html" title="Lich::DragonRealms::DRCMM (module)">DRCMM</a></span></span><span class='period'>.</span><span class='id identifier rubyid_hold_moon_weapon?'><span class='object_link'><a href="DRCMM.html#hold_moon_weapon%3F-class_method" title="Lich::DragonRealms::DRCMM.hold_moon_weapon? (method)">hold_moon_weapon?</a></span></span>
-      <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shape </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_identify_summoned_weapon'>identify_summoned_weapon</span><span class='embexpr_end'>}</span><span class='tstring_content'> to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_shape'>shape</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>you adjust the magic that defines its shape</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>already has</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You fumble around</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shape </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_summoned_weapon'>summoned_weapon</span><span class='embexpr_end'>}</span><span class='tstring_content'> to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_shape'>shape</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>you adjust the magic that defines its shape</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>already has</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You fumble around</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>elsif</span> <span class='const'><span class='object_link'><a href="DRStats.html" title="Lich::DragonRealms::DRStats (module)">DRStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warrior_mage?'><span class='object_link'><a href="DRStats.html#warrior_mage%3F-class_method" title="Lich::DragonRealms::DRStats.warrior_mage? (method)">warrior_mage?</a></span></span>
+    <span class='id identifier rubyid_shape_failures'>shape_failures</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You lack the elemental charge</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You reach out</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You fumble around</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You don&#39;t know how to manipulate your weapon in that way</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_get_ingot'>get_ingot</span><span class='lparen'>(</span><span class='id identifier rubyid_ingot'>ingot</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
-    <span class='kw'>case</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shape my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_identify_summoned_weapon'>identify_summoned_weapon</span><span class='embexpr_end'>}</span><span class='tstring_content'> to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_skill'>skill</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You lack the elemental charge</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You reach out</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You fumble around</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You don&#39;t know how to manipulate your weapon in that way</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>case</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shape my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_summoned_weapon'>summoned_weapon</span><span class='embexpr_end'>}</span><span class='tstring_content'> to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_skill'>skill</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_shape_failures'>shape_failures</span> <span class='op'>+</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>What type of weapon were you trying</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You lack the elemental charge</span><span class='tstring_end'>&#39;</span></span>
       <span class='id identifier rubyid_summon_admittance'>summon_admittance</span>
-      <span class='id identifier rubyid_shape_summoned_weapon'>shape_summoned_weapon</span><span class='lparen'>(</span><span class='id identifier rubyid_skill'>skill</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_shape_summoned_weapon'>shape_summoned_weapon</span><span class='lparen'>(</span><span class='id identifier rubyid_skill'>skill</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span>
+    <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>What type of weapon were you trying</span><span class='tstring_end'>&#39;</span></span>
+      <span class='comment'># currently custom adjectives from https://elanthipedia.play.net/Books_of_Binding tomes
+</span>      <span class='comment'># aren&#39;t recognized for shaping summoned elemental weapons, and the error message itself is misleading
+</span>      <span class='comment'># thankfully breaking, turning, pulling, pushing work fine with custom adj
+</span>      <span class='kw'>unless</span> <span class='id identifier rubyid_summoned_weapon'>summoned_weapon</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='kw'>case</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shape my </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_summoned_weapon'>summoned_weapon</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='id identifier rubyid_settings'>settings</span><span class='op'>&amp;.</span><span class='id identifier rubyid_summoned_weapons_adjective'>summoned_weapons_adjective</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_skill'>skill</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_shape_failures'>shape_failures</span><span class='rparen'>)</span>
+        <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You lack the elemental charge</span><span class='tstring_end'>&#39;</span></span>
+          <span class='id identifier rubyid_summon_admittance'>summon_admittance</span>
+          <span class='id identifier rubyid_shape_summoned_weapon'>shape_summoned_weapon</span><span class='lparen'>(</span><span class='id identifier rubyid_skill'>skill</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
     <span class='kw'>end</span>
     <span class='id identifier rubyid_stow_ingot'>stow_ingot</span><span class='lparen'>(</span><span class='id identifier rubyid_ingot'>ingot</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
@@ -956,16 +930,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method does nothing if the ingot is nil.</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Stows the specified ingot back into inventory.</p>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Stows the specified ingot.</p>
 
 
   </div>
@@ -976,11 +942,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Stowing an ingot</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_stow_ingot'>stow_ingot</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iron</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_stow_ingot'>stow_ingot</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>iron</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -991,7 +953,7 @@
         <span class='name'>ingot</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+        <span class='type'>(<tt>Object</tt>)</span>
       
       
       
@@ -1011,14 +973,14 @@
       <pre class="lines">
 
 
-57
-58
-59
-60
-61</pre>
+51
+52
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stow_ingot'>stow_ingot</span><span class='lparen'>(</span><span class='id identifier rubyid_ingot'>ingot</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_ingot'>ingot</span>
@@ -1053,32 +1015,10 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Summoning admittance</p>
-</div></h5>
-      
       <pre class="example code"><code><span class='id identifier rubyid_summon_admittance'>summon_admittance</span></code></pre>
     
   </div>
 
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If unable to summon admittance.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1086,8 +1026,6 @@
       <pre class="lines">
 
 
-178
-179
 180
 181
 182
@@ -1095,10 +1033,12 @@
 184
 185
 186
-187</pre>
+187
+188
+189</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 178</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 180</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_summon_admittance'>summon_admittance</span>
   <span class='kw'>case</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>summon admittance</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You align yourself to it</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>further increasing your proximity</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Going any further while in this plane would be fatal</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Summon allows Warrior Mages to draw</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You are a bit too distracted</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1138,11 +1078,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Summoning a weapon</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_summon_weapon'>summon_weapon</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>full</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>fire</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iron</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sword</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_summon_weapon'>summon_weapon</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>full</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>fire</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>iron</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>sword</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1171,7 +1107,7 @@
         <span class='name'>element</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt>Object</tt>, <tt>nil</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>nil</tt>)</em>
@@ -1179,7 +1115,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The element of the weapon (optional).</p>
+<p>The elemental type of the weapon (optional).</p>
 </div>
       
     </li>
@@ -1189,7 +1125,7 @@
         <span class='name'>ingot</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt>Object</tt>, <tt>nil</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>nil</tt>)</em>
@@ -1197,7 +1133,7 @@
       
         &mdash;
         <div class='inline'>
-<p>The type of ingot to use (optional).</p>
+<p>The type of ingot used (optional).</p>
 </div>
       
     </li>
@@ -1207,7 +1143,7 @@
         <span class='name'>skill</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt>Object</tt>, <tt>nil</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>nil</tt>)</em>
@@ -1222,24 +1158,6 @@
   
 </ul>
 
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If unable to summon a weapon.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1247,6 +1165,10 @@
       <pre class="lines">
 
 
+14
+15
+16
+17
 18
 19
 20
@@ -1260,14 +1182,10 @@
 28
 29
 30
-31
-32
-33
-34
-35</pre>
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_summon_weapon'>summon_weapon</span><span class='lparen'>(</span><span class='id identifier rubyid_moon'>moon</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_element'>element</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_ingot'>ingot</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_skill'>skill</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="DRStats.html" title="Lich::DragonRealms::DRStats (module)">DRStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_moon_mage?'><span class='object_link'><a href="DRStats.html#moon_mage%3F-class_method" title="Lich::DragonRealms::DRStats.moon_mage? (method)">moon_mage?</a></span></span>
@@ -1304,7 +1222,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p>
-<p>Turns the summoned weapon in the specified direction.</p>
+<p>Turns the summoned weapon.</p>
 
 
   </div>
@@ -1315,32 +1233,10 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Turning a summoned weapon</p>
-</div></h5>
-      
       <pre class="example code"><code><span class='id identifier rubyid_turn_summoned_weapon'>turn_summoned_weapon</span></code></pre>
     
   </div>
 
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If unable to turn the weapon.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1348,18 +1244,18 @@
       <pre class="lines">
 
 
-133
-134
-135
-136
-137
 138
 139
 140
-141</pre>
+141
+142
+143
+144
+145
+146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 133</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/commons/common-summoning.rb', line 138</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_turn_summoned_weapon'>turn_summoned_weapon</span>
   <span class='kw'>case</span> <span class='const'><span class='object_link'><a href="DRC.html" title="Lich::DragonRealms::DRC (module)">DRC</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bput'><span class='object_link'><a href="DRC.html#bput-class_method" title="Lich::DragonRealms::DRC.bput (method)">bput</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>turn my </span><span class='embexpr_beg'>#{</span><span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_right_hand'>right_hand</span><span class='period'>.</span><span class='id identifier rubyid_noun'>noun</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You lack the elemental charge</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You reach out</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1380,9 +1276,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 23 03:17:23 2025 by
+  Generated on Tue Jan 13 02:35:11 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.2.9).
+  0.9.38 (ruby-3.2.9).
 </div>
 
     </div>

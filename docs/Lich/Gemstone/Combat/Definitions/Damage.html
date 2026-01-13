@@ -96,7 +96,7 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Core damage patterns - most common</p>
+<p>Core damage patterns - most common Core damage patterns - most common</p>
 
 
   </div>
@@ -116,7 +116,7 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Spell damage patterns</p>
+<p>Spell damage patterns Spell damage patterns</p>
 
 
   </div>
@@ -135,7 +135,7 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Environmental/cyclone damage patterns</p>
+<p>Environmental/cyclone damage patterns Environmental/cyclone damage patterns</p>
 
 
   </div>
@@ -155,7 +155,7 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>All damage patterns combined</p>
+<p>All damage patterns combined All damage patterns combined</p>
 
 
   </div>
@@ -171,7 +171,7 @@
           <div class="docstring">
   <div class="discussion">
     
-<p>Compiled regex for fast detection</p>
+<p>Compiled regex for fast detection Compiled regex for fast detection</p>
 
 
   </div>
@@ -203,7 +203,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#parse-class_method" title="parse (class method)">.<strong>parse</strong>(line)  &#x21d2; Object </a>
+      <a href="#parse-class_method" title="parse (class method)">.<strong>parse</strong>(line)  &#x21d2; Hash<sup>?</sup> </a>
     
 
     
@@ -218,7 +218,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Parse damage from line.</p>
+<p>Parses a line to extract damage information.</p>
 </div></span>
   
 </li>
@@ -236,7 +236,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="parse-class_method">
   
-    .<strong>parse</strong>(line)  &#x21d2; <tt>Object</tt> 
+    .<strong>parse</strong>(line)  &#x21d2; <tt><span class='object_link'><a href="../../../../Hash.html" title="Hash (class)">Hash</a></span></tt><sup>?</sup> 
   
 
   
@@ -245,13 +245,68 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Parse damage from line</p>
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>This method will return nil if no damage pattern matches.</p>
+</div>
+  </div>
+
+
+<p>Parses a line to extract damage information</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Definitions.html" title="Lich::Gemstone::Combat::Definitions (module)">Definitions</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Definitions::Damage (module)">Damage</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>... and hit for 50 points of damage!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; { damage: 50 }</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>line</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The line to parse for damage information</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../../Hash.html" title="Hash (class)">Hash</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A hash containing damage and optionally target, or nil if no match</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -259,19 +314,19 @@
       <pre class="lines">
 
 
-40
-41
-42
-43
-44
-45
-46
 47
 48
-49</pre>
+49
+50
+51
+52
+53
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/defs/damage.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/defs/damage.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="#ALL_DAMAGE-constant" title="Lich::Gemstone::Combat::Definitions::Damage::ALL_DAMAGE (constant)">ALL_DAMAGE</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_pattern'>pattern</span><span class='op'>|</span>
@@ -293,9 +348,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 23 03:17:21 2025 by
+  Generated on Tue Jan 13 02:35:08 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.2.9).
+  0.9.38 (ruby-3.2.9).
 </div>
 
     </div>
