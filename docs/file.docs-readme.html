@@ -66,14 +66,103 @@
 
 <p>Lich is a scripting engine that allows players to automate and enhance their gameplay experience in Simutronics text games. It provides a Ruby-based API for interacting with the game.</p>
 
-<h2 id="label-Quick+Links">Quick Links</h2>
+<h2 id="label-Guides">Guides</h2>
 
-<h3 id="label-For+Players">For Players</h3>
-<ul><li>
-<p><strong><a href="file.psm-reference.html" title="PSM Reference">PSM Reference</a></strong> - Combat Maneuvers, Shield skills, Feats, and more</p>
-</li></ul>
+<h3 id="label-Getting+Started">Getting Started</h3>
 
-<h3 id="label-Module+Reference">Module Reference</h3>
+<table role="table">
+<thead>
+<tr>
+<th>Guide</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="file.scripting-basics.html" title="Scripting Basics">Scripting Basics</a></td>
+<td>Core concepts for writing Lich scripts</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="label-Character+-26+Combat">Character &amp; Combat</h3>
+
+<table role="table">
+<thead>
+<tr>
+<th>Guide</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="file.character-stats.html" title="Character Stats">Character Stats</a></td>
+<td>Stats, Skills, and character resources</td>
+</tr>
+<tr>
+<td><a href="file.spells-guide.html" title="Spells">Spells</a></td>
+<td>Working with spells and magic</td>
+</tr>
+<tr>
+<td><a href="file.psm-reference.html" title="PSM Reference">PSM Reference</a></td>
+<td>Combat Maneuvers, Shield skills, Feats, Warcries</td>
+</tr>
+<tr>
+<td><a href="file.society-guide.html" title="Societies">Societies</a></td>
+<td>Voln, Council of Light, Guardians of Sunfist</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="label-Game+World">Game World</h3>
+
+<table role="table">
+<thead>
+<tr>
+<th>Guide</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="file.game-data.html" title="Game Data">Game Data</a></td>
+<td>Rooms, Maps, NPCs, Items, and Players</td>
+</tr>
+<tr>
+<td><a href="file.bounty-guide.html" title="Bounty System">Bounty System</a></td>
+<td>Adventurer’s Guild bounty tasks</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="label-Module+Reference">Module Reference</h2>
+
+<h3 id="label-Character">Character</h3>
+
+<table role="table">
+<thead>
+<tr>
+<th>Module</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class='object_link'><a href="Lich/Common/Char.html" title="Lich::Common::Char (class)">Lich::Common::Char</a></span></td>
+<td>Character health, mana, stamina</td>
+</tr>
+<tr>
+<td><span class='object_link'><a href="Lich/Gemstone/Stats.html" title="Lich::Gemstone::Stats (module)">Lich::Gemstone::Stats</a></span></td>
+<td>Character statistics (STR, DEX, etc.)</td>
+</tr>
+<tr>
+<td><span class='object_link'><a href="Lich/Gemstone/Skills.html" title="Lich::Gemstone::Skills (module)">Lich::Gemstone::Skills</a></span></td>
+<td>Trained skills and ranks</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="label-Combat">Combat</h3>
 
 <table role="table">
 <thead>
@@ -114,6 +203,69 @@
 </tbody>
 </table>
 
+<h3 id="label-Magic">Magic</h3>
+
+<table role="table">
+<thead>
+<tr>
+<th>Module</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class='object_link'><a href="Lich/Common/Spell.html" title="Lich::Common::Spell (class)">Lich::Common::Spell</a></span></td>
+<td>Spell management and casting</td>
+</tr>
+<tr>
+<td><span class='object_link'><a href="Lich/Gemstone/Spells.html" title="Lich::Gemstone::Spells (module)">Lich::Gemstone::Spells</a></span></td>
+<td>Spell circle utilities</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="label-Game+World">Game World</h3>
+
+<table role="table">
+<thead>
+<tr>
+<th>Module</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class='object_link'><a href="Lich/Common/GameObj.html" title="Lich::Common::GameObj (class)">Lich::Common::GameObj</a></span></td>
+<td>Game objects (NPCs, items, players)</td>
+</tr>
+<tr>
+<td><span class='object_link'><a href="Lich/Common/Map.html" title="Lich::Common::Map (class)">Lich::Common::Map</a></span></td>
+<td>Map and room navigation</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="label-Systems">Systems</h3>
+
+<table role="table">
+<thead>
+<tr>
+<th>Module</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class='object_link'><a href="Lich/Gemstone/Bounty.html" title="Lich::Gemstone::Bounty (class)">Lich::Gemstone::Bounty</a></span></td>
+<td>Adventurer’s Guild bounties</td>
+</tr>
+<tr>
+<td><span class='object_link'><a href="Lich/Gemstone/Society.html" title="Lich::Gemstone::Society (class)">Lich::Gemstone::Society</a></span></td>
+<td>Society membership and abilities</td>
+</tr>
+</tbody>
+</table>
+
 <h2 id="label-Getting+Help">Getting Help</h2>
 <ul><li>
 <p><strong>In-game:</strong> <code>;help</code> for Lich commands</p>
@@ -132,7 +284,7 @@
 </div></div>
 
       <div id="footer">
-  Generated on Tue Jan 13 04:03:54 2026 by
+  Generated on Tue Jan 13 04:15:09 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-3.2.9).
 </div>
@@ -140,7 +292,7 @@
     </div>
   <script type="text/javascript">
 // Navigation helper for YARD docs
-// Adds persistent "All Classes" and "Home" links at the top of every page
+// Adds persistent navigation links and fixes sidebar navigation issues
 
 (function() {
   'use strict';
@@ -190,12 +342,91 @@
     content.insertBefore(nav, content.firstChild);
   }
 
+  // Fix sidebar navigation - YARD's default JS sometimes prevents link clicks
+  function fixSidebarNavigation() {
+    var fullList = document.getElementById('full_list');
+    if (!fullList) return;
+
+    // Use event delegation on the sidebar container
+    fullList.addEventListener('click', function(e) {
+      var link = e.target.closest('a');
+      if (link && link.href) {
+        // Check if this is an internal link that should navigate
+        var href = link.getAttribute('href');
+        if (href && !href.startsWith('#') && !href.startsWith('javascript:')) {
+          // Force navigation by setting window.location
+          e.preventDefault();
+          e.stopPropagation();
+          window.location.href = link.href;
+        }
+      }
+    }, true); // Use capture phase to intercept before YARD's handlers
+  }
+
+  // Also fix any links in the class list content area
+  function fixClassListLinks() {
+    // Find the class list content div
+    var listContent = document.getElementById('full_list_content') ||
+                      document.querySelector('.full_list_content') ||
+                      document.getElementById('full_list');
+
+    if (!listContent) return;
+
+    // Observe for dynamically loaded content
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        mutation.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) { // Element node
+            var links = node.querySelectorAll ? node.querySelectorAll('a[href]') : [];
+            links.forEach(function(link) {
+              ensureLinkWorks(link);
+            });
+          }
+        });
+      });
+    });
+
+    observer.observe(listContent, { childList: true, subtree: true });
+
+    // Fix existing links
+    var existingLinks = listContent.querySelectorAll('a[href]');
+    existingLinks.forEach(function(link) {
+      ensureLinkWorks(link);
+    });
+  }
+
+  function ensureLinkWorks(link) {
+    var href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+
+    // Remove any existing click handlers that might prevent navigation
+    link.onclick = null;
+
+    // Add our own handler
+    link.addEventListener('click', function(e) {
+      e.stopPropagation();
+      // Allow default behavior (navigation) to proceed
+    });
+  }
+
   // Run when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', addNavLinks);
+    document.addEventListener('DOMContentLoaded', function() {
+      addNavLinks();
+      fixSidebarNavigation();
+      fixClassListLinks();
+    });
   } else {
     addNavLinks();
+    fixSidebarNavigation();
+    fixClassListLinks();
   }
+
+  // Also run after a short delay to catch dynamically loaded content
+  setTimeout(function() {
+    fixSidebarNavigation();
+    fixClassListLinks();
+  }, 500);
 })();
 
 </script>

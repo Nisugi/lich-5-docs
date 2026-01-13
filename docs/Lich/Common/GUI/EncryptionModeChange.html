@@ -831,7 +831,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 04:04:03 2026 by
+  Generated on Tue Jan 13 04:15:19 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-3.2.9).
 </div>
@@ -839,7 +839,7 @@
     </div>
   <script type="text/javascript">
 // Navigation helper for YARD docs
-// Adds persistent "All Classes" and "Home" links at the top of every page
+// Adds persistent navigation links and fixes sidebar navigation issues
 
 (function() {
   'use strict';
@@ -889,12 +889,91 @@
     content.insertBefore(nav, content.firstChild);
   }
 
+  // Fix sidebar navigation - YARD's default JS sometimes prevents link clicks
+  function fixSidebarNavigation() {
+    var fullList = document.getElementById('full_list');
+    if (!fullList) return;
+
+    // Use event delegation on the sidebar container
+    fullList.addEventListener('click', function(e) {
+      var link = e.target.closest('a');
+      if (link && link.href) {
+        // Check if this is an internal link that should navigate
+        var href = link.getAttribute('href');
+        if (href && !href.startsWith('#') && !href.startsWith('javascript:')) {
+          // Force navigation by setting window.location
+          e.preventDefault();
+          e.stopPropagation();
+          window.location.href = link.href;
+        }
+      }
+    }, true); // Use capture phase to intercept before YARD's handlers
+  }
+
+  // Also fix any links in the class list content area
+  function fixClassListLinks() {
+    // Find the class list content div
+    var listContent = document.getElementById('full_list_content') ||
+                      document.querySelector('.full_list_content') ||
+                      document.getElementById('full_list');
+
+    if (!listContent) return;
+
+    // Observe for dynamically loaded content
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        mutation.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) { // Element node
+            var links = node.querySelectorAll ? node.querySelectorAll('a[href]') : [];
+            links.forEach(function(link) {
+              ensureLinkWorks(link);
+            });
+          }
+        });
+      });
+    });
+
+    observer.observe(listContent, { childList: true, subtree: true });
+
+    // Fix existing links
+    var existingLinks = listContent.querySelectorAll('a[href]');
+    existingLinks.forEach(function(link) {
+      ensureLinkWorks(link);
+    });
+  }
+
+  function ensureLinkWorks(link) {
+    var href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+
+    // Remove any existing click handlers that might prevent navigation
+    link.onclick = null;
+
+    // Add our own handler
+    link.addEventListener('click', function(e) {
+      e.stopPropagation();
+      // Allow default behavior (navigation) to proceed
+    });
+  }
+
   // Run when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', addNavLinks);
+    document.addEventListener('DOMContentLoaded', function() {
+      addNavLinks();
+      fixSidebarNavigation();
+      fixClassListLinks();
+    });
   } else {
     addNavLinks();
+    fixSidebarNavigation();
+    fixClassListLinks();
   }
+
+  // Also run after a short delay to catch dynamically loaded content
+  setTimeout(function() {
+    fixSidebarNavigation();
+    fixClassListLinks();
+  }, 500);
 })();
 
 </script>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: character-stats
+  
+    &mdash; Lich 5 Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "character-stats";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: character-stats</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'>
+<h1 id="label-Character+Stats+Guide">Character Stats Guide</h1>
+
+<p>This guide covers accessing your character’s statistics, skills, and resources in Lich scripts.</p>
+
+<h2 id="label-The+Char+Class">The Char Class</h2>
+
+<p>The <code>Char</code> class provides quick access to your character’s vital information.</p>
+
+<h3 id="label-Basic+Information">Basic Information</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>           <span class='comment'># Your character&#39;s name
+</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_stance'>stance</span>         <span class='comment'># Current stance (offensive, defensive, etc.)
+</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_stance'>percent_stance</span> <span class='comment'># Stance percentage (0-100)
+</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_encumbrance'>encumbrance</span>    <span class='comment'># Encumbrance level text
+</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_encumbrance'>percent_encumbrance</span>  <span class='comment'># Encumbrance percentage
+</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_citizenship'>citizenship</span>    <span class='comment'># Your citizenship (GemStone only)
+</span></code></pre>
+
+<h3 id="label-Resources">Resources</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Current values
+</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_health'>health</span>         <span class='comment'># Current health
+</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span>           <span class='comment'># Current mana
+</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_spirit'>spirit</span>         <span class='comment'># Current spirit
+</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_stamina'>stamina</span>        <span class='comment'># Current stamina
+</span>
+<span class='comment'># Maximum values
+</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_max_health'>max_health</span>     <span class='comment'># Maximum health
+</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_max_mana'>max_mana</span>       <span class='comment'># Maximum mana
+</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_max_spirit'>max_spirit</span>     <span class='comment'># Maximum spirit
+</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_max_stamina'>max_stamina</span>    <span class='comment'># Maximum stamina
+</span>
+<span class='comment'># Percentages
+</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_health'>percent_health</span>   <span class='comment'># Health percentage (0-100)
+</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_mana'>percent_mana</span>     <span class='comment'># Mana percentage (0-100)
+</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_spirit'>percent_spirit</span>   <span class='comment'># Spirit percentage (0-100)
+</span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_stamina'>percent_stamina</span>  <span class='comment'># Stamina percentage (0-100)
+</span></code></pre>
+
+<h3 id="label-Resource+Checks">Resource Checks</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Wait for resources
+</span><span class='id identifier rubyid_wait_until'><span class='object_link'><a href="top-level-namespace.html#wait_until-instance_method" title="#wait_until (method)">wait_until</a></span></span> <span class='lbrace'>{</span> <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span> <span class='op'>&gt;=</span> <span class='int'>50</span> <span class='rbrace'>}</span>
+<span class='id identifier rubyid_wait_until'><span class='object_link'><a href="top-level-namespace.html#wait_until-instance_method" title="#wait_until (method)">wait_until</a></span></span> <span class='lbrace'>{</span> <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_health'>percent_health</span> <span class='op'>&gt;=</span> <span class='int'>80</span> <span class='rbrace'>}</span>
+
+<span class='comment'># Check before actions
+</span><span class='kw'>if</span> <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_stamina'>stamina</span> <span class='op'>&lt;</span> <span class='int'>10</span>
+  <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Low on stamina!</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+
+<span class='kw'>if</span> <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_mana'>percent_mana</span> <span class='op'>&lt;</span> <span class='int'>25</span>
+  <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Mana below 25%</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h2 id="label-The+Stats+Module">The Stats Module</h2>
+
+<p>The <code>Stats</code> module provides detailed character statistics.</p>
+
+<h3 id="label-Character+Info">Character Info</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_race'>race</span>          <span class='comment'># &quot;Human&quot;, &quot;Elf&quot;, &quot;Dwarf&quot;, etc.
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_profession'>profession</span>    <span class='comment'># &quot;Wizard&quot;, &quot;Warrior&quot;, &quot;Cleric&quot;, etc.
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_prof'>prof</span>          <span class='comment'># Alias for profession
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_gender'>gender</span>        <span class='comment'># &quot;male&quot; or &quot;female&quot;
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_age'>age</span>           <span class='comment'># Character age
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span>         <span class='comment'># Current level
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_exp'>exp</span>           <span class='comment'># Current experience points
+</span></code></pre>
+
+<h3 id="label-Primary+Statistics">Primary Statistics</h3>
+
+<p>Each stat returns an OpenStruct with <code>value</code> and <code>bonus</code>:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Full stat access
+</span><span class='id identifier rubyid_str'>str</span> <span class='op'>=</span> <span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_strength'>strength</span>
+<span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>           <span class='comment'># Base stat value (e.g., 85)
+</span><span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_bonus'>bonus</span>           <span class='comment'># Stat bonus (e.g., 17)
+</span><span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_enhanced'>enhanced</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>  <span class='comment'># Enhanced value (with enhancives)
+</span><span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_enhanced'>enhanced</span><span class='period'>.</span><span class='id identifier rubyid_bonus'>bonus</span>  <span class='comment'># Enhanced bonus
+</span>
+<span class='comment'># All primary stats
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_strength'>strength</span>      <span class='comment'># STR
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_constitution'>constitution</span>  <span class='comment'># CON
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_dexterity'>dexterity</span>     <span class='comment'># DEX
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_agility'>agility</span>       <span class='comment'># AGI
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_discipline'>discipline</span>    <span class='comment'># DIS
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_aura'>aura</span>          <span class='comment'># AUR
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_logic'>logic</span>         <span class='comment'># LOG
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_intuition'>intuition</span>     <span class='comment'># INT
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_wisdom'>wisdom</span>        <span class='comment'># WIS
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_influence'>influence</span>     <span class='comment'># INF
+</span></code></pre>
+
+<h3 id="label-Shorthand+Access">Shorthand Access</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Returns [value, bonus] array
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_str'>str</span>           <span class='comment'># [value, bonus]
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_con'>con</span>
+<span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_dex'>dex</span>
+<span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_agi'>agi</span>
+<span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_dis'>dis</span>
+<span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_aur'>aur</span>
+<span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span>
+<span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_int'>int</span>
+<span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_wis'>wis</span>
+<span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_inf'>inf</span>
+
+<span class='comment'># Enhanced versions
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_enhanced_str'>enhanced_str</span>  <span class='comment'># [enhanced_value, enhanced_bonus]
+</span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_enhanced_con'>enhanced_con</span>
+<span class='comment'># ... etc.
+</span>
+<span class='comment'># Example usage
+</span><span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_bonus'>bonus</span> <span class='op'>=</span> <span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_str'>str</span>
+<span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Strength: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='embexpr_end'>}</span><span class='tstring_content'> (bonus: +</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bonus'>bonus</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
+<h2 id="label-The+Skills+Module">The Skills Module</h2>
+
+<p>The <code>Skills</code> module provides access to your character’s trained skills.</p>
+
+<h3 id="label-Accessing+Skills">Accessing Skills</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Combat skills
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_two_weapon_combat'>two_weapon_combat</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_armor_use'>armor_use</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_shield_use'>shield_use</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_combat_maneuvers'>combat_maneuvers</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_edged_weapons'>edged_weapons</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_blunt_weapons'>blunt_weapons</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_two_handed_weapons'>two_handed_weapons</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_ranged_weapons'>ranged_weapons</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_thrown_weapons'>thrown_weapons</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_polearm_weapons'>polearm_weapons</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_brawling'>brawling</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_ambush'>ambush</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_multi_opponent_combat'>multi_opponent_combat</span>
+
+<span class='comment'># Physical skills
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_physical_fitness'>physical_fitness</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_dodging'>dodging</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_survival'>survival</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_climbing'>climbing</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_swimming'>swimming</span>
+
+<span class='comment'># Magic skills
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_arcane_symbols'>arcane_symbols</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_magic_item_use'>magic_item_use</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_spell_aiming'>spell_aiming</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_harness_power'>harness_power</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_elemental_mana_control'>elemental_mana_control</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_mental_mana_control'>mental_mana_control</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_spirit_mana_control'>spirit_mana_control</span>
+
+<span class='comment'># Lore skills
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_elemental_lore_air'>elemental_lore_air</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_elemental_lore_earth'>elemental_lore_earth</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_elemental_lore_fire'>elemental_lore_fire</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_elemental_lore_water'>elemental_lore_water</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_spiritual_lore_blessings'>spiritual_lore_blessings</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_spiritual_lore_religion'>spiritual_lore_religion</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_spiritual_lore_summoning'>spiritual_lore_summoning</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_sorcerous_lore_demonology'>sorcerous_lore_demonology</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_sorcerous_lore_necromancy'>sorcerous_lore_necromancy</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_mental_lore_divination'>mental_lore_divination</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_mental_lore_manipulation'>mental_lore_manipulation</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_mental_lore_telepathy'>mental_lore_telepathy</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_mental_lore_transference'>mental_lore_transference</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_mental_lore_transformation'>mental_lore_transformation</span>
+
+<span class='comment'># Utility skills
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_disarming_traps'>disarming_traps</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_picking_locks'>picking_locks</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_stalking_and_hiding'>stalking_and_hiding</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_perception'>perception</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_first_aid'>first_aid</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_trading'>trading</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_pickpocketing'>pickpocketing</span>
+</code></pre>
+
+<h3 id="label-Shorthand+Skill+Names">Shorthand Skill Names</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Common shorthand versions
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_twoweaponcombat'>twoweaponcombat</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_armoruse'>armoruse</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_shielduse'>shielduse</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_combatmaneuvers'>combatmaneuvers</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_physicalfitness'>physicalfitness</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_arcanesymbols'>arcanesymbols</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_magicitemuse'>magicitemuse</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_spellaiming'>spellaiming</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_harnesspower'>harnesspower</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_stalkingandhiding'>stalkingandhiding</span>
+<span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_firstaid'>firstaid</span>
+
+<span class='comment'># Lore shorthand
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_elair'>elair</span>         <span class='comment'># elemental_lore_air
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_elearth'>elearth</span>       <span class='comment'># elemental_lore_earth
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_elfire'>elfire</span>        <span class='comment'># elemental_lore_fire
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_elwater'>elwater</span>       <span class='comment'># elemental_lore_water
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_slblessings'>slblessings</span>   <span class='comment'># spiritual_lore_blessings
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_slreligion'>slreligion</span>    <span class='comment'># spiritual_lore_religion
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_mldivination'>mldivination</span>  <span class='comment'># mental_lore_divination
+</span>
+<span class='comment'># Mana control shorthand
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_emc'>emc</span>           <span class='comment'># elemental_mana_control
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_mmc'>mmc</span>           <span class='comment'># mental_mana_control
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_smc'>smc</span>           <span class='comment'># spirit_mana_control
+</span></code></pre>
+
+<h3 id="label-Calculating+Skill+Bonus">Calculating Skill Bonus</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Calculate bonus from ranks
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_to_bonus'>to_bonus</span><span class='lparen'>(</span><span class='int'>30</span><span class='rparen'>)</span>  <span class='comment'># =&gt; 140
+</span>
+<span class='comment'># The formula:
+</span><span class='comment'># Ranks 1-10:   5 per rank
+</span><span class='comment'># Ranks 11-20:  4 per rank
+</span><span class='comment'># Ranks 21-30:  3 per rank
+</span><span class='comment'># Ranks 31-40:  2 per rank
+</span><span class='comment'># Ranks 41+:    1 per rank
+</span>
+<span class='comment'># Get bonus for a specific skill
+</span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_to_bonus'>to_bonus</span><span class='lparen'>(</span><span class='symbol'>:combat_maneuvers</span><span class='rparen'>)</span>
+</code></pre>
+
+<h2 id="label-Common+Patterns">Common Patterns</h2>
+
+<h3 id="label-Health+Monitoring">Health Monitoring</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_low_health?'>low_health?</span>
+  <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_health'>percent_health</span> <span class='op'>&lt;</span> <span class='int'>50</span>
+<span class='kw'>end</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_critical_health?'>critical_health?</span>
+  <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_health'>percent_health</span> <span class='op'>&lt;</span> <span class='int'>20</span>
+<span class='kw'>end</span>
+
+<span class='comment'># In a hunting script
+</span><span class='id identifier rubyid_loop'>loop</span> <span class='kw'>do</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_critical_health?'>critical_health?</span>
+    <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CRITICAL! Retreating!</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_fput'><span class='object_link'><a href="top-level-namespace.html#fput-instance_method" title="#fput (method)">fput</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>retreat</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>break</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_low_health?'>low_health?</span>
+    <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Low health, being careful...</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_sleep'>sleep</span> <span class='int'>1</span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h3 id="label-Resource+Waiting">Resource Waiting</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_wait_for_mana'>wait_for_mana</span><span class='lparen'>(</span><span class='id identifier rubyid_amount'>amount</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_amount'>amount</span>
+    <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Waiting for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_amount'>amount</span><span class='embexpr_end'>}</span><span class='tstring_content'> mana...</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_wait_until'><span class='object_link'><a href="top-level-namespace.html#wait_until-instance_method" title="#wait_until (method)">wait_until</a></span></span> <span class='lbrace'>{</span> <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span> <span class='op'>&gt;=</span> <span class='id identifier rubyid_amount'>amount</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_wait_for_full_resources'>wait_for_full_resources</span>
+  <span class='id identifier rubyid_wait_until'><span class='object_link'><a href="top-level-namespace.html#wait_until-instance_method" title="#wait_until (method)">wait_until</a></span></span> <span class='lbrace'>{</span>
+    <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_health'>percent_health</span> <span class='op'>&gt;=</span> <span class='int'>100</span> <span class='op'>&amp;&amp;</span>
+    <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_mana'>percent_mana</span> <span class='op'>&gt;=</span> <span class='int'>100</span> <span class='op'>&amp;&amp;</span>
+    <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_spirit'>percent_spirit</span> <span class='op'>&gt;=</span> <span class='int'>100</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h3 id="label-Skill+Checks">Skill Checks</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_can_pick_locks?'>can_pick_locks?</span>
+  <span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_picking_locks'>picking_locks</span> <span class='op'>&gt;=</span> <span class='int'>1</span>
+<span class='kw'>end</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_can_disarm_traps?'>can_disarm_traps?</span>
+  <span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_disarming_traps'>disarming_traps</span> <span class='op'>&gt;=</span> <span class='int'>1</span>
+<span class='kw'>end</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_is_caster?'>is_caster?</span>
+  <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_max_mana'>max_mana</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+<span class='kw'>end</span>
+
+<span class='comment'># Check if skilled enough for a task
+</span><span class='kw'>def</span> <span class='id identifier rubyid_has_skill?'>has_skill?</span><span class='lparen'>(</span><span class='id identifier rubyid_skill_name'>skill_name</span><span class='comma'>,</span> <span class='id identifier rubyid_min_ranks'>min_ranks</span><span class='rparen'>)</span>
+  <span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_skill_name'>skill_name</span><span class='rparen'>)</span> <span class='op'>&gt;=</span> <span class='id identifier rubyid_min_ranks'>min_ranks</span>
+<span class='kw'>end</span>
+
+<span class='kw'>if</span> <span class='id identifier rubyid_has_skill?'>has_skill?</span><span class='lparen'>(</span><span class='symbol'>:climbing</span><span class='comma'>,</span> <span class='int'>50</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Good climber!</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h3 id="label-Stat-Based+Decisions">Stat-Based Decisions</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Choose approach based on stats
+</span><span class='kw'>if</span> <span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_strength'>strength</span><span class='period'>.</span><span class='id identifier rubyid_bonus'>bonus</span> <span class='op'>&gt;</span> <span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_dexterity'>dexterity</span><span class='period'>.</span><span class='id identifier rubyid_bonus'>bonus</span>
+  <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Favoring strength-based attacks</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>else</span>
+  <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Favoring dexterity-based attacks</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+
+<span class='comment'># Check profession
+</span><span class='kw'>case</span> <span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_profession'>profession</span>
+<span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Wizard</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pure caster</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Warrior</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pure melee</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Paladin</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hybrid character</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h2 id="label-Experience+Tracking">Experience Tracking</h2>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Current experience
+</span><span class='id identifier rubyid_exp'>exp</span> <span class='op'>=</span> <span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_exp'>exp</span>
+<span class='id identifier rubyid_level'>level</span> <span class='op'>=</span> <span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span>
+
+<span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Level </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_level'>level</span><span class='embexpr_end'>}</span><span class='tstring_content'> with </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_exp'>exp</span><span class='embexpr_end'>}</span><span class='tstring_content'> experience</span><span class='tstring_end'>&quot;</span></span>
+
+<span class='comment'># Note: Stats.exp returns total XP earned, not XP to next level
+</span></code></pre>
+
+<h2 id="label-See+Also">See Also</h2>
+<ul><li>
+<p><span class='object_link'><a href="Lich/Common/Char.html" title="Lich::Common::Char (class)">Lich::Common::Char</a></span> - Char class reference</p>
+</li><li>
+<p><span class='object_link'><a href="Lich/Gemstone/Stats.html" title="Lich::Gemstone::Stats (module)">Lich::Gemstone::Stats</a></span> - Stats module reference</p>
+</li><li>
+<p><span class='object_link'><a href="Lich/Gemstone/Skills.html" title="Lich::Gemstone::Skills (module)">Lich::Gemstone::Skills</a></span> - Skills module reference</p>
+</li><li>
+<p><a href="file.scripting-basics.html" title="Scripting Basics">Scripting Basics</a> - Core scripting concepts</p>
+</li></ul>
+</div></div>
+
+      <div id="footer">
+  Generated on Tue Jan 13 04:15:10 2026 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.38 (ruby-3.2.9).
+</div>
+
+    </div>
+  <script type="text/javascript">
+// Navigation helper for YARD docs
+// Adds persistent navigation links and fixes sidebar navigation issues
+
+(function() {
+  'use strict';
+
+  function addNavLinks() {
+    // Find the content area
+    var content = document.getElementById('content');
+    if (!content) return;
+
+    // Check if we already added the nav
+    if (document.getElementById('quick-nav')) return;
+
+    // Calculate the relative path to root
+    var depth = (window.location.pathname.match(/\//g) || []).length;
+    var rootPath = '';
+
+    // Check if we're in a subdirectory
+    var path = window.location.pathname;
+    if (path.includes('/Lich/')) {
+      // Count depth after /lich-5-docs/
+      var parts = path.split('/').filter(p => p);
+      var docsIndex = parts.indexOf('lich-5-docs');
+      if (docsIndex >= 0) {
+        var subParts = parts.slice(docsIndex + 1);
+        rootPath = '../'.repeat(subParts.length - 1);
+      }
+    }
+
+    // If rootPath is empty and we're not at root, calculate from depth
+    if (!rootPath && !path.endsWith('/index.html') && !path.endsWith('/')) {
+      var pathParts = path.split('/').filter(p => p && p !== 'index.html');
+      var docsIdx = pathParts.indexOf('lich-5-docs');
+      if (docsIdx >= 0) {
+        rootPath = '../'.repeat(pathParts.length - docsIdx - 2);
+      }
+    }
+
+    // Create nav element
+    var nav = document.createElement('div');
+    nav.id = 'quick-nav';
+    nav.style.cssText = 'background: #f8f9fa; padding: 8px 15px; margin-bottom: 15px; border-radius: 4px; border: 1px solid #ddd; font-size: 14px;';
+    nav.innerHTML = '<a href="' + rootPath + 'index.html" style="margin-right: 15px; color: #0066cc; text-decoration: none;">Home</a> | ' +
+                    '<a href="' + rootPath + '_index.html" style="margin-left: 15px; margin-right: 15px; color: #0066cc; text-decoration: none;">All Classes</a> | ' +
+                    '<a href="' + rootPath + 'file.psm-reference.html" style="margin-left: 15px; color: #0066cc; text-decoration: none;">PSM Guide</a>';
+
+    // Insert at the beginning of content
+    content.insertBefore(nav, content.firstChild);
+  }
+
+  // Fix sidebar navigation - YARD's default JS sometimes prevents link clicks
+  function fixSidebarNavigation() {
+    var fullList = document.getElementById('full_list');
+    if (!fullList) return;
+
+    // Use event delegation on the sidebar container
+    fullList.addEventListener('click', function(e) {
+      var link = e.target.closest('a');
+      if (link && link.href) {
+        // Check if this is an internal link that should navigate
+        var href = link.getAttribute('href');
+        if (href && !href.startsWith('#') && !href.startsWith('javascript:')) {
+          // Force navigation by setting window.location
+          e.preventDefault();
+          e.stopPropagation();
+          window.location.href = link.href;
+        }
+      }
+    }, true); // Use capture phase to intercept before YARD's handlers
+  }
+
+  // Also fix any links in the class list content area
+  function fixClassListLinks() {
+    // Find the class list content div
+    var listContent = document.getElementById('full_list_content') ||
+                      document.querySelector('.full_list_content') ||
+                      document.getElementById('full_list');
+
+    if (!listContent) return;
+
+    // Observe for dynamically loaded content
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        mutation.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) { // Element node
+            var links = node.querySelectorAll ? node.querySelectorAll('a[href]') : [];
+            links.forEach(function(link) {
+              ensureLinkWorks(link);
+            });
+          }
+        });
+      });
+    });
+
+    observer.observe(listContent, { childList: true, subtree: true });
+
+    // Fix existing links
+    var existingLinks = listContent.querySelectorAll('a[href]');
+    existingLinks.forEach(function(link) {
+      ensureLinkWorks(link);
+    });
+  }
+
+  function ensureLinkWorks(link) {
+    var href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+
+    // Remove any existing click handlers that might prevent navigation
+    link.onclick = null;
+
+    // Add our own handler
+    link.addEventListener('click', function(e) {
+      e.stopPropagation();
+      // Allow default behavior (navigation) to proceed
+    });
+  }
+
+  // Run when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      addNavLinks();
+      fixSidebarNavigation();
+      fixClassListLinks();
+    });
+  } else {
+    addNavLinks();
+    fixSidebarNavigation();
+    fixClassListLinks();
+  }
+
+  // Also run after a short delay to catch dynamically loaded content
+  setTimeout(function() {
+    fixSidebarNavigation();
+    fixClassListLinks();
+  }, 500);
+})();
+
+</script>
+</body>
+</html>
