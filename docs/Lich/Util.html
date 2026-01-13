@@ -1866,7 +1866,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 04:37:01 2026 by
+  Generated on Tue Jan 13 04:43:28 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-3.2.9).
 </div>
@@ -2123,7 +2123,32 @@
     applyTheme(newTheme);
   }
 
+  // Check if we're in a sidebar/list frame (should not add nav)
+  function isListFrame() {
+    var path = window.location.pathname.toLowerCase();
+    // Skip list frames
+    if (path.includes('class_list') ||
+        path.includes('file_list') ||
+        path.includes('method_list') ||
+        path.includes('_list.html') ||
+        path.includes('frames.html')) {
+      return true;
+    }
+    // Skip if this is a frame with full_list (sidebar)
+    if (document.getElementById('full_list') && !document.getElementById('content')) {
+      return true;
+    }
+    // Skip if we're clearly in a sub-frame
+    if (window.frameElement) {
+      return true;
+    }
+    return false;
+  }
+
   function addNavLinks() {
+    // Don't add nav to list/sidebar frames
+    if (isListFrame()) return;
+
     var content = document.getElementById('content');
     if (!content) return;
 
@@ -2155,8 +2180,11 @@
     themeBtn.title = 'Switch to ' + (currentTheme === 'dark' ? 'light' : 'dark') + ' mode';
   }
 
-  // Aggressively fix ALL sidebar links
+  // Fix sidebar links - only run in actual sidebar/list frames
   function fixAllSidebarLinks() {
+    // Only fix links if we're in a list frame
+    if (!isListFrame()) return;
+
     // Get all possible sidebar/menu containers
     var selectors = [
       '#full_list',
@@ -2165,7 +2193,6 @@
       '#full_list_content',
       '.class_list',
       '.objects',
-      'nav',
       '.sidebar',
       '#list',
       '.y_list'
@@ -2189,8 +2216,14 @@
                   e.stopPropagation();
                   e.stopImmediatePropagation();
 
-                  // Use the resolved href (full URL)
-                  window.location.href = target.href;
+                  // Navigate the parent/top frame, not this frame
+                  if (window.parent && window.parent !== window) {
+                    window.parent.location.href = target.href;
+                  } else if (window.top && window.top !== window) {
+                    window.top.location.href = target.href;
+                  } else {
+                    window.location.href = target.href;
+                  }
                   return false;
                 }
               }
@@ -2209,11 +2242,17 @@
               // Store the original href
               var fullHref = link.href;
 
-              // Override onclick
+              // Override onclick - navigate parent frame
               link.onclick = function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                window.location.href = fullHref;
+                if (window.parent && window.parent !== window) {
+                  window.parent.location.href = fullHref;
+                } else if (window.top && window.top !== window) {
+                  window.top.location.href = fullHref;
+                } else {
+                  window.location.href = fullHref;
+                }
                 return false;
               };
             }
@@ -2223,8 +2262,11 @@
     });
   }
 
-  // Watch for dynamically loaded content
+  // Watch for dynamically loaded content - only in list frames
   function observeForNewLinks() {
+    // Only observe in list frames
+    if (!isListFrame()) return;
+
     var observer = new MutationObserver(function(mutations) {
       var hasNewNodes = mutations.some(function(m) {
         return m.addedNodes.length > 0;
@@ -2235,10 +2277,12 @@
       }
     });
 
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
+    if (document.body) {
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    }
   }
 
   // Initialize
@@ -2268,17 +2312,25 @@
     }, ms);
   });
 
-  // Also run on any click anywhere (last resort)
+  // Also run on any click anywhere (last resort) - only in list frames
   document.addEventListener('click', function(e) {
+    // Only handle in list frames
+    if (!isListFrame()) return;
+
     if (e.target.tagName === 'A') {
       var href = e.target.getAttribute('href');
       if (href && href !== '#' && !href.startsWith('javascript:')) {
         // Check if it's a sidebar link
-        var inSidebar = e.target.closest('#full_list, #menu, .menu, nav, .sidebar');
+        var inSidebar = e.target.closest('#full_list, #menu, .menu, .sidebar');
         if (inSidebar) {
           e.preventDefault();
           e.stopPropagation();
-          window.location.href = e.target.href;
+          // Navigate parent frame
+          if (window.parent && window.parent !== window) {
+            window.parent.location.href = e.target.href;
+          } else {
+            window.location.href = e.target.href;
+          }
         }
       }
     }
