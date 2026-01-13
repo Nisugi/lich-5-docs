@@ -301,6 +301,110 @@ body[data-theme="dark"] {
   color: var(--text-primary) !important;
 }
 
+/* File listing badges on index page */
+[data-theme="dark"] .alpha_listing a,
+[data-theme="dark"] .file_listing a,
+[data-theme="dark"] #content .r1 a,
+[data-theme="dark"] #content .r2 a,
+[data-theme="dark"] .index_list a,
+[data-theme="dark"] p.children a {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+  color: var(--link-color) !important;
+}
+
+[data-theme="dark"] .alpha_listing a:hover,
+[data-theme="dark"] .file_listing a:hover,
+[data-theme="dark"] #content .r1 a:hover,
+[data-theme="dark"] #content .r2 a:hover,
+[data-theme="dark"] .index_list a:hover,
+[data-theme="dark"] p.children a:hover {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--link-hover) !important;
+}
+
+/* Index page sections */
+[data-theme="dark"] .index_listing,
+[data-theme="dark"] #listing,
+[data-theme="dark"] .objects_filtered {
+  background-color: var(--bg-primary) !important;
+}
+
+/* Box/badge style links */
+[data-theme="dark"] .box a,
+[data-theme="dark"] .children a,
+[data-theme="dark"] .alpha a {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Definition lists */
+[data-theme="dark"] dt,
+[data-theme="dark"] dd {
+  background-color: transparent !important;
+  color: var(--text-secondary) !important;
+}
+
+/* Inline labels and badges */
+[data-theme="dark"] .label,
+[data-theme="dark"] .badge,
+[data-theme="dark"] .tag,
+[data-theme="dark"] .visibility {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Info/note boxes */
+[data-theme="dark"] .note_box,
+[data-theme="dark"] .info_box,
+[data-theme="dark"] .warning_box,
+[data-theme="dark"] .deprecated {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Blockquotes */
+[data-theme="dark"] blockquote {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-secondary) !important;
+}
+
+/* Lists */
+[data-theme="dark"] ul,
+[data-theme="dark"] ol {
+  background-color: transparent !important;
+}
+
+/* Inline code */
+[data-theme="dark"] code.inline,
+[data-theme="dark"] tt,
+[data-theme="dark"] kbd {
+  background-color: var(--code-bg) !important;
+  color: #c9d1d9 !important;
+}
+
+/* All remaining YARD specific elements */
+[data-theme="dark"] .r1,
+[data-theme="dark"] .r2,
+[data-theme="dark"] .item,
+[data-theme="dark"] .clearfix,
+[data-theme="dark"] .wrap {
+  background-color: transparent !important;
+}
+
+/* Namespace listing on index */
+[data-theme="dark"] .namespace_listing,
+[data-theme="dark"] .top_namespace {
+  background-color: transparent !important;
+}
+
+/* Ensure paragraphs in content are transparent */
+[data-theme="dark"] #content p,
+[data-theme="dark"] #filecontents p {
+  background-color: transparent !important;
+}
+
 /* Syntax highlighting adjustments for dark mode */
 [data-theme="dark"] .source_code .info.file {
   color: var(--text-muted) !important;
