@@ -1,9 +1,11 @@
 
 
 module Lich
+  # @api private
+  # Internal placeholder for unknown game types - not for public use.
   module Unknown
+    # @api private
     module Game
-      # Placeholder for unknown game types
     end
   end
 
