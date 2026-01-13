@@ -483,7 +483,26 @@ body[data-theme="dark"] {
 [data-theme="dark"] .box_info a,
 [data-theme="dark"] .inheritanceTree a,
 [data-theme="dark"] .showAll,
-[data-theme="dark"] .hideAll {
+[data-theme="dark"] .hideAll,
+[data-theme="dark"] h2 a,
+[data-theme="dark"] h3 a.summary_toggle,
+[data-theme="dark"] .method_summary h3 a,
+[data-theme="dark"] .constants_summary h3 a,
+[data-theme="dark"] a[href="#"] {
+  background-color: var(--bg-tertiary) !important;
+  border-color: var(--border-color) !important;
+  color: var(--link-color) !important;
+}
+
+/* Force expand/collapse buttons in summary headers */
+[data-theme="dark"] h2 + .summary_toggle,
+[data-theme="dark"] h2 ~ a.summary_toggle,
+[data-theme="dark"] .method_details_list h2 a,
+[data-theme="dark"] .constant_summary h2 a,
+[data-theme="dark"] .method_summary h2 a,
+[data-theme="dark"] .attr_summary h2 a,
+[data-theme="dark"] h3.signature + a,
+[data-theme="dark"] .method_details h3 + a {
   background-color: var(--bg-tertiary) !important;
   border-color: var(--border-color) !important;
   color: var(--link-color) !important;
