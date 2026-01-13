@@ -33,13 +33,48 @@
   --highlight-bg: #1f2937;
 }
 
-[data-theme="dark"] body {
+/* Root element backgrounds - critical for frames */
+html[data-theme="dark"],
+html[data-theme="dark"] body,
+body[data-theme="dark"] {
   background-color: var(--bg-primary) !important;
   color: var(--text-primary) !important;
 }
 
 [data-theme="dark"] #content {
   background-color: var(--bg-primary) !important;
+}
+
+/* Table of Contents */
+[data-theme="dark"] #toc,
+[data-theme="dark"] .toc,
+[data-theme="dark"] #table_of_contents {
+  background-color: var(--bg-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] #toc h2,
+[data-theme="dark"] .toc h2,
+[data-theme="dark"] #table_of_contents h2 {
+  color: var(--text-primary) !important;
+  background-color: var(--bg-primary) !important;
+}
+
+[data-theme="dark"] #toc a,
+[data-theme="dark"] .toc a {
+  color: var(--link-color) !important;
+}
+
+[data-theme="dark"] #toc a:hover,
+[data-theme="dark"] .toc a:hover {
+  color: var(--link-hover) !important;
+}
+
+[data-theme="dark"] #toc li,
+[data-theme="dark"] .toc li,
+[data-theme="dark"] #toc ol,
+[data-theme="dark"] .toc ol {
+  background-color: transparent !important;
 }
 
 [data-theme="dark"] .docstring,
