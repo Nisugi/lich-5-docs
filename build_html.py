@@ -214,6 +214,23 @@ class YARDHTMLBuilder:
             logger.info(f"Cleaning existing output: {self.output_dir}")
             shutil.rmtree(self.output_dir)
 
+    def copy_theme_assets(self):
+        """Copy theme CSS to output directory."""
+        assets_dir = Path(__file__).parent / 'yard-assets'
+        theme_css = assets_dir / 'css' / 'theme.css'
+
+        if not theme_css.exists():
+            logger.warning(f"Theme CSS not found: {theme_css}")
+            return
+
+        # Create css directory in output
+        css_dir = self.output_dir / 'css'
+        css_dir.mkdir(exist_ok=True)
+
+        # Copy theme CSS
+        shutil.copy(theme_css, css_dir / 'theme.css')
+        logger.info(f"Copied theme CSS to {css_dir / 'theme.css'}")
+
     def inject_nav_helper(self) -> int:
         """
         Inject navigation helper JavaScript into generated HTML files.
@@ -227,6 +244,9 @@ class YARDHTMLBuilder:
         if not nav_helper.exists():
             logger.warning(f"Navigation helper not found: {nav_helper}")
             return 0
+
+        # Copy theme assets first
+        self.copy_theme_assets()
 
         # Read the JavaScript
         with open(nav_helper, 'r', encoding='utf-8') as f:
