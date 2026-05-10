@@ -489,12 +489,15 @@ The line numbers are shown at the start of each line (e.g., "  15: def method_na
 
 5. **PARAMETER NAME RULES**
    - @param tags MUST exactly match the method's parameter names
-   - For block parameters: Use "block" NOT "&block" (no ampersand symbol!)
-     WRONG: @param &block [Proc]
-     RIGHT: @param block [Proc]
-   - For splat parameters (*args): Use "args" NOT "*args" (no asterisk!)
+   - For block parameters (`&block`): DO NOT add a @param tag — document block behavior
+     in the method description or with @yield/@yieldparam tags instead
+     WRONG: @param block [Proc] ...
+     WRONG: @param &block [Proc] ...
+     RIGHT: omit @param for &block entirely; describe it in the summary or use @yield
+   - For splat parameters (*args): Use the name without the asterisk
      WRONG: @param *messages [Array]
      RIGHT: @param messages [Array]
+   - Parameter names must match what's in the def statement exactly (no & or * symbols)
 
 6. **METHOD REFERENCE SYNTAX**
    - Class/module methods (def self.method): use `.method_name` in @see and {{.method_name}} inline
@@ -521,6 +524,9 @@ Documentation structure:
 2. For methods:
    - Brief description (what it does, not how)
    - Tags in order: @param, @return, @example (encouraged for consumer-facing), @note, @raise, @see
+   - @example format: the tag line contains an optional title, code goes on the NEXT line(s) indented with "#   "
+     WRONG: @example DRCI.get_item?(\\"sword\\")
+     RIGHT: @example Get from default storage\\n#   DRCI.get_item?(\\"sword\\")
 
 3. For constants (pattern arrays, non-trivial values):
    - Brief description
