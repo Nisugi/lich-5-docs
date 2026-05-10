@@ -1,10 +1,12 @@
 
 module Lich
   module Gemstone
-    # Represents the SpellRanks class which manages spell rank data.
-    # This class handles loading and saving spell ranks from a data file.
-    # @example Loading spell ranks
-    #   SpellRanks.load
+    # Represents the spell ranks for different classes in the Lich project.
+    #
+    # This class manages loading and saving spell rank data.
+    #
+    # @see Lich::Gemstone::SpellRanks#load
+    # @see Lich::Gemstone::SpellRanks#save
     class SpellRanks
       @@list      ||= Array.new
       @@timestamp ||= 0
@@ -15,8 +17,6 @@ module Lich
       # Loads the spell ranks from a data file.
       # @return [void]
       # @raise [StandardError] if there is an error loading the data
-      # @example Loading spell ranks
-      #   SpellRanks.load
       def SpellRanks.load
         if File.exist?(File.join(DATA_DIR, "#{XMLData.game}", "spell-ranks.dat"))
           begin
@@ -43,8 +43,6 @@ module Lich
       # Saves the current spell ranks to a data file.
       # @return [void]
       # @raise [StandardError] if there is an error saving the data
-      # @example Saving spell ranks
-      #   SpellRanks.save
       def SpellRanks.save
         begin
           File.open(File.join(DATA_DIR, "#{XMLData.game}", "spell-ranks.dat"), 'wb') { |f|
@@ -57,7 +55,7 @@ module Lich
       end
 
       # Retrieves the current timestamp for the spell ranks.
-      # @return [Integer] the current timestamp
+      # @return [Integer] the timestamp of the last load
       def SpellRanks.timestamp
         SpellRanks.load unless @@loaded
         @@timestamp
@@ -73,16 +71,14 @@ module Lich
 
       # Finds a spell rank by name.
       # @param name [String] the name of the spell rank to find
-      # @return [SpellRank, nil] the found spell rank or nil if not found
-      # @example Finding a spell rank
-      #   rank = SpellRanks["Fireball"]
+      # @return [Object, nil] the spell rank object if found, otherwise nil
       def SpellRanks.[](name)
         SpellRanks.load unless @@loaded
         @@list.find { |n| n.name == name }
       end
 
       # Retrieves the list of all spell ranks.
-      # @return [Array<SpellRank>] the list of spell ranks
+      # @return [Array<Object>] an array of all spell rank objects
       def SpellRanks.list
         SpellRanks.load unless @@loaded
         @@list
@@ -96,7 +92,7 @@ module Lich
         respond caller[0..1]
       end
 
-      # Initializes a new instance of SpellRanks with a name.
+      # Initializes a new SpellRanks object with the given name.
       # @param name [String] the name of the spell rank
       # @return [void]
       def initialize(name)

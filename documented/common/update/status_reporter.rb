@@ -7,20 +7,18 @@
   for sync summaries.
 =end
 
-# Utilities for rendering update status messages and tables.
-#
-# Provides monospace-aware respond wrapper and Terminal::Table formatting
-# for sync summaries.
 module Lich
+  # Provides utility methods for the Lich project.
+  #
+  # This module contains various helper methods used throughout the Lich project.
   module Util
     module Update
       module StatusReporter
         # Renders the given text in a monospace format.
         #
-        # @param text [String] The text to render in monospace.
-        # @return [String] The rendered monospace text.
-        # @example
-        #   Lich::Util::Update::StatusReporter.respond_mono("Hello World")
+        # @param text [String] the text to render in monospace
+        # @return [String] the rendered monospace text
+        # @api private
         def self.respond_mono(text)
           if defined?(Lich::Messaging) && Lich::Messaging.respond_to?(:mono)
             Lich::Messaging.mono(text)
@@ -31,18 +29,16 @@ module Lich
           end
         end
 
-        # Renders a synchronization summary table for the given repository.
+        # Renders a summary of the synchronization process.
         #
-        # @param repo_name [String] The name of the repository.
-        # @param script_count [Integer] The total number of scripts checked.
-        # @param downloaded_scripts [Array<String>] The list of downloaded scripts.
-        # @param downloaded_other [Hash<String, Array<String>>] The list of other downloaded files categorized by subdirectory.
-        # @param subdir_names [Array<String>] The names of subdirectories.
-        # @param failed_scripts [Array<String>] (optional) The list of scripts that failed to download.
-        # @param failed_other [Hash<String, Array<String>>] (optional) The list of other files that failed to download categorized by subdirectory.
+        # @param repo_name [String] the name of the repository
+        # @param script_count [Integer] the number of scripts checked
+        # @param downloaded_scripts [Array<String>] the list of downloaded scripts
+        # @param downloaded_other [Hash] a hash of other downloaded files categorized by subdirectory
+        # @param subdir_names [Array<String>] the names of subdirectories
+        # @param failed_scripts [Array<String>] the list of failed scripts (default: [])
+        # @param failed_other [Hash] a hash of failed downloads categorized by subdirectory (default: {})
         # @return [void]
-        # @example
-        #   Lich::Util::Update::StatusReporter.render_sync_summary("my_repo", 5, ["script1.rb"], [], ["subdir1", "subdir2"], ["script2.rb"], {"subdir1" => ["file1.txt"]})
         def self.render_sync_summary(repo_name, script_count, downloaded_scripts, downloaded_other, subdir_names, failed_scripts = [], failed_other = {})
           total_downloaded = downloaded_scripts.length + downloaded_other.values.flatten.length
           total_failed = failed_scripts.length + failed_other.values.flatten.length

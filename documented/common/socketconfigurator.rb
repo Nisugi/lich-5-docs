@@ -1,11 +1,14 @@
 require 'socket'
 
-# Lich module
-# This module serves as a namespace for the Lich project.
+# Provides common utilities for the Lich project.
+#
+# @see Lich::Common
 module Lich
   module Common
-    # SocketConfigurator module
-    # This module provides methods to configure socket options for both Windows and Unix platforms.
+    # Configures socket options for different platforms.
+    #
+    # This module handles the configuration of socket options
+    # for both Windows and Unix-like systems.
     module SocketConfigurator
       if Gem.win_platform?
         Lich::Util.install_gem_requirements({ "ffi" => true })
@@ -15,72 +18,58 @@ module Lich
           ffi_lib 'Ws2_32', 'msvcrt'
 
           # WSAIoctl command code for setting TCP keep-alive parameters
-          # WSAIoctl command code for setting TCP keep-alive parameters
           SIO_KEEPALIVE_VALS = 0x98000004
 
-          # Socket option level for socket-level options
           # Socket option level for socket-level options
           SOL_SOCKET = 0xffff
 
           # Socket option to enable/disable keep-alive
-          # Socket option to enable/disable keep-alive
           SO_KEEPALIVE = 0x0008
 
-          # Socket option to control connection linger on close
           # Socket option to control connection linger on close
           SO_LINGER   = 0x0080
 
           # Socket option to set receive timeout
-          # Socket option to set receive timeout
           SO_RCVTIMEO = 0x1006
 
-          # Socket option to set send timeout
           # Socket option to set send timeout
           SO_SNDTIMEO = 0x1005
 
           # Socket option to set receive buffer size
-          # Socket option to set receive buffer size
           SO_RCVBUF   = 0x1002
 
-          # Socket option to set send buffer size
           # Socket option to set send buffer size
           SO_SNDBUF   = 0x1003
 
           # Protocol number for TCP
-          # Protocol number for TCP
           IPPROTO_TCP = 6
 
-          # TCP option to disable Nagle's algorithm
           # TCP option to disable Nagle's algorithm
           TCP_NODELAY = 0x0001
 
           # TCP option to set maximum retransmission time
-          # TCP option to set maximum retransmission time
           TCP_MAXRT   = 5
 
-          # TcpKeepalive struct
-          # This struct represents the TCP keepalive settings.
-          # @example Creating a TcpKeepalive struct
-          #   ka = TcpKeepalive.new
+          # Represents the TCP keepalive settings structure.
+          #
+          # This structure is used to configure TCP keepalive options.
           class TcpKeepalive < FFI::Struct
             layout :onoff, :ulong,
                    :keepalivetime, :ulong,
                    :keepaliveinterval, :ulong
           end
 
-          # Linger struct
-          # This struct represents the linger settings for a socket.
-          # @example Creating a Linger struct
-          #   linger = Linger.new
+          # Represents the linger settings structure for sockets.
+          #
+          # This structure is used to configure the linger option on sockets.
           class Linger < FFI::Struct
             layout :l_onoff, :ushort,
                    :l_linger, :ushort
           end
 
-          # Timeval struct
-          # This struct represents a time value used for socket timeouts.
-          # @example Creating a Timeval struct
-          #   tv = Timeval.new
+          # Represents a time value structure used for socket timeouts.
+          #
+          # This structure is used to specify timeouts for socket operations.
           class Timeval < FFI::Struct
             layout :tv_sec, :long,
                    :tv_usec, :long
@@ -97,18 +86,19 @@ module Lich
       end
 
 
-      # Configures the socket with various options.
-      # @param sock [Socket] The socket to configure.
-      # @param keepalive [Hash] Options for TCP keepalive settings.
-      # @param linger [Hash] Options for linger settings.
-      # @param timeout [Hash] Options for receive and send timeouts.
-      # @param buffer_size [Hash] Options for receive and send buffer sizes.
-      # @param tcp_nodelay [Boolean] Whether to disable Nagle's algorithm.
-      # @param tcp_maxrt [Integer] Maximum retransmission time.
+      # Configures the specified socket with various options.
+      #
+      # @param sock [Socket] the socket to configure
+      # @param keepalive [Hash] options for TCP keepalive settings
+      # @param linger [Hash] options for linger settings
+      # @param timeout [Hash] options for receive/send timeouts
+      # @param buffer_size [Hash] options for receive/send buffer sizes
+      # @param tcp_nodelay [Boolean] whether to disable Nagle's algorithm
+      # @param tcp_maxrt [Integer] maximum retransmission time
       # @return [void]
-      # @raise [StandardError] If socket configuration fails.
-      # @example Configuring a socket
-      #   configure(socket, keepalive: { enable: true }, linger: { enable: true })
+      # @raise [StandardError] if configuration fails
+      # @example
+      #   configure(socket, keepalive: { enable: true, idle: 120 }, linger: { enable: true, timeout: 5 })
       def self.configure(sock,
                          keepalive: { enable: true, idle: 120, interval: 30 },
                          linger: { enable: true, timeout: 5 },
@@ -132,17 +122,16 @@ module Lich
       end
 
 
-      # Configures socket options for Unix systems.
-      # @param sock [Socket] The socket to configure.
-      # @param keepalive [Hash] Options for TCP keepalive settings.
-      # @param linger [Hash] Options for linger settings.
-      # @param timeout [Hash] Options for receive and send timeouts.
-      # @param buffer_size [Hash] Options for receive and send buffer sizes.
-      # @param tcp_nodelay [Boolean] Whether to disable Nagle's algorithm.
+      # Configures socket options for Unix-like systems.
+      #
+      # @param sock [Socket] the socket to configure
+      # @param keepalive [Hash] options for TCP keepalive settings
+      # @param linger [Hash] options for linger settings
+      # @param timeout [Hash] options for receive/send timeouts
+      # @param buffer_size [Hash] options for receive/send buffer sizes
+      # @param tcp_nodelay [Boolean] whether to disable Nagle's algorithm
       # @return [void]
-      # @raise [StandardError] If socket configuration fails.
-      # @example Configuring a Unix socket
-      #   configure_unix(socket, keepalive: { enable: true })
+      # @raise [StandardError] if configuration fails
       def self.configure_unix(sock, keepalive, linger, timeout, buffer_size, tcp_nodelay)
         # Helper: error-checked setsockopt
         check_setsockopt = lambda do |level, option, value|
@@ -201,17 +190,16 @@ module Lich
       # -------------------------
 
       # Configures socket options for Windows systems.
-      # @param sock [Socket] The socket to configure.
-      # @param keepalive [Hash] Options for TCP keepalive settings.
-      # @param linger [Hash] Options for linger settings.
-      # @param timeout [Hash] Options for receive and send timeouts.
-      # @param buffer_size [Hash] Options for receive and send buffer sizes.
-      # @param tcp_nodelay [Boolean] Whether to disable Nagle's algorithm.
-      # @param tcp_maxrt [Integer] Maximum retransmission time.
+      #
+      # @param sock [Socket] the socket to configure
+      # @param keepalive [Hash] options for TCP keepalive settings
+      # @param linger [Hash] options for linger settings
+      # @param timeout [Hash] options for receive/send timeouts
+      # @param buffer_size [Hash] options for receive/send buffer sizes
+      # @param tcp_nodelay [Boolean] whether to disable Nagle's algorithm
+      # @param tcp_maxrt [Integer] maximum retransmission time
       # @return [void]
-      # @raise [StandardError] If socket configuration fails.
-      # @example Configuring a Windows socket
-      #   configure_windows(socket, keepalive: { enable: true })
+      # @raise [StandardError] if configuration fails
       def self.configure_windows(sock, keepalive, linger, timeout, buffer_size, tcp_nodelay, tcp_maxrt)
         # Helper: error-checked setsockopt using Ruby's Socket API
         check_setsockopt = lambda do |level, option, value|

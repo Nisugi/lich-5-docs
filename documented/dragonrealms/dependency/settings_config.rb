@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-# DR-specific configuration for SettingsTransformer.
-#
-# Contains the key names, data file types, UserVars mappings,
-# hometown lookup keys, denylists, and legacy migrations that
-# describe how to transform DragonRealms user settings.
 =begin
   DR-specific configuration for SettingsTransformer.
 
@@ -13,13 +8,18 @@
   describe how to transform DragonRealms user settings.
 =end
 
+# Contains configuration settings for the Lich project.
+#
+# This module serves as a namespace for the DragonRealms settings configuration.
 module Lich
   module DragonRealms
+    # Configuration settings for transforming user settings in DragonRealms.
+    #
+    # This module holds various constants that define how user settings are transformed.
     module SettingsConfig
-      # Configuration constant for transforming user settings.
+      # A hash containing the transformation configuration for user settings.
       #
-      # This constant holds various keys and settings used in the
-      # transformation process for DragonRealms user settings.
+      # This includes keys for different phases of transformation, fallback settings, and denylists.
       TRANSFORM_CONFIG = {
         # Phase 1: Default empty values
         empty_data_type: 'empty',

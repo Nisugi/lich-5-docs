@@ -2,13 +2,17 @@
 
 Lich::Util.install_gem_requirements({ 'ffi' => true })
 
-# Provides functionality for the Lich application.
-# This module contains various utilities and classes for managing credentials on Windows.
-# @example Using the Lich module
-#   Lich::Common::GUI::WindowsCredentialManager.store_credential("target", "user", "pass")
+# Provides utility functions and classes for the Lich project.
+#
+# @see Lich::Util
 module Lich
   module Common
     module GUI
+      # Provides access to Windows Credential Manager functions using FFI.
+      #
+      # This module allows storing, retrieving, and deleting credentials on Windows systems.
+      #
+      # @see Lich::Common::GUI
       module WindowsCredentialManager
         extend FFI::Library
 
@@ -18,7 +22,6 @@ module Lich
         end
 
         # CRED_TYPE values
-        # Represents a generic credential type.
         CRED_TYPE_GENERIC = 1
         CRED_TYPE_DOMAIN_PASSWORD = 2
         CRED_TYPE_DOMAIN_CERTIFICATE = 3
@@ -27,19 +30,16 @@ module Lich
         CRED_TYPE_DOMAIN_EXTENDED = 6
 
         # CRED_PERSIST values
-        # Represents a session persistence type for credentials.
         CRED_PERSIST_SESSION = 1
         CRED_PERSIST_LOCAL_MACHINE = 2
         CRED_PERSIST_ENTERPRISE = 3
 
         # Max credential size (512KB)
-        # Maximum size for a credential blob in bytes (512KB).
         CRED_MAX_CREDENTIAL_BLOB_SIZE = 512 * 1024
 
-        # Represents a credential structure used for storing credentials in Windows.
-        # This class defines the layout of the credential structure used by the FFI library.
-        # @example Creating a new CredentialStruct
-        #   credential = CredentialStruct.new
+        # Represents the structure of a credential in Windows Credential Manager.
+        #
+        # This class defines the layout of the credential structure used in FFI calls.
         class CredentialStruct < FFI::Struct
           layout(
             :flags, :uint32,
@@ -68,11 +68,8 @@ module Lich
 
         class << self
           # Checks if the Windows Credential Manager is available.
+          #
           # @return [Boolean] true if available, false otherwise.
-          # @example Checking availability
-          #   if WindowsCredentialManager.available?
-          #     puts "Credential Manager is available"
-          #   end
           def available?
             return false unless OS.windows?
 
@@ -86,15 +83,13 @@ module Lich
           end
 
           # Stores a credential in the Windows Credential Manager.
-          # @param target_name [String] The target name for the credential.
-          # @param username [String] The username associated with the credential.
-          # @param password [String] The password associated with the credential.
-          # @param comment [String, nil] An optional comment for the credential.
-          # @param persist [Integer] The persistence type for the credential (default: CRED_PERSIST_LOCAL_MACHINE).
+          #
+          # @param target_name [String] the target name for the credential.
+          # @param username [String] the username associated with the credential.
+          # @param password [String] the password to store.
+          # @param comment [String, nil] an optional comment for the credential.
+          # @param persist [Integer] the persistence type (default is CRED_PERSIST_LOCAL_MACHINE).
           # @return [Boolean] true if the credential was stored successfully, false otherwise.
-          # @raise [StandardError] If an error occurs during storage.
-          # @example Storing a credential
-          #   WindowsCredentialManager.store_credential("target", "user", "pass")
           def store_credential(target_name, username, password, comment = nil, persist = CRED_PERSIST_LOCAL_MACHINE)
             return false unless available?
 
@@ -145,11 +140,9 @@ module Lich
           end
 
           # Retrieves a credential from the Windows Credential Manager.
-          # @param target_name [String] The target name for the credential to retrieve.
-          # @return [String, nil] The password if found, nil otherwise.
-          # @raise [StandardError] If an error occurs during retrieval.
-          # @example Retrieving a credential
-          #   password = WindowsCredentialManager.retrieve_credential("target")
+          #
+          # @param target_name [String] the target name of the credential to retrieve.
+          # @return [String, nil] the password if found, nil if not found.
           def retrieve_credential(target_name)
             return nil unless available?
 
@@ -189,11 +182,9 @@ module Lich
           end
 
           # Deletes a credential from the Windows Credential Manager.
-          # @param target_name [String] The target name for the credential to delete.
+          #
+          # @param target_name [String] the target name of the credential to delete.
           # @return [Boolean] true if the credential was deleted successfully, false otherwise.
-          # @raise [StandardError] If an error occurs during deletion.
-          # @example Deleting a credential
-          #   WindowsCredentialManager.delete_credential("target")
           def delete_credential(target_name)
             return false unless available?
 
@@ -218,6 +209,10 @@ module Lich
 
           private
 
+          # Converts a string to a wide character string (UTF-16LE).
+          #
+          # @param str [String] the string to convert.
+          # @return [FFI::MemoryPointer] a pointer to the wide character string.
           def string_to_wide(str)
             wide_str = str.encode('UTF-16LE')
             # Add UTF-16LE null terminator
@@ -228,6 +223,10 @@ module Lich
             ptr
           end
 
+          # Converts a wide character string (UTF-16LE) back to a regular string.
+          #
+          # @param ptr [FFI::MemoryPointer] a pointer to the wide character string.
+          # @return [String, nil] the converted string, or nil if the pointer is null.
           def wide_to_string(ptr)
             return nil if ptr.null?
 

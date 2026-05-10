@@ -1,20 +1,21 @@
 
-# The Lich module
-# This module serves as a namespace for the Lich project.
 module Lich
   module Gemstone
     module Infomon
-      # The XMLParser module
-      # This module contains patterns and methods for parsing XML data.
-      # @example Parsing a line
-      #   result = XMLParser.parse(line)
       module XMLParser
         module Pattern
-          # A regular expression pattern for matching group-related messages.
+          # Regular expression pattern for matching group-related messages.
+          #
+          # @example
+          #   "You are leading" matches Group_Short
+          #   "following you" matches Group_Short
+          #   "IconJOINED" matches Group_Short
           Group_Short = /(?:group|following you|IconJOINED)|^You are leading|(?:'s<\/a>|your) hand(?: tenderly)?\.\r?\n?$/
-          # A regular expression pattern for matching arrival messages.
+          # Regular expression pattern for matching arrival messages.
+          #
+          # @example
+          #   "Also here: " matches Also_Here_Arrival
           Also_Here_Arrival = /^Also here: /
-          # A regular expression pattern for matching the prefix of NPC death messages.
           NpcDeathPrefix = Regexp.union(
             /The fire in the/,
             /With a surprised grunt, the/,
@@ -31,7 +32,6 @@ module Lich
             /The head in/,
             /The skeletal structure of( the)?/,
           )
-          # A regular expression pattern for matching the postfix of NPC death messages.
           NpcDeathPostfix = Regexp.union(
             /body as it rises, disappearing into the heavens/,
             /falls to the ground and dies(?:, its feelers twitching)?/,
@@ -148,29 +148,24 @@ module Lich
             /emits a hollow scream as ribbons of essence begin to wend away from <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> and into nothingness/,
             /screams with rage as <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> falls to the ground and dies/,
           )
-          # A regular expression pattern for matching complete NPC death messages.
+          # Regular expression pattern for matching NPC death messages.
+          #
+          # @example
+          #   "The fire in the body as it rises, disappearing into the heavens." matches NpcDeathMessage
+          #   "With a surprised grunt, the body goes rigid and collapses to the ground, dead." matches NpcDeathMessage
           NpcDeathMessage = /^(?:<pushBold\/>)?#{NpcDeathPrefix} (?:<pushBold\/>)?(?:(?:an?|some) )?<a.*?exist=["'](?<npc_id>\-?[0-9]+)["'].*?>.*?<\/a>(?:<popBold\/>)?(?:'s)? #{NpcDeathPostfix}[\.!]\r?\n?$/
 
           # the following are for parsing STOW LIST and setting of STOW containers
-          # A regular expression pattern for matching the start of the stow list output.
           StowListOutputStart = /^You have the following containers set as stow targets:\r?\n?$/
-          # A regular expression pattern for matching individual stow containers.
           StowListContainer = /^  (?:(?:an?|some) )?(?<before>[^<]+)?<a exist="(?<id>\d+)" noun="(?<noun>[^"]+)">(?<name>[^<]+)<\/a>(?<after> [^\(]+)? \((?<type>box|gem|herb|skin|wand|scroll|potion|trinket|reagent|lockpick|treasure|forageable|collectible|default)\)\r?\n?$/
-          # A regular expression pattern for setting a stow container.
           StowSetContainer1 = /^Set "(?:(?:an?|some) )?(?<before>[^<]+)?<a exist="(?<id>[^"]+)" noun="(?<noun>[^"]+)">(?<name>[^<]+)<\/a>(?<after> [^"]+)?" to be your STOW (?<type>BOX|GEM|HERB|SKIN|WAND|SCROLL|POTION|TRINKET|REAGENT|LOCKPICK|TREASURE|FORAGEABLE|COLLECTIBLE) container\.\r?\n?$/
-          # A regular expression pattern for setting a default stow container.
           StowSetContainer2 = /Set "(?:(?:an?|some) )?(?<before>[^<]+)?<a exist="(?<id>[^"]+)" noun="(?<noun>[^"]+)">(?<name>[^<]+)<\/a>(?<after> [^"]+)?" to be your (?<type>default) STOW container\.\r?\n?$/
 
           # the following are for parsing READY LIST and setting of READY items
-          # A regular expression pattern for matching the start of the ready list output.
           ReadyListOutputStart = /^Your current settings are:\r?\n?$/
-          # A regular expression pattern for matching normal ready list items.
           ReadyListNormal = /^  (?<type>shield|(?:secondary |ranged )?weapon|ammo bundle|wand): \(?<d cmd=['"](?:store|ready) (?:SHIELD|2?WEAPON|RANGED|AMMO|WAND)(?: clear)?['"]>(?:(?:(?:an?|some) )?(?<before>[^<]+)?<a exist="(?<id>[^"]+)" noun="(?<noun>[^"]+)">(?<name>[^<]+)<\/a>(?<after> [^<]+)?|none)<\/d>\)? \(<d cmd='store set'>(?<store>worn if possible, stowed otherwise|stowed|put in (?:secondary )?sheath)<\/d>\)\r?\n?$/
-          # A regular expression pattern for matching ammo2 bundle items in the ready list.
           ReadyListAmmo2 = /^  (?<type>ammo2 bundle): <d cmd="store AMMO2 clear">(?:(?:an?|some) )?(?<before>[^<]+)?<a exist="(?<id>[^"]+)" noun="(?<noun>[^"]+)">(?<name>[^<]+)<\/a>(?<after> [^<]+)?<\/d>\r?\n?$/
-          # A regular expression pattern for matching sheath settings in the ready list.
           ReadyListSheathsSet = /^  (?<type>(?:secondary )?sheath): <d cmd="store 2?SHEATH clear">(?:(?:an?|some) )?(?<before>[^<]+)?<a exist="(?<id>[^"]+)" noun="(?<noun>[^"]+)">(?<name>[^<]+)<\/a>(?<after> [^<]+)?<\/d>\r?\n?$/
-          # A regular expression pattern for matching the completion message of the ready list.
           ReadyListFinished = /To change your default item for a category that is already set, clear the category first by clicking on the item in the list above.  Click <d cmd="ready list">here<\/d> to update the list\.\r?\n?$/
           ReadyItemClear = /^Cleared your default (?<type>shield|(?:secondary |ranged )?weapon|ammo2? bundle|(?:secondary )?sheath|wand)\.\r?\n?$/
           ReadyItemSet = /^Setting (?:(?:an?|some) )?(?<before>[^<]+)?<a exist="(?<id>[^"]+)" noun="(?<noun>[^"]+)">(?<name>[^<]+)<\/a>(?<after> [^<]+)? to be your default (?<type>shield|(?:secondary |ranged )?weapon|ammo2? bundle|(?:secondary )?sheath|wand)\.\r?\n?$/
@@ -186,12 +181,15 @@ module Lich
                              ReadyStoreSet, StatusPrompt, Overwatch_Short)
         end
 
-        # Parses a line of XML data.
-        # @param line [String] The line to parse.
-        # @return [Symbol] Returns :ok, :noop, or raises an error.
-        # @raise [StandardError] Raises an error if parsing fails.
-        # @example Parsing a line
-        #   result = XMLParser.parse(line)
+        # Parses a line of input and processes it according to defined patterns.
+        #
+        # @param line [String] the input line to parse
+        # @return [Symbol] the result of the parsing, either :ok, :noop, or an error symbol
+        # @example
+        #   parse("The fire in the body as it rises, disappearing into the heavens.")
+        #   # => :ok
+        # @note This method handles various patterns for NPC death, stow lists, and ready items.
+        # @raise [StandardError] raises an error if parsing fails.
         def self.parse(line)
           # O(1) vs O(N)
           return :noop unless line =~ Pattern::All

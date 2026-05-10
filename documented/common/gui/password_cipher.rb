@@ -4,39 +4,34 @@ require 'openssl'
 require 'securerandom'
 require 'base64'
 
-# Lich module provides common functionalities for the application.
-# @example Including the Lich module
-#   include Lich
 module Lich
   module Common
     module GUI
-      # PasswordCipher module handles encryption and decryption of passwords.
-      # @example Encrypting a password
-      #   encrypted = PasswordCipher.encrypt("my_password", mode: :standard, account_name: "user")
       module PasswordCipher
+        # Custom error raised during decryption failures.
+        #
+        # @see StandardError
         class DecryptionError < StandardError; end
 
         # AES cipher algorithm
-        # AES cipher algorithm used for encryption and decryption.
         CIPHER_ALGORITHM = 'AES-256-CBC'
 
         # PBKDF2 iteration count for key derivation
-        # PBKDF2 iteration count for key derivation.
         KEY_ITERATIONS = 10_000
 
         # Key length for AES-256 (32 bytes = 256 bits)
-        # Key length for AES-256 (32 bytes = 256 bits).
         KEY_LENGTH = 32
 
-        # Encrypts a password using the specified mode and parameters.
-        # @param password [String] The password to encrypt.
-        # @param mode [Symbol] The encryption mode, either :standard or :enhanced.
-        # @param account_name [String, nil] The account name for standard mode (required).
-        # @param master_password [String, nil] The master password for enhanced mode (required).
-        # @return [String] The encrypted password encoded in Base64.
-        # @raise ArgumentError if the parameters are invalid.
-        # @example Encrypting a password
-        #   encrypted = PasswordCipher.encrypt("my_password", mode: :standard, account_name: "user")
+        # Encrypts a password using the specified mode and optional parameters.
+        #
+        # @param password [String] the password to encrypt
+        # @param mode [Symbol] the encryption mode, either :standard or :enhanced
+        # @param account_name [String, nil] the account name for standard mode (required)
+        # @param master_password [String, nil] the master password for enhanced mode (required)
+        # @return [String] the Base64 encoded encrypted password
+        # @raise ArgumentError if the parameters are invalid
+        # @example
+        #   encrypted = PasswordCipher.encrypt("my_password", mode: :standard, account_name: "my_account")
         def self.encrypt(password, mode:, account_name: nil, master_password: nil)
           validate_encryption_params(mode, account_name, master_password)
 
@@ -58,16 +53,17 @@ module Lich
           Base64.strict_encode64(iv + encrypted)
         end
 
-        # Decrypts an encrypted password using the specified mode and parameters.
-        # @param encrypted_password [String] The encrypted password to decrypt.
-        # @param mode [Symbol] The encryption mode, either :standard or :enhanced.
-        # @param account_name [String, nil] The account name for standard mode (required).
-        # @param master_password [String, nil] The master password for enhanced mode (required).
-        # @return [String] The decrypted password.
-        # @raise ArgumentError if the parameters are invalid.
-        # @raise DecryptionError if decryption fails.
-        # @example Decrypting a password
-        #   decrypted = PasswordCipher.decrypt(encrypted, mode: :standard, account_name: "user")
+        # Decrypts an encrypted password using the specified mode and optional parameters.
+        #
+        # @param encrypted_password [String] the Base64 encoded encrypted password to decrypt
+        # @param mode [Symbol] the encryption mode, either :standard or :enhanced
+        # @param account_name [String, nil] the account name for standard mode (required)
+        # @param master_password [String, nil] the master password for enhanced mode (required)
+        # @return [String] the decrypted password
+        # @raise DecryptionError if decryption fails
+        # @raise ArgumentError if the parameters are invalid
+        # @example
+        #   decrypted = PasswordCipher.decrypt(encrypted, mode: :standard, account_name: "my_account")
         def self.decrypt(encrypted_password, mode:, account_name: nil, master_password: nil)
           validate_encryption_params(mode, account_name, master_password)
 
@@ -95,6 +91,13 @@ module Lich
           raise DecryptionError, "Failed to decrypt password: #{e.message}"
         end
 
+        # Validates the parameters for encryption methods.
+        #
+        # @param mode [Symbol] the encryption mode, either :standard or :enhanced
+        # @param account_name [String, nil] the account name for standard mode
+        # @param master_password [String, nil] the master password for enhanced mode
+        # @raise ArgumentError if the parameters are invalid
+        # @api private
         def self.validate_encryption_params(mode, account_name, master_password)
           unless %i[standard enhanced].include?(mode)
             raise ArgumentError, "Unsupported encryption mode: #{mode}"
@@ -110,6 +113,13 @@ module Lich
         end
         private_class_method :validate_encryption_params
 
+        # Derives a cryptographic key based on the provided mode and parameters.
+        #
+        # @param mode [Symbol] the encryption mode, either :standard or :enhanced
+        # @param account_name [String, nil] the account name for standard mode
+        # @param master_password [String, nil] the master password for enhanced mode
+        # @return [String] the derived cryptographic key
+        # @api private
         def self.derive_key(mode, account_name, master_password)
           # Select passphrase based on mode
           passphrase = case mode

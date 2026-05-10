@@ -7,23 +7,20 @@
   for detecting file changes.
 =end
 
-# Provides utility methods for the Lich project.
-# @example Including the module
-#   include Lich::Util
+# Provides utility methods for the Lich update system.
+#
+# @see Lich::Util
+# @see Lich::Util::Update
 module Lich
   module Util
-    # Contains update-related utilities for the Lich project.
-    # @example Using the Update module
-    #   Lich::Util::Update.some_method
     module Update
       module FileWriter
         # Safely writes content to a file using a temporary rename-delete pattern.
-        # @param path [String] The path to the file to write.
-        # @param content [String] The content to write to the file.
+        #
+        # @param path [String] the path to the file to write
+        # @param content [String] the content to write to the file
         # @return [void]
-        # @raise [StandardError] Raises an error if the write fails.
-        # @example
-        #   FileWriter.safe_write("/path/to/file.txt", "new content")
+        # @raise [StandardError] if the write operation fails
         def self.safe_write(path, content)
           tmp = "#{path}.tmp"
           old = "#{path}.old"
@@ -39,12 +36,13 @@ module Lich
           File.delete(old) if File.exist?(old)
         end
 
-        # Builds a SHA map for files in a directory matching a given pattern.
-        # @param dir [String] The directory to scan for files.
-        # @param pattern [String] The pattern to match files (default is '*.lic').
-        # @return [Hash] A hash mapping file names to their SHA1 checksums.
+        # Builds a SHA1 hash map for files in a directory matching a given pattern.
+        #
+        # @param dir [String] the directory to scan for files
+        # @param pattern [String] the pattern to match files (default is '*.lic')
+        # @return [Hash] a hash mapping file names to their SHA1 hashes
         # @example
-        #   sha_map = FileWriter.build_local_sha_map("/path/to/dir")
+        #   sha_map = Lich::Util::Update::FileWriter.build_local_sha_map("/path/to/dir")
         def self.build_local_sha_map(dir, pattern = '*.lic')
           Dir[File.join(dir, pattern)].each_with_object({}) do |path, map|
             body = File.binread(path)

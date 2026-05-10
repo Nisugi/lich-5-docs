@@ -1,63 +1,51 @@
 require "ostruct"
 
-# Provides functionality related to the Lich project.
-# @example Usage
-#   include Lich::Gemstone::Stats
+# Provides functionality related to the Lich game.
+#
+# @see Lich::Gemstone
 module Lich
   module Gemstone
-    # Contains methods for retrieving and manipulating character statistics.
-    # @example Accessing stats
-    #   Lich::Gemstone::Stats.race
     module Stats
-      # Retrieves the character's race.
-      # @return [String] The character's race.
-      # @example
-      #   Lich::Gemstone::Stats.race
+      # Retrieves the player's race.
+      # @return [String] the race of the player
+      # @see .profession
+      # @see .gender
       def self.race
         Infomon.get("stat.race")
       end
 
-      # Retrieves the character's profession.
-      # @return [String] The character's profession.
-      # @example
-      #   Lich::Gemstone::Stats.profession
+      # Retrieves the player's profession.
+      # @return [String] the profession of the player
+      # @see .race
+      # @see .gender
       def self.profession
         Infomon.get("stat.profession")
       end
 
-      # Retrieves the character's profession (alias for profession).
-      # @return [String] The character's profession.
-      # @example
-      #   Lich::Gemstone::Stats.prof
       def self.prof
         self.profession
       end
 
-      # Retrieves the character's gender.
-      # @return [String] The character's gender.
-      # @example
-      #   Lich::Gemstone::Stats.gender
+      # Retrieves the player's gender.
+      # @return [String] the gender of the player
+      # @see .race
+      # @see .profession
       def self.gender
         Infomon.get("stat.gender")
       end
 
-      # Retrieves the character's age.
-      # @return [Integer] The character's age.
-      # @example
-      #   Lich::Gemstone::Stats.age
+      # Retrieves the player's age.
+      # @return [Integer] the age of the player
       def self.age
         Infomon.get("stat.age")
       end
 
-      # Retrieves the character's level.
-      # @return [Integer] The character's level.
-      # @example
-      #   Lich::Gemstone::Stats.level
+      # Retrieves the player's level.
+      # @return [Integer] the level of the player
       def self.level
         XMLData.level
       end
 
-      # List of base stats for the character.
       @@stats = %i(strength constitution dexterity agility discipline aura logic intuition wisdom influence)
       @@stats.each do |stat|
         self.define_singleton_method(stat) do
@@ -101,9 +89,7 @@ module Lich
       end
 
       # Calculates the experience points needed for the next level.
-      # @return [Integer] The experience points needed.
-      # @example
-      #   Lich::Gemstone::Stats.exp
+      # @return [Integer] the experience points required to reach the next level
       def self.exp
         if XMLData.next_level_text =~ /until next level/
           exp_threshold = [2500, 5000, 10000, 17500, 27500, 40000, 55000, 72500, 92500, 115000, 140000, 167000, 197500, 230000, 265000, 302000, 341000, 382000, 425000, 470000, 517000, 566000, 617000, 670000, 725000, 781500, 839500, 899000, 960000, 1022500, 1086500, 1152000, 1219000, 1287500, 1357500, 1429000, 1502000, 1576500, 1652500, 1730000, 1808500, 1888000, 1968500, 2050000, 2132500, 2216000, 2300500, 2386000, 2472500, 2560000, 2648000, 2736500, 2825500, 2915000, 3005000, 3095500, 3186500, 3278000, 3370000, 3462500, 3555500, 3649000, 3743000, 3837500, 3932500, 4028000, 4124000, 4220500, 4317500, 4415000, 4513000, 4611500, 4710500, 4810000, 4910000, 5010500, 5111500, 5213000, 5315000, 5417500, 5520500, 5624000, 5728000, 5832500, 5937500, 6043000, 6149000, 6255500, 6362500, 6470000, 6578000, 6686500, 6795500, 6905000, 7015000, 7125500, 7236500, 7348000, 7460000, 7572500]
@@ -113,10 +99,8 @@ module Lich
         end
       end
 
-      # Serializes the character's stats into an array.
-      # @return [Array] An array of the character's stats.
-      # @example
-      #   Lich::Gemstone::Stats.serialize
+      # Serializes the player's stats into an array.
+      # @return [Array<OpenStruct>] an array containing the player's stats
       def self.serialize
         [self.race, self.prof, self.gender,
          self.age, self.exp, self.level,

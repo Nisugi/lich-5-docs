@@ -32,10 +32,13 @@ if RUBY_PLATFORM =~ /mingw|mswin/
   end
 end
 
-# Module containing common functionality for the Lich project.
-# @example Using the Lich module
-#   Lich::Common::Frontend.register(:example, capabilities: [:xml])
 module Lich
+  # Provides common functionality for the Lich frontend.
+  #
+  # This module contains methods for managing frontend capabilities,
+  # registration, and session handling.
+  #
+  # @see Lich::Common::Frontend
   module Common
     module Frontend
       @session_file = nil
@@ -52,13 +55,12 @@ module Lich
       # configuration without modifying the controller code.
       @registry = Hash.new { |h, k| h[k] = { capabilities: Set.new, metadata: {} } }
 
-      # Registers a new frontend with the given name, capabilities, and metadata.
-      # @param name [Symbol] The name of the frontend to register.
-      # @param capabilities [Array<Symbol>] The capabilities of the frontend.
-      # @param metadata [Hash] Additional metadata for the frontend.
+      # Registers a new frontend with the specified capabilities and metadata.
+      #
+      # @param name [String] the name of the frontend to register
+      # @param capabilities [Array<Symbol>] a list of capabilities for the frontend
+      # @param metadata [Hash] additional metadata for the frontend
       # @return [void]
-      # @example Registering a frontend
-      #   Lich::Common::Frontend.register(:new_frontend, capabilities: [:xml])
       def self.register(name, capabilities: [], metadata: {})
         entry = @registry[name.to_s.downcase]
         entry[:capabilities].merge(capabilities.map(&:to_sym))
@@ -66,11 +68,10 @@ module Lich
       end
 
       # Checks if a frontend has a specific capability.
-      # @param frontend_name [Symbol] The name of the frontend to check.
-      # @param capability [Symbol] The capability to check for.
-      # @return [Boolean] True if the frontend has the capability, false otherwise.
-      # @example Checking capability
-      #   Lich::Common::Frontend.has_capability?(:wrayth, :xml)
+      #
+      # @param frontend_name [String] the name of the frontend to check
+      # @param capability [Symbol] the capability to check for
+      # @return [Boolean] true if the frontend has the capability, false otherwise
       def self.has_capability?(frontend_name, capability)
         return false if frontend_name.nil?
 
@@ -78,11 +79,10 @@ module Lich
       end
 
       # Retrieves metadata for a registered frontend.
-      # @param frontend_name [Symbol] The name of the frontend.
-      # @param key [Symbol] The key of the metadata to retrieve.
-      # @return [Object, nil] The metadata value or nil if not found.
-      # @example Retrieving metadata
-      #   Lich::Common::Frontend.metadata_for(:wrayth, :client_string)
+      #
+      # @param frontend_name [String] the name of the frontend
+      # @param key [String] the key of the metadata to retrieve
+      # @return [String, nil] the metadata value or nil if not found
       def self.metadata_for(frontend_name, key)
         return nil if frontend_name.nil?
 
@@ -90,18 +90,16 @@ module Lich
       end
 
       # Returns a list of all registered frontend names.
-      # @return [Array<Symbol>] An array of registered frontend names.
-      # @example Listing registered frontends
-      #   Lich::Common::Frontend.registered_frontends
+      #
+      # @return [Array<String>] an array of registered frontend names
       def self.registered_frontends
         @registry.keys
       end
 
-      # Returns a list of frontend names that have a specific capability.
-      # @param capability [Symbol] The capability to filter frontends by.
-      # @return [Array<Symbol>] An array of frontend names with the specified capability.
-      # @example Finding frontends with capability
-      #   Lich::Common::Frontend.frontends_with_capability(:xml)
+      # Returns a list of frontend names that support a specific capability.
+      #
+      # @param capability [Symbol] the capability to filter frontends by
+      # @return [Array<String>] an array of frontend names that have the capability
       def self.frontends_with_capability(capability)
         @registry.select { |_name, data| data[:capabilities].include?(capability.to_sym) }.keys
       end
@@ -132,87 +130,65 @@ module Lich
 
       # ─── Client String ─────────────────────────────────────────
       # Default client string (Wrayth identity) sent during handshake
-      # Default client string (Wrayth identity) sent during handshake.
       CLIENT_STRING = "/FE:WRAYTH /VERSION:1.0.1.28 /P:WIN_UNKNOWN /XML"
 
       # ─── Backward-Compatible Constants ─────────────────────────
       # These arrays are derived from the registry for backward compatibility.
       # External code may still reference these constants directly.
-      # Array of frontends that support XML capabilities.
       XML_FRONTENDS    = frontends_with_capability(:xml).freeze
-      # Array of frontends that support GSL capabilities.
       GSL_FRONTENDS    = frontends_with_capability(:gsl).freeze
-      # Array of frontends that support stream capabilities.
       STREAM_FRONTENDS = frontends_with_capability(:streams).freeze
-      # Array of frontends that support mono capabilities.
       MONO_FRONTENDS   = frontends_with_capability(:mono).freeze
 
 
       # Checks if the specified frontend supports XML capabilities.
-      # @param fe [Symbol] The frontend to check (default is $frontend).
-      # @return [Boolean] True if the frontend supports XML, false otherwise.
-      # @example Checking XML support
-      #   Lich::Common::Frontend.supports_xml?(:wrayth)
+      #
+      # @param fe [String] the frontend to check (defaults to $frontend)
+      # @return [Boolean] true if the frontend supports XML, false otherwise
       def self.supports_xml?(fe = $frontend)
         has_capability?(fe, :xml)
       end
 
       # Checks if the specified frontend supports GSL capabilities.
-      # @param fe [Symbol] The frontend to check (default is $frontend).
-      # @return [Boolean] True if the frontend supports GSL, false otherwise.
-      # @example Checking GSL support
-      #   Lich::Common::Frontend.supports_gsl?(:wrayth)
+      #
+      # @param fe [String] the frontend to check (defaults to $frontend)
+      # @return [Boolean] true if the frontend supports GSL, false otherwise
       def self.supports_gsl?(fe = $frontend)
         has_capability?(fe, :gsl)
       end
 
-      # Checks if the specified frontend supports stream capabilities.
-      # @param fe [Symbol] The frontend to check (default is $frontend).
-      # @return [Boolean] True if the frontend supports streams, false otherwise.
-      # @example Checking streams support
-      #   Lich::Common::Frontend.supports_streams?(:wrayth)
+      # Checks if the specified frontend supports streams capabilities.
+      #
+      # @param fe [String] the frontend to check (defaults to $frontend)
+      # @return [Boolean] true if the frontend supports streams, false otherwise
       def self.supports_streams?(fe = $frontend)
         has_capability?(fe, :streams)
       end
 
       # Checks if the specified frontend supports mono capabilities.
-      # @param fe [Symbol] The frontend to check (default is $frontend).
-      # @return [Boolean] True if the frontend supports mono, false otherwise.
-      # @example Checking mono support
-      #   Lich::Common::Frontend.supports_mono?(:wrayth)
+      #
+      # @param fe [String] the frontend to check (defaults to $frontend)
+      # @return [Boolean] true if the frontend supports mono, false otherwise
       def self.supports_mono?(fe = $frontend)
         has_capability?(fe, :mono)
       end
 
       # Checks if the specified frontend supports room window capabilities.
-      # @param fe [Symbol] The frontend to check (default is $frontend).
-      # @return [Boolean] True if the frontend supports room window, false otherwise.
-      # @example Checking room window support
-      #   Lich::Common::Frontend.supports_room_window?(:wrayth)
+      #
+      # @param fe [String] the frontend to check (defaults to $frontend)
+      # @return [Boolean] true if the frontend supports room window, false otherwise
       def self.supports_room_window?(fe = $frontend)
         has_capability?(fe, :room_window)
       end
 
-      # Returns the current frontend client.
-      # @return [Symbol] The current frontend client.
       def self.client
         $frontend
       end
 
-      # Sets the current frontend client.
-      # @param value [Symbol] The frontend client to set.
-      # @return [void]
-      # @example Setting the client
-      #   Lich::Common::Frontend.client = :wrayth
       def self.client=(value)
         $frontend = value
       end
 
-      # Sends a handshake message to the frontend.
-      # @param version_string [String] The version string to send.
-      # @return [void]
-      # @example Sending a handshake
-      #   Lich::Common::Frontend.send_handshake("/FE:WRAYTH /VERSION:1.0.1.28")
       def self.send_handshake(version_string)
         $_CLIENTBUFFER_.push(version_string.dup)
         Game._puts(version_string)
@@ -229,14 +205,13 @@ module Lich
         end
       end
 
-      # Creates a session file with the specified name, host, and port.
-      # @param name [String] The name of the session.
-      # @param host [String] The host for the session.
-      # @param port [Integer] The port for the session.
-      # @param display_session [Boolean] Whether to display the session descriptor (default is true).
+      # Creates a session file for the specified frontend session.
+      #
+      # @param name [String] the name of the session
+      # @param host [String] the host for the session
+      # @param port [Integer] the port for the session
+      # @param display_session [Boolean] whether to display session information (default: true)
       # @return [void]
-      # @example Creating a session file
-      #   Lich::Common::Frontend.create_session_file("session1", "localhost", 3000)
       def self.create_session_file(name, host, port, display_session: true)
         return if name.nil?
         FileUtils.mkdir_p @tmp_session_dir
@@ -249,42 +224,41 @@ module Lich
       end
 
       # Returns the location of the current session file.
-      # @return [String, nil] The session file location or nil if not set.
+      #
+      # @return [String, nil] the session file location or nil if not set
       def self.session_file_location
         @session_file
       end
 
-      # Cleans up the current session file if it exists.
+      # Cleans up (deletes) the current session file if it exists.
+      #
       # @return [void]
-      # @example Cleaning up session file
-      #   Lich::Common::Frontend.cleanup_session_file
       def self.cleanup_session_file
         return if @session_file.nil?
         File.delete(@session_file) if File.exist? @session_file
       end
 
 
-      # Returns the current frontend process ID (PID).
-      # @return [Integer, nil] The current PID or nil if not set.
+      # Retrieves the current frontend process ID (PID).
+      #
+      # @return [Integer, nil] the current PID or nil if not set
       def self.pid
         @pid_mutex.synchronize { @frontend_pid }
       end
 
       # Sets the current frontend process ID (PID).
-      # @param value [Integer] The PID to set.
+      #
+      # @param value [Integer] the PID to set
       # @return [void]
-      # @example Setting the PID
-      #   Lich::Common::Frontend.pid = 12345
       def self.pid=(value)
         value = value.to_i
         @pid_mutex.synchronize { @frontend_pid = value }
       end
 
-      # Initializes the frontend from the parent process ID.
-      # @param parent_pid [Integer] The parent process ID to initialize from.
-      # @return [Integer] The resolved PID.
-      # @example Initializing from parent
-      #   Lich::Common::Frontend.init_from_parent(Process.ppid)
+      # Initializes the frontend from a parent process ID.
+      #
+      # @param parent_pid [Integer] the parent process ID to initialize from
+      # @return [Integer] the resolved frontend PID
       def self.init_from_parent(parent_pid)
         Lich.log "=== Frontend.init_from_parent called ==="
         Lich.log "Parent process PID: #{parent_pid}"
@@ -314,20 +288,18 @@ module Lich
       end
 
       # Sets the frontend PID from the client.
-      # @param pid [Integer] The PID to set from the client.
-      # @return [Integer] The set PID.
-      # @example Setting from client
-      #   Lich::Common::Frontend.set_from_client(12345)
+      #
+      # @param pid [Integer] the PID received from the client
+      # @return [Integer] the set PID
       def self.set_from_client(pid)
         self.pid = pid
         Lich.log "Frontend PID set from client: #{pid}" if defined?(Lich.log)
         pid
       end
 
-      # Detects the frontend process ID (PID).
-      # @return [Integer, nil] The detected PID or nil if not found.
-      # @example Detecting PID
-      #   Lich::Common::Frontend.detect_pid
+      # Detects the frontend process ID (PID) based on the launch method.
+      #
+      # @return [Integer, nil] the detected PID or nil if not found
       def self.detect_pid
         # Return existing PID if already set
         current_pid = self.pid
@@ -349,9 +321,8 @@ module Lich
       end
 
       # Refocuses the frontend window based on the detected platform.
-      # @return [Boolean] True if refocus was successful, false otherwise.
-      # @example Refocusing frontend
-      #   Lich::Common::Frontend.refocus
+      #
+      # @return [Boolean] true if refocus was successful, false otherwise
       def self.refocus
         pid = self.pid
         return false unless pid && pid > 0
@@ -368,8 +339,9 @@ module Lich
         end
       end
 
-      # Returns a callback proc for refocusing the frontend.
-      # @return [Proc] The refocus callback proc.
+      # Returns a callback proc for refocusing the frontend window.
+      #
+      # @return [Proc] a proc that refocuses the window when called
       def self.refocus_callback
         proc {
           if defined?(GLib) && GLib.respond_to?(:Idle)
@@ -380,8 +352,9 @@ module Lich
         }
       end
 
-      # Detects the current platform.
-      # @return [Symbol] The detected platform (:windows, :macos, :linux, or :unsupported).
+      # Detects the current platform (Windows, macOS, Linux, or unsupported).
+      #
+      # @return [Symbol] the detected platform symbol
       def self.detect_platform
         case RUBY_PLATFORM
         when /mingw|mswin/ then :windows
@@ -391,11 +364,10 @@ module Lich
         end
       end
 
-      # Resolves the process ID (PID) based on the platform.
-      # @param pid [Integer] The PID to resolve.
-      # @return [Integer] The resolved PID.
-      # @example Resolving PID
-      #   Lich::Common::Frontend.resolve_pid(12345)
+      # Resolves the given PID to find the actual process ID.
+      #
+      # @param pid [Integer] the PID to resolve
+      # @return [Integer] the resolved PID
       def self.resolve_pid(pid)
         pid = pid.to_i
         return pid if pid <= 0 # Return as-is if invalid
@@ -412,11 +384,10 @@ module Lich
         end
       end
 
-      # Resolves the Windows process ID (PID) to find the owning process.
-      # @param pid [Integer] The PID to resolve.
-      # @return [Integer] The resolved PID.
-      # @example Resolving Windows PID
-      #   Lich::Common::Frontend.resolve_windows_pid(12345)
+      # Resolves the given PID on Windows to find the actual process ID.
+      #
+      # @param pid [Integer] the PID to resolve
+      # @return [Integer] the resolved PID
       def self.resolve_windows_pid(pid)
         Lich.log "=== resolve_windows_pid starting with PID: #{pid} ==="
 
@@ -472,21 +443,21 @@ module Lich
         pid
       end
 
-      # Retrieves the parent process ID for a given Windows PID.
-      # @param wmi [WIN32OLE] The WMI connection object.
-      # @param pid [Integer] The PID to get the parent for.
-      # @return [Integer] The parent process ID or 0 if not found.
+      # Retrieves the parent process ID for a given PID on Windows.
+      #
+      # @param wmi [WIN32OLE] the WMI connection object
+      # @param pid [Integer] the PID to check
+      # @return [Integer] the parent process ID or 0 if not found
       def self.windows_parent_pid(wmi, pid)
         rows = wmi.ExecQuery("SELECT ParentProcessId FROM Win32_Process WHERE ProcessId=#{pid}")
         row = rows.each.first rescue nil
         row ? row.ParentProcessId.to_i : 0
       end
 
-      # Resolves the Linux process ID (PID) to find the owning process.
-      # @param pid [Integer] The PID to resolve.
-      # @return [Integer] The resolved PID.
-      # @example Resolving Linux PID
-      #   Lich::Common::Frontend.resolve_linux_pid(12345)
+      # Resolves the given PID on Linux to find the actual process ID.
+      #
+      # @param pid [Integer] the PID to resolve
+      # @return [Integer] the resolved PID
       def self.resolve_linux_pid(pid)
         return pid unless system('which xdotool > /dev/null 2>&1')
 
@@ -512,9 +483,10 @@ module Lich
         pid
       end
 
-      # Refocuses the Windows window for the given PID.
-      # @param pid [Integer] The PID of the window to refocus.
-      # @return [Boolean] True if refocus was successful, false otherwise.
+      # Refocuses the window for the given PID on Windows.
+      #
+      # @param pid [Integer] the PID of the window to refocus
+      # @return [Boolean] true if refocus was successful, false otherwise
       def self.refocus_windows(pid)
         ensure_windows_modules
 
@@ -553,9 +525,10 @@ module Lich
         false
       end
 
-      # Refocuses the macOS window for the given PID.
-      # @param pid [Integer] The PID of the window to refocus.
-      # @return [Boolean] True if refocus was successful, false otherwise.
+      # Refocuses the window for the given PID on macOS.
+      #
+      # @param pid [Integer] the PID of the window to refocus
+      # @return [Boolean] true if refocus was successful, false otherwise
       def self.refocus_macos(pid)
         return false unless system('which osascript > /dev/null 2>&1')
 
@@ -573,9 +546,10 @@ module Lich
         false
       end
 
-      # Refocuses the Linux window for the given PID.
-      # @param pid [Integer] The PID of the window to refocus.
-      # @return [Boolean] True if refocus was successful, false otherwise.
+      # Refocuses the window for the given PID on Linux.
+      #
+      # @param pid [Integer] the PID of the window to refocus
+      # @return [Boolean] true if refocus was successful, false otherwise
       def self.refocus_linux(pid)
         return false unless system('which xdotool > /dev/null 2>&1')
 
@@ -593,7 +567,8 @@ module Lich
       end
 
       # Ensures that the necessary Windows modules are loaded.
-      # @return [Boolean] True if modules are loaded, false otherwise.
+      #
+      # @return [Boolean] true if modules are loaded, false otherwise
       def self.ensure_windows_modules
         # Check if modules exist - they should be defined at file load time
         if RUBY_PLATFORM =~ /mingw|mswin/

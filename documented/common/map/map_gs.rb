@@ -2,16 +2,16 @@
 
 require_relative 'map_base'
 
+# The Lich module serves as a namespace for the Lich application.
+#
+# @see Lich::Common for common functionality.
 module Lich
-  # Common module for Lich project
-  # This module contains the Map class and related functionality.
-  # @example Including the Common module
-  #   include Lich::Common
   module Common
-    # Represents a map in the Lich project.
-    # This class includes methods for managing rooms and their properties.
-    # @example Creating a new map
-    #   map = Lich::Common::Map.new(1, "Room Title", "Room Description", [])
+    # Represents a map in the Lich application.
+    #
+    # This class manages the rooms and their connections.
+    #
+    # @see Lich::Room for room-specific functionality.
     class Map
       include Enumerable
       include MapBase
@@ -33,31 +33,27 @@ module Lich
       @@previous_room_id       ||= nil
       @@uids                     = {}
 
-      # The unique identifier for the map.
-      # @return [Integer] The ID of the map.
       attr_reader :id
-      # The title of the map.
-      # @return [String] The title of the map.
       attr_accessor :title, :description, :paths, :uid, :location, :climate, :terrain,
                     :wayto, :timeto, :image, :image_coords, :tags, :check_location, :unique_loot
 
-      # Initializes a new map instance.
-      # @param id [Integer] The unique identifier for the map.
-      # @param title [String] The title of the map.
-      # @param description [String] A description of the map.
-      # @param paths [Array] The paths available from this map.
-      # @param uid [Array] Unique identifiers for the map.
-      # @param location [String, nil] The location of the map.
-      # @param climate [String, nil] The climate of the map.
-      # @param terrain [String, nil] The terrain type of the map.
-      # @param wayto [Hash] Directions to other maps.
-      # @param timeto [Hash] Time taken to reach other maps.
-      # @param image [String, nil] The image associated with the map.
-      # @param image_coords [Array, nil] Coordinates for the image.
-      # @param tags [Array] Tags associated with the map.
-      # @param check_location [String, nil] Location check for the map.
-      # @param unique_loot [Array, nil] Unique loot available in the map.
-      # @return [Map] The newly created map instance.
+      # Initializes a new Map instance.
+      # @param id [Integer] unique identifier for the map
+      # @param title [Array<String>] titles of the map
+      # @param description [Array<String>] descriptions of the map
+      # @param paths [Array<String>] paths leading from the map
+      # @param uid [Array<String>] unique identifiers for the map
+      # @param location [String, nil] location of the map
+      # @param climate [String, nil] climate of the map
+      # @param terrain [String, nil] terrain type of the map
+      # @param wayto [Hash] connections to other maps
+      # @param timeto [Hash] time taken to travel to other maps
+      # @param image [String, nil] image associated with the map
+      # @param image_coords [Array<Integer>, nil] coordinates for the image
+      # @param tags [Array<String>] tags associated with the map
+      # @param check_location [String, nil] location check
+      # @param unique_loot [String, nil] unique loot associated with the map
+      # @return [Map] the initialized map instance.
       def initialize(id, title, description, paths, uid = [], location = nil,
                      climate = nil, terrain = nil, wayto = {}, timeto = {},
                      image = nil, image_coords = nil, tags = [], check_location = nil,
@@ -80,10 +76,8 @@ module Lich
         @@list[@id] = self
       end
 
-      # Class methods for the Map class.
+      # Class methods for managing the Map class.
       class << self
-        # Returns the current room ID.
-        # @return [Integer] The ID of the current room.
         def current_room_id
           @@current_room_id
         end
@@ -92,14 +86,10 @@ module Lich
           @@current_room_id = id
         end
 
-        # Checks if the map is loaded.
-        # @return [Boolean] True if the map is loaded, false otherwise.
         def loaded
           @@loaded
         end
 
-        # Checks if the map is loaded.
-        # @return [Boolean] True if the map is loaded, false otherwise.
         def loaded?
           @@loaded
         end
@@ -112,8 +102,6 @@ module Lich
           @@previous_room_id = id
         end
 
-        # Returns the list of maps.
-        # @return [Array] The list of loaded maps.
         def list
           self.load unless @@loaded
           @@list
@@ -123,8 +111,6 @@ module Lich
           @@list = value
         end
 
-        # Returns the unique identifiers for the maps.
-        # @return [Hash] The hash of unique identifiers.
         def uids
           @@uids
         end
@@ -137,21 +123,20 @@ module Lich
           @@loaded = true
         end
 
-        # Synchronizes the loading of maps.
-        # @param block [Proc] The block to execute during synchronization.
+        # Synchronizes loading of the map data.
+        #
+        # This method ensures that the loading process is thread-safe.
+        # @param block [Proc] the block of code to execute during synchronization
+        # @return [void]
         def synchronize_load(&block)
           @@load_mutex.synchronize(&block)
         end
       end
 
-      # Returns the fuzzy room ID.
-      # @return [Integer] The fuzzy room ID.
       def fuzzy_room_id
         @@current_room_id
       end
 
-      # Returns a string representation of the map.
-      # @return [String] The string representation of the map.
       def to_s
         "##{@id} (u#{@uid[-1]}):\n#{@title[-1]} (#{@location})\n#{@description[-1]}\n#{@paths[-1]}"
       end
@@ -160,8 +145,6 @@ module Lich
         @@fuzzy_room_id
       end
 
-      # Gets a free ID for a new map.
-      # @return [Integer] A free ID for the map.
       def self.get_free_id
         self.load unless @@loaded
         @@list.compact.max_by(&:id).id + 1
@@ -183,8 +166,6 @@ module Lich
         end
       end
 
-      # Retrieves the current location.
-      # @return [String, nil] The current location or nil if not found.
       def self.get_location
         unless XMLData.room_count == @@current_location_count
           if (script = Script.current)
@@ -209,8 +190,6 @@ module Lich
         @@current_location
       end
 
-      # Returns the previous room based on the previous room ID.
-      # @return [Room, nil] The previous room or nil if not found.
       def self.previous
         return nil if @@previous_room_id.nil?
 
@@ -221,8 +200,6 @@ module Lich
         XMLData.previous_nav_rm
       end
 
-      # Returns the current room based on the current room ID.
-      # @return [Room, nil] The current room or nil if not found.
       def self.current
         self.load unless @@loaded
         if Script.current
@@ -240,9 +217,6 @@ module Lich
         match_no_uid
       end
 
-      # Sets the current room based on the provided ID.
-      # @param id [Integer] The ID of the room to set as current.
-      # @return [Room, nil] The current room or nil if not found.
       def self.set_current(id)
         @@previous_room_id = @@current_room_id if id != @@current_room_id
         @@current_room_id = id
@@ -251,9 +225,6 @@ module Lich
         @@list[id]
       end
 
-      # Sets the fuzzy room based on the provided ID.
-      # @param id [Integer] The ID of the room to set as fuzzy.
-      # @return [Room, nil] The fuzzy room or nil if not found.
       def self.set_fuzzy(id)
         @@previous_room_id = @@current_room_id if !id.nil? && id != @@current_room_id
         @@current_room_id = id
@@ -262,9 +233,6 @@ module Lich
         @@list[id]
       end
 
-      # Matches multiple IDs to find a valid room.
-      # @param ids [Array] The array of IDs to match.
-      # @return [Integer, nil] The matched ID or nil if not found.
       def self.match_multi_ids(ids)
         matches = ids.find_all { |s| @@list[@@current_room_id].wayto.keys.include?(s.to_s) }
         return matches[0] if matches.size == 1
@@ -272,8 +240,6 @@ module Lich
         nil
       end
 
-      # Matches a room without a UID.
-      # @return [Integer, nil] The matched room ID or nil if not found.
       def self.match_no_uid
         if (script = Script.current)
           set_current(match_current(script))
@@ -282,9 +248,6 @@ module Lich
         end
       end
 
-      # Matches the current room based on the provided script.
-      # @param script [Script] The current script context.
-      # @return [Integer, nil] The matched room ID or nil if not found.
       def self.match_current(script)
         @@current_room_mutex.synchronize do
           peer_history = {}
@@ -396,8 +359,6 @@ module Lich
         end
       end
 
-      # Matches a fuzzy room based on the current context.
-      # @return [Integer, nil] The matched fuzzy room ID or nil if not found.
       def self.match_fuzzy
         @@fuzzy_room_mutex.synchronize do
           @@fuzzy_room_count = XMLData.room_count
@@ -445,8 +406,6 @@ module Lich
         end
       end
 
-      # Retrieves the current room or creates a new one if it doesn't exist.
-      # @return [Room, nil] The current room or nil if not found.
       def self.current_or_new
         return nil unless Script.current
 
@@ -543,43 +502,32 @@ module Lich
         set_current(id)
       end
 
-      # Retrieves the unique locations from the map.
-      # @return [Array] The unique locations.
       def self.locations
         self.load unless @@loaded
         @@locations = @@list.each_with_object({}) { |r, h| h[r.location] = nil unless h.key?(r.location) }.keys if @@locations.empty?
         @@locations.dup
       end
 
-      # Retrieves the unique images from the map.
-      # @return [Array] The unique images.
       def self.images
         self.load unless @@loaded
         @@images = @@list.each_with_object({}) { |r, h| h[r.image] = nil unless h.key?(r.image) }.keys if @@images.empty?
         @@images.dup
       end
 
-      # Retrieves the unique tags from the map.
-      # @return [Array] The unique tags.
       def self.tags
         self.load unless @@loaded
         @@tags = @@list.compact.each_with_object({}) { |r, h| r.tags.each { |t| h[t] = nil unless h.key?(t) } }.keys if @@tags.empty?
         @@tags.dup
       end
 
-      # Clears the unique identifiers for the maps.
       def self.uids_clear
         @@uids.clear
       end
 
-      # Retrieves IDs associated with a given UID.
-      # @param n [Integer] The UID to look up.
-      # @return [Array] The array of IDs associated with the UID.
       def self.ids_from_uid(n)
         @@uids[n].nil? ? [] : @@uids[n]
       end
 
-      # Loads unique identifiers from the map.
       def self.load_uids
         self.load unless @@loaded
         @@uids.clear
@@ -588,7 +536,6 @@ module Lich
         end
       end
 
-      # Clears the map data and resets the state.
       def self.clear
         @@load_mutex.synchronize do
           @@list.clear
@@ -601,9 +548,11 @@ module Lich
         true
       end
 
-      # Loads the map data from a file.
-      # @param filename [String, nil] The name of the file to load.
-      # @return [Boolean] True if the load was successful, false otherwise.
+      # Loads map data from files.
+      #
+      # This method can load data from JSON, XML, or DAT files.
+      # @param filename [String, nil] optional filename to load specific map data
+      # @return [Boolean] true if loading was successful, false otherwise.
       def self.load(filename = nil)
         file_list = if filename.nil?
                       Dir.entries(File.join(DATA_DIR, XMLData.game))
@@ -633,8 +582,10 @@ module Lich
       end
 
       # Loads map data from a JSON file.
-      # @param filename [String, nil] The name of the JSON file to load.
-      # @return [Boolean] True if the load was successful, false otherwise.
+      #
+      # This method parses the JSON file and initializes map instances.
+      # @param filename [String, nil] optional filename to load specific map data
+      # @return [Boolean] true if loading was successful, false otherwise.
       def self.load_json(filename = nil)
         @@load_mutex.synchronize do
           return true if @@loaded
@@ -693,8 +644,10 @@ module Lich
       end
 
       # Loads map data from an XML file.
-      # @param filename [String] The name of the XML file to load.
-      # @return [Boolean] True if the load was successful, false otherwise.
+      #
+      # This method is deprecated; use load_json instead.
+      # @param filename [String] the filename of the XML file to load
+      # @return [Boolean] true if loading was successful, false otherwise.
       def self.load_xml(filename = File.join(DATA_DIR, XMLData.game, 'map.xml'))
         respond '--- WARNING: Map.load_xml is deprecated. Use Map.load_json instead.'
         @@load_mutex.synchronize do
@@ -828,16 +781,16 @@ module Lich
         end
       end
 
-      # Saves the map data to an XML file.
-      # @param _filename [String, nil] The name of the XML file to save to.
-      # @return [Boolean] True if the save was successful, false otherwise.
+      # Saves map data to an XML file.
+      #
+      # This method is deprecated; use save_json instead.
+      # @param filename [String, nil] optional filename to save the map data
+      # @return [void]
       def self.save_xml(_filename = nil)
         respond '--- WARNING: Map.save_xml is deprecated. Use Map.save_json instead.'
       end
     end
 
-    # Represents a room in the map.
-    # This class inherits from Map and can be extended with additional functionality.
     class Room < Map
       def self.method_missing(*args)
         super

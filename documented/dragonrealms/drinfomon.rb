@@ -1,16 +1,14 @@
 module Lich
   module DragonRealms
     module DRInfomon
-      # The version of the DRInfomon module
-      # @return [String] The current version of DRInfomon
+      # The version of the DRInfomon module.
+      #
+      # @example
+      # "3.0"
       $DRINFOMON_VERSION = '3.0'
 
-      # An array of core Lich defines used in DRInfomon
-      # @return [Array<String>] List of core Lich defines
       DRINFOMON_CORE_LICH_DEFINES = %W(drinfomon common common-arcana common-crafting common-healing common-healing-data common-items common-money common-moonmage common-summoning common-theurgy common-travel common-validation events slackbot equipmanager spellmonitor)
 
-      # Indicates if DRInfomon is included in the core Lich
-      # @return [Boolean] True if included in core Lich
       DRINFOMON_IN_CORE_LICH = true
       require_relative 'drinfomon/drdefs'
       require_relative 'drinfomon/drvariables'
@@ -29,10 +27,6 @@ module Lich
       # - Persisted: if user toggles it off, stays off across sessions
       # Use ";display expgains" command to toggle on/off manually
       # Use ";display inlineexp" to toggle inline gains in EXP window (off by default)
-      # Starts the DRExpMonitor if Lich.display_expgains is true
-      # @note Auto-starts based on Lich.display_expgains setting
-      # @example
-      #   DRExpMonitor.start if Lich.display_expgains
       DRExpMonitor.start if Lich.display_expgains
     end
   end

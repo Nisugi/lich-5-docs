@@ -2,64 +2,66 @@
 module Lich
   module Gemstone
     # Manages the tracking of hidden targets in the game.
-    # This class provides methods to track, clear, and check for hidden targets.
-    # @example Tracking hidden targets
-    #   Overwatch.track_hidden_targets(room_id)
+    #
+    # This class provides methods to track and manage targets that are hidden in the game environment.
+    #
+    # @see Lich::Gemstone::Observer for handling events related to hiding and revealing.
     class Overwatch
       @@hidden_targets ||= nil
       @@debug          ||= false
 
       # Clears the list of hidden targets.
-      # @return [nil]
+      # @return [void]
       def self.clear
         @@hidden_targets = nil
       end
 
-      # Returns the room ID with hidden targets.
-      # @return [Object, nil] The room ID or nil if no targets are hidden.
+      # Returns the room ID that has hidden targets.
+      # @return [String, nil] the room ID with hiders or nil if none.
       def self.room_with_hiders
         @@hidden_targets
       end
 
       # Checks if there are any hidden targets in the current room.
-      # @return [Boolean] True if there are hidden targets, false otherwise.
+      # @return [Boolean] true if there are hidden targets, false otherwise.
       def self.hiders?
         return false if @@hidden_targets.nil?
         @@hidden_targets.eql?(XMLData.room_id)
       end
 
-      # Tracks hidden targets in the specified room.
-      # @param room_id [Object] The ID of the room to track hidden targets.
-      # @return [nil]
+      # Tracks the specified room ID as having hidden targets.
+      # @param room_id [String] the ID of the room with hidden targets.
+      # @return [void]
       def self.track_hidden_targets(room_id)
         @@hidden_targets = room_id
       end
 
-      # Resets the room with hidden targets by clearing the list.
-      # @return [nil]
+      # Resets the tracking of hidden targets by clearing the current room.
+      # @return [void]
       def self.room_with_hiders_reset
         clear
       end
 
-      # Sets the debug mode on or off.
-      # @param value [Boolean] True to enable debug mode, false to disable.
-      # @return [nil]
+      # Sets the debug mode for tracking hidden targets.
+      # @param value [Boolean] true to enable debug mode, false to disable.
+      # @return [void]
       def self.debug=(value)
         @@debug = value
       end
 
       # Checks if debug mode is enabled.
-      # @return [Boolean] True if debug mode is enabled, false otherwise.
+      # @return [Boolean] true if debug mode is enabled, false otherwise.
       def self.debug?
         @@debug
       end
 
-      # Pushes revealed targets into the tracking system.
-      # @param target_id [Object] The ID of the target.
-      # @param target_noun [String] The noun associated with the target.
-      # @param target_name [String] The name of the target.
-      # @param silent_strike [Boolean] Indicates if the strike was silent.
-      # @return [nil]
+      # Processes and tracks revealed targets based on the provided parameters.
+      #
+      # @param target_id [String] the ID of the target being revealed.
+      # @param target_noun [String] the noun associated with the target.
+      # @param target_name [String] the name of the target.
+      # @param silent_strike [Boolean] whether the reveal is due to a silent strike (default: false).
+      # @return [void]
       def self.push_revealed_targets(target_id, target_noun, target_name, silent_strike: false)
         @@hidden_targets = nil
 
@@ -101,9 +103,8 @@ module Lich
         end
       end
 
-      # Provides functionality for observing and handling events related to hidden targets.
+      # Provides functionality for observing and handling events related to hiding and revealing targets.
       module Observer
-        # Contains regular expressions for detecting hiding and revealing actions.
         module Term
           # Patterns for creatures entering hiding
           HIDING = Regexp.union(
@@ -190,10 +191,17 @@ module Lich
           ANY = Regexp.union(HIDING, ANY_REVEALED, ANY_SILENT_STRIKE)
         end
 
+        # Determines if the given line matches any hiding or revealing patterns.
+        # @param line [String] the line to check against patterns.
+        # @return [Boolean] true if the line matches any patterns, false otherwise.
         def self.wants?(line)
           line.match(Term::ANY)
         end
 
+        # Consumes a line and processes it based on matching patterns.
+        # @param line [String] the line to process.
+        # @param match_data [MatchData] the data from the matched pattern.
+        # @return [void]
         def self.consume(line, match_data)
           case line
           when Term::HIDING

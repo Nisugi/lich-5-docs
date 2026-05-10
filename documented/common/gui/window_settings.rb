@@ -1,17 +1,24 @@
 
+# Provides common functionality for the Lich application.
+#
+# @see Lich::Common
 module Lich
   module Common
     module GUI
       module WindowSettings
-        # The file name for storing window settings
         SETTINGS_FILE = 'login_gui_settings.yml'
-        # The minimum dimension for window width and height
         MIN_DIMENSION = 100
-        # The spacer value for positioning on Darwin (macOS)
         DARWIN_SPACER = 28
 
+        # Provides methods for managing window settings.
+        #
+        # This module handles loading, saving, and applying window settings.
         class << self
-          # Loads window settings from a YAML file
+          # Loads window settings from a YAML file.
+          #
+          # @param data_dir [String] the directory where the settings file is located
+          # @return [Hash] the loaded settings or an empty hash if loading fails
+          # @raise [StandardError] if there is an error reading the file
           def load(data_dir)
             settings_file = File.join(data_dir, SETTINGS_FILE)
             return {} unless File.exist?(settings_file)
@@ -23,6 +30,14 @@ module Lich
             {}
           end
 
+          # Saves window settings to a YAML file.
+          #
+          # @param data_dir [String] the directory where the settings file will be saved
+          # @param width [Integer] the width of the window
+          # @param height [Integer] the height of the window
+          # @param position [Array<Integer>] the position of the window as [x, y]
+          # @return [Boolean] true if the settings were saved successfully, false otherwise
+          # @raise [StandardError] if there is an error writing to the file
           def save(data_dir, width:, height:, position:)
             return false unless valid_dimensions?(width, height) && valid_position?(position)
 
@@ -40,6 +55,11 @@ module Lich
             false
           end
 
+          # Applies the given settings to a window.
+          #
+          # @param window [Object] the window to apply settings to
+          # @param settings [Hash] the settings to apply, including width, height, and position
+          # @return [void]
           def apply_to_window(window, settings)
             return if settings.empty?
 
@@ -56,6 +76,10 @@ module Lich
             window.move(constrained_position[0], constrained_position[1] + spacer)
           end
 
+          # Captures the current geometry of a window.
+          #
+          # @param window [Object] the window to capture geometry from
+          # @return [Hash] a hash containing the width, height, and position of the window
           def capture_geometry(window)
             {
               width: window.allocation.width,
@@ -66,6 +90,10 @@ module Lich
 
           private
 
+          # Validates the provided settings.
+          #
+          # @param settings [Hash] the settings to validate
+          # @return [Boolean] true if the settings are valid, false otherwise
           def validate_settings(settings)
             return false unless settings.is_a?(Hash)
 
@@ -73,11 +101,20 @@ module Lich
               valid_position?(settings[:position])
           end
 
+          # Checks if the provided dimensions are valid.
+          #
+          # @param width [Integer] the width to validate
+          # @param height [Integer] the height to validate
+          # @return [Boolean] true if both dimensions are greater than the minimum, false otherwise
           def valid_dimensions?(width, height)
             width.is_a?(Integer) && width > MIN_DIMENSION &&
               height.is_a?(Integer) && height > MIN_DIMENSION
           end
 
+          # Checks if the provided position is valid.
+          #
+          # @param position [Array<Integer>] the position to validate as [x, y]
+          # @return [Boolean] true if the position is valid, false otherwise
           def valid_position?(position)
             position.is_a?(Array) &&
               position.length == 2 &&
@@ -85,6 +122,12 @@ module Lich
               position[1].is_a?(Integer) && position[1] >= 0
           end
 
+          # Constrains the position to fit within the monitor's geometry.
+          #
+          # @param position [Array<Integer>] the original position as [x, y]
+          # @param width [Integer] the width of the window
+          # @param height [Integer] the height of the window
+          # @return [Array<Integer>] the constrained position as [x, y]
           def constrain_to_monitor(position, width, height)
             display = Gdk::Display.default
             geometry = display.default_screen.get_monitor_geometry(
@@ -102,6 +145,10 @@ module Lich
             [constrained_x, constrained_y]
           end
 
+          # Checks if the current platform is Darwin (macOS).
+          #
+          # @return [Boolean] true if the platform is Darwin, false otherwise
+          # @api private
           def darwin?
             RUBY_PLATFORM =~ /darwin/i
           end

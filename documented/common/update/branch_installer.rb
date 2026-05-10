@@ -16,28 +16,21 @@ module Lich
       # Supports both main repository branches and fork branches via
       # owner:branch_name syntax. Downloads tarball archives, validates
       # structure, and delegates to ReleaseInstaller for actual installation.
-      # @example Creating a new BranchInstaller
-      #   installer = Lich::Util::Update::BranchInstaller.new(snapshot_manager, release_installer)
       class BranchInstaller
         # Initializes a new BranchInstaller.
-        # @param snapshot_manager [Object] The snapshot manager to handle snapshots.
-        # @param release_installer [Object] The release installer to perform installations.
-        # @return [BranchInstaller]
+        # @param snapshot_manager [Object] an instance responsible for managing snapshots
+        # @param release_installer [Object] an instance responsible for installing releases
+        # @return [void]
         def initialize(snapshot_manager, release_installer)
           @snapshot_manager = snapshot_manager
           @release_installer = release_installer
         end
 
-        # Downloads and installs the specified branch update from GitHub.
+        # Downloads and updates the specified branch from GitHub.
         #
-        # This method validates the branch specification, downloads the tarball,
-        # extracts it, and performs the installation using the ReleaseInstaller.
-        # @param branch_spec [String] The branch specification in owner:branch_name format or just branch_name.
+        # @param branch_spec [String] the branch specification in owner:branch_name format or just branch_name
         # @return [void]
-        # @raise [StandardError] If the branch specification is empty or invalid.
-        # @raise [OpenURI::HTTPError] If there is an error downloading the branch.
-        # @example Downloading a branch update
-        #   installer.download_branch_update("owner:branch_name")
+        # @raise [StandardError] if the branch specification is invalid or download fails
         def download_branch_update(branch_spec)
           branch_spec = branch_spec.strip
           if branch_spec.empty?

@@ -40,24 +40,24 @@ unless $wine_bin.nil?
   end
 
   if $wine_bin and File.exist?($wine_bin) and File.file?($wine_bin) and $wine_prefix and File.exist?($wine_prefix) and File.directory?($wine_prefix)
-    # Module for interacting with Wine registry
-    # This module provides methods to get and set values in the Wine registry.
-    # @example Getting a registry value
-    #   value = Wine.registry_gets("HKEY_CURRENT_USER\Software\MyApp\Setting")
+    # Module for interacting with the Wine environment.
+    #
+    # This module provides methods to read from and write to the Wine registry.
+    #
+    # @see #registry_gets
+    # @see #registry_puts
     module Wine
-      # The path to the Wine binary.
-      # This constant holds the path to the Wine executable determined at runtime.
       BIN = $wine_bin
-      # The Wine prefix path.
-      # This constant holds the path to the Wine prefix determined at runtime.
       PREFIX = $wine_prefix
 
       # Retrieves a value from the Wine registry.
-      # @param key [String] The registry key in the format "HKEY_LOCAL_MACHINE\Subkey\Value"
-      # @return [String, false] The value associated with the key, or false if not found.
-      # @raise [ArgumentError] If the key format is invalid.
-      # @example Getting a registry value
-      #   value = Wine.registry_gets("HKEY_CURRENT_USER\Software\MyApp\Setting")
+      #
+      # @param key [String] the registry key in the format "HKEY_LOCAL_MACHINE\subkey\value"
+      # @return [String, nil] the value associated with the key, or nil if not found
+      # @raise [ArgumentError] if the key format is invalid
+      # @example
+      #   value = Wine.registry_gets("HKEY_LOCAL_MACHINE\Software\MyApp\Setting")
+      #   puts value
       def Wine.registry_gets(key)
         match_data = /(HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER)\\(.+)\\([^\\]*)/.match(key)
         raise ArgumentError, "Invalid registry key format: #{key.inspect}" unless match_data
@@ -94,13 +94,15 @@ unless $wine_bin.nil?
         end
       end
 
-      # Sets a value in the Wine registry.
-      # @param key [String] The registry key in the format "HKEY_LOCAL_MACHINE\Subkey\Value"
-      # @param value [String] The value to set for the specified key.
-      # @return [Boolean] True if the operation succeeded, false otherwise.
-      # @raise [ArgumentError] If the key format is invalid.
-      # @example Setting a registry value
-      #   success = Wine.registry_puts("HKEY_CURRENT_USER\Software\MyApp\Setting", "NewValue")
+      # Writes a value to the Wine registry.
+      #
+      # @param key [String] the registry key in the format "HKEY_LOCAL_MACHINE\subkey\value"
+      # @param value [String] the value to write to the registry
+      # @return [Boolean] true if the operation succeeded, false otherwise
+      # @raise [ArgumentError] if the key format is invalid
+      # @example
+      #   success = Wine.registry_puts("HKEY_LOCAL_MACHINE\Software\MyApp\Setting", "new_value")
+      #   puts success
       def Wine.registry_puts(key, value)
         match_data = /(HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER)\\(.+)\\([^\\]*)/.match(key)
         raise ArgumentError, "Invalid registry key format: #{key.inspect}" unless match_data

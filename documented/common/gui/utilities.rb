@@ -1,42 +1,31 @@
 
-# Lich module
-# This module serves as a namespace for the Lich project.
 module Lich
   module Common
     module GUI
-      # Utilities module
-      # This module contains utility methods for GUI components.
-      # @example Using the Utilities module
-      #   css_provider = Lich::Common::GUI::Utilities.create_button_css_provider(font_size: 14)
       module Utilities
-        # Creates a CSS provider for buttons.
-        # @param font_size [Integer] The font size for the button.
-        # @return [Gtk::CssProvider] The CSS provider for buttons.
-        # @example
-        #   css = Lich::Common::GUI::Utilities.create_button_css_provider(font_size: 16)
+        # Creates a CSS provider for buttons with a specified font size.
+        #
+        # @param font_size [Integer] the font size for the button text
+        # @return [Gtk::CssProvider] the CSS provider for buttons
         def self.create_button_css_provider(font_size: 12)
           css = Gtk::CssProvider.new
           css.load_from_data("button {border-radius: 5px; font-size: #{font_size}px;}")
           css
         end
 
-        # Creates a CSS provider for tabs.
-        # @return [Gtk::CssProvider] The CSS provider for tabs.
-        # @example
-        #   css = Lich::Common::GUI::Utilities.create_tab_css_provider
+        # Creates a CSS provider for tabs in a notebook.
+        # @return [Gtk::CssProvider] the CSS provider for tabs
         def self.create_tab_css_provider
           css = Gtk::CssProvider.new
           css.load_from_data("notebook {border-width: 1px; border-color: #999999; border-style: solid;}")
           css
         end
 
-        # Creates a message dialog.
-        # @param parent [Gtk::Window, nil] The parent window for the dialog.
-        # @param icon [Gdk::Pixbuf, nil] The icon to display in the dialog.
-        # @return [Proc] A lambda that takes a message and shows the dialog.
-        # @example
-        #   dialog = Lich::Common::GUI::Utilities.create_message_dialog(parent: window, icon: my_icon)
-        #   dialog.call("Hello, World!")
+        # Creates a message dialog with a specified message and optional icon.
+        #
+        # @param parent [Gtk::Window, nil] the parent window for the dialog
+        # @param icon [Gdk::Pixbuf, nil] the icon to display in the dialog
+        # @return [Proc] a lambda that takes a message and shows the dialog
         def self.create_message_dialog(parent: nil, icon: nil)
           ->(message) {
             dialog = Gtk::MessageDialog.new(
@@ -54,10 +43,9 @@ module Lich
         end
 
         # Converts a game code to its corresponding realm name.
-        # @param game_code [String] The game code to convert.
-        # @return [String] The corresponding realm name or the original game code if not found.
-        # @example
-        #   realm = Lich::Common::GUI::Utilities.game_code_to_realm("GS3")
+        #
+        # @param game_code [String] the game code to convert
+        # @return [String] the corresponding realm name or the original game code if not found
         def self.game_code_to_realm(game_code)
           case game_code
           when "GS3"
@@ -80,10 +68,9 @@ module Lich
         end
 
         # Converts a realm name to its corresponding game code.
-        # @param realm [String] The realm name to convert.
-        # @return [String] The corresponding game code or "GS3" if not found.
-        # @example
-        #   game_code = Lich::Common::GUI::Utilities.realm_to_game_code("gemstone iv")
+        #
+        # @param realm [String] the realm name to convert
+        # @return [String] the corresponding game code or "GS3" if not found
         def self.realm_to_game_code(realm)
           case realm.downcase
           when "gemstone iv", "prime"
@@ -105,14 +92,12 @@ module Lich
           end
         end
 
-        # Performs a safe file operation (read, write, or backup).
-        # @param file_path [String] The path to the file.
-        # @param operation [Symbol] The operation to perform (:read, :write, :backup).
-        # @param content [String, nil] The content to write (only for :write).
-        # @return [String, true, false] The content read, true if write was successful, or false if backup failed.
-        # @raise [StandardError] If an error occurs during the file operation.
-        # @example
-        #   content = Lich::Common::GUI::Utilities.safe_file_operation("file.txt", :read")
+        # Performs a safe file operation (read, write, or backup) with error handling.
+        #
+        # @param file_path [String] the path to the file
+        # @param operation [Symbol] the operation to perform (:read, :write, or :backup)
+        # @param content [String, nil] the content to write (only for :write)
+        # @return [String, Boolean] the file content for :read, true for successful write, false for backup failure
         def self.safe_file_operation(file_path, operation, content = nil)
           case operation
           when :read
@@ -138,14 +123,12 @@ module Lich
           operation == :read ? "" : false
         end
 
-        # Performs a verified file operation (read, write, or backup).
-        # @param file_path [String] The path to the file.
-        # @param operation [Symbol] The operation to perform (:read, :write, :backup).
-        # @param content [String, nil] The content to write (only for :write).
-        # @return [String, true, false] The content read, true if write was successful, or false if backup failed.
-        # @raise [StandardError] If an error occurs during the file operation.
-        # @example
-        #   success = Lich::Common::GUI::Utilities.verified_file_operation("file.txt", :write, "new content")
+        # Performs a verified file operation (read or write) with error handling and verification.
+        #
+        # @param file_path [String] the path to the file
+        # @param operation [Symbol] the operation to perform (:read or :write)
+        # @param content [String, nil] the content to write (only for :write)
+        # @return [String, Boolean] the file content for :read, true if write was successful, false otherwise
         def self.verified_file_operation(file_path, operation, content = nil)
           case operation
           when :read
@@ -178,12 +161,11 @@ module Lich
           operation == :read ? "" : false
         end
 
-        # Sorts entries based on the autosort state.
-        # @param entries [Array<Hash>] The entries to sort.
-        # @param autosort_state [Boolean] The state indicating whether to use autosorting.
-        # @return [Array<Hash>] The sorted entries.
-        # @example
-        #   sorted_entries = Lich::Common::GUI::Utilities.sort_entries(entries, true)
+        # Sorts a list of entries based on the autosort state.
+        #
+        # @param entries [Array<Hash>] the entries to sort
+        # @param autosort_state [Boolean] whether to sort automatically or not
+        # @return [Array<Hash>] the sorted entries
         def self.sort_entries(entries, autosort_state)
           if autosort_state
             # Sort by game name, account name, and character name

@@ -1,26 +1,13 @@
 module Lich
   module Gemstone
     module Armaments
-      # Static array of weapon stats indexed by weapon identifiers. Each weapon
-      # entry contains metadata such as category, base name, alternative names,
-      # damage types, damage factors, armor avoidance by armor size group (ASG),
-      # base roundtime (RT), and minimum RT.
+      # Contains static weapon statistics for thrown weapons.
       #
-      # damage_types: Hash of damage type percentages or values.
-      #   :slash    => % of slash damage (Float or nil)
-      #   :crush    => % of crush damage (Float or nil)
-      #   :puncture => % of puncture damage (Float or nil)
-      #   :special  => Array of special damage types (or empty array)
+      # Each weapon entry includes metadata such as category, base name,
+      # alternative names, damage types, damage factors, armor avoidance by armor
+      # size group (ASG), base roundtime (RT), and minimum RT.
       #
-      # damage factor array:
-      #  [0] = nil (none)    [1] = Cloth    [2] = Leather    [3] = Scale    [4] = Chain    [5] = Plate
-      #
-      # avd_by_asg array:
-      #  Cloth:   [1] ASG 1    [2] ASG 2      [3] nil      [4] nil
-      #  Leather: [5] ASG 5    [6] ASG 6    [7] ASG 7    [8] ASG 8
-      #  Scale:   [9] ASG 9    [10] ASG 10  [11] ASG 11  [12] ASG 12
-      #  Chain:   [13] ASG 13  [14] ASG 14  [15] ASG 15  [16] ASG 16
-      #  Plate:   [17] ASG 17  [18] ASG 18  [19] ASG 19  [20] ASG 20
+      # @see Lich::Gemstone::Armaments for related armament modules.
       module WeaponStats
 # Static array of weapon stats indexed by weapon identifiers. Each weapon
 # entry contains metadata such as category, base name, alternative names,
@@ -57,7 +44,22 @@ module Lich
             :min_rt        => 4,
           },
 =end
+        # Static array of weapon stats indexed by weapon identifiers.
+        #
+        # Each weapon entry contains metadata such as category, base name,
+        # alternative names, damage types, damage factors, armor avoidance by armor
+        # size group (ASG), base roundtime (RT), and minimum RT.
         @@weapon_stats_thrown = {
+          # Weapon statistics for the bola.
+          #
+          # @param category [Symbol] the category of the weapon (e.g., :thrown)
+          # @param base_name [String] the primary name of the weapon
+          # @param all_names [Array<String>] alternative names for the weapon
+          # @param damage_types [Hash] damage type percentages or values
+          # @param damage_factor [Array<Float>] damage factors by armor type
+          # @param avd_by_asg [Array<Integer>] armor avoidance by armor size group
+          # @param base_rt [Integer] base roundtime for the weapon
+          # @param min_rt [Integer] minimum roundtime for the weapon
           :bola         => {
             :category      => :thrown,
             :base_name     => "bola",
@@ -69,6 +71,16 @@ module Lich
             :base_rt       => 5,
             :min_rt        => 2,
           },
+          # Weapon statistics for the dart.
+          #
+          # @param category [Symbol] the category of the weapon (e.g., :thrown)
+          # @param base_name [String] the primary name of the weapon
+          # @param all_names [Array<String>] alternative names for the weapon
+          # @param damage_types [Hash] damage type percentages or values
+          # @param damage_factor [Array<Float>] damage factors by armor type
+          # @param avd_by_asg [Array<Integer>] armor avoidance by armor size group
+          # @param base_rt [Integer] base roundtime for the weapon
+          # @param min_rt [Integer] minimum roundtime for the weapon
           :dart         => {
             :category      => :thrown,
             :base_name     => "dart",
@@ -80,6 +92,16 @@ module Lich
             :base_rt       => 2,
             :min_rt        => 3,
           },
+          # Weapon statistics for the discus.
+          #
+          # @param category [Symbol] the category of the weapon (e.g., :thrown)
+          # @param base_name [String] the primary name of the weapon
+          # @param all_names [Array<String>] alternative names for the weapon
+          # @param damage_types [Hash] damage type percentages or values
+          # @param damage_factor [Array<Float>] damage factors by armor type
+          # @param avd_by_asg [Array<Integer>] armor avoidance by armor size group
+          # @param base_rt [Integer] base roundtime for the weapon
+          # @param min_rt [Integer] minimum roundtime for the weapon
           :discus       => {
             :category      => :thrown,
             :base_name     => "discus",
@@ -91,6 +113,16 @@ module Lich
             :base_rt       => 5,
             :min_rt        => 2,
           },
+          # Weapon statistics for the javelin.
+          #
+          # @param category [Symbol] the category of the weapon (e.g., :thrown)
+          # @param base_name [String] the primary name of the weapon
+          # @param all_names [Array<String>] alternative names for the weapon
+          # @param damage_types [Hash] damage type percentages or values
+          # @param damage_factor [Array<Float>] damage factors by armor type
+          # @param avd_by_asg [Array<Integer>] armor avoidance by armor size group
+          # @param base_rt [Integer] base roundtime for the weapon
+          # @param min_rt [Integer] minimum roundtime for the weapon
           :javelin      => {
             :category      => :thrown,
             :base_name     => "javelin",
@@ -102,6 +134,16 @@ module Lich
             :base_rt       => 4,
             :min_rt        => 3,
           },
+          # Weapon statistics for the throwing net.
+          #
+          # @param category [Symbol] the category of the weapon (e.g., :thrown)
+          # @param base_name [String] the primary name of the weapon
+          # @param all_names [Array<String>] alternative names for the weapon
+          # @param damage_types [Hash] damage type percentages or values
+          # @param damage_factor [Array<Float>] damage factors by armor type
+          # @param avd_by_asg [Array<Integer>] armor avoidance by armor size group
+          # @param base_rt [Integer] base roundtime for the weapon
+          # @param min_rt [Integer] minimum roundtime for the weapon
           :throwing_net => {
             :category      => :thrown,
             :base_name     => "throwing net",
@@ -113,6 +155,16 @@ module Lich
             :base_rt       => 7,
             :min_rt        => 3,
           },
+          # Weapon statistics for the quoit.
+          #
+          # @param category [Symbol] the category of the weapon (e.g., :thrown)
+          # @param base_name [String] the primary name of the weapon
+          # @param all_names [Array<String>] alternative names for the weapon
+          # @param damage_types [Hash] damage type percentages or values
+          # @param damage_factor [Array<Float>] damage factors by armor type
+          # @param avd_by_asg [Array<Integer>] armor avoidance by armor size group
+          # @param base_rt [Integer] base roundtime for the weapon
+          # @param min_rt [Integer] minimum roundtime for the weapon
           :quoit        => {
             :category      => :thrown,
             :base_name     => "quoit",
@@ -124,6 +176,16 @@ module Lich
             :base_rt       => 5,
             :min_rt        => 3,
           },
+          # Weapon statistics for the handaxe.
+          #
+          # @param category [Symbol] the category of the weapon (e.g., :edged)
+          # @param base_name [String] the primary name of the weapon
+          # @param all_names [Array<String>] alternative names for the weapon
+          # @param damage_types [Hash] damage type percentages or values
+          # @param damage_factor [Array<Float>] damage factors by armor type
+          # @param avd_by_asg [Array<Integer>] armor avoidance by armor size group
+          # @param base_rt [Integer] base roundtime for the weapon
+          # @param min_rt [Integer] minimum roundtime for the weapon
           :handaxe      => {
             :category      => :edged,
             :base_name     => "handaxe",

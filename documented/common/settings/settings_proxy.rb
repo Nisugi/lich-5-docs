@@ -1,19 +1,22 @@
 module Lich
   module Common
-    # A proxy class for managing settings with delegation to a target object.
-    # This class allows for dynamic delegation of methods to a target object while maintaining a path and scope.
-    # @example Creating a SettingsProxy instance
-    #   proxy = SettingsProxy.new(settings_module, scope, path, target)
+    # A proxy class for managing settings with a target object.
+    #
+    # This class allows for dynamic delegation of method calls to the target object,
+    # while maintaining a context of scope and path for settings management.
+    #
+    # @see Lich::Common::Settings
     class SettingsProxy
       LOG_PREFIX = "[SettingsProxy]".freeze
 
       # Initializes a new SettingsProxy instance.
-      # @param settings_module [Module] The settings module that this proxy will use.
-      # @param scope [Object] The scope in which the settings are defined.
-      # @param path [Array] The path to the settings.
-      # @param target [Object] The target object to which methods will be delegated.
-      # @param detached [Boolean] Whether the proxy is detached from the target (default: false).
-      # @param script_name [String, nil] The name of the script (optional).
+      #
+      # @param settings_module [Module] the settings module that manages logging and state
+      # @param scope [Object] the scope in which the settings are applied
+      # @param path [Array<String>] the path to the settings
+      # @param target [Object] the target object to which settings are delegated
+      # @param detached [Boolean] whether the proxy is detached from the target (default: false)
+      # @param script_name [String, nil] optional script name for logging
       # @return [SettingsProxy]
       def initialize(settings_module, scope, path, target, detached: false, script_name: nil)
         @settings_module = settings_module # This should be the Settings module itself
@@ -28,21 +31,24 @@ module Lich
       attr_reader :target, :path, :scope, :script_name
 
       # Checks if the proxy is detached from its target.
-      # @return [Boolean] True if the proxy is detached, false otherwise.
+      #
+      # @return [Boolean] true if the proxy is detached, false otherwise
       def detached?
         !!@detached
       end
 
       # Checks if the target is nil.
-      # @return [Boolean] True if the target is nil, false otherwise.
+      #
+      # @return [Boolean] true if the target is nil, false otherwise
       def nil?
         @target.nil?
       end
 
       # Performs a binary operation with the target and another value.
-      # @param operator [Symbol] The operator to use (e.g., :+, :-).
-      # @param other [Object] The other operand for the operation.
-      # @return [Object] The result of the operation.
+      #
+      # @param operator [Symbol] the operator to apply (e.g., :+, :-, :==)
+      # @param other [Object] the other operand for the operation
+      # @return [Object] the result of the operation
       def binary_op(operator, other)
         other_value = other.is_a?(SettingsProxy) ? other.target : other
         @target.send(operator, other_value)
@@ -54,13 +60,19 @@ module Lich
         end
       end
 
-      # Returns the hash value of the target.
-      # @return [Integer] The hash value of the target.
+      # Returns the hash value of the target object.
+      #
+      # @return [Integer] the hash value of the target
       def hash
         @target.hash
       end
 
       # Helper method for delegating conversion methods with appropriate return types
+      # Helper method for delegating conversion methods with appropriate return types.
+      #
+      # @param method [Symbol] the conversion method to delegate (e.g., :to_s)
+      # @param options [Hash] options for delegation, including :strict and :default
+      # @return [Object] the result of the delegated method or default value
       private def delegate_conversion(method, options = {})
         if @target.respond_to?(method)
           @settings_module._log(Settings::LOG_LEVEL_DEBUG, LOG_PREFIX, -> { "#{method}: delegating" })
@@ -78,6 +90,10 @@ module Lich
         end
       end
 
+      # Rebinds the proxy to a new target object.
+      #
+      # @param new_target [Object] the new target object to bind to
+      # @return [SettingsProxy] self for method chaining
       private def rebind_to_live!(new_target)
         @settings_module._log(Settings::LOG_LEVEL_DEBUG, LOG_PREFIX, -> {
           "REBIND to live: old_target_oid=#{@target&.object_id}, new_target_oid=#{new_target&.object_id}, scope=#{@scope.inspect}, path=#{@path.inspect}"
@@ -135,10 +151,11 @@ module Lich
         delegate_conversion(:to_hash, strict: true)
       end
 
-      # Converts the target to JSON format.
-      # @param args [Array] Additional arguments for JSON conversion.
-      # @return [String] The JSON representation of the target.
-      # @raise [NoMethodError] If the target does not respond to :to_json.
+      # Converts the target object to JSON format.
+      #
+      # @param args [Array] optional arguments for JSON conversion
+      # @return [String] the JSON representation of the target
+      # @raise [NoMethodError] if the target does not respond to :to_json
       def to_json(*args)
         if @target.respond_to?(:to_json)
           @settings_module._log(Settings::LOG_LEVEL_DEBUG, LOG_PREFIX, -> { "to_json: delegating with args" })
@@ -235,9 +252,6 @@ module Lich
         :sort, :sort_by, :uniq, :compact, :flatten, :slice, :take, :drop, :values
       ].freeze
 
-      # Retrieves a value from the target using the specified key.
-      # @param key [Object] The key to retrieve the value for.
-      # @return [Object] The value associated with the key, or a new SettingsProxy if the value is a container.
       def [](key)
         @settings_module._log(Settings::LOG_LEVEL_DEBUG, LOG_PREFIX, -> { "GET scope: #{@scope.inspect}, path: #{@path.inspect}, key: #{key.inspect}, target_object_id: #{@target.object_id}" })
         value = @target[key]
@@ -250,10 +264,6 @@ module Lich
         end
       end
 
-      # Sets a value in the target using the specified key.
-      # @param key [Object] The key to set the value for.
-      # @param value [Object] The value to set.
-      # @return [Object] The value that was set.
       def []=(key, value)
         @settings_module._log(Settings::LOG_LEVEL_DEBUG, LOG_PREFIX, -> { "SET scope: #{@scope.inspect}, path: #{@path.inspect}, key: #{key.inspect}, value: #{value.inspect}, target_object_id: #{@target.object_id}" })
         actual_value = value.is_a?(SettingsProxy) ? @settings_module.unwrap_proxies(value) : value # Corrected to use @settings_module
@@ -268,11 +278,12 @@ module Lich
         # rubocop:enable Lint/Void
       end
 
-      # Handles calls to methods that are not defined on the proxy.
-      # @param method [Symbol] The name of the method being called.
-      # @param args [Array] The arguments passed to the method.
-      # @param block [Proc] An optional block to be passed to the method.
-      # @return [Object] The result of the method call, or raises NoMethodError if the method is not supported.
+      # Handles calls to methods that are not explicitly defined in the proxy.
+      #
+      # @param method [Symbol] the name of the method being called
+      # @param args [Array] arguments for the method
+      # @param block [Proc] optional block for the method
+      # @return [Object] the result of the method call or raises NoMethodError
       def method_missing(method, *args, &block)
         @settings_module._log(Settings::LOG_LEVEL_DEBUG, LOG_PREFIX, -> { "CALL scope: #{@scope.inspect}, path: #{@path.inspect}, method: #{method}, args: #{args.inspect}, target_object_id: #{@target.object_id}" })
         if @target.respond_to?(method)
@@ -308,6 +319,11 @@ module Lich
         end
       end
 
+      # Handles the result of non-destructive method calls.
+      #
+      # @param method [Symbol] the name of the method that was called
+      # @param result [Object] the result of the method call
+      # @return [Object] the processed result, potentially wrapped in a new SettingsProxy
       def handle_non_destructive_result(method, result)
         @settings_module.reset_path_and_return(
           if @settings_module.container?(result)
@@ -338,6 +354,10 @@ module Lich
         )
       end
 
+      # Handles the result of method calls that may modify the target.
+      #
+      # @param result [Object] the result of the method call
+      # @return [Object] self if the target was modified in-place, otherwise the result
       def handle_method_result(result)
         if result.equal?(@target)
           self # Return self if the method modified the target in-place and returned it
@@ -350,10 +370,6 @@ module Lich
         end
       end
 
-      # Checks if the proxy responds to a missing method.
-      # @param method [Symbol] The name of the method.
-      # @param include_private [Boolean] Whether to include private methods in the check.
-      # @return [Boolean] True if the method is supported, false otherwise.
       def respond_to_missing?(method, include_private = false)
         @target.respond_to?(method, include_private) || super
       end

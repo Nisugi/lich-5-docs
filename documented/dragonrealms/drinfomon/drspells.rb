@@ -1,14 +1,12 @@
 
-# The Lich module contains functionality for the Lich5 project.
-# It serves as a namespace for various components.
+# Provides functionality for the Lich project.
+#
+# @see Lich::DragonRealms
 module Lich
-  # The DragonRealms module contains specific functionalities related to the DragonRealms game.
-  # It groups related classes and modules.
   module DragonRealms
-    # The DRSpells module manages spells and abilities in the DragonRealms game.
-    # It provides access to known spells, features, and other related data.
-    # @example Accessing known spells
-    #   spells = Lich::DragonRealms::DRSpells.known_spells
+    # Module for managing spells in DragonRealms.
+    #
+    # This module contains methods to access and manipulate known spells and features.
     module DRSpells
       @@known_spells = {}
       @@known_feats = {}
@@ -18,80 +16,75 @@ module Lich
       @@grabbing_known_barbarian_abilities = false
       @@grabbing_known_khri = false
 
-      # Returns the currently active spells.
-      # @return [Array] An array of active spells.
+      # Retrieves the currently active spells.
+      # @return [Array<String>] list of active spells
+      # @see XMLData.dr_active_spells
       def self.active_spells
         XMLData.dr_active_spells
       end
 
       # Returns a hash of known spells.
-      # @return [Hash] A hash containing known spells.
+      # @return [Hash] known spells
       def self.known_spells
         @@known_spells
       end
 
       # Returns a hash of known feats.
-      # @return [Hash] A hash containing known feats.
+      # @return [Hash] known feats
       def self.known_feats
         @@known_feats
       end
 
-      # Returns the slivers of currently active spells.
-      # @return [Array] An array of spell slivers.
+      # Retrieves the slivers of currently active spells.
+      # @return [Array<String>] list of spell slivers
+      # @see XMLData.dr_active_spells_slivers
       def self.slivers
         XMLData.dr_active_spells_slivers
       end
 
-      # Returns the stellar percentage of active spells.
-      # @return [Float] A float representing the stellar percentage.
+      # Retrieves the stellar percentage of active spells.
+      # @return [Integer] stellar percentage
+      # @see XMLData.dr_active_spells_stellar_percentage
       def self.stellar_percentage
         XMLData.dr_active_spells_stellar_percentage
       end
 
-      # Checks if the system is currently grabbing known spells.
-      # @return [Boolean] True if grabbing known spells, false otherwise.
       def self.grabbing_known_spells
         @@grabbing_known_spells
       end
 
-      # Sets the state of grabbing known spells.
-      # @param val [Boolean] The new state for grabbing known spells.
       def self.grabbing_known_spells=(val)
         @@grabbing_known_spells = val
       end
 
-      # Checks if the system is currently grabbing known barbarian abilities.
-      # @return [Boolean] True if grabbing known barbarian abilities, false otherwise.
+      # Checks if known barbarian abilities are being grabbed.
+      # @return [Boolean] true if grabbing barbarian abilities, false otherwise
+      # @api private
       def self.check_known_barbarian_abilities
         @@grabbing_known_barbarian_abilities
       end
 
-      # Sets the state of grabbing known barbarian abilities.
-      # @param val [Boolean] The new state for grabbing known barbarian abilities.
       def self.check_known_barbarian_abilities=(val)
         @@grabbing_known_barbarian_abilities = val
       end
 
-      # Checks if the system is currently grabbing known khri.
-      # @return [Boolean] True if grabbing known khri, false otherwise.
+      # Checks if known khri are being grabbed.
+      # @return [Boolean] true if grabbing khri, false otherwise
+      # @api private
       def self.grabbing_known_khri
         @@grabbing_known_khri
       end
 
-      # Sets the state of grabbing known khri.
-      # @param val [Boolean] The new state for grabbing known khri.
       def self.grabbing_known_khri=(val)
         @@grabbing_known_khri = val
       end
 
-      # Returns the current format of the spellbook.
-      # @return [String, nil] The spellbook format, or nil if not set.
+      # Retrieves the current spellbook format.
+      # @return [String, nil] current spellbook format or nil if not set
       def self.spellbook_format
         @@spellbook_format
       end
 
-      # Sets the format of the spellbook.
-      # @param val [String] The new format for the spellbook.
       def self.spellbook_format=(val)
         @@spellbook_format = val
       end

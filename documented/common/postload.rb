@@ -4,13 +4,9 @@ require_relative 'watchable'
 
 module Lich
   # Provides common functionality for the Lich project.
-  # @example Including the module
-  #   include Lich::Common
+  #
+  # This module includes methods for managing post-load callbacks and game state.
   module Common
-    # Handles post-load operations for the game.
-    # This module allows for registering callbacks that are executed after the game has loaded.
-    # @example Registering a callback
-    #   Lich::Common::PostLoad.register("my_callback") { puts "Game loaded!" }
     module PostLoad
       extend Lich::Common::Watchable
 
@@ -19,12 +15,12 @@ module Lich
       @callbacks = {}
       @mutex = Mutex.new
 
-      # Registers a callback to be executed after the game has loaded.
-      # @param name [String] The name of the callback.
-      # @param block [Proc] The callback to be executed.
-      # @raise [ArgumentError] If no block is given.
-      # @example Registering a callback
-      #   Lich::Common::PostLoad.register("my_callback") { puts "Game loaded!" }
+      # Registers a callback for post-load processing.
+      #
+      # @param name [String] the name of the callback
+      # @param block [Proc] the callback to be executed
+      # @return [void]
+      # @raise [ArgumentError] if no block is given
       def self.register(name, &block)
         raise ArgumentError, "PostLoad.register requires a block" unless block_given?
 
@@ -34,37 +30,29 @@ module Lich
       end
 
       # Marks the game as loaded.
-      # This method should be called when the game has finished loading.
-      # @example Marking the game as loaded
-      #   Lich::Common::PostLoad.game_loaded!
+      #
+      # @return [void]
       def self.game_loaded!
         @@game_loaded = true
       end
 
       # Checks if the game has been loaded.
-      # @return [Boolean] Returns true if the game is loaded, false otherwise.
-      # @example Checking if the game is loaded
-      #   if Lich::Common::PostLoad.game_loaded?
-      #     puts "Game is loaded!"
-      #   end
+      #
+      # @return [Boolean] true if the game is loaded, false otherwise
       def self.game_loaded?
         @@game_loaded
       end
 
-      # Checks if all post-load operations are complete.
-      # @return [Boolean] Returns true if all operations are complete, false otherwise.
-      # @example Checking if operations are complete
-      #   if Lich::Common::PostLoad.complete?
-      #     puts "All operations complete!"
-      #   end
+      # Checks if all post-load callbacks have been completed.
+      #
+      # @return [Boolean] true if all callbacks are complete, false otherwise
       def self.complete?
         @@complete
       end
 
-      # Starts a thread that watches for game readiness and executes callbacks.
-      # This method will block until the game is ready and then run all registered callbacks.
-      # @example Starting the watch thread
-      #   Lich::Common::PostLoad.watch!
+      # Starts a thread to monitor the game loading process and execute callbacks.
+      #
+      # @return [void]
       def self.watch!
         @thread ||= Thread.new do
           begin
@@ -84,10 +72,10 @@ module Lich
         end
       end
 
-      # Executes all registered callbacks.
-      # This method is called when the game is loaded and all conditions are met.
-      # @example Running callbacks
-      #   Lich::Common::PostLoad.run_callbacks
+      # Executes all registered post-load callbacks.
+      #
+      # @return [void]
+      # @api private
       def self.run_callbacks
         snapshot = @mutex.synchronize { @callbacks.dup }
         snapshot.each do |name, callback|

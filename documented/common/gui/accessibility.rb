@@ -2,19 +2,13 @@
 module Lich
   module Common
     module GUI
-      # Provides methods for enhancing accessibility in GUI components.
-      # This module includes methods to initialize accessibility features,
-      # make widgets accessible, and manage keyboard navigation.
-      # @example Initializing accessibility
-      #   Lich::Common::GUI::Accessibility.initialize_accessibility
       module Accessibility
-        # Initializes accessibility features for the application.
-        # In GTK3, accessibility is enabled by default through ATK.
-        # This method ensures ATK is loaded by referencing a Gail widget type.
+        # Initializes accessibility features for the GUI.
+        #
+        # This method ensures that accessibility is enabled by loading the ATK library.
+        # It is primarily intended for use on Linux platforms.
+        # @api private
         # @return [void]
-        # @raise [NoMethodError] if ATK is not available on non-linux platforms.
-        # @example Initializing accessibility
-        #   Lich::Common::GUI::Accessibility.initialize_accessibility
         def self.initialize_accessibility
           # In GTK3, accessibility is enabled by default through ATK
           # Ensure ATK is loaded by referencing a Gail widget type
@@ -26,14 +20,14 @@ module Lich
           end
         end
 
-        # Makes a widget accessible by setting its name, description, and role.
-        # @param widget [Object] The widget to make accessible.
-        # @param label [String] The accessible name for the widget.
-        # @param description [String, nil] The accessible description for the widget.
-        # @param role [Symbol, nil] The role of the widget (e.g., :button, :text).
+        # Makes a widget accessible to assistive technologies.
+        #
+        # This method sets the accessible name, description, and role for the given widget.
+        # @param widget [Object] the widget to make accessible
+        # @param label [String] the accessible name for the widget
+        # @param description [String, nil] an optional description for the widget
+        # @param role [Symbol, nil] an optional role for the widget
         # @return [void]
-        # @example Making a widget accessible
-        #   Lich::Common::GUI::Accessibility.make_accessible(my_widget, "My Widget", "This is my widget", :button)
         def self.make_accessible(widget, label, description = nil, role = nil)
           return unless widget.respond_to?(:get_accessible)
 
@@ -57,13 +51,13 @@ module Lich
           end
         end
 
-        # Makes a button accessible by setting its label and description.
-        # @param button [Gtk::Button] The button to make accessible.
-        # @param label [String] The accessible name for the button.
-        # @param description [String, nil] The accessible description for the button.
+        # Makes a button widget accessible to assistive technologies.
+        #
+        # This method ensures that the button has a visible label for screen readers.
+        # @param button [Gtk::Button] the button to make accessible
+        # @param label [String] the accessible name for the button
+        # @param description [String, nil] an optional description for the button
         # @return [void]
-        # @example Making a button accessible
-        #   Lich::Common::GUI::Accessibility.make_button_accessible(my_button, "Submit", "Submits the form")
         def self.make_button_accessible(button, label, description = nil)
           make_accessible(button, label, description, :button)
 
@@ -79,36 +73,36 @@ module Lich
           end
         end
 
-        # Makes an entry accessible by setting its label and description.
-        # @param entry [Gtk::Entry] The entry to make accessible.
-        # @param label [String] The accessible name for the entry.
-        # @param description [String, nil] The accessible description for the entry.
+        # Makes an entry widget accessible to assistive technologies.
+        #
+        # This method sets the accessible name and description for the entry widget.
+        # @param entry [Gtk::Entry] the entry to make accessible
+        # @param label [String] the accessible name for the entry
+        # @param description [String, nil] an optional description for the entry
         # @return [void]
-        # @example Making an entry accessible
-        #   Lich::Common::GUI::Accessibility.make_entry_accessible(my_entry, "Username", "Enter your username")
         def self.make_entry_accessible(entry, label, description = nil)
           make_accessible(entry, label, description, :text)
         end
 
-        # Makes a combo box accessible by setting its label and description.
-        # @param combo [Gtk::ComboBox] The combo box to make accessible.
-        # @param label [String] The accessible name for the combo box.
-        # @param description [String, nil] The accessible description for the combo box.
+        # Makes a combo box widget accessible to assistive technologies.
+        #
+        # This method sets the accessible name and description for the combo box widget.
+        # @param combo [Gtk::ComboBox] the combo box to make accessible
+        # @param label [String] the accessible name for the combo box
+        # @param description [String, nil] an optional description for the combo box
         # @return [void]
-        # @example Making a combo box accessible
-        #   Lich::Common::GUI::Accessibility.make_combo_accessible(my_combo, "Select an option", "Choose one from the list")
         def self.make_combo_accessible(combo, label, description = nil)
           make_accessible(combo, label, description, :combo_box)
         end
 
-        # Makes a tab accessible by setting its label and description.
-        # @param notebook [Gtk::Notebook] The notebook containing the tab.
-        # @param page [Gtk::Widget] The page to make accessible.
-        # @param tab_label [String] The accessible name for the tab.
-        # @param description [String, nil] The accessible description for the tab.
+        # Makes a tab in a notebook accessible to assistive technologies.
+        #
+        # This method sets the accessible name and description for the tab and its associated page.
+        # @param notebook [Gtk::Notebook] the notebook containing the tab
+        # @param page [Gtk::Widget] the page associated with the tab
+        # @param tab_label [String] the accessible name for the tab
+        # @param description [String, nil] an optional description for the tab
         # @return [void]
-        # @example Making a tab accessible
-        #   Lich::Common::GUI::Accessibility.make_tab_accessible(my_notebook, my_page, "Tab 1", "This is the first tab")
         def self.make_tab_accessible(notebook, page, tab_label, description = nil)
           begin
             page_num = notebook.page_num(page)
@@ -124,13 +118,13 @@ module Lich
           end
         end
 
-        # Makes a window accessible by setting its title and description.
-        # @param window [Gtk::Window] The window to make accessible.
-        # @param title [String] The accessible title for the window.
-        # @param description [String, nil] The accessible description for the window.
+        # Makes a window accessible to assistive technologies.
+        #
+        # This method sets the accessible name and ensures the window has a title for screen readers.
+        # @param window [Gtk::Window] the window to make accessible
+        # @param title [String] the accessible name for the window
+        # @param description [String, nil] an optional description for the window
         # @return [void]
-        # @example Making a window accessible
-        #   Lich::Common::GUI::Accessibility.make_window_accessible(my_window, "Main Window", "This is the main application window")
         def self.make_window_accessible(window, title, description = nil)
           make_accessible(window, title, description, :window)
 
@@ -142,13 +136,13 @@ module Lich
           end
         end
 
-        # Adds keyboard navigation to a widget by setting focus and tab order.
-        # @param widget [Object] The widget to add keyboard navigation to.
-        # @param can_focus [Boolean] Whether the widget can receive focus.
-        # @param tab_order [Integer, nil] The tab order for the widget.
+        # Adds keyboard navigation properties to a widget.
+        #
+        # This method sets whether the widget can receive focus and optionally sets the tab order.
+        # @param widget [Object] the widget to add keyboard navigation to
+        # @param can_focus [Boolean] whether the widget can receive focus
+        # @param tab_order [Integer, nil] an optional tab order for the widget
         # @return [void]
-        # @example Adding keyboard navigation
-        #   Lich::Common::GUI::Accessibility.add_keyboard_navigation(my_widget, true, 1)
         def self.add_keyboard_navigation(widget, can_focus = true, tab_order = nil)
           begin
             widget.can_focus = can_focus
@@ -163,12 +157,12 @@ module Lich
         end
 
         # Adds a keyboard shortcut to a widget.
-        # @param widget [Object] The widget to add the shortcut to.
-        # @param key [String] The key for the shortcut.
-        # @param modifiers [Array<Symbol>] The modifiers for the shortcut (e.g., [:control]).
+        #
+        # This method allows the widget to respond to a specific key combination.
+        # @param widget [Object] the widget to add the shortcut to
+        # @param key [String] the key to trigger the shortcut
+        # @param modifiers [Array<Symbol>] an array of modifiers (e.g., [:control])
         # @return [void]
-        # @example Adding a keyboard shortcut
-        #   Lich::Common::GUI::Accessibility.add_keyboard_shortcut(my_widget, "F1", [:control])
         def self.add_keyboard_shortcut(widget, key, modifiers = [])
           return unless widget.respond_to?(:add_accelerator)
 
@@ -211,13 +205,13 @@ module Lich
           end
         end
 
-        # Announces a message through a widget for screen readers.
-        # @param widget [Object] The widget to announce the message through.
-        # @param message [String] The message to announce.
-        # @param _priority [Symbol] The priority of the announcement (default: :medium).
+        # Announces a message through the accessible interface of a widget.
+        #
+        # This method triggers a screen reader announcement by temporarily changing the accessible name.
+        # @param widget [Object] the widget to announce the message through
+        # @param message [String] the message to announce
+        # @param _priority [Symbol] the priority of the announcement (default: :medium)
         # @return [void]
-        # @example Announcing a message
-        #   Lich::Common::GUI::Accessibility.announce(my_widget, "New message received")
         def self.announce(widget, message, _priority = :medium)
           return unless widget.respond_to?(:get_accessible)
 
@@ -251,14 +245,14 @@ module Lich
           end
         end
 
-        # Creates an accessible label connected to an input widget.
-        # @param container [Gtk::Box, Gtk::Grid] The container to add the label and input to.
-        # @param input [Gtk::Widget] The input widget to connect the label to.
-        # @param text [String] The text for the label.
-        # @param position [Symbol] The position of the label relative to the input (e.g., :left, :right).
-        # @return [Gtk::Label] The created label.
-        # @example Creating an accessible label
-        #   Lich::Common::GUI::Accessibility.create_accessible_label(my_box, my_entry, "Username", :left)
+        # Creates a label that is accessible and associated with an input widget.
+        #
+        # This method connects the label to the input for screen readers and adds them to the specified container.
+        # @param container [Gtk::Box, Gtk::Grid] the container to hold the label and input
+        # @param input [Gtk::Widget] the input widget to associate with the label
+        # @param text [String] the text for the label
+        # @param position [Symbol] the position of the label relative to the input (e.g., :left, :right)
+        # @return [Gtk::Label] the created label
         def self.create_accessible_label(container, input, text, position = :left)
           label = Gtk::Label.new(text)
           label.set_alignment(position == :left ? 1 : 0, 0.5)
@@ -318,10 +312,11 @@ module Lich
         end
 
         # Retrieves the ATK role corresponding to a given symbol.
-        # @param role_symbol [Symbol] The symbol representing the role (e.g., :button).
-        # @return [Atk::Role, nil] The corresponding ATK role or nil if not found.
-        # @example Getting an ATK role
-        #   role = Lich::Common::GUI::Accessibility.get_atk_role(:button)
+        #
+        # This method maps role symbols to their respective ATK roles.
+        # @param role_symbol [Symbol] the role symbol to convert
+        # @return [Atk::Role, nil] the corresponding ATK role or nil if not found
+        # @api private
         def self.get_atk_role(role_symbol)
           return nil unless defined?(Atk::Role)
 

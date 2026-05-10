@@ -1,17 +1,16 @@
 
 module Lich
   module Gemstone
-    # Represents the Wounds class that manages character injuries in the game.
+    # Represents the character's wounds and injuries in the game.
+    #
     # This class provides methods to access and manipulate the wound data for various body parts.
-    # @example Accessing wounds for a character
-    #   wounds = Lich::Gemstone::Wounds.new
+    #
+    # @see Lich::Gemstone::CharacterStatus
     class Wounds < Gemstone::CharacterStatus # GameBase::CharacterStatus
       class << self
         # Body part accessor methods
         # XML from Simutronics drives the structure of the wound naming (eg. leftEye)
         # The following is a hash of the body parts and shorthand aliases created for more idiomatic Ruby
-        # A hash mapping body parts to their shorthand aliases.
-        # This constant is used to define methods for accessing wounds on different body parts.
         BODY_PARTS = {
           leftEye: ['leye'],
           rightEye: ['reye'],
@@ -32,6 +31,9 @@ module Lich
         }.freeze
 
         # Define methods for each body part and its aliases
+        # Defines methods for each body part and its aliases.
+        #
+        # This dynamically creates methods for accessing wound data for each body part defined in the BODY_PARTS constant.
         BODY_PARTS.each do |part, aliases|
           # Define the primary method
           define_method(part) do
@@ -46,10 +48,6 @@ module Lich
           end
         end
 
-        # Retrieves the wound information for the left eye using snake_case.
-        # @return [String, nil] The wound description for the left eye or nil if not present.
-        # @example Getting the left eye wound using snake_case
-        #   wound_description = Wounds.left_eye
         def left_eye; leftEye; end
         def right_eye; rightEye; end
         def left_arm; leftArm; end
@@ -61,10 +59,9 @@ module Lich
         def left_foot; leftFoot; end
         def right_foot; rightFoot; end
 
-        # Retrieves the maximum wound level for both arms and hands.
-        # @return [String, nil] The highest wound description among the left arm, right arm, left hand, and right hand.
-        # @example Getting the maximum wound for arms
-        #   max_wound = Wounds.arms
+        # Returns the maximum wound level for both arms and hands.
+        #
+        # @return [Integer] the maximum wound level among the left arm, right arm, left hand, and right hand.
         def arms
           fix_injury_mode('both')
           [
@@ -75,10 +72,9 @@ module Lich
           ].max
         end
 
-        # Retrieves the maximum wound level for all limbs including arms and legs.
-        # @return [String, nil] The highest wound description among all limbs.
-        # @example Getting the maximum wound for limbs
-        #   max_wound = Wounds.limbs
+        # Returns the maximum wound level for all limbs (arms and legs).
+        #
+        # @return [Integer] the maximum wound level among the left arm, right arm, left hand, right hand, left leg, and right leg.
         def limbs
           fix_injury_mode('both')
           [
@@ -91,10 +87,9 @@ module Lich
           ].max
         end
 
-        # Retrieves the maximum wound level for the torso including chest, abdomen, and back.
-        # @return [String, nil] The highest wound description for the torso.
-        # @example Getting the maximum wound for the torso
-        #   max_wound = Wounds.torso
+        # Returns the maximum wound level for the torso and head.
+        #
+        # @return [Integer] the maximum wound level among the right eye, left eye, chest, abdomen, and back.
         def torso
           fix_injury_mode('both')
           [
@@ -106,20 +101,18 @@ module Lich
           ].max
         end
 
-        # Retrieves the wound level for a specific body part.
-        # @param part [Symbol] The body part to check (e.g., :leftEye).
-        # @return [String, nil] The wound description for the specified body part or nil if not present.
-        # @example Getting the wound level for a specific part
-        #   wound_description = Wounds.wound_level(:leftEye)
+        # Returns the wound level for a specific body part.
+        #
+        # @param part [Symbol] the body part to check (e.g., :leftArm)
+        # @return [Integer, nil] the wound level for the specified body part, or nil if not found.
         def wound_level(part)
           fix_injury_mode('both')
           XMLData.injuries[part.to_s] && XMLData.injuries[part.to_s]['wound']
         end
 
-        # Retrieves a hash of all wounds for all body parts.
-        # @return [Hash] A hash where keys are body parts and values are their wound descriptions.
-        # @example Getting all wounds
-        #   all_wounds = Wounds.all_wounds
+        # Returns a hash of all wounds for each body part.
+        #
+        # @return [Hash] a hash where keys are body part symbols and values are their corresponding wound levels.
         def all_wounds
           fix_injury_mode('both')
           XMLData.injuries.transform_values { |v| v['wound'] }

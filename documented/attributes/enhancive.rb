@@ -2,16 +2,14 @@
 
 require "ostruct"
 
-# Lich module for managing game enhancements
-# This module contains constants and methods related to enhancive stats, skills, and resources.
-# @example Using the Lich module
-#   Lich::Gemstone::Enhancive.martial_skills
 module Lich
   module Gemstone
     module Enhancive
       # Stats - all 10 stats including influence
-      # Stats - all 10 stats including influence
-      # @return [Array<Symbol>] List of all stats available in the game.
+      # Stats - all 10 stats including influence.
+      #
+      # @see #STAT_ABBREV
+      # @see #STAT_CAP
       STATS = %i[strength constitution dexterity agility discipline aura logic intuition wisdom influence].freeze
       STAT_ABBREV = {
         'STR' => :strength, 'CON' => :constitution, 'DEX' => :dexterity,
@@ -22,8 +20,6 @@ module Lich
       STAT_CAP = 40
 
       # Skills that appear as "Bonus" in output (same as Skills module list)
-      # Skills that appear as "Bonus" in output (same as Skills module list)
-      # @return [Array<Symbol>] List of skills that provide bonuses.
       BONUS_SKILLS = %i[
         two_weapon_combat armor_use shield_use combat_maneuvers edged_weapons
         blunt_weapons two_handed_weapons ranged_weapons thrown_weapons polearm_weapons
@@ -40,8 +36,9 @@ module Lich
       SKILL_CAP = 50
 
       # Resources
-      # Resources
-      # @return [Array<Symbol>] List of resources available in the game.
+      # Resources available in the game.
+      #
+      # @see #RESOURCE_CAPS
       RESOURCES = %i[max_mana max_health max_stamina mana_recovery stamina_recovery].freeze
       RESOURCE_CAPS = {
         max_mana: 600, max_health: 300, max_stamina: 300,
@@ -49,8 +46,9 @@ module Lich
       }.freeze
 
       # Mapping from game output names to internal names
-      # Mapping from game output names to internal names
-      # @return [Hash<String, Symbol>] Mapping of skill display names to internal symbols.
+      # Mapping from game output names to internal names.
+      #
+      # @see #BONUS_SKILLS
       SKILL_NAME_MAP = {
         'Two Weapon Combat'            => :two_weapon_combat,
         'Armor Use'                    => :armor_use,
@@ -100,8 +98,6 @@ module Lich
         'Pickpocketing'                => :pickpocketing
       }.freeze
 
-      # Mapping of resource display names to internal symbols
-      # @return [Hash<String, Symbol>] Mapping of resource display names to internal symbols.
       RESOURCE_NAME_MAP = {
         'Max Mana'         => :max_mana,
         'Max Health'       => :max_health,
@@ -113,6 +109,9 @@ module Lich
       # Martial Knowledge Skills (CMan-based enhancives)
       # These appear as "+X ranks" in the output rather than bonus format
       # Derived dynamically from CMan module at runtime to stay DRY
+      # Martial Knowledge Skills (CMan-based enhancives).
+      #
+      # Most martial skills cap at 5 ranks.
       MARTIAL_SKILL_CAP = 5 # Most martial skills cap at 5 ranks
 
       # Special display name mappings for CMan skills with apostrophes
@@ -125,10 +124,12 @@ module Lich
       }.freeze
 
       # Converts a martial skill symbol to its display name.
-      # @param symbol [Symbol] The martial skill symbol to convert.
-      # @return [String] The display name of the martial skill.
+      #
+      # @param symbol [Symbol] the martial skill symbol to convert.
+      # @return [String] the display name of the martial skill.
       # @example
-      #   Lich::Gemstone::Enhancive.martial_symbol_to_display(:acrobats_leap) #=> "Acrobat's Leap"
+      #   martial_symbol_to_display(:acrobats_leap) #=> "Acrobat's Leap"
+      # @see #martial_display_to_symbol
       def self.martial_symbol_to_display(symbol)
         return MARTIAL_SPECIAL_NAMES[symbol] if MARTIAL_SPECIAL_NAMES.key?(symbol)
 
@@ -136,10 +137,12 @@ module Lich
       end
 
       # Converts a martial skill display name to its symbol.
-      # @param display_name [String] The display name of the martial skill.
-      # @return [Symbol] The corresponding martial skill symbol.
+      #
+      # @param display_name [String] the display name of the martial skill.
+      # @return [Symbol] the corresponding martial skill symbol.
       # @example
-      #   Lich::Gemstone::Enhancive.martial_display_to_symbol("Acrobat's Leap") #=> :acrobats_leap
+      #   martial_display_to_symbol("Acrobat's Leap") #=> :acrobats_leap
+      # @see #martial_symbol_to_display
       def self.martial_display_to_symbol(display_name)
         # Check special names first (reverse lookup)
         special = MARTIAL_SPECIAL_NAMES.key(display_name)
@@ -150,9 +153,9 @@ module Lich
       end
 
       # Returns a list of martial skills available in the game.
-      # @return [Array<Symbol>] List of martial skills.
-      # @example
-      #   Lich::Gemstone::Enhancive.martial_skills_list
+      #
+      # @return [Array<Symbol>] an array of martial skill symbols.
+      # @note This method requires the Lich::Gemstone::CMan module to be defined.
       def self.martial_skills_list
         return [] unless defined?(Lich::Gemstone::CMan)
 
@@ -314,19 +317,17 @@ module Lich
       end
 
       # Checks if a given stat is over its cap.
-      # @param stat [Symbol] The stat to check.
-      # @return [Boolean] True if the stat is over its cap, false otherwise.
-      # @example
-      #   Lich::Gemstone::Enhancive.stat_over_cap?(:strength)
+      #
+      # @param stat [Symbol] the stat to check.
+      # @return [Boolean] true if the stat is over the cap, false otherwise.
       def self.stat_over_cap?(stat)
         send(stat).value > STAT_CAP
       end
 
       # Checks if a given skill is over its cap.
-      # @param skill [Symbol] The skill to check.
-      # @return [Boolean] True if the skill is over its cap, false otherwise.
-      # @example
-      #   Lich::Gemstone::Enhancive.skill_over_cap?(:two_weapon_combat)
+      #
+      # @param skill [Symbol] the skill to check.
+      # @return [Boolean] true if the skill is over the cap, false otherwise.
       def self.skill_over_cap?(skill)
         s = send(skill)
         s.bonus > SKILL_CAP
@@ -341,11 +342,10 @@ module Lich
       end
 
       # Refreshes the enhancive data from the game.
-      # @param silent [Boolean] If true, suppresses output messages.
-      # @param quiet [Boolean] If true, suppresses all output.
+      #
+      # @param silent [Boolean] whether to suppress output messages (default: false).
+      # @param quiet [Boolean] whether to suppress all output (default: true).
       # @return [void]
-      # @example
-      #   Lich::Gemstone::Enhancive.refresh
       def self.refresh(silent: false, quiet: true)
         respond "Refreshing enhancive data..." unless quiet
         # First get status (active state + pauses)
@@ -367,12 +367,11 @@ module Lich
         respond "Enhancive data refreshed." unless quiet
       end
 
-      # Refreshes the current status of enhancive effects.
-      # @param silent [Boolean] If true, suppresses output messages.
-      # @param quiet [Boolean] If true, suppresses all output.
+      # Refreshes the current status of enhancive items.
+      #
+      # @param silent [Boolean] whether to suppress output messages (default: false).
+      # @param quiet [Boolean] whether to suppress all output (default: true).
       # @return [void]
-      # @example
-      #   Lich::Gemstone::Enhancive.refresh_status
       def self.refresh_status(silent: false, quiet: true)
         Lich::Util.issue_command(
           "invento enh",
@@ -382,10 +381,9 @@ module Lich
         )
       end
 
-      # Resets all stats, skills, resources, and martial knowledge to their initial values.
+      # Resets all stats, skills, resources, and martial knowledge skills to their initial values.
+      #
       # @return [void]
-      # @example
-      #   Lich::Gemstone::Enhancive.reset_all
       def self.reset_all
         batch = []
 

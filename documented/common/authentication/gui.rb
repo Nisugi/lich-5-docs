@@ -15,15 +15,13 @@ module Lich
 
         # Authenticates the user and launches the game.
         #
-        # @param button [Gtk::Button] The button that triggers the authentication.
-        # @param login_info [Hash] The login information including user ID, password, character name, and game code.
-        # @param on_success [Proc] Callback to execute on successful authentication.
-        # @param on_error [Proc, nil] Optional callback to execute on authentication error.
+        # @param button [Gtk::Button] the button to disable during authentication
+        # @param login_info [Hash] user login information including :user_id, :password, :char_name, :game_code, :frontend, :custom_launch, :custom_launch_dir
+        # @param on_success [Proc] callback to invoke on successful authentication
+        # @param on_error [Proc, nil] optional callback to invoke on authentication error
         # @return [void]
-        # @raise [FatalAuthError] If authentication fails due to fatal error.
-        # @raise [StandardError] For unexpected errors during authentication.
-        # @example
-        #   authenticate_and_launch(button: my_button, login_info: { user_id: "user", password: "pass", char_name: "hero", game_code: "game" }, on_success: ->(data) { puts "Success!" })
+        # @raise [FatalAuthError] if authentication fails
+        # @raise [StandardError] for unexpected errors
         def self.authenticate_and_launch(button:, login_info:, on_success:, on_error: nil)
           button.sensitive = false
 
@@ -64,14 +62,12 @@ module Lich
           end
         end
 
-        # Handles authentication errors by updating the button state and invoking the error callback.
+        # Handles authentication errors by enabling the button and invoking the error callback or showing an error dialog.
         #
-        # @param button [Gtk::Button] The button that triggered the authentication.
-        # @param error [StandardError] The error that occurred during authentication.
-        # @param on_error [Proc, nil] Optional callback to execute on authentication error.
+        # @param button [Gtk::Button] the button to re-enable
+        # @param error [StandardError] the error that occurred
+        # @param on_error [Proc, nil] optional callback to invoke on error
         # @return [void]
-        # @example
-        #   handle_auth_error(button, error, ->(msg) { puts msg })
         def self.handle_auth_error(button, error, on_error)
           button.sensitive = true
 
@@ -84,11 +80,9 @@ module Lich
 
         # Displays an error dialog to the user when authentication fails.
         #
-        # @param button [Gtk::Button] The button that triggered the error dialog.
-        # @param message [String] The error message to display.
+        # @param button [Gtk::Button] the button that triggered the dialog
+        # @param message [String] the error message to display
         # @return [void]
-        # @example
-        #   show_error_dialog(button, "Invalid credentials.")
         def self.show_error_dialog(button, message)
           dialog = Gtk::MessageDialog.new(
             parent: button.toplevel,
@@ -104,10 +98,8 @@ module Lich
 
         # Schedules the re-enabling of the button after a debounce period.
         #
-        # @param button [Gtk::Button] The button to re-enable after the debounce period.
+        # @param button [Gtk::Button] the button to re-enable
         # @return [void]
-        # @example
-        #   schedule_button_reenable(my_button)
         def self.schedule_button_reenable(button)
           GLib::Timeout.add(BUTTON_REENABLE_DEBOUNCE_MS) do
             button.sensitive = true unless button.respond_to?(:destroyed?) && button.destroyed?

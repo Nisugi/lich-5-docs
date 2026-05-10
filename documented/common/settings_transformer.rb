@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+# Represents a data-driven engine for transforming user settings.
+#
+# This module enriches, defaults, and migrates user settings based on a game-specific configuration hash.
+#
+# @see Lich::DragonRealms::SettingsConfig
 =begin
   SettingsTransformer is a data-driven engine that enriches, defaults,
   and migrates user settings based on a game-specific configuration hash.
@@ -16,24 +21,14 @@ require 'ostruct'
 
 module Lich
   module Common
-    # SettingsTransformer is a data-driven engine that enriches, defaults,
-    # and migrates user settings based on a game-specific configuration hash.
-    #
-    # All game-specific knowledge (key names, data files, UserVars fallback
-    # keys) comes from the config hash. The engine is generic.
-    # @example
-    #   config = Lich::DragonRealms::SettingsConfig::TRANSFORM_CONFIG
-    #   result = SettingsTransformer.transform(settings_hash, config, data_provider)
     module SettingsTransformer
       # Transforms the original settings based on the provided configuration and data provider.
       #
-      # @param original_settings [Hash] The original settings to transform.
-      # @param config [Hash] The configuration hash containing game-specific settings.
-      # @param data_provider [Proc] A callable that provides data based on the configuration.
-      # @return [OpenStruct] The transformed settings.
-      # @raise [StandardError] If an error occurs during transformation.
-      # @example
-      #   transformed_settings = SettingsTransformer.transform(original_settings, config, data_provider)
+      # @param original_settings [Hash] the original settings to transform
+      # @param config [Hash] the game-specific configuration hash
+      # @param data_provider [Proc] a callable that provides data based on the configuration
+      # @return [OpenStruct] the transformed settings
+      # @raise [StandardError] if an error occurs during transformation
       def self.transform(original_settings, config, data_provider)
         settings = OpenStruct.new(original_settings)
 
@@ -55,11 +50,12 @@ module Lich
       end
 
 
-      # Applies default values to the settings based on the configuration and data provider.
+      # Applies default values to the settings based on the configuration.
       #
-      # @param settings [OpenStruct] The settings to apply defaults to.
-      # @param config [Hash] The configuration hash containing default settings.
-      # @param data_provider [Proc] A callable that provides data based on the configuration.
+      # @param settings [OpenStruct] the settings to apply defaults to
+      # @param config [Hash] the game-specific configuration hash
+      # @param data_provider [Proc] a callable that provides data based on the configuration
+      # @api private
       def self.apply_defaults(settings, config, data_provider)
         return unless config[:empty_data_type]
 
@@ -71,11 +67,12 @@ module Lich
       end
 
 
-      # Enriches spell settings based on the provided configuration and data provider.
+      # Enriches spell settings with additional data from the configuration.
       #
-      # @param settings [OpenStruct] The settings to enrich with spell data.
-      # @param config [Hash] The configuration hash containing spell settings.
-      # @param data_provider [Proc] A callable that provides spell data.
+      # @param settings [OpenStruct] the settings containing spell data
+      # @param config [Hash] the game-specific configuration hash
+      # @param data_provider [Proc] a callable that provides spell data
+      # @api private
       def self.enrich_spells(settings, config, data_provider)
         return unless config[:spell_data_type]
 
@@ -137,11 +134,12 @@ module Lich
       end
 
 
-      # Composes lists in the settings based on the provided configuration and data provider.
+      # Composes lists of settings based on the provided configuration.
       #
-      # @param settings [OpenStruct] The settings to compose lists for.
-      # @param config [Hash] The configuration hash containing list composition settings.
-      # @param data_provider [Proc] A callable that provides data based on the configuration.
+      # @param settings [OpenStruct] the settings to compose lists for
+      # @param config [Hash] the game-specific configuration hash
+      # @param data_provider [Proc] a callable that provides data based on the configuration
+      # @api private
       def self.compose_lists(settings, config, data_provider)
         (config[:composed_lists] || []).each do |list_config|
           base_sources = (list_config[:base_data_keys] || []).flat_map do |source|
@@ -155,10 +153,11 @@ module Lich
       end
 
 
-      # Applies user variables fallback to the settings based on the configuration.
+      # Applies user variables as fallback values for settings.
       #
-      # @param settings [OpenStruct] The settings to apply user variables fallback to.
-      # @param config [Hash] The configuration hash containing user variables fallback settings.
+      # @param settings [OpenStruct] the settings to apply user variables to
+      # @param config [Hash] the game-specific configuration hash
+      # @api private
       def self.apply_uservars_fallback(settings, config)
         (config[:uservars_fallback] || []).each do |mapping|
           key = mapping[:setting_key]
@@ -185,10 +184,11 @@ module Lich
       end
 
 
-      # Applies hometown lookups to the settings based on the configuration.
+      # Applies hometown lookups to settings based on the configuration.
       #
-      # @param settings [OpenStruct] The settings to apply hometown lookups to.
-      # @param config [Hash] The configuration hash containing hometown lookup settings.
+      # @param settings [OpenStruct] the settings to apply hometown lookups to
+      # @param config [Hash] the game-specific configuration hash
+      # @api private
       def self.apply_hometown_lookups(settings, config)
         (config[:hometown_lookup_keys] || []).each do |key|
           next unless settings[key].is_a?(Hash)
@@ -199,10 +199,11 @@ module Lich
       end
 
 
-      # Enforces deny lists on the settings based on the configuration.
+      # Enforces deny lists on settings to ensure valid values.
       #
-      # @param settings [OpenStruct] The settings to enforce deny lists on.
-      # @param config [Hash] The configuration hash containing deny list settings.
+      # @param settings [OpenStruct] the settings to enforce deny lists on
+      # @param config [Hash] the game-specific configuration hash
+      # @api private
       def self.enforce_denylists(settings, config)
         (config[:denylists] || []).each do |denylist|
           blocked = denylist[:blocked_values]
@@ -217,10 +218,11 @@ module Lich
       end
 
 
-      # Applies legacy migrations to the settings based on the configuration.
+      # Applies legacy migrations to settings based on the configuration.
       #
-      # @param settings [OpenStruct] The settings to apply legacy migrations to.
-      # @param config [Hash] The configuration hash containing legacy migration settings.
+      # @param settings [OpenStruct] the settings to apply migrations to
+      # @param config [Hash] the game-specific configuration hash
+      # @api private
       def self.apply_legacy_migrations(settings, config)
         (config[:legacy_migrations] || []).each do |migration|
           target = settings[migration[:target_key]]
@@ -240,8 +242,8 @@ module Lich
 
       # Builds a lookup function for spells by name.
       #
-      # @param spells_data [Array] The array of spells data.
-      # @return [Proc] A lambda function that looks up spells by name.
+      # @param spells_data [Array<Hash>] the spell data to build the lookup from
+      # @return [Proc] a function that retrieves spell data by name
       def self.build_spell_lookup_by_name(spells_data)
         lambda do |name_to_find|
           return nil unless name_to_find
@@ -257,8 +259,8 @@ module Lich
 
       # Builds a lookup function for spells by abbreviation.
       #
-      # @param spells_data [Array] The array of spells data.
-      # @return [Proc] A lambda function that looks up spells by abbreviation.
+      # @param spells_data [Array<Hash>] the spell data to build the lookup from
+      # @return [Proc] a function that retrieves spell data by abbreviation
       def self.build_spell_lookup_by_abbrev(spells_data)
         lambda do |abbrev_to_find|
           return nil unless abbrev_to_find
@@ -274,9 +276,9 @@ module Lich
 
       # Builds a block to enrich spell settings with additional data.
       #
-      # @param by_name [Proc] The lookup function for spells by name.
-      # @param by_abbrev [Proc] The lookup function for spells by abbreviation.
-      # @return [Proc] A lambda function that enriches spell settings.
+      # @param by_name [Proc] a function to lookup spells by name
+      # @param by_abbrev [Proc] a function to lookup spells by abbreviation
+      # @return [Proc] a block that enriches spell settings
       def self.build_enrich_block(by_name, by_abbrev)
         lambda do |spell_setting|
           return spell_setting unless spell_setting.is_a?(Hash)
@@ -287,20 +289,18 @@ module Lich
         end
       end
 
-      # Injects spell names into the spell settings map.
-      #
-      # @param spells_map [Hash] The map of spell names to their settings.
       def self.inject_spell_names(spells_map)
         spells_map.each do |spell_name, spell_setting|
           spell_setting['name'] ||= spell_name if spell_setting.is_a?(Hash)
         end
       end
 
-      # Applies defaults for targeted magic preparation to the settings.
+      # Applies defaults for targeted magic preparation settings.
       #
-      # @param settings [OpenStruct] The settings to apply defaults to.
-      # @param config [Hash] The configuration hash containing targeted magic settings.
-      # @param spells_data [Array] The array of spells data.
+      # @param settings [OpenStruct] the settings to apply defaults to
+      # @param config [Hash] the game-specific configuration hash
+      # @param spells_data [Array<Hash>] the spell data to use for defaults
+      # @api private
       def self.apply_tm_prep_defaults(settings, config, spells_data)
         key = config[:offensive_spells_key]
         return unless key && settings[key].is_a?(Array)
@@ -315,11 +315,12 @@ module Lich
         end
       end
 
-      # Applies battle cries to the settings based on the configuration.
+      # Applies battle cries to settings based on the configuration.
       #
-      # @param settings [OpenStruct] The settings to apply battle cries to.
-      # @param config [Hash] The configuration hash containing battle cries settings.
-      # @param battle_cries_data [Array] The array of battle cries data.
+      # @param settings [OpenStruct] the settings to apply battle cries to
+      # @param config [Hash] the game-specific configuration hash
+      # @param battle_cries_data [Array<Hash>] the battle cries data to apply
+      # @api private
       def self.apply_battle_cries(settings, config, battle_cries_data)
         key = config[:battle_cries_key]
         return unless key && settings[key].is_a?(Array) && battle_cries_data

@@ -10,8 +10,7 @@ module Lich
     #
     # Bank balances are tracked passively by parsing game output when players
     # deposit, withdraw, or check their balance at banks across Elanthia.
-    # @example Usage
-    #   Lich::DragonRealms::DRBanking.update_balance("town_name", 100)
+    # @see Lich::DragonRealms
     module DRBanking
       module Pattern
         # Deposit a portion of money
@@ -47,7 +46,10 @@ module Lich
       end
 
       # Denomination multipliers for converting to copper
-      # Denomination multipliers for converting to copper
+      # Denomination multipliers for converting to copper.
+      #
+      # @example
+      #   to_copper(5, 'gold') # => 5000
       DENOMINATION_VALUES = {
         'platinum' => 10_000,
         'gold'     => 1_000,
@@ -57,7 +59,7 @@ module Lich
       }.freeze
 
       # Currency to bank list mapping
-      # Currency to bank list mapping
+      # Currency to bank list mapping.
       CURRENCY_BANKS = {
         'Kronars' => KRONAR_BANKS,
         'Lirums'  => LIRUM_BANKS,
@@ -65,44 +67,40 @@ module Lich
       }.freeze
 
       # Settings key for banking data
-      # Settings key for banking data
+      # Settings key for banking data.
       SETTINGS_KEY = 'banking'
 
       # Pattern for parsing balance amounts from strings
-      # Pattern for parsing balance amounts from strings
+      # Pattern for parsing balance amounts from strings.
+      #
+      # @example
+      #   "10 gold" =~ BALANCE_AMOUNT_PATTERN # => true
       BALANCE_AMOUNT_PATTERN = /(\d+)\s+(platinum|gold|silver|bronze|copper)/i.freeze
 
       # In-memory cache of accounts data
       @@accounts_cache = nil
 
       class << self
-        # Returns all bank accounts for the current character.
+        # Retrieves all bank accounts for the current character.
         #
-        # Loads accounts from cache if not already loaded.
-        # @return [Hash] A hash of all accounts for the character.
-        # @example
-        #   accounts = Lich::DragonRealms::DRBanking.all_accounts
+        # @return [Hash] a hash of bank accounts keyed by town.
         def all_accounts
           load_accounts unless @@accounts_cache
           @@accounts_cache
         end
 
-        # Returns the bank accounts for the current character.
+        # Retrieves the bank accounts for the current character.
         #
-        # @return [Hash] A hash of the current character's bank accounts.
-        # @example
-        #   my_accounts = Lich::DragonRealms::DRBanking.my_accounts
+        # @return [Hash] a hash of the character's bank accounts.
         def my_accounts
           all_accounts[character_name] ||= {}
         end
 
         # Updates the balance for a specific town.
         #
-        # @param town [String] The name of the town.
-        # @param copper [Integer] The amount of copper to set as the new balance.
+        # @param town [String] the name of the town.
+        # @param copper [Integer] the new balance in copper.
         # @return [void]
-        # @example
-        #   Lich::DragonRealms::DRBanking.update_balance("town_name", 100)
         def update_balance(town, copper)
           all_accounts[character_name] ||= {}
           all_accounts[character_name][town] = copper.to_i
@@ -110,41 +108,29 @@ module Lich
           Lich::Messaging.msg('info', "DRBanking: Updated #{town} balance to #{format_currency(copper)}")
         end
 
-        # Clears the balance for a specific town by setting it to zero.
-        #
-        # @param town [String] The name of the town.
-        # @return [void]
-        # @example
-        #   Lich::DragonRealms::DRBanking.clear_balance("town_name")
         def clear_balance(town)
           update_balance(town, 0)
         end
 
-        # Calculates the total wealth across all accounts for the current character.
+        # Calculates the total wealth of the current character across all banks.
         #
-        # @return [Integer] The total wealth in copper.
-        # @example
-        #   total = Lich::DragonRealms::DRBanking.total_wealth
+        # @return [Integer] the total wealth in copper.
         def total_wealth
           my_accounts.values.sum
         end
 
-        # Calculates the total wealth across all characters.
+        # Calculates the total wealth of all characters across all banks.
         #
-        # @return [Integer] The total wealth in copper for all characters.
-        # @example
-        #   total_all = Lich::DragonRealms::DRBanking.total_wealth_all
+        # @return [Integer] the total wealth in copper.
         def total_wealth_all
           all_accounts.values.map { |banks| banks.values.sum }.sum
         end
 
         # Converts an amount of currency to copper based on its denomination.
         #
-        # @param amount [Integer] The amount of currency to convert.
-        # @param denomination [String] The denomination of the currency.
-        # @return [Integer] The equivalent amount in copper.
-        # @example
-        #   copper_amount = Lich::DragonRealms::DRBanking.to_copper(5, "gold")
+        # @param amount [Integer] the amount of currency.
+        # @param denomination [String] the type of currency (e.g., 'gold').
+        # @return [Integer] the equivalent amount in copper.
         def to_copper(amount, denomination)
           multiplier = DENOMINATION_VALUES[denomination.downcase] || 1
           amount.to_i * multiplier
@@ -152,10 +138,8 @@ module Lich
 
         # Parses a balance string and converts it to copper.
         #
-        # @param balance_string [String] The string containing the balance information.
-        # @return [Integer] The total balance in copper.
-        # @example
-        #   copper = Lich::DragonRealms::DRBanking.parse_balance_string("10 gold, 5 silver")
+        # @param balance_string [String] the string representing the balance.
+        # @return [Integer] the total balance in copper.
         def parse_balance_string(balance_string)
           return 0 if balance_string.nil? || balance_string.empty?
 
@@ -168,10 +152,8 @@ module Lich
 
         # Formats a copper amount into a human-readable currency string.
         #
-        # @param copper [Integer] The amount in copper to format.
-        # @return [String] The formatted currency string.
-        # @example
-        #   formatted = Lich::DragonRealms::DRBanking.format_currency(1500)
+        # @param copper [Integer] the amount in copper.
+        # @return [String] the formatted currency string.
         def format_currency(copper)
           copper = copper.to_i
           return 'none' if copper <= 0
@@ -189,9 +171,7 @@ module Lich
 
         # Determines the current bank town based on the room title.
         #
-        # @return [String, nil] The name of the current bank town or nil if not in a bank.
-        # @example
-        #   town = Lich::DragonRealms::DRBanking.current_bank_town
+        # @return [String, nil] the name of the current bank town or nil if not found.
         def current_bank_town
           room_title = XMLData.room_title
           return nil if room_title.nil? || room_title.empty?
@@ -204,10 +184,8 @@ module Lich
 
         # Parses a line of game output to update banking information.
         #
-        # @param line [String] The line of game output to parse.
+        # @param line [String] the line of game output to parse.
         # @return [void]
-        # @example
-        #   Lich::DragonRealms::DRBanking.parse("You count out 5 gold Kronars and quickly pocket them.")
         def parse(line)
           return unless line.is_a?(String)
 
@@ -233,8 +211,6 @@ module Lich
         # Displays the current character's bank balances.
         #
         # @return [void]
-        # @example
-        #   Lich::DragonRealms::DRBanking.display_banks
         def display_banks
           accounts = my_accounts
           if accounts.empty?
@@ -262,11 +238,9 @@ module Lich
           Lich::Messaging.msg('info', "  #{'Grand Total:'.rjust(25)} #{format_currency(total_wealth)}")
         end
 
-        # Displays the bank balances for all characters.
+        # Displays bank balances for all characters.
         #
         # @return [void]
-        # @example
-        #   Lich::DragonRealms::DRBanking.display_banks_all
         def display_banks_all
           accounts = all_accounts
           if accounts.empty?
@@ -299,8 +273,7 @@ module Lich
         # Reloads the bank accounts from storage.
         #
         # @return [void]
-        # @example
-        #   Lich::DragonRealms::DRBanking.reload!
+        # @api private
         def reload!
           @@accounts_cache = nil
           load_accounts
@@ -309,8 +282,7 @@ module Lich
         # Resets the bank data for the current character.
         #
         # @return [void]
-        # @example
-        #   Lich::DragonRealms::DRBanking.reset_character!
+        # @api private
         def reset_character!
           all_accounts.delete(character_name)
           save_accounts
@@ -320,8 +292,7 @@ module Lich
         # Resets the bank data for all characters.
         #
         # @return [void]
-        # @example
-        #   Lich::DragonRealms::DRBanking.reset_all!
+        # @api private
         def reset_all!
           @@accounts_cache = {}
           save_accounts

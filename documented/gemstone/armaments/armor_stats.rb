@@ -1,16 +1,11 @@
-# Lich module
-# This module serves as a namespace for the Lich project.
+# The Lich module serves as a namespace for the Gemstone project.
+#
 module Lich
-  # Gemstone module
-  # This module serves as a namespace for the Gemstone features within the Lich project.
   module Gemstone
-    # Armaments module
-    # This module serves as a namespace for armament-related features.
     module Armaments
-      # ArmorStats module
-      # This module contains static armor statistics and methods to retrieve and manipulate them.
-      # @example Accessing armor statistics
-      #   armor_stats = Lich::Gemstone::Armaments::ArmorStats.find_by_asg(1)
+      # The ArmorStats module contains static data and methods related to armor statistics.
+      #
+      # This includes methods for finding armor by various criteria and retrieving armor properties.
       module ArmorStats
         # Static array of armor stats indexed by armor identifiers. Each armor
         # entry contains metadata such as category, alternative names, size and
@@ -346,6 +341,13 @@ module Lich
         Lich::Util.deep_freeze(@@armor_stats)
 
         ##
+        # Finds the critical divisor based on armor type, armor group, or armor sub-group.
+        #
+        # @param type [Symbol, nil] the type of armor (e.g., :cloth, :leather)
+        # @param ag [Integer, nil] the armor group number
+        # @param asg [Integer, nil] the armor sub-group number
+        # @return [Integer, nil] the critical divisor for the specified parameters
+        # @raise [ArgumentError] if none of the parameters are provided
         def self.find_crit_divisor(type: nil, ag: nil, asg: nil)
           return { cloth: 5, leather: 6, scale: 7, chain: 9, plate: 11 }[type] unless type.nil?
           return { 1 => 5, 2 => 6, 3 => 7, 4 => 9, 5 => 11 }[ag] unless ag.nil?
@@ -354,6 +356,10 @@ module Lich
         end
 
         ##
+        # Finds the coverage type for a given armor sub-group number.
+        #
+        # @param asg [Integer] the armor sub-group number
+        # @return [Symbol, nil] the coverage type (e.g., :torso, :torso_and_arms) or nil if not found
         def self.find_coverage(asg)
           return nil unless asg.is_a?(Integer) && asg.between?(1, 20)
           coverage = {
@@ -371,6 +377,10 @@ module Lich
         end
 
         ##
+        # Finds armor data by armor sub-group number.
+        #
+        # @param asg_number [Integer] the armor sub-group number
+        # @return [Hash, nil] the armor data for the specified sub-group or nil if not found
         def self.find_by_asg(asg_number)
           return nil unless asg_number.is_a?(Integer) && asg_number.between?(1, 20)
 
@@ -385,6 +395,9 @@ module Lich
         end
 
         ##
+        # Retrieves a list of all armor names available in the armor statistics.
+        #
+        # @return [Array<String>] an array of unique armor names
         def self.names
           @@armor_stats.flat_map do |_, subgroups|
             subgroups.values.compact.map { |asg| asg[:all_names] }
@@ -392,11 +405,17 @@ module Lich
         end
 
         ##
+        # Retrieves a list of unique armor categories based on base names.
+        #
+        # @return [Array<Symbol>] an array of unique armor categories
         def self.categories
           @@armor_stats.values.flat_map(&:values).map { _1[:base_name] }.uniq.compact
         end
 
         ##
+        # Retrieves a list of unique base names for all armor types.
+        #
+        # @return [Array<Symbol>] an array of unique base names
         def self.base_names
           @@armor_stats.flat_map do |_, subgroups|
             subgroups.values.compact.map { |asg| asg[:base_name] }.uniq.compact
@@ -404,6 +423,10 @@ module Lich
         end
 
         ##
+        # Finds armor data by name.
+        #
+        # @param name [String] the name of the armor to find
+        # @return [Hash, nil] the armor data if found, otherwise nil
         def self.find(name)
           name = name.downcase.strip
 
@@ -420,6 +443,10 @@ module Lich
         end
 
         ##
+        # Finds all armor data matching the given name.
+        #
+        # @param name [String] the name of the armor to find
+        # @return [Array<Hash>, nil] an array of matching armor data or nil if none found
         def self.find_all(name)
           name = name.downcase.strip
 
@@ -435,6 +462,10 @@ module Lich
         end
 
         ##
+        # Lists all armor data of a specific type.
+        #
+        # @param type [Symbol] the type of armor to filter by (e.g., :cloth, :leather)
+        # @return [Array<Hash>] an array of armor data matching the specified type
         def self.list_by_type(type)
           @@armor_stats.flat_map do |_, subgroups|
             subgroups.values.compact.select { |asg| asg[:type] == type }
@@ -442,6 +473,10 @@ module Lich
         end
 
         ##
+        # Retrieves all names for a specific armor sub-group.
+        #
+        # @param asg [Integer, Symbol] the armor sub-group number or symbol
+        # @return [Array<String>] an array of names for the specified armor sub-group
         def self.names_in_asg(asg)
           asg_sym = asg.is_a?(Integer) ? :"asg_#{asg}" : asg.to_sym
 
@@ -455,6 +490,10 @@ module Lich
         end
 
         ##
+        # Retrieves the category type for a given armor name.
+        #
+        # @param name [String] the name of the armor
+        # @return [Symbol, nil] the armor type or nil if not found
         def self.category_for(name)
           name = name.downcase.strip
 
@@ -463,6 +502,10 @@ module Lich
         end
 
         ##
+        # Returns a formatted string representation of the armor data for display.
+        #
+        # @param name [String] the name of the armor to format
+        # @return [String] a formatted string containing armor details
         def self.pretty(name)
           armor = self.find(name)
           return "\n(no data)\n" unless armor.is_a?(Hash)
@@ -501,6 +544,10 @@ module Lich
         end
 
         ##
+        # Returns a detailed formatted string representation of the armor data for display.
+        #
+        # @param name [String] the name of the armor to format
+        # @return [String] a detailed formatted string containing armor details
         def self.pretty_long(name)
           armor = self.find(name)
           return "\n(no data)\n" unless armor.is_a?(Hash)
@@ -554,12 +601,21 @@ module Lich
         end
 
         ##
+        # Retrieves all aliases for a given armor name.
+        #
+        # @param name [String] the name of the armor
+        # @return [Array<String>] an array of aliases for the specified armor
         def self.aliases_for(name)
           armor = self.find(name)
           armor ? armor[:all_names] : []
         end
 
         ##
+        # Compares two armors and returns their attributes.
+        #
+        # @param name1 [String] the name of the first armor
+        # @param name2 [String] the name of the second armor
+        # @return [Hash, nil] a hash containing the comparison data or nil if either armor is not found
         def self.compare(name1, name2)
           a1 = self.find(name1)
           a2 = self.find(name2)
@@ -580,6 +636,10 @@ module Lich
         end
 
         ##
+        # Searches for armor based on provided filters.
+        #
+        # @param filters [Hash] a hash of filters to apply to the search
+        # @return [Array<Hash>] an array of armor data matching the filters
         def self.search(filters = {})
           @@armor_stats.values.flat_map(&:values).compact.select do |armor|
             next if filters[:name] && !armor[:all_names].include?(filters[:name].downcase.strip)
@@ -595,6 +655,10 @@ module Lich
         end
 
         ##
+        # Checks if a given name is a valid armor name.
+        #
+        # @param name [String] the name to validate
+        # @return [Boolean] true if the name is valid, false otherwise
         def self.valid_name?(name)
           name = name.downcase.strip
           self.names.include?(name)

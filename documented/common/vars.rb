@@ -13,8 +13,9 @@ module Lich
       @@load_state = LoadState::UNLOADED
 
       # Normalizes the given key to a string.
-      # @param key [Object] The key to normalize.
-      # @return [String] The normalized key as a string.
+      #
+      # @param key [Object] the key to normalize
+      # @return [String] the normalized key as a string
       def self.normalize_key(key)
         key.to_s
       end
@@ -88,21 +89,19 @@ module Lich
       }
 
       # Retrieves the value associated with the given name.
-      # @param name [String, Symbol] The name of the variable to retrieve.
-      # @return [Object, nil] The value associated with the name, or nil if not found.
-      # @example
-      #   value = Vars["my_var"]
+      #
+      # @param name [String] the name of the variable to retrieve
+      # @return [Object, nil] the value associated with the name, or nil if not found
       def Vars.[](name)
         @@load.call unless @@load_state == LoadState::LOADED
         @@vars[normalize_key(name)]
       end
 
       # Sets the value for the given name.
-      # @param name [String, Symbol] The name of the variable to set.
-      # @param val [Object] The value to assign to the variable.
+      #
+      # @param name [String] the name of the variable to set
+      # @param val [Object, nil] the value to assign, or nil to delete the variable
       # @return [void]
-      # @example
-      #   Vars["my_var"] = "new_value"
       def Vars.[]=(name, val)
         @@load.call unless @@load_state == LoadState::LOADED
         key = normalize_key(name)
@@ -113,27 +112,26 @@ module Lich
         end
       end
 
-      # Returns a duplicate of the current variables hash.
-      # @return [Hash] A duplicate of the variables hash.
-      # @example
-      #   all_vars = Vars.list
+      # Returns a duplicate of the current variables.
+      #
+      # @return [Hash] a hash containing all current variables
       def Vars.list
         @@load.call unless @@load_state == LoadState::LOADED
         @@vars.dup
       end
 
       # Saves the current variables to the database if modified.
+      #
       # @return [void]
-      # @example
-      #   Vars.save
       def Vars.save
         @@save.call
       end
 
-      # Handles method calls that are not explicitly defined.
-      # @param method_name [Symbol] The name of the method being called.
-      # @param args [Array] The arguments passed to the method.
-      # @return [Object, nil] The value associated with the method name, or nil if not found.
+      # Handles method calls that do not have a direct implementation.
+      #
+      # @param method_name [Symbol] the name of the method being called
+      # @param args [Array] the arguments passed to the method
+      # @return [Object, nil] the value associated with the method call, or nil if not found
       def Vars.method_missing(method_name, *args)
         @@load.call unless @@load_state == LoadState::LOADED
 
@@ -163,9 +161,10 @@ module Lich
       end
 
       # Checks if the object responds to the given method name.
-      # @param method_name [Symbol] The name of the method to check.
-      # @param _include_private [Boolean] Whether to include private methods in the check.
-      # @return [Boolean] True if the method exists, false otherwise.
+      #
+      # @param method_name [Symbol] the name of the method
+      # @param _include_private [Boolean] whether to include private methods in the check
+      # @return [Boolean] true if the method exists, false otherwise
       def Vars.respond_to_missing?(method_name, _include_private = false)
         method_str = method_name.to_s
 

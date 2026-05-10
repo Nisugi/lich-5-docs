@@ -1,15 +1,15 @@
 
-# Lich module
-# This module serves as a namespace for the Lich project.
+# Provides common functionality for the Lich project.
+#
+# @see Lich::Common::GameLoader
 module Lich
   module Common
-    # GameLoader module
-    # This module handles the loading of game-specific resources.
-    # @example Loading the gemstone game
-    #   Lich::Common::GameLoader.gemstone
+    # Handles the loading of game-specific resources and dependencies.
+    #
+    # @see Lich::Common
     module GameLoader
-      # Prepares the common resources before loading a game.
-      # This method requires necessary files for the game to function properly.
+      # Loads common dependencies required before starting the game.
+      # @return [void]
       def self.common_before
         require File.join(LIB_DIR, 'common', 'account.rb')
         require File.join(LIB_DIR, 'common', 'log.rb')
@@ -19,10 +19,9 @@ module Lich
         require File.join(LIB_DIR, 'common', 'hmr.rb')
       end
 
-      # Loads the resources specific to the gemstone game.
+      # Loads resources specific to the GemStone game.
       # @return [void]
-      # @raise [LoadError] if any required file cannot be loaded.
-      # @example Loading gemstone resources
+      # @example
       #   Lich::Common::GameLoader.gemstone
       def self.gemstone
         self.common_before
@@ -63,10 +62,9 @@ module Lich
         self.common_after
       end
 
-      # Loads the resources specific to the dragon realms game.
+      # Loads resources specific to the Dragon Realms game.
       # @return [void]
-      # @raise [LoadError] if any required file cannot be loaded.
-      # @example Loading dragon realms resources
+      # @example
       #   Lich::Common::GameLoader.dragon_realms
       def self.dragon_realms
         self.common_before
@@ -79,8 +77,8 @@ module Lich
         self.common_after
       end
 
-      # Finalizes the loading process by requiring post-load resources.
-      # This method ensures that all necessary final setups are completed.
+      # Loads common post-initialization tasks after game resources are loaded.
+      # @return [void]
       def self.common_after
         require File.join(LIB_DIR, 'common', 'postload.rb')
         PostLoad.register("settings_init") do
@@ -96,10 +94,9 @@ module Lich
         PostLoad.watch!
       end
 
-      # Loads the appropriate game based on the XML data.
+      # Loads the appropriate game based on the current game data.
       # @return [void]
-      # @raise [RuntimeError] if the game cannot be determined.
-      # @example Loading a game based on XML data
+      # @example
       #   Lich::Common::GameLoader.load!
       def self.load!
         sleep 0.1 while XMLData.game.nil? or XMLData.game.empty?

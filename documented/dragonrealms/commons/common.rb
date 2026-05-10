@@ -7,17 +7,23 @@ module Lich
 
       module_function
 
+      # Constants used for various patterns and messages in the DRC module.
       # ── Constants ────────────────────────────────────────────────────────
 
       # Pattern for XML tags
-      # Pattern for XML tags
+      # Pattern for XML tags.
+      #
+      # @example
+      #   "<tag>content</tag>" matches this pattern.
       XML_TAG_PATTERN = /<[^>]+>/.freeze
 
       # Pattern for game wait/roundtime responses in bput
-      # Pattern for game wait/roundtime responses in bput
+      # Pattern for game wait/roundtime responses in bput.
+      #
+      # @example
+      #   "Wait 5" matches this pattern with seconds = 5.
       WAIT_RESPONSE_PATTERN = /(?:\.\.\.wait |Wait |\.\.\. wait )(?<seconds>[0-9]+)/.freeze
 
-      # Collect command response messages
       # Collect command response messages
       COLLECT_MESSAGES = [
         'As you rummage around',
@@ -40,7 +46,10 @@ module Lich
       ].freeze
 
       # Retreat command response patterns
-      # Retreat command response patterns
+      # Retreat command response patterns.
+      #
+      # @example
+      #   "You retreat from combat" matches this pattern.
       RETREAT_ESCAPE_MESSAGES = [
         /You are already as far away as you can get/,
         /You retreat from combat/,
@@ -49,7 +58,6 @@ module Lich
         /There's no place to retreat to/
       ].freeze
 
-      # Messages indicating a retreat action
       RETREAT_MESSAGES = [
         /retreat/,
         /sneak/,
@@ -62,43 +70,35 @@ module Lich
       ].freeze
 
       # Assess teach parsing patterns
-      # Assess teach parsing patterns
+      # Assess teach parsing patterns.
+      #
+      # @example
+      #   "John is teaching a class on Swordsmanship which is still open to new students" matches this pattern.
       ASSESS_TEACH_TEACHER_PATTERN = /(?<teacher>.*) is teaching a class on (?<skill>.*) which is still open to new students/.freeze
       ASSESS_TEACH_SKILL_FILTER_PATTERN = /.* \(compared to what you already know\) (?<filtered_skill>.*)/.freeze
 
-      # Common ranged weapon nouns
       # Common ranged weapon nouns
       COMMON_RANGED_WEAPONS_PATTERN = /^(bow|shortbow|longbow|crossbow|stonebow|latchbow|slurbow|lockbow|pelletbow|arbalest|sling|slingshot|blowgun)$/i.freeze
 
       # Gamgweth/racial ranged weapon nouns
       # https://elanthipedia.play.net/Genie_racial_language_item_subs
       # https://elanthipedia.play.net/Category:Language_Book
-      # Gamgweth/racial ranged weapon nouns
       RACIAL_RANGED_WEAPONS_PATTERN = /^(jranoki|uku'uan|uku'uanstaho|chunenguti|hhr'ibu|guti|mahil|taisgwelduan|chyeb|sverfil|tangara|alaer|kari|wami|usus|srigos|href|vrope|falocisana|stof|dzelt)$/i.freeze
 
       # Flavor text pattern for item descriptions
       # https://regex101.com/r/4lGY6u/13
-      # Flavor text pattern for item descriptions
       FLAVOR_TEXT_PATTERN = /\s?\b(?:(?:colorfully and )?(?:artfully|artistically|attractively|beautifully|bl?ack-|cleverly|clumsily|crudely|deeply|delicately|edged|elaborately|faintly|flamboyantly|front-|fully|gracefully|heavily|held|intricately|lavishly|masterfully|plentifully|prominantly|roughly|securely|sewn|shabbily|shadow-|simply|somberly|skillfully|sloppily|starkly|stitched|tied and|tightly|well-)\s?)?(?:accented|accentuated|acid-etched|adorned|affixed|appliqued|assembled|attached|augmented|awash|backed|back-laced|balanced|banded|batiked|beaded|bearded|bearing|bedazzled|bedecked|bejeweled|beset|bestrewn|blazoned|bordered|bound|braided|branded|brocaded|bristling|brushed|buckled|burned|buttoned|caked|camouflaged|capped|carved|caught|centered|chased|chiseled|cinched|circled|clasped|cloaked|closed|coated|cobbled together|coiled|colored|composed|concealed|connected|constructed|countoured|covered|crafted|crested|crisscrossed|crowded|crowned|cuffed|cut|dangling|dappled|decked|decorated|deformed|depicting|designed|detailed|discolored|displaying|divided|done|dotted|draped|drawn|dressed|drizzled|dusted|edged|elaborately|embedded|embell?ished|emblazed|emblazoned|embossed|embroidered(?: all over| painstakingly)?|enameled(?: across)?|encircled|encrusted|engraved|engulfed|enhanced|entwined|equipped|etched|fashioned(?: so)?|fastened|feathered|featuring|festooned|fettered|filed|filled|firestained|fit|fitted|fixed|flecked|fletched|forged|formed|framed|fringed|frosted|full|gathered|gleaming|glimmering|glittering|goldworked|growing|gypsy-set|hafted|hand-tooled|hanging|heavily(?:-beaded| covered)?|held fast|hemmed|hewn|hideously|highlighted|hilted|honed|hung|impressed|incised|ingeniously repurposed|inscribed|inlaid|inset|interlaced|interspersed|interwoven|jeweled|joined|laced(?: up)?|lacquered|laden|layered|limned|lined|linked|looped|knotted|made|marbled|marked|marred|meshed|mosaicked|mottled|mounted|oiled|oozing|outlined|ornamented|overlai(?:d|n)|padded|painted|paired|patched|pattern-welded|patterned|pinned|plumed|polished|printed|reinforced|reminiscent|rendered|revealing|riddled|ridged|rimed|ringed|riveted|sashed|scarred|scattered|scorched|sculpted|sealed|seamed|secured|securely|set|sewn|shaped|shimmering|shod|shot|shrouded|side-laced|slashed|slung|smeared|smudged|spangled|speckled|spiraled|splatter-dyed|splattered|spotted|sprinkled|stacked|surmounted|surrounded|suspended|stained|stamped|starred|stenciled|stippled|stitched(?: together)?|strapped|streaked|strengthened|strewn|striated|striped|strung|studded|swathed|swirled|tailored|tangled|tapered|tethered|textured|threaded|tied|tightly|tinged|tinted|tipped|tooled|topped|traced|trimmed|twined|veined|vivified|washed|webbed|weighted|whorled|worked|worn|woven|wrapped|wreathed|wrought)?\b ["]?\b(?:a hand-tooled|across|along|an|around|atop|bearing|belted|bright streaks|dangling|designed|detailing|down (?:each leg|one side)|dyed (?:a|and|deep|of|in|night|rust|shimmering|the|to|with)|engravings|entitled|errant pieces|featuring|flaunting|frescoed|from|Gnomish Pride|(?:encased |quartered )?in(?: the)?|into|labeled|leading|like|lining|matching|(?<!stick|slice|chunk|flask|hunk|series|set|pair|piece) of|on|out|overlayed gleaming silver|resembling|shades of color|sporting|surrounding|that|the|through|tinged somber black|titled|to|upon|WAR MONGER|with|within|\b(?:at|bearing|(?:accented |held |secured )?by|carrying|clutching|colored|cradling|dangling|depicting|(?:prominently )?displaying|embossed|etched|featuring|for(?:ming)?|holding|(?<!slice |chunk |flask |hunk |series |set |pair |piece )of|over|patterned|striped|suspending|textured|that)\b \b(?:a (?:band|beaded|brass|cascade|cluster|coral|crown|dead|.+ (?:ingot|boulder|stone|rock|nugget)|fierce|fanged|fringe|glowing|golden|grinning|howling|large|lotus|mosaic|pair|poorly|rainbow|roaring|row|silver(?:y|weave)?|small|snarling|spray|tailored|thick|tiny|trio|turquoise|yellowed)|(?:squared )?agonite (?:links|decorated)|alternating|an|(?:purple |blue )?and|ash|beaded fringe|blackened (?:steel(?: accents| bearing| with|$)|ironwood)|blue (?:gold|steel)|burnished golden|cascading layers|carved ivory|chain-lined|chitinous|(?:deep red|dull black|pale blue) cloth|cloudberry blossoms|colorful tightly|cotton candy|crimson steel|crisscrossed|curious design|curved|crystaline charm|dark (?:blue|green|grey|metals|windsteel) (?:and|exuding|glaes|hues|khor'vela|muracite|pennon|with)|dark supple|deepest|deeply blending|delicate|dusky (?:dreamweave|green-grey)|ebonwood$|emblazoned|enamel?led (?:steel|bronze)|etched|fine(?:-grained| black| crushed)|finely wrought|flame-kissed|forest|fused-together|fuzzy grey|gauze atop|gilded steel|glass eyeballs|glistening green|golden oak|grey fur|hammered|haralun|has|heavy (?:grey|pearl|silver)|horn|Ilithi cedar|inky black|interlocking silver|interwoven|iridescent|jagged interlocking plates|(?:soft dark|supple|thick|woven) (?:bolts|leather)|lightweight|long swaths|lustrous|kertig ravens|made|metal cogs|mirror-finished|mottled|multiple woods|naphtha|oak|oblong sanguine|one|onyx buttons|opposing images|overlapping|pale cerulean|pallid links|pastel-hued|pins|pitted (?:black iron|steel)|plush velvet|polished (?:bronze|hemlock|steel)|raccoon tails|ram's horns|rat pelts|raw|red and blue|rich (?:purple|golden)|riveted bindings|roughened|rowan|sanguine thornweave|scattered star|scorch marks|sculpted|shadows|shark cartilage|shifting (?:celadon|shades)|shipboard|(?:braided |cobalt |deep black |desert-tan |dusky red Taisidon |ebony |exquisite spider|fine leaf-green |flowing night|glimmering ebony |heavy |marigold |pale gold marquisette and virid |rich copper |spiral-braided |steel|unadorned black Musparan )?silk(?:cress)?|(?:coiled |shimmering )?silver(?:steel| and |y)?|sirese blue spun glitter|six crossed|slender|small bones|smoothly interlocking|snow leopard|soft brushed|somber black|sprawled|sun-bleached|steel links|stones|strips of|sunny yellow|teardrop plates|telothian|the|tiny (?:golden|indurium|scales|skull)|tightly braided|tomiek|torn|twists|two|undyed|vibrant multicolored|viscous|waves of|weighted|well-cured|white ironwood|windstorm gossamer|wintry faeweave|woven diamondwood))\b.*/.freeze
 
 
       # Strips XML tags from the given lines.
-      # @param lines [Array<String>] The lines to process.
-      # @return [Array<String>] The lines without XML tags.
-      # @example
-      #   cleaned_lines = strip_xml(raw_lines)
+      #
+      # @param lines [Array<String>] lines of text to process.
+      # @return [Array<String>] lines without XML tags.
       def strip_xml(lines)
         lines.map { |line| line.gsub(XML_TAG_PATTERN, '').gsub('&gt;', '>').gsub('&lt;', '<').strip }
              .reject(&:empty?)
       end
 
-      # Sends a message and waits for a response, matching against provided patterns.
-      # @param message [String] The message to send.
-      # @param matches [Array<Regexp, String>] The patterns to match against the response.
-      # @return [String] The matched response or an empty string if no match is found.
-      # @raise [StandardError] If no match is found after the timeout.
-      # @example
-      #   response = bput("look around", /You see/, /You don't see/)
       def bput(message, *matches)
         options = (matches.shift if matches.first.is_a?(Hash)) || {}
         options['timeout'] ||= 15
@@ -207,10 +207,9 @@ module Lich
       end
 
       # Verifies the existence of scripts by their names.
-      # @param script_names [Array<String>, String] The names of the scripts to verify.
-      # @return [Boolean] True if all scripts exist, false otherwise.
-      # @example
-      #   verify_script("my_script")
+      #
+      # @param script_names [Array<String>, String] names of scripts to verify.
+      # @return [Boolean] true if all scripts exist, false otherwise.
       def verify_script(script_names)
         script_names = [script_names] unless script_names.is_a?(Array)
         state = true
@@ -224,12 +223,11 @@ module Lich
       end
 
       # Waits for a script to complete execution.
-      # @param name [String] The name of the script to wait for.
-      # @param args [Array<String>] The arguments to pass to the script.
-      # @param flags [Hash] Additional options for script execution.
-      # @return [String, nil] The script handle if it started successfully, nil otherwise.
-      # @example
-      #   wait_for_script_to_complete("my_script", ["arg1", "arg2"])
+      #
+      # @param name [String] name of the script to wait for.
+      # @param args [Array<String>] arguments to pass to the script.
+      # @param flags [Hash] additional options for script execution.
+      # @return [String, nil] the script handle if it started, nil otherwise.
       def wait_for_script_to_complete(name, args = [], flags = {})
         verify_script(name)
         script_handle = start_script(name, args.map { |arg| arg.to_s =~ /\s/ ? "\"#{arg}\"" : arg }, flags)
@@ -241,11 +239,8 @@ module Lich
       end
 
       # Checks if the player can see the sky based on their location.
-      # @return [Boolean] True if the player can see the sky, false otherwise.
-      # @example
-      #   if can_see_sky?
-      #     puts "You can see the sky!"
-      #   end
+      #
+      # @return [Boolean] true if the player can see the sky, false otherwise.
       def can_see_sky?
         # If you are indoors and not able to see the sky.
         inside_no_sky = "That's a bit hard to do while inside."
@@ -258,13 +253,10 @@ module Lich
       end
 
       # Attempts to forage for an item a specified number of times.
-      # @param item [String] The item to forage for.
-      # @param tries [Integer] The number of attempts to make.
-      # @return [Boolean] True if foraging was successful, false otherwise.
-      # @example
-      #   if forage?("berries")
-      #     puts "You found some berries!"
-      #   end
+      #
+      # @param item [String] the item to forage for.
+      # @param tries [Integer] number of attempts to make.
+      # @return [Boolean] true if foraging was successful, false otherwise.
       def forage?(item, tries = 5)
         snapshot = "#{right_hand}#{left_hand}"
         while snapshot == "#{right_hand}#{left_hand}"
@@ -286,12 +278,11 @@ module Lich
         true
       end
 
-      # Collects an item, optionally practicing the collection.
-      # @param item [String] The item to collect.
-      # @param practice [Boolean] Whether to practice the collection.
-      # @return [nil]
-      # @example
-      #   collect("wood")
+      # Collects an item, optionally practicing the action.
+      #
+      # @param item [String] the item to collect.
+      # @param practice [Boolean] whether to practice while collecting.
+      # @return [void]
       def collect(item, practice = true)
         practicing = "practice" if practice
 
@@ -305,12 +296,9 @@ module Lich
       end
 
       # Kicks a pile to see if it can be interacted with.
-      # @param item [String] The name of the pile to kick.
-      # @return [Boolean] True if the kick was successful, false otherwise.
-      # @example
-      #   if kick_pile?
-      #     puts "You kicked the pile!"
-      #   end
+      #
+      # @param item [String] the item to kick, defaults to 'pile'.
+      # @return [Boolean] true if the kick was successful, false otherwise.
       def kick_pile?(item = 'pile')
         fix_standing
         return unless DRRoom.room_objs.any? { |room_obj| room_obj.match?(/pile/) }
@@ -318,11 +306,10 @@ module Lich
       end
 
       # Rummages through a container for a specified parameter.
-      # @param parameter [String] The type of item to rummage for.
-      # @param container [String] The container to rummage in.
-      # @return [Array<String>] The items found during rummaging.
-      # @example
-      #   items = rummage("G", "backpack")
+      #
+      # @param parameter [String] the type of item to search for.
+      # @param container [String] the container to rummage through.
+      # @return [Array<String>] list of items found.
       def rummage(parameter, container)
         result = DRC.bput("rummage /#{parameter} my #{container}", 'but there is nothing in there like that\.', 'looking for .* and see .*', 'While it\'s closed', 'I don\'t know what you are referring to', 'You feel about', 'That would accomplish nothing')
 
@@ -345,47 +332,22 @@ module Lich
         end
       end
 
-      # Retrieves skins from a specified container.
-      # @param container [String] The container to rummage in.
-      # @return [Array<String>] The skins found.
-      # @example
-      #   skins = get_skins("backpack")
       def get_skins(container)
         rummage('S', container)
       end
 
-      # Retrieves gems from a specified container.
-      # @param container [String] The container to rummage in.
-      # @return [Array<String>] The gems found.
-      # @example
-      #   gems = get_gems("pocket")
       def get_gems(container)
         rummage('G', container)
       end
 
-      # Retrieves materials from a specified container.
-      # @param container [String] The container to rummage in.
-      # @return [Array<String>] The materials found.
-      # @example
-      #   materials = get_materials("sack")
       def get_materials(container)
         rummage('M', container)
       end
 
-      # Converts a list string into an array of items.
-      # @param list [String] The list to convert.
-      # @return [Array<String>] The array of items.
-      # @example
-      #   items = list_to_array("item1, item2, and item3")
       def list_to_array(list)
         list.strip.split(/(?:,|(?:, |\s)?and\s?)(?:\s?<pushBold\/>\s?)?(?=\s\ba\b|\s\ban\b|\s\bsome\b|\s\bthe\b)/i).reject(&:empty?)
       end
 
-      # Converts a box list string into an array of adjectives and nouns.
-      # @param list [String] The box list to convert.
-      # @return [Array<String>] The array of adjectives and nouns.
-      # @example
-      #   items = box_list_to_adj_and_noun("a box of items")
       def box_list_to_adj_and_noun(list)
         list.strip
             .split($box_regex)
@@ -394,11 +356,6 @@ module Lich
             .map { |box| box.gsub('ironwood', 'iron') } # make all ironwood into iron because "the parser"
       end
 
-      # Converts a scroll list string into an array of adjectives and nouns.
-      # @param list [String] The scroll list to convert.
-      # @return [Array<String>] The array of adjectives and nouns.
-      # @example
-      #   items = scroll_list_to_adj_and_noun("a scroll of magic")
       def scroll_list_to_adj_and_noun(list)
         list_to_array(list).map { |entry|
           entry
@@ -426,11 +383,6 @@ module Lich
         }
       end
 
-      # Converts a list string into an array of nouns.
-      # @param list [String] The list to convert.
-      # @return [Array<String>] The array of nouns.
-      # @example
-      #   nouns = list_to_nouns("a red apple, a green apple")
       def list_to_nouns(list)
         list_to_array(list)
           .map { |long_name| get_noun(long_name) }
@@ -438,48 +390,20 @@ module Lich
           .reject { |noun| noun == '' }
       end
 
-      # Extracts the noun from a long name string.
-      # @param long_name [String] The long name to extract from.
-      # @return [String, nil] The extracted noun or nil if not found.
-      # @example
-      #   noun = get_noun("a shiny red apple")
       def get_noun(long_name)
         remove_flavor_text(long_name).strip.scan(/[a-z\-']+$/i).first
       end
 
-      # Removes flavor text from an item description.
-      # @param item [String] The item description to process.
-      # @return [String] The item description without flavor text.
-      # @example
-      #   clean_item = remove_flavor_text("a shiny red apple with a sweet aroma")
       def remove_flavor_text(item)
         item.sub(FLAVOR_TEXT_PATTERN, '')
       end
 
       # Represents an item in the game.
-      # @example
-      #   item = DRC::Item.new(name: "sword", leather: "none")
+      #
+      # @see DRC#ranged_weapon? to check if the item is a ranged weapon.
       class Item
         attr_reader :name, :leather, :worn, :hinders_lockpicking, :container, :swappable, :tie_to, :adjective, :bound, :wield, :transforms_to, :transform_verb, :transform_text, :lodges, :skip_repair, :ranged, :needs_unloading
 
-        # Initializes a new item.
-        # @param name [String] The name of the item.
-        # @param leather [String] The type of leather used.
-        # @param worn [Boolean] Whether the item is worn.
-        # @param hinders_lockpicking [Boolean] Whether it hinders lockpicking.
-        # @param container [Boolean] Whether the item is a container.
-        # @param swappable [Boolean] Whether the item is swappable.
-        # @param tie_to [String] The item it is tied to.
-        # @param adjective [String] An adjective describing the item.
-        # @param bound [Boolean] Whether the item is bound.
-        # @param wield [Boolean] Whether the item can be wielded.
-        # @param transforms_to [String] The item it transforms to.
-        # @param transform_verb [String] The verb used for transformation.
-        # @param transform_text [String] The text displayed during transformation.
-        # @param lodges [Boolean] Whether the item lodges.
-        # @param skip_repair [Boolean] Whether to skip repair.
-        # @param ranged [Boolean] Whether the item is a ranged weapon.
-        # @param needs_unloading [Boolean] Whether the item needs unloading.
         def initialize(name: nil, leather: nil, worn: false, hinders_locks: nil, container: nil, swappable: false, tie_to: nil, adjective: nil, bound: false, wield: false, transforms_to: nil, transform_text: nil, transform_verb: nil, lodges: true, skip_repair: false, ranged: nil, needs_unloading: nil)
           @name = name
           @leather = leather
@@ -500,27 +424,21 @@ module Lich
           @needs_unloading = needs_unloading.nil? ? @ranged : needs_unloading
         end
 
-        # Returns the short name of the item, including the adjective if present.
-        # @return [String] The short name of the item.
-        # @example
-        #   short_name = item.short_name
+        # Returns the short name of the item, including its adjective if present.
+        #
+        # @return [String] the short name of the item.
         def short_name
           @adjective ? "#{@adjective}.#{@name}" : @name
         end
 
-        # Returns a regex pattern for matching the short name of the item.
-        # @return [Regexp] The regex pattern for the short name.
-        # @example
-        #   regex = item.short_regex
         def short_regex
           @adjective ? /\b#{@adjective}.*\b#{@name}/i : /\b#{@name}/i
         end
 
         # Checks if the given noun is a ranged weapon.
-        # @param noun [String] The noun to check.
-        # @return [Boolean] True if the noun is a ranged weapon, false otherwise.
-        # @example
-        #   is_ranged = item.ranged_weapon?("bow")
+        #
+        # @param noun [String] the noun to check.
+        # @return [Boolean] true if the noun is a ranged weapon, false otherwise.
         def ranged_weapon?(noun)
           return false if noun.nil?
 
@@ -530,11 +448,6 @@ module Lich
           false
         end
 
-        # Creates an item from a text description.
-        # @param text [String] The text description of the item.
-        # @return [Item, nil] The created item or nil if the text is invalid.
-        # @example
-        #   item = Item.from_text("a shiny sword")
         def self.from_text(text)
           return nil if text.nil? || text.to_s.strip.empty?
 
@@ -551,11 +464,10 @@ module Lich
         end
       end
 
-      # Retrieves the town name from a given text.
-      # @param text [String] The text to search for a town name.
-      # @return [String, nil] The found town name or nil if none found.
-      # @example
-      #   town_name = get_town_name("I live in the town of Elanthia.")
+      # Retrieves the town name from the given text.
+      #
+      # @param text [String] the text to search for a town name.
+      # @return [String, nil] the matched town name or nil if none found.
       def get_town_name(text)
         towns = $HOMETOWN_REGEX_MAP.select { |_town, regex| regex =~ text }.keys
         if towns.length > 1
@@ -566,16 +478,13 @@ module Lich
         towns.first
       end
 
-      # Emits a beep sound.
-      # @example
-      #   beep
       def beep
         echo("\a")
       end
 
       # Ensures the player is standing.
-      # @example
-      #   fix_standing
+      #
+      # @return [void]
       def fix_standing
         loop do
           break if standing?
@@ -584,12 +493,11 @@ module Lich
         end
       end
 
-      # Checks if the player can listen to a teacher.
-      # @param teacher [String] The name of the teacher.
-      # @param observe_flag [Boolean] Whether to observe the class.
-      # @return [Boolean] True if the player can listen, false otherwise.
-      # @example
-      #   can_listen = listen?("Mr. Smith")
+      # Listens to a teacher's class if available.
+      #
+      # @param teacher [String] the name of the teacher.
+      # @param observe_flag [Boolean] whether to observe the class.
+      # @return [Boolean] true if successfully listening, false otherwise.
       def listen?(teacher, observe_flag = false)
         return false if teacher.nil?
         return false if teacher.empty?
@@ -614,10 +522,9 @@ module Lich
         false
       end
 
-      # Assesses the teaching status of nearby teachers.
-      # @return [Hash] A hash of teachers and their skills being taught.
-      # @example
-      #   teachers = assess_teach
+      # Assesses the teaching status of available classes.
+      #
+      # @return [Hash] a hash of teachers and their respective skills.
       def assess_teach
         lines = Lich::Util.issue_command(
           'assess teach',
@@ -647,13 +554,10 @@ module Lich
         end
       end
 
-      # Attempts to hide the player.
-      # @param hide_type [String] The type of hiding action.
-      # @return [Boolean] True if hiding was successful, false otherwise.
-      # @example
-      #   if hide?('hide')
-      #     puts "You are now hidden!"
-      #   end
+      # Attempts to hide the player in the environment.
+      #
+      # @param hide_type [String] the type of hiding action to perform.
+      # @return [Boolean] true if hiding was successful, false otherwise.
       def hide?(hide_type = 'hide')
         unless hiding?
           case bput(hide_type, 'Roundtime', 'too busy performing', 'can\'t see any place to hide yourself', 'Stalk what', 'You\'re already stalking', 'Stalking is an inherently stealthy', 'You haven\'t had enough time', 'You search but find no place to hide')
@@ -673,11 +577,10 @@ module Lich
         hiding?
       end
 
-      # Cleans up specific phrases in a string.
-      # @param string [String] The string to clean up.
-      # @return [String] The cleaned string.
-      # @example
-      #   cleaned_string = fix_dr_bullshit("ball and chain")
+      # Cleans up specific phrases in the given string.
+      #
+      # @param string [String] the string to clean up.
+      # @return [String] the cleaned string.
       def fix_dr_bullshit(string)
         return string if string.split.length <= 2
 
@@ -690,40 +593,30 @@ module Lich
       end
 
       # Retrieves the name of the item in the left hand.
-      # @return [String, nil] The name of the item or nil if empty.
-      # @example
-      #   item_name = left_hand
+      #
+      # @return [String, nil] the name of the item or nil if empty.
       def left_hand
         GameObj.left_hand.name == 'Empty' ? nil : fix_dr_bullshit(GameObj.left_hand.name)
       end
 
       # Retrieves the name of the item in the right hand.
-      # @return [String, nil] The name of the item or nil if empty.
-      # @example
-      #   item_name = right_hand
+      #
+      # @return [String, nil] the name of the item or nil if empty.
       def right_hand
         GameObj.right_hand.name == 'Empty' ? nil : fix_dr_bullshit(GameObj.right_hand.name)
       end
 
-      # Retrieves the noun of the item in the left hand.
-      # @return [String, nil] The noun of the item or nil if empty.
-      # @example
-      #   noun = left_hand_noun
       def left_hand_noun
         GameObj.left_hand == 'Empty' ? nil : GameObj.left_hand.noun
       end
 
-      # Retrieves the noun of the item in the right hand.
-      # @return [String, nil] The noun of the item or nil if empty.
-      # @example
-      #   noun = right_hand_noun
       def right_hand_noun
         GameObj.right_hand == 'Empty' ? nil : GameObj.right_hand.noun
       end
 
-      # Releases any invisibility spells affecting the player.
-      # @example
-      #   release_invisibility
+      # Releases any invisibility spells currently active.
+      #
+      # @return [void]
       def release_invisibility
         get_data('spells')
           .spell_data
@@ -738,10 +631,9 @@ module Lich
       end
 
       # Checks the player's encumbrance status.
-      # @param refresh [Boolean] Whether to refresh the encumbrance data.
-      # @return [String] The current encumbrance status.
-      # @example
-      #   status = check_encumbrance
+      #
+      # @param refresh [Boolean] whether to refresh the encumbrance data.
+      # @return [String] the current encumbrance status.
       def check_encumbrance(refresh = true)
         encumbrance = DRStats.encumbrance
         if refresh
@@ -753,11 +645,10 @@ module Lich
         $ENC_MAP[encumbrance]
       end
 
-      # Attempts to retreat from combat.
-      # @param ignored_npcs [Array<String>] NPCs to ignore during retreat.
-      # @return [nil]
-      # @example
-      #   retreat(["goblin"])
+      # Retreats from combat, ignoring specified NPCs.
+      #
+      # @param ignored_npcs [Array<String>] list of NPCs to ignore during retreat.
+      # @return [void]
       def retreat(ignored_npcs = [])
         return if (DRRoom.npcs - ignored_npcs).empty?
 
@@ -772,10 +663,9 @@ module Lich
       end
 
       # Converts a text representation of a number into an integer.
-      # @param text_num [String] The text number to convert.
-      # @return [Integer, nil] The converted number or nil if invalid.
-      # @example
-      #   number = text2num("three hundred")
+      #
+      # @param text_num [String] the text to convert.
+      # @return [Integer, nil] the converted number or nil if invalid.
       def text2num(text_num)
         text_num = text_num.tr('-', ' ')
         split_words = text_num.split(' ')
@@ -797,15 +687,14 @@ module Lich
       end
 
       # Plays a song using the specified settings and song list.
-      # @param settings [Object] The settings for playing the song.
-      # @param song_list [Array<Array<String>>] The list of songs to choose from.
-      # @param worn [Boolean] Whether the instrument is worn.
-      # @param skip_clean [Boolean] Whether to skip cleaning the instrument.
-      # @param climbing [Boolean] Whether the song is for climbing.
-      # @param skip_tuning [Boolean] Whether to skip tuning the instrument.
-      # @return [Boolean] True if the song was played successfully, false otherwise.
-      # @example
-      #   play_song?(settings, song_list)
+      #
+      # @param settings [OpenStruct] the settings for playing the song.
+      # @param song_list [Array<Array<String>>] list of songs to choose from.
+      # @param worn [Boolean] whether the instrument is worn.
+      # @param skip_clean [Boolean] whether to skip cleaning the instrument.
+      # @param climbing [Boolean] whether the song is for climbing.
+      # @param skip_tuning [Boolean] whether to skip tuning the instrument.
+      # @return [Boolean] true if the song was played successfully, false otherwise.
       def play_song?(settings, song_list, worn = true, skip_clean = false, climbing = false, skip_tuning = false)
         instrument = worn ? settings.worn_instrument : settings.instrument
 
@@ -886,18 +775,17 @@ module Lich
       end
 
       # Stops playing the current song.
-      # @example
-      #   stop_playing
+      #
+      # @return [void]
       def stop_playing
         bput('stop play', 'You stop playing your song', 'In the name of', "But you're not performing")
       end
 
-      # Cleans the specified instrument.
-      # @param settings [Object] The settings for cleaning the instrument.
-      # @param worn [Boolean] Whether the instrument is worn.
-      # @return [Boolean] True if the instrument was cleaned successfully, false otherwise.
-      # @example
-      #   clean_instrument(settings)
+      # Cleans the specified instrument using a cleaning cloth.
+      #
+      # @param settings [OpenStruct] the settings for cleaning the instrument.
+      # @param worn [Boolean] whether the instrument is worn.
+      # @return [Boolean] true if cleaning was successful, false otherwise.
       def clean_instrument(settings, worn = true)
         cloth = settings.cleaning_cloth
         instrument = worn ? settings.worn_instrument : settings.instrument
@@ -952,11 +840,10 @@ module Lich
         true
       end
 
-      # Tunes the specified instrument.
-      # @param settings [Object] The settings for tuning the instrument.
-      # @return [Boolean] True if the instrument was tuned successfully, false otherwise.
-      # @example
-      #   tune_instrument(settings)
+      # Tunes the specified instrument to ensure it plays correctly.
+      #
+      # @param settings [OpenStruct] the settings for tuning the instrument.
+      # @return [Boolean] true if tuning was successful, false otherwise.
       def tune_instrument(settings)
         instrument = settings.worn_instrument || settings.instrument
 
@@ -993,11 +880,10 @@ module Lich
       end
 
       # Performs the actual tuning of the instrument.
-      # @param instrument [String] The instrument to tune.
-      # @param tuning [String] The type of tuning to perform.
-      # @return [Boolean] True if the tuning was successful, false otherwise.
-      # @example
-      #   do_tune("guitar", "sharp")
+      #
+      # @param instrument [String] the instrument to tune.
+      # @param tuning [String] the type of tuning to perform.
+      # @return [Boolean] true if tuning was successful, false otherwise.
       def do_tune(instrument, tuning = "")
         unless instrument && DRCI.in_hands?(instrument)
           Lich::Messaging.msg("bold", "DRC: No instrument found in hands. Not trying to tune.")
@@ -1023,10 +909,9 @@ module Lich
         end
       end
 
-      # Pauses all running scripts.
-      # @return [Boolean] True if all scripts were paused successfully, false otherwise.
-      # @example
-      #   pause_all
+      # Pauses all scripts that are not marked to avoid pausing.
+      #
+      # @return [Boolean] true if pause was successful, false otherwise.
       def pause_all
         return false unless $pause_all_lock.try_lock
 
@@ -1047,10 +932,9 @@ module Lich
         true
       end
 
-      # Unpauses all previously paused scripts.
-      # @return [Boolean] True if all scripts were unpaused successfully, false otherwise.
-      # @example
-      #   unpause_all
+      # Unpauses all scripts that were previously paused.
+      #
+      # @return [Boolean] true if unpause was successful, false otherwise.
       def unpause_all
         return false unless $pause_all_lock.owned?
 
@@ -1066,10 +950,9 @@ module Lich
         true
       end
 
-      # Smartly pauses all scripts except the current one.
-      # @return [Array<String>] The list of paused script names.
-      # @example
-      #   paused_scripts = smart_pause_all
+      # Smartly pauses all scripts to allow the current script to run.
+      #
+      # @return [Array<String>] list of paused script names.
       def smart_pause_all
         paused_script_list = []
         Script.running.find_all { |s| !s.paused? && !s.no_pause_all && s.name != Script.self.name }.each do |s|
@@ -1081,10 +964,9 @@ module Lich
       end
 
       # Unpauses a list of specified scripts.
-      # @param scripts_to_unpause [Array<String>] The scripts to unpause.
-      # @return [nil]
-      # @example
-      #   unpause_all_list(["script1", "script2"])
+      #
+      # @param scripts_to_unpause [Array<String>] list of script names to unpause.
+      # @return [void]
       def unpause_all_list(scripts_to_unpause)
         if scripts_to_unpause.empty?
           Lich::Messaging.msg("plain", "DRC: #{Script.self.name} has finished.")
@@ -1094,10 +976,9 @@ module Lich
         end
       end
 
-      # Safely pauses all scripts except the current one.
-      # @return [Array<String>] The list of paused script names.
-      # @example
-      #   paused_scripts = safe_pause_list
+      # Safely pauses all scripts while ensuring the current script can run.
+      #
+      # @return [Array<String>] list of paused script names.
       def safe_pause_list
         return false unless $safe_pause_lock.try_lock
 
@@ -1111,10 +992,9 @@ module Lich
       end
 
       # Safely unpauses a list of specified scripts.
-      # @param scripts_to_unpause [Array<String>] The scripts to unpause.
-      # @return [nil]
-      # @example
-      #   safe_unpause_list(["script1", "script2"])
+      #
+      # @param scripts_to_unpause [Array<String>] list of script names to unpause.
+      # @return [void]
       def safe_unpause_list(scripts_to_unpause)
         return false unless $safe_pause_lock.owned?
 
@@ -1128,10 +1008,9 @@ module Lich
       end
 
       # Sets the player's stance based on the specified skill.
-      # @param skill [String] The skill to set the stance for.
-      # @return [nil]
-      # @example
-      #   set_stance("evasion")
+      #
+      # @param skill [String] the skill to set the stance for.
+      # @return [void]
       def set_stance(skill)
         div = if DRStats.guild == 'Paladin'
                 50
@@ -1159,25 +1038,23 @@ module Lich
         DRC.bput("stance set #{stance}", /Setting your/)
       end
 
-      # Logs atmospheric text to the game window.
-      # @param text [String] The text to log.
-      # @param make_bold [Boolean] Whether to make the text bold.
-      # @return [nil]
-      # @example
-      #   atmo("The sky is clear.")
+      # Logs atmospheric text to the window.
+      #
+      # @param text [String] the text to log.
+      # @param make_bold [Boolean] whether to make the text bold.
+      # @return [void]
       def atmo(text, make_bold = true)
         log_window(text, "atmospherics", make_bold)
       end
 
-      # Logs text to a specified window in the game.
-      # @param text [String] The text to log.
-      # @param window_name [String] The name of the window.
-      # @param make_bold [Boolean] Whether to make the text bold.
-      # @param create_window [Boolean] Whether to create the window if it doesn't exist.
-      # @param pre_clear_window [Boolean] Whether to clear the window before logging.
-      # @return [nil]
-      # @example
-      #   log_window("Hello, world!", "chat")
+      # Logs text to a specified window.
+      #
+      # @param text [String] the text to log.
+      # @param window_name [String] the name of the window.
+      # @param make_bold [Boolean] whether to make the text bold.
+      # @param create_window [Boolean] whether to create the window if it doesn't exist.
+      # @param pre_clear_window [Boolean] whether to clear the window before logging.
+      # @return [void]
       def log_window(text, window_name, make_bold = true, create_window = false, pre_clear_window = false)
         if create_window
           _respond("<streamWindow id=\"#{window_name}\" title=\"#{window_name}\" location=\"center\" save=\"true\" />")
@@ -1195,10 +1072,9 @@ module Lich
       end
 
       # Wraps text in bold formatting.
-      # @param text [String] The text to make bold.
-      # @return [String] The bold formatted text.
-      # @example
-      #   bold_text = bold("Important message")
+      #
+      # @param text [String] the text to format.
+      # @return [String] the formatted bold text.
       def bold(text)
         prefix = Frontend.supports_gsl? ? "\034GSL\r\n " : "<pushBold\/>"
         suffix = Frontend.supports_gsl? ? "\034GSM\r\n " : "<popBold\/>"
@@ -1206,11 +1082,10 @@ module Lich
       end
 
       # Sends a message to the player.
-      # @param text [String] The message text.
-      # @param make_bold [Boolean] Whether to send the message in bold.
-      # @return [nil]
-      # @example
-      #   message("Hello, player!")
+      #
+      # @param text [String] the message to send.
+      # @param make_bold [Boolean] whether to send the message in bold.
+      # @return [void]
       def message(text, make_bold = true)
         Lich::Messaging.msg(make_bold ? "bold" : "plain", text, encode: false)
       end

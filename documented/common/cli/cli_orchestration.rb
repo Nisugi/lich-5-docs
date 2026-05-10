@@ -10,14 +10,13 @@ require_relative '../authentication/cli'
 module Lich
   module Common
     module CLI
-      # Provides orchestration for CLI commands in the Lich application.
-      # @example Executing CLI orchestration
-      #   Lich::Common::CLI::CLIOrchestration.execute
+      # Provides orchestration for command line interface operations.
+      #
+      # @see Lich::Common::CLI for CLI-related functionality.
       module CLIOrchestration
-        # Executes the CLI orchestration by processing command line arguments.
+        # Executes the command line interface orchestration.
+        #
         # @return [void]
-        # @example Executing the orchestration
-        #   Lich::Common::CLI::CLIOrchestration.execute
         def self.execute
           ActiveSessionsQuery.execute
 
@@ -46,10 +45,9 @@ module Lich
         end
 
         # Checks if conversion is required before a login attempt.
+        #
         # @return [void]
-        # @raise [SystemExit] if conversion is needed
-        # @example Checking conversion before login
-        #   Lich::Common::CLI::CLIOrchestration.check_conversion_needed_for_login
+        # @api private
         def self.check_conversion_needed_for_login
           # Check if conversion is required
           if Lich::Common::CLI::CLIConversion.conversion_needed?(DATA_DIR)
@@ -58,13 +56,11 @@ module Lich
           end
         end
 
-        # Handles the change of an account password via CLI.
-        # @param account [String] The account whose password is to be changed.
-        # @param new_password [String] The new password for the account.
-        # @return [Integer] Exit status code.
-        # @raise [SystemExit] if arguments are missing or invalid.
-        # @example Changing an account password
-        #   Lich::Common::CLI::CLIOrchestration.handle_change_account_password
+        # Handles the change of an account password.
+        #
+        # @param account [String] the account whose password is to be changed
+        # @param new_password [String] the new password for the account
+        # @return [Integer] exit status code
         def self.handle_change_account_password
           idx = ARGV.index { |a| a =~ /^--change-account-password$|^-cap$/ }
           account = ARGV[idx + 1]
@@ -81,14 +77,12 @@ module Lich
           exit Lich::Common::Authentication::CLIPassword.change_account_password(account, new_password)
         end
 
-        # Handles the addition of a new account via CLI.
-        # @param account [String] The account to be added.
-        # @param password [String] The password for the new account.
-        # @param frontend [String, nil] Optional frontend specification.
-        # @return [Integer] Exit status code.
-        # @raise [SystemExit] if arguments are missing or invalid.
-        # @example Adding a new account
-        #   Lich::Common::CLI::CLIOrchestration.handle_add_account
+        # Handles the addition of a new account.
+        #
+        # @param account [String] the account to be added
+        # @param password [String] the password for the new account
+        # @param frontend [String, nil] optional frontend specification
+        # @return [Integer] exit status code
         def self.handle_add_account
           idx = ARGV.index { |a| a =~ /^--add-account$|^-aa$/ }
           account = ARGV[idx + 1]
@@ -136,13 +130,11 @@ module Lich
           exit Lich::Common::Authentication::CLIPassword.add_account(account, password, frontend)
         end
 
-        # Handles the change of the master password via CLI.
-        # @param old_password [String] The current master password.
-        # @param new_password [String, nil] The new master password (optional).
-        # @return [Integer] Exit status code.
-        # @raise [SystemExit] if arguments are missing or invalid.
-        # @example Changing the master password
-        #   Lich::Common::CLI::CLIOrchestration.handle_change_master_password
+        # Handles the change of the master password.
+        #
+        # @param old_password [String] the current master password
+        # @param new_password [String, nil] the new master password (optional)
+        # @return [Integer] exit status code
         def self.handle_change_master_password
           idx = ARGV.index { |a| a =~ /^--change-master-password$|^-cmp$/ }
           old_password = ARGV[idx + 1]
@@ -160,11 +152,10 @@ module Lich
           exit Lich::Common::Authentication::CLIPassword.change_master_password(old_password, new_password)
         end
 
-        # Handles the recovery of the master password via CLI.
-        # @param new_password [String, nil] The new master password (optional).
-        # @return [Integer] Exit status code.
-        # @example Recovering the master password
-        #   Lich::Common::CLI::CLIOrchestration.handle_recover_master_password
+        # Handles the recovery of the master password.
+        #
+        # @param new_password [String, nil] the new master password (optional)
+        # @return [Integer] exit status code
         def self.handle_recover_master_password
           idx = ARGV.index { |a| a =~ /^--recover-master-password$|^-rmp$/ }
           new_password = ARGV[idx + 1]
@@ -173,12 +164,10 @@ module Lich
           exit Lich::Common::Authentication::CLIPassword.recover_master_password(new_password)
         end
 
-        # Handles the conversion of entries to a specified encryption mode via CLI.
-        # @param encryption_mode_str [String] The encryption mode to convert to.
-        # @return [Integer] Exit status code.
-        # @raise [SystemExit] if arguments are missing or invalid.
-        # @example Converting entries
-        #   Lich::Common::CLI::CLIOrchestration.handle_convert_entries
+        # Handles the conversion of entries to a specified encryption mode.
+        #
+        # @param encryption_mode_str [String] the encryption mode to convert to (e.g., "plaintext", "standard", "enhanced")
+        # @return [Integer] exit status code
         def self.handle_convert_entries
           idx = ARGV.index('--convert-entries')
           encryption_mode_str = ARGV[idx + 1]
@@ -229,12 +218,10 @@ module Lich
           end
         end
 
-        # Handles the change of encryption mode via CLI.
-        # @param mode_arg [String] The new encryption mode to set.
-        # @return [Integer] Exit status code.
-        # @raise [SystemExit] if arguments are missing or invalid.
-        # @example Changing encryption mode
-        #   Lich::Common::CLI::CLIOrchestration.handle_change_encryption_mode
+        # Handles the change of the encryption mode.
+        #
+        # @param mode_arg [String] the new encryption mode to set
+        # @return [Integer] exit status code
         def self.handle_change_encryption_mode
           idx = ARGV.index { |a| a =~ /^--change-encryption-mode$|^-cem$/ }
           mode_arg = ARGV[idx + 1]

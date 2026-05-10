@@ -1,29 +1,94 @@
 
-# Lich module for DragonRealms
-# This module serves as a namespace for the DragonRealms game functionalities.
-# @example Including the Lich module
-#   include Lich
 module Lich
-  # DragonRealms module
-  # This module contains functionalities specific to the DragonRealms game.
-  # @example Using DragonRealms
-  #   include Lich::DragonRealms
   module DragonRealms
-    # DRParser module
-    # This module handles parsing of server strings for the DragonRealms game.
-    # @example Parsing a server string
-    #   DRParser.parse(server_string)
     module DRParser
       module Pattern
+        # Regular expression pattern for experience columns.
+        #
+        # Matches strings formatted as:
+        #   "skill_name: rank percent% rate"
+        #
+        # @example
+        #   "Swordsmanship: 5 75% learning"
+        #   => matches skill: "Swordsmanship", rank: "5", percent: "75", rate: "learning"
         ExpColumns = /(?:\s*(?<skill>[a-zA-Z\s]+)\b:\s*(?<rank>\d+)\s+(?<percent>\d+)%\s+(?<rate>[a-zA-Z\s]+)\b)/.freeze
+        # Regular expression pattern for brief experience on.
+        #
+        # Matches XML-like strings indicating experience gain.
+        #
+        # @example
+        #   <component id='exp ...'><d cmd='skill Swordsmanship'>: 5 75% [1/34]</d></component>
+        #   => matches skill: "Swordsmanship", rank: "5", percent: "75", rate: "1"
         BriefExpOn = %r{<component id='exp .*?<d cmd='skill (?<skill>[a-zA-Z\s]+)'.*:\s+(?<rank>\d+)\s+(?<percent>\d+)%\s*\[\s?(?<rate>\d+)\/34\].*?<\/component>}.freeze
+        # Regular expression pattern for brief experience off.
+        #
+        # Matches XML-like strings indicating experience loss.
+        #
+        # @example
+        #   <component id='exp ...'>Swordsmanship: 5 75% learning</component>
+        #   => matches skill: "Swordsmanship", rank: "5", percent: "75", rate: "learning"
         BriefExpOff = %r{<component id='exp .*?\b(?<skill>[a-zA-Z\s]+)\b:\s+(?<rank>\d+)\s+(?<percent>\d+)%\s+\b(?<rate>[a-zA-Z\s]+)\b.*?<\/component>}.freeze
+        # Regular expression pattern for extracting name, race, and guild.
+        #
+        # Matches strings formatted as:
+        #   "Name: name Race: race Guild: guild"
+        #
+        # @example
+        #   "Name: John Race: Human Guild: Warriors"
+        #   => matches name: "John", race: "Human", guild: "Warriors"
         NameRaceGuild = /^Name:\s+\b(?<name>.+)\b\s+Race:\s+\b(?<race>.+)\b\s+Guild:\s+\b(?<guild>.+)\b\s+/.freeze
+        # Regular expression pattern for extracting gender, age, and circle.
+        #
+        # Matches strings formatted as:
+        #   "Gender: gender Age: age Circle: circle"
+        #
+        # @example
+        #   "Gender: Male Age: 30 Circle: 5"
+        #   => matches gender: "Male", age: "30", circle: "5"
         GenderAgeCircle = /^Gender:\s+\b(?<gender>.+)\b\s+Age:\s+\b(?<age>.+)\b\s+Circle:\s+\b(?<circle>.+)/.freeze
+        # Regular expression pattern for extracting stat values.
+        #
+        # Matches strings formatted as:
+        #   "Stat: value"
+        #
+        # @example
+        #   "Strength: 10"
+        #   => matches stat: "Strength", value: "10"
         StatValue = /(?<stat>Strength|Agility|Discipline|Intelligence|Reflex|Charisma|Wisdom|Stamina|Favors|TDPs)\s+:\s+(?<value>\d+)/.freeze
+        # Regular expression pattern for extracting TDP values.
+        #
+        # Matches strings formatted as:
+        #   "You have X TDPs."
+        #
+        # @example
+        #   "You have 5 TDPs."
+        #   => matches tdp: "5"
         TDPValue = /You have (?<tdp>\d+) TDPs\./.freeze
+        # Regular expression pattern for extracting encumbrance values.
+        #
+        # Matches strings formatted as:
+        #   "Encumbrance: value"
+        #
+        # @example
+        #   "Encumbrance: 50"
+        #   => matches encumbrance: "50"
         EncumbranceValue = /^\s*Encumbrance\s+:\s+(?<encumbrance>[\w\s'?!]+)$/.freeze
+        # Regular expression pattern for extracting luck values.
+        #
+        # Matches strings formatted as:
+        #   "Luck: value (X/3)"
+        #
+        # @example
+        #   "Luck: 2 (2/3)"
+        #   => matches luck: "2"
         LuckValue = /^\s*Luck\s+:\s+.*\((?<luck>[-\d]+)\/3\)/.freeze
+        # Regular expression pattern for extracting balance values.
+        #
+        # Matches strings indicating balance status.
+        #
+        # @example
+        #   "You are balanced"
+        #   => matches balance: "balanced"
         BalanceValue = /^(?:You are|\[You're) (?<balance>#{Regexp.union(DR_BALANCE_VALUES)}) balanced?/.freeze
         ExpClearMindstate = %r{<component id='exp (?<skill>[a-zA-Z\s]+)'><\/component>}.freeze
         RoomPlayers = %r{\'room players\'>Also here: (?<players>.*)\.</component>}.freeze
@@ -78,6 +143,10 @@ module Lich
       @@parsing_exp_mods_output = false
       @@parsing_inventory_get = false
 
+      # Checks server events from the given string.
+      #
+      # @param server_string [String] the server response string to check for events
+      # @return [String] the original server string
       def self.check_events(server_string)
         Flags.matchers.each do |key, regexes|
           regexes.each do |regex|
@@ -90,6 +159,10 @@ module Lich
         server_string
       end
 
+      # Populates inventory items from the server string.
+      #
+      # @param server_string [String] the server response string containing inventory data
+      # @return [String] the original server string
       def self.populate_inventory_get(server_string)
         case server_string
         when Pattern::OutputClassEmpty
@@ -145,6 +218,10 @@ module Lich
         server_string
       end
 
+      # Parses experience modifiers from the server string.
+      #
+      # @param server_string [String] the server response string containing experience modifiers
+      # @return [String] the original server string
       def self.check_exp_mods(server_string)
         # This method parses the output from `exp mods` command
         # and updates the DRSkill.exp_modifiers hash with the skill and value.
@@ -190,6 +267,10 @@ module Lich
         server_string
       end
 
+      # Parses known spells from the server string for magic users.
+      #
+      # @param server_string [String] the server response string containing spell data
+      # @return [String] the original server string
       def self.check_known_spells(server_string)
         # This method parses the output from `spells` command for magic users
         # and populates the known spells/feats based on the output.
@@ -288,6 +369,10 @@ module Lich
         server_string
       end
 
+      # Parses known barbarian abilities from the server string.
+      #
+      # @param server_string [String] the server response string containing ability data
+      # @return [String] the original server string
       def self.check_known_barbarian_abilities(server_string)
         # This method parses the output from `ability` command for Barbarians
         # and populates the known spells/feats based on the known abilities/masteries.
@@ -330,6 +415,10 @@ module Lich
         server_string
       end
 
+      # Parses known thief khri from the server string.
+      #
+      # @param server_string [String] the server response string containing khri data
+      # @return [String] the original server string
       def self.check_known_thief_khri(server_string)
         # This method parses the output from `ability` command for Thieves
         # and populates the known spells/feats based on the known khri.
@@ -359,6 +448,10 @@ module Lich
         server_string
       end
 
+      # Parses a line of server output and updates game state accordingly.
+      #
+      # @param line [String] the server response line to parse
+      # @return [void]
       def self.parse(line)
         check_events(line)
         begin

@@ -3,21 +3,13 @@
 require_relative 'master_password_manager'
 
 module Lich
-  # Provides common functionality for the Lich application.
-  # This module serves as a namespace for shared components.
-  # @example Including the Common module
-  #   include Lich::Common
   module Common
     module GUI
-      # Handles the user interface for data conversion.
-      # This module provides methods to show conversion dialogs and manage data format transitions.
-      # @example Showing the conversion dialog
-      #   Lich::Common::GUI::ConversionUI.show_conversion_dialog(parent, data_dir, on_conversion_complete)
       module ConversionUI
         # Determines if data conversion is needed based on the presence of files.
-        # @param data_dir [String] The directory containing the data files.
-        # @return [Boolean] Returns true if conversion is needed, false otherwise.
-        # @note This method currently does not handle new installs with no dat_file.
+        #
+        # @param data_dir [String] the directory containing the data files
+        # @return [Boolean] true if conversion is needed, false otherwise
         def self.conversion_needed?(data_dir)
           dat_file = File.join(data_dir, "entry.dat")
           yml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
@@ -26,13 +18,12 @@ module Lich
           File.exist?(dat_file) && !File.exist?(yml_file)
         end
 
-        # Displays a dialog for the user to convert data from entry.dat to entry.yaml format.
-        # @param parent [Gtk::Window] The parent window for the dialog.
-        # @param data_dir [String] The directory containing the data files.
-        # @param on_conversion_complete [Proc] A callback to execute when conversion is complete.
+        # Displays a dialog for data conversion with options for encryption mode.
+        #
+        # @param parent [Gtk::Window] the parent window for the dialog
+        # @param data_dir [String] the directory containing the data files
+        # @param on_conversion_complete [Proc, nil] callback to execute upon conversion completion
         # @return [void]
-        # @example Showing the conversion dialog
-        #   Lich::Common::GUI::ConversionUI.show_conversion_dialog(parent, data_dir, -> { puts "Conversion complete!" })
         def self.show_conversion_dialog(parent, data_dir, on_conversion_complete)
           has_keychain = MasterPasswordManager.keychain_available?
 

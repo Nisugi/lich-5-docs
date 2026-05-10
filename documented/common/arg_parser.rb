@@ -16,23 +16,20 @@ module Lich
   module Common
     CORE_ARGPARSER = true
 
-    # ArgParser provides argument parsing for lich scripts.
+    # Provides argument parsing for lich scripts.
     #
     # Matches script arguments against definition patterns and returns
     # an OpenStruct of matched values, or displays help and exits if
     # no match is found.
-    # @example Parsing arguments
-    #   parser = Lich::Common::ArgParser.new
-    #   result = parser.parse_args(data)
+    #
+    # @see https://elanthipedia.play.net/Lich_script_development#dependency
     class ArgParser
       # Parses the provided arguments against defined patterns.
       #
-      # @param data [Array<Hash>] The definitions to match against.
-      # @param flex_args [Boolean] Whether to allow flexible arguments.
-      # @return [OpenStruct, nil] Returns an OpenStruct of matched values or nil if no match.
-      # @raise [SystemExit] Exits if no valid arguments are found.
-      # @example Parsing arguments with flex_args
-      #   result = parser.parse_args(data, true)
+      # @param data [Array<Hash>] the argument definitions to match against
+      # @param flex_args [Boolean] whether to allow flexible arguments
+      # @return [OpenStruct, nil] matched arguments as an OpenStruct or nil if no match
+      # @note Displays help and exits if no valid arguments are found.
       def parse_args(data, flex_args = false)
         raw_args = variable.first
         baselist = variable.drop(1).dup || Array.new
@@ -55,12 +52,10 @@ module Lich
         exit
       end
 
-      # Displays the argument definitions and help information.
+      # Displays the argument definitions and their descriptions.
       #
-      # @param data [Array<Hash>] The definitions to display.
-      # @return [nil]
-      # @example Displaying argument help
-      #   parser.display_args(data)
+      # @param data [Array<Hash>] the argument definitions to display
+      # @return [void]
       def display_args(data)
         return if Script.current.name == "bootstrap"
 
@@ -94,9 +89,13 @@ module Lich
         end
       end
 
-      # @!visibility private
       private
 
+      # Checks if a given item matches a definition pattern.
+      #
+      # @param definition [Hash] the definition to match against
+      # @param item [String] the item to check
+      # @return [Boolean] true if the item matches the definition, false otherwise
       def matches_def(definition, item)
         echo "#{definition}:#{item}" if UserVars.parse_args_debug
         return true if definition[:regex] && definition[:regex] =~ item
@@ -105,6 +104,12 @@ module Lich
         false
       end
 
+      # Checks if the provided variables match the definitions.
+      #
+      # @param defs [Array<Hash>] the definitions to match against
+      # @param vars [Array<String>] the variables to check
+      # @param flex [Boolean] whether to allow flexible arguments
+      # @return [OpenStruct, nil] matched arguments as an OpenStruct or nil if no match
       def check_match(defs, vars, flex)
         args = OpenStruct.new
 
@@ -142,6 +147,10 @@ module Lich
         args
       end
 
+      # Formats a definition item for display.
+      #
+      # @param definition [Hash] the definition to format
+      # @return [String] the formatted item string
       def format_item(definition)
         item = definition[:display] || definition[:name]
         if definition[:optional]

@@ -1,29 +1,21 @@
-# The Lich module provides functionality for managing claims in a game environment.
-# @example Including the Lich module
-#   include Lich
 module Lich
   module Claim
-    # A mutex used for synchronizing access to claim operations.
     Lock            = Mutex.new
-    # The ID of the currently claimed room.
     @claimed_room ||= nil
-    # The ID of the last room that was checked.
     @last_room    ||= nil
-    # Indicates whether this instance owns the current claim.
     @mine         ||= false
-    # A buffer for storing temporary data related to claims.
     @buffer         = []
-    # A list of other characters in the room.
     @others         = []
-    # The timestamp of the last claim action.
     @timestamp      = Time.now
 
-    # Claims a room with the given ID.
-    # @param id [Integer] The ID of the room to claim.
+    # Claims a room by its ID.
+    #
+    # @param id [Integer] the ID of the room to claim
     # @return [void]
-    # @raise [StandardError] If there is an issue claiming the room.
-    # @example Claiming a room
-    #   Lich::Claim.claim_room(123)
+    # @example
+    #   Claim.claim_room(5)
+    #   # Claims the room with ID 5
+    # @note This method updates the timestamp of the claim.
     def self.claim_room(id)
       @claimed_room = id.to_i
       @timestamp    = Time.now
@@ -32,46 +24,51 @@ module Lich
     end
 
     # Returns the ID of the currently claimed room.
-    # @return [Integer, nil] The ID of the claimed room or nil if none is claimed.
+    #
+    # @return [Integer, nil] the ID of the claimed room or nil if none is claimed.
     def self.claimed_room
       @claimed_room
     end
 
-    # Returns the ID of the last room that was checked.
-    # @return [Integer, nil] The ID of the last room checked or nil if none.
+    # Returns the ID of the last room checked.
+    #
+    # @return [Integer, nil] the ID of the last room checked or nil if none.
     def self.last_room
       @last_room
     end
 
-    # Acquires the lock for the claim operations.
+    # Acquires the lock if it is not already owned.
+    #
     # @return [void]
     def self.lock
       Lock.lock if !Lock.owned?
     end
 
-    # Releases the lock for the claim operations.
+    # Releases the lock if it is owned.
+    #
     # @return [void]
     def self.unlock
       Lock.unlock if Lock.owned?
     end
 
-    # Checks if the current claim belongs to this instance.
-    # @return [Boolean] True if the current claim is owned by this instance, false otherwise.
+    # Checks if the current instance is the one that claimed the room.
+    #
+    # @return [Boolean] true if this instance is the owner of the claim, false otherwise.
     def self.current?
       Lock.synchronize { @mine.eql?(true) }
     end
 
     # Checks if the specified room has been checked.
-    # @param room [Integer, nil] The room ID to check; defaults to the last room if nil.
-    # @return [Boolean] True if the room has been checked, false otherwise.
+    #
+    # @param room [Integer, nil] the room ID to check; defaults to the last room if nil
+    # @return [Boolean] true if the room has been checked, false otherwise.
     def self.checked?(room = nil)
       Lock.synchronize { XMLData.room_id == (room || @last_room) }
     end
 
     # Provides information about the current claim status and related data.
-    # @return [String] A formatted string containing the claim information.
-    # @example Getting claim info
-    #   puts Lich::Claim.info
+    #
+    # @return [String] a formatted string containing the claim information.
     def self.info
       rows = [['XMLData.room_id', XMLData.room_id, 'Current room according to the XMLData'],
               ['Claim.mine?', Claim.mine?, 'Claim status on the current room'],
@@ -85,20 +82,23 @@ module Lich
       Lich::Messaging.mono(info_table.to_s)
     end
 
-    # Checks if the current instance is the owner of the claim.
-    # @return [Boolean] True if this instance owns the claim, false otherwise.
+    # Checks if this instance is the one that claimed the room.
+    #
+    # @return [Boolean] true if this instance is the owner of the claim, false otherwise.
     def self.mine?
       self.current?
     end
 
     # Returns a list of other characters in the room.
-    # @return [Array] An array of other character identifiers.
+    #
+    # @return [Array<String>] an array of character names that are not claimed.
     def self.others
       @others
     end
 
     # Returns a list of members in the group if defined.
-    # @return [Array] An array of member nouns or an empty array if not defined.
+    #
+    # @return [Array<String>] an array of member nouns or an empty array if not applicable.
     def self.members
       return [] unless defined? Group
 
@@ -113,8 +113,9 @@ module Lich
       end
     end
 
-    # Returns a list of clustered characters if defined.
-    # @return [Array] An array of clustered character identifiers or an empty array if not defined.
+    # Returns a list of connected clusters if defined.
+    #
+    # @return [Array] an array of connected clusters or an empty array if not applicable.
     def self.clustered
       begin
         return [] unless defined? Cluster
@@ -124,13 +125,12 @@ module Lich
       end
     end
 
-    # Handles the parsing of claims based on the provided room and character data.
-    # @param nav_rm [Integer] The room ID being navigated to.
-    # @param pcs [Array] An array of character identifiers present in the room.
+    # Handles the claim parsing for a given room and character list.
+    #
+    # @param nav_rm [Integer] the room ID being navigated to
+    # @param pcs [Array<String>] the list of character names present in the room
     # @return [void]
-    # @raise [StandardError] If there is an error during parsing.
-    # @example Handling a claim
-    #   Lich::Claim.parser_handle(123, ['char1', 'char2'])
+    # @raise StandardError if an error occurs during processing.
     def self.parser_handle(nav_rm, pcs)
       echo "Claim handled #{nav_rm} with xmlparser" if $claim_debug
       begin

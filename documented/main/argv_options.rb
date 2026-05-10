@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+# CLI argument processing and orchestration.
+#
+# This module handles the validation and routing of command-line arguments to appropriate handlers.
+#
+# @see Lich::Main::CliPasswordManager for domain-specific handlers.
 # CLI argument processing and orchestration (Layer 2)
 # Three-layer architecture:
 #   - Layer 1 (Opts): Pure parsing of ARGV → frozen OpenStruct
@@ -12,15 +17,7 @@ require File.join(LIB_DIR, 'main', 'arg_normalization.rb')
 require File.join(LIB_DIR, 'main', 'help_text.rb')
 
 module Lich
-  # Main module for the Lich project
-  # This module contains the ArgvOptions module for handling command line arguments.
-  # @example Using the ArgvOptions module
-  #   options = Lich::Main::ArgvOptions.process_argv
   module Main
-    # Module for processing command line arguments
-    # This module handles the parsing and validation of command line options.
-    # @example Parsing command line arguments
-    #   options = Lich::Main::ArgvOptions.process_argv
     module ArgvOptions
 
       module OptionParser
@@ -113,10 +110,12 @@ module Lich
           @argv_options
         end
 
-        # Handles the SAL file argument and validates its existence.
-        # @param arg [String] The SAL file argument
+        # Handles the processing of .sal files from command-line arguments.
+        #
+        # This method checks if the specified .sal file exists and updates the options accordingly.
+        #
+        # @param arg [String] the .sal file argument from ARGV.
         # @return [void]
-        # @note This method modifies the @argv_options hash.
         def self.handle_sal_file(arg)
           @argv_options[:sal] = arg
           unless File.exist?(@argv_options[:sal])
@@ -127,10 +126,12 @@ module Lich
           end
         end
 
-        # Handles the dark mode setting based on the provided value.
-        # @param value [String] The value indicating dark mode ('true', 'false', 'on', 'off')
+        # Handles the dark mode setting based on command-line arguments.
+        #
+        # This method updates the dark mode setting and applies it to the GTK settings if applicable.
+        #
+        # @param value [String] the value indicating dark mode preference (e.g., "true", "false").
         # @return [void]
-        # @note This method modifies the @argv_options hash.
         def self.handle_dark_mode(value)
           # Regex returns Integer/nil; force strict boolean for persisted settings.
           @argv_options[:dark_mode] = !!(value =~ /^(true|on)$/i)
@@ -140,19 +141,20 @@ module Lich
           end
         end
 
-        # Prints the help text for the command line options.
-        # @param topic [String, nil] The specific topic to display help for
+        # Prints the help text for the CLI application.
+        #
+        # This method displays help information based on the provided topic.
+        #
+        # @param topic [String, nil] the specific help topic to display.
         # @return [void]
-        # @example Displaying help
-        #   ArgvOptions::OptionParser.print_help
         def self.print_help(topic = nil)
           puts HelpText.render(topic)
         end
 
-        # Prints the version information of the Lich project.
+        # Prints the version information of the CLI application.
+        #
+        # This method outputs the version and copyright information.
         # @return [void]
-        # @example Displaying version information
-        #   ArgvOptions::OptionParser.print_version
         def self.print_version
           puts "The Lich, version #{LICH_VERSION}"
           puts ' (an implementation of the Ruby interpreter by Yukihiro Matsumoto designed to be a \'script engine\' for text-based MUDs)'
@@ -166,10 +168,9 @@ module Lich
         end
       end
 
-      # Module for handling side effects based on parsed options
-      # This module applies side effects after options have been processed.
-      # @example Executing side effects
-      #   options = ArgvOptions::SideEffects.execute(processed_options)
+      # Module for handling side effects based on command-line options.
+      #
+      # This module processes side effects that occur as a result of the parsed options.
       module SideEffects
         def self.execute(argv_options)
           handle_hosts_dir(argv_options)
@@ -242,16 +243,16 @@ module Lich
         end
       end
 
-      # Module for handling game connection configurations
-      # This module manages the connection settings based on command line arguments.
-      # @example Executing game connection handling
-      #   options = ArgvOptions::GameConnection.execute(processed_options)
+      # Module for handling game connection configurations based on command-line options.
+      #
+      # This module processes the game connection settings based on the provided arguments.
       module GameConnection
-        # Executes the game connection handling based on parsed options.
-        # @param processed_options [Hash] The processed command line options
-        # @return [Hash] The modified options after handling game connections
-        # @example Executing game connection handling
-        #   modified_options = ArgvOptions::GameConnection.execute(processed_options)
+        # Executes the game connection configuration based on command-line options.
+        #
+        # This method determines the appropriate game connection settings based on the parsed options.
+        #
+        # @param processed_options [Hash] the previously processed command-line options.
+        # @return [Hash] the updated options with game connection settings.
         def self.execute(processed_options)
           if (arg = ARGV.find { |a| a == '-g' || a == '--game' })
             handle_explicit_game_connection(arg, processed_options)
@@ -386,10 +387,11 @@ module Lich
         end
       end
 
-      # Processes the command line arguments and applies necessary configurations.
-      # @return [Hash] The final processed options after all steps
-      # @example Processing command line arguments
-      #   final_options = Lich::Main::ArgvOptions.process_argv
+      # Processes the command-line arguments for the application.
+      #
+      # This method orchestrates the parsing and handling of command-line arguments, applying necessary side effects and configurations.
+      #
+      # @return [Hash] the final processed command-line options.
       def self.process_argv
         # Step 1: Clean launcher.exe
         ARGV.delete_if { |arg| arg =~ /launcher\.exe/i }

@@ -3,13 +3,11 @@
 require 'time'
 
 module Lich
-  # Provides session lifecycle management for the Lich application.
-  # This module handles session registration, heartbeat management, and role resolution.
-  # @example Starting a session
-  #   Lich::Common::SessionLifecycle.start(session_name: "my_session", role: "session")
+  # Provides functionality for managing session lifecycles.
+  #
+  # @see Lich::Common
   module Common
     module SessionLifecycle
-      # The delay in seconds before a session registration is attempted.
       REGISTRATION_DELAY_SECONDS = 5
 
       @heartbeat_thread = nil
@@ -18,11 +16,10 @@ module Lich
       @mutex = Mutex.new
 
       # Resolves the session name based on command line arguments or defaults.
-      # @param argv [Array<String>] The command line arguments.
-      # @param account_character [String, nil] The account character name, if provided.
-      # @return [String] The resolved session name.
-      # @example Resolving a session name
-      #   session_name = Lich::Common::SessionLifecycle.resolve_session_name(argv: ARGV)
+      #
+      # @param argv [Array<String>] command line arguments
+      # @param account_character [String, nil] optional account character name
+      # @return [String] the resolved session name
       def self.resolve_session_name(argv:, account_character: nil)
         if (login_idx = argv.index('--login')) && argv[login_idx + 1]
           argv[login_idx + 1].capitalize
@@ -36,11 +33,10 @@ module Lich
       end
 
       # Determines the role of the session based on command line arguments.
-      # @param argv [Array<String>] The command line arguments.
-      # @param detachable_client_port [Integer, nil] The port for a detachable client, if any.
-      # @return [String] The resolved role ('detachable', 'headless', or 'session').
-      # @example Resolving a role
-      #   role = Lich::Common::SessionLifecycle.resolve_role(argv: ARGV, detachable_client_port: 3000)
+      #
+      # @param argv [Array<String>] command line arguments
+      # @param detachable_client_port [Integer, nil] optional port for detachable clients
+      # @return [String] the resolved role
       def self.resolve_role(argv:, detachable_client_port:)
         return 'detachable' unless detachable_client_port.nil?
         return 'headless' if argv.include?('--without-frontend')
@@ -48,15 +44,13 @@ module Lich
         'session'
       end
 
-      # Starts the session lifecycle management.
-      # @param session_name [String] The name of the session to start.
-      # @param role [String] The role of the session ('detachable', 'headless', or 'session').
-      # @param heartbeat_interval [Integer] The interval in seconds for heartbeat checks.
-      # @param registration_delay [Integer] The delay in seconds before registration.
-      # @return [Boolean] Returns true if the session started successfully, false otherwise.
-      # @raise [StandardError] Raises an error if the session cannot be started.
-      # @example Starting a session
-      #   success = Lich::Common::SessionLifecycle.start(session_name: "my_session", role: "session")
+      # Starts the session lifecycle with the given parameters.
+      #
+      # @param session_name [String] the name of the session
+      # @param role [String] the role of the session
+      # @param heartbeat_interval [Integer] interval for heartbeat in seconds
+      # @param registration_delay [Integer] delay before registration in seconds
+      # @return [Boolean] true if the session started successfully, false otherwise
       def self.start(session_name:, role:, heartbeat_interval: SessionsSettings::HEARTBEAT_INTERVAL_SECONDS, registration_delay: REGISTRATION_DELAY_SECONDS)
         return false unless SessionsSettings.enabled?
 
@@ -148,11 +142,9 @@ module Lich
         false
       end
 
-      # Stops the session lifecycle management.
-      # @return [Boolean] Returns true if the session stopped successfully, false otherwise.
-      # @raise [StandardError] Raises an error if the session cannot be stopped.
-      # @example Stopping a session
-      #   success = Lich::Common::SessionLifecycle.stop
+      # Stops the session lifecycle, unregistering the session.
+      #
+      # @return [Boolean] true if the session stopped successfully, false otherwise
       def self.stop
         return false unless SessionsSettings.enabled?
 
@@ -182,15 +174,17 @@ module Lich
       end
 
       # Resolves the frontend context for the session.
-      # @return [Object, nil] Returns the frontend object if available, nil otherwise.
+      #
+      # @return [String, nil] the frontend context if available, nil otherwise
       def self.resolve_frontend
         return $frontend if defined?($frontend) && !$frontend.nil? && !$frontend.to_s.empty?
 
         nil
       end
 
-      # Resolves the game code from the XMLData context.
-      # @return [String, nil] Returns the game code if available, nil otherwise.
+      # Resolves the game code from the XML data.
+      #
+      # @return [String, nil] the game code if available, nil otherwise
       def self.resolve_game_code
         return XMLData.game if defined?(XMLData) && XMLData.respond_to?(:game) && !XMLData.game.to_s.empty?
 
@@ -198,22 +192,21 @@ module Lich
       end
 
       # Checks if the game context is ready for registration.
-      # @return [Boolean] Returns true if the game context is ready, false otherwise.
+      #
+      # @return [Boolean] true if the game context is ready, false otherwise
       def self.game_context_ready?
         !resolve_game_code.nil?
       end
 
-      # Attempts to register the session with the provided parameters.
-      # @param session_name [String] The name of the session to register.
-      # @param role [String] The role of the session.
-      # @param frontend [Object] The frontend context for the session.
-      # @param started_epoch [Integer] The epoch time when the session started.
-      # @param started_iso [String] The ISO 8601 formatted start time.
-      # @param registration_delay [Integer] The delay in seconds before registration.
-      # @return [Boolean] Returns true if registration was successful, false otherwise.
-      # @raise [StandardError] Raises an error if registration fails.
-      # @example Attempting to register a session
-      #   success = Lich::Common::SessionLifecycle.attempt_register(session_name: "my_session", role: "session", frontend: $frontend, started_epoch: Time.now.to_i, started_iso: Time.now.utc.iso8601, registration_delay: 5)
+      # Attempts to register the session with the given parameters.
+      #
+      # @param session_name [String] the name of the session
+      # @param role [String] the role of the session
+      # @param frontend [String, nil] the frontend context
+      # @param started_epoch [Integer] the epoch time when the session started
+      # @param started_iso [String] the ISO 8601 formatted start time
+      # @param registration_delay [Integer] delay before registration in seconds
+      # @return [Boolean] true if registration was successful, false otherwise
       def self.attempt_register(session_name:, role:, frontend:, started_epoch:, started_iso:, registration_delay:)
         begin
           game_code = resolve_game_code

@@ -1,13 +1,10 @@
 
 module Lich
-  # Provides methods to interact with active sessions.
-  # @example Using the API to get active sessions
-  #   sessions = Lich::API.active_sessions
   module API
-    # Returns a snapshot of the active session information.
-    # @return [Hash] A hash containing session details including source, total, connected, detachable, and sessions.
-    # @example Getting active session snapshot
-    #   snapshot = Lich::API.active_session_snapshot
+    # Returns a snapshot of the active sessions.
+    #
+    # @return [Hash] a hash containing session information including source, total, connected, detachable, and sessions.
+    # @api private
     def self.active_session_snapshot
       return {
         source: 'ActiveSessionsAPI',
@@ -21,17 +18,17 @@ module Lich
     end
 
     # Retrieves the list of active sessions.
-    # @return [Array] An array of active session objects.
-    # @example Getting active sessions
-    #   sessions = Lich::API.active_sessions
+    #
+    # @return [Array<Hash>] an array of active session hashes.
+    # @api private
     def self.active_sessions
       active_session_snapshot[:sessions] || []
     end
 
     # Provides information about the active session service availability.
-    # @return [Hash] A hash containing service information including source and service availability status.
-    # @example Getting active session service info
-    #   service_info = Lich::API.active_session_service_info
+    #
+    # @return [Hash] a hash containing source and service availability status.
+    # @api private
     def self.active_session_service_info
       return {
         source: 'ActiveSessionsAPI',

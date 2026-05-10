@@ -1,27 +1,21 @@
 
-# Lich module for DragonRealms functionality
-# This module contains methods for handling currency and wealth in the DragonRealms game.
-# @example Including the module
-#   include Lich::DragonRealms::DRCM
 module Lich
   module DragonRealms
     module DRCM
       module_function
 
       # Strips XML tags from the given lines.
-      # @param lines [Array<String>] The lines containing XML to be stripped.
-      # @return [Array<String>] The lines without XML tags.
-      # @example
-      #   clean_lines = strip_xml(raw_lines)
+      #
+      # @param lines [Array<String>] the lines containing XML to be stripped
+      # @return [Array<String>] the lines without XML tags
       def strip_xml(lines)
         DRC.strip_xml(lines)
       end
 
-      # Minimizes the number of coins needed to represent a given amount of copper.
-      # @param copper [Integer] The amount of copper to minimize.
-      # @return [Array<String>] An array of strings representing the minimized coins.
-      # @example
-      #   coins = minimize_coins(100)
+      # Minimizes the number of coins needed for a given amount of copper.
+      #
+      # @param copper [Integer] the amount of copper to minimize
+      # @return [Array<String>] an array of strings representing the minimized coins
       def minimize_coins(copper)
         DENOMINATIONS.inject([copper, []]) do |result, denomination|
           remaining = result.first
@@ -34,11 +28,10 @@ module Lich
       end
 
       # Converts a given amount in a specific denomination to copper.
-      # @param amount [Numeric] The amount to convert.
-      # @param denomination [String] The denomination to convert from.
-      # @return [Integer] The equivalent amount in copper.
-      # @example
-      #   copper_amount = convert_to_copper(10, 'silver')
+      #
+      # @param amount [Numeric] the amount to convert
+      # @param denomination [String] the denomination to convert from
+      # @return [Integer] the equivalent amount in copper
       def convert_to_copper(amount, denomination)
         denomination = denomination.to_s.strip
         unless denomination.empty?
@@ -51,22 +44,20 @@ module Lich
       end
 
       # Retrieves the canonical currency name for a given currency string.
-      # @param currency [String] The currency string to look up.
-      # @return [String, nil] The canonical currency name or nil if not found.
-      # @example
-      #   canonical_currency = get_canonical_currency('gold')
+      #
+      # @param currency [String] the currency string to look up
+      # @return [String, nil] the canonical currency name or nil if not found
       def get_canonical_currency(currency)
         CURRENCIES.find { |c| c.start_with?(currency) }
       end
 
       # Converts an amount from one currency to another, applying a fee if necessary.
-      # @param amount [Numeric] The amount to convert.
-      # @param from [String] The currency to convert from.
-      # @param to [String] The currency to convert to.
-      # @param fee [Float] The conversion fee as a decimal.
-      # @return [Integer] The converted amount in the target currency.
-      # @example
-      #   converted_amount = convert_currency(100, 'gold', 'silver', 0.05)
+      #
+      # @param amount [Numeric] the amount to convert
+      # @param from [String] the currency to convert from
+      # @param to [String] the currency to convert to
+      # @param fee [Float] the conversion fee as a decimal
+      # @return [Integer] the converted amount after applying the fee
       def convert_currency(amount, from, to, fee)
         if fee < 0
           ((amount / EXCHANGE_RATES[from][to]).ceil / (1 + fee)).ceil
@@ -76,45 +67,40 @@ module Lich
       end
 
       # Retrieves the currency used in a given hometown.
-      # @param hometown_name [String] The name of the hometown.
-      # @return [String] The currency used in the hometown.
-      # @example
-      #   currency = hometown_currency('Wehnimer's Landing')
+      #
+      # @param hometown_name [String] the name of the hometown
+      # @return [String] the currency used in the hometown
       def hometown_currency(hometown_name)
         get_data('town')[hometown_name]['currency']
       end
 
       # Retrieves the currency used in a specified town.
-      # @param town [String] The name of the town.
-      # @return [String] The currency used in the town.
-      # @example
-      #   currency = town_currency('Wehnimer's Landing')
+      #
+      # @param town [String] the name of the town
+      # @return [String] the currency used in the town
       def town_currency(town)
         hometown_currency(town)
       end
 
-      # Checks the wealth of a specified currency.
-      # @param currency [String] The currency to check wealth for.
-      # @return [Integer] The amount of wealth in the specified currency.
-      # @example
-      #   wealth_amount = check_wealth('gold')
+      # Checks the wealth of the user in a specified currency.
+      #
+      # @param currency [String] the currency to check wealth in
+      # @return [Integer] the amount of wealth in the specified currency
       def check_wealth(currency)
         DRC.bput("wealth #{currency}", /\(\d+ copper #{currency}\)/i, /No #{currency}/i).scan(/\d+/).first.to_i
       end
 
-      # Retrieves the wealth for a given hometown.
-      # @param hometown [String] The name of the hometown.
-      # @return [Integer] The amount of wealth in the hometown's currency.
-      # @example
-      #   hometown_wealth = wealth('Wehnimer's Landing')
+      # Retrieves the wealth of a user in their hometown currency.
+      #
+      # @param hometown [String] the name of the hometown
+      # @return [Integer] the amount of wealth in the hometown's currency
       def wealth(hometown)
         check_wealth(hometown_currency(hometown))
       end
 
-      # Retrieves the total wealth across all currencies.
-      # @return [Hash] A hash containing the total wealth in different currencies.
-      # @example
-      #   total_wealth = get_total_wealth
+      # Retrieves the total wealth of the user across all currencies.
+      #
+      # @return [Hash] a hash containing the total wealth in different currencies
       def get_total_wealth
         wealth_lines = Lich::Util.issue_command(
           'wealth',
@@ -139,13 +125,12 @@ module Lich
         result
       end
 
-      # Ensures that a specified amount of copper is available on hand.
-      # @param copper [Integer] The amount of copper to ensure is available.
-      # @param settings [Object] The settings object containing user preferences.
-      # @param hometown [String, nil] The optional hometown name.
-      # @return [Boolean] True if the required copper is available, false otherwise.
-      # @example
-      #   has_copper = ensure_copper_on_hand(50, user_settings)
+      # Ensures that the user has a specified amount of copper on hand.
+      #
+      # @param copper [Integer] the amount of copper required
+      # @param settings [OpenStruct] the settings object containing user preferences
+      # @param hometown [String, nil] optional hometown name
+      # @return [Boolean] true if the user has enough copper, false otherwise
       def ensure_copper_on_hand(copper, settings, hometown = nil)
         hometown = settings.hometown if hometown.nil?
 
@@ -158,12 +143,11 @@ module Lich
       end
 
       # Withdraws an exact amount of currency from the bank.
-      # @param amount_as_string [String] The amount to withdraw as a string.
-      # @param settings [Object] The settings object containing user preferences.
-      # @param hometown [String, nil] The optional hometown name.
-      # @return [Boolean] True if the withdrawal was successful, false otherwise.
-      # @example
-      #   success = withdraw_exact_amount?('10 gold', user_settings)
+      #
+      # @param amount_as_string [String] the amount to withdraw as a string
+      # @param settings [OpenStruct] the settings object containing user preferences
+      # @param hometown [String, nil] optional hometown name
+      # @return [Boolean] true if the withdrawal was successful, false otherwise
       def withdraw_exact_amount?(amount_as_string, settings, hometown = nil)
         hometown = settings.hometown if hometown.nil?
 
@@ -187,12 +171,11 @@ module Lich
       end
 
       # Retrieves a specified amount of money from the bank.
-      # @param amount_as_string [String] The amount to withdraw as a string.
-      # @param settings [Object] The settings object containing user preferences.
-      # @param hometown [String, nil] The optional hometown name.
-      # @return [Boolean] True if the money was successfully retrieved, false otherwise.
-      # @example
-      #   success = get_money_from_bank('10 gold', user_settings)
+      #
+      # @param amount_as_string [String] the amount to withdraw as a string
+      # @param settings [OpenStruct] the settings object containing user preferences
+      # @param hometown [String, nil] optional hometown name
+      # @return [Boolean] true if the withdrawal was successful, false otherwise
       def get_money_from_bank(amount_as_string, settings, hometown = nil)
         hometown = settings.hometown if hometown.nil?
 
@@ -220,23 +203,21 @@ module Lich
         end
       end
 
-      # Retrieves the debt amount for a given hometown.
-      # @param hometown [String] The name of the hometown.
-      # @return [Integer] The amount of debt in the hometown's currency.
-      # @example
-      #   debt_amount = debt('Wehnimer's Landing')
+      # Retrieves the debt of the user in their hometown currency.
+      #
+      # @param hometown [String] the name of the hometown
+      # @return [Integer] the amount of debt in the hometown's currency
       def debt(hometown)
         currency = hometown_currency(hometown)
         DRC.bput('wealth', /\(\d+ copper #{currency}\)/i, /Wealth:/i).scan(/\d+/).first.to_i
       end
 
-      # Deposits coins into the bank, ensuring a specified amount of copper is kept on hand.
-      # @param keep_copper [Integer] The amount of copper to keep on hand after deposit.
-      # @param settings [Object] The settings object containing user preferences.
-      # @param hometown [String, nil] The optional hometown name.
+      # Deposits coins into the bank, keeping a specified amount of copper on hand.
+      #
+      # @param keep_copper [Integer] the amount of copper to keep on hand
+      # @param settings [OpenStruct] the settings object containing user preferences
+      # @param hometown [String, nil] optional hometown name
       # @return [void]
-      # @example
-      #   deposit_coins(50, user_settings)
       def deposit_coins(keep_copper, settings, hometown = nil)
         return if settings.skip_bank
 

@@ -1,11 +1,12 @@
 
-# Module containing constants and data structures for the Lich project.
-# @example Including the module
-#   include Lich::DragonRealms
 module Lich
   module DragonRealms
     # Array of learning rates used in the DragonRealms game.
-    # @return [Array<String>] List of learning rates.
+    #
+    # @example
+    #   DR_LEARNING_RATES.each do |rate|
+    #     puts rate
+    #   end
     DR_LEARNING_RATES = [
       'clear',
       'dabbling',
@@ -46,11 +47,14 @@ module Lich
 
     # Length of the longest learning rate name, used for padding in exp display
     # Length of the longest learning rate name, used for padding in exp display.
-    # @return [Integer] The length of the longest learning rate.
     DR_LONGEST_LEARNING_RATE_LENGTH = DR_LEARNING_RATES.max_by(&:length).length
 
     # Array of balance values used in the DragonRealms game.
-    # @return [Array<String>] List of balance values.
+    #
+    # @example
+    #   DR_BALANCE_VALUES.each do |value|
+    #     puts value
+    #   end
     DR_BALANCE_VALUES = [
       'completely',
       'hopelessly',
@@ -66,8 +70,12 @@ module Lich
       'incredibly'
     ].freeze
 
-    # Hash containing skill data for different skillsets in the DragonRealms game.
-    # @return [Hash] A hash with skillsets and their corresponding skills.
+    # Hash containing skill data categorized by skillsets.
+    #
+    # @example
+    #   DR_SKILLS_DATA[:skillsets].each do |skillset, skills|
+    #     puts "#{skillset}: #{skills.join(', ')}"
+    #   end
     DR_SKILLS_DATA = {
       skillsets: {
         'Armor'    => [
@@ -167,17 +175,16 @@ module Lich
     }.freeze
 
     # Array of bank names in the Kronar region.
-    # @return [Array<String>] List of Kronar banks.
     KRONAR_BANKS = ['Crossings', 'Dirge', 'Ilaya Taipa', 'Leth Deriel'].freeze
-    # Array of bank names in the Lirum region.
-    # @return [Array<String>] List of Lirum banks.
     LIRUM_BANKS = ["Aesry Surlaenis'a", "Hara'jaal", "Mer'Kresh", "Muspar'i", 'Ratha', 'Riverhaven', "Rossman's Landing", 'Therenborough', 'Throne City'].freeze
-    # Array of bank names in the Dokora region.
-    # @return [Array<String>] List of Dokora banks.
     DOKORA_BANKS = ['Ain Ghazal', 'Boar Clan', "Chyolvea Tayeu'a", 'Hibarnhvidar', 'Fang Cove', "Raven's Point", 'Shard'].freeze
 
     # Hash mapping bank names to their titles in the DragonRealms game.
-    # @return [Hash] A hash with bank names and their corresponding titles.
+    #
+    # @example
+    #   BANK_TITLES.each do |bank, titles|
+    #     puts "#{bank}: #{titles.join(', ')}"
+    #   end
     BANK_TITLES = {
       "Aesry Surlaenis'a" => ['[[Tona Kertigen, Deposit Window]]'].freeze,
       'Ain Ghazal'        => ['[[Ain Ghazal, Private Depository]]'].freeze,
@@ -202,7 +209,11 @@ module Lich
     }.freeze
 
     # Hash mapping vault names to their titles in the DragonRealms game.
-    # @return [Hash] A hash with vault names and their corresponding titles.
+    #
+    # @example
+    #   VAULT_TITLES.each do |vault, titles|
+    #     puts "#{vault}: #{titles.join(', ')}"
+    #   end
     VAULT_TITLES = {
       'Crossings'     => ['[[Crossing, Carousel Chamber]]'].freeze,
       'Fang Cove'     => ['[[Fang Cove, Carousel Chamber]]'].freeze,
@@ -222,12 +233,18 @@ module Lich
     # doesn't have Power Monger mastery to see true
     # durations but only vague guestimates.
     # In those situations, we set use this value.
-    # Constant representing an unknown duration for spells or abilities.
-    # @return [Integer] The value used for unknown durations.
+    # Duration value used for spells with unknown durations.
+    #
+    # @note
+    #   This value is used for cyclic spells or abilities without clear durations.
     UNKNOWN_DURATION = 1000 unless defined?(UNKNOWN_DURATION)
 
     # Hash mapping hometown names to their corresponding regular expressions for matching.
-    # @return [Hash] A hash with hometown names and their regex patterns.
+    #
+    # @example
+    #   HOMETOWN_REGEX_MAP.each do |town, regex|
+    #     puts "#{town}: #{regex}"
+    #   end
     HOMETOWN_REGEX_MAP = {
       'Arthe Dale'        => /^(arthe( dale)?)$/i,
       'Crossing'          => /^(cross(ing)?)$/i,
@@ -260,24 +277,27 @@ module Lich
 
     # List of canonical town names, like 'Therenborough' and 'Langenfirth'.
     # List of canonical town names, like 'Therenborough' and 'Langenfirth'.
-    # @return [Array<String>] List of canonical town names.
     HOMETOWN_LIST = HOMETOWN_REGEX_MAP.keys.freeze
 
     # Union of regular expressions that match town names, like /^(theren(borough)?)$/i
     # Union of regular expressions that match town names.
-    # @return [Regexp] A regex that matches various town names.
+    #
+    # @example
+    #   puts HOMETOWN_REGEX.match?('Crossing') # => true
     HOMETOWN_REGEX = Regexp.union(HOMETOWN_REGEX_MAP.values)
 
     # Array of ordinal numbers as strings.
-    # @return [Array<String>] List of ordinal strings.
     ORDINALS = %w[first second third fourth fifth sixth seventh eighth ninth tenth eleventh twelfth thirteenth fourteenth fifteenth sixteenth seventeenth eighteenth nineteenth twentieth].freeze
 
     # Array of currency names used in the DragonRealms game.
-    # @return [Array<String>] List of currency names.
     CURRENCIES = %w[Kronars Lirums Dokoras].freeze
 
     # Hash mapping encumbrance descriptions to their corresponding values.
-    # @return [Hash] A hash with encumbrance descriptions and their values.
+    #
+    # @example
+    #   ENC_MAP.each do |description, value|
+    #     puts "#{description}: #{value}"
+    #   end
     ENC_MAP = {
       'None'                              => 0,
       'Light Burden'                      => 1,
@@ -294,7 +314,11 @@ module Lich
     }.freeze
 
     # Hash mapping number words to their corresponding integer values.
-    # @return [Hash] A hash with number words and their integer values.
+    #
+    # @example
+    #   NUM_MAP.each do |word, number|
+    #     puts "#{word}: #{number}"
+    #   end
     NUM_MAP = {
       'zero'      => 0,
       'one'       => 1,
@@ -327,11 +351,12 @@ module Lich
     }.freeze
 
     # Regular expression for matching box types in the DragonRealms game.
-    # @return [Regexp] A regex pattern for box types.
+    #
+    # @example
+    #   puts 'wooden box'.match?(BOX_REGEX) # => true
     BOX_REGEX = /((?:brass|copper|deobar|driftwood|iron|ironwood|mahogany|oaken|pine|steel|wooden) (?:box|caddy|casket|chest|coffer|crate|skippet|strongbox|trunk))/.freeze
 
-    # Hash mapping mana quality descriptions to their corresponding arrays of terms.
-    # @return [Hash] A hash with mana quality descriptions and their terms.
+    # Hash mapping mana quality descriptions to their corresponding arrays of strings.
     MANA_MAP = {
       'weak'       => %w[dim glowing bright].freeze,
       'developing' => %w[faint muted glowing luminous bright].freeze,
@@ -339,15 +364,12 @@ module Lich
       'good'       => %w[faint dim hazy dull muted dusky pale flickering shimmering pulsating glowing lambent shining luminous radiant fulgent brilliant flaring glaring blazing blinding].freeze
     }.freeze
 
-    # Regular expression for matching primary sigils in the DragonRealms game.
-    # @return [Regexp] A regex pattern for primary sigils.
+    # Regular expression pattern for matching primary sigils in the DragonRealms game.
     PRIMARY_SIGILS_PATTERN = /\b(?:abolition|congruence|induction|permutation|rarefaction) sigil\b/.freeze
-    # Regular expression for matching secondary sigils in the DragonRealms game.
-    # @return [Regexp] A regex pattern for secondary sigils.
+    # Regular expression pattern for matching secondary sigils in the DragonRealms game.
     SECONDARY_SIGILS_PATTERN = /\b(?:antipode|ascension|clarification|decay|evolution|integration|metamorphosis|nurture|paradox|unity) sigil\b/.freeze
 
     # Hash mapping volume descriptions to their corresponding values.
-    # @return [Hash] A hash with volume descriptions and their values.
     VOL_MAP = {
       'enormous' => 20,
       'massive'  => 10,
@@ -358,8 +380,6 @@ module Lich
       'tiny'     => 1
     }.freeze
 
-    # Backward compatibility aliases for global variables.
-    # Third-party scripts may rely on these globals.
     # Backward compatibility aliases for global variables.
     # Third-party scripts may rely on these globals.
     $HOMETOWN_REGEX_MAP = HOMETOWN_REGEX_MAP

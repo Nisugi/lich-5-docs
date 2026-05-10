@@ -1,50 +1,72 @@
 
 
+# Provides common authentication helpers for the Lich project.
+#
+# @see Lich::Common
 module Lich
-  # Common module for Lich project
-  # This module contains shared functionality for authentication.
-  # @example Including the module
-  #   include Lich::Common::Authentication
   module Common
     module Authentication
-      # Provides helper methods for login functionality.
-      # This module includes methods for handling game codes, realms, and character data.
-      # @example Using LoginHelpers
-      #   Lich::Common::Authentication::LoginHelpers.realm_from_game_code("GS3")
+      # Contains helper methods for login functionality in the Lich project.
+      #
+      # @see Lich::Common::Authentication
       module LoginHelpers
         # Load up / require gem 'os' for operating system detection work
         Lich::Util.install_gem_requirements({ 'os' => true })
 
         # Valid game codes
         # Valid game codes for the Lich project.
+        #
+        # @example
+        #   VALID_GAME_CODES #=> ["GS3", "GS4", "GSX", "GSF", "GST", "DR", "DRX", "DRF", "DRT"]
         VALID_GAME_CODES = %w[GS3 GS4 GSX GSF GST DR DRX DRF DRT].freeze
 
         # Valid frontend flags accepted by CLI login argument parsing.
         # Note: only wizard/stormfront/avalon affect protocol path selection;
         # other values are treated as frontend launch selectors/modifiers.
         # Valid frontend flags accepted by CLI login argument parsing.
+        #
+        # @example
+        #   VALID_FRONTENDS #=> ["avalon", "stormfront", "wizard", "genie", "frostbite", "wrayth"]
         VALID_FRONTENDS = %w[avalon stormfront wizard genie frostbite wrayth].freeze
 
         # Valid realms for elogin support
         # Valid realms for elogin support.
+        #
+        # @example
+        #   VALID_REALMS #=> ["prime", "platinum", "shattered", "test"]
         VALID_REALMS = %w[prime platinum shattered test].freeze
 
         # Gemstone game flag aliases for CLI shorthand (--gs is alias for --gemstone)
         # Gemstone game flag aliases for CLI shorthand.
+        #
+        # @example
+        #   GEMSTONE_FLAGS #=> ["--gemstone", "--gs"]
         GEMSTONE_FLAGS = %w[--gemstone --gs].freeze
 
         # DragonRealms game flag aliases for CLI shorthand (--dr is alias for --dragonrealms)
         # DragonRealms game flag aliases for CLI shorthand.
+        #
+        # @example
+        #   DRAGONREALMS_FLAGS #=> ["--dragonrealms", "--dr"]
         DRAGONREALMS_FLAGS = %w[--dragonrealms --dr].freeze
 
         # Frontend pattern for regex matching
         # Frontend pattern for regex matching.
+        #
+        # @example
+        #   FRONTEND_PATTERN.match("--wizard") #=> #<MatchData "--wizard" fe="wizard">
         FRONTEND_PATTERN = /^--(?<fe>avalon|stormfront|wizard|genie|frostbite|wrayth)$/i.freeze
         # Instance pattern for regex matching.
+        #
+        # @example
+        #   INSTANCE_PATTERN.match("--GS3") #=> #<MatchData "--GS3">
         INSTANCE_PATTERN = /^--(?<inst>GS.?$|DR.?$)/i.freeze
 
         # Custom launch pattern for regex matching
         # Custom launch pattern for regex matching.
+        #
+        # @example
+        #   CUSTOM_LAUNCH_PATTERN.match("--custom-launch=my_script") #=> #<MatchData "--custom-launch=my_script" cl="my_script">
         CUSTOM_LAUNCH_PATTERN = /^--custom-launch=(?<cl>.+)$/i.freeze
 
         # CLI flags that should never be interpreted as game-instance selectors.
@@ -66,6 +88,9 @@ module Lich
 
         # Game code to realm mappings
         # Game code to realm mappings.
+        #
+        # @example
+        #   GAME_CODE_TO_REALM #=> {"GSX" => "platinum", "GSF" => "shattered", "GST" => "test"}
         GAME_CODE_TO_REALM = {
           'GSX' => 'platinum',
           'GSF' => 'shattered',
@@ -74,6 +99,9 @@ module Lich
 
         # Realm to game code mappings
         # Realm to game code mappings.
+        #
+        # @example
+        #   REALM_TO_GAME_CODE #=> {"prime" => "GS3", "platinum" => "GSX", "shattered" => "GSF", "test" => "GST"}
         REALM_TO_GAME_CODE = {
           'prime'     => 'GS3',
           'platinum'  => 'GSX',
@@ -83,6 +111,9 @@ module Lich
 
         # Game code to human-readable name mappings
         # Game code to human-readable name mappings.
+        #
+        # @example
+        #   GAME_CODE_TO_NAME #=> {"GS3" => "GemStone IV", "GSX" => "GemStone IV Platinum", "GSF" => "GemStone IV Shattered", "GST" => "GemStone IV Test", "DR" => "DragonRealms", "DRX" => "DragonRealms Platinum", "DRF" => "DragonRealms Fallen", "DRT" => "DragonRealms Test"}
         GAME_CODE_TO_NAME = {
           'GS3' => 'GemStone IV',
           'GSX' => 'GemStone IV Platinum',
@@ -94,39 +125,47 @@ module Lich
           'DRT' => 'DragonRealms Test'
         }.freeze
 
-        # Retrieves the realm associated with a given game code.
-        # @param code [String] The game code to look up.
-        # @return [String] The corresponding realm name.
+        # Returns the realm associated with a given game code.
+        #
+        # @param code [String] the game code to look up.
+        # @return [String] the corresponding realm, or the default realm if not found.
+        # @see GAME_CODE_TO_REALM
         def self.realm_from_game_code(code)
           GAME_CODE_TO_REALM.fetch(code.to_s.upcase, GameConfig::DEFAULT_REALM)
         end
 
-        # Retrieves the game code associated with a given realm.
-        # @param realm [String] The realm to look up.
-        # @return [String, nil] The corresponding game code or nil if not found.
+        # Returns the game code associated with a given realm.
+        #
+        # @param realm [String] the realm to look up.
+        # @return [String, nil] the corresponding game code, or nil if not found.
+        # @see REALM_TO_GAME_CODE
         def self.realm_to_game_code(realm)
           REALM_TO_GAME_CODE[realm]
         end
 
-        # Retrieves the human-readable name for a given game code.
-        # @param game_code [String] The game code to look up.
-        # @return [String] The corresponding game name.
+        # Returns the human-readable name associated with a given game code.
+        #
+        # @param game_code [String] the game code to look up.
+        # @return [String] the corresponding game name, or the default game name if not found.
+        # @see GAME_CODE_TO_NAME
         def self.game_name_from_game_code(game_code)
           GAME_CODE_TO_NAME.fetch(game_code, GameConfig::DEFAULT_GAME_NAME)
         end
 
-        # Checks if the provided realm is valid.
-        # @param realm [String] The realm to check.
-        # @return [Boolean] True if the realm is valid, false otherwise.
+        # Checks if the given realm is valid.
+        #
+        # @param realm [String] the realm to check.
+        # @return [Boolean] true if the realm is valid, false otherwise.
         def self.valid_realm?(realm)
           VALID_REALMS.include?(realm)
         end
 
         # Checks if the Lich version is at least the specified version.
-        # @param major [Integer] The major version number.
-        # @param minor [Integer] The minor version number (default: 0).
-        # @param patch [Integer] The patch version number (default: 0).
-        # @return [Boolean] True if the version is at least the specified version.
+        #
+        # @param major [Integer] the major version number.
+        # @param minor [Integer] the minor version number (default: 0).
+        # @param patch [Integer] the patch version number (default: 0).
+        # @return [Boolean] true if the version is at least the specified version, false otherwise.
         def self.lich_version_at_least?(major, minor = 0, patch = 0)
           return false unless defined?(LICH_VERSION)
 
@@ -134,8 +173,10 @@ module Lich
         end
 
         # Sends a message using the Lich messaging system.
-        # @param level [String] The message level (e.g., 'info', 'error').
-        # @param text [String] The message text.
+        #
+        # @param level [String] the message level (e.g., "info", "error").
+        # @param text [String] the message text.
+        # @return [void]
         def self.messaging_msg(level, text)
           return unless defined?(Lich::Messaging)
           return unless Lich::Messaging.respond_to?(:msg)
@@ -143,9 +184,10 @@ module Lich
           Lich::Messaging.msg(level, text)
         end
 
-        # Recursively converts hash keys to symbols.
-        # @param obj [Hash, Array] The object to convert.
-        # @return [Hash, Array] The object with symbolized keys.
+        # Recursively converts string keys in a hash or array to symbols.
+        #
+        # @param obj [Hash, Array] the object to convert.
+        # @return [Hash, Array] the converted object with symbolized keys.
         def self.symbolize_keys(obj)
           case obj
           when Hash
@@ -161,17 +203,19 @@ module Lich
         end
 
         # Determines the format of the provided data.
-        # @param data [Array, Hash] The data to analyze.
-        # @return [Symbol] The format type (:legacy_array, :yaml_accounts, or :unknown).
+        #
+        # @param data [Array, Hash] the data to analyze.
+        # @return [Symbol] the format type (:legacy_array, :yaml_accounts, or :unknown).
         def self.data_format(data)
           return :legacy_array if data.is_a?(Array)
           return :yaml_accounts if data.is_a?(Hash) && data.key?(:accounts)
           :unknown
         end
 
-        # Extracts candidate characters from the provided data structure.
-        # @param data [Array, Hash] The data structure containing character information.
-        # @return [Array<Hash>] An array of character data hashes.
+        # Extracts candidate characters from the provided account data.
+        #
+        # @param data [Array, Hash] the account data to extract from.
+        # @return [Array<Hash>] an array of character data hashes.
         def self.extract_candidate_characters_with_accounts(data)
           case data_format(data)
           when :legacy_array
@@ -197,13 +241,14 @@ module Lich
         # allowing for flexible search patterns.
         #
         # Matching Rules:
-        # Searches for characters based on specified attributes.
-        # @param symbolized_data [Hash] The symbolized account data structure.
-        # @param char_name [String, nil] The character name to search for (optional).
-        # @param game_code [Symbol] The game code to filter by (optional, default: :__unset).
-        # @param frontend [Symbol] The frontend to filter by (optional, default: :__unset).
-        # @param custom_launch [String, nil] The custom launch filter (optional, default: :__unset).
-        # @return [Array<Hash>] An array of matching character data hashes.
+        # Searches for characters across all accounts based on specified criteria.
+        #
+        # @param symbolized_data [Hash] the symbolized account data structure.
+        # @param char_name [String, nil] the character name to match (optional).
+        # @param game_code [String, nil] the game code to match (optional).
+        # @param frontend [String, nil] the frontend to match (optional).
+        # @param custom_launch [String, nil] the custom launch filter (optional).
+        # @return [Array<Hash>] an array of matching character data hashes.
         def self.find_character_by_attributes(symbolized_data, char_name: nil, game_code: :__unset, frontend: :__unset, custom_launch: :__unset)
           candidates = extract_candidate_characters_with_accounts(symbolized_data)
 
@@ -288,40 +333,44 @@ module Lich
         end
 
         # Finds the first character matching the specified attributes.
-        # @param symbolized_data [Hash] The symbolized account data structure.
-        # @param char_name [String, nil] The character name to search for (optional).
-        # @param game_code [Symbol] The game code to filter by (optional).
-        # @param frontend [Symbol] The frontend to filter by (optional).
-        # @return [Hash, nil] The first matching character data hash or nil if no match is found.
+        #
+        # @param symbolized_data [Hash] the symbolized account data structure.
+        # @param char_name [String, nil] the character name to match (optional).
+        # @param game_code [String, nil] the game code to match (optional).
+        # @param frontend [String, nil] the frontend to match (optional).
+        # @return [Hash, nil] the first matching character data hash, or nil if no match is found.
         def self.find_first_character_by_attributes(symbolized_data, char_name: nil, game_code: nil, frontend: nil)
           matches = find_character_by_attributes(symbolized_data, char_name: char_name, game_code: game_code, frontend: frontend)
           matches.first
         end
 
-        # Finds a character by name.
-        # @param symbolized_data [Hash] The symbolized account data structure.
-        # @param char_name [String] The character name to search for.
-        # @return [Hash, nil] The matching character data hash or nil if no match is found.
+        # Finds a character by name in the symbolized data.
+        #
+        # @param symbolized_data [Hash] the symbolized account data structure.
+        # @param char_name [String] the character name to match.
+        # @return [Hash, nil] the matching character data hash, or nil if no match is found.
         def self.find_character_by_name(symbolized_data, char_name)
           find_character_by_attributes(symbolized_data, char_name: char_name)
         end
 
-        # Finds a character by name and game code.
-        # @param symbolized_data [Hash] The symbolized account data structure.
-        # @param char_name [String] The character name to search for.
-        # @param game_code [Symbol] The game code to filter by.
-        # @return [Hash, nil] The matching character data hash or nil if no match is found.
+        # Finds a character by name and game code in the symbolized data.
+        #
+        # @param symbolized_data [Hash] the symbolized account data structure.
+        # @param char_name [String] the character name to match.
+        # @param game_code [String] the game code to match.
+        # @return [Hash, nil] the matching character data hash, or nil if no match is found.
         def self.find_character_by_name_and_game(symbolized_data, char_name, game_code)
           find_character_by_attributes(symbolized_data, char_name: char_name, game_code: game_code)
         end
 
-        # Finds a character by name, game code, and frontend.
-        # @param symbolized_data [Hash] The symbolized account data structure.
-        # @param char_name [String] The character name to search for.
-        # @param game_code [Symbol] The game code to filter by.
-        # @param frontend [Symbol] The frontend to filter by.
-        # @param custom_launch [String, nil] The custom launch filter (optional, default: :__unset).
-        # @return [Hash, nil] The matching character data hash or nil if no match is found.
+        # Finds a character by name, game code, and frontend in the symbolized data.
+        #
+        # @param symbolized_data [Hash] the symbolized account data structure.
+        # @param char_name [String] the character name to match.
+        # @param game_code [String] the game code to match.
+        # @param frontend [String] the frontend to match.
+        # @param custom_launch [String, nil] the custom launch filter (optional).
+        # @return [Hash, nil] the matching character data hash, or nil if no match is found.
         def self.find_character_by_name_game_and_frontend(symbolized_data, char_name, game_code, frontend, custom_launch = :__unset)
           find_character_by_attributes(symbolized_data, char_name: char_name, game_code: game_code, frontend: frontend, custom_launch: custom_launch)
         end
@@ -331,12 +380,13 @@ module Lich
         # Rules:
         # - A match on `:char_name` is required for any record to be considered.
         # - If `requested_instance` is provided, a match on `:game_code` is also required.
-        # Selects the best matching character data based on weighted criteria.
-        # @param char_data_sets [Array<Hash>] The array of character data hashes to evaluate.
-        # @param requested_character [String] The character name to match.
-        # @param requested_instance [Symbol] The game code to filter by (optional, default: :__unset).
-        # @param requested_fe [Symbol] The frontend to filter by (optional, default: :__unset).
-        # @return [Hash, nil] The best matching character data hash or nil if no match is found.
+        # Selects the best matching character data hash from an array based on weighted criteria.
+        #
+        # @param char_data_sets [Array<Hash>] the character data sets to evaluate.
+        # @param requested_character [String] the character name to match.
+        # @param requested_instance [String, nil] the requested game code (optional).
+        # @param requested_fe [String, nil] the requested frontend (optional).
+        # @return [Hash, nil] the best matching character data hash, or nil if no match is found.
         def self.select_best_fit(char_data_sets:, requested_character:, requested_instance: :__unset, requested_fe: :__unset)
           return nil if char_data_sets.nil? || char_data_sets.empty?
           return nil unless requested_character
@@ -378,9 +428,10 @@ module Lich
           best_match
         end
 
-        # Resolves the game instance from the provided arguments.
-        # @param argv [Array<String>] The command line arguments.
-        # @return [String, nil] The resolved game instance or nil if not found.
+        # Resolves the game instance from the provided command-line arguments.
+        #
+        # @param argv [Array<String>] the command-line arguments.
+        # @return [String, nil] the resolved game instance, or nil if not found.
         def self.resolve_instance(argv)
           instance_flags_seen = false
           resolved_instance = nil
@@ -437,9 +488,10 @@ module Lich
           nil
         end
 
-        # Checks if the provided flag is a non-instance option.
-        # @param flag [String] The flag to check.
-        # @return [Boolean] True if the flag is a non-instance option, false otherwise.
+        # Checks if the provided flag is a non-instance option flag.
+        #
+        # @param flag [String] the flag to check.
+        # @return [Boolean] true if the flag is a non-instance option, false otherwise.
         def self.non_instance_option_flag?(flag)
           return true if VALID_FRONTENDS.include?(flag)
           return true if NON_INSTANCE_FLAGS.include?(flag)
@@ -448,25 +500,28 @@ module Lich
           NON_INSTANCE_OPTION_KEYS.include?(option_key)
         end
 
-        # Checks if any gemstone flags are present in the arguments.
-        # @param argv [Array<String>] The command line arguments.
-        # @return [Boolean] True if any gemstone flags are present, false otherwise.
+        # Checks if any gemstone flags are present in the provided arguments.
+        #
+        # @param argv [Array<String>] the command-line arguments.
+        # @return [Boolean] true if any gemstone flags are present, false otherwise.
         def self.gemstone_flag?(argv)
           GEMSTONE_FLAGS.any? { |flag| argv.include?(flag) }
         end
 
-        # Checks if any dragonrealms flags are present in the arguments.
-        # @param argv [Array<String>] The command line arguments.
-        # @return [Boolean] True if any dragonrealms flags are present, false otherwise.
+        # Checks if any dragonrealms flags are present in the provided arguments.
+        #
+        # @param argv [Array<String>] the command-line arguments.
+        # @return [Boolean] true if any dragonrealms flags are present, false otherwise.
         def self.dragonrealms_flag?(argv)
           DRAGONREALMS_FLAGS.any? { |flag| argv.include?(flag) }
         end
 
         # Parses Lich CLI args to determine game instance, frontend, and custom launch filter.
         #
-        # Parses command line arguments to determine game instance, frontend, and custom launch filter.
-        # @param argv [Array<String>] The command line arguments.
-        # @return [Array] An array containing the resolved instance, frontend, and custom launch filter.
+        # Parses Lich CLI args to determine game instance, frontend, and custom launch filter.
+        #
+        # @param argv [Array<String>] the command-line arguments.
+        # @return [Array] an array containing the resolved instance, frontend, and custom launch filter.
         def self.resolve_login_args(argv)
           frontend = :__unset
           custom_launch = :__unset
@@ -489,10 +544,11 @@ module Lich
           [instance, frontend, custom_launch]
         end
 
-        # Resolves the frontend based on the requested frontend and arguments.
-        # @param requested_frontend [Symbol] The requested frontend.
-        # @param argv [Array<String>] The command line arguments.
-        # @return [Symbol] The resolved frontend or :__unset if not applicable.
+        # Resolves the frontend based on the provided arguments.
+        #
+        # @param requested_frontend [String] the requested frontend.
+        # @param argv [Array<String>] the command-line arguments.
+        # @return [String] the resolved frontend, or :__unset if not applicable.
         def self.resolve_lookup_frontend(requested_frontend, argv)
           return :__unset if argv.include?('--without-frontend')
 
@@ -500,8 +556,9 @@ module Lich
         end
 
         # Formats the launch flag for a given game code.
-        # @param game_code [String] The game code to format.
-        # @return [String, nil] The formatted launch flag or nil if the game code is invalid.
+        #
+        # @param game_code [String] the game code to format.
+        # @return [String, nil] the formatted launch flag, or nil if the game code is invalid.
         def self.format_launch_flag(game_code)
           return nil if game_code.to_s.strip.empty?
 
@@ -519,13 +576,14 @@ module Lich
         end
 
         # Spawns a login session for the specified character.
-        # @param entry [Hash] The character entry containing login details.
-        # @param lich_path [String, nil] The path to the Lich executable (optional).
-        # @param startup_scripts [Array<String>] The startup scripts to run (optional).
-        # @param instance_override [String, nil] The instance to override (optional).
-        # @param frontend_override [String, nil] The frontend to override (optional).
-        # @param custom_launch_filter [String, nil] The custom launch filter (optional).
-        # @return [Integer, nil] The process ID of the spawned login session or nil if an error occurred.
+        #
+        # @param entry [Hash] the character entry containing login details.
+        # @param lich_path [String, nil] the path to the Lich executable (optional).
+        # @param startup_scripts [Array<String>] the startup scripts to run (optional).
+        # @param instance_override [String, nil] the game instance to override (optional).
+        # @param frontend_override [String, nil] the frontend to override (optional).
+        # @param custom_launch_filter [String, nil] the custom launch filter (optional).
+        # @return [void]
         def self.spawn_login(entry, lich_path: nil, startup_scripts: [], instance_override: nil, frontend_override: nil, custom_launch_filter: nil)
           ruby_path = OS.windows? ? RbConfig.ruby.sub('ruby', 'rubyw') : RbConfig.ruby
           lich_path ||= File.join(LICH_DIR, 'lich.rbw')

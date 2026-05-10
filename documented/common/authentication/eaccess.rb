@@ -7,39 +7,36 @@ module Lich
   module Common
     module Authentication
       module EAccess
-        # Represents an error during authentication
-        # @example Raising an authentication error
-        #   raise Lich::Common::Authentication::EAccess::AuthenticationError.new(404)
+        # Raised when an authentication error occurs.
+        #
+        # @see Lich::Common::Authentication::EAccess
         class AuthenticationError < StandardError
           attr_reader :error_code
 
-          # Initializes a new AuthenticationError
-          # @param error_code [Integer] The error code associated with the authentication error
-          # @return [AuthenticationError]
           def initialize(error_code)
             @error_code = error_code
             super("Error(#{error_code})")
           end
         end
 
-        # The size of the packet used for communication
         PACKET_SIZE = 8192
 
-        # Returns the path to the PEM file
-        # @return [String] The path to the PEM file
+        # Returns the path to the PEM file used for SSL connections.
+        # @return [String] path to the PEM file
         def self.pem
           @pem ||= File.join(DATA_DIR, "simu.pem")
         end
 
-        # Checks if the PEM file exists
-        # @return [Boolean] True if the PEM file exists, false otherwise
+        # Checks if the PEM file exists.
+        # @return [Boolean] true if the PEM file exists, false otherwise
         def self.pem_exist?
           File.exist? pem
         end
 
-        # Downloads the PEM file from the specified hostname and port
-        # @param hostname [String] The hostname to connect to (default: "eaccess.play.net")
-        # @param port [Integer] The port to connect to (default: 7910)
+        # Downloads the PEM file from the specified hostname and port.
+        #
+        # @param hostname [String] the hostname to connect to (default: "eaccess.play.net")
+        # @param port [Integer] the port to connect to (default: 7910)
         # @return [void]
         def self.download_pem(hostname = "eaccess.play.net", port = 7910)
           # Create an OpenSSL context
@@ -54,10 +51,11 @@ module Lich
           File.write(pem, ssl.peer_cert)
         end
 
-        # Verifies the PEM certificate against the connection
-        # @param conn [OpenSSL::SSL::SSLSocket] The SSL connection to verify
-        # @return [Boolean] True if the PEM is valid, false otherwise
-        # @raise [StandardError] If the PEM verification fails
+        # Verifies the PEM certificate against the stored PEM file.
+        #
+        # @param conn [OpenSSL::SSL::SSLSocket] the SSL connection to verify
+        # @return [Boolean] true if the certificate matches, false otherwise
+        # @raise AuthenticationError if the certificate does not match
         def self.verify_pem(conn)
           # return if conn.peer_cert.to_s = File.read(pem)
           if !(conn.peer_cert.to_s == File.read(pem))
@@ -69,10 +67,11 @@ module Lich
           #     fail Exception, "\nssl peer certificate did not match #{pem}\nwas:\n#{conn.peer_cert}"
         end
 
-        # Establishes a secure socket connection
-        # @param hostname [String] The hostname to connect to (default: "eaccess.play.net")
-        # @param port [Integer] The port to connect to (default: 7910)
-        # @return [OpenSSL::SSL::SSLSocket] The established SSL socket
+        # Establishes a new SSL socket connection to the specified hostname and port.
+        #
+        # @param hostname [String] the hostname to connect to (default: "eaccess.play.net")
+        # @param port [Integer] the port to connect to (default: 7910)
+        # @return [OpenSSL::SSL::SSLSocket] the established SSL socket
         def self.socket(hostname = "eaccess.play.net", port = 7910)
           download_pem unless pem_exist?
           socket = TCPSocket.open(hostname, port)
@@ -87,15 +86,15 @@ module Lich
           return ssl_socket
         end
 
-        # Authenticates a user with the provided credentials
-        # @param password [String] The user's password
-        # @param account [String] The user's account name
-        # @param character [String, nil] The character name (optional)
-        # @param game_code [String, nil] The game code (optional)
-        # @param legacy [Boolean] Indicates if legacy authentication is used (default: false)
-        # @return [Array<Hash>] The login information
-        # @raise [AuthenticationError] If authentication fails
-        # @raise [StandardError] For other errors during authentication
+        # Authenticates a user with the provided credentials.
+        #
+        # @param password [String] the user's password
+        # @param account [String] the user's account name
+        # @param character [String, nil] the character name (optional)
+        # @param game_code [String, nil] the game code (optional)
+        # @param legacy [Boolean] whether to use legacy authentication (default: false)
+        # @return [Array<Hash>] login information for the authenticated user
+        # @raise AuthenticationError if authentication fails
         def self.auth(password:, account:, character: nil, game_code: nil, legacy: false)
           # Set Account module state
           if defined?(Lich::Common::Account)
@@ -204,9 +203,10 @@ module Lich
           end
         end
 
-        # Reads data from the connection
-        # @param conn [TCPSocket] The connection to read from
-        # @return [String] The data read from the connection
+        # Reads data from the given connection.
+        #
+        # @param conn [TCPSocket] the connection to read from
+        # @return [String] the data read from the connection
         def self.read(conn)
           conn.sysread(PACKET_SIZE)
         end

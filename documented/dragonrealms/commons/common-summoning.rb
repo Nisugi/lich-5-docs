@@ -9,16 +9,14 @@ module Lich
       LACK_CHARGE = 'You lack the elemental charge'.freeze
 
       # Responses for summoning weapons
-      # @example Summoning a weapon
-      #   summon_weapon(nil, "fire", "iron", "Staves")
+      #
+      # @see LACK_CHARGE
       SUMMON_WEAPON_RESPONSES = [
         LACK_CHARGE,
         'you draw out'
       ].freeze
 
-      # Responses for breaking weapons
-      # @example Breaking a weapon
-      #   break_summoned_weapon("sword")
+      # Responses for breaking summoned weapons
       BREAK_WEAPON_RESPONSES = [
         'Focusing your will',
         'disrupting its matrix',
@@ -28,6 +26,8 @@ module Lich
 
       # Moon Mage skill-to-shape mapping for moonblades/staves
       # Moon Mage skill-to-shape mapping for moonblades/staves
+      #
+      # @see SUMMON_WEAPON_RESPONSES
       MOON_SKILL_TO_SHAPE = {
         'Staves'          => 'blunt',
         'Twohanded Edged' => 'huge',
@@ -36,15 +36,13 @@ module Lich
       }.freeze
 
       # Responses for shaping summoned moon weapons
-      # @example Shaping a moon weapon
-      #   shape_summoned_weapon("Staves", nil, settings)
       MOON_SHAPE_RESPONSES = [
         'you adjust the magic that defines its shape',
         'already has',
         'You fumble around'
       ].freeze
 
-      # Responses for failures when shaping Warrior Mage weapons
+      # Responses for failures when shaping summoned weapons
       WM_SHAPE_FAILURES = [
         LACK_CHARGE,
         'You reach out',
@@ -53,18 +51,13 @@ module Lich
       ].freeze
 
       # Responses for turning summoned weapons
-      # @example Turning a weapon
-      #   turn_summoned_weapon
       TURN_WEAPON_RESPONSES = [LACK_CHARGE, 'You reach out'].freeze
       # Responses for pushing summoned weapons
-      # @example Pushing a weapon
-      #   push_summoned_weapon
       PUSH_WEAPON_RESPONSES = [LACK_CHARGE, 'Closing your eyes', "That's as"].freeze
       # Responses for pulling summoned weapons
-      # @example Pulling a weapon
-      #   pull_summoned_weapon
       PULL_WEAPON_RESPONSES = [LACK_CHARGE, 'Closing your eyes', "That's as"].freeze
 
+      # Responses for summoning admittance
       SUMMON_ADMITTANCE_RESPONSES = [
         'You align yourself to it',
         'further increasing your proximity',
@@ -77,15 +70,13 @@ module Lich
       # Default element adjectives for Warrior Mage summoned weapons
       WM_ELEMENT_ADJECTIVES = %w[stone fiery icy electric].freeze
 
-      # Summons a weapon based on the provided parameters
-      # @param moon [Object, nil] The moon type (optional)
-      # @param element [String, nil] The elemental type (optional)
-      # @param ingot [String, nil] The ingot type (optional)
-      # @param skill [String, nil] The skill type (optional)
+      # Summons a weapon based on the provided parameters.
+      #
+      # @param moon [String, nil] optional moon type
+      # @param element [String, nil] optional elemental type
+      # @param ingot [String, nil] optional ingot type
+      # @param skill [String, nil] optional skill type
       # @return [void]
-      # @raise [StandardError] If unable to summon weapon
-      # @example Summoning a weapon
-      #   summon_weapon(nil, "fire", "iron", "Staves")
       def summon_weapon(_moon = nil, element = nil, ingot = nil, skill = nil)
         if DRStats.moon_mage?
           DRCMM.hold_moon_weapon?
@@ -106,13 +97,11 @@ module Lich
         DRC.fix_standing
       end
 
-      # Retrieves an ingot for use in summoning
-      # @param ingot [String, nil] The ingot type (optional)
-      # @param swap [Boolean] Whether to swap the ingot
-      # @return [Boolean] True if ingot is retrieved, false otherwise
-      # @raise [StandardError] If unable to get ingot
-      # @example Getting an ingot
-      #   get_ingot("iron", true)
+      # Retrieves an ingot for use in summoning.
+      #
+      # @param ingot [String, nil] the ingot type to retrieve
+      # @param swap [Boolean] whether to swap the ingot
+      # @return [Boolean] true if the ingot was successfully retrieved
       def get_ingot(ingot, swap)
         return true unless ingot
 
@@ -124,12 +113,10 @@ module Lich
         true
       end
 
-      # Stows an ingot after use
-      # @param ingot [String, nil] The ingot type (optional)
-      # @return [Boolean] True if ingot is stowed, false otherwise
-      # @raise [StandardError] If unable to stow ingot
-      # @example Stowing an ingot
-      #   stow_ingot("iron")
+      # Stows an ingot after use.
+      #
+      # @param ingot [String, nil] the ingot type to stow
+      # @return [Boolean] true if the ingot was successfully stowed
       def stow_ingot(ingot)
         return true unless ingot
 
@@ -140,25 +127,22 @@ module Lich
         true
       end
 
-      # Breaks a summoned weapon
-      # @param item [String, nil] The item to break
+      # Breaks a summoned weapon.
+      #
+      # @param item [String, nil] the item to break
       # @return [void]
-      # @example Breaking a summoned weapon
-      #   break_summoned_weapon("sword")
       def break_summoned_weapon(item)
         return if item.nil?
 
         DRC.bput("break my #{item}", *BREAK_WEAPON_RESPONSES)
       end
 
-      # Shapes a summoned weapon based on skill
-      # @param skill [String] The skill to shape the weapon
-      # @param ingot [String, nil] The ingot type (optional)
-      # @param settings [Object, nil] Additional settings (optional)
+      # Shapes a summoned weapon based on the provided skill.
+      #
+      # @param skill [String] the skill to shape the weapon
+      # @param ingot [String, nil] optional ingot type
+      # @param settings [OpenStruct, nil] optional settings for shaping
       # @return [void]
-      # @raise [StandardError] If unable to shape weapon
-      # @example Shaping a summoned weapon
-      #   shape_summoned_weapon("Staves", nil, settings)
       def shape_summoned_weapon(skill, ingot = nil, settings = nil)
         summoned_weapon = identify_summoned_weapon(settings)
         if DRStats.moon_mage?
@@ -195,12 +179,10 @@ module Lich
         waitrt?
       end
 
-      # Identifies the summoned weapon in hand
-      # @param settings [Object, nil] Additional settings (optional)
-      # @return [String, nil] The identified weapon or nil if not found
-      # @raise [StandardError] If unable to identify weapon
-      # @example Identifying a summoned weapon
-      #   identify_summoned_weapon(settings)
+      # Identifies the summoned weapon in hand.
+      #
+      # @param settings [OpenStruct, nil] optional settings for identification
+      # @return [String, nil] the identified weapon or nil if not found
       def identify_summoned_weapon(settings = nil)
         if DRStats.moon_mage?
           return DRC.right_hand if DRCMM.is_moon_weapon?(DRC.right_hand)
@@ -221,10 +203,8 @@ module Lich
         end
       end
 
-      # Turns the summoned weapon
+      # Turns the summoned weapon in hand.
       # @return [void]
-      # @example Turning a summoned weapon
-      #   turn_summoned_weapon
       def turn_summoned_weapon
         result = DRC.bput("turn my #{DRC.right_hand_noun}", *TURN_WEAPON_RESPONSES)
         if result == LACK_CHARGE
@@ -235,10 +215,8 @@ module Lich
         waitrt?
       end
 
-      # Pushes the summoned weapon
+      # Pushes the summoned weapon in hand.
       # @return [void]
-      # @example Pushing a summoned weapon
-      #   push_summoned_weapon
       def push_summoned_weapon
         result = DRC.bput("push my #{DRC.right_hand_noun}", *PUSH_WEAPON_RESPONSES)
         if result == LACK_CHARGE
@@ -249,10 +227,8 @@ module Lich
         waitrt?
       end
 
-      # Pulls the summoned weapon
+      # Pulls the summoned weapon in hand.
       # @return [void]
-      # @example Pulling a summoned weapon
-      #   pull_summoned_weapon
       def pull_summoned_weapon
         result = DRC.bput("pull my #{DRC.right_hand_noun}", *PULL_WEAPON_RESPONSES)
         if result == LACK_CHARGE
@@ -263,10 +239,8 @@ module Lich
         waitrt?
       end
 
-      # Handles the admittance process for summoning
+      # Handles the process of summoning admittance.
       # @return [void]
-      # @example Handling summon admittance
-      #   summon_admittance
       def summon_admittance
         loop do
           result = DRC.bput('summon admittance', *SUMMON_ADMITTANCE_RESPONSES)

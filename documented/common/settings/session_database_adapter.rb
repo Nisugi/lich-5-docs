@@ -4,18 +4,19 @@ require 'sqlite3'
 
 module Lich
   module Common
-    # Handles database operations for session management.
-    # This class provides methods to upsert, find, delete, and query sessions.
-    # @example Creating a session database adapter
-    #   adapter = Lich::Common::SessionDatabaseAdapter.new
+    # Handles database interactions for session management.
+    #
+    # This class provides methods to upsert, find, delete, and query sessions in a SQLite database.
+    #
+    # @see Lich::Common
     class SessionDatabaseAdapter
-      # The default table name used for storing session data.
       DEFAULT_TABLE_NAME = 'session_summary_state'
 
-      # Initializes a new SessionDatabaseAdapter.
-      # @param db [SQLite3::Database, nil] The SQLite database connection. If nil, a new connection is created.
-      # @param data_dir [String] The directory where the database file is located.
-      # @param table_name [String] The name of the table to use for sessions.
+      # Initializes a new SessionDatabaseAdapter instance.
+      #
+      # @param db [SQLite3::Database, nil] the database connection (optional)
+      # @param data_dir [String] the directory where the database file is located
+      # @param table_name [String] the name of the table to use for sessions
       # @return [SessionDatabaseAdapter]
       def initialize(db: nil, data_dir: DATA_DIR, table_name: DEFAULT_TABLE_NAME)
         @db = db || SQLite3::Database.new(File.join(data_dir, 'lich.db3'))
@@ -23,22 +24,10 @@ module Lich
       end
 
       # Upserts a session into the database.
-      # This method inserts a new session or updates an existing one based on the process ID (pid).
-      # @param payload [Hash] The session data to upsert.
-      # @option payload [Integer] :pid The process ID of the session.
-      # @option payload [String] :session_name The name of the session.
-      # @option payload [String] :role The role associated with the session.
-      # @option payload [String] :state The current state of the session.
-      # @option payload [String] :frontend The frontend associated with the session.
-      # @option payload [String] :game_code The game code associated with the session.
-      # @option payload [Boolean] :hidden Whether the session is hidden.
-      # @option payload [Time] :started_at The time the session started.
-      # @option payload [Time] :last_heartbeat_at The last heartbeat time of the session.
-      # @option payload [Time] :os_seen_at The last time the OS was seen.
-      # @option payload [Boolean] :os_seen Whether the OS has been seen.
-      # @option payload [String] :os_name The name of the operating system.
-      # @option payload [Time] :last_utilization_at The last time the session was utilized.
-      # @option payload [String] :metadata_json Additional metadata for the session.
+      #
+      # This method inserts a new session or updates an existing one based on the provided payload.
+      #
+      # @param payload [Hash] the session data to upsert
       # @return [void]
       def upsert_session(payload)
         with_retry do
@@ -67,7 +56,8 @@ module Lich
       end
 
       # Retrieves all active sessions from the database.
-      # @return [Array<Hash>] An array of hashes representing active sessions.
+      #
+      # @return [Array<Hash>] an array of hashes representing active sessions
       def active_sessions
         with_retry do
           rows_as_hashes("SELECT * FROM #{@table_name} ORDER BY pid ASC;")
@@ -75,7 +65,8 @@ module Lich
       end
 
       # Deletes a session from the database by its process ID.
-      # @param pid [Integer] The process ID of the session to delete.
+      #
+      # @param pid [Integer] the process ID of the session to delete
       # @return [void]
       def delete_session(pid:)
         with_retry do
@@ -83,17 +74,19 @@ module Lich
         end
       end
 
-      # Finds a session by its process ID.
-      # @param pid [Integer] The process ID of the session to find.
-      # @return [Hash, nil] The session data as a hash, or nil if not found.
+      # Finds a session in the database by its process ID.
+      #
+      # @param pid [Integer] the process ID of the session to find
+      # @return [Hash, nil] the session data as a hash, or nil if not found
       def find_session(pid:)
         with_retry do
           rows_as_hashes("SELECT * FROM #{@table_name} WHERE pid = ? LIMIT 1;", [pid.to_i]).first
         end
       end
 
-      # Retrieves duplicate active session names along with their counts.
-      # @return [Array<Hash>] An array of hashes containing session names and their duplicate counts.
+      # Retrieves duplicate active session names from the database.
+      #
+      # @return [Array<Hash>] an array of hashes containing session names and their duplicate counts
       def duplicate_active_session_names
         with_retry do
           rows_as_hashes(<<~SQL)
@@ -109,8 +102,9 @@ module Lich
         end
       end
 
-      # Retrieves all tracked live candidates from the database.
-      # @return [Array<Hash>] An array of hashes representing tracked live candidates.
+      # Retrieves tracked live candidates from the database.
+      #
+      # @return [Array<Hash>] an array of hashes representing tracked live candidates
       def tracked_live_candidates
         with_retry do
           rows_as_hashes(<<~SQL)

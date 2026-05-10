@@ -31,14 +31,16 @@ xmlparser.rb: Core lich file that defines the data extracted from SIMU's XML.
 
 =end
 
-# Module containing core functionality for the Lich project
-# @example Including the Lich module
-#   include Lich
+# Provides core functionality for the Lich project.
+#
+# @see Lich::Common Common utilities for Lich.
 module Lich
   module Common
-    # Parses XML data for the Lich project
-    # @example Creating an XML parser
-    #   parser = Lich::Common::XMLParser.new
+    # Parses XML data from the game.
+    #
+    # This class handles the extraction and management of game state data from XML streams.
+    #
+    # @see Lich::Common Common utilities for Lich.
     class XMLParser
       attr_reader :mana, :max_mana, :health, :max_health, :spirit, :max_spirit, :last_spirit,
                   :stamina, :max_stamina, :stance_text, :stance_value, :mind_text, :mind_value,
@@ -58,8 +60,6 @@ module Lich
 
       include REXML::StreamListener
 
-      # Initializes a new XMLParser instance
-      # @return [XMLParser]
       def initialize
         @buffer = String.new
         # @unescape = { 'lt' => '<', 'gt' => '>', 'quot' => '"', 'apos' => "'", 'amp' => '&' }
@@ -158,8 +158,9 @@ module Lich
         @room_player_hidden = false
       end
 
-      # Retrieves active spells from the XML data
-      # @return [Hash] A hash of active spells
+      # Retrieves the currently active spells.
+      #
+      # @return [Hash] a hash of active spells with their durations.
       def active_spells
         z = {}
         XMLData.dialogs.sort.each do |a, b|
@@ -186,8 +187,7 @@ module Lich
         z
       end
 
-      # Resets the state of the XMLParser
-      # @return [void]
+      # Resets the internal state of the XML parser.
       def reset
         @active_tags = Array.new
         @active_ids = Array.new
@@ -195,8 +195,9 @@ module Lich
         @current_style = String.new
       end
 
-      # Checks if the parser is in a safe state to respond
-      # @return [Boolean] True if safe to respond, false otherwise
+      # Checks if the parser is in a state to respond to game events.
+      #
+      # @return [Boolean] true if safe to respond, false otherwise.
       def safe_to_respond?
         if @game =~ /^DR/
           !in_stream && !@bold && (!@current_style || @current_style.empty?)
@@ -205,14 +206,16 @@ module Lich
         end
       end
 
-      # Generates a binary string representing wounds
-      # @return [String] The wound GSL string
+      # Generates a binary string representation of wounds.
+      #
+      # @return [String] a binary string representing the current wounds.
       def make_wound_gsl
         @wound_gsl = sprintf("0b0%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b", @injuries['nsys']['wound'], @injuries['leftEye']['wound'], @injuries['rightEye']['wound'], @injuries['back']['wound'], @injuries['abdomen']['wound'], @injuries['chest']['wound'], @injuries['leftHand']['wound'], @injuries['rightHand']['wound'], @injuries['leftLeg']['wound'], @injuries['rightLeg']['wound'], @injuries['leftArm']['wound'], @injuries['rightArm']['wound'], @injuries['neck']['wound'], @injuries['head']['wound'])
       end
 
-      # Generates a binary string representing scars
-      # @return [String] The scar GSL string
+      # Generates a binary string representation of scars.
+      #
+      # @return [String] a binary string representing the current scars.
       def make_scar_gsl
         @scar_gsl = sprintf("0b0%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b%02b", @injuries['nsys']['scar'], @injuries['leftEye']['scar'], @injuries['rightEye']['scar'], @injuries['back']['scar'], @injuries['abdomen']['scar'], @injuries['chest']['scar'], @injuries['leftHand']['scar'], @injuries['rightHand']['scar'], @injuries['leftLeg']['scar'], @injuries['rightLeg']['scar'], @injuries['leftArm']['scar'], @injuries['rightArm']['scar'], @injuries['neck']['scar'], @injuries['head']['scar'])
       end
@@ -237,12 +240,12 @@ module Lich
       #   }
       # end
 
-      # The number of seconds in a decade (10 years)
       DECADE = 10 * 31_536_000
 
-      # Parses a PSM3 progress bar from XML
-      # @param kind [String] The kind of progress bar
-      # @param attributes [Hash] The attributes of the progress bar
+      # Parses progress bar data from the XML stream.
+      #
+      # @param kind [String] the type of progress bar.
+      # @param attributes [Hash] attributes of the progress bar.
       # @return [void]
       def parse_psm3_progressbar(kind, attributes)
         @dialogs[kind] ||= {}
@@ -258,13 +261,8 @@ module Lich
         @dialogs[kind][name] = @dialogs[kind][id] = Time.now + (hour.to_i * 3600) + (minute.to_i * 60) + second.to_i
       end
 
-      # List of PSM 3 dialog IDs
       PSM_3_DIALOG_IDS = ["Buffs", "Active Spells", "Debuffs", "Cooldowns"]
 
-      # Handles the start of an XML tag
-      # @param name [String] The name of the tag
-      # @param attributes [Hash] The attributes of the tag
-      # @return [void]
       def tag_start(name, attributes)
         # This is called once per element by REXML in games.rb
         # https://ruby-doc.org/stdlib-2.6.1/libdoc/rexml/rdoc/REXML/StreamListener.html
@@ -691,9 +689,6 @@ module Lich
         end
       end
 
-      # Handles text within an XML element
-      # @param text_string [String] The text content
-      # @return [void]
       def text(text_string)
         # This is called once per element with text in it by REXML in games.rb
         # https://ruby-doc.org/stdlib-2.6.1/libdoc/rexml/rdoc/REXML/StreamListener.html
@@ -921,9 +916,6 @@ module Lich
         end
       end
 
-      # Handles the end of an XML tag
-      # @param name [String] The name of the tag
-      # @return [void]
       def tag_end(name)
         # This is called once per element by REXML in games.rb
         # https://ruby-doc.org/stdlib-2.6.1/libdoc/rexml/rdoc/REXML/StreamListener.html
@@ -988,8 +980,6 @@ module Lich
         end
       end
 
-      # Retrieves active spells from the deprecated spellfront method
-      # @return [Array] An array of active spell names
       def spellfront
         if (Time.now.to_i - @@warned_deprecated_spellfront) > 300
           @@warned_deprecated_spellfront = Time.now.to_i

@@ -3,36 +3,32 @@ require_relative "./bounty/task"
 
 module Lich
   module Gemstone
-    # Represents a bounty in the Lich Gemstone module.
-    # This class handles tasks related to bounties.
-    # @example Creating a bounty instance
-    #   bounty = Lich::Gemstone::Bounty.new
+    # Represents a bounty in the Lich game.
+    #
+    # This class handles the current bounty task and provides methods to interact with it.
+    #
+    # @see Lich::Gemstone::Parser
+    # @see Lich::Gemstone::Task
     class Bounty
-      # A list of known tasks for bounties.
-      # This constant holds the keys from the task matchers defined in the Parser.
       KNOWN_TASKS = Parser::TASK_MATCHERS.keys
 
       # Retrieves the current bounty task.
-      # @return [Task] The current bounty task instance.
-      # @example Getting the current bounty task
-      #   task = Lich::Gemstone::Bounty.current
+      # @return [Task] the current bounty task instance
       def self.current
         Task.new(Parser.parse(checkbounty))
       end
 
-      # Alias for the current bounty task.
-      # @return [Task] The current bounty task instance.
-      # @example Getting the current bounty task via alias
-      #   task = Lich::Gemstone::Bounty.task
+      # Alias for retrieving the current bounty task.
+      # @return [Task] the current bounty task instance
       def self.task
         current
       end
 
-      # Retrieves bounty information for a given person from LNet.
-      # @param person [String] The name of the person to retrieve bounty information for.
-      # @return [Task, nil] The bounty task instance or nil if not found.
-      # @example Getting bounty information for a person
-      #   task = Lich::Gemstone::Bounty.lnet("John Doe")
+      # Retrieves bounty information for a specified person from LNet.
+      #
+      # @param person [String] the name of the person to retrieve bounty information for
+      # @return [Task, nil] the bounty task instance if found, otherwise nil
+      # @note If no bounty is found, a warning message is sent.
       def self.lnet(person)
         if (target_info = LNet.get_data(person.dup, 'bounty'))
           Task.new(Parser.parse(target_info))

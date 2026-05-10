@@ -8,23 +8,26 @@ require_relative 'theme_utils'
 module Lich
   module Common
     module GUI
-      # Represents a tab for saved logins in the GUI.
-      # This class manages the display and interaction with saved login entries.
-      # @example Creating a saved login tab
-      #   tab = Lich::Common::GUI::SavedLoginTab.new(parent, entry_data, theme_state, tab_layout_state, autosort_state, default_icon, data_dir)
+      # Represents a tab for managing saved login entries.
+      #
+      # This class handles the display and management of saved login information,
+      # including favorites and UI state persistence.
+      #
+      # @see Lich::Common::GUI for related GUI components.
       class SavedLoginTab
         attr_accessor :favorites_enabled
 
         # Initializes a new SavedLoginTab instance.
-        # @param parent [Object] The parent widget for this tab.
-        # @param entry_data [Array<Hash>] The saved login entries data.
-        # @param theme_state [Object] The current theme state.
-        # @param tab_layout_state [Object] The layout state of the tab.
-        # @param autosort_state [Boolean] The autosort state for entries.
-        # @param default_icon [String] The default icon for the tab.
-        # @param data_dir [String] The directory where data is stored.
-        # @param callbacks [Hash] Optional callbacks for various events.
-        # @return [SavedLoginTab]
+        #
+        # @param parent [Gtk::Widget] the parent widget for this tab.
+        # @param entry_data [Array<Hash>] the saved login entries data.
+        # @param theme_state [String] the current theme state.
+        # @param tab_layout_state [Boolean] the layout state of the tab.
+        # @param autosort_state [Boolean] the autosort state for entries.
+        # @param default_icon [String] the default icon for the tab.
+        # @param data_dir [String] the directory where data is stored.
+        # @param callbacks [Hash] optional callbacks for various actions.
+        # @return [void]
         def initialize(parent, entry_data, theme_state, tab_layout_state, autosort_state, default_icon, data_dir, callbacks = {})
           @parent = parent
           @entry_data = entry_data
@@ -56,11 +59,11 @@ module Lich
           create_tab_content
         end
 
-        # Refreshes the data displayed in the saved login tab.
-        # This method reloads the saved entries and updates the UI accordingly.
+        # Refreshes the saved login data and updates the UI.
+        #
+        # This method reloads the data from the YAML file, rebuilds the tab content,
+        # and restores the UI state.
         # @return [void]
-        # @example Refreshing the data
-        #   tab.refresh_data
         def refresh_data
           # Save current UI state before refresh
           saved_state = save_current_ui_state
@@ -81,14 +84,12 @@ module Lich
           show_refresh_notification
         end
 
-        # Returns the tab widget for the saved login tab.
-        # @return [Object] The tab widget.
+        # Returns the tab widget for quick game entries.
+        # @return [Gtk::Widget] the quick game entry tab.
         def tab_widget
           @quick_game_entry_tab
         end
 
-        # Returns a hash of UI elements associated with the saved login tab.
-        # @return [Hash] A hash containing UI elements.
         def ui_elements
           {
             custom_launch_entry: @custom_launch_entry,
@@ -101,11 +102,10 @@ module Lich
           }
         end
 
-        # Updates the theme state of the saved login tab.
-        # @param theme_state [Object] The new theme state to apply.
+        # Updates the theme state of the UI elements.
+        #
+        # @param theme_state [String] the new theme state to apply.
         # @return [void]
-        # @example Updating the theme state
-        #   tab.update_theme_state(new_theme_state)
         def update_theme_state(theme_state)
           @ui_config.theme_state = theme_state
           apply_theme_to_ui_elements
@@ -244,6 +244,10 @@ module Lich
           LoginTabUtils.apply_theme_to_ui_elements(@ui_config.theme_state, ui_elements, providers)
         end
 
+        # Creates the content for the tab based on the current entry data.
+        #
+        # This method decides whether to create an empty tab or a populated one.
+        # @return [void]
         def create_tab_content
           if @entry_data.empty?
             create_empty_tab
@@ -288,6 +292,10 @@ module Lich
           create_global_settings_components
         end
 
+        # Creates a tabbed layout for the saved login entries.
+        #
+        # This method organizes the entries into tabs based on user accounts.
+        # @return [Gtk::ScrolledWindow] the scrolled window containing the account tabs.
         def create_tabbed_layout
           @account_book = Gtk::Notebook.new
           @account_book.set_tab_pos(:left)
@@ -341,6 +349,10 @@ module Lich
           quick_sw
         end
 
+        # Creates a tab for displaying favorite characters.
+        #
+        # This method populates the favorites tab with characters marked as favorites.
+        # @return [void]
         def create_favorites_tab
           favorites_box = Gtk::Box.new(:vertical, 0)
 
@@ -384,6 +396,11 @@ module Lich
           @account_book.prepend_page(scrolled_window, Gtk::Label.new("★ FAVORITES"))
         end
 
+        # Creates a list layout for displaying saved login entries.
+        #
+        # This method organizes entries into a vertical list format.
+        # @param last_user_id [String] the last user ID processed for grouping.
+        # @return [Gtk::ScrolledWindow] the scrolled window containing the list of entries.
         def create_list_layout(last_user_id)
           quick_box = Gtk::Box.new(:vertical, 0)
 
@@ -438,6 +455,13 @@ module Lich
           quick_sw
         end
 
+        # Creates a UI entry for a character in the account box.
+        #
+        # This method generates the UI components for a character entry,
+        # including play and remove buttons.
+        # @param account_box [Gtk::Box] the box to which the character entry will be added.
+        # @param login_info [Hash] the login information for the character.
+        # @return [void]
         def create_character_entry(account_box, login_info)
           # Convert to LoginParams object for consistency
           login_params = LoginParams.new(login_info)
@@ -582,6 +606,11 @@ module Lich
           end
         end
 
+        # Creates UI components for managing character entries.
+        #
+        # This method sets up the interface for adding new characters,
+        # including input fields and buttons.
+        # @return [void]
         def create_character_management_components
           # Character entry
           add_character_pane = Gtk::Paned.new(:horizontal)

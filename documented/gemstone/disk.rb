@@ -1,27 +1,26 @@
 module Lich
   module Gemstone
-    # Represents a disk in the game.
-    # This class provides methods to identify and manage disks.
-    # @example Creating a disk from a game object
-    #   disk = Disk.new(game_object)
+    # Represents a disk item in the game.
+    #
+    # This class provides methods to identify, find, and manage disk objects.
+    #
+    # @see Lich::Gemstone
     class Disk
-      # A list of nouns that represent different types of disks.
       NOUNS = %w{cassone chest coffer coffin coffret disk hamper saucer sphere trunk tureen}
 
       # Checks if the given object is a disk based on its name.
-      # @param thing [Object] The object to check.
-      # @return [Boolean] True if the object is a disk, false otherwise.
-      # @example
-      #   Disk.is_disk?(some_object)
+      # @param thing [Object] the object to check
+      # @return [Boolean] true if the object is a disk, false otherwise
       def self.is_disk?(thing)
         thing.name =~ /\b([A-Z][a-z]+) #{Regexp.union(NOUNS)}\b/
       end
 
       # Finds a disk by its name.
-      # @param name [String] The name of the disk to find.
-      # @return [Disk, nil] The found Disk object or nil if not found.
+      # @param name [String] the name of the disk to find
+      # @return [Disk, nil] the Disk object if found, nil otherwise
       # @example
       #   disk = Disk.find_by_name("golden disk")
+      #   puts disk.name if disk
       def self.find_by_name(name)
         disk = GameObj.loot.find do |item|
           is_disk?(item) && item.name.include?(name)
@@ -31,17 +30,13 @@ module Lich
       end
 
       # Mines for a disk based on the character's name.
-      # @return [Disk, nil] The found Disk object or nil if not found.
-      # @example
-      #   disk = Disk.mine
+      # @return [Disk, nil] the Disk object if found, nil otherwise
       def self.mine
         find_by_name(Char.name)
       end
 
-      # Retrieves all disks from the game.
-      # @return [Array<Disk>] An array of all Disk objects.
-      # @example
-      #   disks = Disk.all
+      # Retrieves all disk objects from the game.
+      # @return [Array<Disk>] an array of all Disk objects
       def self.all()
         (GameObj.loot || []).select do |item|
           is_disk?(item)
@@ -50,14 +45,11 @@ module Lich
         end
       end
 
-      # The ID of the disk.
-      # @return [String] The unique identifier for the disk.
       attr_reader :id, :name
 
-      # Initializes a new Disk object from a game object.
-      # @param obj [Object] The game object representing the disk.
-      # @example
-      #   disk = Disk.new(game_object)
+      # Initializes a new Disk object with the given game object.
+      # @param obj [Object] the game object representing the disk
+      # @return [void]
       def initialize(obj)
         @id   = obj.id
         @name = obj.name.split(" ").find do |word|
@@ -65,30 +57,30 @@ module Lich
         end
       end
 
-      # Compares this disk with another disk for equality.
-      # @param other [Object] The object to compare with.
-      # @return [Boolean] True if the disks are equal, false otherwise.
+      # Compares this Disk object with another for equality.
+      # @param other [Object] the object to compare
+      # @return [Boolean] true if the objects are equal, false otherwise
       def ==(other)
         other.is_a?(Disk) && other.id == self.id
       end
 
-      # Checks if this disk is equal to another disk.
-      # @param other [Object] The object to compare with.
-      # @return [Boolean] True if the disks are equal, false otherwise.
+      # Checks if this Disk object is equal to another.
+      # @param other [Object] the object to compare
+      # @return [Boolean] true if the objects are equal, false otherwise
       def eql?(other)
         self == other
       end
 
-      # Handles calls to methods that are not defined on this disk.
-      # @param method [Symbol] The method name that was called.
-      # @param args [Array] The arguments passed to the method.
-      # @return [Object] The result of the method call on the underlying game object.
+      # Handles calls to methods that are not defined on this Disk object.
+      # @param method [Symbol] the name of the method being called
+      # @param args [Array] the arguments passed to the method
+      # @return [Object] the result of the method call on the underlying game object
       def method_missing(method, *args)
         GameObj[@id].send(method, *args)
       end
 
-      # Converts this disk to a container object.
-      # @return [Container, GameObj] The container representation of the disk.
+      # Converts this Disk object to a container object.
+      # @return [Container, GameObj] the corresponding container object
       def to_container
         if defined?(Container)
           Container.new(@id)

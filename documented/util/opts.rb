@@ -4,15 +4,15 @@ require 'ostruct'
 
 module Lich
   module Util
-    # A class for parsing command line options.
-    # This class provides methods to parse options based on a given schema.
-    # @example Parsing command line options
-    #   options = Opts.parse(ARGV, schema)
+    # Provides utility methods for parsing command line options.
+    #
+    # @see Lich::Util
     class Opts
-      # Parses command line arguments based on the provided schema.
-      # @param argv [Array<String>] The command line arguments to parse.
-      # @param schema [Hash] The schema defining the options and their configurations.
-      # @return [OpenStruct] An OpenStruct containing the parsed options.
+      # Parses command line arguments according to the provided schema.
+      #
+      # @param argv [Array<String>] the command line arguments to parse
+      # @param schema [Hash] a hash defining the expected options and their configurations
+      # @return [OpenStruct] an OpenStruct containing the parsed options
       # @example
       #   options = Opts.parse(ARGV, { verbose: { default: false, type: :boolean } })
       def self.parse(argv, schema = {})
@@ -57,10 +57,11 @@ module Lich
 
 
       # Parses the value of a command line option based on its configuration.
-      # @param argv [Array<String>] The command line arguments.
-      # @param index [Integer] The index of the current argument in argv.
-      # @param config [Hash] The configuration for the option being parsed.
-      # @return [Object] The parsed value based on the option type.
+      #
+      # @param argv [Array<String>] the command line arguments
+      # @param index [Integer] the index of the current argument in argv
+      # @param config [Hash] the configuration for the option being parsed
+      # @return [String, Integer, Boolean, Array<String>] the parsed value based on the option type
       def self.parse_value(argv, index, config)
         case config[:type]
         when :boolean
@@ -84,9 +85,10 @@ module Lich
       end
 
       # Parses a value with content based on the provided configuration.
-      # @param value [String] The value to parse.
-      # @param config [Hash] The configuration for the option being parsed.
-      # @return [Object] The parsed value based on the option type.
+      #
+      # @param value [String] the value to parse
+      # @param config [Hash] the configuration for the option being parsed
+      # @return [String, Integer, Boolean] the parsed value based on the option type
       def self.parse_value_with_content(value, config)
         # If custom parser provided, use it first
         return config[:parser].call(value) if config[:parser]

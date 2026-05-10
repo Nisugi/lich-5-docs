@@ -8,18 +8,21 @@ require_relative 'accessibility'
 
 module Lich
   # Provides common GUI functionalities for the Lich application.
-  # @example Using the MasterPasswordChange module
-  #   Lich::Common::GUI::MasterPasswordChange.show_change_master_password_dialog(parent, data_dir)
+  #
+  # @see Lich::Common::GUI
   module Common
     module GUI
+      # Handles the master password change dialog in the GUI.
+      #
+      # @see Lich::Common::GUI
       module MasterPasswordChange
         # Displays a dialog for changing the master password.
-        # @param parent [Gtk::Window] The parent window for the dialog.
-        # @param data_dir [String] The directory where account data is stored.
-        # @return [Boolean] Returns true if the password was changed successfully, otherwise false.
-        # @raise [StandardError] Raises an error if there is an issue during the password change process.
-        # @example Showing the dialog
-        #   Lich::Common::GUI::MasterPasswordChange.show_change_master_password_dialog(parent, "/path/to/data")
+        #
+        # @param parent [Gtk::Window] the parent window for the dialog
+        # @param data_dir [String] the directory where account data is stored
+        # @return [Boolean] true if the password was changed successfully, false otherwise
+        # @example
+        #   Lich::Common::GUI::MasterPasswordChange.show_change_master_password_dialog(parent_window, "/path/to/data")
         def self.show_change_master_password_dialog(parent, data_dir)
           # Create dialog
           dialog = Gtk::Dialog.new(
@@ -225,6 +228,12 @@ module Lich
         class << self
           private
 
+          # Validates the current master password against stored data.
+          #
+          # @param current_password [String] the current master password to validate
+          # @param yaml_file [String] the path to the YAML file containing account data
+          # @return [Boolean] true if the current password is valid, false otherwise
+          # @api private
           def validate_current_password(current_password, yaml_file)
             begin
               yaml_data = YAML.load_file(yaml_file)
@@ -244,6 +253,14 @@ module Lich
             end
           end
 
+          # Re-encrypts all accounts with the new master password.
+          #
+          # @param yaml_data [Hash] the parsed YAML data containing account information
+          # @param data_dir [String] the directory where account data is stored
+          # @param old_password [String] the current master password
+          # @param new_password [String] the new master password
+          # @return [Boolean] true if re-encryption was successful, false otherwise
+          # @api private
           def re_encrypt_all_accounts(yaml_data, data_dir, old_password, new_password)
             yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -315,6 +332,11 @@ module Lich
             end
           end
 
+          # Restores the YAML file from a backup if it exists.
+          #
+          # @param yaml_file [String] the path to the original YAML file
+          # @param backup_file [String] the path to the backup file
+          # @api private
           def restore_from_backup(yaml_file, backup_file)
             return unless File.exist?(backup_file)
 

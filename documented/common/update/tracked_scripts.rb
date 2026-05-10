@@ -16,17 +16,11 @@ module Lich
       # Combines default_tracked scripts from config with user-added scripts from
       # UserVars. Provides CLI for adding/removing tracked scripts.
       # Supports both built-in SCRIPT_REPOS and user-registered custom repos.
-      # @example Creating a new instance of TrackedScripts
-      #   tracked_scripts = Lich::Util::Update::TrackedScripts.new
       class TrackedScripts
         # Returns a unique list of tracked scripts for the given repository configuration.
         #
-        # Combines default tracked scripts with user additions.
-        # @param config [Hash] The configuration hash for the repository.
-        # @return [Array<String>] A unique list of tracked script names.
-        # @raise [StandardError] If an error occurs while accessing user variables.
-        # @example Getting tracked scripts
-        #   scripts = tracked_scripts(config)
+        # @param config [Hash] the repository configuration containing default tracked scripts
+        # @return [Array<String>] an array of unique tracked script names
         def tracked_scripts(config)
           defaults = config[:default_tracked] || []
           repo_key = SCRIPT_REPOS.key(config) || CustomRepos.all.find { |k, v| CustomRepos.build_config(k, v) == config }&.first
@@ -36,11 +30,8 @@ module Lich
 
         # Resolves the configuration for a given repository key.
         #
-        # Looks up the repository key in SCRIPT_REPOS and CustomRepos.
-        # @param repo_key [Symbol] The key of the repository to resolve.
-        # @return [Hash, nil] The configuration hash for the repository or nil if not found.
-        # @example Resolving a repository configuration
-        #   config = resolve_config(:my_repo)
+        # @param repo_key [String] the key of the repository to resolve
+        # @return [Hash, nil] the configuration hash for the repository or nil if not found
         def resolve_config(repo_key)
           config = SCRIPT_REPOS[repo_key]
           return config if config
@@ -53,12 +44,9 @@ module Lich
 
         # Checks for script name collisions in tracked repositories.
         #
-        # Warns if the script name conflicts with existing tracked scripts.
-        # @param script_name [String] The name of the script to check.
-        # @param exclude_repo [Symbol] The repository to exclude from collision checks.
-        # @return [String, nil] A warning or error message if a collision is found, otherwise nil.
-        # @example Checking for collisions
-        #   message = check_collision("my_script.lic", :my_repo)
+        # @param script_name [String] the name of the script to check for collisions
+        # @param exclude_repo [String] the repository key to exclude from the check
+        # @return [String, nil] a warning or error message if a collision is found, otherwise nil
         def check_collision(script_name, exclude_repo)
           all_repo_warning = nil
 
@@ -92,13 +80,9 @@ module Lich
 
         # Tracks a script for a given repository key.
         #
-        # Adds the script to the user's tracked scripts if not already tracked.
-        # @param repo_key [Symbol] The key of the repository to track the script in.
-        # @param script_name [String] The name of the script to track.
+        # @param repo_key [String] the key of the repository to track the script in
+        # @param script_name [String] the name of the script to track
         # @return [void]
-        # @raise [StandardError] If the repository key is unknown.
-        # @example Tracking a script
-        #   track_script(:my_repo, "my_script.lic")
         def track_script(repo_key, script_name)
           config = resolve_config(repo_key)
           unless config
@@ -125,13 +109,9 @@ module Lich
 
         # Untracks a script from a given repository key.
         #
-        # Removes the script from the user's tracked scripts if it is not a default script.
-        # @param repo_key [Symbol] The key of the repository to untrack the script from.
-        # @param script_name [String] The name of the script to untrack.
+        # @param repo_key [String] the key of the repository to untrack the script from
+        # @param script_name [String] the name of the script to untrack
         # @return [void]
-        # @raise [StandardError] If the repository key is unknown.
-        # @example Untracking a script
-        #   untrack_script(:my_repo, "my_script.lic")
         def untrack_script(repo_key, script_name)
           config = resolve_config(repo_key)
           unless config
@@ -161,13 +141,10 @@ module Lich
           end
         end
 
-        # Displays the list of tracked scripts for the specified repository.
+        # Displays the list of tracked scripts for a given repository key or all repositories.
         #
-        # If no repository key is provided, shows all tracked scripts.
-        # @param repo_key [Symbol, nil] The key of the repository to show tracked scripts for.
+        # @param repo_key [String, nil] the key of the repository to show tracked scripts for, or nil for all
         # @return [void]
-        # @example Showing tracked scripts
-        #   show_tracked(:my_repo)
         def show_tracked(repo_key = nil)
           table_rows = []
 

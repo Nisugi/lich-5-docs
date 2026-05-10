@@ -2,22 +2,29 @@
 module Lich
   module Main
     module ArgNormalization
-      # Regular expression pattern for matching headless argument
-      # @example Using the HEADLESS_PATTERN
-      #   if arg.match?(HEADLESS_PATTERN)
+      # Regular expression pattern for matching the --headless argument.
+      #
+      # @example
+      #   "--headless"
+      #   "--headless=8080"
+      # @see #normalize! for usage
       HEADLESS_PATTERN = /^--headless(?:=(.+))?$/i.freeze
       DETACHABLE_CLIENT_PREFIX = '--detachable-client='.freeze
 
-      # Normalizes command line arguments for headless mode.
-      # This method modifies the argv array in place to ensure that
-      # the headless argument is correctly formatted and valid.
-      # @param argv [Array<String>] The command line arguments to normalize.
-      # @return [Array<String>] The normalized command line arguments.
-      # @raise [ArgumentError] if the headless argument is specified more than once
-      # @raise [ArgumentError] if the headless argument is combined with detachable client
-      # @raise [ArgumentError] if the headless argument does not have a valid port number
-      # @example Normalizing arguments
-      #   normalized_args = Lich::Main::ArgNormalization.normalize!(ARGV)
+      # Normalizes command-line arguments for headless mode.
+      # This method modifies the argv array in place to ensure that the
+      # --headless argument is correctly formatted and does not conflict
+      # with other arguments.
+      #
+      # @param argv [Array<String>] the command-line arguments to normalize
+      # @return [Array<String>] the normalized command-line arguments
+      # @raise [ArgumentError] if --headless is specified more than once
+      # @raise [ArgumentError] if --headless is combined with --detachable-client
+      # @raise [ArgumentError] if --headless is missing a port number or auto
+      # @example
+      #   argv = ["--headless=8080", "--other-arg"]
+      #   normalized_argv = Lich::Main::ArgNormalization.normalize!(argv)
+      #   # => ["--without-frontend", "--detachable-client=8080", "--other-arg"]
       def self.normalize!(argv)
         headless_indices = argv.each_index.select { |index| argv[index].match?(HEADLESS_PATTERN) }
         return argv if headless_indices.empty?
@@ -48,12 +55,17 @@ module Lich
       end
 
       # Normalizes the port token for headless mode.
-      # This method checks if the token is 'auto' or a valid port number.
-      # @param token [String] The port token to normalize.
-      # @return [Integer] The normalized port number.
-      # @raise [ArgumentError] if the port number is not between 1 and 65535 or is not 'auto'
-      # @example Normalizing a port token
+      # Converts the token to an integer if it is a valid port number,
+      # or returns 0 if the token is 'auto'.
+      #
+      # @param token [String] the port token to normalize
+      # @return [Integer] the normalized port number
+      # @raise [ArgumentError] if the port number is not between 1 and 65535 or if it is not a valid integer
+      # @example
       #   port = Lich::Main::ArgNormalization.normalize_headless_port("8080")
+      #   # => 8080
+      #   port = Lich::Main::ArgNormalization.normalize_headless_port("auto")
+      #   # => 0
       def self.normalize_headless_port(token)
         return 0 if token.to_s.casecmp('auto').zero?
 

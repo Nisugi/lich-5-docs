@@ -12,35 +12,35 @@ module Lich
   module Util
     module Update
       # Handles the synchronization of script repositories.
-      # This class is responsible for downloading scripts and data files from configured SCRIPT_REPOS and user-registered custom repos.
-      # It skips files that match local SHA1 and supports both :all (auto-sync all .lic) and :explicit (tracked list) modes.
-      # @example Syncing all repositories
-      #   sync = ScriptSync.new(client)
-      #   sync.sync_all_repos
+      #
+      # This class is responsible for downloading scripts and data files from
+      # configured SCRIPT_REPOS and user-registered custom repositories, while
+      # skipping files that match local SHA1.
+      #
+      # @see Lich::Util::Update
       class ScriptSync
         # Initializes a new ScriptSync instance.
-        # @param client [Object] The client used to fetch data from repositories.
-        # @return [ScriptSync]
+        # @param client [Object] the client used to fetch data from repositories
+        # @return [void]
         def initialize(client)
           @client = client
         end
 
         # Synchronizes all configured repositories.
-        # This method iterates over all SCRIPT_REPOS and custom repositories to sync them.
+        #
+        # This method iterates through all SCRIPT_REPOS and custom repositories,
+        # syncing each one.
         # @return [void]
-        # @example Syncing all repositories
-        #   sync.sync_all_repos
         def sync_all_repos
           SCRIPT_REPOS.each_key { |repo_key| sync_repo(repo_key) }
           CustomRepos.all.each_key { |repo_key| sync_repo(repo_key) }
         end
 
         # Synchronizes a specific repository based on the provided key.
-        # @param repo_key [String] The key of the repository to sync.
-        # @param force [Boolean] Whether to force sync even if local SHA matches (default: false).
+        #
+        # @param repo_key [String] the key of the repository to sync
+        # @param force [Boolean] whether to force sync even if local SHA matches
         # @return [void]
-        # @example Syncing a specific repository
-        #   sync.sync_repo("repo_key")
         def sync_repo(repo_key, force: false)
           config = SCRIPT_REPOS[repo_key]
           unless config
@@ -108,13 +108,12 @@ module Lich
         end
 
         # Synchronizes a subdirectory within a repository.
-        # @param tree [Array] The tree structure of the repository.
-        # @param config [Hash] The configuration for the repository.
-        # @param _subdir_name [String] The name of the subdirectory (not used).
-        # @param subconfig [Hash] The configuration for the subdirectory.
-        # @return [Array] An array containing two elements: downloaded files and failed files.
-        # @example Syncing a subdirectory
-        #   sync.sync_subdir(tree, config, "subdir_name", subconfig)
+        #
+        # @param tree [Array<Hash>] the tree structure of the repository
+        # @param config [Hash] the configuration for the repository
+        # @param _subdir_name [String] the name of the subdirectory (unused)
+        # @param subconfig [Hash] the configuration for the subdirectory
+        # @return [Array<Array<String>>] an array containing two arrays: downloaded and failed files
         def sync_subdir(tree, config, _subdir_name, subconfig)
           pattern = subconfig[:pattern]
           dest = subconfig[:dest]
@@ -149,11 +148,10 @@ module Lich
         end
 
         # Filters the scripts that can be synchronized based on the configuration.
-        # @param tree [Array] The tree structure of the repository.
-        # @param config [Hash] The configuration for the repository.
-        # @return [Array] An array of syncable scripts.
-        # @example Filtering syncable scripts
-        #   syncable_scripts = sync.filter_syncable_scripts(tree, config)
+        #
+        # @param tree [Array<Hash>] the tree structure of the repository
+        # @param config [Hash] the configuration for filtering scripts
+        # @return [Array<Hash>] an array of syncable script entries
         def filter_syncable_scripts(tree, config)
           candidates = tree.select { |e| e['path'] =~ config[:script_pattern] && e['type'] == 'blob' }
 

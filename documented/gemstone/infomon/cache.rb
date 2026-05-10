@@ -1,61 +1,57 @@
 module Lich
   module Gemstone
     module Infomon
-      # Represents a cache for storing records.
-      # This class provides methods to put, get, delete, and check for records.
-      # @example Creating a cache and using it
-      #   cache = Lich::Gemstone::Infomon::Cache.new
-      #   cache.put(:key, "value")
+      # Represents a cache for storing key-value pairs.
+      #
+      # This class provides methods to put, get, delete,
+      # and check for the existence of records in the cache.
+      #
+      # @see Lich::Gemstone::Infomon
       class Cache
         attr_reader :records
 
-        # Initializes a new Cache instance.
-        # @return [Cache] The new Cache instance.
         def initialize()
           @records = {}
         end
 
-        # Stores a value in the cache with the given key.
-        # @param key [Object] The key to store the value under.
-        # @param value [Object] The value to store in the cache.
-        # @return [Cache] The Cache instance for method chaining.
-        # @example Putting a value in the cache
-        #   cache.put(:key, "value")
+        # Stores a value in the cache associated with the given key.
+        #
+        # @param key [String] the key to associate with the value
+        # @param value [Object] the value to store in the cache
+        # @return [Cache] the current instance of the cache
         def put(key, value)
           @records[key] = value
           self
         end
 
-        # Checks if the cache includes a record with the given key.
-        # @param key [Object] The key to check for existence.
-        # @return [Boolean] True if the key exists, false otherwise.
-        # @example Checking for a key in the cache
-        #   cache.include?(:key)
+        # Checks if the cache contains a record for the given key.
+        #
+        # @param key [String] the key to check for existence
+        # @return [Boolean] true if the key exists, false otherwise
         def include?(key)
           @records.include?(key)
         end
 
         # Clears all records from the cache.
+        #
         # @return [void]
         def flush!
           @records.clear
         end
 
-        # Deletes a record from the cache by its key.
-        # @param key [Object] The key of the record to delete.
-        # @return [Object, nil] The deleted value, or nil if the key was not found.
-        # @example Deleting a key from the cache
-        #   cache.delete(:key)
+        # Removes the record associated with the given key from the cache.
+        #
+        # @param key [String] the key of the record to delete
+        # @return [Object, nil] the value that was removed, or nil if the key did not exist
         def delete(key)
           @records.delete(key)
         end
 
-        # Retrieves a value from the cache by its key, or computes it if not present.
-        # @param key [Object] The key of the record to retrieve.
-        # @yield block to compute the value if the key is not found.
-        # @return [Object, nil] The value associated with the key, or nil if not found and block returns nil.
-        # @example Getting a value from the cache
-        #   value = cache.get(:key) { "computed value" }
+        # Retrieves the value associated with the given key from the cache.
+        # If the key does not exist, it yields to a block if given.
+        #
+        # @param key [String] the key of the record to retrieve
+        # @return [Object, nil] the value associated with the key, or nil if not found
         def get(key)
           return @records[key] if self.include?(key)
           miss = nil
@@ -65,21 +61,24 @@ module Lich
           @records[key] = miss
         end
 
-        # Merges another hash into the cache.
-        # @param h [Hash] The hash to merge into the cache.
-        # @return [Hash] The updated records hash.
+        # Merges the given hash into the cache.
+        #
+        # @param h [Hash] a hash of key-value pairs to merge into the cache
+        # @return [Hash] the updated records in the cache
         def merge!(h)
           @records.merge!(h)
         end
 
         # Converts the cache records to an array of key-value pairs.
-        # @return [Array] An array representation of the cache records.
+        #
+        # @return [Array<Array>] an array of arrays, each containing a key-value pair
         def to_a()
           @records.to_a
         end
 
-        # Returns the records as a hash.
-        # @return [Hash] The hash of records in the cache.
+        # Returns the cache records as a hash.
+        #
+        # @return [Hash] the hash of records in the cache
         def to_h()
           @records
         end

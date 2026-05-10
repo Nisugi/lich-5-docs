@@ -8,11 +8,13 @@ module Lich
     #
     # It provides lookup tables for ascension skill names, methods to query skill availability,
     # affordability, and knowledge, and dynamically defines shortcut methods for all ascension skills.
-    # @example Using the Ascension module
-    #   Ascension.available?("agility")
     module Ascension
       # Returns a list of ascension skills with their long names, short names, and costs.
-      # @return [Array<Hash>] An array of hashes containing skill details.
+      #
+      # @return [Array<Hash>] an array of hashes representing ascension skills, each containing:
+      #   - :long_name [String] the full name of the skill
+      #   - :short_name [String] the abbreviated name of the skill
+      #   - :cost [Hash] a hash representing the cost of the skill
       def self.ascension_lookups
         [{ long_name: 'acid_resistance',           short_name: 'resistacid',      cost: { stamina: 0 } },
          { long_name: 'agility',                   short_name: 'agility',         cost: { stamina: 0 } },
@@ -92,30 +94,34 @@ module Lich
          { long_name: 'transcend_destiny',         short_name: 'trandest',        cost: { stamina: 0 } }]
       end
 
-      # Retrieves the assessment of an ascension skill by name.
-      # @param name [String] The name of the ascension skill.
-      # @return [Integer] The assessment value of the skill.
+      # Retrieves the assessment of an ascension skill by its name.
+      #
+      # @param name [String] the name of the ascension skill
+      # @return [Integer] the assessment value of the skill
       def Ascension.[](name)
         return PSMS.assess(name, 'Ascension')
       end
 
-      # Checks if an ascension skill is known.
-      # @param name [String] The name of the ascension skill.
-      # @return [Boolean] True if the skill is known, false otherwise.
+      # Checks if the specified ascension skill is known.
+      #
+      # @param name [String] the name of the ascension skill
+      # @return [Boolean] true if the skill is known, false otherwise
       def Ascension.known?(name)
         Ascension[name] > 0
       end
 
-      # Checks if an ascension skill is affordable.
-      # @param name [String] The name of the ascension skill.
-      # @return [Boolean] True if the skill is affordable, false otherwise.
+      # Determines if the specified ascension skill can be afforded.
+      #
+      # @param name [String] the name of the ascension skill
+      # @return [Boolean] true if the skill is affordable, false otherwise
       def Ascension.affordable?(name)
         return PSMS.assess(name, 'Ascension', true)
       end
 
-      # Checks if an ascension skill is available for use.
-      # @param name [String] The name of the ascension skill.
-      # @return [Boolean] True if the skill is available, false otherwise.
+      # Checks if the specified ascension skill is available for use.
+      #
+      # @param name [String] the name of the ascension skill
+      # @return [Boolean] true if the skill is available, false otherwise
       def Ascension.available?(name)
         Ascension.known?(name) &&
           Ascension.affordable?(name) &&

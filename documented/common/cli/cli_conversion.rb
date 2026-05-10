@@ -3,20 +3,18 @@
 require_relative '../authentication/entry_store'
 
 module Lich
-  # Provides common functionality for the Lich project
-  # This module contains various utilities and classes used across the Lich application.
+  # Provides common functionality for the Lich CLI.
+  #
+  # @see Lich::Common::Authentication for authentication-related methods.
   module Common
     module CLI
-      # Provides methods for converting entry data formats in the CLI
+      # Provides methods for converting entry data formats in the CLI.
+      #
       # This module handles the conversion of legacy entry data to the new format.
-      # @example Checking if conversion is needed
-      #   if Lich::Common::CLI::CLIConversion.conversion_needed?("/path/to/data")
       module CLIConversion
-        # Checks if conversion of entry data is needed
-        # @param data_dir [String] The directory containing the entry data
-        # @return [Boolean] True if conversion is needed, false otherwise
-        # @example Checking conversion necessity
-        #   Lich::Common::CLI::CLIConversion.conversion_needed?("/path/to/data")
+        # Determines if conversion is needed based on the presence of entry.dat and entry.yaml files.
+        # @param data_dir [String] the directory containing the entry files
+        # @return [Boolean] true if conversion is needed, false otherwise
         def self.conversion_needed?(data_dir)
           dat_file = File.join(data_dir, 'entry.dat')
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
@@ -24,13 +22,13 @@ module Lich
           File.exist?(dat_file) && !File.exist?(yaml_file)
         end
 
-        # Converts entry data from the legacy format to the new format
-        # @param data_dir [String] The directory containing the entry data
-        # @param encryption_mode [String, Symbol] The encryption mode to use for the conversion
-        # @return [Boolean] True if conversion was successful, false otherwise
-        # @raise [StandardError] If an error occurs during conversion
-        # @example Converting entry data
-        #   Lich::Common::CLI::CLIConversion.convert("/path/to/data", :standard)
+        # Converts entry data from the legacy format to the new format.
+        #
+        # This method validates the existence of necessary files and performs the conversion.
+        # @param data_dir [String] the directory containing the entry files
+        # @param encryption_mode [String] the encryption mode to use for the conversion
+        # @return [Boolean] true if conversion was successful, false otherwise
+        # @raise StandardError if an error occurs during conversion
         def self.convert(data_dir, encryption_mode)
           # Normalize encryption_mode to symbol if string is passed
           mode = encryption_mode.to_sym
@@ -64,10 +62,9 @@ module Lich
           false
         end
 
-        # Prints a help message for users regarding entry data conversion
+        # Prints a help message for users regarding entry conversion.
+        #
         # This method provides instructions on how to convert saved entries to the new format.
-        # @example Displaying conversion help
-        #   Lich::Common::CLI::CLIConversion.print_conversion_help_message
         def self.print_conversion_help_message
           lich_script = File.join(LICH_DIR, 'lich.rbw')
 

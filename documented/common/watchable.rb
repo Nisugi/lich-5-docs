@@ -9,9 +9,9 @@
 #
 # Example:
 
-# Lich module serves as a namespace for the project.
+# Lich module serves as a namespace for the Lich5 project.
 #
-# This module contains common functionality and modules used throughout the Lich project.
+# @see Lich::Common
 module Lich
   module Common
     # Watchable module provides a common interface for self-watching modules.
@@ -19,21 +19,12 @@ module Lich
     # Modules that include Watchable must implement a .watch! class method
     # that spawns a background thread to monitor conditions and trigger
     # initialization when ready.
-    # @example Including the Watchable module
-    #   module MyModule
-    #     include Lich::Common::Watchable
-    #     def self.watch!
-    #       # implementation here
-    #     end
-    #   end
+    #
+    # @see Lich::Common
     module Watchable
-      # Raises a NotImplementedError if called directly.
-      # This method must be implemented by any class that includes the Watchable module.
-      # @raise [NotImplementedError] if the method is not implemented.
-      # @example Implementing the watch! method
-      #   def self.watch!
-      #     # start monitoring
-      #   end
+      # Raises a NotImplementedError indicating that the including class must implement .watch!.
+      #
+      # @raise [NotImplementedError] if the including class does not implement .watch!
       def watch!
         raise NotImplementedError, "#{self.name} must implement .watch! to use Watchable"
       end

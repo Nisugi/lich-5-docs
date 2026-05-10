@@ -8,32 +8,32 @@
   for script repository files.
 =end
 
-# Provides utility functions for the Lich project
-# @example Using the Lich module
-#   Lich::Util::Update::FileUpdater.new(client, resolver)
+# Provides utility functions for the Lich project.
+#
+# @see Lich::Util::Update for update-related utilities.
 module Lich
   module Util
     module Update
-      # Handles file updates for scripts, libraries, and data files.
-      # @example Creating a file updater
-      #   updater = Lich::Util::Update::FileUpdater.new(client, resolver)
+      # Handles the updating of files from repositories.
+      #
+      # This class manages both script and data file updates, including
+      # repository-specific and legacy updates.
       class FileUpdater
         # Initializes a new FileUpdater instance.
-        # @param client [Object] The client used for fetching data.
-        # @param resolver [Object] The resolver for handling versioning.
+        # @param client [Object] the client used for fetching data
+        # @param resolver [Object] the resolver for handling versioning
         def initialize(client, resolver)
           @client = client
           @resolver = resolver
         end
 
         # Updates a file from a specified repository.
-        # @param type [String] The type of file to update (e.g., 'script', 'data').
-        # @param repo_key [String] The key of the repository to fetch from.
-        # @param filename [String] The name of the file to update.
+        #
+        # @param type [String] the type of file to update ("script" or "data")
+        # @param repo_key [String] the key identifying the repository
+        # @param filename [String] the name of the file to update
         # @return [void]
-        # @raise [StandardError] If the file cannot be updated.
-        # @example Updating a script file
-        #   updater.update_file_from_repo('script', 'dr-scripts', 'foo.lic')
+        # @raise [StandardError] if the file cannot be updated
         def update_file_from_repo(type, repo_key, filename)
           config = SCRIPT_REPOS[repo_key]
           unless config
@@ -107,14 +107,13 @@ module Lich
           end
         end
 
-        # Updates a specified file based on its type and version.
-        # @param type [String] The type of file to update (e.g., 'script', 'library', 'data').
-        # @param rf [String] The requested file name to update.
-        # @param version [String] The version channel to use (default is 'production').
+        # Updates a specified file to the latest version.
+        #
+        # @param type [String] the type of file to update ("script", "library", or "data")
+        # @param rf [String] the requested file name
+        # @param version [String] the version channel (default is 'production')
         # @return [void]
-        # @raise [StandardError] If the file cannot be updated.
-        # @example Updating a library file
-        #   updater.update_file('library', 'example.rb', 'beta')
+        # @raise [StandardError] if the file cannot be updated
         def update_file(type, rf, version = 'production')
           if version =~ /^(?:staging|master)$/i
             respond 'Requested channel %s mapped to main (stable).' % [version]
@@ -203,12 +202,11 @@ module Lich
           end
         end
 
-        # Updates core data and scripts based on the game version.
-        # @param version [String] The version to use for the update (default is LICH_VERSION).
+        # Updates core data and scripts based on the game type.
+        #
+        # @param version [String] the version to update to (default is LICH_VERSION)
         # @return [void]
-        # @raise [StandardError] If the game type is invalid.
-        # @example Updating core data and scripts
-        #   updater.update_core_data_and_scripts('1.0.0')
+        # @raise [StandardError] if the game type is invalid
         def update_core_data_and_scripts(version = LICH_VERSION)
           if XMLData.game !~ /^GS|^DR/
             respond "invalid game type, unsure what scripts to update via Update.update_core_scripts"

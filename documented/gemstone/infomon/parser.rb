@@ -1,232 +1,131 @@
 
-# Lich module
-# This module serves as the main namespace for the Lich project.
 module Lich
   module Gemstone
     module Infomon
-      # Parser module
-      # This module contains regex patterns and methods for parsing game information.
       module Parser
         module Pattern
+          # Regex patterns for parsing character information, experience, skills, and PSMs.
+          #
+          # These patterns are used to match and extract relevant data from game output.
+          #
+          # @see Lich::Gemstone::Infomon for data handling methods.
           # Regex patterns grouped for Info, Exp, Skill and PSM parsing - calls upsert_batch to reduce db impact
-          # Regex pattern for character race and profession information.
           CharRaceProf = /^Name:\s+(?<name>[A-z\s'-]+)\s+Race:\s+(?<race>[A-z]+|[A-z]+(?: |-)[A-z]+)\s+Profession:\s+(?<profession>[-A-z]+)/.freeze
-          # Regex pattern for character gender, age, experience, and level information.
           CharGenderAgeExpLevel = /^Gender:\s+(?<gender>[A-z]+)\s+Age:\s+(?<age>[,0-9]+)\s+Expr:\s+(?<experience>[0-9,]+)\s+Level:\s+(?<level>[0-9]+)/.freeze
           # Matches both 'info' (2 columns) and 'info full' (3 columns with base stats)
           # Base stats are optional - only present in 'info full' output
-          # Regex pattern for character stats including base values and bonuses.
           Stat = /^\s*(?<stat>[A-z]+)\s\((?:STR|CON|DEX|AGI|DIS|AUR|LOG|INT|WIS|INF)\):(?:\s+(?<base_value>\d+)\s+\((?<base_bonus>-?\d+)\)\s+[.]{3})?\s+(?<value>[0-9]+)\s\((?<bonus>-?[0-9]+)\)\s+[.]{3}\s+(?<enhanced_value>\d+)\s+\((?<enhanced_bonus>-?\d+)\)/.freeze
-          # Regex pattern for the end of stat information.
           StatEnd = /^Mana:\s+-?\d+\s+Silver:\s(?<silver>-?[\d,]+)$/.freeze
-          # Regex pattern for character fame information.
           Fame = /^\s+Level: \d+\s+Fame: (?<fame>-?[\d,]+)$/.freeze # serves as ExprStart
-          # Regex pattern for real experience information.
           RealExp = %r{^\s+Experience: [\d,]+\s+Field Exp: (?<fxp_current>[\d,]+)/(?<fxp_max>[\d,]+)$}.freeze
-          # Regex pattern for ascension experience information.
           AscExp = /^\s+Ascension Exp: (?<ascension_experience>[\d,]+)\s+Recent Deaths: [\d,]+$/.freeze
-          # Regex pattern for total experience and death's sting information.
           TotalExp = /^\s+Total Exp: (?<total_experience>[\d,]+)\s+Death's Sting: (?<deaths_sting>None|Light|Moderate|Sharp|Harsh|Piercing|Crushing)$/.freeze
-          # Regex pattern for long-term experience and deeds information.
           LTE = /^\s+Long-Term Exp: (?<long_term_experience>[\d,]+)\s+Deeds: (?<deeds>\d+)$/.freeze
-          # Regex pattern for the end of experience information.
           ExprEnd = /^\s+Exp (?:until lvl|to next TP): -?[\d,]+/.freeze
-          # Regex pattern for the start of skill information.
           SkillStart = /^\s\w+\s\(at level \d+\), your current skill bonuses and ranks/.freeze
-          # Regex pattern for individual skill information.
           Skill = /^\s+(?<name>[[a-zA-Z]\s\-']+)\.+\|\s+(?<bonus>\d+)\s+(?<ranks>\d+)/.freeze
-          # Regex pattern for spell ranks information.
           SpellRanks = /^\s+(?<name>[\w\s\-']+)\.+\|\s+(?<rank>\d+).*$/.freeze
-          # Regex pattern for the end of skill information.
           SkillEnd = /^Training Points: \d+ Phy \d+ Mnt/.freeze
-          # Regex pattern for detecting skill goals updates.
           GoalsDetected = /^Skill goals updated!$/.freeze
-          # Regex pattern for the end of goals information.
           GoalsEnded = /^Further information can be found in the FAQs\.$/.freeze
-          # Regex pattern for checking out of an inn.
           InnCheckedOut = /^Leaving your room, you check back out of .*, wander over to the front desk and hand the room key back to the innkeeper\./.freeze
-          # Regex pattern for the start of PSM (Professional Skill Mastery) information.
           PSMStart = /^\w+, the following (?<cat>Ascension Abilities|Armor Specializations|Combat Maneuvers|Feats|Shield Specializations|Weapon Techniques) are available:$/.freeze
-          # Regex pattern for individual PSM information.
           PSM = /^\s+(?<name>[A-z\s\-':]+)\s+(?<command>[a-z]+)\s+(?<ranks>\d+)\/(?<max>\d+).*$/.freeze
-          # Regex pattern for the end of PSM information.
           PSMEnd = /^   Subcategory: all$/.freeze
 
           # Single / low impact - single db write
-          # Regex pattern for level-up information.
           Levelup = /^\s+(?<stat>\w+)\s+\(\w{3}\)\s+:\s+(?<value>\d+)\s+(?:\+1)\s+\.\.\.\s+(?<bonus>\d+)(?:\s+\+1)?$/.freeze
-          # Regex pattern for solo spell information.
           SpellsSolo = /^(?<name>Bard|Cleric|Empath|Minor (?:Elemental|Mental|Spiritual)|Major (?:Elemental|Mental|Spiritual)|Paladin|Ranger|Savant|Sorcerer|Wizard)(?: Base)?\.+(?<rank>\d+).*$/.freeze # from SPELL command
-          # Regex pattern for citizenship information.
           Citizenship = /^You currently have .*? citizenship in (?<town>.*)\.$/.freeze
-          # Regex pattern for no citizenship information.
           NoCitizenship = /^You don't seem to have citizenship\./.freeze
-          # Regex pattern for society membership information.
           Society = /^\s+You are a (?<standing>Master|member) (?:in|of) the (?<society>Order of Voln|Council of Light|Guardians of Sunfist)(?: at (?:rank|step) (?<rank>[0-9]+))?\.$/.freeze
-          # Regex pattern for no society membership information.
           NoSociety = /^\s+You are not a member of any society at this time./.freeze
-          # Regex pattern for society step information.
           SocietyStep = /^(?:Zarak|Faylanna|Draelox|Marl|Vindar|Taryn|Meaha|Oxanna|Cyndelle) traces the outline of a sigil into the air before you and says|^The High Taskmaster looks at you, consults (?:her|his) notes, and then announces in a loud voice|^The monk concludes ceremoniously,/.freeze
-          # Regex pattern for society joining information.
           SocietyJoin = /^The Grandmaster says, "Welcome to the Order|^The Grandmaster says, "You are now a member of the Guardians of Sunfist|^The Grand Poohbah smiles broadly.  "Welcome to the Lodge," he cries/.freeze
-          # Regex pattern for society resignation information.
           SocietyResign = /^The Grandmaster says, "I'm sorry to hear that.  You are no longer in our service.|^The Poohbah looks at you sternly.  "I had high hopes for you," he says, "but if this be your decision, so be it\.  I hereby strip you of membership|^The Grandmaster says, "I'm sorry to hear that,.+I wish you well with any of your future endeavors./.freeze
-          # Regex pattern for warcries information.
           Warcries = /^\s+(?<name>(?:Bertrandt's Bellow|Yertie's Yowlp|Gerrelle's Growl|Seanette's Shout|Carn's Cry|Horland's Holler))$/.freeze
-          # Regex pattern for no warcries information.
           NoWarcries = /^You must be an active member of the Warrior Guild to use this skill\.$/.freeze
-          # Regex pattern for learning PSM information.
           LearnPSM = /^You have now achieved rank (?<rank>\d+) of (?<psm>[A-z\s]+), costing \d+ (?<cat>[A-z]+) .*?points\.$/
           # Technique covers Specialization (Armor and Shield), Technique (Weapon), and Feat
-          # Regex pattern for learning techniques information.
           LearnTechnique = /^\[You have (?:gained|increased to) rank (?<rank>\d+) of (?<cat>[A-z]+).*: (?<psm>[A-z\s\-':]+)\.\]$/.freeze
-          # Regex pattern for unlearning PSM information.
           UnlearnPSM = /^You decide to unlearn rank (?<rank>\d+) of (?<psm>[A-z\s\-':]+), regaining \d+ (?<cat>[A-z]+) .*?points\.$/
-          # Regex pattern for unlearning techniques information.
           UnlearnTechnique = /^\[You have decreased to rank (?<rank>\d+) of (?<cat>[A-z]+).*: (?<psm>[A-z\s\-':]+)\.\]$/.freeze
-          # Regex pattern for lost technique information.
           LostTechnique = /^\[You are no longer trained in (?<cat>[A-z]+) .*: (?<psm>[A-z\s\-':]+)\.\]$/.freeze
-          # Regex pattern for resource information.
           Resource = /^(?:Essence|Necrotic Energy|Lore Knowledge|Motes of Tranquility|Devotion|Nature's Grace|Grit|Luck Inspiration|Guile|Vitality): (?<weekly>[0-9,]+)\/50,000 \(Weekly\)\s+(?<total>[0-9,]+)\/200,000 \(Total\)$/.freeze
-          # Regex pattern for suffused resource information.
           Suffused = /^Suffused (?<type>(?:Essence|Necrotic Energy|Lore Knowledge|Motes of Tranquility|Devotion|Nature's Grace|Grit|Luck Inspiration|Guile|Vitality)): (?<suffused>[0-9,]+)$/.freeze
-          # Regex pattern for Voln favor information.
           VolnFavor = /^Voln Favor: (?<favor>[-\d,]+)$/.freeze
-          # Regex pattern for Covert Arts charges information.
           CovertArtsCharges = /^Covert Arts Charges: (?<charges>[-\d,]+)\/200$/.freeze
-          # Regex pattern for shadow essence information.
           ShadowEssence = /^Accumulated Shadow (?:E|e)ssence: (?<essence>\d)/.freeze
-          # Regex pattern for gaining shadow essence information.
           ShadowEssenceGain = /^You violently shatter the bond on the soul of the .+\.  As you draw it into yourself, you manipulate the chaotic and broken life forces, forming shadow essence\./.freeze
-          # Regex pattern for shadow essence cap information.
           ShadowEssenceCap = /^You begin to sacrifice your victim but immediately sense that it would overwhelm you with shadow essence\./.freeze
-          # Regex pattern for sacrificing mana information.
           SacrificeMana = /^You summon the shadow essence from the inner depths of your body, surrounding yourself in a dark halo of power\.  You will the shadows into the eddies and currents of the flows of essence around you, spreading through them like blackened veins of corruption\.  The surroundings glow with silent anguish\.  Everything around you becomes pale and enervated with discoloration, like the life has been drained out of the world\.  There is a flood of power as you feel (?<amount>\d+) mana surge into you!$/.freeze
-          # Regex pattern for channeling sacrifice information.
           SacrificeChannel = /^Focusing on the bond to your animate, you force shadow essence into .+, leveraging its broken life forces\.  The backlash of sorcerous violence with the necrotic energy of the \w+ ends in the unnatural revitalization of its animate matter\.$/.freeze
-          # Regex pattern for infesting sacrifice information.
           SacrificeInfest = /^Mastering the struggle against the frantic rush of stolen power, you unleash a dark haze of necrosis upon your unfortunate victim\.  With a small smirk, you force the sickly currents of shadow essence from your body, commanding them to seek and infest .+\.$/.freeze
-          # Regex pattern for fate sacrifice information.
           SacrificeFate = /^You close your eyes momentarily and visualize the strands of fate that tie together the firmament\.  Identifying a susceptible star, you compel the shadow essence within you to corrupt it\.$/.freeze
-          # Regex pattern for shifting sacrifice information.
           SacrificeShift = /^Summoning the shadow essence within yourself, you will it to bleed through the veil, exposing your mind to the vast abyss of cosmic horror\.  Countless possible gateways reveal themselves, with runes hidden in the fabric of reality\.$/.freeze
-          # Regex pattern for gigas artifact fragments information.
           GigasArtifactFragments = /^You are carrying (?<gigas_artifact_fragments>[\d,]+) gigas artifact fragments?\.$/.freeze
-          # Regex pattern for redsteel marks information.
           RedsteelMarks = /^(?:\s* Redsteel Marks:           |You are carrying) (?<redsteel_marks>[\d,]+)(?: redsteel marks?\.)?$/.freeze
-          # Regex pattern for gemstone dust information.
           GemstoneDust = /^You are carrying (?<gemstone_dust>[\d,]+) Dust in your reserves?\.$/.freeze
-          # Regex pattern for general ticket information.
           TicketGeneral = /^\s*General - (?<tickets>[\d,]+) tickets?\.$/.freeze
-          # Regex pattern for blackscrip ticket information.
           TicketBlackscrip = /^\s*Troubled Waters - (?<blackscrip>[\d,]+) blackscrip\.$/.freeze
-          # Regex pattern for bloodscrip ticket information.
           TicketBloodscrip = /^\s*Duskruin Arena - (?<bloodscrip>[\d,]+) bloodscrip\.$/.freeze
-          # Regex pattern for ethereal scrip ticket information.
           TicketEtherealScrip = /^\s*Reim - (?<ethereal_scrip>[\d,]+) ethereal scrip\.$/.freeze
-          # Regex pattern for soul shards ticket information.
           TicketSoulShards = /^\s*Ebon Gate - (?<soul_shards>[\d,]+) soul shards?\.$/.freeze
-          # Regex pattern for raikhen ticket information.
           TicketRaikhen = /^\s*Rumor Woods - (?<raikhen>[\d,]+) raikhen\.$/.freeze
-          # Regex pattern for gold ticket information.
           TicketGold = /^\s*Gold - (?<gold>[\d,]+) gold\.$/.freeze
-          # Regex pattern for silver wealth information.
           WealthSilver = /^You have (?<silver>no|[,\d]+|but one) silver with you\./.freeze
-          # Regex pattern for silver wealth in a container.
           WealthSilverContainer = /^You are carrying (?<silver>[\d,]+) silver stored within your /.freeze
-          # Regex pattern for account name information.
           AccountName = /^Account Name:     (?<name>[\w\d\-\_]+)$/.freeze
-          # Regex pattern for account subscription type information.
           AccountSubscription = /^Account Type:     (?<subscription>F2P|Standard|Premium|Platinum)(?: with Shattered)?(?: \(\w+\))?$/.freeze
-          # Regex pattern for the start of profile information.
           ProfileStart = /^PERSONAL INFORMATION$/.freeze
-          # Regex pattern for profile name information.
           ProfileName = /^Name: (?<name>[\w\s]+)$/.freeze
-          # Regex pattern for profile house information.
           ProfileHouseCHE = /^[A-Za-z\- ]+? (?:of House of the |of House of |of House |of )(?<house>Argent Aspis|Rising Phoenix|Paupers|Arcane Masters|Brigatta|Twilight Hall|Silvergate Inn|Sovyn|Sylvanfair|Helden Hall|White Haven|Beacon Hall|Rone Academy|Willow Hall|Moonstone Abbey|Obsidian Tower|Cairnfang Manor)(?: Archive)?$|^(?<none>No House affiliation)$/.freeze
           ResignCHE = /^(?:Once you have resigned from your House, you will be unable to rejoin without being inducted again by the |If you wish to renounce your membership in the |Before you can resign from the )(?:House |of House of the |of House of |of House |of )?(?<house>Argent Aspis|Rising Phoenix|Paupers|Arcane Masters|Brigatta|Twilight Hall|Silvergate Inn|Sovyn|Sylvanfair|Helden Hall|White Haven|Beacon Hall|Rone Academy|Willow Hall|Moonstone Abbey|Obsidian Tower|Cairnfang Manor)(?: Archive)?|^(?<none>The RESIGN command is for resigning your membership in a House, but you don't currently belong to any of the Cooperative Houses of Elanthia)\.$/.freeze
-          # Regex pattern for confirming resignation from a house.
           ResignConfirmCHE = /^\[You have resigned from the (?:House |of House of the |of House of |of House |of )?(?<house>Argent Aspis|Rising Phoenix|Paupers|Arcane Masters|Brigatta|Twilight Hall|Silvergate Inn|Sovyn|Sylvanfair|Helden Hall|White Haven|Beacon Hall|Rone Academy|Willow Hall|Moonstone Abbey|Obsidian Tower|Cairnfang Manor)(?: Archive)?\.\]$/.freeze
 
           # TODO: refactor / streamline?
-          # Regex pattern for active sleep status.
           SleepActive = /^Your mind goes completely blank\.$|^You close your eyes and slowly drift off to sleep\.$|^You slump to the ground and immediately fall asleep\.  You must have been exhausted!$|^That is impossible to do while unconscious$/.freeze
-          # Regex pattern for inactive sleep status.
           SleepNoActive = /^Your thoughts slowly come back to you as you find yourself lying on the ground\.  You must have been sleeping\.$|^You wake up from your slumber\.$|^You are awoken|^You awake|^You slowly come back to alertness and realize you must have been sleeping\.$/.freeze
-          # Regex pattern for active bind status.
           BindActive = /^An unseen force (?:envelops|entangles) you, restricting (?:all|your) movement|^You are caught fast, the light of (?:Liabo|Lornon|Tilaok|Makiri|the moon) arresting your movements/.freeze
-          # Regex pattern for inactive bind status.
           BindNoActive = /^The restricting force that envelops you dissolves away\.|^You shake off the immobilization that was restricting your movements!|^The restricting force enveloping you fades away\./.freeze
-          # Regex pattern for active silence status.
           SilenceActive = /^A pall of silence settles over you\.|^The pall of silence settles more heavily over you\./.freeze
-          # Regex pattern for inactive silence status.
           SilenceNoActive = /^The pall of silence leaves you\./.freeze
-          # Regex pattern for active calm status.
           CalmActive = /^A calm washes over you\./.freeze
-          # Regex pattern for inactive calm status.
           CalmNoActive = /^You are enraged by .*? attack!|^The feeling of calm leaves you\./.freeze
-          # Regex pattern for active cutthroat status.
           CutthroatActive = /slices deep into your vocal cords!$|^All you manage to do is cough up some blood\.$/.freeze
-          # Regex pattern for inactive cutthroat status.
           CutthroatNoActive = /^\s*The horrible pain in your vocal cords subsides as you spit out the last of the blood clogging your throat\.$|^That tingles, but there are no head injuries to repair\.$/.freeze
-          # Regex pattern for starting thorn poison status.
           ThornPoisonStart = /^One of the vines surrounding .*? lashes out at you, driving a thorn into your skin!  You feel poison coursing through your veins\.$/.freeze
-          # Regex pattern for thorn poison progression status.
           ThornPoisonProgression = /^You begin to feel a strange fatigue, spreading throughout your body\.$|^The strange lassitude is growing worse, making it difficult to keep up with any strenuous activities\.$|^You find yourself gradually slowing down, your muscles trembling with fatigue\.$|^It\'s getting increasingly difficult to move. It feels almost as if the air itself is growing thick as molasses\.$|^No longer able to fight this odd paralysis, you collapse to the ground, as limp as an old washrag\.$/.freeze
-          # Regex pattern for thorn poison deprogression status.
           ThornPoisonDeprogression = /^With a shaky gasp and trembling muscles, you regain at least some small ability to move, however slowly\.$|Although you can\'t seem to move as quickly as you usually can, you\'re feeling better than you were just moments ago\.$|^Fine coordination is difficult, but at least you can move at something close to your normal speed again\.$|^While you\'re still a bit shaky, your muscles are responding better than they were\.$/.freeze
-          # Regex pattern for ending thorn poison status.
           ThornPoisonEnd = /^Your body begins to respond normally again\.$|^Your skin takes on a more pinkish tint\.$/.freeze
 
           # Adding spell regexes.  Does not save to infomon.db.  Used by Spell and by ActiveSpells
-          # Regex pattern for spell up messages.
           SpellUpMsgs = /^#{Lich::Common::Spell.upmsgs.join('$|^')}$/o.freeze
-          # Regex pattern for spell down messages.
           SpellDnMsgs = /^#{Lich::Common::Spell.dnmsgs.join('$|^')}$/o.freeze
-          # Regex pattern for renewed spellsong messages.
           SpellsongRenewed = /^Your songs? renews?/.freeze
 
           # Enhancive parsing patterns - from INVENTORY ENHANCIVE TOTALS command
-          # Regex pattern for the start of enhancive parsing.
           EnhanciveStart = /^Stats:$/.freeze
-          # Regex pattern for individual enhancive stat information.
           EnhanciveStat = /^\s+(?<stat>Strength|Constitution|Dexterity|Agility|Discipline|Aura|Logic|Intuition|Wisdom|Influence)\s+\((?<abbr>\w{3})\):\s*(?<value>\d+)\/(?<cap>\d+)$/.freeze
-          # Regex pattern for the skills section in enhancive parsing.
           EnhanciveSkillsSection = /^Skills:$/.freeze
-          # Regex pattern for skill ranks in enhancive parsing.
           EnhanciveSkillRanks = /^\s+(?<name>[\w\s\-']+?)\s+Ranks:\s*(?<value>\d+)\/(?<cap>\d+)$/.freeze
-          # Regex pattern for skill bonuses in enhancive parsing.
           EnhanciveSkillBonus = /^\s+(?<name>[\w\s\-']+?)\s+Bonus:\s*(?<value>\d+)\/(?<cap>\d+)$/.freeze
-          # Regex pattern for the resources section in enhancive parsing.
           EnhanciveResourcesSection = /^Resources:$/.freeze
-          # Regex pattern for individual enhancive resource information.
           EnhanciveResource = /^\s+(?<name>[\w\s]+?):\s+(?<value>\d+)\/(?<cap>\d+)$/.freeze
-          # Regex pattern for the martial knowledge skills section in enhancive parsing.
           EnhanciveMartialSection = /^Martial Knowledge Skills:$/.freeze
-          # Regex pattern for individual martial skills in enhancive parsing.
           EnhanciveMartialSkill = /^\s+(?<name>[\w\s']+?):\s+\+(?<value>\d+)\s+ranks?$/.freeze
-          # Regex pattern for the spells section in enhancive parsing.
           EnhanciveSpellsSection = /^Self Knowledge Spells:$/.freeze
-          # Regex pattern for individual spells in enhancive parsing.
           EnhanciveSpells = /^\s+(?<spells>[\d,\s]+)$/.freeze
-          # Regex pattern for the statistics section in enhancive parsing.
           EnhanciveStatisticsSection = /^Statistics:$/.freeze
-          # Regex pattern for individual statistics in enhancive parsing.
           EnhanciveStatistic = /^\s+(?<name>Enhancive Items|Enhancive Properties|Total Enhancive Amount):\s*(?<value>\d+)$/.freeze
-          # Regex pattern for the end of enhancive parsing.
           EnhanciveEnd = /^For (?:more|fewer) details, see INVENTORY ENHANCIVE TOTALS(?: DETAILS)?\.$/.freeze
-          # Regex pattern for no enhancive items found.
           EnhanciveNone = /^No enhancive item bonuses found\.$/.freeze
 
           # Enhancive active state tracking (on/off)
-          # Regex pattern for when enhancive items are active.
           EnhanciveOn = /^You are (?:now|already|currently) accepting the benefits of (?:your|any and all) enhancive (?:inventory )?items(?: in your inventory)?\./.freeze
-          # Regex pattern for when enhancive items are not active.
           EnhanciveOff = /^You (?:are no longer|already are not|are not currently) accepting the benefit(?:s)? of (?:your|any) enhancive (?:inventory )?items(?: in your inventory)?\./.freeze
-          # Regex pattern for available enhancive pauses.
           EnhancivePauses = /^You currently have (?<pauses>\d+) enhancive pauses? available\.$/.freeze
 
-          # Union of all regex patterns for parsing.
           All = Regexp.union(CharRaceProf, CharGenderAgeExpLevel, Stat, StatEnd, Fame, RealExp, AscExp, TotalExp, LTE,
                              ExprEnd, SkillStart, Skill, SpellRanks, SkillEnd, PSMStart, PSM, PSMEnd, Levelup, SpellsSolo,
                              Citizenship, NoCitizenship, Society, NoSociety, SleepActive, SleepNoActive, BindActive,
@@ -246,8 +145,6 @@ module Lich
                              EnhanciveOn, EnhanciveOff, EnhancivePauses)
         end
 
-        # State module
-        # This module manages the state of the parser.
         module State
           @state = :ready
           Goals = :goals
@@ -262,7 +159,9 @@ module Lich
           EnhanciveStatistics = :enhancive_statistics
 
           # Sets the current state of the parser.
-          # @param state [Symbol] The state to set.
+          #
+          # @param state [Symbol] the new state to set (e.g., :goals, :profile)
+          # @return [void]
           # @raise [RuntimeError] if the state transition is invalid.
           def self.set(state)
             case state
@@ -281,23 +180,20 @@ module Lich
             @state = state
           end
 
-          # Retrieves the current state of the parser.
-          # @return [Symbol] The current state.
           def self.get
             @state
           end
 
-          # Checks if the current state is one of the enhancive states.
-          # @return [Boolean] True if in an enhancive state, false otherwise.
           def self.enhancive_state?
             [EnhanciveStats, EnhanciveSkills, EnhanciveResources,
              EnhanciveMartial, EnhanciveSpells, EnhanciveStatistics].include?(@state)
           end
         end
 
-        # Finds the category based on the given string.
-        # @param category [String] The category string to match.
-        # @return [String] The matched category.
+        # Finds the category name based on the input string.
+        #
+        # @param category [String] the category string to match against known categories
+        # @return [String, nil] the matched category name or nil if no match is found.
         def self.find_cat(category)
           case category
           when /Armor/
@@ -315,10 +211,11 @@ module Lich
           end
         end
 
-        # Parses a line of input and updates the state accordingly.
-        # @param line [String] The line of input to parse.
-        # @return [Symbol] The result of the parsing operation.
-        # @raise [StandardError] if an error occurs during parsing.
+        # Parses a line of game output and updates the internal state accordingly.
+        #
+        # @param line [String] the line of output to parse
+        # @return [Symbol] the result of the parsing operation (e.g., :ok, :noop)
+        # @note This method handles various patterns defined in the Pattern module.
         def self.parse(line)
           # O(1) vs O(N)
           return :noop unless line =~ Pattern::All

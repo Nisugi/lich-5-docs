@@ -1,21 +1,22 @@
 
 module Lich
   module Common
-    # Handles upstream hooks for the Lich project.
-    # This class allows adding, running, removing, and listing hooks.
-    # @example Adding a hook
-    #   UpstreamHook.add("hook_name", Proc.new { |client| ... })
+    # Handles upstream hooks for the Lich game.
+    #
+    # This class allows for the registration, execution, and management of hooks that can modify client strings.
+    #
+    # @see Lich::Common
     class UpstreamHook
       @@upstream_hooks ||= Hash.new
       @@upstream_hook_sources ||= Hash.new
 
-      # Adds a new upstream hook.
-      # @param name [String] The name of the hook.
-      # @param action [Proc] The action to be executed when the hook is triggered.
-      # @return [Boolean] Returns true if the hook was added successfully, false otherwise.
-      # @raise [StandardError] Raises an error if action is not a Proc.
-      # @example Adding a hook
-      #   UpstreamHook.add("example_hook", Proc.new { |client| ... })
+      # Registers a new upstream hook with a given name and action.
+      #
+      # @param name [String] the name of the hook
+      # @param action [Proc] the action to be executed when the hook is triggered
+      # @return [Boolean] true if the hook was added successfully, false otherwise
+      # @example
+      #   UpstreamHook.add("example_hook", Proc.new { |client_string| client_string.upcase })
       def UpstreamHook.add(name, action)
         unless action.is_a?(Proc)
           echo "UpstreamHook: not a Proc (#{action})"
@@ -25,10 +26,13 @@ module Lich
         @@upstream_hooks[name] = action
       end
 
-      # Runs all registered upstream hooks in order.
-      # @param client_string [String] The input string to be processed by the hooks.
-      # @return [String, nil] Returns the processed string or nil if any hook returns nil.
-      # @raise [StandardError] Catches exceptions from hook execution and logs them.
+      # Executes all registered upstream hooks in order, passing the client string through each.
+      #
+      # @param client_string [String] the client string to be processed by the hooks
+      # @return [String, nil] the modified client string or nil if an error occurs
+      # @raise [StandardError] if an error occurs during hook execution
+      # @example
+      #   modified_string = UpstreamHook.run("original string")
       def UpstreamHook.run(client_string)
         for key in @@upstream_hooks.keys
           begin
@@ -43,8 +47,9 @@ module Lich
         return client_string
       end
 
-      # Removes an upstream hook by name.
-      # @param name [String] The name of the hook to remove.
+      # Removes an upstream hook by its name.
+      #
+      # @param name [String] the name of the hook to remove
       # @return [void]
       def UpstreamHook.remove(name)
         @@upstream_hook_sources.delete(name)
@@ -52,13 +57,15 @@ module Lich
       end
 
       # Lists all registered upstream hooks.
-      # @return [Array<String>] An array of hook names.
+      #
+      # @return [Array<String>] an array of hook names
       def UpstreamHook.list
         @@upstream_hooks.keys.dup
       end
 
-      # Provides a formatted table of hook sources.
-      # @return [String] A string representation of the table showing hooks and their sources.
+      # Provides a formatted table of upstream hook sources.
+      #
+      # @return [String] a string representation of the sources in a table format
       def UpstreamHook.sources
         info_table = Terminal::Table.new :headings => ['Hook', 'Source'],
                                          :rows     => @@upstream_hook_sources.to_a,
@@ -67,7 +74,8 @@ module Lich
       end
 
       # Returns a hash of upstream hook sources.
-      # @return [Hash] A hash mapping hook names to their sources.
+      #
+      # @return [Hash] a hash mapping hook names to their sources
       def UpstreamHook.hook_sources
         @@upstream_hook_sources
       end

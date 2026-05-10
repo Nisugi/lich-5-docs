@@ -1,11 +1,11 @@
-# The Lich module
-# This module serves as a namespace for the Lich project.
+# The Lich module contains the core functionality for the Lich5 project.
+#
+# @see Lich::Gemstone
 module Lich
   module Gemstone
-    # The Feat module
-    # This module contains features related to the game mechanics.
-    # @example Accessing a feat
-    #   feat = Feat["absorb_magic"]
+    # The Feat module manages various feats available in the game.
+    #
+    # This module provides methods to access and manipulate feats.
     module Feat
       @@feats = {
         "absorb_magic"              => {
@@ -257,8 +257,12 @@ module Lich
         }
       }
 
-      # Retrieves a list of feats with their long and short names and costs.
-      # @return [Array<Hash>] An array of hashes containing feat details.
+      # Retrieves a list of all feats with their long and short names and costs.
+      #
+      # @return [Array<Hash>] an array of hashes containing feat details:
+      #   - :long_name [String] the full name of the feat
+      #   - :short_name [String] the abbreviated name of the feat
+      #   - :cost [Hash] the cost associated with the feat
       def self.feat_lookups
         @@feats.map do |long_name, psm|
           {
@@ -269,55 +273,62 @@ module Lich
         end
       end
 
-      # Retrieves a feat by its name.
-      # @param name [String] The name of the feat to retrieve.
-      # @return [Hash, nil] The feat details or nil if not found.
+      # Retrieves the feat associated with the given name.
+      #
+      # @param name [String] the name of the feat to retrieve
+      # @return [Hash, nil] the feat details or nil if not found
+      # @see Feat#known?
       def Feat.[](name)
         return PSMS.assess(name, 'Feat')
       end
 
-      # Checks if a feat is known and meets the minimum rank requirement.
-      # @param name [String] The name of the feat to check.
-      # @param min_rank [Integer] The minimum rank required to consider the feat known.
-      # @return [Boolean] True if the feat is known and meets the rank requirement.
+      # Checks if a feat is known by the user, considering the minimum rank.
+      #
+      # @param name [String] the name of the feat to check
+      # @param min_rank [Integer] the minimum rank required to consider the feat known
+      # @return [Boolean] true if the feat is known, false otherwise
       def Feat.known?(name, min_rank: 1)
         min_rank = 1 unless min_rank >= 1 # in case a 0 or below is passed
         Feat[name] >= min_rank
       end
 
-      # Checks if a feat can be afforded based on the current resources.
-      # @param name [String] The name of the feat to check affordability for.
-      # @param forcert_count [Integer] The number of forcerts available.
-      # @return [Boolean] True if the feat is affordable.
+      # Determines if a feat can be afforded based on the current resources.
+      #
+      # @param name [String] the name of the feat to check
+      # @param forcert_count [Integer] the number of forcerts available
+      # @return [Boolean] true if the feat is affordable, false otherwise
       def Feat.affordable?(name, forcert_count: 0)
         return PSMS.assess(name, 'Feat', true, forcert_count: forcert_count)
       end
 
       # Checks if a feat is available for use based on known status, affordability, and availability.
-      # @param name [String] The name of the feat to check.
-      # @param min_rank [Integer] The minimum rank required to consider the feat available.
-      # @param forcert_count [Integer] The number of forcerts available.
-      # @return [Boolean] True if the feat is available.
+      #
+      # @param name [String] the name of the feat to check
+      # @param min_rank [Integer] the minimum rank required to consider the feat available
+      # @param forcert_count [Integer] the number of forcerts available
+      # @return [Boolean] true if the feat is available, false otherwise
       def Feat.available?(name, min_rank: 1, forcert_count: 0)
         Feat.known?(name, min_rank: min_rank) &&
           Feat.affordable?(name, forcert_count: forcert_count) &&
           PSMS.available?(name)
       end
 
-      # Checks if a buff associated with a feat is currently active.
-      # @param name [String] The name of the feat to check for active buff.
-      # @return [Boolean, nil] True if the buff is active, nil if the feat does not have a buff.
+      # Checks if a buff associated with the given feat is currently active.
+      #
+      # @param name [String] the name of the feat to check
+      # @return [Boolean, nil] true if the buff is active, false if not, or nil if the feat does not have a buff
       def Feat.buff_active?(name)
         return unless @@feats.fetch(PSMS.find_name(name, "Feat")[:long_name]).key?(:buff)
         Effects::Buffs.active?(@@feats.fetch(PSMS.find_name(name, "Feat")[:long_name])[:buff])
       end
 
-      # Uses a feat on a target, processing the results of the action.
-      # @param name [String] The name of the feat to use.
-      # @param target [String, GameObj, Integer] The target of the feat.
-      # @param results_of_interest [Regexp, nil] Additional regex to match results of interest.
-      # @param forcert_count [Integer] The number of forcerts available.
-      # @return [String, nil] The result of using the feat or nil if not available.
+      # Uses the specified feat on a target, processing the results of the action.
+      #
+      # @param name [String] the name of the feat to use
+      # @param target [String, Integer, GameObj] the target of the feat
+      # @param results_of_interest [Regexp, nil] additional regex patterns to match results
+      # @param forcert_count [Integer] the number of forcerts to use
+      # @return [String, nil] the result of the feat usage or nil if not applicable
       def Feat.use(name, target = "", results_of_interest: nil, forcert_count: 0)
         return unless Feat.available?(name, forcert_count: forcert_count)
 
@@ -362,9 +373,10 @@ module Lich
         usage_result
       end
 
-      # Retrieves the regex associated with a feat.
-      # @param name [String] The name of the feat to retrieve the regex for.
-      # @return [Regexp] The regex pattern associated with the feat.
+      # Retrieves the regular expression associated with the specified feat.
+      #
+      # @param name [String] the name of the feat to retrieve the regex for
+      # @return [Regexp] the regex pattern associated with the feat
       def Feat.regexp(name)
         @@feats.fetch(PSMS.find_name(name, "Feat")[:long_name])[:regex]
       end

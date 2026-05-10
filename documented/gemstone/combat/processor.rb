@@ -8,21 +8,23 @@
 require_relative '../creature'
 require_relative '../critranks'
 
-# Namespace for the Lich project
-# Contains modules related to the Gemstone combat system.
+# Namespace for the Lich project.
+#
+# @see Lich::Gemstone
+# @see Lich::Gemstone::Combat
 module Lich
   module Gemstone
-    # Module for handling combat mechanics
-    # Provides methods for processing combat events.
     module Combat
       module Processor
         module_function
 
-        # Processes a chunk of combat data
-        # @param chunk [String] The raw combat data to process
+        # Processes a chunk of combat data.
+        #
+        # @param chunk [String] the raw combat data to process
         # @return [void]
         # @example
-        #   process("combat data here")
+        #   process("some combat data")
+        # @note This method handles the parsing and event persistence.
         def process(chunk)
           events = parse_events(chunk)
           return if events.empty?
@@ -32,11 +34,12 @@ module Lich
           respond "[Combat] Processed #{events.size} events" if Tracker.debug?
         end
 
-        # Parses lines of combat data into events
-        # @param lines [Array<String>] The lines of combat data to parse
-        # @return [Array<Hash>] An array of parsed events
+        # Parses lines of combat data into events.
+        #
+        # @param lines [Array<String>] the lines of combat data to parse
+        # @return [Array<Hash>] an array of parsed events
         # @example
-        #   events = parse_events(lines)
+        #   parse_events(["line 1", "line 2"])
         def parse_events(lines)
           events = []
           current_event = nil
@@ -189,11 +192,11 @@ module Lich
           events
         end
 
-        # Persists a combat event to the creature
-        # @param event [Hash] The event data to persist
+        # Persists a combat event to the creature's state.
+        #
+        # @param event [Hash] the event data to persist
         # @return [void]
-        # @example
-        #   persist_event(event)
+        # @note This method applies damage, critical hits, and status effects.
         def persist_event(event)
           target = event[:target]
           return unless target[:id]
@@ -247,12 +250,12 @@ module Lich
           respond "  Total damage applied: #{total_damage}" if total_damage > 0 && Tracker.debug?
         end
 
-        # Applies UCS (Universal Combat System) updates to a target
-        # @param ucs_result [Hash] The UCS result data
-        # @param current_target [Hash, nil] The current target, if any
+        # Applies UCS (Universal Combat System) updates to a target creature.
+        #
+        # @param ucs_result [Hash] the UCS event data
+        # @param current_target [Hash, nil] the current target creature, if any
         # @return [void]
-        # @example
-        #   apply_ucs_to_target(ucs_result, current_target)
+        # @note This method handles various UCS event types.
         def apply_ucs_to_target(ucs_result, current_target = nil)
           target_id = ucs_result[:target_id]
 
@@ -285,14 +288,14 @@ module Lich
           respond "[Combat] Error applying UCS: #{e.message}" if Tracker.debug?
         end
 
-        # Applies a status effect to a target
-        # @param status [Symbol] The status to apply
-        # @param target_name_or_id [String] The target's name or ID
-        # @param target_id [Integer, nil] The target's ID, if known
-        # @param action [Symbol] The action to perform (:add or :remove)
+        # Applies a status effect to a target creature.
+        #
+        # @param status [String] the status to apply
+        # @param target_name_or_id [String] the target's name or ID
+        # @param target_id [String, nil] the target's ID, if known
+        # @param action [Symbol] the action to perform (:add or :remove)
         # @return [void]
-        # @example
-        #   apply_status_to_target(:stunned, "Goblin", nil, :add)
+        # @note This method attempts to find the creature by ID or name.
         def apply_status_to_target(status, target_name_or_id, target_id = nil, action = :add)
           # Handle both name lookup and direct ID
           if target_id
@@ -318,11 +321,12 @@ module Lich
           end
         end
 
-        # Maps critical ranks locations to body part names
-        # @param location [String, nil] The location to map
-        # @return [String, nil] The mapped body part name or nil if not found
+        # Maps critical hit locations to body part names.
+        #
+        # @param location [String] the location string to map
+        # @return [String, nil] the mapped body part name or nil if not found
         # @example
-        #   body_part = map_critranks_to_body_part("leftarm")
+        #   map_critranks_to_body_part("leftarm") #=> "leftArm"
         def map_critranks_to_body_part(location)
           return nil unless location
 

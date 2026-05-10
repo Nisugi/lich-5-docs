@@ -16,40 +16,40 @@ require_relative('./psms/qstrike.rb')
 
 module Lich
   module Gemstone
-    # Provides a unified interface for interacting with Player System Manager (PSM) skills
-    # in GemStone IV, such as Combat Maneuvers, Shield Specializations, Feats, Warcries,
-    # Weapon Techniques, and Armor Specializations.
+    # Provides a unified interface for interacting with Player System Manager (PSM) skills in GemStone IV.
+    #
+    # This module includes methods for normalizing names, finding skills, assessing skill availability,
+    # and checking for skill usage limits.
+    #
+    # @see Lich::Gemstone
     module PSMS
-      # Normalizes the given name for PSM skills.
-      # @param name [String] The name to normalize.
-      # @return [String] The normalized name.
-      # @example
-      #   normalized_name = PSMS.name_normal("Some Skill")
+      # Normalizes the given skill name.
+      #
+      # @param name [String] the name of the skill to normalize
+      # @return [String] the normalized skill name
       def self.name_normal(name)
         Lich::Util.normalize_name(name)
       end
 
-      # Finds a PSM skill by name and type.
-      # @param name [String] The name of the skill to find.
-      # @param type [String] The type of the skill (e.g., Armor, CMan).
-      # @return [Hash, nil] The skill hash if found, otherwise nil.
-      # @example
-      #   skill = PSMS.find_name("Some Skill", "Armor")
+      # Finds a skill by its name and type.
+      #
+      # @param name [String] the name of the skill to find
+      # @param type [String] the type of the skill (e.g., "Armor", "CMan")
+      # @return [Hash, nil] the skill details as a hash or nil if not found
       def self.find_name(name, type)
         name = self.name_normal(name)
         Object.const_get("Lich::Gemstone::#{type}").method("#{type.downcase}_lookups").call
               .find { |h| h[:long_name].eql?(name) || h[:short_name].eql?(name) }
       end
 
-      # Assesses the validity of a PSM skill based on name and type.
-      # @param name [String] The name of the skill to assess.
-      # @param type [String] The type of the skill (e.g., Armor, CMan).
-      # @param costcheck [Boolean] Whether to check costs (default: false).
-      # @param forcert_count [Integer] The number of forcerts to consider (default: 0).
-      # @return [Boolean] True if the skill is valid, false otherwise.
-      # @raise [ArgumentError] If the skill is invalid.
-      # @example
-      #   valid = PSMS.assess("Some Skill", "Armor")
+      # Assesses the availability of a skill based on its name and type.
+      #
+      # @param name [String] the name of the skill to assess
+      # @param type [String] the type of the skill (e.g., "Armor", "CMan")
+      # @param costcheck [Boolean] whether to check costs (default: false)
+      # @param forcert_count [Integer] the number of forcerts to consider (default: 0)
+      # @return [Boolean] true if the skill is available, false otherwise
+      # @raise [ArgumentError] if the skill is invalid
       def self.assess(name, type, costcheck = false, forcert_count: 0)
         return false unless forcert_count <= max_forcert_count
         name = self.name_normal(name)
@@ -76,29 +76,28 @@ module Lich
         end
       end
 
-      # Checks if a PSM skill is available for use.
-      # @param name [String] The name of the skill to check.
-      # @param ignore_cooldown [Boolean] Whether to ignore cooldowns (default: false).
-      # @return [Boolean] True if the skill is available, false otherwise.
-      # @example
-      #   is_available = PSMS.available?("Some Skill")
+      # Checks if a skill is available for use.
+      #
+      # @param name [String] the name of the skill to check
+      # @param ignore_cooldown [Boolean] whether to ignore cooldowns (default: false)
+      # @return [Boolean] true if the skill is available, false otherwise
       def self.available?(name, ignore_cooldown = false)
         return false if Lich::Util.normalize_lookup('Debuffs', 'Overexerted')
         return false if Lich::Util.normalize_lookup('Cooldowns', name) unless ignore_cooldown
         return true
       end
 
-      # Checks if a certain number of forcerts can be used.
-      # @param times [Integer] The number of forcerts to check.
-      # @return [Boolean] True if forcerts can be used, false otherwise.
-      # @example
-      #   can_use = PSMS.can_forcert?(2)
+      # Checks if a specified number of forcerts can be used.
+      #
+      # @param times [Integer] the number of forcerts to check
+      # @return [Boolean] true if the forcerts can be used, false otherwise
       def self.can_forcert?(times)
         max_forcert_count >= times
       end
 
-      # Determines the maximum number of forcerts that can be used based on multi-opponent combat.
-      # @return [Integer] The maximum forcert count.
+      # Determines the maximum number of forcerts that can be used based on multi-opponent combat skills.
+      #
+      # @return [Integer] the maximum number of forcerts allowed
       def self.max_forcert_count
         case Skills.multi_opponent_combat
         when 0..9
@@ -114,7 +113,12 @@ module Lich
         end
       end
 
-      # A regular expression that matches various failure messages in the game.
+      # A regular expression pattern that matches various failure messages.
+      #
+      # @example
+      #   FAILURES_REGEXES.match("You are unable to do that right now.") # => true
+      #
+      # @see #assess for how this is used in skill assessments
       FAILURES_REGEXES = Regexp.union(
         /^And give yourself away!  Never!$/,
         /^You are unable to do that right now\.$/,

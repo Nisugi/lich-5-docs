@@ -1,13 +1,15 @@
 require_relative '../../common/watchable'
 
-# Provides functionality for the Lich project
-# This module contains various submodules related to spells and effects.
+# Provides functionality related to the Lich game framework.
+#
+# @see Lich::Gemstone
 module Lich
   module Gemstone
-    # Module for managing active spells in the Lich project
-    # This module handles spell duration updates and related functionalities.
-    # @example Using ActiveSpell to get spell information
-    #   spell_info = ActiveSpell.get_spell_info
+    # Module for managing active spells in the Lich game.
+    #
+    # This module handles spell duration updates and displays.
+    #
+    # @see Lich::Gemstone
     module ActiveSpell
       extend Lich::Common::Watchable
       #
@@ -20,23 +22,15 @@ module Lich
       @current_durations ||= Hash.new
       @durations_first_pass_complete ||= false
 
-      # Checks if spell durations should be shown
+      # Checks if spell durations should be displayed.
       # @return [Boolean] true if durations should be shown, false otherwise
-      # @example Checking if durations are shown
-      #   if ActiveSpell.show_durations?
-      #     puts "Durations are shown"
-      #   end
       def self.show_durations?
         Infomon.get_bool("infomon.show_durations")
       end
 
-      # Retrieves information about active spells
-      # @param spell_check [Hash] A hash of active spells to check
-      # @return [Array] An array containing spell names and their durations
-      # @example Getting spell information
-      #   names, durations = ActiveSpell.get_spell_info
-      #   puts names
-      #   puts durations
+      # Retrieves information about active spells and their durations.
+      # @param spell_check [Hash] a hash of active spells to check
+      # @return [Array<String>, Hash] an array containing spell names and a hash of their durations
       def self.get_spell_info(spell_check = XMLData.active_spells)
         respond "spell update requested\r\n" if $infomon_debug
         spell_update_durations = spell_check
@@ -107,10 +101,8 @@ module Lich
         [spell_update_names, spell_update_durations]
       end
 
-      # Displays changes in active spell durations
-      # This method checks for changes in active spell durations and responds accordingly.
-      # @example Showing duration changes
-      #   ActiveSpell.show_duration_change
+      # Displays changes in active spell durations.
+      # @return [void]
       def self.show_duration_change
         active_durations = Array.new
         group_effects = [307, 310, 1605, 1609, 1618, 1608]
@@ -142,11 +134,9 @@ module Lich
         @durations_first_pass_complete = true
       end
 
-      # Updates the durations of active spells
-      # This method fetches the latest spell durations and updates the active spells accordingly.
-      # @raise [StandardError] if an error occurs during the update
-      # @example Updating spell durations
-      #   ActiveSpell.update_spell_durations
+      # Updates the durations of active spells based on the latest information.
+      # @return [void]
+      # @raise StandardError if an error occurs during the update process
       def self.update_spell_durations
         begin
           respond "[infomon] updating spell durations..." if $infomon_debug
@@ -191,37 +181,26 @@ module Lich
         end
       end
 
-      # Requests an update for spell durations
-      # This method queues a request to update spell durations.
-      # @example Requesting an update
-      #   ActiveSpell.request_update
+      # Requests an update for spell durations.
+      # @return [void]
       def self.request_update
         queue << Time.now
       end
 
-      # Retrieves the queue for update requests
-      # @return [Queue] The queue containing update requests
-      # @example Accessing the update queue
-      #   update_queue = ActiveSpell.queue
       def self.queue
         @queue ||= Queue.new
       end
 
-      # Blocks until an update request is made
-      # This method waits for an update request and clears the queue afterwards.
-      # @return [Time] The time when the update was requested
-      # @example Blocking until an update is requested
-      #   request_time = ActiveSpell.block_until_update_requested
+      # Blocks execution until an update is requested.
+      # @return [Time] the time when the update was requested
       def self.block_until_update_requested
         event = queue.pop
         queue.clear
         event
       end
 
-      # Starts watching for update requests
-      # This method runs a thread that continuously checks for update requests and processes them.
-      # @example Starting the watch thread
-      #   ActiveSpell.watch!
+      # Starts a thread that watches for update requests and processes them.
+      # @return [void]
       def self.watch!
         @thread ||= Thread.new do
           loop do

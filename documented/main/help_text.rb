@@ -1,23 +1,26 @@
 
 # The Lich module provides the main functionality for the Lich 5 project.
-# It contains submodules for various features and help text.
+#
+# @see Lich::Main
 module Lich
   module Main
-    # The HelpText module provides help text for various topics in the Lich 5 project.
-    # It includes methods to render help based on user input.
-    # @example Displaying help for login
-    #   Lich::Main::HelpText.render('login')
+    # The HelpText module contains methods for rendering help text for various topics.
+    #
+    # @see Lich::Main
     module HelpText
-      # A constant that holds the available help topics.
-      # @return [Array<String>] List of help topics.
+      # An array of available help topics.
+      #
+      # @example
+      #   HELP_TOPICS #=> ["login", "accounts", "automation", "paths", "advanced"]
       HELP_TOPICS = %w[login accounts automation paths advanced].freeze
 
       # Renders help text for a given topic.
-      # @param topic [String, nil] The help topic to render. If nil, defaults to general help.
-      # @return [String] The help text for the specified topic.
-      # @raise [ArgumentError] If the topic is invalid.
-      # @example Rendering help for accounts
-      #   Lich::Main::HelpText.render('accounts')
+      #
+      # @param topic [String, nil] the help topic to render, or nil for default help
+      # @return [String] the rendered help text
+      # @example
+      #   HelpText.render("login") #=> "Lich Help: login\n..."
+      # @note If the topic is not recognized, default help is shown.
       def self.render(topic = nil)
         normalized_topic = normalize_topic(topic)
 
@@ -32,12 +35,13 @@ module Lich
         end
       end
 
-      # Extracts the help topic from command line arguments.
-      # @param argv [Array<String>] The command line arguments.
-      # @param help_arg [String] The help argument to parse.
-      # @return [String, nil] The extracted topic or nil if not found.
-      # @example Extracting topic from arguments
-      #   topic = Lich::Main::HelpText.topic_from_argv(ARGV, '--help=login')
+      # Extracts the help topic from command-line arguments.
+      #
+      # @param argv [Array<String>] the command-line arguments
+      # @param help_arg [String] the help argument to parse
+      # @return [String, nil] the extracted topic or nil if not found
+      # @example
+      #   HelpText.topic_from_argv(ARGV, "--help=login") #=> "login"
       def self.topic_from_argv(argv, help_arg)
         return help_arg.split('=', 2).last if help_arg.start_with?('--help=')
 
@@ -50,11 +54,12 @@ module Lich
         topic
       end
 
-      # Normalizes the topic string to a standard format.
-      # @param topic [String, nil] The topic to normalize.
-      # @return [String, nil] The normalized topic or nil if invalid.
-      # @example Normalizing a topic
-      #   normalized = Lich::Main::HelpText.normalize_topic('Login')
+      # Normalizes a given topic string to a standard format.
+      #
+      # @param topic [String, nil] the topic to normalize
+      # @return [String, nil] the normalized topic or nil if not recognized
+      # @example
+      #   HelpText.normalize_topic("Login") #=> "login"
       def self.normalize_topic(topic)
         case topic.to_s.downcase
         when '', 'overview' then nil
@@ -69,9 +74,10 @@ module Lich
       end
 
       # Provides the default help text when no specific topic is requested.
-      # @return [String] The default help text.
-      # @example Getting default help text
-      #   help_text = Lich::Main::HelpText.default_help
+      #
+      # @return [String] the default help text
+      # @example
+      #   HelpText.default_help #=> "Lich 5\nUsage:..."
       def self.default_help
         <<~TEXT
           Lich 5
@@ -98,9 +104,10 @@ module Lich
       end
 
       # Provides help text specific to the login command.
-      # @return [String] The help text for login options.
-      # @example Getting login help text
-      #   help_text = Lich::Main::HelpText.login_help
+      #
+      # @return [String] the help text for login
+      # @example
+      #   HelpText.login_help #=> "Lich Help: login\nUsage:..."
       def self.login_help
         <<~TEXT
           Lich Help: login
@@ -149,9 +156,10 @@ module Lich
       end
 
       # Provides help text specific to account management commands.
-      # @return [String] The help text for account commands.
-      # @example Getting accounts help text
-      #   help_text = Lich::Main::HelpText.accounts_help
+      #
+      # @return [String] the help text for accounts
+      # @example
+      #   HelpText.accounts_help #=> "Lich Help: accounts\nUsage:..."
       def self.accounts_help
         <<~TEXT
           Lich Help: accounts
@@ -181,9 +189,10 @@ module Lich
       end
 
       # Provides help text specific to automation commands.
-      # @return [String] The help text for automation commands.
-      # @example Getting automation help text
-      #   help_text = Lich::Main::HelpText.automation_help
+      #
+      # @return [String] the help text for automation
+      # @example
+      #   HelpText.automation_help #=> "Lich Help: automation\nUsage:..."
       def self.automation_help
         <<~TEXT
           Lich Help: automation
@@ -202,9 +211,10 @@ module Lich
       end
 
       # Provides help text specific to path options.
-      # @return [String] The help text for path options.
-      # @example Getting paths help text
-      #   help_text = Lich::Main::HelpText.paths_help
+      #
+      # @return [String] the help text for paths
+      # @example
+      #   HelpText.paths_help #=> "Lich Help: paths\nUsage:..."
       def self.paths_help
         <<~TEXT
           Lich Help: paths
@@ -227,9 +237,10 @@ module Lich
       end
 
       # Provides help text for advanced options and compatibility flags.
-      # @return [String] The help text for advanced options.
-      # @example Getting advanced help text
-      #   help_text = Lich::Main::HelpText.advanced_help
+      #
+      # @return [String] the help text for advanced options
+      # @example
+      #   HelpText.advanced_help #=> "Lich Help: advanced\nCompatibility / advanced options:..."
       def self.advanced_help
         <<~TEXT
           Lich Help: advanced

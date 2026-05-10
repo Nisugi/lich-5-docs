@@ -2,15 +2,18 @@
 module Lich
   module Common
     # Represents a thread-safe buffer that allows multiple threads to read and write data.
-    # This class manages a shared buffer with a maximum size and provides methods to read from and write to the buffer.
-    # @example Creating a shared buffer
-    #   buffer = Lich::Common::SharedBuffer.new(max_size: 100)
+    #
+    # This class manages a shared buffer with a maximum size and provides methods to read from and write to it.
+    #
+    # @see Lich::Common::SharedBuffer#update
+    # @see Lich::Common::SharedBuffer#gets
+    # @see Lich::Common::SharedBuffer#clear
     class SharedBuffer
       attr_accessor :max_size
 
       # Initializes a new SharedBuffer instance.
-      # @param args [Hash] Options for initializing the buffer.
-      # @option args [Integer] :max_size The maximum size of the buffer (default is 500).
+      # @param args [Hash] options for initialization
+      # @option args [Integer] :max_size (500) the maximum size of the buffer
       # @return [SharedBuffer]
       def initialize(args = {})
         @buffer = Array.new
@@ -22,7 +25,7 @@ module Lich
       end
 
       # Retrieves the next line from the buffer, blocking if necessary.
-      # @return [String, nil] The next line from the buffer or nil if no line is available.
+      # @return [String, nil] the next line from the buffer or nil if no line is available
       def gets
         thread_id = Thread.current.object_id
         if @buffer_index[thread_id].nil?
@@ -43,7 +46,7 @@ module Lich
       end
 
       # Retrieves the next line from the buffer without blocking.
-      # @return [String, nil] The next line from the buffer or nil if no line is available.
+      # @return [String, nil] the next line from the buffer or nil if no line is available
       def gets?
         thread_id = Thread.current.object_id
         if @buffer_index[thread_id].nil?
@@ -64,8 +67,8 @@ module Lich
         return line
       end
 
-      # Clears the lines that have been read from the buffer for the current thread.
-      # @return [Array<String>] An array of lines that were cleared from the buffer.
+      # Clears the lines from the buffer that have been read by the current thread.
+      # @return [Array<String>] an array of lines that were cleared from the buffer
       def clear
         thread_id = Thread.current.object_id
         if @buffer_index[thread_id].nil?
@@ -88,8 +91,8 @@ module Lich
       end
 
       # rubocop:disable Lint/HashCompareByIdentity
-      # Resets the buffer index for the current thread to the beginning of the buffer.
-      # @return [SharedBuffer] The current instance of SharedBuffer.
+      # Resets the current thread's read index to the beginning of the buffer.
+      # @return [SharedBuffer] self
       def rewind
         @buffer_index[Thread.current.object_id] = @buffer_offset
         return self
@@ -97,8 +100,8 @@ module Lich
 
       # rubocop:enable Lint/HashCompareByIdentity
       # Adds a new line to the buffer, ensuring the buffer does not exceed its maximum size.
-      # @param line [String] The line to add to the buffer.
-      # @return [SharedBuffer] The current instance of SharedBuffer.
+      # @param line [String] the line to add to the buffer
+      # @return [SharedBuffer] self
       def update(line)
         @buffer_mutex.synchronize {
           fline = line.dup
@@ -113,7 +116,7 @@ module Lich
       end
 
       # Cleans up the buffer index for threads that are no longer active.
-      # @return [SharedBuffer] The current instance of SharedBuffer.
+      # @return [SharedBuffer] self
       def cleanup_threads
         @buffer_index.delete_if { |k, _v| not Thread.list.any? { |t| t.object_id == k } }
         return self

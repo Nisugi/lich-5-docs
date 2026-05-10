@@ -4,23 +4,18 @@ require_relative '../authentication/entry_store'
 require_relative '../gui/master_password_manager'
 require_relative '../authentication/cli_password'
 
-# Namespace for the Lich project
-# Contains common modules and functionality.
 module Lich
   module Common
     module CLI
-      # Module for handling encryption mode changes in the CLI
-      # Provides functionality to change the encryption mode of stored credentials.
-      # @example Changing encryption mode
-      #   Lich::Common::CLI::EncryptionModeChange.change_mode(:standard)
       module EncryptionModeChange
-        # Changes the encryption mode for stored credentials.
-        # @param new_mode [Symbol] The new encryption mode to set. Valid options are :plaintext, :standard, :enhanced.
-        # @param provided_password [String, nil] An optional password provided for validation when changing to enhanced mode.
-        # @return [Integer] Returns 0 on success, non-zero error code on failure.
-        # @raise [StandardError] Raises an error if there is an unexpected issue during the process.
-        # @example Changing to enhanced mode
-        #   Lich::Common::CLI::EncryptionModeChange.change_mode(:enhanced, "my_password")
+        # Changes the encryption mode for the application.
+        #
+        # @param new_mode [Symbol] the new encryption mode to set (e.g., :plaintext, :standard, :enhanced)
+        # @param provided_password [String, nil] optional password for enhanced mode
+        # @return [Integer] status code indicating the result of the operation (0 for success, non-zero for errors)
+        # @example
+        #   change_mode(:enhanced, "my_secure_password")
+        # @note This method handles the transition between different encryption modes.
         def self.change_mode(new_mode, provided_password = nil)
           data_dir = DATA_DIR
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)

@@ -5,9 +5,9 @@ module Lich
         # Static array of shield stats indexed by shield identifiers. Each shield
         # entry contains metadata such as category, alternative names, size and
         # evade modifiers, and base weight.
-        # Static array of shield stats indexed by shield identifiers. Each shield
-        # entry contains metadata such as category, alternative names, size and
-        # evade modifiers, and base weight.
+        # Static array of shield stats indexed by shield identifiers.
+        # Each shield entry contains metadata such as category, alternative names,
+        # size and evade modifiers, and base weight.
         @@shield_stats = {
           :small_shield  => {
             :category       => :small_shield,
@@ -47,10 +47,9 @@ module Lich
 
         ##
         # Finds shield information by category.
-        # @param category [Symbol] The category of the shield to find.
-        # @return [Hash, nil] The shield information if found, otherwise nil.
-        # @example Finding a shield by category
-        #   shield_info = ShieldStats.find_by_category(:small_shield)
+        #
+        # @param category [Symbol] the category of the shield to find
+        # @return [Hash, nil] the shield information if found, otherwise nil
         def self.find_by_category(category)
           _, shield_info = @@shield_stats.find { |_, stats| stats[:category] == category }
           shield_info
@@ -58,19 +57,16 @@ module Lich
 
         ##
         # Returns a unique list of all shield names.
-        # @return [Array<String>] An array of unique shield names.
-        # @example Getting all shield names
-        #   all_names = ShieldStats.names
+        # @return [Array<String>] an array of unique shield names
         def self.names
           @@shield_stats.map { |_, s| s[:all_names] }.flatten.uniq
         end
 
         ##
         # Finds a shield by its name.
-        # @param name [String] The name of the shield to find.
-        # @return [Hash, nil] The shield information if found, otherwise nil.
-        # @example Finding a shield by name
-        #   shield = ShieldStats.find("small shield")
+        #
+        # @param name [String] the name of the shield to find
+        # @return [Hash, nil] the shield information if found, otherwise nil
         def self.find(name)
           name = name.downcase.strip
 
@@ -83,11 +79,10 @@ module Lich
 
         ##
         # Lists shields within a specified evade modifier range.
-        # @param min [Float] The minimum evade modifier.
-        # @param max [Float] The maximum evade modifier.
-        # @return [Array<Hash>] An array of shields that match the criteria.
-        # @example Listing shields by evade modifier
-        #   shields = ShieldStats.list_shields_by_evade_modifier(min: -0.3, max: -0.2)
+        #
+        # @param min [Float] the minimum evade modifier
+        # @param max [Float] the maximum evade modifier
+        # @return [Array<Hash>] an array of shields that match the criteria
         def self.list_shields_by_evade_modifier(min:, max:)
           @@shield_stats.map(&:last).select do |shield|
             shield[:evade_modifier].between?(min, max)
@@ -96,19 +91,16 @@ module Lich
 
         ##
         # Returns a list of all shield categories.
-        # @return [Array<Symbol>] An array of shield categories.
-        # @example Getting all shield categories
-        #   categories = ShieldStats.categories
+        # @return [Array<Symbol>] an array of shield categories
         def self.categories
           @@shield_stats.keys
         end
 
         ##
-        # Gets the category for a given shield name.
-        # @param name [String] The name of the shield.
-        # @return [Symbol, nil] The category of the shield if found, otherwise nil.
-        # @example Getting the category for a shield
-        #   category = ShieldStats.category_for("small shield")
+        # Retrieves the category for a given shield name.
+        #
+        # @param name [String] the name of the shield
+        # @return [Symbol, nil] the category of the shield if found, otherwise nil
         def self.category_for(name)
           name = name.downcase.strip
 
@@ -118,10 +110,9 @@ module Lich
 
         ##
         # Returns a formatted string representation of the shield's details.
-        # @param name [String] The name of the shield to format.
-        # @return [String] A formatted string with shield details.
-        # @example Pretty printing a shield
-        #   output = ShieldStats.pretty("small shield")
+        #
+        # @param name [String] the name of the shield
+        # @return [String] a formatted string with shield details
         def self.pretty(name)
           shield = self.find(name)
           return "\n(no data)\n" unless shield.is_a?(Hash)
@@ -152,21 +143,19 @@ module Lich
         end
 
         ##
-        # Returns a detailed formatted string representation of the shield's details.
-        # @param name [String] The name of the shield to format.
-        # @return [String] A detailed formatted string with shield details.
-        # @example Pretty long printing a shield
-        #   output = ShieldStats.pretty_long("small shield")
+        # Returns a long formatted string representation of the shield's details.
+        #
+        # @param name [String] the name of the shield
+        # @return [String] a formatted string with shield details
         def self.pretty_long(name)
           pretty(name)
         end
 
         ##
-        # Returns all alternative names for a given shield.
-        # @param name [String] The name of the shield.
-        # @return [Array<String>] An array of alternative names for the shield.
-        # @example Getting aliases for a shield
-        #   aliases = ShieldStats.aliases_for("small shield")
+        # Retrieves all alternative names for a given shield.
+        #
+        # @param name [String] the name of the shield
+        # @return [Array<String>] an array of alternative names
         def self.aliases_for(name)
           name = name.downcase.strip
           shield = self.find(name)
@@ -174,12 +163,11 @@ module Lich
         end
 
         ##
-        # Compares two shields by their names and returns their stats.
-        # @param name1 [String] The name of the first shield.
-        # @param name2 [String] The name of the second shield.
-        # @return [Hash, nil] A hash containing the comparison data if both shields are found, otherwise nil.
-        # @example Comparing two shields
-        #   comparison = ShieldStats.compare("small shield", "medium shield")
+        # Compares two shields by their names and returns their attributes.
+        #
+        # @param name1 [String] the name of the first shield
+        # @param name2 [String] the name of the second shield
+        # @return [Hash, nil] a hash containing the comparison data if both shields are found, otherwise nil
         def self.compare(name1, name2)
           name1 = name1.downcase.strip
           name2 = name2.downcase.strip
@@ -200,11 +188,10 @@ module Lich
         end
 
         ##
-        # Searches for shields based on given filters.
-        # @param filters [Hash] A hash of filters to apply to the search.
-        # @return [Array<Hash>] An array of shields that match the filters.
-        # @example Searching for shields
-        #   results = ShieldStats.search(name: "small shield", category: :small_shield)
+        # Searches for shields based on various filters.
+        #
+        # @param filters [Hash] a hash of filters to apply
+        # @return [Array<Hash>] an array of shields that match the filters
         def self.search(filters = {})
           @@shield_stats.values.select do |shield|
             next if filters[:name] && !shield[:all_names].include?(filters[:name].downcase.strip)
@@ -221,10 +208,10 @@ module Lich
 
         ##
         # Checks if a given name is a valid shield name.
-        # @param name [String] The name to validate.
-        # @return [Boolean] True if the name is valid, otherwise false.
-        # @example Validating a shield name
-        #   is_valid = ShieldStats.valid_name?("small shield")
+        #
+        # @param name [String] the name to validate
+        # @return [Boolean] true if the name is valid, otherwise false
+        # @api private
         def self.valid_name?(name)
           name = name.downcase.strip
           self.names.include?(name)

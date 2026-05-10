@@ -1,23 +1,26 @@
 
-# Represents a string object with additional functionality.
-# @example Creating a string object
-#   my_string = String.new("Hello, World!")
+# Extends the String class to add additional functionality.
+#
+# This class provides methods to manipulate and interact with string data.
 class String
   # Returns a string representation of the object.
-  # @return [String] the string itself
+  #
+  # @return [String] a duplicate of the string instance.
   def to_s
     self.dup
   end
 
-  # Returns the current stream associated with the string.
-  # @return [Object] the current stream
+  # Retrieves the current stream associated with the string.
+  #
+  # @return [Object, nil] the current stream or nil if not set.
   def stream
     @stream
   end
 
-  # Sets the stream for the string if it hasn't been set already.
-  # @param val [Object] the stream to set
-  # @return [Object] the stream that was set
+  # Sets the stream for the string if it is not already set.
+  #
+  # @param val [Object] the stream to associate with the string.
+  # @return [void]
   def stream=(val)
     @stream ||= val
   end

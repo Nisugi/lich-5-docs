@@ -1,24 +1,18 @@
 
-# Provides common functionality for the Lich project
-# This module serves as a namespace for various common utilities.
 module Lich
   module Common
-    # Handles authentication-related functionalities
-    # This module contains methods related to user authentication.
     module Authentication
-      # Manages launch data preparation for different frontends
-      # This module provides methods to prepare and create launch data entries.
-      # @example Preparing launch data
-      #   launch_data = Lich::Common::Authentication::LaunchData.prepare(auth_data, 'wizard')
       module LaunchData
-        # Prepares launch data based on authentication information and frontend type
-        # @param auth_data [Hash] The authentication data to be processed
-        # @param frontend [String] The frontend type to modify the launch data
-        # @param custom_launch [String, nil] Optional custom launch command
-        # @param custom_launch_dir [String, nil] Optional custom launch directory
-        # @return [Array<String>] The prepared launch data
-        # @example Preparing launch data for wizard
-        #   launch_data = Lich::Common::Authentication::LaunchData.prepare(auth_data, 'wizard')
+        # Prepares the launch data based on authentication information and frontend type.
+        #
+        # @param auth_data [Hash] authentication data as key-value pairs
+        # @param frontend [String] the frontend type (e.g., "wizard", "avalon")
+        # @param custom_launch [String, nil] optional custom launch command
+        # @param custom_launch_dir [String, nil] optional custom launch directory
+        # @return [Array<String>] formatted launch data strings
+        # @example
+        #   Lich::Common::Authentication::LaunchData.prepare(auth_data, "wizard")
+        # @note This method modifies the launch data based on the frontend type.
         def self.prepare(auth_data, frontend, custom_launch = nil, custom_launch_dir = nil)
           launch_data = auth_data.map { |k, v| "#{k.upcase}=#{v}" }
 
@@ -48,18 +42,19 @@ module Lich
           launch_data
         end
 
-        # Creates a launch data entry with the specified parameters
-        # @param char_name [String] The character name
-        # @param game_code [String] The game code
-        # @param game_name [String] The game name
-        # @param user_id [String] The user ID
-        # @param password [String] The password
-        # @param frontend [String] The frontend type
-        # @param custom_launch [String, nil] Optional custom launch command
-        # @param custom_launch_dir [String, nil] Optional custom launch directory
-        # @return [Hash] The created launch data entry
-        # @example Creating a launch entry
-        #   entry = Lich::Common::Authentication::LaunchData.create_entry(char_name: 'Hero', game_code: 'G123', game_name: 'Adventure', user_id: 'user1', password: 'pass', frontend: 'wizard')
+        # Creates a new entry for the launch data.
+        #
+        # @param char_name [String] the character's name
+        # @param game_code [String] the game's code
+        # @param game_name [String] the game's name
+        # @param user_id [String] the user's ID
+        # @param password [String] the user's password
+        # @param frontend [String] the frontend type
+        # @param custom_launch [String, nil] optional custom launch command
+        # @param custom_launch_dir [String, nil] optional custom launch directory
+        # @return [Hash] a hash representing the launch entry
+        # @example
+        #   Lich::Common::Authentication::LaunchData.create_entry(char_name: "Hero", game_code: "H1", game_name: "Hero's Journey", user_id: "user123", password: "pass", frontend: "wizard")
         def self.create_entry(char_name:, game_code:, game_name:, user_id:, password:, frontend:, custom_launch: nil, custom_launch_dir: nil)
           {
             char_name: char_name,

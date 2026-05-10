@@ -2,19 +2,20 @@ module Lich
   module Common
     if defined?(Gtk)
       # Queues a block to be executed after a timeout.
-      # This method allows you to run a block of code in the GTK main loop.
-      # @param block [Proc] The block of code to execute.
-      # @return [Boolean] Returns false to indicate that the timeout should not repeat.
-      # @raise [StandardError] If an error occurs during execution of the block.
-      # @raise [SyntaxError] If a syntax error occurs in the block.
-      # @raise [SecurityError] If a security error occurs during execution.
-      # @raise [ThreadError] If a thread error occurs during execution.
-      # @raise [SystemExit] If a system exit is raised during execution.
-      # @raise [SystemStackError] If a system stack error occurs during execution.
-      # @raise [LoadError] If a load error occurs during execution.
-      # @raise [NoMemoryError] If a memory error occurs during execution.
-      # @example Queuing a block
-      #   Gtk.queue { puts "Hello from GTK!" }
+      #
+      # This method allows you to schedule a block of code to be executed after a short delay.
+      #
+      # @param block [Proc] the block of code to execute
+      # @return [Boolean] returns false to indicate that the timeout should not repeat
+      # @raise [StandardError] if an error occurs during execution of the block
+      # @raise [SyntaxError] if a syntax error occurs in the block
+      # @raise [SecurityError] if a security error occurs during execution
+      # @raise [ThreadError] if a thread error occurs during execution
+      # @raise [SystemExit] if the program is exiting
+      # @raise [SystemStackError] if a stack error occurs during execution
+      # @raise [LoadError] if a load error occurs during execution
+      # @raise [NoMemoryError] if there is not enough memory to execute the block
+      # @see Lich.log for logging errors
       def Gtk.queue(&block)
         GLib::Timeout.add(1) {
           begin
@@ -60,12 +61,6 @@ module Lich
       end
     end
 
-    # Checks for the existence of the logo file and creates it if it does not exist.
-    # This method ensures that the logo file is available for the application.
-    # @example Creating the logo file if it does not exist
-    #   unless File.exist?(File.join(LICH_DIR, 'logo.png'))
-    #     # logo file creation logic
-    #   end
     unless File.exist?(File.join(LICH_DIR, 'logo.png'))
       File.open(File.join(LICH_DIR, 'logo.png'), 'wb') { |f|
         f.write '

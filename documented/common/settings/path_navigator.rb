@@ -2,49 +2,48 @@
 module Lich
   module Common
     # Manages navigation through a path structure in a database.
-    # This class provides methods to set, reset, and navigate paths.
-    # @example Creating a PathNavigator instance
-    #   navigator = Lich::Common::PathNavigator.new(db_adapter)
+    #
+    # This class provides methods to set, reset, and navigate paths stored in a database.
+    #
+    # @see Lich::Common
     class PathNavigator
-      # Initializes a new PathNavigator instance.
-      # @param db_adapter [Object] The database adapter used for retrieving settings.
       def initialize(db_adapter)
         @db_adapter = db_adapter
         @path = []
       end
 
-      # The current path being navigated.
-      # @return [Array] The current path.
       attr_reader :path
 
-      # Sets the current path to a new value.
-      # @param new_path [Array, Object] The new path to set.
-      # @return [Array] The newly set path.
+      # Sets the current path to the specified value.
+      #
+      # @param new_path [Array<String>, String] the new path to set
+      # @return [Array<String>] the newly set path
       def set_path(new_path)
         @path = Array(new_path).dup
       end
 
       # Resets the current path to an empty array.
-      # @return [Array] The reset path (empty).
+      # @return [void]
       def reset_path
         @path = []
       end
 
-      # Resets the current path and returns a specified value.
-      # @param value [Object] The value to return after resetting the path.
-      # @return [Object] The provided value.
+      # Resets the current path and returns the specified value.
+      #
+      # @param value [Object] the value to return after resetting the path
+      # @return [Object] the provided value
       def reset_path_and_return(value)
         reset_path
         value
       end
 
-      # Navigates to a specified path based on the script name and scope.
-      # @param script_name [String] The name of the script to navigate.
-      # @param create_missing [Boolean] Whether to create missing path elements (default: true).
-      # @param scope [String] The scope for the navigation (default: ":").
-      # @param path [Array, nil] The path to navigate to (default: nil).
-      # @return [Array] An array containing the target and root elements.
-      # @raise ArgumentError if an invalid array index is encountered.
+      # Navigates to a specified path within the database structure.
+      #
+      # @param script_name [String] the name of the script to navigate
+      # @param create_missing [Boolean] whether to create missing path elements (default: true)
+      # @param scope [String] the scope for the navigation (default: ":")
+      # @param path [Array<String>, nil] the path to navigate to (default: current path)
+      # @return [Array<Object>] the target value at the path and the root object
       def navigate_to_path(script_name, create_missing = true, scope = ":", path = nil)
         work_path = path ? Array(path) : @path
         root = @db_adapter.get_settings(script_name, scope)

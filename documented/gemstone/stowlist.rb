@@ -1,14 +1,11 @@
 module Lich
   module Gemstone
     # Represents a list of items that can be stowed.
+    #
     # This class manages the stow list entries and their states.
-    # @example Creating a stow list
-    #   stow_list = Lich::Gemstone::StowList.new
     class StowList
       @checked = false
 
-      # The original list of stowable item types.
-      # @return [Array<Symbol>] The default stow list types.
       ORIGINAL_STOW_LIST = [:box, :gem, :herb, :skin, :wand, :scroll, :potion, :trinket, :reagent, :lockpick, :treasure, :forageable, :collectible, :default]
 
       @stow_list = {
@@ -36,26 +33,27 @@ module Lich
 
       class << self
         # Returns the current stow list.
-        # @return [Hash<Symbol, Object>] The stow list with item types as keys.
+        # @return [Hash] a hash representing the stow list entries and their values.
         def stow_list
           @stow_list
         end
 
         # Checks if the stow list has been validated.
-        # @return [Boolean] True if checked, false otherwise.
+        # @return [Boolean] true if the stow list is checked, false otherwise.
         def checked?
           @checked
         end
 
         # Sets the checked state of the stow list.
-        # @param value [Boolean] The new checked state.
+        # @param value [Boolean] the new checked state.
         def checked=(value)
           @checked = value
         end
 
-        # Validates the stow list entries.
-        # @param all [Boolean] If true, validates all entries; otherwise, only original ones.
-        # @return [Boolean] True if all valid, false otherwise.
+        # Validates the stow list entries against existing containers.
+        #
+        # @param all [Boolean] whether to validate all entries or only those in the original stow list.
+        # @return [Boolean] true if all relevant entries are valid, false otherwise.
         def valid?(all: false)
           # check if existing containers are valid or not
           return false unless checked?
@@ -70,7 +68,8 @@ module Lich
         end
 
         # Resets the stow list entries to nil.
-        # @param all [Boolean] If true, resets all entries; otherwise, only original ones.
+        #
+        # @param all [Boolean] whether to reset all entries or only those in the original stow list.
         def reset(all: false)
           @checked = false
           @stow_list.each do |key, _value|
@@ -80,8 +79,10 @@ module Lich
         end
 
         # Checks the current stow list against the game state.
-        # @param silent [Boolean] If true, suppresses output.
-        # @param quiet [Boolean] If true, reduces output verbosity.
+        #
+        # @param silent [Boolean] whether to suppress output during the check.
+        # @param quiet [Boolean] whether to suppress all output.
+        # @return [void]
         def check(silent: false, quiet: false)
           if quiet
             start_pattern = /<output class="mono"\/>|^You are a ghost!/

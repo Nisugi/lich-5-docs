@@ -19,13 +19,11 @@ require 'ostruct'
 require 'set' # rubocop:disable Lint/RedundantRequireStatement -- needed for Ruby < 3.2
 require 'yaml'
 
-# Namespace for Lich related classes and modules
-# @example Using the Lich module
-#   Lich::Common::SetupFiles.new
+# Namespace for the Lich project.
+#
+# This module contains common functionality and classes used across the Lich scripts.
 module Lich
   module Common
-    # Indicates if core setup files are enabled.
-    # @return [Boolean] Always true.
     CORE_SETUPFILES = true
 
     # Manages YAML configuration file loading, caching, and cascading merge for lich scripts.
@@ -36,8 +34,8 @@ module Lich
     # - Include files with recursive resolution and circular dependency protection
     # - Automatic caching with modification-time checking
     # - Deep-clone protection against in-memory mutation
-    # @example Creating a SetupFiles instance
-    #   setup_files = Lich::Common::SetupFiles.new
+    #
+    # @see https://elanthipedia.play.net/Lich_script_development#dependency
     class SetupFiles
       include MonitorMixin
 
@@ -69,20 +67,19 @@ module Lich
       end
 
       # Initializes a new SetupFiles instance.
-      # @param debug [Boolean] Enables debug mode if true.
-      # @return [SetupFiles]
+      # @param debug [Boolean] whether to enable debug logging
+      # @return [void]
       def initialize(debug = false)
         super()
         @files_cache = {}
         @debug = debug
       end
 
-      # Safely loads a YAML file and returns its content as a hash.
-      # @param filepath [String] The path to the YAML file.
-      # @return [Hash] The parsed YAML content.
-      # @raise [StandardError] If there is an error parsing the YAML file.
-      # @example Loading a YAML file
-      #   config = setup_files.safe_load_yaml("config.yaml")
+      # Safely loads a YAML file and returns its contents as a hash.
+      #
+      # @param filepath [String] the path to the YAML file
+      # @return [Hash] the parsed YAML data
+      # @raise [StandardError] if there is an error parsing the YAML file
       def safe_load_yaml(filepath)
         OpenStruct.new(YAML.unsafe_load_file(filepath)).to_h
       rescue => e
@@ -91,11 +88,10 @@ module Lich
         {}
       end
 
-      # Retrieves settings based on character suffixes.
-      # @param character_suffixes [Array<String>] An array of character suffixes to include in the settings.
-      # @return [Hash] The merged settings from the YAML files.
-      # @example Getting settings for a character
-      #   settings = setup_files.get_settings(["warrior"])
+      # Retrieves settings for the specified character suffixes.
+      #
+      # @param character_suffixes [Array<String>] an array of character suffixes to include
+      # @return [Hash] the merged settings from all relevant YAML files
       def get_settings(character_suffixes = [])
         character_suffixes = ['setup', character_suffixes].flatten.compact.uniq
         character_filenames = character_suffixes_to_filenames(character_suffixes)
@@ -133,11 +129,10 @@ module Lich
         transform_settings(settings)
       end
 
-      # Retrieves data for a specific type from the YAML files.
-      # @param type [String] The type of data to retrieve.
-      # @return [Hash] The data associated with the specified type.
-      # @example Getting data for a type
-      #   data = setup_files.get_data("base")
+      # Retrieves data of a specified type from the YAML files.
+      #
+      # @param type [String] the type of data to retrieve
+      # @return [OpenStruct] the data loaded from the YAML file
       def get_data(type)
         filename = to_base_filename(type)
         reload_data([filename])
@@ -146,8 +141,6 @@ module Lich
 
       # Reloads the profiles and data for the SetupFiles instance.
       # @return [void]
-      # @example Reloading profiles and data
-      #   setup_files.reload
       def reload
         reload_profiles(character_suffixes_to_filenames(['setup']))
         reload_data
@@ -216,6 +209,12 @@ module Lich
         "include-#{suffix}.yaml"
       end
 
+      # Resolves nested includes recursively for the given filenames.
+      #
+      # @param filenames [Array<String>] the filenames to resolve includes for
+      # @param visited [Set<String>] a set of already visited filenames to prevent circular dependencies
+      # @param include_order [Array<String>] the order of includes resolved
+      # @return [Array<String>] the ordered list of resolved filenames
       def resolve_includes_recursively(filenames, visited = Set.new, include_order = [])
         filenames.each do |filename|
           next if visited.include?(filename)
@@ -235,6 +234,10 @@ module Lich
         include_order
       end
 
+      # Loads files matching the given glob patterns into the cache.
+      #
+      # @param glob_patterns [Array<String>] the glob patterns to match files against
+      # @return [void]
       def load_files(glob_patterns = [])
         synchronize do
           safe_log "#{self.class}::#{__callee__} glob_patterns=#{glob_patterns}" if @debug
@@ -268,6 +271,10 @@ module Lich
         end
       end
 
+      # Caches the file information for the given file path.
+      #
+      # @param filepath [String] the path of the file to cache
+      # @return [void]
       def cache_put_by_filepath(filepath)
         synchronize do
           safe_log "#{self.class}::#{__callee__} filepath=#{filepath}" if @debug
@@ -280,11 +287,19 @@ module Lich
         end
       end
 
+      # Retrieves cached file information by filename.
+      #
+      # @param filename [String] the name of the file to retrieve
+      # @return [FileInfo, nil] the cached FileInfo object or nil if not found
       def cache_get_by_filename(filename)
         safe_log "#{self.class}::#{__callee__} filename=#{filename}" if @debug
         @files_cache[filename]
       end
 
+      # Transforms the settings using the appropriate configuration.
+      #
+      # @param settings [Hash] the settings to transform
+      # @return [OpenStruct] the transformed settings
       def transform_settings(settings)
         safe_log "#{self.class}::#{__callee__}" if @debug
         if defined?(Lich::DragonRealms::SettingsConfig)
@@ -295,6 +310,10 @@ module Lich
         end
       end
 
+      # Transforms the original data into a more usable format.
+      #
+      # @param original_data [Hash] the original data to transform
+      # @return [OpenStruct] the transformed data
       def transform_data(original_data)
         safe_log "#{self.class}::#{__callee__}" if @debug
         data = OpenStruct.new(original_data)

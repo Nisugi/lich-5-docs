@@ -1,29 +1,26 @@
 
 
-# The Lich module contains all components related to the Lich game.
-# @example Including the Lich module
-#   include Lich
 module Lich
-  # The Gemstone module contains functionalities related to the Gemstone game.
-  # @example Including the Gemstone module
-  #   include Lich::Gemstone
   module Gemstone
-    # The Combat module handles combat-related actions and definitions.
-    # @example Including the Combat module
-    #   include Lich::Gemstone::Combat
     module Combat
-      # The Definitions module contains various combat definitions.
-      # @example Including the Definitions module
-      #   include Lich::Gemstone::Combat::Definitions
       module Definitions
         module Attacks
-          # Represents an attack definition with a name and patterns.
-          # @example Creating an attack definition
-          #   attack = AttackDef.new(:attack, [pattern])
+          # Represents an attack definition with a name and associated patterns.
+          #
+          # @!attribute [r] name
+          #   @return [Symbol] the name of the attack
+          # @!attribute [r] patterns
+          #   @return [Array<Regexp>] the patterns associated with the attack
           AttackDef = Struct.new(:name, :patterns)
 
           # Core attack patterns - most common combat actions
-          # Core attack patterns - most common combat actions
+          # Core attack patterns - most common combat actions.
+          #
+          # @return [Array<AttackDef>] an array of basic attack definitions
+          # @example
+          #   BASIC_ATTACKS.each do |attack|
+          #     puts attack.name
+          #   end
           BASIC_ATTACKS = [
             AttackDef.new(:attack, [/You(?<aimed> take aim and)? swing .+? at (?<target>[^!]+)!/].freeze),
             AttackDef.new(:fire, [/You(?<aimed> take aim and)? fire .+? at (?<target>[^!]+)!/].freeze),
@@ -35,7 +32,13 @@ module Lich
           ].freeze
 
           # Spell-based attacks
-          # Spell-based attacks
+          # Spell-based attacks.
+          #
+          # @return [Array<AttackDef>] an array of spell attack definitions
+          # @example
+          #   SPELL_ATTACKS.each do |attack|
+          #     puts attack.name
+          #   end
           SPELL_ATTACKS = [
             AttackDef.new(:balefire, [/You hurl a ball of greenish-black flame at (?<target>[^!]+)!/].freeze),
             AttackDef.new(:cold_snap, [/An airy mist rolls into the area, carrying a harsh chill with it./].freeze),
@@ -62,7 +65,13 @@ module Lich
           ].freeze
 
           # Weapon maneuvers
-          # Weapon maneuvers
+          # Weapon maneuvers.
+          #
+          # @return [Array<AttackDef>] an array of weapon attack definitions
+          # @example
+          #   WEAPON_ATTACKS.each do |attack|
+          #     puts attack.name
+          #   end
           WEAPON_ATTACKS = [
             AttackDef.new(:cripple, [/You reverse your grip on your .+? and dart toward (?<target>.+?) at an angle!/].freeze),
             AttackDef.new(:flurry, [
@@ -79,16 +88,27 @@ module Lich
           ].freeze
 
           # Combat maneuvers
-          # Combat maneuvers
+          # Combat maneuvers.
+          #
+          # @return [Array<AttackDef>] an array of maneuver attack definitions
+          # @example
+          #   MANEUVER_ATTACKS.each do |attack|
+          #     puts attack.name
+          #   end
           MANEUVER_ATTACKS = [
             # AttackDef.new(:hamstring, [/You(?: make a precise)? attempt to grapple (?<target>[^!]+)!/].freeze),
           ].freeze
 
-          # Shield attacks
           SHIELD_ATTACKS = [].freeze
 
           # Companion/pet attacks
-          # Companion/pet attacks
+          # Companion/pet attacks.
+          #
+          # @return [Array<AttackDef>] an array of companion attack definitions
+          # @example
+          #   COMPANION_ATTACKS.each do |attack|
+          #     puts attack.name
+          #   end
           COMPANION_ATTACKS = [
             AttackDef.new(:companion, [
               /(?<companion>.+?) pounces on (?<target>[^,]+), knocking the .+? painfully to the ground!/,
@@ -98,22 +118,46 @@ module Lich
           ].freeze
 
           # Environmental attacks
-          # Environmental attacks
+          # Environmental attacks.
+          #
+          # @return [Array<AttackDef>] an array of environmental attack definitions
+          # @example
+          #   ENVIRONMENTAL_ATTACKS.each do |attack|
+          #     puts attack.name
+          #   end
           ENVIRONMENTAL_ATTACKS = [].freeze
 
           # All attack definitions combined
-          # All attack definitions combined
+          # All attack definitions combined.
+          #
+          # @return [Array<AttackDef>] an array of all attack definitions
+          # @example
+          #   ALL_ATTACKS.each do |attack|
+          #     puts attack.name
+          #   end
           ALL_ATTACKS = (BASIC_ATTACKS + SPELL_ATTACKS + MANEUVER_ATTACKS + WEAPON_ATTACKS +
                         SHIELD_ATTACKS + COMPANION_ATTACKS + ENVIRONMENTAL_ATTACKS).freeze
 
           # Create lookup table for fast pattern matching
-          # Create lookup table for fast pattern matching
+          # Create lookup table for fast pattern matching.
+          #
+          # @return [Array<Array>] an array of attack patterns and their names
+          # @example
+          #   ATTACK_LOOKUP.each do |pattern, name|
+          #     puts "Pattern: \\#{pattern}, Name: \\#{name}"
+          #   end
           ATTACK_LOOKUP = ALL_ATTACKS.flat_map do |attack_def|
             attack_def.patterns.compact.map { |pattern| [pattern, attack_def.name] }
           end.freeze
 
           # Compiled regex for fast detection
-          # Compiled regex for fast detection
+          # Compiled regex for fast detection of attacks.
+          #
+          # @return [Regexp] a regex that matches all attack patterns
+          # @example
+          #   if input.match?(ATTACK_DETECTOR)
+          #     puts "Attack detected!"
+          #   end
           ATTACK_DETECTOR = Regexp.union(ATTACK_LOOKUP.map(&:first)).freeze
         end
       end

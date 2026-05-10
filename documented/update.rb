@@ -31,19 +31,21 @@ require_relative 'common/update/branch_installer'
 
 module Lich
   # Provides utility methods for the Lich5 update system.
-  # This module contains constants and methods related to updating the Lich5 core.
-  # @example Using the update module
-  #   Lich::Util::Update.request('--announce')
+  #
+  # This module contains methods for managing updates, syncing scripts,
+  # and handling versioning within the Lich5 ecosystem.
+  #
+  # @see Lich::Util::Update
   module Util
     module Update
       # Update channel constants
       # The stable reference branch for updates.
+      #
+      # @example
+      #   STABLE_REF # => 'main'
       STABLE_REF = 'main'
-      # The prefix used for beta branch names.
       BETA_BRANCH_PREFIX = 'pre/beta'
-      # The name of the asset tarball for Lich5.
       ASSET_TARBALL_NAME = 'lich-5.tar.gz'
-      # The GitHub repository for Lich5.
       GITHUB_REPO = 'elanthia-online/lich-5'
 
       # Script repository registry
@@ -92,12 +94,13 @@ module Lich
       }.freeze
 
 
-      # Handles various update requests based on the provided type.
-      # @param type [String] The type of request to process.
+      # Processes update requests based on the provided type.
+      #
+      # @param type [String] the type of request to process
       # @return [void]
-      # @raise [StandardError] If the command type is unknown.
-      # @example Announcing the next version
+      # @example
       #   Lich::Util::Update.request('--announce')
+      # @note This method handles various update commands.
       def self.request(type = '--announce')
         case type
         when /^(?:--announce|-a)\b/
@@ -153,18 +156,20 @@ module Lich
         end
       end
 
-      # Syncs all script repositories for the current game.
+      # Synchronizes all script repositories for the current game.
+      #
       # @return [void]
-      # @example Syncing all repositories
+      # @example
       #   Lich::Util::Update.sync_all_repos
       def self.sync_all_repos
         script_sync.sync_all_repos
       end
 
       # Updates the core data and scripts to the specified version.
-      # @param version [String] The version to update to.
+      #
+      # @param version [String] the version to update to
       # @return [void]
-      # @example Updating core data and scripts
+      # @example
       #   Lich::Util::Update.update_core_data_and_scripts('1.0.0')
       def self.update_core_data_and_scripts(version = LICH_VERSION)
         file_updater.update_core_data_and_scripts(version)
@@ -225,8 +230,9 @@ module Lich
       end
 
       # Displays the current status of the Lich5 version and branch tracking.
+      #
       # @return [void]
-      # @example Showing the current status
+      # @example
       #   Lich::Util::Update.show_status
       def self.show_status
         respond
@@ -254,13 +260,12 @@ module Lich
       end
 
 
-      # Stores the branch tracking information in the version file.
-      # @param branch_name [String] The name of the branch being tracked.
-      # @param repo [String] The repository of the branch.
-      # @param _version [String] The version of the branch (not used).
+      # Stores the current branch tracking information.
+      #
+      # @param branch_name [String] the name of the branch being tracked
+      # @param repo [String] the repository associated with the branch
+      # @param _version [String] the version of the branch (not used)
       # @return [void]
-      # @example Storing branch tracking
-      #   Lich::Util::Update.store_branch_tracking('main', 'elanthia-online/lich-5', '1.0.0')
       def self.store_branch_tracking(branch_name, repo, _version)
         version_file_path = File.join(LIB_DIR, "version.rb")
         version_content = File.read(version_file_path)
@@ -280,9 +285,8 @@ module Lich
       end
 
       # Clears the branch tracking information from the version file.
+      #
       # @return [void]
-      # @example Clearing branch tracking
-      #   Lich::Util::Update.clear_branch_tracking
       def self.clear_branch_tracking
         version_file_path = File.join(LIB_DIR, "version.rb")
         return unless File.exist?(version_file_path)
@@ -293,10 +297,11 @@ module Lich
         File.write(version_file_path, version_content)
       end
 
-      # Retrieves the current branch tracking information.
-      # @return [Hash, nil] A hash containing branch info or nil if not set.
-      # @example Getting branch info
-      #   info = Lich::Util::Update.get_branch_info
+      # Retrieves information about the currently tracked branch.
+      #
+      # @return [Hash, nil] a hash containing branch information or nil if not set
+      # @example
+      #   Lich::Util::Update.get_branch_info
       def self.get_branch_info
         if defined?(LICH_BRANCH) && LICH_BRANCH && !LICH_BRANCH.empty?
           {
@@ -308,56 +313,38 @@ module Lich
       end
 
 
-      # Returns the GitHub client instance used for API requests.
-      # @return [GitHubClient] The GitHub client instance.
       def self.client
         @client ||= GitHubClient.new
       end
 
-      # Returns the channel resolver instance used for resolving update channels.
-      # @return [ChannelResolver] The channel resolver instance.
       def self.resolver
         @resolver ||= ChannelResolver.new(client)
       end
 
-      # Returns the snapshot manager instance used for managing snapshots.
-      # @return [SnapshotManager] The snapshot manager instance.
       def self.snapshot_manager
         @snapshot_manager ||= SnapshotManager.new
       end
 
-      # Returns the release installer instance used for handling release updates.
-      # @return [ReleaseInstaller] The release installer instance.
       def self.release_installer
         ReleaseInstaller.new(client, resolver, snapshot_manager)
       end
 
-      # Returns the branch installer instance used for handling branch updates.
-      # @return [BranchInstaller] The branch installer instance.
       def self.branch_installer
         @branch_installer ||= BranchInstaller.new(snapshot_manager, release_installer)
       end
 
-      # Returns the script sync instance used for syncing scripts.
-      # @return [ScriptSync] The script sync instance.
       def self.script_sync
         @script_sync ||= ScriptSync.new(client)
       end
 
-      # Returns the tracked scripts manager instance used for managing tracked scripts.
-      # @return [TrackedScripts] The tracked scripts manager instance.
       def self.tracked_scripts_manager
         @tracked_scripts_manager ||= TrackedScripts.new
       end
 
-      # Returns the custom repositories manager instance used for managing custom repos.
-      # @return [CustomRepos] The custom repositories manager instance.
       def self.custom_repos_manager
         @custom_repos_manager ||= CustomRepos.new
       end
 
-      # Returns the file updater instance used for updating files.
-      # @return [FileUpdater] The file updater instance.
       def self.file_updater
         @file_updater ||= FileUpdater.new(client, resolver)
       end

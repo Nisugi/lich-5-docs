@@ -1,14 +1,14 @@
-# The Lich module contains all the components related to the Lich game.
-# @example Including the Lich module
-#   include Lich
+# The Lich module contains all components related to the Lich game system.
+#
+# @see Lich::Gemstone
 module Lich
-  # The Gemstone module contains functionalities related to gemstones in the Lich game.
-  # @example Including the Gemstone module
-  #   include Lich::Gemstone
+  # The Gemstone module encompasses all functionalities related to gemstones in the Lich game.
+  #
+  # @see Lich::Gemstone::Shield
   module Gemstone
-    # The Shield module provides various techniques and functionalities related to shields.
-    # @example Including the Shield module
-    #   include Lich::Gemstone::Shield
+    # The Shield module provides various techniques and functionalities related to shield usage in the game.
+    #
+    # This module includes a collection of shield techniques that can be used by players.
     module Shield
       @@shield_techniques = {
         "adamantine_bulwark"    => {
@@ -248,10 +248,12 @@ module Lich
         }
       }
 
-      # Retrieves a list of shield techniques with their long and short names and costs.
-      # @return [Array<Hash>] An array of hashes containing shield technique details.
-      # @example Retrieving shield lookups
-      #   techniques = Shield.shield_lookups
+      # Retrieves a list of shield techniques with their long and short names along with their costs.
+      #
+      # @return [Array<Hash>] an array of hashes containing long names, short names, and costs of shield techniques.
+      # @example
+      #   Shield.shield_lookups
+      #   # => [{:long_name => "adamantine_bulwark", :short_name => "bulwark", :cost => { stamina: 0 }}, ...]
       def self.shield_lookups
         @@shield_techniques.map do |long_name, psm|
           {
@@ -263,67 +265,61 @@ module Lich
       end
 
       # Retrieves a shield technique by its name.
-      # @param name [String] The name of the shield technique.
-      # @return [Hash, nil] The shield technique details or nil if not found.
-      # @example Accessing a shield technique
-      #   technique = Shield["shield_bash"]
+      #
+      # @param name [String] the name of the shield technique to retrieve.
+      # @return [Hash, nil] the shield technique details or nil if not found.
       def Shield.[](name)
         return PSMS.assess(name, 'Shield')
       end
 
-      # Checks if a shield technique is known and meets the minimum rank requirement.
-      # @param name [String] The name of the shield technique.
-      # @param min_rank [Integer] The minimum rank required to consider the technique known.
-      # @return [Boolean] True if known and meets the rank requirement, false otherwise.
-      # @example Checking if a technique is known
-      #   known = Shield.known?("shield_bash", 1)
+      # Checks if a shield technique is known by the player, considering a minimum rank.
+      #
+      # @param name [String] the name of the shield technique.
+      # @param min_rank [Integer] the minimum rank required to consider the technique known.
+      # @return [Boolean] true if the technique is known at the specified rank, false otherwise.
       def Shield.known?(name, min_rank: 1)
         min_rank = 1 unless min_rank >= 1 # in case a 0 or below is passed
         Shield[name] >= min_rank
       end
 
-      # Determines if a shield technique can be afforded based on the current conditions.
-      # @param name [String] The name of the shield technique.
-      # @param forcert_count [Integer] The count of forcerts available.
-      # @return [Boolean] True if the technique is affordable, false otherwise.
-      # @example Checking affordability
-      #   affordable = Shield.affordable?("shield_bash", 2)
+      # Determines if a shield technique can be afforded based on the current resources.
+      #
+      # @param name [String] the name of the shield technique to check.
+      # @param forcert_count [Integer] the number of forcerts available.
+      # @return [Boolean] true if the technique is affordable, false otherwise.
       def Shield.affordable?(name, forcert_count: 0)
         return true if @@shield_techniques.fetch(PSMS.find_name(name, "Shield")[:long_name])[:type] == :area_of_effect && Effects::Buffs.active?("Glorious Momentum")
         return PSMS.assess(name, 'Shield', true, forcert_count: forcert_count)
       end
 
       # Checks if a shield technique is available for use based on known status, affordability, and availability.
-      # @param name [String] The name of the shield technique.
-      # @param min_rank [Integer] The minimum rank required to consider the technique available.
-      # @param forcert_count [Integer] The count of forcerts available.
-      # @return [Boolean] True if the technique is available, false otherwise.
-      # @example Checking availability
-      #   available = Shield.available?("shield_bash", 1, 0)
+      #
+      # @param name [String] the name of the shield technique.
+      # @param min_rank [Integer] the minimum rank required to consider the technique available.
+      # @param forcert_count [Integer] the number of forcerts available.
+      # @return [Boolean] true if the technique is available, false otherwise.
       def Shield.available?(name, min_rank: 1, forcert_count: 0)
         Shield.known?(name, min_rank: min_rank) &&
           Shield.affordable?(name, forcert_count: forcert_count) &&
           PSMS.available?(name)
       end
 
-      # Checks if a buff related to a shield technique is currently active.
-      # @param name [String] The name of the shield technique.
-      # @return [Boolean, nil] True if the buff is active, false if not, nil if no buff exists.
-      # @example Checking if a buff is active
-      #   active = Shield.buff_active?("shield_bash")
+      # Checks if a buff associated with a shield technique is currently active.
+      #
+      # @param name [String] the name of the shield technique.
+      # @return [Boolean, nil] true if the buff is active, false if not, or nil if no buff is associated.
       def Shield.buff_active?(name)
         return unless @@shield_techniques.fetch(PSMS.find_name(name, "Shield")[:long_name]).key?(:buff)
         Effects::Buffs.active?(@@shield_techniques.fetch(PSMS.find_name(name, "Shield")[:long_name])[:buff])
       end
 
-      # Uses a shield technique on a target, processing the action and returning the result.
-      # @param name [String] The name of the shield technique to use.
-      # @param target [String, GameObj, Integer] The target of the technique.
-      # @param results_of_interest [Regexp, nil] Additional regex to match results of interest.
-      # @param forcert_count [Integer] The count of forcerts available.
-      # @return [String, nil] The result of the technique use or nil if it cannot be used.
-      # @example Using a shield technique
-      #   result = Shield.use("shield_bash", "enemy")
+      # Uses a shield technique on a target, executing the associated action.
+      #
+      # @param name [String] the name of the shield technique to use.
+      # @param target [String, Integer, GameObj] the target of the technique.
+      # @param results_of_interest [Regexp, nil] optional regex to match specific results.
+      # @param forcert_count [Integer] the number of forcerts available.
+      # @return [String, nil] the result of the technique use or nil if it cannot be used.
       def Shield.use(name, target = "", results_of_interest: nil, forcert_count: 0)
         return unless Shield.available?(name, forcert_count: forcert_count)
 
@@ -370,10 +366,9 @@ module Lich
       end
 
       # Retrieves the regular expression associated with a shield technique.
-      # @param name [String] The name of the shield technique.
-      # @return [Regexp] The regex pattern for the technique.
-      # @example Getting the regex for a technique
-      #   regex = Shield.regexp("shield_bash")
+      #
+      # @param name [String] the name of the shield technique.
+      # @return [Regexp] the regex pattern for the technique.
       def Shield.regexp(name)
         @@shield_techniques.fetch(PSMS.find_name(name, "Shield")[:long_name])[:regex]
       end

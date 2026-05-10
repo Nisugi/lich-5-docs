@@ -1,27 +1,20 @@
 
-# Lich module for DragonRealms crafting functionality
-# This module contains various methods and constants used for crafting in the DragonRealms game.
-# @example Using the Lich module
-#   Lich::DragonRealms::DRCC.empty_crucible?
 module Lich
   module DragonRealms
     module DRCC
-      # Provides module-level methods for crafting operations.
       module_function
 
       # Pattern constants for bput responses
-      # Pattern constant for indicating that a crucible was not found.
+      # Pattern constants for bput responses.
+      #
+      # These constants are used to match various responses from the crafting system.
       LOOK_CRUCIBLE_NOT_FOUND = '^I could not find'
       LOOK_CRUCIBLE_EMPTY = '^There is nothing in there'
-      # Regular expression pattern for matching items seen in a crucible.
       LOOK_CRUCIBLE_SEE_PATTERN = /^In the .* crucible you see (?<items>.*)\./.freeze
       LOOK_CRUCIBLE_MOLTEN = 'crucible you see some molten'
 
-      # Pattern constant for indicating that an anvil was not found.
       LOOK_ANVIL_NOT_FOUND = '^I could not find'
-      # Pattern constant for indicating that the anvil surface is clean.
       LOOK_ANVIL_CLEAN = 'surface looks clean and ready'
-      # Regular expression pattern for matching items seen on an anvil.
       LOOK_ANVIL_SEE_PATTERN = /anvil you see (?<items>.*)\./.freeze
 
       CLEAN_ANVIL_DRAG = 'You drag the'
@@ -70,6 +63,10 @@ module Lich
       PUT_BAG_COMBINE = 'You combine'
 
       # Parts that cannot be purchased from crafting shops
+      # Parts that cannot be purchased from crafting shops.
+      #
+      # @example
+      #   %w[sufil blue\ flower muljin] # Example of parts that cannot be purchased.
       PARTS_CANNOT_PURCHASE = %w[
         sufil blue\ flower muljin belradi dioica hulnik aloe eghmok
         lujeakave yelith cebi blocil hulij nuloe hisan gem pebble
@@ -134,11 +131,8 @@ module Lich
       SIGIL_COUNT_NOTHING = 'but there is nothing in there like that'
 
       # Checks if the crucible is empty.
-      # @return [Boolean] Returns true if the crucible is empty, false otherwise.
-      # @example Checking if the crucible is empty
-      #   if DRCC.empty_crucible?
-      #     puts 'The crucible is empty.'
-      #   end
+      #
+      # @return [Boolean] true if the crucible is empty, false otherwise.
       def empty_crucible?
         case result = DRC.bput('look in cruc',
                                LOOK_CRUCIBLE_NOT_FOUND,
@@ -171,10 +165,9 @@ module Lich
       end
 
       # Finds an empty crucible in the specified hometown.
-      # @param hometown [String] The name of the hometown to search in.
+      #
+      # @param hometown [String] the name of the hometown to search in.
       # @return [void]
-      # @example Finding an empty crucible
-      #   DRCC.find_empty_crucible('Crossing')
       def find_empty_crucible(hometown)
         return if DRC.bput('tap crucible', TAP_CRUCIBLE_NOT_FOUND, TAP_CRUCIBLE_SUCCESS) =~ TAP_CRUCIBLE_SUCCESS && (DRRoom.pcs - DRRoom.group_members).empty? && empty_crucible?
 
@@ -185,11 +178,8 @@ module Lich
       end
 
       # Checks if the anvil is clean.
-      # @return [Boolean] Returns true if the anvil is clean, false otherwise.
-      # @example Checking if the anvil is clean
-      #   if DRCC.clean_anvil?
-      #     puts 'The anvil is clean.'
-      #   end
+      #
+      # @return [Boolean] true if the anvil is clean, false otherwise.
       def clean_anvil?
         case result = DRC.bput('look on anvil', LOOK_ANVIL_NOT_FOUND, LOOK_ANVIL_CLEAN, LOOK_ANVIL_SEE_PATTERN)
         when /surface looks clean and ready/i
@@ -224,10 +214,9 @@ module Lich
       end
 
       # Finds a wheel in the specified hometown.
-      # @param hometown [String] The name of the hometown to search in.
+      #
+      # @param hometown [String] the name of the hometown to search in.
       # @return [void]
-      # @example Finding a wheel
-      #   DRCC.find_wheel('Crossing')
       def find_wheel(hometown)
         wheels = get_data('crafting')['tailoring'][hometown]['spinning-rooms']
         idle_room = get_data('crafting')['tailoring'][hometown]['idle-room']
@@ -235,10 +224,9 @@ module Lich
       end
 
       # Finds an anvil in the specified hometown.
-      # @param hometown [String] The name of the hometown to search in.
+      #
+      # @param hometown [String] the name of the hometown to search in.
       # @return [void]
-      # @example Finding an anvil
-      #   DRCC.find_anvil('Crossing')
       def find_anvil(hometown)
         return if DRC.bput('tap anvil', TAP_ANVIL_NOT_FOUND, TAP_ANVIL_SUCCESS) =~ TAP_ANVIL_SUCCESS && (DRRoom.pcs - DRRoom.group_members).empty? && clean_anvil?
 
@@ -249,10 +237,9 @@ module Lich
       end
 
       # Finds a grindstone in the specified hometown.
-      # @param hometown [String] The name of the hometown to search in.
+      #
+      # @param hometown [String] the name of the hometown to search in.
       # @return [void]
-      # @example Finding a grindstone
-      #   DRCC.find_grindstone('Crossing')
       def find_grindstone(hometown)
         return unless DRC.bput('tap grindstone', TAP_GRINDSTONE_NOT_FOUND, TAP_GRINDSTONE_SUCCESS) == TAP_GRINDSTONE_NOT_FOUND
 
@@ -262,11 +249,10 @@ module Lich
       end
 
       # Finds a sewing room in the specified hometown.
-      # @param hometown [String] The name of the hometown to search in.
-      # @param override [String, nil] Optional override for specific room.
+      #
+      # @param hometown [String] the name of the hometown to search in.
+      # @param override [String, nil] optional override location.
       # @return [void]
-      # @example Finding a sewing room
-      #   DRCC.find_sewing_room('Crossing')
       def find_sewing_room(hometown, override = nil)
         if override
           DRCT.walk_to(override)
@@ -278,11 +264,10 @@ module Lich
       end
 
       # Finds a loom room in the specified hometown.
-      # @param hometown [String] The name of the hometown to search in.
-      # @param override [String, nil] Optional override for specific room.
+      #
+      # @param hometown [String] the name of the hometown to search in.
+      # @param override [String, nil] optional override location.
       # @return [void]
-      # @example Finding a loom room
-      #   DRCC.find_loom_room('Crossing')
       def find_loom_room(hometown, override = nil)
         if override
           DRCT.walk_to(override)
@@ -294,11 +279,10 @@ module Lich
       end
 
       # Finds a shaping room in the specified hometown.
-      # @param hometown [String] The name of the hometown to search in.
-      # @param override [String, nil] Optional override for specific room.
+      #
+      # @param hometown [String] the name of the hometown to search in.
+      # @param override [String, nil] optional override location.
       # @return [void]
-      # @example Finding a shaping room
-      #   DRCC.find_shaping_room('Crossing')
       def find_shaping_room(hometown, override = nil)
         if override
           DRCT.walk_to(override)
@@ -310,10 +294,9 @@ module Lich
       end
 
       # Finds a press grinder room in the specified hometown.
-      # @param hometown [String] The name of the hometown to search in.
+      #
+      # @param hometown [String] the name of the hometown to search in.
       # @return [void]
-      # @example Finding a press grinder room
-      #   DRCC.find_press_grinder_room('Crossing')
       def find_press_grinder_room(hometown)
         return unless DRC.bput('tap grinder', TAP_GRINDER_NOT_FOUND, TAP_GRINDER_SUCCESS) == TAP_GRINDER_NOT_FOUND
 
@@ -322,11 +305,10 @@ module Lich
       end
 
       # Finds an enchanting room in the specified hometown.
-      # @param hometown [String] The name of the hometown to search in.
-      # @param override [String, nil] Optional override for specific room.
+      #
+      # @param hometown [String] the name of the hometown to search in.
+      # @param override [String, nil] optional override location.
       # @return [void]
-      # @example Finding an enchanting room
-      #   DRCC.find_enchanting_room('Crossing')
       def find_enchanting_room(hometown, override = nil)
         if override
           DRCT.walk_to(override)
@@ -338,11 +320,10 @@ module Lich
       end
 
       # Looks up a recipe by item name.
-      # @param recipes [Array<Hash>] The list of recipes to search through.
-      # @param item_name [String] The name of the item to look for.
-      # @return [Hash, nil] Returns the recipe hash if found, nil otherwise.
-      # @example Looking up a recipe
-      #   recipe = DRCC.recipe_lookup(recipes, 'metal pike')
+      #
+      # @param recipes [Array<Hash>] the list of recipes to search through.
+      # @param item_name [String] the name of the item to find a recipe for.
+      # @return [Hash, nil] the matching recipe or nil if not found.
       def recipe_lookup(recipes, item_name)
         match_names = recipes.map { |x| x['name'] }.select { |x| x =~ /#{item_name}/i }
         case match_names.length
@@ -368,13 +349,12 @@ module Lich
         end
       end
 
-      # Finds a recipe in a book by chapter.
-      # @param chapter [Integer] The chapter number to turn to.
-      # @param match_string [String] The string to match in the recipe.
-      # @param book [String] The name of the book to read from.
-      # @return [String, nil] Returns the page number if found, nil otherwise.
-      # @example Finding a recipe
-      #   page = DRCC.find_recipe(1, 'metal pike')
+      # Finds a recipe in the specified book and chapter.
+      #
+      # @param chapter [Integer] the chapter number to turn to.
+      # @param match_string [String] the string to match in the recipe.
+      # @param book [String] the name of the book to search in.
+      # @return [String, nil] the page number of the recipe or nil if not found.
       def find_recipe(chapter, match_string, book = 'book')
         case DRC.bput("turn my #{book} to chapter #{chapter}", BOOK_CHAPTER_TURN_SUCCESS, BOOK_CHAPTER_DISTRACTED, BOOK_CHAPTER_ALREADY)
         when BOOK_CHAPTER_DISTRACTED
@@ -388,14 +368,13 @@ module Lich
         match&.[](:page)
       end
 
-      # Finds a recipe in a book by chapter and discipline.
-      # @param chapter [Integer] The chapter number to turn to.
-      # @param match_string [String] The string to match in the recipe.
-      # @param book [String] The name of the book to read from.
-      # @param discipline [String, nil] The discipline to turn to.
-      # @return [String, nil] Returns the page number if found, nil otherwise.
-      # @example Finding a recipe with discipline
-      #   page = DRCC.find_recipe2(1, 'metal pike', 'book', 'armorsmithing')
+      # Finds a recipe in the specified book and chapter, optionally by discipline.
+      #
+      # @param chapter [Integer] the chapter number to turn to.
+      # @param match_string [String] the string to match in the recipe.
+      # @param book [String] the name of the book to search in.
+      # @param discipline [String, nil] optional discipline to filter recipes.
+      # @return [String, nil] the page number of the recipe or nil if not found.
       def find_recipe2(chapter, match_string, book = 'book', discipline = nil)
         DRC.bput("turn my #{book} to discipline #{discipline}", BOOK_DISCIPLINE_SUCCESS) unless discipline.nil?
         case DRC.bput("turn my #{book} to chapter #{chapter}", BOOK_CHAPTER2_SUCCESS, BOOK_CHAPTER2_ALREADY, BOOK_CHAPTER_DISTRACTED)
@@ -413,14 +392,13 @@ module Lich
       end
 
       # Retrieves a crafting item from the specified bag or belt.
-      # @param name [String] The name of the item to retrieve.
-      # @param bag [String] The name of the bag to search in.
-      # @param bag_items [Array<String>] The list of items in the bag.
-      # @param belt [Hash] The belt containing items.
-      # @param skip_exit [Boolean] Whether to skip exit messages.
+      #
+      # @param name [String] the name of the item to retrieve.
+      # @param bag [String] the name of the bag to search in.
+      # @param bag_items [Array<String>] the list of items in the bag.
+      # @param belt [Hash] the belt information.
+      # @param skip_exit [Boolean] whether to skip exit messages.
       # @return [void]
-      # @example Getting a crafting item
-      #   DRCC.get_crafting_item('metal pike', 'backpack', items, belt)
       def get_crafting_item(name, bag, bag_items, belt, skip_exit = false)
         waitrt?
         if belt && belt['items'].find { |item| /\b#{name}/i =~ item || /\b#{item}/i =~ name }
@@ -463,12 +441,11 @@ module Lich
       end
 
       # Stows a crafting item in the specified bag or belt.
-      # @param name [String] The name of the item to stow.
-      # @param bag [String] The name of the bag to stow in.
-      # @param belt [Hash] The belt containing items.
-      # @return [Boolean] Returns true if stowed successfully, false otherwise.
-      # @example Stowing a crafting item
-      #   success = DRCC.stow_crafting_item('metal pike', 'backpack', belt)
+      #
+      # @param name [String] the name of the item to stow.
+      # @param bag [String] the name of the bag to stow in.
+      # @param belt [Hash] the belt information.
+      # @return [Boolean] true if stowed successfully, false otherwise.
       def stow_crafting_item(name, bag, belt)
         return unless name
 
@@ -493,15 +470,14 @@ module Lich
         true
       end
 
-      # Calculates the crafting cost for a recipe.
-      # @param recipe [Hash] The recipe details including name and volume.
-      # @param hometown [String] The name of the hometown for currency conversion.
-      # @param parts [Array<String>] The list of parts required for crafting.
-      # @param quantity [Integer] The number of items to craft.
-      # @param material [Hash, nil] The material details for crafting.
-      # @return [Integer] The total cost of crafting.
-      # @example Calculating crafting cost
-      #   cost = DRCC.crafting_cost(recipe, 'Crossing', parts, 2, material)
+      # Calculates the crafting cost for a given recipe.
+      #
+      # @param recipe [Hash] the recipe details including name, volume, and type.
+      # @param hometown [String] the name of the hometown for currency conversion.
+      # @param parts [Array<String>] the list of parts required for crafting.
+      # @param quantity [Integer] the number of items to craft.
+      # @param material [Hash] the material details including stock volume and value.
+      # @return [Integer] the total crafting cost.
       def crafting_cost(recipe, hometown, parts, quantity, material)
         # To use this method, you'll need to pass:
         # recipe => This is a hash drawn directly from base-recipes eg {name: 'a metal ring cap', noun: 'cap', volume: 8, type: 'armorsmithing',etc}
@@ -543,15 +519,14 @@ module Lich
         end
       end
 
-      # Repairs the user's own tools.
-      # @param info [Hash] Information about the tools and repair process.
-      # @param tools [Array<String>] The list of tools to repair.
-      # @param bag [String] The name of the bag containing tools.
-      # @param bag_items [Array<String>] The list of items in the bag.
-      # @param belt [Hash] The belt containing items.
+      # Repairs the user's own tools using specified consumables.
+      #
+      # @param info [Hash] information about the tools and their repair requirements.
+      # @param tools [Array<String>] the list of tools to repair.
+      # @param bag [String] the name of the bag containing consumables.
+      # @param bag_items [Array<String>] the list of items in the bag.
+      # @param belt [Hash] the belt information.
       # @return [void]
-      # @example Repairing tools
-      #   DRCC.repair_own_tools(info, tools, 'backpack', items, belt)
       def repair_own_tools(info, tools, bag, bag_items, belt)
         UserVars.immune_list ||= {} # declaring a hash unless hash already
         tools = tools.to_a # Convert single tool string to array
@@ -602,17 +577,16 @@ module Lich
         nil
       end
 
-      # Checks for consumables and retrieves them if necessary.
-      # @param name [String] The name of the consumable to check.
-      # @param room [String] The room to order from if not found.
-      # @param number [Integer] The number of consumables needed.
-      # @param bag [String] The name of the bag containing consumables.
-      # @param bag_items [Array<String>] The list of items in the bag.
-      # @param belt [Hash] The belt containing items.
-      # @param count [Integer] The number of consumables to check for.
+      # Checks for the specified consumables and retrieves them if necessary.
+      #
+      # @param name [String] the name of the consumable to check.
+      # @param room [String] the room where the consumable is located.
+      # @param number [Integer] the number of consumables needed.
+      # @param bag [String] the name of the bag containing consumables.
+      # @param bag_items [Array<String>] the list of items in the bag.
+      # @param belt [Hash] the belt information.
+      # @param count [Integer] the number of consumables to check for.
       # @return [void]
-      # @example Checking consumables
-      #   DRCC.check_consumables('oil', 'finisher-room', 10, 'backpack', items, belt)
       def check_consumables(name, room, number, bag, bag_items, belt, count = 3)
         current = Room.current.id
         case DRC.bput("get my #{name} from my #{bag}", CONSUMABLE_GET_SUCCESS, CONSUMABLE_GET_NOT_FOUND)
@@ -632,14 +606,13 @@ module Lich
       end
 
       # Adjusts the tongs based on the specified usage.
-      # @param usage [String] The type of usage ('shovel' or 'tongs').
-      # @param bag [String] The name of the bag containing tongs.
-      # @param bag_items [Array<String>] The list of items in the bag.
-      # @param belt [Hash] The belt containing items.
-      # @param adjustable_tongs [Boolean] Whether the tongs are adjustable.
-      # @return [Boolean] Returns true if adjusted successfully, false otherwise.
-      # @example Adjusting tongs
-      #   adjusted = DRCC.get_adjust_tongs?('shovel', 'backpack', items, belt)
+      #
+      # @param usage [String] the type of usage (e.g., 'shovel' or 'tongs').
+      # @param bag [String] the name of the bag containing tongs.
+      # @param bag_items [Array<String>] the list of items in the bag.
+      # @param belt [Hash] the belt information.
+      # @param adjustable_tongs [Boolean] whether the tongs are adjustable.
+      # @return [Boolean] true if the tongs were successfully adjusted, false otherwise.
       def get_adjust_tongs?(usage, bag, bag_items, belt, adjustable_tongs = false)
         case usage
         when 'shovel' # looking for a shovel
@@ -701,13 +674,12 @@ module Lich
         end
       end
 
-      # Logs an item in the user's logbook.
-      # @param logbook [String] The name of the logbook to use.
-      # @param noun [String] The noun of the item to log.
-      # @param container [String] The container holding the item.
+      # Logs an item in the specified logbook.
+      #
+      # @param logbook [String] the name of the logbook to log the item in.
+      # @param noun [String] the name of the item to log.
+      # @param container [String] the container holding the item.
       # @return [void]
-      # @example Logging an item
-      #   DRCC.logbook_item('crafting', 'metal pike', 'backpack')
       def logbook_item(logbook, noun, container)
         DRCI.get_item?("#{logbook} logbook")
         bundle_result = DRC.bput("bundle my #{noun} with my logbook",
@@ -734,15 +706,14 @@ module Lich
         DRCI.put_away_item?("#{logbook} logbook", container) || DRCI.put_away_item?("#{logbook} logbook")
       end
 
-      # Orders enchantments for a specified stock.
-      # @param stock_room [String] The room to order from.
-      # @param stock_needed [Integer] The number of stock needed.
-      # @param stock_number [Integer] The stock number to order.
-      # @param bag [String] The name of the bag to stow items in.
-      # @param belt [Hash] The belt containing items.
+      # Orders a specified number of enchantments from the stock room.
+      #
+      # @param stock_room [String] the name of the stock room to order from.
+      # @param stock_needed [Integer] the number of stock items needed.
+      # @param stock_number [Integer] the stock number to order.
+      # @param bag [String] the name of the bag to stow items in.
+      # @param belt [Hash] the belt information.
       # @return [void]
-      # @example Ordering enchantments
-      #   DRCC.order_enchant('stock-room', 5, 10, 'backpack', belt)
       def order_enchant(stock_room, stock_needed, stock_number, bag, belt)
         stock_needed.times do
           DRCT.order_item(stock_room, stock_number)
@@ -752,17 +723,16 @@ module Lich
         end
       end
 
-      # Taps a fount to retrieve materials.
-      # @param stock_room [String] The room to tap the fount in.
-      # @param stock_needed [Integer] The number of stock needed.
-      # @param stock_number [Integer] The stock number to order.
-      # @param quantity [Integer] The quantity of materials to retrieve.
-      # @param bag [String] The name of the bag containing items.
-      # @param bag_items [Array<String>] The list of items in the bag.
-      # @param belt [Hash] The belt containing items.
+      # Interacts with a fount to retrieve stock items.
+      #
+      # @param stock_room [String] the name of the stock room to interact with.
+      # @param stock_needed [Integer] the number of stock items needed.
+      # @param stock_number [Integer] the stock number to retrieve.
+      # @param quantity [Integer] the quantity of items to retrieve.
+      # @param bag [String] the name of the bag to stow items in.
+      # @param bag_items [Array<String>] the list of items in the bag.
+      # @param belt [Hash] the belt information.
       # @return [void]
-      # @example Tapping a fount
-      #   DRCC.fount('stock-room', 5, 10, 2, 'backpack', items, belt)
       def fount(stock_room, stock_needed, stock_number, quantity, bag, bag_items, belt)
         case DRC.bput('tap my fount', FOUNT_TAP_IN_BAG, FOUNT_TAP_ON_BAG, FOUNT_TAP_NOT_FOUND)
         when FOUNT_TAP_IN_BAG, FOUNT_TAP_ON_BAG
@@ -789,12 +759,9 @@ module Lich
         end
       end
 
-      # Checks if the brazier is clean.
-      # @return [Boolean] Returns true if the brazier is clean, false otherwise.
-      # @example Checking if the brazier is clean
-      #   if DRCC.clean_brazier?
-      #     puts 'The brazier is clean.'
-      #   end
+      # Checks if the brazier is clean and cleans it if necessary.
+      #
+      # @return [Boolean] true if the brazier is clean, false otherwise.
       def clean_brazier?
         case DRC.bput('look on brazier', BRAZIER_NOTHING, BRAZIER_SEE_PATTERN)
         when /There is nothing on there/i
@@ -810,9 +777,8 @@ module Lich
       end
 
       # Empties the brazier of its contents.
+      #
       # @return [void]
-      # @example Emptying the brazier
-      #   DRCC.empty_brazier
       def empty_brazier
         result = DRC.bput('look on brazier', BRAZIER_SEE_PATTERN, BRAZIER_CLEAN_NOTHING)
         match = result.match(BRAZIER_SEE_PATTERN)
@@ -827,16 +793,15 @@ module Lich
         end
       end
 
-      # Checks for existing sigils and orders more if needed.
-      # @param sigil [String] The type of sigil to check for.
-      # @param stock_number [Integer] The stock number for ordering.
-      # @param quantity [Integer] The quantity needed.
-      # @param bag [String] The name of the bag containing items.
-      # @param belt [Hash] The belt containing items.
-      # @param info [Hash] Additional information for ordering.
-      # @return [Boolean] Returns true if sigils are sufficient, false otherwise.
-      # @example Checking for existing sigils
-      #   sufficient = DRCC.check_for_existing_sigil?('fire', 10, 2, 'backpack', belt, info)
+      # Checks for existing sigils and orders more if necessary.
+      #
+      # @param sigil [String] the name of the sigil to check for.
+      # @param stock_number [Integer] the stock number for ordering.
+      # @param quantity [Integer] the quantity needed.
+      # @param bag [String] the name of the bag to stow items in.
+      # @param belt [Hash] the belt information.
+      # @param info [Hash] additional information for ordering.
+      # @return [Boolean] true if sigils are sufficient, false otherwise.
       def check_for_existing_sigil?(sigil, stock_number, quantity, bag, belt, info)
         merged = Regexp.union($PRIMARY_SIGILS_PATTERN, $SECONDARY_SIGILS_PATTERN)
 
@@ -861,12 +826,11 @@ module Lich
         end
       end
 
-      # Counts the amount of raw metal in a container.
-      # @param container [String] The name of the container to rummage.
-      # @param type [String, nil] Optional type of metal to count.
-      # @return [Hash, nil] Returns a hash of metal counts or nil if none found.
-      # @example Counting raw metal
-      #   metals = DRCC.count_raw_metal('backpack')
+      # Counts the amount of raw metal in a specified container.
+      #
+      # @param container [String] the name of the container to rummage through.
+      # @param type [String, nil] optional type of metal to count.
+      # @return [Hash, nil] a hash of metal types and their volumes or nil if none found.
       def count_raw_metal(container, type = nil)
         result = DRC.bput("rummage /M #{container}", RUMMAGE_NOTHING, RUMMAGE_CLOSED, RUMMAGE_NOT_FOUND, RUMMAGE_INVISIBLE, RUMMAGE_NOTHING_ACCOMPLISH, RUMMAGE_SUCCESS_PATTERN)
 

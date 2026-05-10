@@ -1,36 +1,41 @@
 module Lich
   module Gemstone
     module Effects
-      # Manages a collection of effects.
-      # Provides methods to access and manipulate effects.
-      # @example Creating a new registry
-      #   registry = Lich::Gemstone::Effects::Registry.new("Active Effects")
+      # Manages a collection of effects for the Lich project.
+      #
+      # This class includes methods to handle the registration,
+      # expiration, and active status of various effects.
+      #
+      # @see Lich::Gemstone::Effects::Spells
+      # @see Lich::Gemstone::Effects::Buffs
+      # @see Lich::Gemstone::Effects::Debuffs
+      # @see Lich::Gemstone::Effects::Cooldowns
       class Registry
         include Enumerable
 
         # Initializes a new Registry instance.
-        # @param dialog [String] The name of the dialog associated with the registry.
-        # @return [Registry]
+        # @param dialog [String] the name of the dialog associated with this registry
+        # @return [void]
         def initialize(dialog)
           @dialog = dialog
         end
 
         # Converts the registry to a hash representation.
-        # @return [Hash] A hash of effects associated with the dialog.
+        # @return [Hash] a hash of effects associated with the dialog
         def to_h
           XMLData.dialogs.fetch(@dialog, {})
         end
 
         # Iterates over each effect in the registry.
-        # @yield [key, value] The key-value pair for each effect.
-        # @return [Enumerator] An enumerator if no block is given.
+        # @yield [key, value] each key-value pair in the registry
+        # @return [void]
         def each()
           to_h.each { |k, v| yield(k, v) }
         end
 
-        # Retrieves the expiration time of a given effect.
-        # @param effect [String, Regexp] The effect to check for expiration.
-        # @return [Integer] The expiration time in seconds, or 0 if not found.
+        # Retrieves the expiration time for a given effect.
+        # @param effect [String, Regexp] the effect to check
+        # @return [Integer] the expiration time in seconds, or 0 if not found
         def expiration(effect)
           if effect.is_a?(Regexp)
             to_h.find { |k, _v| k.to_s =~ effect }[1] || 0
@@ -40,15 +45,15 @@ module Lich
         end
 
         # Checks if a given effect is currently active.
-        # @param effect [String, Regexp] The effect to check.
-        # @return [Boolean] True if the effect is active, false otherwise.
+        # @param effect [String, Regexp] the effect to check
+        # @return [Boolean] true if the effect is active, false otherwise
         def active?(effect)
           expiration(effect).to_f > Time.now.to_f
         end
 
         # Calculates the time left for a given effect.
-        # @param effect [String, Regexp] The effect to check.
-        # @return [Float] The time left in minutes, or the expiration time if not active.
+        # @param effect [String, Regexp] the effect to check
+        # @return [Integer] the time left in minutes, or the expiration time if not active
         def time_left(effect)
           if expiration(effect) != 0
             ((expiration(effect) - Time.now) / 60.to_f)
@@ -59,18 +64,20 @@ module Lich
       end
 
       # A registry for active spells.
+      # @see Lich::Gemstone::Effects::Registry
       Spells    = Registry.new("Active Spells")
       # A registry for buffs.
+      # @see Lich::Gemstone::Effects::Registry
       Buffs     = Registry.new("Buffs")
       # A registry for debuffs.
+      # @see Lich::Gemstone::Effects::Registry
       Debuffs   = Registry.new("Debuffs")
       # A registry for cooldowns.
+      # @see Lich::Gemstone::Effects::Registry
       Cooldowns = Registry.new("Cooldowns")
 
       # Displays the current effects in a formatted table.
       # @return [void]
-      # @example Displaying effects
-      #   Lich::Gemstone::Effects.display
       def self.display
         effect_out = Terminal::Table.new :headings => ["ID", "Type", "Name", "Duration"]
         titles = ["Spells", "Cooldowns", "Buffs", "Debuffs"]

@@ -1,10 +1,12 @@
 module Lich
   module Gemstone
     module Armaments
-      # Module containing static weapon statistics for polearm weapons.
-      # Each weapon entry includes metadata such as category, base name, alternative names,
+      # Static array of weapon stats indexed by weapon identifiers. Each weapon
+      # entry contains metadata such as category, base name, alternative names,
       # damage types, damage factors, armor avoidance by armor size group (ASG),
       # base roundtime (RT), and minimum RT.
+      #
+      # @see Lich::Gemstone::Armaments::WeaponStats
       module WeaponStats
 # Static array of weapon stats indexed by weapon identifiers. Each weapon
 # entry contains metadata such as category, base name, alternative names,
@@ -41,10 +43,6 @@ module Lich
             :min_rt        => 4,
           },
 =end
-        # Static array of weapon stats indexed by weapon identifiers.
-        # Each weapon entry contains metadata such as category, base name, alternative names,
-        # damage types, damage factors, armor avoidance by armor size group (ASG),
-        # base roundtime (RT), and minimum RT.
         @@weapon_stats_polearm = {
           :awl_pike      => {
             :category      => :polearm,

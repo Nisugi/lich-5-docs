@@ -1,21 +1,18 @@
 
 module Lich
   module DragonRealms
-    # Validates characters in the game.
-    # This class handles the validation of character names and provides methods to interact with them.
-    # @example Creating a character validator
-    #   validator = Lich::DragonRealms::CharacterValidator.new(true, false, true, "Hero")
+    # Validates character information and manages communication with the lnet script.
+    #
+    # @see Lich::Messaging
     class CharacterValidator
-      # The name of the LNET script used for communication.
       LNET_SCRIPT_NAME = 'lnet'
-      # Message displayed when no matching adventurers are found.
       FIND_NOT_FOUND = 'There are no adventurers in the realms that match the names specified'
 
-      # Initializes a new CharacterValidator.
-      # @param announce [Boolean] Whether to announce the character's presence.
-      # @param should_sleep [Boolean] Whether to put the script to sleep.
-      # @param greet [Boolean] Whether to greet the character.
-      # @param name [String] The name of the character.
+      # Initializes a new CharacterValidator instance.
+      # @param announce [Boolean] whether to announce the character's status
+      # @param should_sleep [Boolean] whether to put the script to sleep
+      # @param greet [Boolean] whether to greet the character
+      # @param name [String] the name of the character
       # @return [void]
       def initialize(announce, should_sleep, greet, name)
         waitrt?
@@ -35,9 +32,9 @@ module Lich
       end
 
       # Sends the Slack token to the specified character.
-      # @param character [String] The name of the character to send the token to.
+      # @param character [String] the name of the character to send the token to
       # @return [void]
-      # @note This method will only execute if lnet is available.
+      # @note This method will only send the token if lnet is available.
       def send_slack_token(character)
         return unless lnet_available?
 
@@ -47,9 +44,9 @@ module Lich
       end
 
       # Validates the specified character.
-      # @param character [String] The name of the character to validate.
+      # @param character [String] the name of the character to validate
       # @return [void]
-      # @note This method will only execute if lnet is available.
+      # @note This method will only validate if lnet is available.
       def validate(character)
         return if valid?(character)
         return unless lnet_available?
@@ -59,7 +56,7 @@ module Lich
       end
 
       # Confirms the validation of the specified character.
-      # @param character [String] The name of the character to confirm.
+      # @param character [String] the name of the character to confirm
       # @return [void]
       # @note This method will greet the character if the greet flag is set.
       def confirm(character)
@@ -73,18 +70,18 @@ module Lich
         put "whisper #{character} Hi! I'm your friendly neighborhood #{@name}. Whisper me 'help' for more details. Don't worry, I've memorized your name so you won't see this message again."
       end
 
-      # Checks if the specified character is validated.
-      # @param character [String] The name of the character to check.
-      # @return [Boolean] Returns true if the character is validated, false otherwise.
+      # Checks if the specified character has been validated.
+      # @param character [String] the name of the character to check
+      # @return [Boolean] true if the character is validated, false otherwise
       def valid?(character)
         @validated_characters.include?(character)
       end
 
       # Sends the current bank balance to the specified character.
-      # @param character [String] The name of the character to send the balance to.
-      # @param balance [Numeric] The current balance to send.
+      # @param character [String] the name of the character to send the balance to
+      # @param balance [Integer] the current balance to send
       # @return [void]
-      # @note This method will only execute if lnet is available.
+      # @note This method will only send the balance if lnet is available.
       def send_bankbot_balance(character, balance)
         return unless lnet_available?
 
@@ -94,9 +91,9 @@ module Lich
       end
 
       # Sends the current location to the specified character.
-      # @param character [String] The name of the character to send the location to.
+      # @param character [String] the name of the character to send the location to
       # @return [void]
-      # @note This method will only execute if lnet is available.
+      # @note This method will only send the location if lnet is available.
       def send_bankbot_location(character)
         return unless lnet_available?
 
@@ -106,10 +103,10 @@ module Lich
       end
 
       # Sends help messages to the specified character.
-      # @param character [String] The name of the character to send help messages to.
-      # @param messages [Array] An array of help messages to send.
+      # @param character [String] the name of the character to send help messages to
+      # @param messages [Array<String>] the list of help messages to send
       # @return [void]
-      # @note This method will only execute if lnet is available.
+      # @note This method will only send messages if lnet is available.
       def send_bankbot_help(character, messages)
         return unless lnet_available?
 
@@ -120,8 +117,8 @@ module Lich
       end
 
       # Checks if the specified character is currently in the game.
-      # @param character [String] The name of the character to check.
-      # @return [Boolean] Returns true if the character is in the game, false otherwise.
+      # @param character [String] the name of the character to check
+      # @return [Boolean] true if the character is in the game, false otherwise
       def in_game?(character)
         result = DRC.bput("find #{character}", FIND_NOT_FOUND, /^\s{2}#{character}\.$/, 'Unknown command')
         result =~ /^\s{2}#{character}\.$/
@@ -129,6 +126,9 @@ module Lich
 
       private
 
+      # Checks if the lnet script is available.
+      # @return [Boolean] true if lnet is available, false otherwise
+      # @api private
       def lnet_available?
         !@lnet.nil?
       end

@@ -2,17 +2,29 @@
 module Lich
   module Common
     module Buffer
-      # Represents the downstream stripped constant
+      # Represents the downstream stripped mode.
+      #
+      # @see Buffer#streams
       DOWNSTREAM_STRIPPED = 1
-      # Represents the downstream raw constant
+      # Represents the downstream raw mode.
+      #
+      # @see Buffer#streams
       DOWNSTREAM_RAW      = 2
-      # Represents the downstream modified constant
+      # Represents the downstream modified mode.
+      #
+      # @see Buffer#streams
       DOWNSTREAM_MOD      = 4
-      # Represents the upstream constant
+      # Represents the upstream mode.
+      #
+      # @see Buffer#streams
       UPSTREAM            = 8
-      # Represents the upstream modified constant
+      # Represents the upstream modified mode.
+      #
+      # @see Buffer#streams
       UPSTREAM_MOD        = 16
-      # Represents the script output constant
+      # Represents the script output mode.
+      #
+      # @see Buffer#streams
       SCRIPT_OUTPUT       = 32
       @@index             = Hash.new
       @@streams           = Hash.new
@@ -20,7 +32,8 @@ module Lich
       @@offset            = 0
       @@buffer            = Array.new
       @@max_size          = 3000
-      # Retrieves a line from the buffer, blocking until a line is available.
+      # Reads a line from the buffer, blocking until a line is available.
+      # @return [Line] the line read from the buffer, or nil if no line is available
       def Buffer.gets
         thread_id = Thread.current.object_id
         if @@index[thread_id].nil?
@@ -46,7 +59,8 @@ module Lich
         return line
       end
 
-      # Retrieves a line from the buffer, returning nil if no line is available.
+      # Attempts to read a line from the buffer without blocking.
+      # @return [Line, nil] the line read from the buffer, or nil if no line is available
       def Buffer.gets?
         thread_id = Thread.current.object_id
         if @@index[thread_id].nil?
@@ -74,6 +88,7 @@ module Lich
       end
 
       # Resets the buffer index for the current thread to the offset.
+      # @return [Buffer] self
       def Buffer.rewind
         thread_id = Thread.current.object_id
         @@index[thread_id] = @@offset
@@ -81,7 +96,8 @@ module Lich
         return self
       end
 
-      # Clears the buffer for the current thread, returning all lines that match the stream.
+      # Clears the lines from the buffer for the current thread.
+      # @return [Array<Line>] the lines that were cleared from the buffer
       def Buffer.clear
         thread_id = Thread.current.object_id
         if @@index[thread_id].nil?
@@ -110,6 +126,9 @@ module Lich
       end
 
       # Updates the buffer with a new line, optionally setting its stream.
+      # @param line [Line] the line to add to the buffer
+      # @param stream [Integer, nil] the stream identifier for the line
+      # @return [Buffer] self
       def Buffer.update(line, stream = nil)
         @@mutex.synchronize {
           frozen_line = line.dup
@@ -127,12 +146,15 @@ module Lich
       end
 
       # rubocop:disable Lint/HashCompareByIdentity
-      # Retrieves the streams for the current thread.
+      # Retrieves the current stream settings for the thread.
+      # @return [Integer] the current stream settings
       def Buffer.streams
         @@streams[Thread.current.object_id]
       end
 
-      # Sets the streams for the current thread, validating the value.
+      # Sets the stream settings for the current thread.
+      # @param val [Integer] the new stream settings
+      # @raise ArgumentError if val is not a valid stream value
       def Buffer.streams=(val)
         if (!val.is_a?(Integer)) or ((val & 63) == 0)
           respond "--- Lich: error: invalid streams value\n\t#{$!.caller[0..2].join("\n\t")}"
@@ -142,7 +164,8 @@ module Lich
       end
 
       # rubocop:enable Lint/HashCompareByIdentity
-      # Cleans up the streams and index for threads that are no longer active.
+      # Cleans up the buffer by removing entries for threads that no longer exist.
+      # @return [Buffer] self
       def Buffer.cleanup
         @@index.delete_if { |k, _v| not Thread.list.any? { |t| t.object_id == k } }
         @@streams.delete_if { |k, _v| not Thread.list.any? { |t| t.object_id == k } }

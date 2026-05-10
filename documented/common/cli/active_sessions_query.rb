@@ -4,17 +4,14 @@ require 'terminal-table'
 
 module Lich
   # Provides common functionality for the Lich CLI.
-  # @example Including the module
-  #   include Lich::Common::CLI
+  #
+  # @see Lich::CLI
   module Common
     module CLI
-      # Handles the active sessions query functionality in the CLI.
-      # @example Executing the active sessions query
-      #   Lich::Common::CLI::ActiveSessionsQuery.execute
       module ActiveSessionsQuery
-        # Executes the active sessions query.
-        # @return [Integer] The exit status code.
-        # @note This method will exit the program if a query is requested.
+        # Executes the active sessions query if requested.
+        # @return [Integer] exit status code
+        # @api private
         def self.execute
           return unless query_requested?
 
@@ -22,8 +19,7 @@ module Lich
         end
 
         # Runs the active sessions query logic.
-        # @return [Integer] The exit status code.
-        # @note Returns 0 if successful, 1 if there is an error.
+        # @return [Integer] exit status code
         def self.run
           if ARGV.include?('--active-sessions')
             print_snapshot(query_snapshot)
@@ -39,14 +35,14 @@ module Lich
           print_session_info(query_snapshot, session_name)
         end
 
-        # Checks if a query for active sessions has been requested.
-        # @return [Boolean] True if a query is requested, false otherwise.
+        # Checks if an active sessions query has been requested.
+        # @return [Boolean] true if a query is requested, false otherwise
         def self.query_requested?
           ARGV.include?('--active-sessions') || !requested_session_name.nil?
         end
 
         # Retrieves the requested session name from command line arguments.
-        # @return [String, nil] The requested session name or nil if not found.
+        # @return [String, nil] the requested session name or nil if not provided
         def self.requested_session_name
           inline_arg = ARGV.find { |arg| arg.start_with?('--session-info=') }
           return inline_arg.split('=', 2).last if inline_arg
@@ -58,8 +54,7 @@ module Lich
         end
 
         # Retrieves the current snapshot of active sessions.
-        # @return [Hash] The snapshot of active sessions.
-        # @return [Hash] Returns an unavailable snapshot if the service is not defined.
+        # @return [Hash] a snapshot of active sessions or an unavailable snapshot
         def self.query_snapshot
           return unavailable_snapshot unless defined?(Lich::InternalAPI::ActiveSessions)
 
@@ -67,7 +62,7 @@ module Lich
         end
 
         # Prints the snapshot of active sessions to standard output.
-        # @param snapshot [Hash] The snapshot data to print.
+        # @param snapshot [Hash] the snapshot data to print
         # @return [void]
         def self.print_snapshot(snapshot)
           if snapshot[:error]
@@ -101,11 +96,10 @@ module Lich
           $stdout.puts table
         end
 
-        # Prints detailed information about a specific session.
-        # @param snapshot [Hash] The snapshot data containing session information.
-        # @param session_name [String] The name of the session to display.
-        # @return [Integer] The exit status code.
-        # @note Returns 1 if the session is not found.
+        # Prints detailed information about a specific active session.
+        # @param snapshot [Hash] the snapshot data containing session information
+        # @param session_name [String] the name of the session to display
+        # @return [Integer] exit status code
         def self.print_session_info(snapshot, session_name)
           if snapshot[:error]
             $stdout.puts "No active sessions service available (#{snapshot[:error]})."
@@ -140,6 +134,9 @@ module Lich
           $stdout.puts "   or: ruby #{lich_script} --session-info=NAME"
         end
 
+        # Provides a snapshot indicating that the active sessions service is unavailable.
+        # @return [Hash] a hash representing an unavailable snapshot
+        # @api private
         def self.unavailable_snapshot
           {
             source: 'ActiveSessionsAPI',
@@ -152,6 +149,10 @@ module Lich
         end
         private_class_method :unavailable_snapshot
 
+        # Formats the listener information for display.
+        # @param listener [Hash, nil] the listener data to format
+        # @return [String] formatted listener information or 'none'
+        # @api private
         def self.listener_display(listener)
           return 'none' unless listener
 
@@ -159,6 +160,10 @@ module Lich
         end
         private_class_method :listener_display
 
+        # Formats uptime in seconds into a human-readable string.
+        # @param uptime_seconds [Integer] uptime in seconds
+        # @return [String] formatted uptime string
+        # @api private
         def self.format_uptime(uptime_seconds)
           total = uptime_seconds.to_i
           hours = total / 3600
@@ -168,6 +173,10 @@ module Lich
         end
         private_class_method :format_uptime
 
+        # Converts a boolean value to a 'yes' or 'no' string.
+        # @param value [Boolean] the boolean value to convert
+        # @return [String] 'yes' if true, 'no' if false
+        # @api private
         def self.yes_no(value)
           value ? 'yes' : 'no'
         end

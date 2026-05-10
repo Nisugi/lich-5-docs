@@ -1,17 +1,16 @@
 module Lich
   module Gemstone
-    # Represents a list of ready items and their management.
-    # This class provides methods to access and manipulate the ready list and store list.
-    # @example Accessing the ready list
-    #   ready_items = ReadyList.ready_list
+    # Represents a list of ready items and their storage in the game.
+    #
+    # This class manages the items that a player can have ready for use,
+    # including weapons and other equipment.
+    #
+    # @see Lich::Gemstone::ReadyList#ready_list
+    # @see Lich::Gemstone::ReadyList#store_list
     class ReadyList
       @checked = false
 
-      # The original list of ready items.
-      # This constant defines the default items that can be ready.
       ORIGINAL_READY_LIST = [:shield, :weapon, :secondary_weapon, :ranged_weapon, :ammo_bundle, :ammo2_bundle, :sheath, :secondary_sheath, :wand]
-      # The original list of store items.
-      # This constant defines the default items that can be stored.
       ORIGINAL_STORE_LIST = [:shield, :weapon, :secondary_weapon, :ranged_weapon, :ammo_bundle, :wand]
 
       @ready_list = {
@@ -47,33 +46,29 @@ module Lich
       end
 
       class << self
-        # Returns the current ready list.
-        # @return [Hash] The hash representing the ready list with item types as keys and their values.
         def ready_list
           @ready_list
         end
 
-        # Returns the current store list.
-        # @return [Hash] The hash representing the store list with item types as keys and their values.
         def store_list
           @store_list
         end
 
-        # Checks if the ready list has been validated.
-        # @return [Boolean] True if the ready list has been checked, false otherwise.
         def checked?
           @checked
         end
 
-        # Sets the checked status of the ready list.
-        # @param value [Boolean] The new checked status.
         def checked=(value)
           @checked = value
         end
 
-        # Validates the items in the ready list.
-        # @param all [Boolean] If true, validates all items; otherwise, only validates original ready items.
-        # @return [Boolean] True if all checked items are valid, false otherwise.
+        # Checks if the current ready items are valid.
+        #
+        # @param all [Boolean] if true, checks all items, otherwise only checks original ready items
+        # @return [Boolean] true if all checked items are valid, false otherwise
+        # @example
+        #   ready_list.valid?(all: true)
+        # @note This method requires that the checked state is true to perform validation.
         def valid?(all: false)
           # check if existing ready items are valid or not
           return false unless checked?
@@ -87,8 +82,10 @@ module Lich
           return true
         end
 
-        # Resets the ready and store lists.
-        # @param all [Boolean] If true, resets all items; otherwise, only resets original items.
+        # Resets the ready and store lists to their initial state.
+        #
+        # @param all [Boolean] if true, resets all items, otherwise only resets original items
+        # @return [void]
         def reset(all: false)
           @checked = false
           @ready_list.each do |key, _value|
@@ -101,11 +98,14 @@ module Lich
           end
         end
 
-        # Checks the current settings of the ready list.
-        # @param silent [Boolean] If true, suppresses output.
-        # @param quiet [Boolean] If true, uses a quiet mode for checking.
+        # Checks the current ready list against the game state.
+        #
+        # @param silent [Boolean] if true, suppresses output
+        # @param quiet [Boolean] if true, uses a quieter output pattern
         # @return [void]
-        # @note This method updates the checked status based on the results.
+        # @example
+        #   ready_list.check(silent: true)
+        # @note This method updates the checked state based on the results.
         def check(silent: false, quiet: false)
           if quiet
             start_pattern = /<output class="mono"\/>|^You are a ghost!/

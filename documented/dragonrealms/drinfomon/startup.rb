@@ -2,10 +2,9 @@
 
 require_relative '../../common/watchable'
 
-# Lich module for the DragonRealms game integration.
-# This module contains the DRInfomon functionality for managing game state.
-# @example Including the Lich module
-#   include Lich
+# Provides functionality for the Lich project.
+#
+# @see Lich::DragonRealms for DragonRealms specific features.
 module Lich
   module DragonRealms
     module DRInfomon
@@ -32,10 +31,8 @@ module Lich
       end
 
       # Starts a thread to monitor the game state and execute startup commands.
-      # @note This method will block until the character is ready.
-      # @raise [StandardError] if an error occurs during the startup process.
-      # @example Starting the watch process
-      #   DRInfomon.watch!
+      #
+      # @note This method is called automatically when the game is ready.
       def self.watch!
         @startup_thread ||= Thread.new do
           begin
@@ -53,14 +50,13 @@ module Lich
       end
 
       # Executes the startup script to initialize game state.
-      # @example Running the startup process
-      #   DRInfomon.startup
+      # @return [void]
       def self.startup
         ExecScript.start(startup_script, { quiet: true, name: 'drinfomon_startup' })
       end
 
       # Provides the script to be executed during startup.
-      # @return [String] The startup script containing game commands.
+      # @return [String] the startup commands to be executed.
       def self.startup_script
         <<~SCRIPT
           # Populate stats, race, guild, circle, etc.
@@ -96,17 +92,13 @@ module Lich
       end
 
       # Marks the startup process as complete and triggers post-startup checks.
-      # @example Completing the startup process
-      #   DRInfomon.startup_completed!
+      # @return [void]
       def self.startup_completed!
         @@startup_complete = true
         PostLoad.game_loaded! if defined?(PostLoad)
         post_startup_checks
       end
 
-      # Performs checks after the startup process is complete.
-      # @note This includes warnings about obsolete scripts and data files.
-      # @raise [StandardError] if an error occurs during the checks.
       def self.post_startup_checks
         warn_obsolete_scripts
         warn_obsolete_data_files
@@ -117,9 +109,6 @@ module Lich
         safe_log("DRInfomon: post_startup_checks error: #{e.inspect}\n\t#{e.backtrace&.first(5)&.join("\n\t")}")
       end
 
-      # Sends a message safely, checking if the messaging system is available.
-      # @param type [String] The type of message (e.g., 'error', 'info').
-      # @param text [String] The message text to send.
       def self.safe_message(type, text)
         if defined?(Lich::Messaging) && Lich::Messaging.respond_to?(:msg)
           Lich::Messaging.msg(type, text)
@@ -128,8 +117,6 @@ module Lich
         end
       end
 
-      # Logs a message safely, checking if the logging system is available.
-      # @param text [String] The message text to log.
       def self.safe_log(text)
         if defined?(Lich) && Lich.respond_to?(:log)
           Lich.log(text)
@@ -141,7 +128,8 @@ module Lich
       # Script names that are obsolete and should be deleted.
       # Checked on login to warn users about stale files.
       # List of obsolete script names that should be deleted.
-      # Checked on login to warn users about stale files.
+      # @example
+      #   DR_OBSOLETE_SCRIPTS #=> ["events", "slackbot", "spellmonitor", ...]
       DR_OBSOLETE_SCRIPTS = %w[
         events slackbot spellmonitor exp-monitor
         common-travel common-validation common drinfomon equipmanager
@@ -152,11 +140,12 @@ module Lich
 
       # Data filenames that are obsolete and should be deleted.
       # List of obsolete data filenames that should be deleted.
+      # @example
+      #   DR_OBSOLETE_DATA_FILES #=> []
       DR_OBSOLETE_DATA_FILES = %w[].freeze
 
-      # Warns users about obsolete scripts that should be deleted.
-      # @example Checking for obsolete scripts
-      #   DRInfomon.warn_obsolete_scripts
+      # Warns the user about obsolete scripts that should be deleted.
+      # @return [void]
       def self.warn_obsolete_scripts
         DR_OBSOLETE_SCRIPTS.each do |script_name|
           path = File.join(SCRIPT_DIR, "#{script_name}.lic")
@@ -166,9 +155,8 @@ module Lich
         end
       end
 
-      # Warns users about obsolete data files that should be deleted.
-      # @example Checking for obsolete data files
-      #   DRInfomon.warn_obsolete_data_files
+      # Warns the user about obsolete data files that can be safely deleted.
+      # @return [void]
       def self.warn_obsolete_data_files
         data_dir = File.join(SCRIPT_DIR, 'data')
         DR_OBSOLETE_DATA_FILES.each do |filename|
@@ -179,9 +167,8 @@ module Lich
         end
       end
 
-      # Warns users about custom scripts that shadow curated scripts.
-      # @example Checking for custom scripts
-      #   DRInfomon.warn_custom_scripts
+      # Warns the user if custom scripts shadow curated scripts.
+      # @return [void]
       def self.warn_custom_scripts
         custom_dir = File.join(SCRIPT_DIR, 'custom')
         return unless File.directory?(custom_dir)

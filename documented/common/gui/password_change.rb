@@ -2,23 +2,16 @@
 
 require_relative 'master_password_manager'
 
-# Provides common functionality for the Lich application
-# This module serves as a namespace for various common components.
 module Lich
   module Common
     module GUI
-      # Handles the password change dialog in the GUI
-      # This module provides methods to display and manage the password change dialog.
-      # @example Showing the password change dialog
-      #   Lich::Common::GUI::PasswordChange.show_password_change_dialog(parent, data_dir, username)
       module PasswordChange
-        # Displays the password change dialog.
-        # @param parent [Gtk::Window] The parent window for the dialog.
-        # @param data_dir [String] The directory where user data is stored.
-        # @param username [String] The username of the account for which the password is being changed.
+        # Displays a dialog for changing the user's password.
+        #
+        # @param parent [Gtk::Window] the parent window for the dialog
+        # @param data_dir [String] the directory where user data is stored
+        # @param username [String] the username of the account for which the password is being changed
         # @return [void]
-        # @example
-        #   Lich::Common::GUI::PasswordChange.show_password_change_dialog(parent, "/path/to/data", "user123")
         def self.show_password_change_dialog(parent, data_dir, username)
           # Create dialog
           dialog = Gtk::Dialog.new(
@@ -197,11 +190,23 @@ module Lich
         class << self
           private
 
+          # Retrieves the master password if the encryption mode is enhanced.
+          #
+          # @param encryption_mode [Symbol] the mode of encryption being used
+          # @return [String, nil] the master password or nil if not applicable
+          # @api private
           def get_master_password_for_mode(encryption_mode)
             return nil unless encryption_mode == :enhanced
             MasterPasswordManager.retrieve_master_password
           end
 
+          # Verifies the current password for the given username.
+          #
+          # @param data_dir [String] the directory where user data is stored
+          # @param username [String] the username of the account
+          # @param password [String] the current password to verify
+          # @return [Boolean] true if the password is correct, false otherwise
+          # @api private
           def verify_current_password(data_dir, username, password)
             yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -243,6 +248,13 @@ module Lich
             end
           end
 
+          # Changes the password for the specified username.
+          #
+          # @param data_dir [String] the directory where user data is stored
+          # @param username [String] the username of the account
+          # @param new_password [String] the new password to set
+          # @return [Boolean] true if the password was changed successfully, false otherwise
+          # @api private
           def change_password(data_dir, username, new_password)
             yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
             yaml_data = YAML.load_file(yaml_file)

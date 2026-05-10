@@ -1,18 +1,12 @@
 
-# The Lich module
-# This module serves as the main namespace for the Lich application.
-# @example Using the Lich module
-#   Lich::InternalAPI::ActiveSessions.start
 module Lich
-  # The InternalAPI module
-  # This module contains internal APIs for the Lich application.
-  # @example Accessing InternalAPI
-  #   Lich::InternalAPI::ActiveSessions.stop
   module InternalAPI
     module ActiveSessions
       module Lifecycle
-        # The interval in seconds for the heartbeat.
-        # This constant defines how often the heartbeat should occur.
+        # The interval in seconds for the heartbeat signal.
+        #
+        # @example
+        #   HEARTBEAT_INTERVAL_SECONDS # => 5
         HEARTBEAT_INTERVAL_SECONDS = 5
 
         @heartbeat_thread = nil
@@ -29,12 +23,11 @@ module Lich
         @lifecycle_generation = 0
         @feature_enabled = false
 
-        # Resolves the session name based on provided arguments.
-        # @param argv [Array<String>] The command line arguments.
-        # @param account_character [String, nil] The account character name, if provided.
-        # @return [String] The resolved session name.
-        # @example Resolving a session name
-        #   session_name = resolve_session_name(argv: ARGV)
+        # Resolves the session name based on command line arguments or defaults.
+        #
+        # @param argv [Array<String>] command line arguments
+        # @param account_character [String, nil] optional account character name
+        # @return [String] the resolved session name
         def self.resolve_session_name(argv:, account_character: nil)
           if (login_idx = argv.index('--login')) && argv[login_idx + 1]
             argv[login_idx + 1].capitalize
@@ -47,12 +40,11 @@ module Lich
           end
         end
 
-        # Resolves the role based on provided arguments.
-        # @param argv [Array<String>] The command line arguments.
-        # @param detachable_client_port [Integer, nil] The port for a detachable client, if provided.
-        # @return [String] The resolved role.
-        # @example Resolving a role
-        #   role = resolve_role(argv: ARGV, detachable_client_port: 3000)
+        # Determines the role of the session based on command line arguments.
+        #
+        # @param argv [Array<String>] command line arguments
+        # @param detachable_client_port [Integer, nil] port for detachable client
+        # @return [String] the resolved role
         def self.resolve_role(argv:, detachable_client_port:)
           return 'headless' if argv.include?('--without-frontend')
           return 'detachable' unless detachable_client_port.nil?
@@ -60,14 +52,12 @@ module Lich
           'session'
         end
 
-        # Starts the lifecycle with the given session name and role.
-        # @param session_name [String] The name of the session to start.
-        # @param role [String] The role of the session.
-        # @param heartbeat_interval [Integer] The interval for heartbeat in seconds (default is HEARTBEAT_INTERVAL_SECONDS).
-        # @return [Boolean] Returns true if the lifecycle started successfully, false otherwise.
-        # @raise [StandardError] Raises an error if the lifecycle fails to start.
-        # @example Starting the lifecycle
-        #   success = start(session_name: "MySession", role: "detachable")
+        # Starts the session lifecycle with the given parameters.
+        #
+        # @param session_name [String] the name of the session
+        # @param role [String] the role of the session
+        # @param heartbeat_interval [Integer] the interval for heartbeat signals (default: HEARTBEAT_INTERVAL_SECONDS)
+        # @return [Boolean] true if the session started successfully, false otherwise
         def self.start(session_name:, role:, heartbeat_interval: HEARTBEAT_INTERVAL_SECONDS)
           feature_enabled = ActiveSessions.enabled?
           return false unless feature_enabled
@@ -122,11 +112,9 @@ module Lich
           false
         end
 
-        # Stops the lifecycle if it is currently running.
-        # @return [Boolean] Returns true if the lifecycle stopped successfully, false otherwise.
-        # @raise [StandardError] Raises an error if the lifecycle fails to stop.
-        # @example Stopping the lifecycle
-        #   success = stop
+        # Stops the session lifecycle, cleaning up resources.
+        #
+        # @return [Boolean] true if the session stopped successfully, false otherwise
         def self.stop
           thread = nil
           lifecycle_active = false
@@ -165,12 +153,12 @@ module Lich
           false
         end
 
-        # Updates the listener information for the current session.
-        # @param host [String] The host of the listener.
-        # @param port [Integer] The port of the listener.
-        # @param connected [Boolean] Indicates if the listener is connected.
-        # @example Updating the listener
-        #   update_listener(host: "localhost", port: 8080, connected: true)
+        # Updates the listener information for the session.
+        #
+        # @param host [String] the host of the listener
+        # @param port [Integer] the port of the listener
+        # @param connected [Boolean] whether the listener is connected
+        # @return [void]
         def self.update_listener(host:, port:, connected:)
           return unless started?
 
@@ -182,9 +170,9 @@ module Lich
           upsert_current_session
         end
 
-        # Clears the listener information for the current session.
-        # @example Clearing the listener
-        #   clear_listener
+        # Clears the listener information for the session.
+        #
+        # @return [void]
         def self.clear_listener
           return unless started?
 
@@ -196,10 +184,9 @@ module Lich
           upsert_current_session
         end
 
-        # Retrieves the current payload for the session.
-        # @return [Hash] The current session payload.
-        # @example Getting the current payload
-        #   payload = current_payload
+        # Retrieves the current session payload.
+        #
+        # @return [Hash] the current session payload
         def self.current_payload
           @mutex.synchronize { build_current_payload }
         end
@@ -224,26 +211,47 @@ module Lich
         end
         private_class_method :upsert_current_session
 
+        # Checks if the session is currently running.
+        #
+        # @return [Boolean] true if the session is running, false otherwise
+        # @api private
         def self.running?
           @mutex.synchronize { @running }
         end
         private_class_method :running?
 
+        # Checks if the session has been started.
+        #
+        # @return [Boolean] true if the session has started, false otherwise
+        # @api private
         def self.started?
           @mutex.synchronize { @started }
         end
         private_class_method :started?
 
+        # Checks if the feature is enabled for the session.
+        #
+        # @return [Boolean] true if the feature is enabled, false otherwise
+        # @api private
         def self.feature_enabled?
           @mutex.synchronize { @feature_enabled }
         end
         private_class_method :feature_enabled?
 
+        # Checks if the registration is current based on the lifecycle generation.
+        #
+        # @param generation [Integer] the current lifecycle generation
+        # @return [Boolean] true if the registration is current, false otherwise
+        # @api private
         def self.registration_current?(generation)
           @mutex.synchronize { @started && @lifecycle_generation == generation }
         end
         private_class_method :registration_current?
 
+        # Builds the current session payload with relevant information.
+        #
+        # @return [Hash] the constructed payload for the current session
+        # @api private
         def self.build_current_payload
           {
             pid: Process.pid,
@@ -260,6 +268,10 @@ module Lich
         end
         private_class_method :build_current_payload
 
+        # Resolves the frontend information for the session.
+        #
+        # @return [String, nil] the frontend information if available, nil otherwise
+        # @api private
         def self.resolve_frontend
           return $frontend if defined?($frontend) && !$frontend.nil? && !$frontend.to_s.empty?
 
@@ -267,6 +279,10 @@ module Lich
         end
         private_class_method :resolve_frontend
 
+        # Resolves the game code for the session.
+        #
+        # @return [String, nil] the game code if available, nil otherwise
+        # @api private
         def self.resolve_game_code
           return XMLData.game if defined?(XMLData) && XMLData.respond_to?(:game) && !XMLData.game.to_s.empty?
 

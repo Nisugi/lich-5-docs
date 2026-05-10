@@ -1,41 +1,35 @@
 ## hot module reloading
-# Provides common functionality for the Lich project.
-# @example Including the Common module
-#   include Lich::Common
 module Lich
   module Common
-    # Handles hot module reloading functionality.
-    # @example Using the HMR module
-    #   Lich::Common::HMR.reload(/my_pattern/)
     module HMR
-      # Clears the gem load paths cache.
+      # Clears the gem cache.
+      #
       # @return [void]
       def self.clear_cache
         Gem.clear_paths
       end
 
-      # Sends a message to the appropriate output.
-      # @param message [String] The message to be sent.
+      # Sends a message to the console or responds if a response method is defined.
+      #
+      # @param message [String] the message to be displayed
       # @return [void]
-      # @note If the message contains HTML, it will be handled differently.
       def self.msg(message)
         return _respond message if defined?(:_respond) && message.include?("<b>")
         return respond message if defined?(:respond)
         puts message
       end
 
-      # Returns a list of loaded Ruby files.
-      # @return [Array<String>] An array of loaded Ruby file paths.
+      # Returns an array of loaded Ruby files.
+      #
+      # @return [Array<String>] an array of loaded Ruby file paths
       def self.loaded
         $LOADED_FEATURES.select { |path| path.end_with?(".rb") }
       end
 
-      # Reloads files matching the given pattern.
-      # @param pattern [Regexp] The regex pattern to match file paths.
+      # Reloads files matching the given pattern after clearing the cache.
+      #
+      # @param pattern [Regexp] the pattern to match file paths
       # @return [void]
-      # @raise [LoadError] If a file fails to load.
-      # @example Reloading files
-      #   Lich::Common::HMR.reload(/my_pattern/)
       def self.reload(pattern)
         self.clear_cache
         loaded_paths = self.loaded.grep(pattern)

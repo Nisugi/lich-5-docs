@@ -4,43 +4,43 @@ module Lich
   module Gemstone
     ##
     # Represents a society in the Lich game.
-    # This class provides methods to access society membership, status, rank, and tasks.
-    # @example Accessing society information
-    #   status = Lich::Gemstone::Society.status
+    #
+    # This class provides methods to access society-related information such as membership,
+    # status, rank, and tasks.
+    #
+    # @see Lich::Gemstone::Societies
     class Society
       ##
       # Retrieves the current membership status of the society.
-      # @return [String] The membership status.
+      # @return [String] the membership status
       def self.membership
         Infomon.get("society.status")
       end
 
       ##
       # Retrieves the current status of the society.
-      # @return [String] The current society status.
-      # @example Getting society status
-      #   status = Lich::Gemstone::Society.status
+      # @return [String] the society status
       def self.status
         self.membership
       end
 
       ##
       # Retrieves the current rank of the society.
-      # @return [String] The current society rank.
+      # @return [String] the society rank
       def self.rank
         Infomon.get("society.rank")
       end
 
       ##
-      # Retrieves the current task of the society.
-      # @return [String] The current society task.
+      # Retrieves the current task assigned to the society.
+      # @return [String] the society task
       def self.task
         XMLData.society_task
       end
 
       ##
-      # Serializes the society's membership and rank into an array.
-      # @return [Array] An array containing the membership status and rank.
+      # Serializes the current membership and rank of the society into an array.
+      # @return [Array<String>] an array containing the membership status and rank
       def self.serialize
         [self.membership, self.rank]
       end
@@ -50,18 +50,20 @@ module Lich
       ########################
 
       ##
-      # Retrieves the membership status of the society (deprecated).
-      # @deprecated Use Society.membership instead.
-      # @return [String] The membership status.
+      # Retrieves the current membership status of the society (deprecated).
+      # This method is deprecated in favor of {.membership}.
+      # @return [String] the membership status
+      # @deprecated Use {.membership} instead
       def self.member
         Lich.deprecated("Society.member", "Society.membership", caller[0], fe_log: false)
         self.membership
       end
 
       ##
-      # Retrieves the rank of the society (deprecated).
-      # @deprecated Use Society.rank instead.
-      # @return [String] The society rank.
+      # Retrieves the current rank of the society (deprecated).
+      # This method is deprecated in favor of {.rank}.
+      # @return [String] the society rank
+      # @deprecated Use {.rank} instead
       def self.step
         Lich.deprecated("Society.step", "Society.rank", caller[0], fe_log: false)
         self.rank
@@ -69,8 +71,9 @@ module Lich
 
       ##
       # Retrieves the favor of the Order of Voln (deprecated).
-      # @deprecated Use Society::OrderOfVoln.favor instead.
-      # @return [String] The favor of the Order of Voln.
+      # This method is deprecated in favor of {.OrderOfVoln.favor}.
+      # @return [String] the favor of the Order of Voln
+      # @deprecated Use {.OrderOfVoln.favor} instead
       def self.favor
         Lich.deprecated("Society.favor", "Society::OrderOfVoln.favor", caller[0], fe_log: false)
         # Infomon.get('resources.voln_favor')
@@ -78,10 +81,10 @@ module Lich
       end
 
       ##
-      # Looks up a name in the provided lookups.
-      # @param name [String] The name to look up.
-      # @param lookups [Array<Hash>] The array of lookup entries.
-      # @return [Hash, nil] The found entry or nil if not found.
+      # Looks up a name in the provided list of lookups.
+      # @param name [String] the name to look up
+      # @param lookups [Array<Hash>] the list of lookups to search through
+      # @return [Hash, nil] the found entry or nil if not found
       def self.lookup(name, lookups)
         normalized = Lich::Util.normalize_name(name)
 
@@ -94,10 +97,10 @@ module Lich
       end
 
       ##
-      # Resolves a value, calling it if it's a Proc.
-      # @param value [Object] The value to resolve.
-      # @param context [Object, nil] The context to pass to the Proc if applicable.
-      # @return [Object] The resolved value.
+      # Resolves a value, calling it if it is a callable object.
+      # @param value [Object] the value to resolve
+      # @param context [Object, nil] optional context for the callable
+      # @return [Object] the resolved value
       def self.resolve(value, context = nil)
         return value.call if value.respond_to?(:call) && value.arity == 0
         return value.call(context) if value.respond_to?(:call) && value.arity == 1
@@ -106,8 +109,9 @@ module Lich
 
       ##
       # Defines name methods on the target class based on provided data.
-      # @param target_class [Class] The class to define methods on.
-      # @param data [Hash] The data containing names for method definitions.
+      # @param target_class [Class] the class to define methods on
+      # @param data [Hash] the data containing names to define methods for
+      # @return [void]
       def self.define_name_methods(target_class, data)
         data.values.each do |entry|
           short_method = Lich::Util.normalize_name(entry[:short_name])
@@ -127,20 +131,14 @@ require_relative 'societies/guardians_of_sunfist.rb'
 require_relative 'societies/order_of_voln.rb'
 
 module Lich::Gemstone::Societies
-  # Retrieves the Order of Voln society.
-  # @return [Class] The OrderOfVoln class.
   def self.voln
     OrderOfVoln
   end
 
-  # Retrieves the Council of Light society.
-  # @return [Class] The CouncilOfLight class.
   def self.col
     CouncilOfLight
   end
 
-  # Retrieves the Guardians of Sunfist society.
-  # @return [Class] The GuardiansOfSunfist class.
   def self.sunfist
     GuardiansOfSunfist
   end

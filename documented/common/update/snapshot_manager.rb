@@ -10,13 +10,13 @@
 module Lich
   module Util
     module Update
-      # Manages snapshots and rollbacks of Lich core files.
-      # Provides functionality to create backups and revert to previous versions.
-      # @example Creating a snapshot
-      #   manager = Lich::Util::Update::SnapshotManager.new
-      #   manager.snapshot
+      # Manages snapshot and rollback functionality for Lich core files.
+      #
+      # This class provides methods to create timestamped backups of Lich core files
+      # and to revert to the most recent snapshot.
+      #
+      # @see Lich::Util::Update
       class SnapshotManager
-        # An array of core script filenames used in the Lich application.
         CORE_SCRIPTS = %w[
           alias.lic autostart.lic dependency.lic ewaggle.lic foreach.lic
           go2.lic infomon.lic jinx.lic lnet.lic log.lic logxml.lic
@@ -24,10 +24,10 @@ module Lich
         ].freeze
 
         # Creates a snapshot of the current Lich core files.
-        # This method backs up the current state of the Lich files to a timestamped directory.
+        #
+        # This method creates a timestamped backup of the core files and scripts.
+        #
         # @return [void]
-        # @example Taking a snapshot
-        #   manager.snapshot
         def snapshot
           respond
           respond 'Creating a snapshot of current Lich core files ONLY.'
@@ -57,10 +57,11 @@ module Lich
         end
 
         # Reverts Lich5 to the most recently installed version.
-        # This method restores files from the latest snapshot found in the backup directory.
+        #
+        # This method restores the Lich core files from the latest snapshot.
+        #
         # @return [void]
-        # @example Reverting to a previous version
-        #   manager.revert
+        # @api private
         def revert
           respond
           respond 'Reverting Lich5 to previously installed version.'

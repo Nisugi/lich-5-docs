@@ -5,15 +5,17 @@ require 'time'
 module Lich
   module InternalAPI
     module ActiveSessions
-      # Manages active sessions for the application.
+      # Manages active sessions for the Lich application.
+      #
       # This class provides methods to upsert, remove, and retrieve session data.
-      # @example Creating a new session registry
-      #   registry = Lich::InternalAPI::ActiveSessions::Registry.new
+      #
+      # @see Lich::InternalAPI::ActiveSessions
       class Registry
         # Initializes a new session registry.
-        # @param time_source [Proc] A callable that returns the current time in seconds.
-        # @param process_checker [Proc] A callable that checks if a process is alive.
-        # @return [Registry]
+        #
+        # @param time_source [Proc] a callable that returns the current time in seconds.
+        # @param process_checker [Proc] a callable that checks if a process is alive.
+        # @return [void]
         def initialize(time_source: -> { Time.now.to_i }, process_checker: self.class.method(:process_alive?))
           @time_source = time_source
           @process_checker = process_checker
@@ -22,11 +24,11 @@ module Lich
         end
 
         # Upserts a session with the given payload.
-        # This method will create a new session or update an existing one based on the provided PID.
-        # @param payload [Hash] The session data to upsert, including :pid and :started_at.
-        # @return [Hash] The session data after upserting.
-        # @example Upserting a session
-        #   registry.upsert(pid: 123, started_at: Time.now.to_i)
+        #
+        # This method updates an existing session or creates a new one if it doesn't exist.
+        #
+        # @param payload [Hash] the session data to upsert, including :pid and :started_at.
+        # @return [Hash] the session data after upserting.
         def upsert(payload)
           data = symbolize_keys(payload)
           pid = Integer(data.fetch(:pid))
@@ -47,20 +49,18 @@ module Lich
           session(pid)
         end
 
-        # Removes a session by its PID.
-        # @param pid [Integer] The process ID of the session to remove.
-        # @return [Boolean] True if the session was removed, false otherwise.
-        # @example Removing a session
-        #   registry.remove(123)
+        # Removes a session by its process ID.
+        #
+        # @param pid [Integer] the process ID of the session to remove.
+        # @return [Boolean] true if the session was removed, false otherwise.
         def remove(pid)
           @mutex.synchronize { !@sessions.delete(pid.to_i).nil? }
         end
 
-        # Retrieves a session by its PID.
-        # @param pid [Integer] The process ID of the session to retrieve.
-        # @return [Hash, nil] The session data if found, nil otherwise.
-        # @example Retrieving a session
-        #   session_data = registry.session(123)
+        # Retrieves a session by its process ID.
+        #
+        # @param pid [Integer] the process ID of the session to retrieve.
+        # @return [Hash, nil] the session data if found, nil otherwise.
         def session(pid)
           @mutex.synchronize do
             record = @sessions[pid.to_i]
@@ -69,10 +69,10 @@ module Lich
         end
 
         # Takes a snapshot of all active sessions.
+        #
         # This method returns a summary of all sessions, including their uptime and connection status.
-        # @return [Hash] A hash containing the snapshot of active sessions.
-        # @example Taking a snapshot of sessions
-        #   snapshot = registry.snapshot
+        #
+        # @return [Hash] a summary of active sessions.
         def snapshot
           sweep_dead_sessions!
           now = @time_source.call
@@ -93,6 +93,12 @@ module Lich
           }
         end
 
+        # Cleans up sessions that are no longer associated with alive processes.
+        #
+        # This method checks for dead sessions and removes them from the registry.
+        #
+        # @return [void]
+        # @api private
         def sweep_dead_sessions!
           dead_pids = @mutex.synchronize { @sessions.keys }.reject { |pid| @process_checker.call(pid) }
           return if dead_pids.empty?
@@ -103,10 +109,9 @@ module Lich
         end
 
         # Returns an empty snapshot of sessions with optional error information.
-        # @param error [String, nil] An optional error message to include in the snapshot.
-        # @return [Hash] A hash representing an empty session snapshot.
-        # @example Getting an empty snapshot
-        #   empty_snapshot = registry.empty_snapshot(error: "No sessions available")
+        #
+        # @param error [String, nil] an optional error message to include in the snapshot.
+        # @return [Hash] an empty session summary.
         def empty_snapshot(error: nil)
           {
             source: 'ActiveSessionsAPI',
@@ -118,6 +123,10 @@ module Lich
           }.compact
         end
 
+        # Checks if a process is alive based on its process ID.
+        #
+        # @param pid [Integer] the process ID to check.
+        # @return [Boolean] true if the process is alive, false otherwise.
         def self.process_alive?(pid)
           Process.kill(0, pid.to_i)
           true

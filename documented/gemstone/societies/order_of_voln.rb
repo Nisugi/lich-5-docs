@@ -3,9 +3,10 @@ module Lich
     module Societies
       ##
       # Represents the Order of Voln, a society in the Lich game.
+      #
       # This class provides methods to access and use various symbols associated with the Order.
-      # @example Accessing a symbol
-      #   symbol = OrderOfVoln["symbol_of_recognition"]
+      #
+      # @see Gemstone::Society
       class OrderOfVoln < Gemstone::Society
 
         ##
@@ -317,11 +318,12 @@ module Lich
         ]
 
         ##
-        # Retrieves the symbol metadata for a given symbol name.
-        # @param name [String] The name of the symbol to retrieve.
-        # @return [Hash, nil] The metadata hash for the symbol or nil if not found.
-        # @example Retrieving a symbol
-        #   symbol = OrderOfVoln["symbol_of_recognition"]
+        # Retrieves the metadata for a symbol by its name.
+        #
+        # @param name [String] the name of the symbol to retrieve
+        # @return [Hash, nil] the symbol's metadata or nil if not found
+        # @example
+        #   OrderOfVoln["symbol_of_recognition"] #=> metadata hash for "Symbol of Recognition"
         def self.[](name)
           lookup = Society.lookup(name, symbol_lookups)
           return nil unless lookup
@@ -341,20 +343,22 @@ module Lich
         end
 
         ##
-        # Returns an array of all symbols in the Order of Voln.
-        # @return [Array<Hash>] An array of metadata hashes for all symbols.
-        # @example Getting all symbols
-        #   symbols = OrderOfVoln.all
+        # Returns an array of all symbols in the Order of Voln with their metadata.
+        #
+        # @return [Array<Hash>] an array of metadata hashes for each symbol
+        # @example
+        #   OrderOfVoln.all #=> array of all symbol metadata
         def self.all
           @@voln_symbols.values.map { |entry| entry.transform_values { |v| Society.resolve(v, entry) } }
         end
 
         ##
         # Calculates the cost of using a symbol based on its cost modifier.
-        # @param cost_modifier [Float] The cost modifier for the symbol.
-        # @return [Integer, nil] The calculated cost or nil if the cost modifier is nil.
-        # @example Calculating cost
-        #   cost = OrderOfVoln.calculate_cost(0.20)
+        #
+        # @param cost_modifier [Float] the cost modifier for the symbol
+        # @return [Integer, nil] the calculated cost or nil if no cost modifier is provided
+        # @example
+        #   OrderOfVoln.calculate_cost(0.20) #=> calculated cost based on level
         def self.calculate_cost(cost_modifier)
           return nil if cost_modifier.nil?
 
@@ -363,8 +367,9 @@ module Lich
         end
 
         ##
-        # Provides a list of symbol lookups for the Order of Voln.
-        # @return [Array<Hash>] An array of hashes containing symbol metadata for lookups.
+        # Provides a list of all symbols with their lookup information.
+        #
+        # @return [Array<Hash>] an array of hashes containing symbol lookup information
         def self.symbol_lookups
           @@voln_symbols.map do |_, symbol|
             {
@@ -378,10 +383,9 @@ module Lich
 
         ##
         # Checks if a symbol is known by the member and if its rank is accessible.
-        # @param symbol_name [String] The name of the symbol to check.
-        # @return [Boolean] True if the symbol is known and accessible, false otherwise.
-        # @example Checking if a symbol is known
-        #   known = OrderOfVoln.known?("symbol_of_recognition")
+        #
+        # @param symbol_name [String] the name of the symbol to check
+        # @return [Boolean] true if the symbol is known and accessible, false otherwise
         def self.known?(symbol_name)
           return false unless member?
           symbol = self[symbol_name]
@@ -391,12 +395,11 @@ module Lich
         end
 
         ##
-        # Uses a symbol for the member, optionally targeting a specific entity.
-        # @param symbol_name [String] The name of the symbol to use.
-        # @param target [String, nil] The target for the symbol usage, if applicable.
+        # Uses a symbol, sending the appropriate command to the game.
+        #
+        # @param symbol_name [String] the name of the symbol to use
+        # @param target [String, nil] the target for the symbol's effect, if applicable
         # @return [void]
-        # @example Using a symbol
-        #   OrderOfVoln.use("symbol_of_blessing", "target_name")
         def self.use(symbol_name, target = nil)
           unless member?
             Lich::Messaging.msg("error", "Not a member of Order of Voln, can't use: #{symbol_name}")
@@ -421,10 +424,9 @@ module Lich
 
         ##
         # Checks if a symbol can be afforded by the member.
-        # @param symbol_name [String] The name of the symbol to check affordability for.
-        # @return [Boolean] True if the symbol is affordable, false otherwise.
-        # @example Checking affordability
-        #   affordable = OrderOfVoln.affordable?("symbol_of_recognition")
+        #
+        # @param symbol_name [String] the name of the symbol to check
+        # @return [Boolean] true if the symbol is affordable, false otherwise
         def self.affordable?(symbol_name)
           return false unless member?
           symbol = self[symbol_name]
@@ -438,10 +440,9 @@ module Lich
 
         ##
         # Checks if a symbol is available for use by the member.
-        # @param symbol_name [String] The name of the symbol to check availability for.
-        # @return [Boolean] True if the symbol is available, false otherwise.
-        # @example Checking availability
-        #   available = OrderOfVoln.available?("symbol_of_blessing")
+        #
+        # @param symbol_name [String] the name of the symbol to check
+        # @return [Boolean] true if the symbol is available, false otherwise
         def self.available?(symbol_name)
           return false unless member?
           self.known?(symbol_name) && self.affordable?(symbol_name)
@@ -449,14 +450,16 @@ module Lich
 
         ##
         # Retrieves the current favor of the member in the Order of Voln.
-        # @return [Integer] The current favor amount.
+        #
+        # @return [Integer] the current favor amount
         def self.favor
           Infomon.get('resources.voln_favor')
         end
 
         ##
         # Checks if the member is a master of the Order of Voln.
-        # @return [Boolean] True if the member is a master, false otherwise.
+        #
+        # @return [Boolean] true if the member is a master, false otherwise
         def self.master?
           return false unless member?
           Society.rank == 26 # is the rank of a Voln Master
@@ -464,23 +467,23 @@ module Lich
 
         ##
         # Retrieves the rank of the member in the Order of Voln.
-        # @return [Integer] The rank of the member, or 0 if not a member.
+        #
+        # @return [Integer] the member's rank, or 0 if not a member
         def self.rank
           return 0 unless member?
           Society.rank
         end
 
         ##
-        # Retrieves the current step (rank) of the member in the Order of Voln.
-        # @return [Integer] The current step of the member.
         def self.step
           self.rank
         end
 
         ##
-        # Checks if the member belongs to the Order of Voln.
-        # @param rank [Integer, nil] The rank to check against, or nil to check membership only.
-        # @return [Boolean] True if the member belongs to the Order, false otherwise.
+        # Checks if the specified rank is a member of the Order of Voln.
+        #
+        # @param rank [Integer, nil] the rank to check, or nil to check the current member
+        # @return [Boolean] true if the member is part of the Order, false otherwise
         def self.member?(rank = nil)
           return false unless Society.membership == "Order of Voln"
           rank.nil? || Society.rank == rank
@@ -488,6 +491,7 @@ module Lich
 
         ##
         # Dynamically defines singleton methods for each Order of Voln symbol.
+        #
         # Each method allows accessing the symbol's metadata by calling either its
         # short name or long name as a method. For example:
         #

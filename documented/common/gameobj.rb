@@ -4,10 +4,9 @@ require 'rexml/document'
 
 module Lich
   module Common
-    # Represents a game object in the Lich game system.
-    # This class manages various game entities and their states.
-    # @example Creating a new game object
-    #   obj = Lich::Common::GameObj.new(1, "goblin", "A small green goblin")
+    # Represents a game object in the world.
+    #
+    # @see Lich::Common::RoomObj for a specialized game object.
     class GameObj
       # ---------------------------------------------------------------------------
       # Class-level registries
@@ -78,12 +77,13 @@ module Lich
       attr_accessor :after_name
 
       # Initializes a new game object.
-      # @param id [String, Integer] The unique identifier for the object.
-      # @param noun [String] The noun representing the object.
-      # @param name [String] The display name of the object.
-      # @param before [String, nil] Optional prefix for the name.
-      # @param after [String, nil] Optional suffix for the name.
-      # @return [GameObj] The newly created game object.
+      #
+      # @param id [String] unique object ID
+      # @param noun [String] object noun (e.g., "sword", "backpack")
+      # @param name [String] object name
+      # @param before [String, nil] optional prefix for the name
+      # @param after [String, nil] optional suffix for the name
+      # @return [GameObj]
       def initialize(id, noun, name, before = nil, after = nil)
         @id          = id.is_a?(Integer) ? id.to_s : id
         @noun        = normalize_noun(noun, name)
@@ -92,8 +92,6 @@ module Lich
         @after_name  = after
       end
 
-      # Returns the noun of the game object as a string.
-      # @return [String] The noun of the game object.
       def to_s
         @noun
       end
@@ -117,7 +115,8 @@ module Lich
 
 
       # Retrieves the type of the game object based on its name.
-      # @return [String, nil] A comma-separated string of types or nil if none found.
+      #
+      # @return [String, nil] a comma-separated list of types or nil if none found.
       def type
         GameObj.load_data if @@type_data.empty?
         return @@type_cache[@name] if @@type_cache.key?(@name)
@@ -130,8 +129,9 @@ module Lich
         type.to_s.split(',').include?(type_to_check)
       end
 
-      # Checks if the game object is sellable and retrieves its sellable types.
-      # @return [String, nil] A comma-separated string of sellable types or nil if none found.
+      # Retrieves the sellable types of the game object.
+      #
+      # @return [String, nil] a comma-separated list of sellable types or nil if none found.
       def sellable
         GameObj.load_data if @@sellable_data.empty?
         matches = matching_data_keys(@@sellable_data)
@@ -155,33 +155,36 @@ module Lich
       end
 
 
-      # Creates a new NPC (non-player character) game object.
-      # @param id [String, Integer] The unique identifier for the NPC.
-      # @param noun [String] The noun representing the NPC.
-      # @param name [String] The display name of the NPC.
-      # @param status [String, nil] The initial status of the NPC.
-      # @return [GameObj] The newly created NPC object.
+      # Creates a new NPC game object and registers it.
+      #
+      # @param id [String] unique NPC ID
+      # @param noun [String] NPC noun
+      # @param name [String] NPC name
+      # @param status [String, nil] optional status of the NPC
+      # @return [GameObj] the created NPC object.
       def self.new_npc(id, noun, name, status = nil)
         obj = find_or_create(@@npcs, id, noun, name)
         @@npc_status[obj.id] = status
         obj
       end
 
-      # Creates a new loot game object.
-      # @param id [String, Integer] The unique identifier for the loot.
-      # @param noun [String] The noun representing the loot.
-      # @param name [String] The display name of the loot.
-      # @return [GameObj] The newly created loot object.
+      # Creates a new loot game object and registers it.
+      #
+      # @param id [String] unique loot ID
+      # @param noun [String] loot noun
+      # @param name [String] loot name
+      # @return [GameObj] the created loot object.
       def self.new_loot(id, noun, name)
         find_or_create(@@loot, id, noun, name)
       end
 
-      # Creates a new PC (player character) game object.
-      # @param id [String, Integer] The unique identifier for the PC.
-      # @param noun [String] The noun representing the PC.
-      # @param name [String] The display name of the PC.
-      # @param status [String, nil] The initial status of the PC.
-      # @return [GameObj] The newly created PC object.
+      # Creates a new player character game object and registers it.
+      #
+      # @param id [String] unique PC ID
+      # @param noun [String] PC noun
+      # @param name [String] PC name
+      # @param status [String, nil] optional status of the PC
+      # @return [GameObj] the created PC object.
       def self.new_pc(id, noun, name, status = nil)
         obj = find_or_create(@@pcs, id, noun, name)
         @@pc_status[obj.id] = status
@@ -235,12 +238,13 @@ module Lich
       #
       # Unlike +find_or_create+, this method does *not* push the object into any
       # Looks up an existing game object in the shared identity index by composite key (id, noun, name), or creates and indexes a new one.
-      # @param id [String, Integer] The unique identifier for the object.
-      # @param noun [String] The noun representing the object.
-      # @param name [String] The display name of the object.
-      # @param before [String, nil] Optional prefix for the name.
-      # @param after [String, nil] Optional suffix for the name.
-      # @return [GameObj] The existing or newly created game object.
+      #
+      # @param id [String] unique object ID
+      # @param noun [String] object noun
+      # @param name [String] object name
+      # @param before [String, nil] optional prefix for the name
+      # @param after [String, nil] optional suffix for the name
+      # @return [GameObj] the found or newly created game object.
       def self.index_or_create(id, noun, name, before = nil, after = nil)
         str_id = id.is_a?(Integer) ? id.to_s : id
         key    = "#{str_id}|#{noun}|#{name}"
@@ -401,9 +405,10 @@ module Lich
       # live in registries are always skipped. Entries accessed within the TTL
       # window are always skipped.
       # Removes entries from the shared identity index whose last_seen_at timestamp is older than ttl seconds ago and whose object is not currently present in any active registry.
-      # @param ttl [Integer] The time-to-live in seconds for entries in the index.
-      # @param verbose [Boolean] If true, outputs detailed information about the pruning process.
-      # @return [Hash] A summary of the pruning results.
+      #
+      # @param ttl [Integer] the time-to-live in seconds for entries in the index (default is 900 seconds)
+      # @param verbose [Boolean] whether to print detailed output during pruning
+      # @return [Hash] a summary of the pruning operation.
       def self.prune_index!(ttl: 900, verbose: false)
         require 'objspace'
         t_start   = Process.clock_gettime(Process::CLOCK_MONOTONIC)
@@ -479,8 +484,9 @@ module Lich
       end
 
       # Provides statistics about the current state of the index.
-      # @param verbose [Boolean] If true, outputs detailed information about the index statistics.
-      # @return [Hash] A hash containing various statistics about the index.
+      #
+      # @param verbose [Boolean] whether to print detailed output
+      # @return [Hash] a summary of index statistics.
       def self.index_stats(verbose: false)
         require 'objspace'
         return empty_index_stats if @@index.empty?
@@ -553,8 +559,9 @@ module Lich
 
 
       # Reloads the game object data from the specified file.
-      # @param filename [String, nil] The path to the data file. If nil, uses the default data file.
-      # @return [Boolean] True if the data was successfully reloaded, false otherwise.
+      #
+      # @param filename [String, nil] optional path to the data file (defaults to the primary data file)
+      # @return [Boolean] true if the reload was successful, false otherwise.
       def self.reload(filename = nil)
         load_data(filename)
       end
@@ -563,6 +570,10 @@ module Lich
         existing.is_a?(Regexp) ? Regexp.union(existing, new_value) : new_value
       end
 
+      # Loads game object data from the specified XML file.
+      #
+      # @param filename [String, nil] optional path to the data file (defaults to the primary data file)
+      # @return [Boolean] true if the load was successful, false otherwise.
       def self.load_data(filename = nil)
         primary = filename || File.join(DATA_DIR, 'gameobj-data.xml')
 

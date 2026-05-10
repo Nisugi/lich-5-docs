@@ -9,16 +9,17 @@ require_relative 'encryption_mode_change'
 module Lich
   module Common
     module GUI
-      # User Interface for managing accounts in the Lich application.
-      # Provides functionality to create, view, and modify accounts and characters.
-      # @example Creating a management window
-      #   Lich::Common::GUI::AccountManagerUI.create_management_window("/path/to/data")
+      # Provides a user interface for managing accounts.
+      #
+      # This class handles the creation and management of the account management window,
+      # including adding, removing, and displaying accounts and characters.
+      #
+      # @see Lich::Common::GUI for related GUI components.
       class AccountManagerUI
         # Creates and displays the account management window.
-        # @param data_dir [String] The directory where account data is stored.
+        #
+        # @param data_dir [String] the directory where account data is stored
         # @return [void]
-        # @example
-        #   Lich::Common::GUI::AccountManagerUI.create_management_window("/path/to/data")
         def self.create_management_window(data_dir)
           # Create instance with data directory
           manager = new(data_dir)
@@ -37,27 +38,25 @@ module Lich
         end
 
         # Sets a callback to be invoked when account data changes.
-        # @param callback [Proc] The callback to be invoked on data changes.
+        #
+        # @param callback [Proc] the callback to invoke on data change
         # @return [void]
-        # @example
-        #   ui.set_data_change_callback(->(type, data) { puts "Data changed: #{type}" })
         def set_data_change_callback(callback)
           @data_change_callback = callback
         end
 
-        # Registers the UI for notifications from the tab communicator.
-        # @param tab_communicator [Object] The communicator for tab notifications.
+        # Registers the instance for notifications from the tab communicator.
+        #
+        # @param tab_communicator [Object] the communicator for tab notifications
         # @return [void]
-        # @example
-        #   ui.register_for_notifications(tab_communicator)
         def register_for_notifications(tab_communicator)
           @tab_communicator = tab_communicator
           @accounts_store = nil # Will be set when accounts tab is created
         end
 
         # Registers a callback to handle incoming notifications.
+        #
         # @return [void]
-        # @note This method will not register if notifications are already registered or if the tab communicator is not set.
         def register_notification_callback
           return if @notifications_registered || !@tab_communicator
           return unless @notebook
@@ -90,10 +89,8 @@ module Lich
         end
 
         # Refreshes the display of accounts in the UI.
+        #
         # @return [void]
-        # @raise [StandardError] If an error occurs while refreshing the display.
-        # @example
-        #   ui.refresh_accounts_display
         def refresh_accounts_display
           return unless @accounts_store
 
@@ -109,11 +106,10 @@ module Lich
         end
 
         # Creates the accounts tab in the management window.
-        # @param notebook [Gtk::Notebook] The notebook to add the tab to.
-        # @param insert_at_position [Integer, nil] The position to insert the tab at, or nil to append.
+        #
+        # @param notebook [Gtk::Notebook] the notebook to add the tab to
+        # @param insert_at_position [Integer, nil] optional position to insert the tab
         # @return [void]
-        # @example
-        #   ui.create_accounts_tab(notebook)
         def create_accounts_tab(notebook, insert_at_position = nil)
           # Store notebook reference for use in callbacks
           @notebook = notebook
@@ -353,11 +349,10 @@ module Lich
           populate_accounts_view(accounts_store)
         end
 
-        # Creates the tab for adding a new character.
-        # @param notebook [Gtk::Notebook] The notebook to add the tab to.
+        # Creates the add character tab in the management window.
+        #
+        # @param notebook [Gtk::Notebook] the notebook to add the tab to
         # @return [void]
-        # @example
-        #   ui.create_add_character_tab(notebook)
         def create_add_character_tab(notebook)
           # Create tab content
           add_box = Gtk::Box.new(:vertical, 10)
@@ -466,11 +461,10 @@ module Lich
           populate_account_combo(account_combo)
         end
 
-        # Creates the tab for adding a new account.
-        # @param notebook [Gtk::Notebook] The notebook to add the tab to.
+        # Creates the add account tab in the management window.
+        #
+        # @param notebook [Gtk::Notebook] the notebook to add the tab to
         # @return [void]
-        # @example
-        #   ui.create_add_account_tab(notebook)
         def create_add_account_tab(notebook)
           # Create tab content
           add_account_box = Gtk::Box.new(:vertical, 10)
@@ -635,11 +629,10 @@ module Lich
           }
         end
 
-        # Creates the tab for managing encryption settings.
-        # @param notebook [Gtk::Notebook] The notebook to add the tab to.
+        # Creates the encryption management tab in the management window.
+        #
+        # @param notebook [Gtk::Notebook] the notebook to add the tab to
         # @return [void]
-        # @example
-        #   ui.create_encryption_management_tab(notebook)
         def create_encryption_management_tab(notebook)
           # Create encryption management content
           encryption_box = Gtk::Box.new(:vertical, 10)
@@ -757,6 +750,11 @@ module Lich
 
         private
 
+        # Notifies registered callbacks of data changes.
+        #
+        # @param change_type [Symbol] the type of change that occurred
+        # @param data [Hash] additional data related to the change
+        # @return [void]
         def notify_data_changed(change_type = :general, data = {})
           if @data_change_callback
             begin
@@ -767,6 +765,20 @@ module Lich
           end
         end
 
+        # Sets up event handlers for the add character tab.
+        #
+        # @param add_button [Gtk::Button] the button to add a character
+        # @param account_combo [Gtk::ComboBoxText] the combo box for account selection
+        # @param refresh_button [Gtk::Button] the button to refresh accounts
+        # @param char_name_entry [Gtk::Entry] the entry for character name
+        # @param game_combo [Gtk::ComboBoxText] the combo box for game selection
+        # @param stormfront_option [Gtk::RadioButton] the stormfront option
+        # @param wizard_option [Gtk::RadioButton] the wizard option
+        # @param avalon_option [Gtk::RadioButton] the avalon option
+        # @param custom_launch_entry [Gtk::Entry] the entry for custom launch options
+        # @param custom_launch_dir_entry [Gtk::Entry] the entry for custom launch directory
+        # @param notebook [Gtk::Notebook] the notebook to add the tab to
+        # @return [void]
         def setup_add_character_handlers(add_button, account_combo, refresh_button, char_name_entry, game_combo, _stormfront_option, wizard_option, avalon_option, custom_launch_entry, custom_launch_dir_entry, notebook)
           # Set up refresh button handler
           refresh_button.signal_connect('clicked') do
@@ -849,6 +861,12 @@ module Lich
           end
         end
 
+        # Sets up the handler for the favorites column in the accounts view.
+        #
+        # @param accounts_view [Gtk::TreeView] the tree view displaying accounts
+        # @param favorites_col [Gtk::TreeViewColumn] the favorites column
+        # @param data_dir [String] the directory where account data is stored
+        # @return [void]
         def setup_favorites_column_handler(accounts_view, favorites_col, data_dir)
           accounts_view.signal_connect('button-press-event') do |_widget, event|
             if event.button == 1 # Left click
@@ -891,6 +909,10 @@ module Lich
           end
         end
 
+        # Checks if an account already exists in the data store.
+        #
+        # @param username [String] the username to check
+        # @return [Boolean] true if the account exists, false otherwise
         def account_already_exists?(username)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(@data_dir)
           return false unless File.exist?(yaml_file)
@@ -906,6 +928,9 @@ module Lich
           end
         end
 
+        # Displays a dialog for selecting a frontend.
+        #
+        # @return [String, nil] the selected frontend or nil if cancelled
         def show_frontend_selection_dialog
           # Create dialog
           dialog = Gtk::Dialog.new(
@@ -966,6 +991,10 @@ module Lich
           selected_frontend
         end
 
+        # Sets up persistence for the sort state of the accounts view.
+        #
+        # @param store [Gtk::TreeStore] the store to persist sort state for
+        # @return [void]
         def setup_sort_state_persistence(store)
           # Load saved sort state
           sort_state = load_sort_state
@@ -1039,6 +1068,10 @@ module Lich
           end
         end
 
+        # Sets up sorting for the accounts view that is aware of account and character hierarchy.
+        #
+        # @param store [Gtk::TreeStore] the store to set up sorting for
+        # @return [void]
         def setup_account_aware_sorting(store)
           # Character column sorting (column 1)
           store.set_sort_func(1) do |model, a, b|
@@ -1222,6 +1255,9 @@ module Lich
           dialog.destroy
         end
 
+        # Displays the account management window.
+        #
+        # @return [void]
         def show_management_window
           @window = Gtk::Window.new(:toplevel)
           @window.title = "Account Management"

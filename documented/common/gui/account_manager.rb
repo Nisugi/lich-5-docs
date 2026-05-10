@@ -4,14 +4,13 @@ module Lich
     module GUI
       module AccountManager
         # Adds or updates an account with the given username and password.
-        # @param data_dir [String] The directory where account data is stored.
-        # @param username [String] The username for the account.
-        # @param password [String] The password for the account.
-        # @param characters [Array] An optional array of character data associated with the account.
+        #
+        # @param data_dir [String] the directory where account data is stored
+        # @param username [String] the username for the account
+        # @param password [String] the password for the account
+        # @param characters [Array<Hash>] optional list of character data associated with the account
         # @return [void]
-        # @raise [StandardError] If the master password is required but not found.
-        # @example Adding a new account
-        #   AccountManager.add_or_update_account("/path/to/data", "user1", "password123")
+        # @raise [StandardError] if master password is required but not found
         def self.add_or_update_account(data_dir, username, password, characters = [])
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -115,11 +114,10 @@ module Lich
         end
 
         # Removes an account with the given username.
-        # @param data_dir [String] The directory where account data is stored.
-        # @param username [String] The username of the account to remove.
-        # @return [Boolean] Returns true if the account was removed, false otherwise.
-        # @example Removing an account
-        #   AccountManager.remove_account("/path/to/data", "user1")
+        #
+        # @param data_dir [String] the directory where account data is stored
+        # @param username [String] the username of the account to remove
+        # @return [Boolean] true if the account was removed, false otherwise
         def self.remove_account(data_dir, username)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -147,12 +145,11 @@ module Lich
         end
 
         # Changes the password for the specified account.
-        # @param data_dir [String] The directory where account data is stored.
-        # @param username [String] The username of the account.
-        # @param new_password [String] The new password for the account.
+        #
+        # @param data_dir [String] the directory where account data is stored
+        # @param username [String] the username of the account
+        # @param new_password [String] the new password for the account
         # @return [void]
-        # @example Changing an account password
-        #   AccountManager.change_password("/path/to/data", "user1", "newpassword456")
         def self.change_password(data_dir, username, new_password)
           # Normalize username to UPCASE for consistent storage
           normalized_username = username.to_s.upcase
@@ -160,12 +157,11 @@ module Lich
         end
 
         # Adds a character to the specified account.
-        # @param data_dir [String] The directory where account data is stored.
-        # @param username [String] The username of the account.
-        # @param character_data [Hash] A hash containing character details.
-        # @return [Hash] A hash indicating success or failure of the operation.
-        # @example Adding a character
-        #   AccountManager.add_character("/path/to/data", "user1", { char_name: "Hero", game_code: "game1" })
+        #
+        # @param data_dir [String] the directory where account data is stored
+        # @param username [String] the username of the account
+        # @param character_data [Hash] the character data to add
+        # @return [Hash] result of the operation with success status and message
         def self.add_character(data_dir, username, character_data)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -229,14 +225,13 @@ module Lich
         end
 
         # Removes a character from the specified account.
-        # @param data_dir [String] The directory where account data is stored.
-        # @param username [String] The username of the account.
-        # @param char_name [String] The name of the character to remove.
-        # @param game_code [String] The game code associated with the character.
-        # @param frontend [String, nil] An optional frontend specification.
-        # @return [Boolean] Returns true if the character was removed, false otherwise.
-        # @example Removing a character
-        #   AccountManager.remove_character("/path/to/data", "user1", "Hero", "game1")
+        #
+        # @param data_dir [String] the directory where account data is stored
+        # @param username [String] the username of the account
+        # @param char_name [String] the name of the character to remove
+        # @param game_code [String] the game code associated with the character
+        # @param frontend [String, nil] optional frontend for precise matching
+        # @return [Boolean] true if the character was removed, false otherwise
         def self.remove_character(data_dir, username, char_name, game_code, frontend = nil)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -282,15 +277,14 @@ module Lich
           end
         end
 
-        # Updates the details of a character in the specified account.
-        # @param data_dir [String] The directory where account data is stored.
-        # @param username [String] The username of the account.
-        # @param char_name [String] The name of the character to update.
-        # @param game_code [String] The game code associated with the character.
-        # @param updates [Hash] A hash containing the updates to apply to the character.
-        # @return [Boolean] Returns true if the character was updated successfully, false otherwise.
-        # @example Updating a character
-        #   AccountManager.update_character("/path/to/data", "user1", "Hero", "game1", { game_name: "New Game" })
+        # Updates the properties of a character in the specified account.
+        #
+        # @param data_dir [String] the directory where account data is stored
+        # @param username [String] the username of the account
+        # @param char_name [String] the name of the character to update
+        # @param game_code [String] the game code associated with the character
+        # @param updates [Hash] the properties to update
+        # @return [Boolean] true if the character was updated, false otherwise
         def self.update_character(data_dir, username, char_name, game_code, updates)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -325,11 +319,10 @@ module Lich
         end
 
         # Converts authentication data into character format.
-        # @param auth_data [Array] The authentication data to convert.
-        # @param frontend [String] The frontend to associate with the characters.
-        # @return [Array] An array of character hashes.
-        # @example Converting auth data to characters
-        #   characters = AccountManager.convert_auth_data_to_characters(auth_data)
+        #
+        # @param auth_data [Array<Hash>] the authentication data to convert
+        # @param frontend [String] the frontend to associate with the characters
+        # @return [Array<Hash>] the converted character data
         def self.convert_auth_data_to_characters(auth_data, frontend = 'stormfront')
           characters = []
           return characters unless auth_data.is_a?(Array)
@@ -352,11 +345,10 @@ module Lich
           characters
         end
 
-        # Retrieves a list of account usernames.
-        # @param data_dir [String] The directory where account data is stored.
-        # @return [Array] An array of usernames.
-        # @example Getting account usernames
-        #   usernames = AccountManager.get_accounts("/path/to/data")
+        # Retrieves a list of account usernames from the data directory.
+        #
+        # @param data_dir [String] the directory where account data is stored
+        # @return [Array<String>] list of account usernames
         def self.get_accounts(data_dir)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -372,11 +364,10 @@ module Lich
           end
         end
 
-        # Retrieves all accounts with their associated characters.
-        # @param data_dir [String] The directory where account data is stored.
-        # @return [Hash] A hash of usernames and their associated characters.
-        # @example Getting all accounts
-        #   accounts = AccountManager.get_all_accounts("/path/to/data")
+        # Retrieves all accounts and their associated characters from the data directory.
+        #
+        # @param data_dir [String] the directory where account data is stored
+        # @return [Hash] a hash of usernames and their associated character data
         def self.get_all_accounts(data_dir)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -409,12 +400,11 @@ module Lich
           end
         end
 
-        # Retrieves characters for a specified account.
-        # @param data_dir [String] The directory where account data is stored.
-        # @param username [String] The username of the account.
-        # @return [Array] An array of character hashes.
-        # @example Getting characters for an account
-        #   characters = AccountManager.get_characters("/path/to/data", "user1")
+        # Retrieves characters associated with a specified account.
+        #
+        # @param data_dir [String] the directory where account data is stored
+        # @param username [String] the username of the account
+        # @return [Array<Hash>] list of characters associated with the account
         def self.get_characters(data_dir, username)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -443,10 +433,9 @@ module Lich
         end
 
         # Converts account data to a legacy format.
-        # @param data_dir [String] The directory where account data is stored.
-        # @return [Array] An array of legacy formatted data.
-        # @example Converting to legacy format
-        #   legacy_data = AccountManager.to_legacy_format("/path/to/data")
+        #
+        # @param data_dir [String] the directory where account data is stored
+        # @return [Array] the legacy formatted data
         def self.to_legacy_format(data_dir)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -462,6 +451,11 @@ module Lich
           end
         end
 
+        # Writes YAML data to a file with headers.
+        #
+        # @param yaml_file [String] the path to the YAML file
+        # @param yaml_data [Hash] the data to write to the YAML file
+        # @return [void]
         def self.write_yaml_with_headers(yaml_file, yaml_data)
           # Prepare YAML with password preservation (clones to avoid mutation)
           prepared_yaml = Lich::Common::Authentication::EntryStore.prepare_yaml_for_serialization(yaml_data)

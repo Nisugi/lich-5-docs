@@ -6,31 +6,28 @@ $room_count = 0
 $psinet = false
 $stormfront = true
 
-# Checks if the character can survive poison.
-# This method is deprecated and does not use XML for poison rate.
-# @return [Boolean] Always returns true.
-# @example
-#   survivepoison? #=> true
+# Checks if the character can survive poison effects.
+#
+# @return [Boolean] always returns true as there is no XML for poison rate.
+# @api private
 def survivepoison?
   echo 'survivepoison? called, but there is no XML for poison rate'
   return true
 end
 
-# Checks if the character can survive disease.
-# This method is deprecated and does not use XML for disease rate.
-# @return [Boolean] Always returns true.
-# @example
-#   survivedisease? #=> true
+# Checks if the character can survive disease effects.
+#
+# @return [Boolean] always returns true as there is no XML for disease rate.
+# @api private
 def survivedisease?
   echo 'survivepoison? called, but there is no XML for disease rate'
   return true
 end
 
 # Fetches loot from the game object and places it in the user's bag.
-# @param userbagchoice [String] The name of the bag to store loot in. Defaults to UserVars.lootsack.
-# @return [Boolean] Returns false if there is no loot to fetch, otherwise returns true.
-# @example
-#   fetchloot #=> true
+#
+# @param userbagchoice [String] the name of the bag to store loot in (default is UserVars.lootsack).
+# @return [Boolean] returns false if there is no loot to fetch, otherwise returns true.
 def fetchloot(userbagchoice = UserVars.lootsack)
   if GameObj.loot.empty?
     return false
@@ -59,10 +56,9 @@ def fetchloot(userbagchoice = UserVars.lootsack)
 end
 
 # Takes specified items and places them in the user's bag.
-# @param items [Array] The items to take.
+#
+# @param items [Array<String>] the items to take.
 # @return [void]
-# @example
-#   take("sword", "shield")
 def take(*items)
   items.flatten!
   if (righthand? && lefthand?)
@@ -80,30 +76,28 @@ def take(*items)
 end
 
 
-# Extends the String class with additional methods.
-# @example
-#   "example".to_a #=> ["example"]
+# Extends the String class to add additional utility methods.
+#
+# @see #to_a for converting a string to an array.
+# @see #silent for checking if the string is silent.
 class String
-  # Converts the string to an array containing the string itself.
-  # @return [Array] An array with the string as its only element.
-  # @example
-  #   "hello".to_a #=> ["hello"]
+  # Converts the string to an array containing itself.
+  #
+  # @return [Array<String>] an array with the string as its only element.
   def to_a # for compatibility with Ruby 1.8
     [self]
   end
 
-  # Returns false, indicating that the string is not silent.
-  # @return [Boolean] Always returns false.
-  # @example
-  #   "test".silent #=> false
+  # Checks if the string is considered silent.
+  #
+  # @return [Boolean] always returns false.
   def silent
     false
   end
 
   # Splits the string into a list based on specific delimiters.
-  # @return [Array] An array of non-empty trimmed strings.
-  # @example
-  #   "You see a cat and a dog".split_as_list #=> ["cat", "dog"]
+  #
+  # @return [Array<String>] an array of non-empty trimmed strings.
   def split_as_list
     string = self
     string.sub!(/^You (?:also see|notice) |^In the .+ you see /, ',')

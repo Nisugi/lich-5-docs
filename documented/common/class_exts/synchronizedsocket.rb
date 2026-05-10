@@ -2,37 +2,33 @@
 module Lich
   module Common
     # A class that wraps a socket to provide synchronized access.
-    # This is useful in multi-threaded environments where multiple threads
-    # may attempt to read from or write to the socket simultaneously.
-    # @example Creating a synchronized socket
-    #   socket = SynchronizedSocket.new(delegate_socket)
+    #
+    # This class ensures that all operations on the socket are thread-safe.
+    #
+    # @see Lich::Common
     class SynchronizedSocket
       # Initializes a new SynchronizedSocket instance.
-      # @param o [Object] The delegate object that the socket will wrap.
-      # @return [SynchronizedSocket]
+      # @param o [Object] the socket object to delegate to
+      # @return [void]
       def initialize(o)
         @delegate = o
         @mutex = Mutex.new
         # self # removed by robocop, needs broad testing
       end
 
-      # Writes a line to the socket.
-      # @param args [Array] The arguments to be written to the socket.
-      # @param block [Proc] An optional block to be executed.
-      # @return [nil]
-      # @example Writing to the socket
-      #   socket.puts("Hello, World!")
+      # Writes a line to the socket, followed by a newline.
+      # @param args [Array] the arguments to write to the socket
+      # @param block [Proc] an optional block to be executed
+      # @return [void]
       def puts(*args, &block)
         @mutex.synchronize {
           @delegate.puts(*args, &block)
         }
       end
 
-      # Conditionally writes a line to the socket based on the given block.
-      # @param args [Array] The arguments to be written to the socket if the block returns true.
-      # @return [Boolean] Returns true if the line was written, false otherwise.
-      # @example Conditionally writing to the socket
-      #   socket.puts_if { some_condition }
+      # Conditionally writes a line to the socket if the block returns true.
+      # @param args [Array] the arguments to write to the socket
+      # @return [Boolean] true if the line was written, false otherwise
       def puts_if(*args)
         @mutex.synchronize {
           if yield
@@ -45,11 +41,9 @@ module Lich
       end
 
       # Writes data to the socket.
-      # @param args [Array] The data to be written to the socket.
-      # @param block [Proc] An optional block to be executed.
-      # @return [nil]
-      # @example Writing data to the socket
-      #   socket.write("Data to send")
+      # @param args [Array] the arguments to write to the socket
+      # @param block [Proc] an optional block to be executed
+      # @return [void]
       def write(*args, &block)
         @mutex.synchronize {
           @delegate.write(*args, &block)
@@ -57,11 +51,10 @@ module Lich
       end
 
       # Handles calls to methods that are not defined in this class.
-      # This delegates the call to the wrapped delegate object.
-      # @param method [Symbol] The name of the method being called.
-      # @param args [Array] The arguments to pass to the method.
-      # @param block [Proc] An optional block to be executed.
-      # @return [Object] The result of the method call on the delegate.
+      # @param method [Symbol] the name of the method being called
+      # @param args [Array] the arguments passed to the method
+      # @param block [Proc] an optional block to be executed
+      # @return [Object] the result of the method call on the delegate
       def method_missing(method, *args, &block)
         @delegate.__send__ method, *args, &block
       end

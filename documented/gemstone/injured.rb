@@ -1,14 +1,11 @@
 
 module Lich
   module Gemstone
-    # Represents the Injured status of a character in the Lich game.
-    # This class handles the management of injuries and their effects on character abilities.
-    # @example Creating an instance of Injured
-    #   injured_status = Lich::Gemstone::Injured
+    # Represents the status of an injured character in the game.
+    #
+    # @see Gemstone::CharacterStatus
     class Injured < Gemstone::CharacterStatus
       class << self
-        # A constant that defines groups of body parts for injury management.
-        # Each group contains symbols representing the body parts.
         BODY_PART_GROUPS = {
           eyes: %i[leftEye rightEye],
           arms: %i[leftArm rightArm],
@@ -24,11 +21,8 @@ module Lich
         @scars_cache = nil
         @cache_mutex = Mutex.new
 
-        # Retrieves injury data, utilizing caching for efficiency.
-        # @return [Array] An array containing wounds and scars data.
-        # @note This method uses a mutex to ensure thread safety when accessing cached data.
-        # @example
-        #   wounds, scars = get_injury_data
+        # Retrieves injury data, utilizing cached values if available.
+        # @return [[Array<Wound>, Array<Scar>]] the cached wounds and scars data
         def get_injury_data
           current_key = XMLData.injuries
 
@@ -57,13 +51,11 @@ module Lich
           end
         end
 
-        # Calculates the effective injury from wounds and scars for a given body part.
-        # @param body_part [Symbol] The body part to check for injuries.
-        # @param wounds_hash [Hash] A hash containing wound data.
-        # @param scars_hash [Hash] A hash containing scar data.
-        # @return [Integer] The maximum effective injury value.
-        # @example
-        #   effective_injury = effective_injury_from_hashes(:leftArm, wounds_hash, scars_hash)
+        # Calculates the effective injury for a given body part based on wounds and scars.
+        # @param body_part [Symbol] the body part to check (e.g., :leftArm)
+        # @param wounds_hash [Hash] a hash mapping body parts to their wound counts
+        # @param scars_hash [Hash] a hash mapping body parts to their scar counts
+        # @return [Integer] the effective injury value
         def effective_injury_from_hashes(body_part, wounds_hash, scars_hash)
           scar = scars_hash[body_part.to_s] || 0
           wound = wounds_hash[body_part.to_s] || 0
@@ -72,28 +64,24 @@ module Lich
           [wound, effective_scar].max
         end
 
-        # Checks if there are injuries at a specific rank for given body parts.
-        # @param rank [Integer] The rank of injury to check for.
-        # @param wounds_hash [Hash] A hash containing wound data.
-        # @param scars_hash [Hash] A hash containing scar data.
-        # @param parts [Array<Symbol>] The body parts to check.
-        # @return [Boolean] True if any specified body part has an injury at the given rank.
-        # @example
-        #   has_injury = injuries_at_rank?(2, wounds_hash, scars_hash, :leftArm, :rightArm)
+        # Checks if there are injuries at a specific rank for the given body parts.
+        # @param rank [Integer] the injury rank to check against
+        # @param wounds_hash [Hash] a hash mapping body parts to their wound counts
+        # @param scars_hash [Hash] a hash mapping body parts to their scar counts
+        # @param parts [Array<Symbol>] the body parts to check
+        # @return [Boolean] true if any specified body part has an injury at the given rank
         def injuries_at_rank?(rank, wounds_hash, scars_hash, *parts)
           parts.flatten.any? do |part|
             effective_injury_from_hashes(part, wounds_hash, scars_hash) == rank
           end
         end
 
-        # Checks if there are injuries at or above a specific rank for given body parts.
-        # @param rank [Integer] The rank of injury to check for.
-        # @param wounds_hash [Hash] A hash containing wound data.
-        # @param scars_hash [Hash] A hash containing scar data.
-        # @param parts [Array<Symbol>] The body parts to check.
-        # @return [Boolean] True if any specified body part has an injury at or above the given rank.
-        # @example
-        #   has_injury = injuries_at_or_above_rank?(2, wounds_hash, scars_hash, :leftArm, :rightArm)
+        # Checks if there are injuries at or above a specific rank for the given body parts.
+        # @param rank [Integer] the injury rank to check against
+        # @param wounds_hash [Hash] a hash mapping body parts to their wound counts
+        # @param scars_hash [Hash] a hash mapping body parts to their scar counts
+        # @param parts [Array<Symbol>] the body parts to check
+        # @return [Boolean] true if any specified body part has an injury at or above the given rank
         def injuries_at_or_above_rank?(rank, wounds_hash, scars_hash, *parts)
           parts.flatten.any? do |part|
             effective_injury_from_hashes(part, wounds_hash, scars_hash) >= rank
@@ -101,17 +89,13 @@ module Lich
         end
 
         # Determines if the character can bypass injuries based on active effects.
-        # @return [Boolean] True if the character can bypass injuries.
-        # @example
-        #   can_bypass = bypasses_injuries?
+        # @return [Boolean] true if the character can bypass injuries
         def bypasses_injuries?
           Effects::Buffs.active?("Sigil of Determination")
         end
 
         # Checks if the character is able to cast spells based on their injury status.
-        # @return [Boolean] True if the character can cast spells.
-        # @example
-        #   can_cast = able_to_cast?
+        # @return [Boolean] true if the character can cast spells
         def able_to_cast?
           fix_injury_mode("both")
 
@@ -149,9 +133,7 @@ module Lich
         end
 
         # Checks if the character is able to sneak based on their injury status.
-        # @return [Boolean] True if the character can sneak.
-        # @example
-        #   can_sneak = able_to_sneak?
+        # @return [Boolean] true if the character can sneak
         def able_to_sneak?
           fix_injury_mode("both")
 
@@ -171,9 +153,7 @@ module Lich
         end
 
         # Checks if the character is able to search based on their injury status.
-        # @return [Boolean] True if the character can search.
-        # @example
-        #   can_search = able_to_search?
+        # @return [Boolean] true if the character can search
         def able_to_search?
           fix_injury_mode("both")
 
@@ -192,9 +172,7 @@ module Lich
         end
 
         # Checks if the character is able to use ranged weapons based on their injury status.
-        # @return [Boolean] True if the character can use ranged weapons.
-        # @example
-        #   can_use_ranged = able_to_use_ranged?
+        # @return [Boolean] true if the character can use ranged weapons
         def able_to_use_ranged?
           fix_injury_mode("both")
 

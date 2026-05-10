@@ -25,21 +25,14 @@
 =end
 
 module Lich
-  # Module for DragonRealms experience monitoring
-  # Provides functionality to track and report experience gains.
-  # @example Including the module
-  #   include Lich::DragonRealms::DRExpMonitor
+  # Provides functionality for monitoring experience gains in DragonRealms.
+  #
+  # @see Lich::DragonRealms::DRExpMonitor
   module DragonRealms
-    # Module for monitoring experience gains in DragonRealms
-    # Provides methods to start, stop, and report experience gains.
-    # @example Starting the monitor
-    #   DRExpMonitor.start
     module DRExpMonitor
-      # Maximum SQLite retry attempts before giving up (prevents infinite loops)
       # Maximum SQLite retry attempts before giving up (prevents infinite loops)
       MAX_SQLITE_RETRIES = 10
 
-      # Stricter boolean matching pattern - anchored to avoid partial matches
       # Stricter boolean matching pattern - anchored to avoid partial matches
       BOOLEAN_TRUE_PATTERN = /\A(on|true|yes)\z/i.freeze
 
@@ -49,11 +42,9 @@ module Lich
       @@inline_display = nil # Lazy-loaded from DB, defaults to true
       @@mutex = Mutex.new # Thread safety for start/stop operations
 
-      # Starts the background experience gain reporter
+      # Starts the background experience gain reporter.
       # @return [void]
-      # @raise [RuntimeError] if exp-monitor.lic script is running
-      # @example Starting the reporter
-      #   DRExpMonitor.start
+      # @note This method will not start if the exp-monitor.lic script is running.
       def self.start
         @@mutex.synchronize do
           if @@running
@@ -91,11 +82,9 @@ module Lich
         end
       end
 
-      # Stops the background experience gain reporter
+      # Stops the background experience gain reporter.
       # @return [void]
-      # @raise [RuntimeError] if the reporter is already inactive
-      # @example Stopping the reporter
-      #   DRExpMonitor.stop
+      # @note This method will do nothing if the reporter is not running.
       def self.stop
         @@mutex.synchronize do
           unless @@running
@@ -109,18 +98,14 @@ module Lich
         end
       end
 
-      # Checks if the experience gain reporter is currently running
-      # @return [Boolean] true if the reporter is active, false otherwise
-      # @example Checking if the reporter is active
-      #   DRExpMonitor.active?
+      # Checks if the experience gain reporter is currently running.
+      # @return [Boolean] true if the reporter is active, false otherwise.
       def self.active?
         @@running
       end
 
-      # Resets the state of the experience monitor
+      # Resets the state of the experience monitor.
       # @return [void]
-      # @example Resetting the monitor
-      #   DRExpMonitor.reset!
       def self.reset!
         @@mutex.synchronize do
           @@inline_display = nil
@@ -129,10 +114,8 @@ module Lich
         end
       end
 
-      # Checks if inline experience display is enabled
-      # @return [Boolean] true if inline display is enabled, false otherwise
-      # @example Checking inline display status
-      #   DRExpMonitor.inline_display?
+      # Checks if inline experience display is enabled.
+      # @return [Boolean] true if inline display is enabled, false otherwise.
       def self.inline_display?
         if @@inline_display.nil?
           retries = 0
@@ -156,11 +139,9 @@ module Lich
         @@inline_display
       end
 
-      # Enables or disables inline experience display
-      # @param value [Boolean] true to enable, false to disable
+      # Enables or disables inline experience display.
+      # @param value [Boolean] true to enable, false to disable.
       # @return [void]
-      # @example Enabling inline display
-      #   DRExpMonitor.inline_display = true
       def self.inline_display=(value)
         @@inline_display = BOOLEAN_TRUE_PATTERN.match?(value.to_s)
         retries = 0
@@ -177,12 +158,10 @@ module Lich
         end
       end
 
-      # Formats the BRIEFEXP ON line with gained experience
-      # @param line [String] The line to format
-      # @param skill [Symbol] The skill for which experience is gained
-      # @return [String] The formatted line
-      # @example Formatting BRIEFEXP ON line
-      #   formatted_line = DRExpMonitor.format_briefexp_on(line, :skill_name)
+      # Formats the BRIEFEXP ON line with gained experience.
+      # @param line [String] the line to format.
+      # @param skill [String] the skill for which experience is gained.
+      # @return [String] the formatted line.
       def self.format_briefexp_on(line, skill)
         return line unless @@inline_display
 
@@ -190,13 +169,11 @@ module Lich
         line.sub(%r{(/34\])}, "\\1 #{format('%0.2f', gained)}")
       end
 
-      # Formats the BRIEFEXP OFF line with gained experience
-      # @param line [String] The line to format
-      # @param skill [Symbol] The skill for which experience is gained
-      # @param rate_word [String] The rate word to format
-      # @return [String] The formatted line
-      # @example Formatting BRIEFEXP OFF line
-      #   formatted_line = DRExpMonitor.format_briefexp_off(line, :skill_name, "rate")
+      # Formats the BRIEFEXP OFF line with gained experience.
+      # @param line [String] the line to format.
+      # @param skill [String] the skill for which experience is gained.
+      # @param rate_word [String] the word representing the rate of experience gain.
+      # @return [String] the formatted line.
       def self.format_briefexp_off(line, skill, rate_word)
         return line unless @@inline_display
 
@@ -205,11 +182,9 @@ module Lich
         line.sub(/(%\s+)(#{Regexp.escape(rate_word)})/, "\\1#{padded_rate} #{format('%0.2f', gained)}")
       end
 
-      # Formats the gains from an array of skill gains
-      # @param gains_array [Array<Hash>] An array of hashes containing skill gain information
-      # @return [Array<String>] An array of formatted skill gain strings
-      # @example Formatting gains
-      #   formatted_gains = DRExpMonitor.format_gains(gains_array)
+      # Aggregates and formats multiple experience gain entries.
+      # @param gains_array [Array<Hash>] array of gain entries, each containing :skill and :change.
+      # @return [Array<String>] formatted strings representing skill gains.
       def self.format_gains(gains_array)
         # Aggregate multiple pulses of same skill
         aggregated = gains_array.reduce(Hash.new(0)) do |result, gain|
@@ -221,10 +196,8 @@ module Lich
         aggregated.keys.sort.map { |skill| "#{skill}(+#{aggregated[skill]})" }
       end
 
-      # Reports the skill gains to the messaging system
+      # Reports the skill gains to the messaging system.
       # @return [void]
-      # @example Reporting skill gains
-      #   DRExpMonitor.report_skill_gains
       def self.report_skill_gains
         # Drain the gained_skills array
         new_skills = DRSkill.gained_skills.shift(DRSkill.gained_skills.size)

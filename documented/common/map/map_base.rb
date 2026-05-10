@@ -2,36 +2,27 @@
 
 module Lich
   module Common
-    # Indicates whether core map overrides are enabled
     CORE_MAP_OVERRIDES = true
 
-    # A class representing a minimum heap data structure.
-    # Provides methods to push and pop elements based on priority.
-    # @example Creating a MinHeap and using it
-    #   heap = MinHeap.new
-    #   heap.push(1, "low priority")
-    #   heap.push(0, "high priority")
-    #   heap.pop # => [0, "high priority"]
+    # A minimum heap implementation.
+    #
+    # This class provides methods to manage a priority queue where the smallest element is always at the top.
     class MinHeap
       def initialize
         @heap = []
       end
 
-      # Pushes a value onto the heap with a given priority.
-      # @param priority [Integer] The priority of the value to be pushed.
-      # @param value [Object] The value to be pushed onto the heap.
+      # Adds a value with a given priority to the heap.
+      # @param priority [Integer] the priority of the value to be added
+      # @param value [Object] the value to be added to the heap
       # @return [void]
-      # @example
-      #   heap.push(1, "low priority")
       def push(priority, value)
         @heap << [priority, value]
         bubble_up(@heap.size - 1)
       end
 
-      # Pops the minimum value from the heap.
-      # @return [Array, nil] The minimum value and its priority, or nil if the heap is empty.
-      # @example
-      #   heap.pop # => [0, "high priority"]
+      # Removes and returns the smallest value from the heap.
+      # @return [Array<Integer, Object>, nil] the smallest value and its priority, or nil if the heap is empty
       def pop
         return nil if @heap.empty?
 
@@ -42,9 +33,7 @@ module Lich
       end
 
       # Checks if the heap is empty.
-      # @return [Boolean] True if the heap is empty, false otherwise.
-      # @example
-      #   heap.empty? # => false
+      # @return [Boolean] true if the heap is empty, false otherwise
       def empty?
         @heap.empty?
       end
@@ -86,11 +75,8 @@ module Lich
     end
 
     # A module that provides map-related functionality.
-    # This module can be included in classes to add map capabilities.
-    # @example Including MapBase in a class
-    #   class MyMap
-    #     include MapBase
-    #   end
+    #
+    # This module is intended to be included in classes that manage map data.
     module MapBase
       def self.included(base)
         base.extend(ClassMethods)
@@ -98,21 +84,17 @@ module Lich
       end
 
       module ClassMethods
-        # Retrieves the next available ID for a map entry.
-        # @return [Integer] The next available ID.
-        # @example
-        #   free_id = MyMap.get_free_id
+        # Retrieves the next available ID for a new map entry.
+        # @return [Integer] the next available ID
         def get_free_id
           self.load unless loaded?
           list.compact.max_by(&:id).id + 1
         end
 
         # Estimates the time required to traverse a given array of rooms.
-        # @param array [Array] An array of room identifiers.
-        # @return [Float] The estimated time to traverse the rooms.
-        # @raise [Exception] If the provided array is not an Array.
-        # @example
-        #   time = MyMap.estimate_time(["room1", "room2"])
+        # @param array [Array<String>] an array of room identifiers
+        # @return [Float] the estimated time to traverse the rooms
+        # @raise Exception.exception if the input is not an array
         def estimate_time(array)
           self.load unless loaded?
           unless array.is_a?(Array)
@@ -143,12 +125,10 @@ module Lich
           end
         end
 
-        # Finds the path from a source to a destination room.
-        # @param source [Object] The source room or identifier.
-        # @param destination [Object] The destination room or identifier.
-        # @return [Array, nil] An array representing the path, or nil if no path is found.
-        # @example
-        #   path = MyMap.findpath(source_room, destination_room)
+        # Finds the path from a source room to a destination room.
+        # @param source [String, self] the source room identifier or an instance of the class
+        # @param destination [String] the destination room identifier
+        # @return [Array<Integer>, nil] the path of room identifiers, or nil if no path exists
         def findpath(source, destination)
           if source.is_a?(self)
             source.path_to(destination)
@@ -162,29 +142,16 @@ module Lich
 
         # Reloads the map data from the source.
         # @return [void]
-        # @example
-        #   MyMap.reload
         def reload
           clear
           load
         end
 
-        # Adds a unique identifier to the list of IDs for a given UID.
-        # @param uid [String] The unique identifier.
-        # @param id [Integer] The ID to associate with the UID.
-        # @return [void]
-        # @example
-        #   MyMap.uids_add("user1", 42)
         def uids_add(uid, id)
           uids[uid] ||= []
           uids[uid] << id unless uids[uid].include?(id)
         end
 
-        # Retrieves the list of IDs associated with a given UID.
-        # @param uid [String] The unique identifier.
-        # @return [Array] An array of IDs associated with the UID.
-        # @example
-        #   ids = MyMap.ids_from_uid("user1")
         def ids_from_uid(uid)
           uids[uid] || []
         end
@@ -194,11 +161,9 @@ module Lich
           list.sort_by(&:id).to_json(args)
         end
 
-        # Saves the map data to a JSON file.
-        # @param filename [String, nil] The name of the file to save to (optional).
+        # Saves the current map data to a JSON file.
+        # @param filename [String, nil] the name of the file to save to, or nil to use a default name
         # @return [void]
-        # @example
-        #   MyMap.save_json("map.json")
         def save_json(filename = nil)
           filename ||= File.join(DATA_DIR, XMLData.game, "map-#{Time.now.to_i}.json")
           if File.exist?(filename)
@@ -222,12 +187,10 @@ module Lich
 
         alias_method :save, :save_json
 
-        # Loads map data from a .dat file.
-        # @param filename [String, nil] The name of the file to load from (optional).
-        # @return [Boolean] True if loading was successful, false otherwise.
-        # @raise [StandardError] If an error occurs during loading.
-        # @example
-        #   success = MyMap.load_dat("map.dat")
+        # Loads map data from a .dat file format (deprecated).
+        # @param filename [String, nil] the name of the file to load, or nil to load the latest file
+        # @return [Boolean] true if loading was successful, false otherwise
+        # @deprecated Use {.load_json} instead.
         def load_dat(filename = nil)
           respond '--- WARNING: Map.load_dat (Marshal .dat format) is deprecated. Use Map.load_json instead.'
           synchronize_load do
@@ -270,8 +233,6 @@ module Lich
 
         # Applies overrides for wayto settings based on user preferences.
         # @return [void]
-        # @example
-        #   MyMap.apply_wayto_overrides
         def apply_wayto_overrides
           self.load unless loaded?
           settings = get_settings
@@ -306,56 +267,35 @@ module Lich
         end
       end
 
+      # Instance methods for map objects.
       module InstanceMethods
-        # Converts the map instance to an integer ID.
-        # @return [Integer] The ID of the map instance.
-        # @example
-        #   id = map_instance.to_i
         def to_i
           @id
         end
 
-        # Checks if the map instance is outside.
-        # @return [Boolean] True if the instance is outside, false otherwise.
-        # @example
-        #   is_outside = map_instance.outside?
         def outside?
           return false if @paths.nil? || @paths.empty?
 
           @paths.last =~ /^Obvious paths:/ ? true : false
         end
 
-        # Checks if the map instance is inside.
-        # @return [Boolean] True if the instance is inside, false otherwise.
-        # @example
-        #   is_inside = map_instance.inside?
         def inside?
           !outside?
         end
 
-        # Returns a string representation of the map instance.
-        # @return [String] The string representation of the instance.
-        # @example
-        #   puts map_instance.inspect
         def inspect
           instance_variables.collect do |var|
             "#{var}=#{instance_variable_get(var).inspect}"
           end.join("\n")
         end
 
-        # Returns additional fields for JSON representation.
-        # @return [Hash] A hash of extra fields.
-        # @example
-        #   extra_fields = map_instance.json_extra_fields
         def json_extra_fields
           {}
         end
 
-        # Converts the map instance to JSON format.
-        # @param args [Array] Additional arguments for JSON generation.
-        # @return [String] The JSON representation of the map instance.
-        # @example
-        #   json_data = map_instance.to_json
+        # Converts the map object to a JSON representation.
+        # @param args [Array] optional arguments for JSON generation
+        # @return [String] the JSON representation of the map object
         def to_json(*_args)
           mapjson = {
             id: @id,
@@ -379,12 +319,9 @@ module Lich
           JSON.pretty_generate(mapjson)
         end
 
-        # Performs Dijkstra's algorithm to find the shortest path to a destination.
-        # @param destination [Object, nil] The destination room or identifier (optional).
-        # @return [Array, nil] An array containing the previous nodes and shortest distances, or nil on error.
-        # @raise [StandardError] If an error occurs during processing.
-        # @example
-        #   path = map_instance.dijkstra(destination_room)
+        # Computes the shortest path to a destination using Dijkstra's algorithm.
+        # @param destination [Integer, nil] the destination room identifier, or nil for all reachable rooms
+        # @return [Array<Array<Integer>, Array<Float>>, nil] the previous room identifiers and shortest distances, or nil on error
         def dijkstra(destination = nil)
           self.class.load unless self.class.loaded?
           source = @id
@@ -453,10 +390,8 @@ module Lich
         end
 
         # Finds the path to a specified destination room.
-        # @param destination [Object] The destination room or identifier.
-        # @return [Array, nil] An array representing the path, or nil if no path is found.
-        # @example
-        #   path = map_instance.path_to(destination_room)
+        # @param destination [Integer] the destination room identifier
+        # @return [Array<Integer>, nil] the path of room identifiers, or nil if no path exists
         def path_to(destination)
           self.class.load unless self.class.loaded?
           destination = destination.to_i
@@ -469,10 +404,8 @@ module Lich
         end
 
         # Finds the nearest room with a specified tag.
-        # @param tag_name [String] The name of the tag to search for.
-        # @return [Integer, nil] The ID of the nearest room with the tag, or nil if none found.
-        # @example
-        #   nearest_room_id = map_instance.find_nearest_by_tag("treasure")
+        # @param tag_name [String] the tag to search for
+        # @return [Integer] the ID of the nearest room with the specified tag
         def find_nearest_by_tag(tag_name)
           target_list = []
           self.class.list.each { |room| target_list.push(room.id) if room.tags.include?(tag_name) }
@@ -486,10 +419,8 @@ module Lich
         end
 
         # Finds all nearest rooms with a specified tag.
-        # @param tag_name [String] The name of the tag to search for.
-        # @return [Array] An array of IDs of the nearest rooms with the tag.
-        # @example
-        #   nearest_rooms = map_instance.find_all_nearest_by_tag("treasure")
+        # @param tag_name [String] the tag to search for
+        # @return [Array<Integer>] an array of IDs of the nearest rooms with the specified tag
         def find_all_nearest_by_tag(tag_name)
           target_list = []
           self.class.list.each { |room| target_list.push(room.id) if room.tags.include?(tag_name) }
@@ -499,10 +430,8 @@ module Lich
         end
 
         # Finds the nearest room from a list of target rooms.
-        # @param target_list [Array] An array of room identifiers to search from.
-        # @return [Integer, nil] The ID of the nearest room, or nil if none found.
-        # @example
-        #   nearest_room_id = map_instance.find_nearest([1, 2, 3])
+        # @param target_list [Array<Integer>] an array of room IDs to search from
+        # @return [Integer] the ID of the nearest room
         def find_nearest(target_list)
           target_list = target_list.collect(&:to_i)
           if target_list.include?(@id)
@@ -514,56 +443,42 @@ module Lich
           end
         end
 
-        # Returns the description of the map instance.
-        # @return [String] The description of the map.
-        # @example
-        #   description = map_instance.desc
+        # Returns the description of the map room.
+        # @return [String] the description of the room
         def desc
           @description
         end
 
         # Returns the name of the map image.
-        # @return [String] The name of the map image.
-        # @example
-        #   image_name = map_instance.map_name
+        # @return [String] the name of the map image
         def map_name
           @image
         end
 
-        # Returns the X coordinate of the map image.
-        # @return [Integer, nil] The X coordinate, or nil if not available.
-        # @example
-        #   x_coord = map_instance.map_x
+        # Returns the x-coordinate of the map's center.
+        # @return [Integer, nil] the x-coordinate, or nil if not available
         def map_x
           return nil if @image_coords.nil?
 
           ((image_coords[0] + image_coords[2]) / 2.0).round
         end
 
-        # Returns the Y coordinate of the map image.
-        # @return [Integer, nil] The Y coordinate, or nil if not available.
-        # @example
-        #   y_coord = map_instance.map_y
+        # Returns the y-coordinate of the map's center.
+        # @return [Integer, nil] the y-coordinate, or nil if not available
         def map_y
           return nil if @image_coords.nil?
 
           ((image_coords[1] + image_coords[3]) / 2.0).round
         end
 
-        # Returns the size of the map room.
-        # @return [Integer, nil] The size of the room, or nil if not available.
-        # @example
-        #   room_size = map_instance.map_roomsize
+        # Returns the width of the map room.
+        # @return [Integer, nil] the width, or nil if not available
         def map_roomsize
           return nil if @image_coords.nil?
 
           image_coords[2] - image_coords[0]
         end
 
-        # Returns geographical information for the map.
-        # @return [nil] Always returns nil.
-        # @example
-        #   geo_info = map_instance.geo
         def geo
           nil
         end

@@ -5,22 +5,24 @@ require_relative 'master_password_manager'
 require_relative 'master_password_prompt_ui'
 require_relative 'accessibility'
 
+# Provides common functionality for the Lich application.
+#
+# @see Lich::Common
+# @see Lich::GUI
 module Lich
   module Common
     module GUI
-      # Module for handling the encryption mode change dialog.
-      # This module provides functionality to show a dialog for changing the encryption mode of stored passwords.
-      # @example Showing the change mode dialog
-      #   Lich::Common::GUI::EncryptionModeChange.show_change_mode_dialog(parent, data_dir)
       module EncryptionModeChange
-        # Displays a dialog to change the encryption mode.
-        # @param parent [Gtk::Window] The parent window for the dialog.
-        # @param data_dir [String] The directory where data is stored.
-        # @param on_completion [Proc, nil] Optional callback to be called upon completion.
-        # @return [Boolean] Returns true if the dialog was shown successfully.
-        # @raise [StandardError] Raises an error if the YAML file cannot be loaded.
-        # @example Showing the dialog
-        #   Lich::Common::GUI::EncryptionModeChange.show_change_mode_dialog(parent, "/path/to/data")
+        # Displays a dialog for changing the encryption mode.
+        #
+        # @param parent [Gtk::Window] the parent window for the dialog
+        # @param data_dir [String] the directory containing the data
+        # @param on_completion [Proc, nil] optional callback to execute on completion
+        # @return [Boolean] true if the dialog was shown, false otherwise
+        # @example
+        #   Lich::Common::GUI::EncryptionModeChange.show_change_mode_dialog(parent, data_dir) do
+        #     puts "Mode change completed"
+        #   end
         def self.show_change_mode_dialog(parent, data_dir, on_completion = nil)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -306,6 +308,12 @@ module Lich
         class << self
           private
 
+          # Returns a user-friendly display text for the given encryption mode.
+          #
+          # @param mode [Symbol] the encryption mode to display
+          # @return [String] the display text for the mode
+          # @example
+          #   mode_display_text(:standard) #=> "Standard Encryption (Account Name)"
           def mode_display_text(mode)
             case mode
             when :plaintext
@@ -319,6 +327,10 @@ module Lich
             end
           end
 
+          # Displays a confirmation dialog for switching to plaintext mode.
+          #
+          # @param parent [Gtk::Window] the parent window for the dialog
+          # @return [Boolean] true if the user confirms, false otherwise
           def confirm_plaintext_mode_dialog(parent)
             result = nil
             mutex = Mutex.new
@@ -359,6 +371,11 @@ module Lich
             result
           end
 
+          # Displays an error dialog with a specified message.
+          #
+          # @param parent [Gtk::Window] the parent window for the dialog
+          # @param message [String] the error message to display
+          # @return [void]
           def show_error_dialog(parent, message)
             dialog = Gtk::MessageDialog.new(
               parent: parent,

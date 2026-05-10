@@ -7,25 +7,25 @@ module Lich
   module InternalAPI
     module ActiveSessions
       # Represents a server for handling active sessions.
+      #
       # This class manages client connections and processes requests.
-      # @example Starting the server
-      #   server = Lich::InternalAPI::ActiveSessions::Server.new(host: 'localhost', port: 3000, registry: registry, auth_token: 'secret')
-      #   server.start
+      #
+      # @see Lich::InternalAPI::ActiveSessions
       class Server
-        # The timeout duration for reading client requests in seconds.
         READ_TIMEOUT = 1
 
         attr_reader :host, :port
         attr_reader :auth_token
 
         # Initializes a new Server instance.
-        # @param host [String] The host address for the server.
-        # @param port [Integer] The port number for the server.
-        # @param registry [Object] The registry object for managing sessions.
-        # @param auth_token [String] The authentication token for requests.
-        # @param server_factory [Proc] Optional factory for creating the server instance.
-        # @param accept_thread_factory [Proc] Optional factory for creating accept threads.
-        # @param client_thread_factory [Proc] Optional factory for creating client threads.
+        # @param host [String] the hostname to bind the server to
+        # @param port [Integer] the port number to bind the server to
+        # @param registry [Object] the registry for managing session data
+        # @param auth_token [String] the token used for authenticating requests
+        # @param server_factory [Proc, nil] optional factory for creating the server
+        # @param accept_thread_factory [Proc, nil] optional factory for creating accept threads
+        # @param client_thread_factory [Proc, nil] optional factory for creating client threads
+        # @return [void]
         def initialize(host:, port:, registry:, auth_token:, server_factory: nil, accept_thread_factory: nil, client_thread_factory: nil)
           @host = host
           @port = port
@@ -40,11 +40,10 @@ module Lich
           @client_threads = []
         end
 
-        # Starts the server to accept client connections.
-        # @return [Boolean] Returns true if the server is successfully started, false otherwise.
-        # @raise [StandardError] Raises an error if the server fails to start.
-        # @example Starting the server
-        #   server.start
+        # Starts the server, allowing it to accept client connections.
+        #
+        # @return [Boolean] true if the server was started successfully, false otherwise
+        # @raise [StandardError] if an error occurs during startup
         def start
           @mutex.synchronize do
             return true if running?
@@ -62,8 +61,6 @@ module Lich
 
         # Stops the server and closes all client connections.
         # @return [void]
-        # @example Stopping the server
-        #   server.stop
         def stop
           thread = nil
           server = nil
@@ -91,13 +88,15 @@ module Lich
         end
 
         # Checks if the server is currently running.
-        # @return [Boolean] Returns true if the server is running, false otherwise.
+        # @return [Boolean] true if the server is running, false otherwise
         def running?
           @thread&.alive? || false
         end
 
         private
 
+        # Accepts incoming client connections in a loop.
+        # @return [void]
         def accept_loop
           loop do
             server = @server
@@ -125,6 +124,9 @@ module Lich
         end
         private :handle_tracked_client
 
+        # Handles a connected client by processing its request.
+        # @param socket [TCPSocket] the socket connected to the client
+        # @return [void]
         def handle_client(socket)
           raw = read_request(socket)
           unless raw
@@ -140,6 +142,9 @@ module Lich
           socket.close rescue nil
         end
 
+        # Reads a request from the client socket with a timeout.
+        # @param socket [TCPSocket] the socket connected to the client
+        # @return [String, nil] the raw request data or nil if timed out
         def read_request(socket)
           deadline = Process.clock_gettime(Process::CLOCK_MONOTONIC) + READ_TIMEOUT
           buffer = +''
@@ -167,6 +172,10 @@ module Lich
         end
         private :read_request
 
+        # Processes a raw request and returns a response.
+        # @param raw [String] the raw request data
+        # @return [Hash] the response data
+        # @raise [StandardError] if an error occurs during processing
         def process_request(raw)
           request = JSON.parse(raw.to_s, symbolize_names: true)
           return unauthorized_response unless authorized?(request)
@@ -190,17 +199,28 @@ module Lich
           { ok: false, error: e.message }
         end
 
+        # Checks if the request is authorized based on the auth token.
+        # @param request [Hash] the request data
+        # @return [Boolean] true if authorized, false otherwise
+        # @api private
         def authorized?(request)
           request[:auth].to_s == @auth_token
         end
         private :authorized?
 
+        # Returns a response indicating that the request is unauthorized.
+        # @return [Hash] the unauthorized response data
+        # @api private
         def unauthorized_response
           Lich.log('warning: ActiveSessions unauthorized local request rejected') if defined?(Lich) && Lich.respond_to?(:log)
           { ok: false, error: 'unauthorized' }
         end
         private :unauthorized_response
 
+        # Tracks a client thread for management purposes.
+        # @param thread [Thread] the client thread to track
+        # @return [void]
+        # @api private
         def track_client_thread(thread)
           return unless thread
 
@@ -208,6 +228,9 @@ module Lich
         end
         private :track_client_thread
 
+        # Untracks the current thread from the client threads list.
+        # @return [void]
+        # @api private
         def untrack_current_thread
           @mutex.synchronize { @client_threads.delete(Thread.current) }
         end

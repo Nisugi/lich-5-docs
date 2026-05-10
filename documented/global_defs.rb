@@ -1,10 +1,6 @@
 
-# Lich module
-# This module contains common constants and methods used throughout the Lich project.
 module Lich
   module Common
-    # Indicates whether core settings should be retrieved
-    # @return [Boolean] true if core settings should be retrieved
     CORE_GET_SETTINGS = true
     CORE_SCRIPT_LOADER = true
     CORE_PARSE_ARGS = true
@@ -13,13 +9,12 @@ module Lich
 end
 
 
-# Starts a script with the given name
-# @param script_name [String] The name of the script to start
-# @param cli_vars [Array] Command line variables to pass to the script
-# @param flags [Hash] Additional flags for script execution
+# Starts a script with the given name and optional command line variables.
+#
+# @param script_name [String] the name of the script to start
+# @param cli_vars [Array<String>] command line variables to pass to the script
+# @param flags [Hash] additional flags for script execution
 # @return [void]
-# @example
-#   start_script("my_script", ["--option1", "value1"], { quiet: true })
 def start_script(script_name, cli_vars = [], flags = Hash.new)
   if flags == true
     flags = { :quiet => true }
@@ -27,11 +22,10 @@ def start_script(script_name, cli_vars = [], flags = Hash.new)
   Script.start(script_name, cli_vars.join(' '), flags)
 end
 
-# Starts multiple scripts
-# @param script_names [Array] Names of the scripts to start
+# Starts multiple scripts in sequence.
+#
+# @param script_names [Array<String>] names of the scripts to start
 # @return [void]
-# @example
-#   start_scripts("script1", "script2")
 def start_scripts(*script_names)
   script_names.flatten.each { |script_name|
     start_script(script_name)
@@ -39,24 +33,22 @@ def start_scripts(*script_names)
   }
 end
 
-# Force starts a script with the given name
-# @param script_name [String] The name of the script to force start
-# @param cli_vars [Array] Command line variables to pass to the script
-# @param flags [Hash] Additional flags for script execution
+# Forces the start of a script, even if it is already running.
+#
+# @param script_name [String] the name of the script to force start
+# @param cli_vars [Array<String>] command line variables to pass to the script
+# @param flags [Hash] additional flags for script execution
 # @return [void]
-# @example
-#   force_start_script("my_script", ["--option1", "value1"], { force: true })
 def force_start_script(script_name, cli_vars = [], flags = {})
   flags = Hash.new unless flags.is_a?(Hash)
   flags[:force] = true
   start_script(script_name, cli_vars, flags)
 end
 
-# Starts scripts if they are available
-# @param script_names [Array] Names of the scripts to start
+# Starts scripts only if they are available and not already running.
+#
+# @param script_names [Array<String>] names of the scripts to start
 # @return [void]
-# @example
-#   start_scripts_if_available(["script1", "script2"])
 def start_scripts_if_available(script_names)
   script_names = [script_names].flatten.compact
   return if script_names.empty?
@@ -74,75 +66,65 @@ def start_scripts_if_available(script_names)
   end
 end
 
-# Retrieves settings for the character
-# @param character_suffixes [Array] Suffixes for character settings
-# @return [Settings] The settings object for the character
-# @example
-#   settings = get_settings(["suffix1", "suffix2"])
+# Retrieves settings for the character based on suffixes.
+#
+# @param character_suffixes [Array<String>] suffixes to filter settings
+# @return [OpenStruct] the settings for the character
 def get_settings(character_suffixes = [])
   $setupfiles ||= Lich::Common::SetupFiles.new
   $setupfiles.get_settings(character_suffixes)
 end
 
-# Retrieves data of a specified type
-# @param type [String] The type of data to retrieve
-# @return [Data] The requested data
-# @example
-#   data = get_data("type_name")
+# Retrieves data of a specified type.
+#
+# @param type [String] the type of data to retrieve
+# @return [OpenStruct] the requested data
 def get_data(type)
   $setupfiles ||= Lich::Common::SetupFiles.new
   $setupfiles.get_data(type)
 end
 
-# Parses command line arguments
-# @param defn [String] The definition of the arguments
-# @param flex_args [Boolean] Whether to allow flexible arguments
-# @return [ParsedArgs] The parsed arguments
-# @example
-#   parsed = parse_args("--option1 value1", true)
+# Parses command line arguments based on a definition.
+#
+# @param defn [String] the argument definition
+# @param flex_args [Boolean] whether to allow flexible arguments
+# @return [Hash] parsed arguments
 def parse_args(defn, flex_args = false)
   Lich::Common::ArgParser.new.parse_args(defn, flex_args)
 end
 
-# Displays the arguments in a user-friendly format
-# @param defn [String] The definition of the arguments
+# Displays the arguments based on a definition.
+#
+# @param defn [String] the argument definition
 # @return [void]
-# @example
-#   display_args("--option1 value1")
 def display_args(defn)
   Lich::Common::ArgParser.new.display_args(defn)
 end
 
-# Registers a block of code to run before the script exits
-# @param block [Proc] The code to execute before dying
+# Registers a block of code to be executed before the script exits.
+#
+# @param block [Proc] the code to execute before dying
 # @return [void]
-# @example
-#   before_dying { puts "Goodbye!" }
 def before_dying(&code)
   Script.at_exit(&code)
 end
 
-# Removes the previously registered exit code
+# Removes any previously registered exit procedures.
 # @return [void]
-# @example
-#   undo_before_dying
 def undo_before_dying
   Script.clear_exit_procs
 end
 
-# Aborts the current script execution
+# Aborts the current script execution.
 # @return [void]
-# @example
-#   abort!
 def abort!
   Script.exit!
 end
 
-# Stops a running script
-# @param target_names [Array] Names of the scripts to stop
-# @return [Integer, false] The number of scripts killed or false if none were killed
-# @example
-#   stopped_count = stop_script("script1", "script2")
+# Stops a running script by name.
+#
+# @param target_names [Array<String>] names of the scripts to stop
+# @return [Integer, false] the number of scripts killed or false if none were killed
 def stop_script(*target_names)
   numkilled = 0
   target_names.each { |target_name|
@@ -165,65 +147,53 @@ def stop_script(*target_names)
   end
 end
 
-# Checks if the specified scripts are running
-# @param snames [Array] Names of the scripts to check
-# @return [Boolean] true if all specified scripts are running
-# @example
-#   is_running = running?("script1", "script2")
+# Checks if specified scripts are currently running.
+#
+# @param snames [Array<String>] names of the scripts to check
+# @return [Boolean] true if all specified scripts are running, false otherwise
 def running?(*snames)
   snames.each { |checking| (return false) unless (Script.running.find { |lscr| lscr.name =~ /^#{checking}$/i } || Script.running.find { |lscr| lscr.name =~ /^#{checking}/i } || Script.hidden.find { |lscr| lscr.name =~ /^#{checking}$/i } || Script.hidden.find { |lscr| lscr.name =~ /^#{checking}/i }) }
   true
 end
 
-# Starts an execution script with the given command data
-# @param cmd_data [String] The command data to execute
-# @param options [Hash] Options for execution
+# Starts an execution script with the given command data.
+#
+# @param cmd_data [String] the command data to execute
+# @param options [Hash] options for execution
 # @return [void]
-# @example
-#   start_exec_script("some_command", { option: true })
 def start_exec_script(cmd_data, options = Hash.new)
   ExecScript.start(cmd_data, options)
 end
 
-# Toggles the visibility of the current script
+# Toggles the visibility of the current script.
 # @return [void]
-# @example
-#   hide_me
 def hide_me
   Script.current.hidden = !Script.current.hidden
 end
 
-# Toggles the no kill all setting for the current script
+# Toggles the no-kill-all state for the current script.
 # @return [void]
-# @example
-#   no_kill_all
 def no_kill_all
   script = Script.current
   script.no_kill_all = !script.no_kill_all
 end
 
-# Toggles the no pause all setting for the current script
+# Toggles the no-pause-all state for the current script.
 # @return [void]
-# @example
-#   no_pause_all
 def no_pause_all
   script = Script.current
   script.no_pause_all = !script.no_pause_all
 end
 
-# Toggles the upstream setting for the current script
+# Toggles the upstream listening state for the current script.
 # @return [void]
-# @example
-#   toggle_upstream
 def toggle_upstream
   unless (script = Script.current) then echo 'toggle_upstream: cannot identify calling script.'; return nil; end
   script.want_upstream = !script.want_upstream
 end
 
-# Toggles the silence setting for the current script
+# Toggles the silence state for the current script.
 # @return [void]
-# @example
-#   silence_me
 def silence_me
   unless (script = Script.current) then echo 'silence_me: cannot identify calling script.'; return nil; end
   if script.safe? then echo("WARNING: 'safe' script attempted to silence itself.  Ignoring the request.")
@@ -233,37 +203,29 @@ def silence_me
   script.silent = !script.silent
 end
 
-# Toggles the echo setting for the current script
+# Toggles the echo state for the current script.
 # @return [void]
-# @example
-#   toggle_echo
 def toggle_echo
   unless (script = Script.current) then respond('--- toggle_echo: Unable to identify calling script.'); return nil; end
   script.no_echo = !script.no_echo
 end
 
-# Turns on echo for the current script
+# Turns on echo for the current script.
 # @return [void]
-# @example
-#   echo_on
 def echo_on
   unless (script = Script.current) then respond('--- echo_on: Unable to identify calling script.'); return nil; end
   script.no_echo = false
 end
 
-# Turns off echo for the current script
+# Turns off echo for the current script.
 # @return [void]
-# @example
-#   echo_off
 def echo_off
   unless (script = Script.current) then respond('--- echo_off: Unable to identify calling script.'); return nil; end
   script.no_echo = true
 end
 
-# Retrieves data from the upstream for the current script
-# @return [String, nil] The data received or nil if none
-# @example
-#   data = upstream_get
+# Retrieves data from the upstream if the current script is set to listen.
+# @return [String, nil] the data received or nil if not set to listen
 def upstream_get
   unless (script = Script.current) then echo 'upstream_get: cannot identify calling script.'; return nil; end
   unless script.want_upstream
@@ -274,10 +236,8 @@ def upstream_get
   script.upstream_gets
 end
 
-# Checks if the current script is set to receive upstream data
-# @return [Boolean] true if the script is set to receive upstream data
-# @example
-#   is_receiving = upstream_get?
+# Checks if the current script is set to listen to upstream data.
+# @return [Boolean] true if listening, false otherwise
 def upstream_get?
   unless (script = Script.current) then echo 'upstream_get: cannot identify calling script.'; return nil; end
   unless script.want_upstream
@@ -287,11 +247,10 @@ def upstream_get?
   script.upstream_gets?
 end
 
-# Sends a message to the current script's output
-# @param messages [Array] Messages to send
+# Sends a message to the script's output.
+#
+# @param messages [Array<String>] messages to send
 # @return [void]
-# @example
-#   echo("Hello, World!")
 def echo(*messages)
   respond if messages.empty?
   if (script = Script.current)
@@ -304,11 +263,10 @@ def echo(*messages)
   nil
 end
 
-# Sends a message to the current script's output without formatting
-# @param messages [Array] Messages to send
+# Sends a message to the script's output without additional formatting.
+#
+# @param messages [Array<String>] messages to send
 # @return [void]
-# @example
-#   _echo("Raw message")
 def _echo(*messages)
   _respond if messages.empty?
   if (script = Script.current)
@@ -321,21 +279,19 @@ def _echo(*messages)
   nil
 end
 
-# Jumps to a specified label in the current script
-# @param label [String] The label to jump to
+# Jumps to a specified label in the current script.
+#
+# @param label [String] the label to jump to
 # @return [void]
-# @example
-#   goto("my_label")
 def goto(label)
   Script.current.jump_label = label.to_s
   raise Lich::Common::Script::JUMP
 end
 
-# Pauses the specified scripts
-# @param names [Array] Names of the scripts to pause
+# Pauses the specified scripts.
+#
+# @param names [Array<String>] names of the scripts to pause
 # @return [void]
-# @example
-#   pause_script("script1", "script2")
 def pause_script(*names)
   names.flatten!
   if names.empty?
@@ -349,11 +305,10 @@ def pause_script(*names)
   end
 end
 
-# Unpauses the specified scripts
-# @param names [Array] Names of the scripts to unpause
+# Unpauses the specified scripts.
+#
+# @param names [Array<String>] names of the scripts to unpause
 # @return [void]
-# @example
-#   unpause_script("script1", "script2")
 def unpause_script(*names)
   names.flatten!
   names.each { |scr|
@@ -362,10 +317,8 @@ def unpause_script(*names)
   }
 end
 
-# Fixes the injury mode if it is not set to 2
+# Ensures the injury mode is set to a specific value.
 # @return [void]
-# @example
-#   fix_injury_mode
 def fix_injury_mode
   unless XMLData.injury_mode == 2
     Game._puts '_injury 2'
@@ -373,11 +326,10 @@ def fix_injury_mode
   end
 end
 
-# Hides the specified scripts
-# @param args [Array] Names of the scripts to hide
+# Toggles the hidden state of specified scripts.
+#
+# @param args [Array<String>] names of the scripts to hide
 # @return [void]
-# @example
-#   hide_script("script1", "script2")
 def hide_script(*args)
   args.flatten!
   args.each { |name|
@@ -387,63 +339,50 @@ def hide_script(*args)
   }
 end
 
-# Parses a string into a list
-# @param string [String] The string to parse
-# @return [Array] The parsed list
-# @example
-#   list = parse_list("item1, item2, item3")
+# Parses a string into a list format.
+#
+# @param string [String] the string to parse
+# @return [Array<String>] the parsed list
 def parse_list(string)
   string.split_as_list
 end
 
-# Waits for roundtime to finish
+# Waits for roundtime to complete.
 # @return [void]
-# @example
-#   waitrt
 def waitrt
   wait_until { (XMLData.roundtime_end.to_f - Time.now.to_f + XMLData.server_time_offset.to_f) > 0 }
   sleep checkrt
 end
 
-# Waits for cast roundtime to finish
+# Waits for casting roundtime to complete.
 # @return [void]
-# @example
-#   waitcastrt
 def waitcastrt
   wait_until { (XMLData.cast_roundtime_end.to_f - Time.now.to_f + XMLData.server_time_offset.to_f) > 0 }
   sleep checkcastrt
 end
 
-# Checks the current roundtime
-# @return [Float] The remaining roundtime
-# @example
-#   remaining = checkrt
+# Checks the current roundtime.
+# @return [Integer] the remaining roundtime
 def checkrt
   [0, XMLData.roundtime_end.to_f - Time.now.to_f + XMLData.server_time_offset.to_f].max
 end
 
-# Checks the current cast roundtime
-# @return [Float] The remaining cast roundtime
-# @example
-#   remaining = checkcastrt
+# Checks the current casting roundtime.
+# @return [Integer] the remaining casting roundtime
 def checkcastrt
   [0, XMLData.cast_roundtime_end.to_f - Time.now.to_f + XMLData.server_time_offset.to_f].max
 end
 
-# Checks if there is any remaining roundtime
-# @return [Boolean] true if there is remaining roundtime
-# @example
-#   has_remaining = waitrt?
+# Checks if there is any remaining roundtime and waits if necessary.
+# @return [Boolean] true if there was roundtime, false otherwise
 def waitrt?
   sleep checkrt
   return true if checkrt > 0.0
   return false if checkrt == 0
 end
 
-# Checks if there is any remaining cast roundtime
-# @return [Boolean] true if there is remaining cast roundtime
-# @example
-#   has_remaining = waitcastrt?
+# Checks if there is any remaining casting roundtime and waits if necessary.
+# @return [Boolean] true if there was casting roundtime, false otherwise
 def waitcastrt?
   #  sleep checkcastrt
   current_castrt = checkcastrt
@@ -455,82 +394,62 @@ def waitcastrt?
   end
 end
 
-# Checks if the character is poisoned
-# @return [Boolean] true if poisoned
-# @example
-#   is_poisoned = checkpoison
+# Checks if the character is poisoned.
+# @return [Boolean] true if poisoned, false otherwise
 def checkpoison
   XMLData.indicator['IconPOISONED'] == 'y'
 end
 
-# Checks if the character is diseased
-# @return [Boolean] true if diseased
-# @example
-#   is_diseased = checkdisease
+# Checks if the character is diseased.
+# @return [Boolean] true if diseased, false otherwise
 def checkdisease
   XMLData.indicator['IconDISEASED'] == 'y'
 end
 
-# Checks if the character is sitting
-# @return [Boolean] true if sitting
-# @example
-#   is_sitting = checksitting
+# Checks if the character is sitting.
+# @return [Boolean] true if sitting, false otherwise
 def checksitting
   XMLData.indicator['IconSITTING'] == 'y'
 end
 
-# Checks if the character is kneeling
-# @return [Boolean] true if kneeling
-# @example
-#   is_kneeling = checkkneeling
+# Checks if the character is kneeling.
+# @return [Boolean] true if kneeling, false otherwise
 def checkkneeling
   XMLData.indicator['IconKNEELING'] == 'y'
 end
 
-# Checks if the character is stunned
-# @return [Boolean] true if stunned
-# @example
-#   is_stunned = checkstunned
+# Checks if the character is stunned.
+# @return [Boolean] true if stunned, false otherwise
 def checkstunned
   XMLData.indicator['IconSTUNNED'] == 'y'
 end
 
-# Checks if the character is bleeding
-# @return [Boolean] true if bleeding
-# @example
-#   is_bleeding = checkbleeding
+# Checks if the character is bleeding.
+# @return [Boolean] true if bleeding, false otherwise
 def checkbleeding
   XMLData.indicator['IconBLEEDING'] == 'y'
 end
 
-# Checks if the character is grouped
-# @return [Boolean] true if grouped
-# @example
-#   is_grouped = checkgrouped
+# Checks if the character is grouped.
+# @return [Boolean] true if grouped, false otherwise
 def checkgrouped
   XMLData.indicator['IconJOINED'] == 'y'
 end
 
-# Checks if the character is dead
-# @return [Boolean] true if dead
-# @example
-#   is_dead = checkdead
+# Checks if the character is dead.
+# @return [Boolean] true if dead, false otherwise
 def checkdead
   XMLData.indicator['IconDEAD'] == 'y'
 end
 
-# Checks if the character is really bleeding
-# @return [Boolean] true if really bleeding
-# @example
-#   is_really_bleeding = checkreallybleeding
+# Checks if the character is really bleeding (not just a minor wound).
+# @return [Boolean] true if really bleeding, false otherwise
 def checkreallybleeding
   checkbleeding and !(Spell[9909].active? or Spell[9905].active?)
 end
 
-# Checks if the character is muckled
-# @return [Boolean] true if muckled
-# @example
-#   is_muckled = muckled?
+# Checks if the character is muckled (unable to move).
+# @return [Boolean] true if muckled, false otherwise
 def muckled?
   # need a better DR solution
   if XMLData.game =~ /GS/
@@ -540,59 +459,46 @@ def muckled?
   end
 end
 
-# Checks if the character is hidden
-# @return [Boolean] true if hidden
-# @example
-#   is_hidden = checkhidden
+# Checks if the character is hidden.
+# @return [Boolean] true if hidden, false otherwise
 def checkhidden
   XMLData.indicator['IconHIDDEN'] == 'y'
 end
 
-# Checks if the character is invisible
-# @return [Boolean] true if invisible
-# @example
-#   is_invisible = checkinvisible
+# Checks if the character is invisible.
+# @return [Boolean] true if invisible, false otherwise
 def checkinvisible
   XMLData.indicator['IconINVISIBLE'] == 'y'
 end
 
-# Checks if the character is webbed
-# @return [Boolean] true if webbed
-# @example
-#   is_webbed = checkwebbed
+# Checks if the character is webbed (unable to move).
+# @return [Boolean] true if webbed, false otherwise
 def checkwebbed
   XMLData.indicator['IconWEBBED'] == 'y'
 end
 
-# Checks if the character is prone
-# @return [Boolean] true if prone
-# @example
-#   is_prone = checkprone
+# Checks if the character is prone (lying down).
+# @return [Boolean] true if prone, false otherwise
 def checkprone
   XMLData.indicator['IconPRONE'] == 'y'
 end
 
-# Checks if the character is not standing
-# @return [Boolean] true if not standing
-# @example
-#   is_not_standing = checknotstanding
+# Checks if the character is not standing.
+# @return [Boolean] true if not standing, false otherwise
 def checknotstanding
   XMLData.indicator['IconSTANDING'] == 'n'
 end
 
-# Checks if the character is standing
-# @return [Boolean] true if standing
-# @example
-#   is_standing = checkstanding
+# Checks if the character is standing.
+# @return [Boolean] true if standing, false otherwise
 def checkstanding
   XMLData.indicator['IconSTANDING'] == 'y'
 end
 
-# Checks if the character's name matches any of the provided strings
-# @param strings [Array] Names to check against
+# Checks if the character's name matches any of the provided strings.
+#
+# @param strings [Array<String>] names to check against
 # @return [Boolean, String] true if a match is found, or the character's name if no arguments are provided
-# @example
-#   is_name_match = checkname("John", "Doe")
 def checkname(*strings)
   strings.flatten!
   if strings.empty?
@@ -602,29 +508,24 @@ def checkname(*strings)
   end
 end
 
-# Checks the loot in the game
-# @return [Array] List of loot items
-# @example
-#   loot_items = checkloot
+# Checks the loot available to the character.
+# @return [Array<String>] list of loot items
 def checkloot
   GameObj.loot.collect { |item| item.noun }
 end
 
-# Checks if the character stands alone
-# @return [Boolean] true if the character stands alone
-# @example
-#   is_standing_alone = i_stand_alone
+# Toggles the stand-alone state for the current script.
+# @return [Boolean] true if the script stands alone, false otherwise
 def i_stand_alone
   unless (script = Script.current) then echo 'i_stand_alone: cannot identify calling script.'; return nil; end
   script.want_downstream = !script.want_downstream
   return !script.want_downstream
 end
 
-# Outputs debug information if debugging is enabled
-# @param args [Array] Arguments to output
+# Outputs debug information if debugging is enabled.
+#
+# @param args [Array] arguments to output
 # @return [void]
-# @example
-#   debug("Debug message")
 def debug(*args)
   if $LICH_DEBUG
     if block_given?
@@ -635,50 +536,45 @@ def debug(*args)
   end
 end
 
-# Tests the execution time of given code blocks
-# @param contestants [Array] Code blocks to test
-# @return [Array] Execution times for each block
-# @example
-#   times = timetest { some_code }
+# Tests the execution time of provided code blocks.
+#
+# @param contestants [Array<Proc>] code blocks to test
+# @return [Array<Float>] execution times for each block
 def timetest(*contestants)
   contestants.collect { |code| start = Time.now; 5000.times { code.call }; Time.now - start }
 end
 
-# Converts a decimal number to binary
-# @param n [Integer] The decimal number to convert
-# @return [String] The binary representation
-# @example
-#   binary = dec2bin(10)
+# Converts a decimal number to binary string representation.
+#
+# @param n [Integer] the decimal number to convert
+# @return [String] the binary representation
 def dec2bin(n)
   "0" + [n].pack("N").unpack("B32")[0].sub(/^0+(?=\d)/, '')
 end
 
-# Converts a binary string to decimal
-# @param n [String] The binary string to convert
-# @return [Integer] The decimal representation
-# @example
-#   decimal = bin2dec("1010")
+# Converts a binary string representation to a decimal number.
+#
+# @param n [String] the binary string to convert
+# @return [Integer] the decimal representation
 def bin2dec(n)
   [("0" * 32 + n.to_s)[-32..-1]].pack("B32").unpack("N")[0]
 end
 
-# Checks if the character is idle for a specified time
-# @param time [Integer] The idle time in seconds
-# @return [Boolean] true if idle
-# @example
-#   is_idle = idle?(60)
+# Checks if the character has been idle for a specified time.
+#
+# @param time [Integer] the idle time threshold in seconds
+# @return [Boolean] true if idle, false otherwise
 def idle?(time = 60)
   Time.now - $_IDLETIMESTAMP_ >= time
 end
 
-# Sends a command and waits for a response
-# @param string [String] The command to send
-# @param success [Array] Expected success responses
-# @param failure [Array] Expected failure responses
-# @param timeout [Numeric] Optional timeout in seconds
-# @return [String, nil] The response received or nil on timeout
-# @example
-#   response = selectput("command", ["success"], ["failure"], 30)
+# Sends a command to the game and waits for a response matching success or failure patterns.
+#
+# @param string [String] the command to send
+# @param success [Array<String>] patterns for successful responses
+# @param failure [Array<String>] patterns for failure responses
+# @param timeout [Integer, nil] optional timeout in seconds
+# @return [String, nil] the response received or nil on timeout
 def selectput(string, success, failure, timeout = nil)
   timeout = timeout.to_f if timeout and !timeout.kind_of?(Numeric)
   success = [success] if success.kind_of? String
@@ -713,20 +609,17 @@ def selectput(string, success, failure, timeout = nil)
   end
 end
 
-# Toggles the unique setting for the current script
+# Toggles the unique state for the current script.
 # @return [void]
-# @example
-#   toggle_unique
 def toggle_unique
   unless (script = Script.current) then echo 'toggle_unique: cannot identify calling script.'; return nil; end
   script.want_downstream = !script.want_downstream
 end
 
-# Registers scripts to die with the current script
-# @param vals [Array] Names of scripts to die with
+# Registers scripts to die when the current script dies.
+#
+# @param vals [Array<String>] names of scripts to register
 # @return [void]
-# @example
-#   die_with_me("script1", "script2")
 def die_with_me(*vals)
   unless (script = Script.current) then echo 'die_with_me: cannot identify calling script.'; return nil; end
   script.die_with.push vals
@@ -734,11 +627,10 @@ def die_with_me(*vals)
   echo("The following script(s) will now die when I do: #{script.die_with.join(', ')}") unless script.die_with.empty?
 end
 
-# Waits for a line from the upstream that matches the given strings
-# @param strings [Array] Strings to match against
-# @return [String, nil] The matching line or nil if none
-# @example
-#   line = upstream_waitfor("pattern1", "pattern2")
+# Waits for upstream data matching specified strings.
+#
+# @param strings [Array<String>] strings to match against
+# @return [String, nil] the matched line or nil if not found
 def upstream_waitfor(*strings)
   strings.flatten!
   script = Script.current
@@ -751,11 +643,10 @@ def upstream_waitfor(*strings)
   end
 end
 
-# Sends values to a specified script
-# @param values [Array] Values to send
-# @return [Boolean] true if sent successfully
-# @example
-#   success = send_to_script("script_name", "value1", "value2")
+# Sends values to a specified script.
+#
+# @param values [Array<String>] values to send, first element is the target script name
+# @return [Boolean] true if sent successfully, false otherwise
 def send_to_script(*values)
   values.flatten!
   if (script = Script.list.find { |val| val.name =~ /^#{values.first}/i })
@@ -772,11 +663,10 @@ def send_to_script(*values)
   end
 end
 
-# Uniquely sends values to a specified script
-# @param values [Array] Values to send
-# @return [Boolean] true if sent successfully
-# @example
-#   success = unique_send_to_script("script_name", "value1", "value2")
+# Sends unique values to a specified script.
+#
+# @param values [Array<String>] values to send, first element is the target script name
+# @return [Boolean] true if sent successfully, false otherwise
 def unique_send_to_script(*values)
   values.flatten!
   if (script = Script.list.find { |val| val.name =~ /^#{values.first}/i })
@@ -789,11 +679,10 @@ def unique_send_to_script(*values)
   end
 end
 
-# Waits for a line from the unique buffer that matches the given strings
-# @param strings [Array] Strings to match against
-# @return [String] The matching line
-# @example
-#   line = unique_waitfor("pattern1", "pattern2")
+# Waits for unique data from the current script.
+#
+# @param strings [Array<String>] strings to match against
+# @return [String] the matched line
 def unique_waitfor(*strings)
   unless (script = Script.current) then echo 'unique_waitfor: cannot identify calling script.'; return nil; end
   strings.flatten!
@@ -806,124 +695,62 @@ def unique_waitfor(*strings)
   end
 end
 
-# Retrieves a line from the unique buffer
-# @return [String] The retrieved line
-# @example
-#   line = unique_get
+# Retrieves unique data from the current script.
+# @return [String] the unique data received
 def unique_get
   unless (script = Script.current) then echo 'unique_get: cannot identify calling script.'; return nil; end
   script.unique_gets
 end
 
-# Checks if there is a line available in the unique buffer
-# @return [Boolean] true if a line is available
-# @example
-#   has_line = unique_get?
+# Checks if there is unique data available from the current script.
+# @return [Boolean] true if unique data is available, false otherwise
 def unique_get?
   unless (script = Script.current) then echo 'unique_get: cannot identify calling script.'; return nil; end
   script.unique_gets?
 end
 
-# Moves in multiple directions
-# @param dirs [Array] Directions to move
+# Moves the character in multiple directions sequentially.
+#
+# @param dirs [Array<String>] directions to move in
 # @return [void]
-# @example
-#   multimove("north", "east")
 def multimove(*dirs)
   dirs.flatten.each { |dir| move(dir) }
 end
 
-# Returns the string for north direction
-# @return [String] "north"
-# @example
-#   direction = n
 def n;    'north';     end
 
-# Returns the string for northeast direction
-# @return [String] "northeast"
-# @example
-#   direction = ne
 def ne;   'northeast'; end
 
-# Returns the string for east direction
-# @return [String] "east"
-# @example
-#   direction = e
 def e;    'east';      end
 
-# Returns the string for southeast direction
-# @return [String] "southeast"
-# @example
-#   direction = se
 def se;   'southeast'; end
 
-# Returns the string for south direction
-# @return [String] "south"
-# @example
-#   direction = s
 def s;    'south';     end
 
-# Returns the string for southwest direction
-# @return [String] "southwest"
-# @example
-#   direction = sw
 def sw;   'southwest'; end
 
-# Returns the string for west direction
-# @return [String] "west"
-# @example
-#   direction = w
 def w;    'west';      end
 
-# Returns the string for northwest direction
-# @return [String] "northwest"
-# @example
-#   direction = nw
 def nw;   'northwest'; end
 
-# Returns the string for up direction
-# @return [String] "up"
-# @example
-#   direction = u
 def u;    'up';        end
 
-# Returns the string for up direction
-# @return [String] "up"
-# @example
-#   direction = up
 def up;   'up'; end
 
-# Returns the string for down direction
-# @return [String] "down"
-# @example
-#   direction = down
 def down; 'down';      end
 
-# Returns the string for down direction
-# @return [String] "down"
-# @example
-#   direction = d
 def d;    'down';      end
 
-# Returns the string for out direction
-# @return [String] "out"
-# @example
-#   direction = o
 def o;    'out';       end
 
-# Returns the string for out direction
-# @return [String] "out"
-# @example
-#   direction = out
 def out;  'out';       end
 
-# Moves in the specified direction
-# @param dir [String] The direction to move
-# @param giveup_seconds [Integer] Time to give up if the move fails
-# @param giveup_lines [Integer] Number of lines to give up after
-# @return [Boolean] true if the move was successful
-# @example
-#   success = move("north")
+# Moves the character in a specified direction.
+#
+# @param dir [String] the direction to move
+# @param giveup_seconds [Integer] seconds to wait before giving up
+# @param giveup_lines [Integer] number of lines to wait before giving up
+# @return [Boolean] true if moved successfully, false otherwise
 def move(dir = 'none', giveup_seconds = 10, giveup_lines = 30)
   # [LNet]-[Private]-Casis: "You begin to make your way up the steep headland pathway.  Before traveling very far, however, you lose your footing on the loose stones.  You struggle in vain to maintain your balance, then find yourself falling to the bay below!"  (20:35:36)
   # [LNet]-[Private]-Casis: "You smack into the water with a splash and sink far below the surface."  (20:35:50)
@@ -1150,13 +977,12 @@ def move(dir = 'none', giveup_seconds = 10, giveup_lines = 30)
   }
 end
 
-# Watches the health of the character and executes a block when health drops below a threshold
-# @param value [Integer] The health threshold to watch
-# @param theproc [Proc] Optional proc to execute
-# @param block [Proc] The block to execute
+# Monitors the character's health and executes a block when health drops below a threshold.
+#
+# @param value [Integer] health threshold to monitor
+# @param theproc [Proc, nil] optional procedure to execute
+# @param block [Proc] block to execute when health drops
 # @return [void]
-# @example
-#   watchhealth(50) { puts "Health is low!" }
 def watchhealth(value, theproc = nil, &block)
   value = value.to_i
   if block.nil?
@@ -1173,11 +999,10 @@ def watchhealth(value, theproc = nil, &block)
   }
 end
 
-# Waits until a condition is met
-# @param announce [String] Optional announcement to make
+# Waits until a condition is met, optionally announcing the wait.
+#
+# @param announce [String, nil] optional message to announce
 # @return [void]
-# @example
-#   wait_until { condition_met? }
 def wait_until(announce = nil)
   priosave = Thread.current.priority
   Thread.current.priority = 0
@@ -1190,11 +1015,10 @@ def wait_until(announce = nil)
   Thread.current.priority = priosave
 end
 
-# Waits while a condition is true
-# @param announce [String] Optional announcement to make
+# Waits while a condition is true, optionally announcing the wait.
+#
+# @param announce [String, nil] optional message to announce
 # @return [void]
-# @example
-#   wait_while { condition_met? }
 def wait_while(announce = nil)
   priosave = Thread.current.priority
   Thread.current.priority = 0
@@ -1207,11 +1031,10 @@ def wait_while(announce = nil)
   Thread.current.priority = priosave
 end
 
-# Checks available paths in the current room
-# @param dir [String] The direction to check
-# @return [Array, Boolean] List of available paths or false if none
-# @example
-#   paths = checkpaths
+# Checks available paths in the current room.
+#
+# @param dir [String] optional direction to check
+# @return [Array<String>, Boolean] available paths or false if none
 def checkpaths(dir = "none")
   if dir == "none"
     if XMLData.room_exits.empty?
@@ -1224,11 +1047,10 @@ def checkpaths(dir = "none")
   end
 end
 
-# Reverses the given direction
-# @param dir [String] The direction to reverse
-# @return [String, false] The reversed direction or false if unrecognized
-# @example
-#   reversed = reverse_direction("north")
+# Reverses a given direction string.
+#
+# @param dir [String] the direction to reverse
+# @return [String, false] the reversed direction or false if unrecognized
 def reverse_direction(dir)
   if dir == "n" then 's'
   elsif dir == "ne" then 'sw'
@@ -1259,12 +1081,11 @@ def reverse_direction(dir)
   end
 end
 
-# Walks in the specified boundaries until a condition is met
-# @param boundaries [Array] Boundaries to walk within
-# @param block [Proc] The block to execute
+# Walks in a direction until a condition is met.
+#
+# @param boundaries [Array<String>] optional boundaries to check against
+# @param block [Proc] block to execute while walking
 # @return [void]
-# @example
-#   walk("boundary1", "boundary2") { condition_met? }
 def walk(*boundaries, &block)
   boundaries.flatten!
   unless block.nil?
@@ -1287,19 +1108,16 @@ def walk(*boundaries, &block)
   checknpcs
 end
 
-# Runs the walk method until completion
+# Runs the walking loop until completion.
 # @return [void]
-# @example
-#   run
 def run
   loop { break unless walk }
 end
 
-# Checks the character's mind state
-# @param string [String] Optional mind state to check
-# @return [Boolean, String] true if matches, or the current mind state if no argument is provided
-# @example
-#   is_mind_clear = check_mind("clear")
+# Checks the character's mental state based on a string or integer input.
+#
+# @param string [String, nil] optional input to check against
+# @return [Boolean, String] true if the mental state matches, or the current mental state if no input is provided
 def check_mind(string = nil)
   if string.nil?
     return XMLData.mind_text
@@ -1317,11 +1135,10 @@ def check_mind(string = nil)
   end
 end
 
-# Checks the character's mind state
-# @param string [String] Optional mind state to check
-# @return [Boolean, String] true if matches, or the current mind state if no argument is provided
-# @example
-#   is_mind_clear = checkmind("clear")
+# Checks the character's mental state based on a string or integer input.
+#
+# @param string [String, nil] optional input to check against
+# @return [Boolean, String] true if the mental state matches, or the current mental state if no input is provided
 def checkmind(string = nil)
   if string.nil?
     return XMLData.mind_text
@@ -1346,11 +1163,10 @@ def checkmind(string = nil)
   end
 end
 
-# Checks the percentage of mind fullness
-# @param num [Integer] Optional threshold to check against
-# @return [Boolean, Integer] true if above threshold, or current mind value if no argument is provided
-# @example
-#   is_above_threshold = percentmind(50)
+# Checks the character's mental state as a percentage.
+#
+# @param num [Integer, nil] optional threshold to check against
+# @return [Boolean] true if the mental state is above the threshold, false otherwise
 def percentmind(num = nil)
   if num.nil?
     XMLData.mind_value
@@ -1359,10 +1175,8 @@ def percentmind(num = nil)
   end
 end
 
-# Checks if the character is fried
-# @return [Boolean] true if fried
-# @example
-#   is_fried = checkfried
+# Checks if the character is fried (mentally exhausted).
+# @return [Boolean] true if fried, false otherwise
 def checkfried
   if XMLData.mind_text =~ /must rest|saturated/
     true
@@ -1371,10 +1185,8 @@ def checkfried
   end
 end
 
-# Checks if the character is saturated
-# @return [Boolean] true if saturated
-# @example
-#   is_saturated = checksaturated
+# Checks if the character is saturated (mentally overloaded).
+# @return [Boolean] true if saturated, false otherwise
 def checksaturated
   if XMLData.mind_text =~ /saturated/
     true
@@ -1383,11 +1195,10 @@ def checksaturated
   end
 end
 
-# Checks the character's mana
-# @param num [Integer] Optional threshold to check against
-# @return [Boolean, Integer] true if above threshold, or current mana value if no argument is provided
-# @example
-#   is_above_threshold = checkmana(50)
+# Checks the character's mana level.
+#
+# @param num [Integer, nil] optional threshold to check against
+# @return [Integer] the current mana level or true if above the threshold
 def checkmana(num = nil)
   Lich.deprecated('checkmana', 'Char.mana')
   if num.nil?
@@ -1397,20 +1208,17 @@ def checkmana(num = nil)
   end
 end
 
-# Retrieves the maximum mana value
-# @return [Integer] The maximum mana
-# @example
-#   max_mana = maxmana
+# Retrieves the maximum mana level for the character.
+# @return [Integer] the maximum mana level
 def maxmana
   Lich.deprecated('maxmana', 'Char.maxmana')
   XMLData.max_mana
 end
 
-# Checks the percentage of mana
-# @param num [Integer] Optional threshold to check against
-# @return [Boolean, Integer] true if above threshold, or current mana percentage if no argument is provided
-# @example
-#   is_above_threshold = percentmana(50)
+# Checks the character's mana level as a percentage.
+#
+# @param num [Integer, nil] optional threshold to check against
+# @return [Boolean] true if the mana level is above the threshold, false otherwise
 def percentmana(num = nil)
   Lich.deprecated('percentmana', 'Char.percent_mana')
   if XMLData.max_mana == 0
@@ -1425,11 +1233,10 @@ def percentmana(num = nil)
   end
 end
 
-# Checks the character's health
-# @param num [Integer] Optional threshold to check against
-# @return [Boolean, Integer] true if above threshold, or current health value if no argument is provided
-# @example
-#   is_above_threshold = checkhealth(50)
+# Checks the character's health level.
+#
+# @param num [Integer, nil] optional threshold to check against
+# @return [Integer] the current health level or true if above the threshold
 def checkhealth(num = nil)
   Lich.deprecated('checkhealth', 'Char.health')
   if num.nil?
@@ -1439,20 +1246,17 @@ def checkhealth(num = nil)
   end
 end
 
-# Retrieves the maximum health value
-# @return [Integer] The maximum health
-# @example
-#   max_health = maxhealth
+# Retrieves the maximum health level for the character.
+# @return [Integer] the maximum health level
 def maxhealth
   Lich.deprecated('maxhealth', 'Char.max_health')
   XMLData.max_health
 end
 
-# Checks the percentage of health
-# @param num [Integer] Optional threshold to check against
-# @return [Boolean, Integer] true if above threshold, or current health percentage if no argument is provided
-# @example
-#   is_above_threshold = percenthealth(50)
+# Checks the character's health level as a percentage.
+#
+# @param num [Integer, nil] optional threshold to check against
+# @return [Boolean] true if the health level is above the threshold, false otherwise
 def percenthealth(num = nil)
   Lich.deprecated('percenthealth', 'Char.percent_health')
   if num.nil?
@@ -1462,11 +1266,10 @@ def percenthealth(num = nil)
   end
 end
 
-# Checks the character's spirit
-# @param num [Integer] Optional threshold to check against
-# @return [Boolean, Integer] true if above threshold, or current spirit value if no argument is provided
-# @example
-#   is_above_threshold = checkspirit(50)
+# Checks the character's spirit level.
+#
+# @param num [Integer, nil] optional threshold to check against
+# @return [Integer] the current spirit level or true if above the threshold
 def checkspirit(num = nil)
   Lich.deprecated('checkspirit', 'Char.spirit')
   if num.nil?
@@ -1476,20 +1279,17 @@ def checkspirit(num = nil)
   end
 end
 
-# Retrieves the maximum spirit value
-# @return [Integer] The maximum spirit
-# @example
-#   max_spirit = maxspirit
+# Retrieves the maximum spirit level for the character.
+# @return [Integer] the maximum spirit level
 def maxspirit
   Lich.deprecated('maxspirit', 'Char.max_spirit')
   XMLData.max_spirit
 end
 
-# Checks the percentage of spirit
-# @param num [Integer] Optional threshold to check against
-# @return [Boolean, Integer] true if above threshold, or current spirit percentage if no argument is provided
-# @example
-#   is_above_threshold = percentspirit(50)
+# Checks the character's spirit level as a percentage.
+#
+# @param num [Integer, nil] optional threshold to check against
+# @return [Boolean] true if the spirit level is above the threshold, false otherwise
 def percentspirit(num = nil)
   Lich.deprecated('percentspirit', 'Char.percent_spirit')
   if num.nil?
@@ -1499,11 +1299,10 @@ def percentspirit(num = nil)
   end
 end
 
-# Checks the character's stamina
-# @param num [Integer] Optional threshold to check against
-# @return [Boolean, Integer] true if above threshold, or current stamina value if no argument is provided
-# @example
-#   is_above_threshold = checkstamina(50)
+# Checks the character's stamina level.
+#
+# @param num [Integer, nil] optional threshold to check against
+# @return [Integer] the current stamina level or true if above the threshold
 def checkstamina(num = nil)
   Lich.deprecated('checkstamina', 'Char.stamina')
   if num.nil?
@@ -1513,20 +1312,17 @@ def checkstamina(num = nil)
   end
 end
 
-# Retrieves the maximum stamina value
-# @return [Integer] The maximum stamina
-# @example
-#   max_stamina = maxstamina
+# Retrieves the maximum stamina level for the character.
+# @return [Integer] the maximum stamina level
 def maxstamina()
   Lich.deprecated('maxstamina', 'Char.max_stamina')
   XMLData.max_stamina
 end
 
-# Checks the percentage of stamina
-# @param num [Integer] Optional threshold to check against
-# @return [Boolean, Integer] true if above threshold, or current stamina percentage if no argument is provided
-# @example
-#   is_above_threshold = percentstamina(50)
+# Checks the character's stamina level as a percentage.
+#
+# @param num [Integer, nil] optional threshold to check against
+# @return [Boolean] true if the stamina level is above the threshold, false otherwise
 def percentstamina(num = nil)
   Lich.deprecated('percentstamina', 'Char.percent_stamina')
   if XMLData.max_stamina == 0
@@ -1541,19 +1337,16 @@ def percentstamina(num = nil)
   end
 end
 
-# Retrieves the maximum concentration value
-# @return [Integer] The maximum concentration
-# @example
-#   max_concentration = maxconcentration
+# Retrieves the maximum concentration level for the character.
+# @return [Integer] the maximum concentration level
 def maxconcentration()
   XMLData.max_concentration
 end
 
-# Checks the percentage of concentration
-# @param num [Integer] Optional threshold to check against
-# @return [Boolean, Integer] true if above threshold, or current concentration percentage if no argument is provided
-# @example
-#   is_above_threshold = percentconcentration(50)
+# Checks the character's concentration level as a percentage.
+#
+# @param num [Integer, nil] optional threshold to check against
+# @return [Boolean] true if the concentration level is above the threshold, false otherwise
 def percentconcentration(num = nil)
   if XMLData.max_concentration == 0
     percent = 100
@@ -1567,11 +1360,10 @@ def percentconcentration(num = nil)
   end
 end
 
-# Checks the character's stance
-# @param num [Integer] Optional threshold to check against
-# @return [Boolean, String] true if matches, or current stance if no argument is provided
-# @example
-#   is_stance_match = checkstance("off")
+# Checks the character's stance level.
+#
+# @param num [Integer, nil] optional threshold to check against
+# @return [String] the current stance text or true if above the threshold
 def checkstance(num = nil)
   Lich.deprecated('checkstance', 'Char.stance')
   if num.nil?
@@ -1601,11 +1393,10 @@ def checkstance(num = nil)
   end
 end
 
-# Checks the percentage of stance
-# @param num [Integer] Optional threshold to check against
-# @return [Boolean, Integer] true if above threshold, or current stance value if no argument is provided
-# @example
-#   is_above_threshold = percentstance(50)
+# Checks the character's stance level as a percentage.
+#
+# @param num [Integer, nil] optional threshold to check against
+# @return [Boolean] true if the stance level is above the threshold, false otherwise
 def percentstance(num = nil)
   Lich.deprecated('percentstance', 'Char.percent_stance')
   if num.nil?
@@ -1615,11 +1406,10 @@ def percentstance(num = nil)
   end
 end
 
-# Checks the character's encumbrance
-# @param string [String, Integer] Optional threshold to check against
-# @return [Boolean, String] true if matches, or current encumbrance if no argument is provided
-# @example
-#   is_encumbered = checkencumbrance("light")
+# Checks the character's encumbrance level.
+#
+# @param string [String, nil] optional input to check against
+# @return [String] the current encumbrance text or true if above the threshold
 def checkencumbrance(string = nil)
   Lich.deprecated('checkencumbrance', 'Char.encumbrance')
   if string.nil?
@@ -1636,11 +1426,10 @@ def checkencumbrance(string = nil)
   end
 end
 
-# Checks the percentage of encumbrance
-# @param num [Integer] Optional threshold to check against
-# @return [Boolean, Integer] true if above threshold, or current encumbrance percentage if no argument is provided
-# @example
-#   is_above_threshold = percentencumbrance(50)
+# Checks the character's encumbrance level as a percentage.
+#
+# @param num [Integer, nil] optional threshold to check against
+# @return [Boolean] true if the encumbrance level is above the threshold, false otherwise
 def percentencumbrance(num = nil)
   Lich.deprecated('percentencumbrance', 'Char.percent_encumbrance')
   if num.nil?
@@ -1650,11 +1439,10 @@ def percentencumbrance(num = nil)
   end
 end
 
-# Checks the area of the current room
-# @param strings [Array] Optional strings to check against
-# @return [String, Boolean] The area name or true if matches
-# @example
-#   area_name = checkarea("forest")
+# Checks the area of the current room against provided strings.
+#
+# @param strings [Array<String>] optional strings to check against
+# @return [String, Boolean] the room title or true if matches
 def checkarea(*strings)
   strings.flatten!
   if strings.empty?
@@ -1664,11 +1452,10 @@ def checkarea(*strings)
   end
 end
 
-# Checks the current room title
-# @param strings [Array] Optional strings to check against
-# @return [String, Boolean] The room title or true if matches
-# @example
-#   room_title = checkroom("dungeon")
+# Checks the room title against provided strings.
+#
+# @param strings [Array<String>] optional strings to check against
+# @return [String, Boolean] the room title or true if matches
 def checkroom(*strings)
   strings.flatten!
   if strings.empty?
@@ -1678,10 +1465,8 @@ def checkroom(*strings)
   end
 end
 
-# Checks if the character is outside
-# @return [Boolean] true if outside
-# @example
-#   is_outside = outside?
+# Checks if there are obvious paths in the current room.
+# @return [Boolean] true if outside, false otherwise
 def outside?
   if XMLData.room_exits_string =~ /Obvious paths:/
     true
@@ -1690,11 +1475,10 @@ def outside?
   end
 end
 
-# Checks the area of the familiar
-# @param strings [Array] Optional strings to check against
-# @return [String, Boolean] The familiar area name or true if matches
-# @example
-#   fam_area_name = checkfamarea("forest")
+# Checks the area of the familiar room against provided strings.
+#
+# @param strings [Array<String>] optional strings to check against
+# @return [String, Boolean] the familiar room title or true if matches
 def checkfamarea(*strings)
   strings.flatten!
   if strings.empty? then return XMLData.familiar_room_title.split(',').first.sub('[', '') end
@@ -1702,11 +1486,10 @@ def checkfamarea(*strings)
   XMLData.familiar_room_title.split(',').first =~ /#{strings.join('|')}/i
 end
 
-# Checks the paths of the familiar
-# @param dir [String] The direction to check
-# @return [Array, Boolean] List of familiar paths or false if none
-# @example
-#   fam_paths = checkfampaths
+# Checks available paths in the familiar room.
+#
+# @param dir [String] optional direction to check
+# @return [Array<String>, Boolean] available paths or false if none
 def checkfampaths(dir = "none")
   if dir == "none"
     if XMLData.familiar_room_exits.empty?
@@ -1719,22 +1502,20 @@ def checkfampaths(dir = "none")
   end
 end
 
-# Checks the familiar room title
-# @param strings [Array] Optional strings to check against
-# @return [String, Boolean] The familiar room title or true if matches
-# @example
-#   fam_room_title = checkfamroom("dungeon")
+# Checks the familiar room title against provided strings.
+#
+# @param strings [Array<String>] optional strings to check against
+# @return [String, Boolean] the familiar room title or true if matches
 def checkfamroom(*strings)
   strings.flatten!; if strings.empty? then return XMLData.familiar_room_title.chomp end
 
   XMLData.familiar_room_title =~ /#{strings.join('|')}/i
 end
 
-# Checks the familiar NPCs
-# @param strings [Array] Optional strings to check against
-# @return [Array, Boolean] List of familiar NPCs or false if none
-# @example
-#   fam_npcs = checkfamnpcs
+# Checks for familiar NPCs against provided strings.
+#
+# @param strings [Array<String>] optional strings to check against
+# @return [Array<String>, Boolean] list of familiar NPCs or false if none
 def checkfamnpcs(*strings)
   parsed = Array.new
   XMLData.familiar_npcs.each { |val| parsed.push(val.split.last) }
@@ -1753,11 +1534,10 @@ def checkfamnpcs(*strings)
   end
 end
 
-# Checks the familiar PCs
-# @param strings [Array] Optional strings to check against
-# @return [Array, Boolean] List of familiar PCs or false if none
-# @example
-#   fam_pcs = checkfampcs
+# Checks for familiar PCs against provided strings.
+#
+# @param strings [Array<String>] optional strings to check against
+# @return [Array<String>, Boolean] list of familiar PCs or false if none
 def checkfampcs(*strings)
   familiar_pcs = Array.new
   XMLData.familiar_pcs.to_s.gsub(/Lord |Lady |Great |High |Renowned |Grand |Apprentice |Novice |Journeyman /, '').split(',').each { |line| familiar_pcs.push(line.slice(/[A-Z][a-z]+/)) }
@@ -1776,11 +1556,10 @@ def checkfampcs(*strings)
   end
 end
 
-# Checks the player characters
-# @param strings [Array] Optional strings to check against
-# @return [Array, Boolean] List of player characters or false if none
-# @example
-#   pcs = checkpcs
+# Checks for PCs against provided strings.
+#
+# @param strings [Array<String>] optional strings to check against
+# @return [Array<String>, Boolean] list of PCs or false if none
 def checkpcs(*strings)
   pcs = GameObj.pcs.collect { |pc| pc.noun }
   if pcs.empty?
@@ -1795,11 +1574,10 @@ def checkpcs(*strings)
   end
 end
 
-# Checks the non-player characters
-# @param strings [Array] Optional strings to check against
-# @return [Array, Boolean] List of non-player characters or false if none
-# @example
-#   npcs = checknpcs
+# Checks for NPCs against provided strings.
+#
+# @param strings [Array<String>] optional strings to check against
+# @return [Array<String>, Boolean] list of NPCs or false if none
 def checknpcs(*strings)
   npcs = GameObj.npcs.collect { |npc| npc.noun }
   if npcs.empty?
@@ -1814,19 +1592,16 @@ def checknpcs(*strings)
   end
 end
 
-# Counts the number of non-player characters
-# @return [Integer] The count of non-player characters
-# @example
-#   count = count_npcs
+# Counts the number of NPCs present.
+# @return [Integer] the count of NPCs
 def count_npcs
   checknpcs.length
 end
 
-# Checks the right hand for a specified item
-# @param hand [Array] Optional items to check against
-# @return [String, nil] The item in the right hand or nil if empty
-# @example
-#   right_item = checkright("sword")
+# Checks the right hand for specified items.
+#
+# @param hand [Array<String>] optional items to check against
+# @return [String, nil] the item in the right hand or nil if empty
 def checkright(*hand)
   if GameObj.right_hand.nil? then return nil end
 
@@ -1840,11 +1615,10 @@ def checkright(*hand)
   end
 end
 
-# Checks the left hand for a specified item
-# @param hand [Array] Optional items to check against
-# @return [String, nil] The item in the left hand or nil if empty
-# @example
-#   left_item = checkleft("shield")
+# Checks the left hand for specified items.
+#
+# @param hand [Array<String>] optional items to check against
+# @return [String, nil] the item in the left hand or nil if empty
 def checkleft(*hand)
   if GameObj.left_hand.nil? then return nil end
 
@@ -1858,11 +1632,10 @@ def checkleft(*hand)
   end
 end
 
-# Checks the room description
-# @param val [Array] Optional strings to check against
-# @return [String] The room description or true if matches
-# @example
-#   room_desc = checkroomdescrip("dark")
+# Checks the room description against provided strings.
+#
+# @param val [Array<String>] optional strings to check against
+# @return [String] the room description or true if matches
 def checkroomdescrip(*val)
   val.flatten!
   if val.empty?
@@ -1872,11 +1645,10 @@ def checkroomdescrip(*val)
   end
 end
 
-# Checks the familiar room description
-# @param val [Array] Optional strings to check against
-# @return [String] The familiar room description or true if matches
-# @example
-#   fam_room_desc = checkfamroomdescrip("bright")
+# Checks the familiar room description against provided strings.
+#
+# @param val [Array<String>] optional strings to check against
+# @return [String] the familiar room description or true if matches
 def checkfamroomdescrip(*val)
   val.flatten!
   if val.empty?
@@ -1886,11 +1658,10 @@ def checkfamroomdescrip(*val)
   end
 end
 
-# Checks if the specified spells are active
-# @param spells [Array] The spells to check
-# @return [Boolean] true if all specified spells are active
-# @example
-#   is_active = checkspell("fireball", "heal")
+# Checks if specified spells are active.
+#
+# @param spells [Array<String>] names of spells to check
+# @return [Boolean] true if all specified spells are active, false otherwise
 def checkspell(*spells)
   spells.flatten!
   return false if Spell.active.empty?
@@ -1899,11 +1670,10 @@ def checkspell(*spells)
   true
 end
 
-# Checks if a spell is prepared
-# @param spell [String] The name of the spell to check
-# @return [Boolean] true if the spell is prepared
-# @example
-#   is_prepared = checkprep("fireball")
+# Checks if a spell is prepared.
+#
+# @param spell [String, nil] optional spell name to check
+# @return [Boolean] true if the spell is prepared, false otherwise
 def checkprep(spell = nil)
   if spell.nil?
     XMLData.prepared_spell
@@ -1915,11 +1685,10 @@ def checkprep(spell = nil)
   end
 end
 
-# Sets the priority of the current script
-# @param val [Integer] The priority value to set
-# @return [Integer] The current priority
-# @example
-#   current_priority = setpriority(2)
+# Sets the priority of the current script.
+#
+# @param val [Integer, nil] optional priority value to set
+# @return [Integer] the current priority of the script
 def setpriority(val = nil)
   if val.nil? then return Thread.current.priority end
 
@@ -1932,10 +1701,8 @@ def setpriority(val = nil)
   end
 end
 
-# Checks the current bounty task
-# @return [String, nil] The current bounty task or nil if none
-# @example
-#   bounty_task = checkbounty
+# Checks if there is a bounty task assigned.
+# @return [String, nil] the current bounty task or nil if none
 def checkbounty
   if XMLData.bounty_task
     return XMLData.bounty_task
@@ -1944,110 +1711,87 @@ def checkbounty
   end
 end
 
-# Checks if the character is sleeping
-# @return [Boolean] true if sleeping
-# @example
-#   is_sleeping = checksleeping
+# Checks if the character is sleeping.
+# @return [Boolean] true if sleeping, false otherwise
 def checksleeping
   return Status.sleeping? if XMLData.game =~ /GS/
   fail "Error: toplevel checksleeping command not enabled in #{XMLData.game}"
 end
 
-# Checks if the character is sleeping
-# @return [Boolean] true if sleeping
-# @example
-#   is_sleeping = sleeping?
+# Checks if the character is sleeping.
+# @return [Boolean] true if sleeping, false otherwise
 def sleeping?
   return Status.sleeping? if XMLData.game =~ /GS/
   fail "Error: toplevel sleeping? command not enabled in #{XMLData.game}"
 end
 
-# Checks if the character is bound
-# @return [Boolean] true if bound
-# @example
-#   is_bound = checkbound
+# Checks if the character is bound.
+# @return [Boolean] true if bound, false otherwise
 def checkbound
   return Status.bound? if XMLData.game =~ /GS/
   fail "Error: toplevel checkbound command not enabled in #{XMLData.game}"
 end
 
-# Checks if the character is bound
-# @return [Boolean] true if bound
-# @example
-#   is_bound = bound?
+# Checks if the character is bound.
+# @return [Boolean] true if bound, false otherwise
 def bound?
   return Status.bound? if XMLData.game =~ /GS/
   fail "Error: toplevel bound? command not enabled in #{XMLData.game}"
 end
 
-# Checks if the character is silenced
-# @return [Boolean] true if silenced
-# @example
-#   is_silenced = checksilenced
+# Checks if the character is silenced.
+# @return [Boolean] true if silenced, false otherwise
 def checksilenced
   return Status.silenced? if XMLData.game =~ /GS/
   fail "Error: toplevel checksilenced command not enabled in #{XMLData.game}"
 end
 
-# Checks if the character is silenced
-# @return [Boolean] true if silenced
-# @example
-#   is_silenced = silenced?
+# Checks if the character is silenced.
+# @return [Boolean] true if silenced, false otherwise
 def silenced?
   return Status.silenced? if XMLData.game =~ /GS/
   fail "Error: toplevel silenced command not enabled in #{XMLData.game}"
 end
 
-# Checks if the character is calmed
-# @return [Boolean] true if calmed
-# @example
-#   is_calmed = checkcalmed
+# Checks if the character is calmed.
+# @return [Boolean] true if calmed, false otherwise
 def checkcalmed
   return Status.calmed? if XMLData.game =~ /GS/
   fail "Error: toplevel checkcalmed command not enabled in #{XMLData.game}"
 end
 
-# Checks if the character is calmed
-# @return [Boolean] true if calmed
-# @example
-#   is_calmed = calmed?
+# Checks if the character is calmed.
+# @return [Boolean] true if calmed, false otherwise
 def calmed?
   return Status.calmed? if XMLData.game =~ /GS/
   fail "Error: toplevel calmed? command not enabled in #{XMLData.game}"
 end
 
-# Checks if the character is cutthroat
-# @return [Boolean] true if cutthroat
-# @example
-#   is_cutthroat = checkcutthroat
+# Checks if the character is cutthroat.
+# @return [Boolean] true if cutthroat, false otherwise
 def checkcutthroat
   return Status.cutthroat? if XMLData.game =~ /GS/
   fail "Error: toplevel checkcutthroat command not enabled in #{XMLData.game}"
 end
 
-# Checks if the character is cutthroat
-# @return [Boolean] true if cutthroat
-# @example
-#   is_cutthroat = cutthroat?
+# Checks if the character is cutthroat.
+# @return [Boolean] true if cutthroat, false otherwise
 def cutthroat?
   return Status.cutthroat? if XMLData.game =~ /GS/
   fail "Error: toplevel cutthroat? command not enabled in #{XMLData.game}"
 end
 
-# Retrieves the variables of the current script
-# @return [Hash] The variables of the script
-# @example
-#   vars = variable
+# Retrieves the variables of the current script.
+# @return [Hash] the script's variables
 def variable
   unless (script = Script.current) then echo 'variable: cannot identify calling script.'; return nil; end
   script.vars
 end
 
-# Pauses the script for a specified duration
-# @param num [String] Duration to pause (can include 'm' for minutes, 'h' for hours, 'd' for days)
+# Pauses the execution for a specified duration.
+#
+# @param num [String] duration to pause (can include 'm' for minutes, 'h' for hours, 'd' for days)
 # @return [void]
-# @example
-#   pause("2m")
 def pause(num = 1)
   if num.to_s =~ /m/
     sleep((num.sub(/m/, '').to_f * 60))
@@ -2060,13 +1804,12 @@ def pause(num = 1)
   end
 end
 
-# Casts a spell
-# @param spell [String, Spell] The spell to cast
-# @param target [String, nil] The target of the spell
-# @param results_of_interest [nil] Additional results of interest
-# @return [void]
-# @example
-#   cast("fireball", "target_name")
+# Casts a spell on a target.
+#
+# @param spell [String, Integer, Spell] the spell to cast
+# @param target [String, nil] optional target for the spell
+# @param results_of_interest [String, nil] optional results to track
+# @return [Boolean] true if the spell was cast successfully, false otherwise
 def cast(spell, target = nil, results_of_interest = nil)
   if spell.is_a?(Spell)
     spell.cast(target, results_of_interest)
@@ -2080,11 +1823,8 @@ def cast(spell, target = nil, results_of_interest = nil)
   end
 end
 
-# Clears the output buffer of the current script
-# @param _opt [Integer] Optional parameter
-# @return [Array] The cleared output
-# @example
-#   cleared_output = clear
+# Clears the output buffer for the current script.
+# @return [Array<String>] the cleared output
 def clear(_opt = 0)
   unless (script = Script.current) then respond('--- clear: Unable to identify calling script.'); return false; end
   to_return = script.downstream_buffer.dup
@@ -2092,12 +1832,11 @@ def clear(_opt = 0)
   to_return
 end
 
-# Matches a line against specified patterns
-# @param label [String] The label to match
-# @param string [String] The string to match
-# @return [String, nil] The matched string or nil if no match
-# @example
-#   matched_line = match("label", "string")
+# Matches a line from the script's input against specified patterns.
+#
+# @param label [String] the label to match
+# @param string [String] the string to match against
+# @return [String, nil] the matched string or nil if no match
 def match(label, string)
   strings = [label, string]
   strings.flatten!
@@ -2119,12 +1858,11 @@ def match(label, string)
   end
 end
 
-# Matches a line with a timeout
-# @param secs [Float, Integer] The timeout duration
-# @param strings [Array] Strings to match against
-# @return [String, nil] The matching line or nil if timed out
-# @example
-#   matched_line = matchtimeout(30, "pattern")
+# Matches a line from the script's input against specified patterns with a timeout.
+#
+# @param secs [Integer] the timeout duration in seconds
+# @param strings [Array<String>] strings to match against
+# @return [String, nil] the matched line or nil if timeout occurs
 def matchtimeout(secs, *strings)
   unless (Script.current) then echo("An unknown script thread tried to fetch a game line from the queue, but Lich can't process the call without knowing which script is calling! Aborting..."); Thread.current.kill; return false end
   unless (secs.is_a?(Float) || secs.is_a?(Integer))
@@ -2152,11 +1890,10 @@ def matchtimeout(secs, *strings)
   }
 end
 
-# Matches a line before a specified pattern
-# @param strings [Array] Strings to match against
-# @return [String] The matched line
-# @example
-#   matched_line = matchbefore("pattern")
+# Matches a line from the script's input before a specified pattern.
+#
+# @param strings [Array<String>] strings to match against
+# @return [String] the matched line before the pattern
 def matchbefore(*strings)
   strings.flatten!
   unless (script = Script.current) then echo("An unknown script thread tried to fetch a game line from the queue, but Lich can't process the call without knowing which script is calling! Aborting..."); Thread.current.kill; return false end
@@ -2165,11 +1902,10 @@ def matchbefore(*strings)
   loop { if (script.gets) =~ /#{regexpstr}/ then return $`.to_s end }
 end
 
-# Matches a line after a specified pattern
-# @param strings [Array] Strings to match against
-# @return [String] The matched line
-# @example
-#   matched_line = matchafter("pattern")
+# Matches a line from the script's input after a specified pattern.
+#
+# @param strings [Array<String>] strings to match against
+# @return [String] the matched line after the pattern
 def matchafter(*strings)
   strings.flatten!
   unless (script = Script.current) then echo("An unknown script thread tried to fetch a game line from the queue, but Lich can't process the call without knowing which script is calling! Aborting..."); Thread.current.kill; return false end
@@ -2178,11 +1914,10 @@ def matchafter(*strings)
   loop { if (script.gets) =~ /#{regexpstr}/ then return $'.to_s end }
 end
 
-# Matches a line both before and after specified patterns
-# @param strings [Array] Strings to match against
-# @return [Array] The matched lines
-# @example
-#   matched_lines = matchboth("before_pattern", "after_pattern")
+# Matches a line from the script's input against specified patterns in both directions.
+#
+# @param strings [Array<String>] strings to match against
+# @return [Array<String>] the matched lines
 def matchboth(*strings)
   strings.flatten!
   unless (script = Script.current) then echo("An unknown script thread tried to fetch a game line from the queue, but Lich can't process the call without knowing which script is calling! Aborting..."); Thread.current.kill; return false end
@@ -2192,11 +1927,10 @@ def matchboth(*strings)
   return [$`.to_s, $'.to_s]
 end
 
-# Waits for a line that matches specified patterns
-# @param strings [Array] Strings to match against
-# @return [String] The matching line
-# @example
-#   matched_line = matchwait("pattern")
+# Waits for a line from the script's input matching specified patterns.
+#
+# @param strings [Array<String>] strings to match against
+# @return [String] the matched line
 def matchwait(*strings)
   unless (script = Script.current) then respond('--- matchwait: Unable to identify calling script.'); return false; end
   strings.flatten!
@@ -2220,22 +1954,20 @@ def matchwait(*strings)
   end
 end
 
-# Waits for a line that matches a regular expression
-# @param regexp [Regexp] The regular expression to match
-# @return [void]
-# @example
-#   waitforre(/pattern/)
+# Waits for a line from the script's input matching a regular expression.
+#
+# @param regexp [Regexp] the regular expression to match against
+# @return [String] the matched line
 def waitforre(regexp)
   unless (script = Script.current) then respond('--- waitforre: Unable to identify calling script.'); return false; end
   unless regexp.is_a?(Regexp) then echo("Script error! You have given 'waitforre' something to wait for, but it isn't a Regular Expression! Use 'waitfor' if you want to wait for a string."); sleep 1; return nil end
   regobj = regexp.match(script.gets) until regobj
 end
 
-# Waits for a line that matches specified strings
-# @param strings [Array] Strings to match against
-# @return [String] The matching line
-# @example
-#   matched_line = waitfor("pattern")
+# Waits for a line from the script's input matching specified strings.
+#
+# @param strings [Array<String>] strings to match against
+# @return [String] the matched line
 def waitfor(*strings)
   unless (script = Script.current) then respond('--- waitfor: Unable to identify calling script.'); return false; end
   strings.flatten!
@@ -2254,38 +1986,31 @@ def waitfor(*strings)
   end
 end
 
-# Waits for a line from the current script
-# @return [String] The line received
-# @example
-#   line = wait
+# Waits for a line from the script's input.
+# @return [String] the line received
 def wait
   unless (script = Script.current) then respond('--- wait: unable to identify calling script.'); return false; end
   script.clear
   return script.gets
 end
 
-# Retrieves a line from the current script
-# @return [String] The line retrieved
-# @example
-#   line = get
+# Retrieves a line from the script's input.
+# @return [String] the line received
 def get
   Script.current.gets
 end
 
-# Checks if there is a line available from the current script
-# @return [Boolean] true if a line is available
-# @example
-#   has_line = get?
+# Checks if there is a line available from the script's input.
+# @return [Boolean] true if a line is available, false otherwise
 def get?
   Script.current.gets?
 end
 
-# Retrieves lines from the server buffer
-# @param lines [Array] Optional lines to retrieve
-# @param core [Boolean] Indicates if core retrieval is allowed
-# @return [Array, nil] The retrieved lines or nil if none
-# @example
-#   lines = reget("line1", "line2")
+# Retrieves lines from the server buffer based on specified criteria.
+#
+# @param lines [Array<String>, Integer] optional lines to retrieve
+# @param core [Boolean] whether to allow core access
+# @return [Array<String>, nil] the retrieved lines or nil if none
 def reget(*lines, core: false)
   unless (script = Script.current) || core.eql?(true)
     respond('--- reget: Unable to identify calling script.')
@@ -2320,30 +2045,27 @@ def reget(*lines, core: false)
   end
 end
 
-# Retrieves all lines from the server buffer
-# @param lines [Array] Optional lines to retrieve
-# @return [Array, nil] The retrieved lines or nil if none
-# @example
-#   lines = regetall("line1", "line2")
+# Retrieves all lines from the server buffer based on specified criteria.
+#
+# @param lines [Array<String>, Integer] optional lines to retrieve
+# @return [Array<String>, nil] the retrieved lines or nil if none
 def regetall(*lines)
   reget(*lines)
 end
 
-# Sends multiple commands to the game
-# @param cmds [Array] Commands to send
+# Sends multiple commands to the game.
+#
+# @param cmds [Array<String>] commands to send
 # @return [void]
-# @example
-#   multifput("command1", "command2")
 def multifput(*cmds)
   cmds.flatten.compact.each { |cmd| fput(cmd) }
 end
 
-# Sends a command to the game and waits for a response
-# @param message [String] The command to send
-# @param waitingfor [Array] Expected responses
-# @return [String, nil] The response received or nil on timeout
-# @example
-#   response = fput("command", ["success", "failure"])
+# Sends a command to the game and waits for a response matching specified patterns.
+#
+# @param message [String] the command to send
+# @param waitingfor [Array<String>] patterns for responses
+# @return [String, nil] the response received or nil on timeout
 def fput(message, *waitingfor)
   unless (script = Script.current) then respond('--- waitfor: Unable to identify calling script.'); return false; end
   waitingfor.flatten!
@@ -2424,29 +2146,25 @@ def fput(message, *waitingfor)
   end
 end
 
-# Sends messages to the game
-# @param messages [Array] Messages to send
+# Sends messages to the game output.
+#
+# @param messages [Array<String>] messages to send
 # @return [void]
-# @example
-#   put("Hello, World!")
 def put(*messages)
   messages.each { |message| Game.puts(message) }
 end
 
-# Toggles the quiet exit setting for the current script
+# Toggles the quiet exit state for the current script.
 # @return [void]
-# @example
-#   quiet_exit
 def quiet_exit
   script = Script.current
   script.quiet = !(script.quiet)
 end
 
-# Matches a line against specified patterns exactly
-# @param strings [Array] The patterns to match
-# @return [String, nil] The matched string or nil if no match
-# @example
-#   matched_line = matchfindexact("pattern")
+# Matches a line from the script's input against specified patterns exactly.
+#
+# @param strings [Array<String>] strings to match against
+# @return [Array<String>] the matched strings
 def matchfindexact(*strings)
   strings.flatten!
   unless (script = Script.current) then echo("An unknown script thread tried to fetch a game line from the queue, but Lich can't process the call without knowing which script is calling! Aborting..."); Thread.current.kill; return false end
@@ -2473,6 +2191,10 @@ def matchfindexact(*strings)
   end
 end
 
+# Matches a line from the script's input against specified patterns.
+#
+# @param strings [Array<String>] strings to match against
+# @return [String, nil] the matched line or nil if no match
 def matchfind(*strings)
   regex = /#{strings.flatten.join('|').gsub('?', '(.+)')}/i
   unless (script = Script.current)
@@ -2491,6 +2213,10 @@ def matchfind(*strings)
   end
 end
 
+# Matches a line from the script's input against specified word patterns.
+#
+# @param strings [Array<String>] strings to match against
+# @return [String, nil] the matched word or nil if no match
 def matchfindword(*strings)
   regex = /#{strings.flatten.join('|').gsub('?', '([\w\d]+)')}/i
   unless (script = Script.current)
@@ -2509,6 +2235,10 @@ def matchfindword(*strings)
   end
 end
 
+# Sends messages to multiple scripts.
+#
+# @param messages [Array<String>] messages to send
+# @return [Boolean] true if sent successfully, false otherwise
 def send_scripts(*messages)
   messages.flatten!
   messages.each { |message|
@@ -2517,6 +2247,10 @@ def send_scripts(*messages)
   true
 end
 
+# Toggles the status tags for the current script.
+#
+# @param onoff [String] 'on' or 'off' to set the status tags
+# @return [void]
 def status_tags(onoff = "none")
   script = Script.current
   if onoff == "on"
@@ -2536,6 +2270,11 @@ def status_tags(onoff = "none")
   end
 end
 
+# Sends a response to the client.
+#
+# @param first [String, Array<String>] the first message or array of messages to send
+# @param messages [Array<String>] additional messages to send
+# @return [void]
 def respond(first = "", *messages)
   str = ''
   begin
@@ -2577,6 +2316,11 @@ def respond(first = "", *messages)
   end
 end
 
+# Sends a response to the client without additional formatting.
+#
+# @param first [String, Array<String>] the first message or array of messages to send
+# @param messages [Array<String>] additional messages to send
+# @return [void]
 def _respond(first = "", *messages)
   str = ''
   begin
@@ -2612,6 +2356,8 @@ def _respond(first = "", *messages)
   end
 end
 
+# Calculates the pulse value for the character when not in a node state.
+# @return [Integer] the calculated pulse value
 def noded_pulse
   unless XMLData.game =~ /DR/
     if Stats.prof =~ /warrior|rogue|sorcerer/i
@@ -2631,6 +2377,8 @@ def noded_pulse
   end
 end
 
+# Calculates the pulse value for the character when in a node state.
+# @return [Integer] the calculated pulse value
 def unnoded_pulse
   unless XMLData.game =~ /DR/
     if Stats.prof =~ /warrior|rogue|sorcerer/i
@@ -2652,6 +2400,8 @@ end
 
 require_relative File.join(LIB_DIR, "stash.rb")
 
+# Empties the hand that is currently occupied.
+# @return [void]
 def empty_hands
   waitrt?
   Lich::Stash::stash_hands(both: true)
@@ -2677,11 +2427,15 @@ def empty_right_hand
   Lich::Stash::stash_hands(right: true)
 end
 
+# Empties the left hand of the character.
+# @return [void]
 def empty_left_hand
   waitrt?
   Lich::Stash::stash_hands(left: true)
 end
 
+# Fills the currently empty hand with an item.
+# @return [void]
 def fill_hands
   waitrt?
   Lich::Stash::equip_hands(both: true)
@@ -2692,16 +2446,25 @@ def fill_hand
   Lich::Stash::equip_hands()
 end
 
+# Fills the right hand of the character with an item.
+# @return [void]
 def fill_right_hand
   waitrt?
   Lich::Stash::equip_hands(right: true)
 end
 
+# Fills the left hand of the character with an item.
+# @return [void]
 def fill_left_hand
   waitrt?
   Lich::Stash::equip_hands(left: true)
 end
 
+# Executes a specified action and waits for a successful response.
+#
+# @param action [String] the action to perform
+# @param success_line [Regexp] the line indicating success
+# @return [String] the response received
 def dothis(action, success_line)
   loop {
     Script.current.clear
@@ -2759,6 +2522,12 @@ def dothis(action, success_line)
   }
 end
 
+# Executes a specified action with a timeout and waits for a successful response.
+#
+# @param action [String] the action to perform
+# @param timeout [Integer] the timeout duration in seconds
+# @param success_line [Regexp] the line indicating success
+# @return [String, nil] the response received or nil if timeout occurs
 def dothistimeout(action, timeout, success_line)
   end_time = Time.now.to_f + timeout
   line = nil
@@ -2831,6 +2600,10 @@ $link_highlight_end = ''
 $speech_highlight_start = ''
 $speech_highlight_end = ''
 
+# Converts a line from the front buffer to a string format.
+#
+# @param line [String] the line to convert
+# @return [String, nil] the converted line or nil if empty
 def fb_to_sf(line)
   begin
     return line if line == "\r\n"
@@ -2848,6 +2621,11 @@ def fb_to_sf(line)
   end
 end
 
+# Converts a line from string format to wizard format.
+#
+# @param line [String] the line to convert
+# @param bypass_multiline [Boolean] whether to bypass multiline handling
+# @return [String, nil] the converted line or nil if empty
 def sf_to_wiz(line, bypass_multiline: false)
   begin
     return line if line == "\r\n"
@@ -2923,6 +2701,11 @@ def sf_to_wiz(line, bypass_multiline: false)
   end
 end
 
+# Strips XML tags from a line.
+#
+# @param line [String] the line to strip
+# @param type [String] the type of stripping to perform
+# @return [String, nil] the stripped line or nil if empty
 def strip_xml(line, type: 'main')
   return line if line == "\r\n"
 
@@ -2949,6 +2732,8 @@ def strip_xml(line, type: 'main')
   return line
 end
 
+# Starts bold formatting for monster text.
+# @return [String] the formatting string
 def monsterbold_start
   if Frontend.supports_gsl?
     "\034GSL\r\n"
@@ -2959,6 +2744,8 @@ def monsterbold_start
   end
 end
 
+# Ends bold formatting for monster text.
+# @return [String] the formatting string
 def monsterbold_end
   if Frontend.supports_gsl?
     "\034GSM\r\n"
@@ -2969,6 +2756,10 @@ def monsterbold_end
   end
 end
 
+# Processes a client command string and executes the appropriate action.
+#
+# @param client_string [String] the command string to process
+# @return [void]
 def do_client(client_string)
   client_string.strip!
   #   Buffer.update(client_string, Buffer::UPSTREAM)
@@ -3398,6 +3189,10 @@ def do_client(client_string)
   Script.new_upstream(client_string)
 end
 
+# Reports errors that occur during execution of a block.
+#
+# @param block [Proc] the block of code to execute
+# @return [void]
 def report_errors(&block)
   begin
     block.call
@@ -3436,6 +3231,8 @@ def report_errors(&block)
   end
 end
 
+# Handles deprecated alias commands.
+# @return [void]
 def alias_deprecated
   # todo: add command reference, possibly add calling script
   echo "The alias command you're attempting to use is deprecated.  Fix your script."

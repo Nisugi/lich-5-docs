@@ -2,44 +2,37 @@
 module Lich
   module Common
     module GUI
-      # Provides utility methods for applying themes in the GUI.
-      # @example Applying a theme
-      #   ThemeUtils.apply_theme_settings(true)
       module ThemeUtils
-        # Applies the specified theme settings.
-        # @param theme_state [Boolean] Indicates whether to apply dark theme.
+        # Applies the specified theme settings to the application.
+        #
+        # @param theme_state [Boolean] true for dark theme, false for light theme.
         # @return [void]
         def self.apply_theme_settings(theme_state)
           Gtk::Settings.default.gtk_application_prefer_dark_theme = theme_state
         end
 
         # Returns the background color for the light theme.
-        # @return [Gdk::RGBA] The light theme background color.
-        # @example
-        #   color = ThemeUtils.light_theme_background
+        # @return [Gdk::RGBA] the light theme background color.
         def self.light_theme_background
           Gdk::RGBA::parse("#d3d3d3")
         end
 
         # Returns the button color for the light theme.
-        # @return [Gdk::RGBA] The light theme button color.
-        # @example
-        #   color = ThemeUtils.light_theme_button
+        # @return [Gdk::RGBA] the light theme button color.
         def self.light_theme_button
           Gdk::RGBA::parse("#f0f0f0")
         end
 
         # Returns the background color for the dark theme.
-        # @return [Gdk::RGBA] The dark theme background color.
-        # @example
-        #   color = ThemeUtils.darkmode_background
+        # @return [Gdk::RGBA] the dark theme background color.
         def self.darkmode_background
           Gdk::RGBA::parse("rgba(40,40,40,1)")
         end
 
-        # Applies the theme to the specified window.
-        # @param window [Gtk::Window] The window to apply the theme to.
-        # @param theme_state [Boolean] Indicates whether to apply dark theme.
+        # Applies the specified theme to the given window.
+        #
+        # @param window [Gtk::Window] the window to apply the theme to.
+        # @param theme_state [Boolean] true for dark theme, false for light theme.
         # @return [void]
         def self.apply_theme_to_window(window, theme_state)
           if theme_state
@@ -49,9 +42,10 @@ module Lich
           end
         end
 
-        # Applies the theme to the specified notebook.
-        # @param notebook [Gtk::Notebook] The notebook to apply the theme to.
-        # @param theme_state [Boolean] Indicates whether to apply dark theme.
+        # Applies the specified theme to the given notebook.
+        #
+        # @param notebook [Gtk::Notebook] the notebook to apply the theme to.
+        # @param theme_state [Boolean] true for dark theme, false for light theme.
         # @return [void]
         def self.apply_theme_to_notebook(notebook, theme_state)
           if theme_state
@@ -61,9 +55,10 @@ module Lich
           end
         end
 
-        # Applies the specified color style to button elements.
-        # @param ui_elements [Hash] A hash of UI elements to style.
-        # @param color [Gdk::RGBA] The color to apply to the buttons.
+        # Applies the specified color style to the buttons in the UI elements.
+        #
+        # @param ui_elements [Hash] a hash of UI elements to style.
+        # @param color [Gdk::RGBA] the color to apply to the buttons.
         # @return [void]
         def self.apply_style_to_buttons(ui_elements, color)
           ui_elements.each do |_key, element|
@@ -74,8 +69,9 @@ module Lich
         end
 
         # Creates CSS for favorite items based on the theme state.
-        # @param theme_state [Boolean] Indicates whether to apply dark theme.
-        # @return [String] The generated CSS string.
+        #
+        # @param theme_state [Boolean] true for dark theme, false for light theme.
+        # @return [String] the generated CSS string.
         def self.create_favorites_css(theme_state)
           if theme_state
             # Dark theme favorites styling
@@ -134,9 +130,10 @@ module Lich
           end
         end
 
-        # Creates a CSS provider for the favorites styling.
-        # @param theme_state [Boolean] Indicates whether to apply dark theme.
-        # @return [Gtk::CssProvider] The CSS provider for the favorites.
+        # Creates a CSS provider for the favorites styling based on the theme state.
+        #
+        # @param theme_state [Boolean] true for dark theme, false for light theme.
+        # @return [Gtk::CssProvider] the CSS provider for the favorites.
         def self.create_favorites_css_provider(theme_state)
           provider = Gtk::CssProvider.new
           css_data = create_favorites_css(theme_state)
@@ -150,10 +147,11 @@ module Lich
           provider
         end
 
-        # Applies the favorites styling to a widget.
-        # @param widget [Gtk::Widget] The widget to style.
-        # @param theme_state [Boolean] Indicates whether to apply dark theme.
-        # @param is_favorite [Boolean] Indicates if the widget is a favorite.
+        # Applies the favorites styling to the specified widget.
+        #
+        # @param widget [Gtk::Widget] the widget to apply styling to.
+        # @param theme_state [Boolean] true for dark theme, false for light theme.
+        # @param is_favorite [Boolean] indicates if the widget is a favorite.
         # @return [void]
         def self.apply_favorites_styling(widget, theme_state, is_favorite = false)
           provider = create_favorites_css_provider(theme_state)
@@ -165,8 +163,9 @@ module Lich
         end
 
         # Returns the color for the favorite indicator based on the theme state.
-        # @param theme_state [Boolean] Indicates whether to apply dark theme.
-        # @return [Gdk::RGBA] The color for the favorite indicator.
+        #
+        # @param theme_state [Boolean] true for dark theme, false for light theme.
+        # @return [Gdk::RGBA] the color for the favorite indicator.
         def self.favorite_indicator_color(theme_state)
           if theme_state
             Gdk::RGBA::parse("#ffd700")  # Gold for dark theme
@@ -176,8 +175,9 @@ module Lich
         end
 
         # Returns the background color for the favorite button based on the theme state.
-        # @param theme_state [Boolean] Indicates whether to apply dark theme.
-        # @return [Gdk::RGBA] The background color for the favorite button.
+        #
+        # @param theme_state [Boolean] true for dark theme, false for light theme.
+        # @return [Gdk::RGBA] the background color for the favorite button.
         def self.favorite_button_background(theme_state)
           if theme_state
             Gdk::RGBA::parse("rgba(255, 215, 0, 0.1)") # Transparent gold

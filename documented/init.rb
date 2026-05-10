@@ -3,22 +3,18 @@
 #
 # Report an error if Lich 4.4 data is found
 #
-# Checks if the archaic Lich 4.4 configuration file exists.
-# @example Checking for Lich 4.4 configuration
-#   if File.exist?("#{DATA_DIR}/lich.sav")
-#     # Handle error
-#   end
+# Checks if the Lich 4.4 configuration file exists.
+#
+# @note This is a critical check to prevent using outdated configurations.
 if File.exist?("#{DATA_DIR}/lich.sav")
   Lich.log "error: Archaic Lich 4.4 configuration found: Please remove #{DATA_DIR}/lich.sav"
   Lich.msgbox "error: Archaic Lich 4.4 configuration found: Please remove #{DATA_DIR}/lich.sav"
   exit
 end
 
-# Checks if the current Ruby version is less than the required version.
-# @example Validating Ruby version
-#   if Gem::Version.new(RUBY_VERSION) < Gem::Version.new(REQUIRED_RUBY)
-#     # Handle version error
-#   end
+# Checks if the current Ruby version meets the required version.
+#
+# @note If the Ruby version is too old, a warning is displayed.
 if Gem::Version.new(RUBY_VERSION) < Gem::Version.new(REQUIRED_RUBY)
   if (RUBY_PLATFORM =~ /mingw|win/) and (RUBY_PLATFORM !~ /darwin/i)
     require 'win32ole'
@@ -63,11 +59,8 @@ if (RUBY_PLATFORM =~ /mingw|win/i) && (RUBY_PLATFORM !~ /darwin/i)
            'SOFTWARE\\WOW6432Node\\Simutronics\\WIZ32']
 
   # Checks if a registry key exists.
-  # @param path [String] The registry path to check.
-  # @return [Boolean] True if the key exists, false otherwise.
-  # @raise [StandardError] If there is an error accessing the registry.
-  # @example Checking for a registry key
-  #   exists = key_exists?("SOFTWARE\WOW6432Node\Simutronics\STORM32")
+  # @param path [String] the registry path to check.
+  # @return [Boolean] true if the key exists, false otherwise.
   def key_exists?(path)
     Registry.open(Registry::HKEY_LOCAL_MACHINE, path, ::Win32::Registry::KEY_READ)
     true
@@ -91,6 +84,8 @@ if (RUBY_PLATFORM =~ /mingw|win/i) && (RUBY_PLATFORM !~ /darwin/i)
   end
 elsif defined?(Wine)
   ## reminder Wine is defined in the file wine.rb by confirming prefix, directory and executable
+  # Retrieves the directory location for the STORM32 frontend from the Wine registry.
+  # @return [String, nil] the directory location or nil if not found.
   unless (sf_fe_loc_temp = Wine.registry_gets('HKEY_LOCAL_MACHINE\\Software\\Simutronics\\STORM32\\Directory'))
     sf_fe_loc_temp = Wine.registry_gets('HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Simutronics\\STORM32\\Directory')
   end
@@ -122,6 +117,9 @@ elsif defined?(Wine)
   end
   ## We have either declared an error, or the global variables for Simu FE are populated with a confirmed path
 end
+# This section contains Windows API calls that are planned for deprecation.
+#
+# @deprecated This code will be removed in future versions.
 ## The following should be deprecated with the direct-frontend-launch-method
 ## TODO: remove as part of chore/Remove unnecessary Win32 calls
 ## Temporarily reinstatated for DR
@@ -453,6 +451,9 @@ if (RUBY_PLATFORM =~ /mingw|win/i) and (RUBY_PLATFORM !~ /darwin/i)
       end
     end
 
+    # Opens a process with administrative privileges.
+    # @param args [Hash] options for the shell execution.
+    # @return [void]
     def Win32.AdminShellExecute(args)
       # open ruby/lich as admin and tell it to open something else
       if not caller.any? { |c| c =~ /eval|run/ }
@@ -475,6 +476,9 @@ end
 
 ## End of TODO
 
+# Attempts to require the sqlite3 gem.
+#
+# @note If sqlite3 is not installed, the user is prompted to install it.
 begin
   require 'sqlite3'
 rescue LoadError
@@ -594,6 +598,9 @@ else
   @early_gtk_error = "info: DISPLAY environment variable is not set; not trying gtk"
 end
 
+# Checks if GTK should be loaded based on command line arguments.
+#
+# @note GTK is optional and can be bypassed.
 unless File.exist?(LICH_DIR)
   begin
     Dir.mkdir(LICH_DIR)
@@ -708,15 +715,8 @@ unless File.exist?(BACKUP_DIR)
   end
 end
 
-# Initializes the Lich database.
-# @example Initializing the database
-#   Lich.init_db
 Lich.init_db
 
-# Cleans up debug logs in the specified directory.
-# @param temp_dir [String] The directory where debug logs are stored.
-# @example Cleaning up debug logs
-#   Lich.cleanup_debug_logs(TEMP_DIR)
 Lich.cleanup_debug_logs(TEMP_DIR)
 
 # todo: deprecate / remove for Ruby 3.2.1?

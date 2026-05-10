@@ -1,14 +1,16 @@
 module Lich
   module Common
-    # Handles database operations for Lich project.
-    # This class manages the connection to the SQLite database and provides methods to save and retrieve settings.
-    # @example Creating a new database adapter
-    #   adapter = Lich::Common::DatabaseAdapter.new("/path/to/data", "settings_table")
+    # Handles database interactions for the Lich project.
+    #
+    # This class is responsible for setting up the database and managing
+    # settings related to scripts and their scopes.
+    #
+    # @see Lich::Common
     class DatabaseAdapter
       # Initializes a new DatabaseAdapter instance.
-      # @param data_dir [String] The directory where the database file is located.
-      # @param table_name [String] The name of the table to interact with.
-      # @return [DatabaseAdapter]
+      # @param data_dir [String] the directory where the database file is located
+      # @param table_name [String] the name of the table to interact with
+      # @return [void]
       def initialize(data_dir, table_name)
         @file = File.join(data_dir, "lich.db3")
         @db = Sequel.sqlite(@file)
@@ -16,8 +18,7 @@ module Lich
         setup!
       end
 
-      # Sets up the database table if it does not exist.
-      # This method creates the necessary table structure for storing settings.
+      # Sets up the database table if it does not already exist.
       # @return [void]
       def setup!
         @db.create_table?(@table_name) do
@@ -29,26 +30,26 @@ module Lich
       end
 
       # Returns the database table object.
-      # @return [Sequel::Dataset] The dataset representing the table.
+      # @return [Sequel::Dataset] the dataset representing the table
       def table
         @table
       end
 
       # Retrieves settings for a given script and scope.
-      # @param script_name [String] The name of the script for which settings are retrieved.
-      # @param scope [String] The scope of the settings (default is ":").
-      # @return [Hash] The settings as a hash, or an empty hash if not found.
+      # @param script_name [String] the name of the script to retrieve settings for
+      # @param scope [String] the scope of the settings (default is ":")
+      # @return [Hash] the settings for the script, or an empty hash if none found
       def get_settings(script_name, scope = ":")
         entry = @table.first(script: script_name, scope: scope)
         entry.nil? ? {} : Marshal.load(entry[:hash])
       end
 
       # Saves settings for a given script and scope.
-      # @param script_name [String] The name of the script for which settings are saved.
-      # @param settings [Hash] The settings to save.
-      # @param scope [String] The scope of the settings (default is ":").
-      # @return [Boolean] Returns true if settings were saved successfully, false otherwise.
-      # @raise [ArgumentError] Raises an error if settings is not a Hash.
+      # @param script_name [String] the name of the script to save settings for
+      # @param settings [Hash] the settings to save
+      # @param scope [String] the scope of the settings (default is ":")
+      # @return [Boolean] true if settings were saved successfully, false otherwise
+      # @note This method logs errors if the settings are not a Hash or if serialization fails.
       def save_settings(script_name, settings, scope = ":")
         unless settings.is_a?(Hash)
           Lich::Messaging.msg("error", "--- Error: Report this - settings must be a Hash, got #{settings.class} ---")

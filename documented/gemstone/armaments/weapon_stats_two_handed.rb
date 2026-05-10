@@ -1,19 +1,23 @@
 module Lich
   module Gemstone
     module Armaments
-      # Static array of weapon stats indexed by weapon identifiers. Each weapon
-      # entry contains metadata such as category, base name, alternative names,
-      # damage types, damage factors, armor avoidance by armor size group (ASG),
-      # base roundtime (RT), and minimum RT.
-      #
-      # @example Accessing weapon stats
-      #   Lich::Gemstone::Armaments::WeaponStats.weapon_stats_two_handed[:bastard_sword]
       module WeaponStats
+# Static array of weapon stats indexed by weapon identifiers.
+# Each weapon entry contains metadata such as category, base name,
+# alternative names, damage types, damage factors, armor avoidance by
+# armor size group (ASG), base roundtime (RT), and minimum RT.
 # Static array of weapon stats indexed by weapon identifiers. Each weapon
 # entry contains metadata such as category, base name, alternative names,
 # damage types, damage factors, armor avoidance by armor size group (ASG),
 # base roundtime (RT), and minimum RT.
 #
+# damage_types: Hash of damage type percentages or values.
+#
+# @return [Hash] A hash containing damage type percentages or values.
+#   :slash    => % of slash damage (Float or nil)
+#   :crush    => % of crush damage (Float or nil)
+#   :puncture => % of puncture damage (Float or nil)
+#   :special  => Array of special damage types (or empty array)
 # damage_types: Hash of damage type percentages or values.
 #   :slash    => % of slash damage (Float or nil)
 #   :crush    => % of crush damage (Float or nil)
@@ -21,8 +25,20 @@ module Lich
 #   :special  => Array of special damage types (or empty array)
 #
 # damage factor array:
+#
+# @return [Array<Float>] An array representing damage factors for different armor types.
+#  [0] = nil (none)    [1] = Cloth    [2] = Leather    [3] = Scale    [4] = Chain    [5] = Plate
+# damage factor array:
 #  [0] = nil (none)    [1] = Cloth    [2] = Leather    [3] = Scale    [4] = Chain    [5] = Plate
 #
+# avd_by_asg array:
+#
+# @return [Array<Integer>] An array representing armor avoidance by armor size group (ASG).
+#  Cloth:   [1] ASG 1    [2] ASG 2      [3] nil      [4] nil
+#  Leather: [5] ASG 5    [6] ASG 6    [7] ASG 7    [8] ASG 8
+#  Scale:   [9] ASG 9    [10] ASG 10  [11] ASG 11  [12] ASG 12
+#  Chain:   [13] ASG 13  [14] ASG 14  [15] ASG 15  [16] ASG 16
+#  Plate:   [17] ASG 17  [18] ASG 18  [19] ASG 19  [20] ASG 20
 # avd_by_asg array:
 #  Cloth:   [1] ASG 1    [2] ASG 2      [3] nil      [4] nil
 #  Leather: [5] ASG 5    [6] ASG 6    [7] ASG 7    [8] ASG 8
@@ -44,11 +60,6 @@ module Lich
             :min_rt        => 4,
           },
 =end
-        # A hash containing weapon statistics for two-handed weapons.
-        # Each entry includes details such as category, base name, damage types,
-        # and other relevant attributes.
-        # @example Accessing a specific weapon's stats
-        #   stats = Lich::Gemstone::Armaments::WeaponStats.weapon_stats_two_handed[:battle_axe]
         @@weapon_stats_two_handed = {
           :bastard_sword    => {
             :category      => :two_handed,

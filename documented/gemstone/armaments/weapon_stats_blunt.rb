@@ -1,14 +1,12 @@
-# Lich module
-# This module serves as a namespace for the Lich project.
 module Lich
-  # Gemstone module
-  # This module contains functionality related to the Gemstone game.
   module Gemstone
-    # Armaments module
-    # This module handles various armament-related functionalities.
     module Armaments
-      # WeaponStats module
-      # This module contains weapon statistics for different weapon types.
+      # Static array of weapon stats indexed by weapon identifiers. Each weapon
+      # entry contains metadata such as category, base name, alternative names,
+      # damage types, damage factors, armor avoidance by armor size group (ASG),
+      # base roundtime (RT), and minimum RT.
+      #
+      # @see Lich::Gemstone::Armaments::WeaponStats
       module WeaponStats
 # Static array of weapon stats indexed by weapon identifiers. Each weapon
 # entry contains metadata such as category, base name, alternative names,
@@ -45,10 +43,6 @@ module Lich
             :min_rt        => 4,
           },
 =end
-        # Static array of weapon stats indexed by weapon identifiers.
-        # Each weapon entry contains metadata such as category, base name,
-        # alternative names, damage types, damage factors, armor avoidance by armor size group (ASG),
-        # base roundtime (RT), and minimum RT.
         @@weapon_stats_blunt = {
           :ball_and_chain => {
             :category      => :blunt,
