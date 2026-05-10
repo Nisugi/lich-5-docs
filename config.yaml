@@ -123,5 +123,7 @@ json_schema:
             - "anchor"
             - "indent"
             - "comment"
+          additionalProperties: false
     required:
       - "comments"
+    additionalProperties: false
