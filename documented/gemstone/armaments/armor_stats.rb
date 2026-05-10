@@ -1,16 +1,16 @@
+# Lich module
+# This module serves as a namespace for the Lich project.
 module Lich
+  # Gemstone module
+  # This module serves as a namespace for the Gemstone features within the Lich project.
   module Gemstone
+    # Armaments module
+    # This module serves as a namespace for armament-related features.
     module Armaments
-      # Static array of armor stats indexed by armor identifiers. Each armor
-      # entry contains metadata such as category, alternative names, size and
-      # evade modifiers, and base weight.
-      #
-      # hindrances/Training Requirements Array:
-      # [0] - nil (Act Pen)     [1] - Minor Spiritual         [2] - Major Spiritual        [3] - Cleric Base
-      # [4] - Minor Elemental   [5] - Major Elemental         [6] - Ranger Base            [7] - Sorcerer Base
-      # [8] - Old Empath Base   [9] - Wizard Base             [10] - Bard Base             [11] - Empath Base
-      # [12] - Minor Mental     [13] - Major Mental           [14] - Savant Base           [15] - nil
-      # [16] - Paladin Base     [17] - Arcane Spells          [18] - nil                   [19] - Lost Arts
+      # ArmorStats module
+      # This module contains static armor statistics and methods to retrieve and manipulate them.
+      # @example Accessing armor statistics
+      #   armor_stats = Lich::Gemstone::Armaments::ArmorStats.find_by_asg(1)
       module ArmorStats
         # Static array of armor stats indexed by armor identifiers. Each armor
         # entry contains metadata such as category, alternative names, size and
@@ -346,16 +346,6 @@ module Lich
         Lich::Util.deep_freeze(@@armor_stats)
 
         ##
-        # Finds the critical divisor based on armor type, armor group, or armor sub-group.
-        # @param type [Symbol, nil] The type of armor (e.g., :cloth, :leather)
-        # @param ag [Integer, nil] The armor group number
-        # @param asg [Integer, nil] The armor sub-group number
-        # @return [Integer] The critical divisor
-        # @raise [ArgumentError] If none of the parameters are provided
-        # @example
-        #   find_crit_divisor(type: :cloth)
-        #   find_crit_divisor(ag: 1)
-        #   find_crit_divisor(asg: 5)
         def self.find_crit_divisor(type: nil, ag: nil, asg: nil)
           return { cloth: 5, leather: 6, scale: 7, chain: 9, plate: 11 }[type] unless type.nil?
           return { 1 => 5, 2 => 6, 3 => 7, 4 => 9, 5 => 11 }[ag] unless ag.nil?
@@ -364,12 +354,6 @@ module Lich
         end
 
         ##
-        # Finds the coverage type based on the armor sub-group number.
-        # @param asg [Integer] The armor sub-group number
-        # @return [Symbol, nil] The coverage type or nil if not found
-        # @example
-        #   find_coverage(1) # => :torso
-        #   find_coverage(6) # => :torso_and_arms
         def self.find_coverage(asg)
           return nil unless asg.is_a?(Integer) && asg.between?(1, 20)
           coverage = {
@@ -387,11 +371,6 @@ module Lich
         end
 
         ##
-        # Finds armor data by armor sub-group number.
-        # @param asg_number [Integer] The armor sub-group number
-        # @return [Hash, nil] The armor data or nil if not found
-        # @example
-        #   find_by_asg(1) # => { ... }
         def self.find_by_asg(asg_number)
           return nil unless asg_number.is_a?(Integer) && asg_number.between?(1, 20)
 
@@ -406,10 +385,6 @@ module Lich
         end
 
         ##
-        # Returns a list of all armor names.
-        # @return [Array<String>] An array of unique armor names
-        # @example
-        #   names() # => ["normal clothing", "robes", ...]
         def self.names
           @@armor_stats.flat_map do |_, subgroups|
             subgroups.values.compact.map { |asg| asg[:all_names] }
@@ -417,19 +392,11 @@ module Lich
         end
 
         ##
-        # Returns a list of unique armor categories.
-        # @return [Array<Symbol>] An array of unique armor categories
-        # @example
-        #   categories() # => [:normal_clothing, :robes, ...]
         def self.categories
           @@armor_stats.values.flat_map(&:values).map { _1[:base_name] }.uniq.compact
         end
 
         ##
-        # Returns a list of unique base armor names.
-        # @return [Array<Symbol>] An array of unique base armor names
-        # @example
-        #   base_names() # => [:normal_clothing, :robes, ...]
         def self.base_names
           @@armor_stats.flat_map do |_, subgroups|
             subgroups.values.compact.map { |asg| asg[:base_name] }.uniq.compact
@@ -437,11 +404,6 @@ module Lich
         end
 
         ##
-        # Finds armor data by name.
-        # @param name [String] The name of the armor
-        # @return [Hash, nil] The armor data or nil if not found
-        # @example
-        #   find("normal clothing") # => { ... }
         def self.find(name)
           name = name.downcase.strip
 
@@ -458,11 +420,6 @@ module Lich
         end
 
         ##
-        # Finds all armor data matching the given name.
-        # @param name [String] The name of the armor
-        # @return [Array<Hash>, nil] An array of armor data or nil if not found
-        # @example
-        #   find_all("robe") # => [{ ... }, { ... }]
         def self.find_all(name)
           name = name.downcase.strip
 
@@ -478,11 +435,6 @@ module Lich
         end
 
         ##
-        # Lists all armor data by type.
-        # @param type [Symbol] The type of armor (e.g., :cloth, :leather)
-        # @return [Array<Hash>] An array of armor data of the specified type
-        # @example
-        #   list_by_type(:cloth) # => [{ ... }, { ... }]
         def self.list_by_type(type)
           @@armor_stats.flat_map do |_, subgroups|
             subgroups.values.compact.select { |asg| asg[:type] == type }
@@ -490,11 +442,6 @@ module Lich
         end
 
         ##
-        # Returns all names for a given armor sub-group.
-        # @param asg [Integer, Symbol] The armor sub-group number or symbol
-        # @return [Array<String>] An array of names for the specified armor sub-group
-        # @example
-        #   names_in_asg(1) # => ["normal clothing", "clothing", ...]
         def self.names_in_asg(asg)
           asg_sym = asg.is_a?(Integer) ? :"asg_#{asg}" : asg.to_sym
 
@@ -508,11 +455,6 @@ module Lich
         end
 
         ##
-        # Returns the category type for a given armor name.
-        # @param name [String] The name of the armor
-        # @return [Symbol, nil] The armor type or nil if not found
-        # @example
-        #   category_for("normal clothing") # => :cloth
         def self.category_for(name)
           name = name.downcase.strip
 
@@ -521,11 +463,6 @@ module Lich
         end
 
         ##
-        # Returns a formatted string representation of the armor data.
-        # @param name [String] The name of the armor
-        # @return [String] A formatted string with armor details
-        # @example
-        #   pretty("normal clothing") # => "Armor: normal clothing (ASG 1, AG 1, Cloth) ..."
         def self.pretty(name)
           armor = self.find(name)
           return "\n(no data)\n" unless armor.is_a?(Hash)
@@ -564,11 +501,6 @@ module Lich
         end
 
         ##
-        # Returns a detailed formatted string representation of the armor data.
-        # @param name [String] The name of the armor
-        # @return [String] A detailed formatted string with armor details
-        # @example
-        #   pretty_long("normal clothing") # => "Type: Cloth ..."
         def self.pretty_long(name)
           armor = self.find(name)
           return "\n(no data)\n" unless armor.is_a?(Hash)
@@ -622,23 +554,12 @@ module Lich
         end
 
         ##
-        # Returns all aliases for a given armor name.
-        # @param name [String] The name of the armor
-        # @return [Array<String>] An array of aliases for the specified armor
-        # @example
-        #   aliases_for("normal clothing") # => ["normal clothing", "clothing", ...]
         def self.aliases_for(name)
           armor = self.find(name)
           armor ? armor[:all_names] : []
         end
 
         ##
-        # Compares two armors and returns their attributes.
-        # @param name1 [String] The name of the first armor
-        # @param name2 [String] The name of the second armor
-        # @return [Hash, nil] A hash with comparison data or nil if either armor is not found
-        # @example
-        #   compare("normal clothing", "robes") # => { ... }
         def self.compare(name1, name2)
           a1 = self.find(name1)
           a2 = self.find(name2)
@@ -659,11 +580,6 @@ module Lich
         end
 
         ##
-        # Searches for armor based on provided filters.
-        # @param filters [Hash] A hash of filters to apply (e.g., name, type, max_weight)
-        # @return [Array<Hash>] An array of armor data matching the filters
-        # @example
-        #   search(name: "robe", max_weight: 10) # => [{ ... }]
         def self.search(filters = {})
           @@armor_stats.values.flat_map(&:values).compact.select do |armor|
             next if filters[:name] && !armor[:all_names].include?(filters[:name].downcase.strip)
@@ -679,11 +595,6 @@ module Lich
         end
 
         ##
-        # Checks if the provided name is a valid armor name.
-        # @param name [String] The name of the armor
-        # @return [Boolean] True if the name is valid, false otherwise
-        # @example
-        #   valid_name?("normal clothing") # => true
         def self.valid_name?(name)
           name = name.downcase.strip
           self.names.include?(name)

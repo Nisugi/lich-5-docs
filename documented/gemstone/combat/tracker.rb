@@ -3,6 +3,8 @@
 #
 # Combat Tracker - Main interface for combat event processing
 # Integrates with Lich's game processing to track damage, wounds, and status effects
+# Combat Tracker - Main interface for combat event processing
+# Integrates with Lich's game processing to track damage, wounds, and status effects
 #
 
 require_relative 'parser'
@@ -16,9 +18,11 @@ module Lich
       # Combat tracking system
       #
       # Main interface for the combat tracking system. Integrates with Lich's
-      # Combat Tracker - Main interface for combat event processing
-      # Integrates with Lich's game processing to track damage, wounds, and status effects
-      # @example Using the Tracker module
+      # Combat tracking system
+      #
+      # Main interface for the combat tracking system. Integrates with Lich's
+      # game processing to track damage, wounds, and status effects.
+      # @example Enabling combat tracking
       #   Lich::Gemstone::Combat::Tracker.enable!
       module Tracker
         @enabled = false
@@ -49,10 +53,8 @@ module Lich
 
           # Checks if combat tracking is enabled
           # @return [Boolean] true if combat tracking is enabled, false otherwise
-          # @example
-          #   if Lich::Gemstone::Combat::Tracker.enabled?
-          #     puts "Tracking is enabled"
-          #   end
+          # @example Checking if tracking is enabled
+          #   Lich::Gemstone::Combat::Tracker.enabled?
           def enabled?
             initialize! unless @initialized
             @enabled && @settings[:enabled]
@@ -60,7 +62,7 @@ module Lich
 
           # Enables combat tracking
           # @return [void]
-          # @example
+          # @example Enabling combat tracking
           #   Lich::Gemstone::Combat::Tracker.enable!
           def enable!
             return if @enabled
@@ -77,7 +79,7 @@ module Lich
 
           # Disables combat tracking
           # @return [void]
-          # @example
+          # @example Disabling combat tracking
           #   Lich::Gemstone::Combat::Tracker.disable!
           def disable!
             return unless @enabled
@@ -94,17 +96,15 @@ module Lich
 
           # Checks if debug mode is enabled
           # @return [Boolean] true if debug mode is enabled, false otherwise
-          # @example
-          #   if Lich::Gemstone::Combat::Tracker.debug?
-          #     puts "Debugging is enabled"
-          #   end
+          # @example Checking debug status
+          #   Lich::Gemstone::Combat::Tracker.debug?
           def debug?
             @settings[:debug] || $combat_debug
           end
 
           # Enables debug mode for combat tracking
           # @return [void]
-          # @example
+          # @example Enabling debug mode
           #   Lich::Gemstone::Combat::Tracker.enable_debug!
           def enable_debug!
             configure(debug: true, enabled: true)
@@ -113,7 +113,7 @@ module Lich
 
           # Disables debug mode for combat tracking
           # @return [void]
-          # @example
+          # @example Disabling debug mode
           #   Lich::Gemstone::Combat::Tracker.disable_debug!
           def disable_debug!
             configure(debug: false)
@@ -123,7 +123,7 @@ module Lich
           # Sets the fallback maximum HP value
           # @param hp_value [Integer] The fallback maximum HP value
           # @return [void]
-          # @example
+          # @example Setting fallback HP
           #   Lich::Gemstone::Combat::Tracker.set_fallback_hp(400)
           def set_fallback_hp(hp_value)
             configure(fallback_max_hp: hp_value.to_i)
@@ -132,8 +132,8 @@ module Lich
 
           # Retrieves the fallback maximum HP value
           # @return [Integer] The fallback maximum HP value
-          # @example
-          #   hp = Lich::Gemstone::Combat::Tracker.fallback_hp
+          # @example Getting fallback HP
+          #   Lich::Gemstone::Combat::Tracker.fallback_hp
           def fallback_hp
             initialize! unless @initialized
             @settings[:fallback_max_hp]
@@ -142,7 +142,8 @@ module Lich
           # Processes a chunk of combat data
           # @param chunk [Array<String>] The chunk of combat data to process
           # @return [void]
-          # @example
+          # @raise [StandardError] if processing fails
+          # @example Processing a combat chunk
           #   Lich::Gemstone::Combat::Tracker.process(chunk)
           def process(chunk)
             return unless enabled?
@@ -168,10 +169,8 @@ module Lich
           # Checks if a line of text is relevant to combat
           # @param line [String] The line of text to check
           # @return [Boolean] true if the line is combat relevant, false otherwise
-          # @example
-          #   if Lich::Gemstone::Combat::Tracker.combat_relevant?(line)
-          #     puts "This line is combat relevant"
-          #   end
+          # @example Checking combat relevance
+          #   Lich::Gemstone::Combat::Tracker.combat_relevant?(line)
           def combat_relevant?(line)
             line.include?('swing') ||
               line.include?('thrust') ||
@@ -190,7 +189,7 @@ module Lich
           # Configures the combat tracker with new settings
           # @param new_settings [Hash] A hash of settings to update
           # @return [void]
-          # @example
+          # @example Configuring settings
           #   Lich::Gemstone::Combat::Tracker.configure(enabled: true)
           def configure(new_settings = {})
             initialize! unless @initialized
@@ -210,8 +209,8 @@ module Lich
 
           # Retrieves the current stats of the combat tracker
           # @return [Hash] A hash containing the current stats
-          # @example
-          #   stats = Lich::Gemstone::Combat::Tracker.stats
+          # @example Getting stats
+          #   Lich::Gemstone::Combat::Tracker.stats
           def stats
             return { enabled: false } unless enabled?
 

@@ -4,10 +4,12 @@ spell.rb: Core lich file for spell management and for spell related scripts.
 
 require 'open-uri'
 
+# Lich module
+# This module contains common functionality for the Lich project.
 module Lich
   module Common
-    # Manages spell data and behavior in the Lich system.
-    # This class handles loading, casting, and tracking spells.
+    # Represents a spell in the Lich project.
+    # This class manages spell attributes and behaviors.
     # @example Creating a new spell
     #   spell = Spell.new(xml_spell)
     class Spell
@@ -18,7 +20,7 @@ module Lich
       @@cost_list ||= Array.new
       @@load_mutex = Mutex.new
       @@after_stance = nil
-      attr_reader :num, :name, :timestamp, :msgup, :msgdn, :circle, :active, :type, :cast_proc, :real_time, :persist_on_death, :availability, :no_incant
+      attr_reader :num, :name, :timestamp, :msgup, :msgdn, :circle, :active, :type, :cast_proc, :real_time, :persist_on_death, :availability, :no_incant, :last_cast
       attr_accessor :stance, :channel
 
       @@prepare_regex = Regexp.union(
@@ -64,10 +66,9 @@ module Lich
         /^You can't make that dextrous of a move!$/
       )
 
-      # Initializes a new Spell instance from XML data.
+      # Initializes a new spell instance.
       # @param xml_spell [REXML::Element] The XML element representing the spell.
       # @return [Spell]
-      # @raise [StandardError] If the XML data is invalid.
       def initialize(xml_spell)
         @num = xml_spell.attributes['number'].to_i
         @name = xml_spell.attributes['name']
@@ -92,16 +93,21 @@ module Lich
         @channel = ((xml_spell.attributes['channel'] =~ /^(yes|true)$/i) ? true : false)
         @cost = Hash.new
         xml_spell.elements.find_all { |e| e.name == 'cost' }.each { |xml_cost|
-          @cost[xml_cost.attributes['type'].downcase] ||= Hash.new
-          if xml_cost.attributes['cast-type'].downcase == 'target'
-            @cost[xml_cost.attributes['type'].downcase]['target'] = xml_cost.text
+          cost_type = xml_cost.attributes['type']&.downcase
+          next unless cost_type # skip malformed cost elements
+
+          @cost[cost_type] ||= Hash.new
+          # cast-type defaults to 'self' if not specified (most cost elements omit it)
+          if xml_cost.attributes['cast-type']&.downcase == 'target'
+            @cost[cost_type]['target'] = xml_cost.text
           else
-            @cost[xml_cost.attributes['type'].downcase]['self'] = xml_cost.text
+            @cost[cost_type]['self'] = xml_cost.text
           end
         }
         @duration = Hash.new
         xml_spell.elements.find_all { |e| e.name == 'duration' }.each { |xml_duration|
-          if xml_duration.attributes['cast-type'].downcase == 'target'
+          # cast-type defaults to 'self' if not specified
+          if xml_duration.attributes['cast-type']&.downcase == 'target'
             cast_type = 'target'
           else
             cast_type = 'self'
@@ -113,8 +119,9 @@ module Lich
           end
           @duration[cast_type] = Hash.new
           @duration[cast_type][:duration] = xml_duration.text
-          @duration[cast_type][:stackable] = (xml_duration.attributes['span'].downcase == 'stackable')
-          @duration[cast_type][:refreshable] = (xml_duration.attributes['span'].downcase == 'refreshable')
+          span = xml_duration.attributes['span']&.downcase
+          @duration[cast_type][:stackable] = (span == 'stackable')
+          @duration[cast_type][:refreshable] = (span == 'refreshable')
           if xml_duration.attributes['multicastable'] =~ /^(yes|true)$/i
             @duration[cast_type][:multicastable] = true
           else
@@ -131,7 +138,8 @@ module Lich
             @duration[cast_type][:max_duration] = 250.0
           end
         }
-        @cast_proc = xml_spell.elements['cast-proc'].text
+        @cast_proc = xml_spell.elements['cast-proc']&.text
+        @last_cast = Time.at(0)
         @timestamp = Time.now
         @timeleft = 0
         @active = false
@@ -140,22 +148,21 @@ module Lich
         # self # rubocop Lint/Void: self used in void context
       end
 
-      # Sets the stance to be applied after casting a spell.
-      # @param val [String] The stance to set.
+      # Sets the after stance value for the spell class.
+      # @param val [Object] The value to set for after stance.
       def Spell.after_stance=(val)
         @@after_stance = val
       end
 
-      # Retrieves the current after stance setting.
-      # @return [String] The current after stance value.
+      # Retrieves the after stance value for the spell class.
+      # @return [Object] The current after stance value.
       def Spell.after_stance
         @@after_stance
       end
 
-      # Loads spell data from an XML file.
-      # @param filename [String, nil] The path to the XML file. If nil, defaults to 'effect-list.xml'.
-      # @return [Boolean] True if loading was successful, false otherwise.
-      # @raise [StandardError] If there is an error during loading.
+      # Loads spell data from a specified file or defaults to effect-list.xml.
+      # @param filename [String, nil] The filename to load spells from. Defaults to nil.
+      # @return [Boolean] Returns true if loading was successful, false otherwise.
       def Spell.load(filename = nil)
         if filename.nil?
           filename = File.join(DATA_DIR, 'effect-list.xml')
@@ -210,8 +217,8 @@ module Lich
       end
 
       # Retrieves a spell by its number or name.
-      # @param val [Integer, String, Spell] The spell number, name, or Spell instance.
-      # @return [Spell, nil] The corresponding Spell instance or nil if not found.
+      # @param val [Integer, String, Spell] The spell number, name, or Spell object to retrieve.
+      # @return [Spell, nil] The corresponding Spell object or nil if not found.
       def Spell.[](val)
         Spell.load unless @@loaded
         if val.is_a?(Spell)
@@ -224,8 +231,8 @@ module Lich
         end
       end
 
-      # Returns a list of currently active spells.
-      # @return [Array<Spell>] An array of active Spell instances.
+      # Retrieves all active spells.
+      # @return [Array<Spell>] An array of active Spell objects.
       def Spell.active
         Spell.load unless @@loaded
         active = Array.new
@@ -233,16 +240,16 @@ module Lich
         active
       end
 
-      # Checks if a specific spell is currently active.
-      # @param val [Integer, String] The spell number or name.
-      # @return [Boolean] True if the spell is active, false otherwise.
+      # Checks if a spell is active by its number or name.
+      # @param val [Integer, String] The spell number or name to check.
+      # @return [Boolean] Returns true if the spell is active, false otherwise.
       def Spell.active?(val)
         Spell.load unless @@loaded
         Spell[val].active?
       end
 
-      # Returns the list of all loaded spells.
-      # @return [Array<Spell>] An array of all Spell instances.
+      # Retrieves the list of all spells.
+      # @return [Array<Spell>] An array of all Spell objects.
       def Spell.list
         Spell.load unless @@loaded
         @@list
@@ -262,8 +269,8 @@ module Lich
         @@list.collect { |spell| spell.msgdn }.compact
       end
 
-      # Calculates the time required for a spell based on various factors.
-      # @param options [Hash] Options for the calculation, including caster and target.
+      # Calculates the time per formula for the spell.
+      # @param options [Hash] Options for the calculation.
       # @return [String] The formula for time calculation.
       def time_per_formula(options = {})
         activator_modifier = { 'tap' => 0.5, 'rub' => 1, 'wave' => 1, 'raise' => 1.33, 'drink' => 0, 'bite' => 0, 'eat' => 0, 'gobble' => 0 }
@@ -317,9 +324,9 @@ module Lich
         formula
       end
 
-      # Calculates the time required for a spell based on the provided formula.
+      # Calculates the time required to cast the spell.
       # @param options [Hash] Options for the calculation.
-      # @return [Float] The calculated time in seconds.
+      # @return [Float] The time in seconds required to cast the spell.
       def time_per(options = {})
         formula = self.time_per_formula(options)
         if options[:line]
@@ -331,15 +338,15 @@ module Lich
         return result
       end
 
-      # Sets the remaining time for the spell.
-      # @param val [Float] The time left in minutes.
+      # Sets the time left for the spell.
+      # @param val [Float] The time left in seconds.
       def timeleft=(val)
         @timeleft = val
         @timestamp = Time.now
       end
 
-      # Retrieves the remaining time for the spell.
-      # @return [Float] The time left in minutes.
+      # Retrieves the time left for the spell.
+      # @return [Float] The time left in seconds.
       def timeleft
         if self.time_per_formula.to_s == 'Spellsong.timeleft'
           @timeleft = Spellsong.timeleft
@@ -354,14 +361,10 @@ module Lich
         @timeleft
       end
 
-      # Retrieves the remaining time in minutes.
-      # @return [Float] The time left in minutes.
       def minsleft
         self.timeleft
       end
 
-      # Retrieves the remaining time in seconds.
-      # @return [Float] The time left in seconds.
       def secsleft
         self.timeleft * 60
       end
@@ -373,14 +376,14 @@ module Lich
       end
 
       # Checks if the spell is currently active.
-      # @return [Boolean] True if the spell is active, false otherwise.
+      # @return [Boolean] Returns true if the spell is active, false otherwise.
       def active?
         (self.timeleft > 0) and @active
       end
 
-      # Checks if the spell can be stacked.
-      # @param options [Hash] Options for the check, including caster and target.
-      # @return [Boolean] True if the spell is stackable, false otherwise.
+      # Checks if the spell is stackable.
+      # @param options [Hash] Options for the check.
+      # @return [Boolean] Returns true if the spell is stackable, false otherwise.
       def stackable?(options = {})
         if options[:caster] and (options[:caster] !~ /^(?:self|#{XMLData.name})$/i)
           if options[:target] and (options[:target].downcase == options[:caster].downcase)
@@ -405,9 +408,9 @@ module Lich
         end
       end
 
-      # Checks if the spell can be refreshed.
-      # @param options [Hash] Options for the check, including caster and target.
-      # @return [Boolean] True if the spell is refreshable, false otherwise.
+      # Checks if the spell is refreshable.
+      # @param options [Hash] Options for the check.
+      # @return [Boolean] Returns true if the spell is refreshable, false otherwise.
       def refreshable?(options = {})
         if options[:caster] and (options[:caster] !~ /^(?:self|#{XMLData.name})$/i)
           if options[:target] and (options[:target].downcase == options[:caster].downcase)
@@ -433,8 +436,8 @@ module Lich
       end
 
       # Checks if the spell can be multicast.
-      # @param options [Hash] Options for the check, including caster and target.
-      # @return [Boolean] True if the spell is multicastable, false otherwise.
+      # @param options [Hash] Options for the check.
+      # @return [Boolean] Returns true if the spell is multicastable, false otherwise.
       def multicastable?(options = {})
         if options[:caster] and (options[:caster] !~ /^(?:self|#{XMLData.name})$/i)
           if options[:target] and (options[:target].downcase == options[:caster].downcase)
@@ -459,8 +462,8 @@ module Lich
         end
       end
 
-      # Checks if the spell is known by the caster.
-      # @return [Boolean] True if the spell is known, false otherwise.
+      # Checks if the spell is known by the character.
+      # @return [Boolean] Returns true if the spell is known, false otherwise.
       def known?
         return true if defined?(Lich::Gemstone::SK) && Lich::Gemstone::SK.known?(self)
         if @num.to_s.length == 3
@@ -523,8 +526,8 @@ module Lich
       end
 
       # Checks if the spell is available for casting.
-      # @param options [Hash] Options for the check, including caster and target.
-      # @return [Boolean] True if the spell is available, false otherwise.
+      # @param options [Hash] Options for the check.
+      # @return [Boolean] Returns true if the spell is available, false otherwise.
       def available?(options = {})
         if self.known?
           if options[:caster] and (options[:caster] !~ /^(?:self|#{XMLData.name})$/i)
@@ -546,26 +549,24 @@ module Lich
       end
 
       # Checks if the spell requires an incantation.
-      # @return [Boolean] True if the spell requires an incantation, false otherwise.
+      # @return [Boolean] Returns true if the spell requires an incantation, false otherwise.
       def incant?
         !@no_incant
       end
 
-      # Sets whether the spell requires an incantation.
-      # @param val [Boolean] True if incantation is required, false otherwise.
       def incant=(val)
         @no_incant = !val
       end
 
-      # Returns the name of the spell as a string.
+      # Returns the string representation of the spell.
       # @return [String] The name of the spell.
       def to_s
         @name.to_s
       end
 
       # Retrieves the maximum duration of the spell.
-      # @param options [Hash] Options for the check, including caster and target.
-      # @return [Float] The maximum duration in minutes.
+      # @param options [Hash] Options for the retrieval.
+      # @return [Float] The maximum duration in seconds.
       def max_duration(options = {})
         if options[:caster] and (options[:caster] !~ /^(?:self|#{XMLData.name})$/i)
           if options[:target] and (options[:target].downcase == options[:caster].downcase)
@@ -583,7 +584,7 @@ module Lich
       end
 
       # Activates the spell and sets its duration.
-      # @param options [Hash] Options for the activation, including caster and target.
+      # @param options [Hash] Options for the activation.
       def putup(options = {})
         if stackable?(options)
           self.timeleft = [self.timeleft + self.time_per(options), self.max_duration(options)].min
@@ -599,15 +600,15 @@ module Lich
         @active = false
       end
 
-      # Retrieves the remaining time formatted as a time string.
-      # @return [String] The remaining time as a formatted string.
+      # Retrieves the remaining time for the spell as a formatted string.
+      # @return [String] The remaining time formatted as a string.
       def remaining
         self.timeleft.as_time
       end
 
       # Checks if the spell can be cast based on resource costs.
-      # @param options [Hash] Options for the check, including caster and target.
-      # @return [Boolean] True if the spell can be afforded, false otherwise.
+      # @param options [Hash] Options for the affordability check.
+      # @return [Boolean] Returns true if the spell is affordable, false otherwise.
       def affordable?(options = {})
         # fixme: deal with them dirty bards!
         release_options = options.dup
@@ -631,7 +632,7 @@ module Lich
       end
 
       # Locks the casting process to prevent concurrent casts.
-      # This method ensures that only one script can cast at a time.
+      # @return [void]
       def Spell.lock_cast
         script = Script.current
         @@cast_lock.push(script)
@@ -642,17 +643,18 @@ module Lich
         end
       end
 
-      # Unlocks the casting process, allowing other scripts to cast.
+      # Unlocks the casting process to allow new casts.
+      # @return [void]
       def Spell.unlock_cast
         @@cast_lock.delete(Script.current)
       end
 
-      # Casts the spell on a target with optional parameters.
-      # @param target [GameObj, Integer, nil] The target of the spell.
+      # Casts the spell on a target.
+      # @param target [GameObj, nil] The target of the spell.
       # @param results_of_interest [Regexp, nil] Regex to match results of interest.
       # @param arg_options [String, nil] Additional options for casting.
       # @param force_stance [Boolean, nil] Whether to force a specific stance.
-      # @return [String, nil] The result of the cast or nil if unsuccessful.
+      # @return [String, Boolean] The result of the cast or false on failure.
       def cast(target = nil, results_of_interest = nil, arg_options = nil, force_stance: nil)
         # fixme: find multicast in target and check mana for it
         check_energy = proc {
@@ -840,18 +842,19 @@ module Lich
             cast_result
           end
         ensure
+          @last_cast = Time.now
           script.want_downstream = save_want_downstream
           script.want_downstream_xml = save_want_downstream_xml
           @@cast_lock.delete(script)
         end
       end
 
-      # Forces the casting of the spell, ignoring certain checks.
-      # @param target [GameObj, Integer, nil] The target of the spell.
+      # Forces the casting of the spell.
+      # @param target [GameObj, nil] The target of the spell.
       # @param arg_options [String, nil] Additional options for casting.
       # @param results_of_interest [Regexp, nil] Regex to match results of interest.
       # @param force_stance [Boolean, nil] Whether to force a specific stance.
-      # @return [String, nil] The result of the cast or nil if unsuccessful.
+      # @return [String, Boolean] The result of the cast or false on failure.
       def force_cast(target = nil, arg_options = nil, results_of_interest = nil, force_stance: nil)
         unless arg_options.nil? || arg_options.empty?
           arg_options = "cast #{arg_options}"
@@ -861,12 +864,12 @@ module Lich
         cast(target, results_of_interest, arg_options, force_stance: force_stance)
       end
 
-      # Forces the channeling of the spell, ignoring certain checks.
-      # @param target [GameObj, Integer, nil] The target of the spell.
+      # Forces the channeling of the spell.
+      # @param target [GameObj, nil] The target of the spell.
       # @param arg_options [String, nil] Additional options for channeling.
       # @param results_of_interest [Regexp, nil] Regex to match results of interest.
       # @param force_stance [Boolean, nil] Whether to force a specific stance.
-      # @return [String, nil] The result of the channel or nil if unsuccessful.
+      # @return [String, Boolean] The result of the channel or false on failure.
       def force_channel(target = nil, arg_options = nil, results_of_interest = nil, force_stance: nil)
         unless arg_options.nil? || arg_options.empty?
           arg_options = "channel #{arg_options}"
@@ -876,12 +879,12 @@ module Lich
         cast(target, results_of_interest, arg_options, force_stance: force_stance)
       end
 
-      # Forces the evocation of the spell, ignoring certain checks.
-      # @param target [GameObj, Integer, nil] The target of the spell.
+      # Forces the evocation of the spell.
+      # @param target [GameObj, nil] The target of the spell.
       # @param arg_options [String, nil] Additional options for evocation.
       # @param results_of_interest [Regexp, nil] Regex to match results of interest.
       # @param force_stance [Boolean, nil] Whether to force a specific stance.
-      # @return [String, nil] The result of the evoke or nil if unsuccessful.
+      # @return [String, Boolean] The result of the evoke or false on failure.
       def force_evoke(target = nil, arg_options = nil, results_of_interest = nil, force_stance: nil)
         unless arg_options.nil? || arg_options.empty?
           arg_options = "evoke #{arg_options}"
@@ -891,11 +894,11 @@ module Lich
         cast(target, results_of_interest, arg_options, force_stance: force_stance)
       end
 
-      # Forces the incantation of the spell, ignoring certain checks.
+      # Forces the incantation of the spell.
       # @param arg_options [String, nil] Additional options for incantation.
       # @param results_of_interest [Regexp, nil] Regex to match results of interest.
       # @param force_stance [Boolean, nil] Whether to force a specific stance.
-      # @return [String, nil] The result of the incantation or nil if unsuccessful.
+      # @return [String, Boolean] The result of the incantation or false on failure.
       def force_incant(arg_options = nil, results_of_interest = nil, force_stance: nil)
         unless arg_options.nil? || arg_options.empty?
           arg_options = "incant #{arg_options}"
@@ -917,9 +920,6 @@ module Lich
         @cost.dup
       end
 
-      # Handles missing methods for dynamic bonus and cost retrieval.
-      # @param args [Array] The arguments passed to the missing method.
-      # @raise [NoMethodError] If the method is not found.
       def method_missing(*args)
         if @@bonus_list.include?(args[0].to_s.gsub('_', '-'))
           if @bonus[args[0].to_s.gsub('_', '-')]
@@ -973,18 +973,15 @@ module Lich
         Spells.get_circle_name(@circle)
       end
 
-      # Checks if the spell should be cleared upon death.
-      # @return [Boolean] True if the spell should be cleared, false otherwise.
+      # Checks if the spell should clear on death.
+      # @return [Boolean] Returns true if the spell clears on death, false otherwise.
       def clear_on_death
         !@persist_on_death
       end
 
-      # for backwards compatiblity
       # Retrieves the duration of the spell.
       # @return [String] The duration formula.
       def duration;      self.time_per_formula;            end
-      # Retrieves the mana cost of the spell.
-      # @return [String] The mana cost formula.
       def cost;          self.mana_cost_formula    || '0'; end
       # Retrieves the mana cost of the spell.
       # @return [String] The mana cost formula.
@@ -992,14 +989,8 @@ module Lich
       # Retrieves the spirit cost of the spell.
       # @return [String] The spirit cost formula.
       def spiritCost;    self.spirit_cost_formula  || '0'; end
-      # Retrieves the stamina cost of the spell.
-      # @return [String] The stamina cost formula.
       def staminaCost;   self.stamina_cost_formula || '0'; end
-      # Retrieves the bolt attack strength of the spell.
-      # @return [String] The bolt attack strength formula.
       def boltAS;        self.bolt_as_formula;             end
-      # Retrieves the physical attack strength of the spell.
-      # @return [String] The physical attack strength formula.
       def physicalAS;    self.physical_as_formula;         end
       # Retrieves the bolt defense strength of the spell.
       # @return [String] The bolt defense strength formula.
@@ -1007,44 +998,26 @@ module Lich
       # Retrieves the physical defense strength of the spell.
       # @return [String] The physical defense strength formula.
       def physicalDS;    self.physical_ds_formula;         end
-      # Retrieves the elemental critical strength of the spell.
-      # @return [String] The elemental critical strength formula.
+      # Retrieves the elemental combat strength of the spell.
+      # @return [String] The elemental combat strength formula.
       def elementalCS;   self.elemental_cs_formula;        end
-      # Retrieves the mental critical strength of the spell.
-      # @return [String] The mental critical strength formula.
+      # Retrieves the mental combat strength of the spell.
+      # @return [String] The mental combat strength formula.
       def mentalCS;      self.mental_cs_formula;           end
-      # Retrieves the spirit critical strength of the spell.
-      # @return [String] The spirit critical strength formula.
+      # Retrieves the spirit combat strength of the spell.
+      # @return [String] The spirit combat strength formula.
       def spiritCS;      self.spirit_cs_formula;           end
-      # Retrieves the sorcerer critical strength of the spell.
-      # @return [String] The sorcerer critical strength formula.
+      # Retrieves the sorcerer combat strength of the spell.
+      # @return [String] The sorcerer combat strength formula.
       def sorcererCS;    self.sorcerer_cs_formula;         end
-      # Retrieves the elemental total damage of the spell.
-      # @return [String] The elemental total damage formula.
       def elementalTD;   self.elemental_td_formula;        end
-      # Retrieves the mental total damage of the spell.
-      # @return [String] The mental total damage formula.
       def mentalTD;      self.mental_td_formula;           end
-      # Retrieves the spirit total damage of the spell.
-      # @return [String] The spirit total damage formula.
       def spiritTD;      self.spirit_td_formula;           end
-      # Retrieves the sorcerer total damage of the spell.
-      # @return [String] The sorcerer total damage formula.
       def sorcererTD;    self.sorcerer_td_formula;         end
-      # Retrieves the cast procedure of the spell.
-      # @return [String] The cast procedure.
       def castProc;      @cast_proc;                       end
-      # Checks if the spell is stackable.
-      # @return [Boolean] True if the spell is stackable, false otherwise.
       def stacks;        self.stackable?                   end
-      # Retrieves the command associated with the spell.
-      # @return [nil] Always returns nil.
       def command;       nil;                              end
-      # Retrieves the name of the spell's circle.
-      # @return [String] The name of the circle.
       def circlename;    self.circle_name;                 end
-      # Checks if the spell is self-only.
-      # @return [Boolean] True if the spell is self-only, false otherwise.
       def selfonly;      @availability != 'all';           end
     end # class
   end # mod

@@ -1,24 +1,29 @@
 # frozen_string_literal: true
 
-require_relative '../gui/yaml_state'
+require_relative '../authentication/entry_store'
 require_relative '../gui/master_password_manager'
-require_relative 'cli_password_manager'
+require_relative '../authentication/cli_password'
 
+# Namespace for the Lich project
+# Contains common modules and functionality.
 module Lich
   module Common
     module CLI
+      # Module for handling encryption mode changes in the CLI
+      # Provides functionality to change the encryption mode of stored credentials.
+      # @example Changing encryption mode
+      #   Lich::Common::CLI::EncryptionModeChange.change_mode(:standard)
       module EncryptionModeChange
-        # Changes the encryption mode of the application.
-        # This method validates the provided mode and handles password requirements based on the current and new modes.
+        # Changes the encryption mode for stored credentials.
         # @param new_mode [Symbol] The new encryption mode to set. Valid options are :plaintext, :standard, :enhanced.
-        # @param provided_password [String, nil] An optional password provided for mode transition.
-        # @return [Integer] Returns 0 on success, 1 on read error, 2 if the login file is not found, 3 for invalid mode, or 4 if cancelled by the user.
-        # @raise [StandardError] Raises an error if an unexpected issue occurs during the mode change.
+        # @param provided_password [String, nil] An optional password provided for validation when changing to enhanced mode.
+        # @return [Integer] Returns 0 on success, non-zero error code on failure.
+        # @raise [StandardError] Raises an error if there is an unexpected issue during the process.
         # @example Changing to enhanced mode
         #   Lich::Common::CLI::EncryptionModeChange.change_mode(:enhanced, "my_password")
         def self.change_mode(new_mode, provided_password = nil)
           data_dir = DATA_DIR
-          yaml_file = Lich::Common::GUI::YamlState.yaml_file_path(data_dir)
+          yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
           # Validate file exists
           unless File.exist?(yaml_file)
@@ -64,7 +69,7 @@ module Lich
           # If leaving Enhanced mode, validate current password
           if current_mode == :enhanced
             puts "Current mode is Enhanced encryption."
-            master_password = PasswordManager.prompt_for_master_password
+            master_password = Lich::Common::Authentication::CLIPassword.prompt_for_master_password
             if master_password.nil?
               puts "Cancelled"
               Lich.log "info: CLI encryption mode change cancelled by user"
@@ -90,7 +95,7 @@ module Lich
             new_master_password = if provided_password
                                     provided_password
                                   else
-                                    PasswordManager.get_master_password_from_keychain_or_prompt
+                                    Lich::Common::Authentication::CLIPassword.get_master_password_from_keychain_or_prompt
                                   end
 
             if new_master_password.nil?
@@ -119,7 +124,7 @@ module Lich
           end
 
           # Call domain method to perform the change
-          success = Lich::Common::GUI::YamlState.change_encryption_mode(
+          success = Lich::Common::Authentication::EntryStore.change_encryption_mode(
             data_dir,
             new_mode,
             new_master_password

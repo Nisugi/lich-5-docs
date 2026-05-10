@@ -1,21 +1,19 @@
-# extension to class Hash 2025-03-14
 
-# Extension to the Hash class
-# This class adds additional methods to the built-in Hash class.
-# @example Using the extended Hash methods
+# Represents a collection of key-value pairs.
+# This class extends the functionality of the standard Hash.
+# @example Creating a new Hash
 #   my_hash = Hash.new
-#   Hash.put(my_hash, "key1.key2", "value")
 class Hash
-  # Puts a value into a nested hash structure at the specified path.
+  # Inserts a value into a nested hash structure at the specified path.
   # @param target [Hash] The target hash to modify.
-  # @param path [Array,String] The path where the value should be placed.
-  # @param val [Object] The value to be inserted at the specified path.
-  # @return [Hash] The original target hash.
+  # @param path [Array, String] The path where the value should be inserted.
+  # @param val [Object] The value to insert into the hash.
+  # @return [Hash] The modified target hash.
   # @raise [ArgumentError] If the path is empty.
   # @example Inserting a value into a nested hash
   #   my_hash = {}
-  #   Hash.put(my_hash, "key1.key2", "value")
-  #   # my_hash now is { "key1" => { "key2" => "value" } }
+  #   Hash.put(my_hash, "a.b.c", 42)
+  #   # my_hash now is {"a" => {"b" => {"c" => 42}}}
   def self.put(target, path, val)
     path = [path] unless path.is_a?(Array)
     fail ArgumentError, "path cannot be empty" if path.empty?
@@ -28,7 +26,7 @@ class Hash
   # Converts the hash to an OpenStruct object.
   # @return [OpenStruct] An OpenStruct representation of the hash.
   # @example Converting a hash to OpenStruct
-  #   my_hash = { "name" => "John", "age" => 30 }
+  #   my_hash = {name: "John", age: 30}
   #   struct = my_hash.to_struct
   #   # struct.name returns "John"
   def to_struct

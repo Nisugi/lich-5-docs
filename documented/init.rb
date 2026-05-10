@@ -1,20 +1,24 @@
-# Lich5 initialization script for database setup
-# This script checks for necessary conditions and sets up the environment for Lich5.
 # Lich5 carveout for init_db
 
 #
 # Report an error if Lich 4.4 data is found
 #
 # Checks if the archaic Lich 4.4 configuration file exists.
-# @raise [SystemExit] if the configuration file is found.
+# @example Checking for Lich 4.4 configuration
+#   if File.exist?("#{DATA_DIR}/lich.sav")
+#     # Handle error
+#   end
 if File.exist?("#{DATA_DIR}/lich.sav")
   Lich.log "error: Archaic Lich 4.4 configuration found: Please remove #{DATA_DIR}/lich.sav"
   Lich.msgbox "error: Archaic Lich 4.4 configuration found: Please remove #{DATA_DIR}/lich.sav"
   exit
 end
 
-# Checks if the current Ruby version meets the required version.
-# @raise [SystemExit] if the Ruby version is too old.
+# Checks if the current Ruby version is less than the required version.
+# @example Validating Ruby version
+#   if Gem::Version.new(RUBY_VERSION) < Gem::Version.new(REQUIRED_RUBY)
+#     # Handle version error
+#   end
 if Gem::Version.new(RUBY_VERSION) < Gem::Version.new(REQUIRED_RUBY)
   if (RUBY_PLATFORM =~ /mingw|win/) and (RUBY_PLATFORM !~ /darwin/i)
     require 'win32ole'
@@ -60,8 +64,10 @@ if (RUBY_PLATFORM =~ /mingw|win/i) && (RUBY_PLATFORM !~ /darwin/i)
 
   # Checks if a registry key exists.
   # @param path [String] The registry path to check.
-  # @return [Boolean] true if the key exists, false otherwise.
-  # @raise [StandardError] if there is an error accessing the registry.
+  # @return [Boolean] True if the key exists, false otherwise.
+  # @raise [StandardError] If there is an error accessing the registry.
+  # @example Checking for a registry key
+  #   exists = key_exists?("SOFTWARE\WOW6432Node\Simutronics\STORM32")
   def key_exists?(path)
     Registry.open(Registry::HKEY_LOCAL_MACHINE, path, ::Win32::Registry::KEY_READ)
     true
@@ -83,8 +89,6 @@ if (RUBY_PLATFORM =~ /mingw|win/i) && (RUBY_PLATFORM !~ /darwin/i)
       end
     end
   end
-# Handles logic for Wine environments to find frontend locations.
-# @note This section assumes Wine is properly configured.
 elsif defined?(Wine)
   ## reminder Wine is defined in the file wine.rb by confirming prefix, directory and executable
   unless (sf_fe_loc_temp = Wine.registry_gets('HKEY_LOCAL_MACHINE\\Software\\Simutronics\\STORM32\\Directory'))
@@ -122,17 +126,12 @@ end
 ## TODO: remove as part of chore/Remove unnecessary Win32 calls
 ## Temporarily reinstatated for DR
 
-# Windows API definitions and methods for easier access.
-# @note This section is intended to simplify Windows API calls.
 if (RUBY_PLATFORM =~ /mingw|win/i) and (RUBY_PLATFORM !~ /darwin/i)
   #
   # Windows API made slightly less annoying
   #
   require 'fiddle'
   require 'fiddle/import'
-  # Module containing Windows API bindings and utility methods.
-  # @example Using Win32 methods
-  #   Win32.CreateProcess(lpApplicationName: 'app.exe')
   module Win32
     SIZEOF_CHAR = Fiddle::SIZEOF_CHAR
     SIZEOF_LONG = Fiddle::SIZEOF_LONG
@@ -142,7 +141,6 @@ if (RUBY_PLATFORM =~ /mingw|win/i) and (RUBY_PLATFORM !~ /darwin/i)
     MB_YESNO = 0x00000004
     MB_ICONERROR = 0x00000010
     MB_ICONQUESTION = 0x00000020
-    # Windows MessageBox icon constant for warning dialogs
     MB_ICONWARNING = 0x00000030
     IDIOK = 1
     IDICANCEL = 2
@@ -195,15 +193,6 @@ if (RUBY_PLATFORM =~ /mingw|win/i) and (RUBY_PLATFORM !~ /darwin/i)
       return Kernel32.GetLastError()
     end
 
-    # Creates a new process in Windows.
-    # @param args [Hash] Options for process creation, including:
-    #   - :lpApplicationName [String] The application to run.
-    #   - :lpCommandLine [String] Command line arguments.
-    #   - :lpCurrentDirectory [String] The working directory.
-    # @return [Hash] A hash containing process information.
-    # @raise [StandardError] if process creation fails.
-    # @example
-    #   result = Win32.CreateProcess(lpApplicationName: 'app.exe')
     def Win32.CreateProcess(args)
       if args[:lpCommandLine]
         lpCommandLine = args[:lpCommandLine].dup
@@ -240,10 +229,6 @@ if (RUBY_PLATFORM =~ /mingw|win/i) and (RUBY_PLATFORM !~ /darwin/i)
       return :return => (r > 0 ? true : false), :hProcess => lpProcessInformation[0], :hThread => lpProcessInformation[1], :dwProcessId => lpProcessInformation[2], :dwThreadId => lpProcessInformation[3]
     end
 
-    #      Win32.CreateProcess(:lpApplicationName => 'Launcher.exe', :lpCommandLine => 'lich2323.sal', :lpCurrentDirectory => 'C:\\PROGRA~1\\SIMU')
-    #      def Win32.OpenProcess(args={})
-    #         return Kernel32.OpenProcess(args[:dwDesiredAccess].to_i, args[:bInheritHandle].to_i, args[:dwProcessId].to_i)
-    #      end
     def Win32.GetCurrentProcess
       return Kernel32.GetCurrentProcess
     end
@@ -423,8 +408,6 @@ if (RUBY_PLATFORM =~ /mingw|win/i) and (RUBY_PLATFORM !~ /darwin/i)
       return Shell32.ShellExecute(args[:hwnd].to_i, args[:lpOperation], args[:lpFile], args[:lpParameters], args[:lpDirectory], args[:nShowCmd])
     end
 
-    # Attempts to define process enumeration methods.
-    # @note This section handles potential errors in loading the Psapi module.
     begin
       module Kernel32
         extern 'int EnumProcesses(void*, int, void*)'
@@ -455,16 +438,10 @@ if (RUBY_PLATFORM =~ /mingw|win/i) and (RUBY_PLATFORM !~ /darwin/i)
       end
     end
 
-    # Checks if the current Windows version is XP.
-    # @return [Boolean] true if the OS is Windows XP, false otherwise.
     def Win32.isXP?
       return (Win32.GetVersionEx[:dwMajorVersion] < 6)
     end
 
-    #      def Win32.isWin8?
-    #         r = Win32.GetVersionEx
-    #         return ((r[:dwMajorVersion] == 6) and (r[:dwMinorVersion] >= 2))
-    #      end
     def Win32.admin?
       if Win32.isXP?
         return true
@@ -669,6 +646,8 @@ end
 
 $stderr.sync = true
 Lich.log "info: Lich #{LICH_VERSION}"
+Lich.log "info: Branch - #{LICH_BRANCH}" if defined?(LICH_BRANCH)
+Lich.log "info: Repo - #{LICH_BRANCH_REPO}" if defined?(LICH_BRANCH_REPO)
 Lich.log "info: Ruby #{RUBY_VERSION}"
 Lich.log "info: #{RUBY_PLATFORM}"
 Lich.log @early_gtk_error if @early_gtk_error
@@ -730,29 +709,17 @@ unless File.exist?(BACKUP_DIR)
 end
 
 # Initializes the Lich database.
-# @note This method should be called after all directories are set up.
+# @example Initializing the database
+#   Lich.init_db
 Lich.init_db
 
-#
-# only keep the last 20 debug files
-#
-
-# Regular expression to match debug log files for deletion.
-# This is used to limit the number of debug files kept.
-DELETE_CANDIDATES = %r[^debug(?:-\d+)+\.log$]
-if Dir.entries(TEMP_DIR).find_all { |fn| fn =~ DELETE_CANDIDATES }.length > 20 # avoid NIL response
-  Dir.entries(TEMP_DIR).find_all { |fn| fn =~ DELETE_CANDIDATES }.sort.reverse[20..-1].each { |oldfile|
-    begin
-      File.delete(File.join(TEMP_DIR, oldfile))
-    rescue
-      Lich.log "error: #{$!}\n\t#{$!.backtrace.join("\n\t")}"
-    end
-  }
-end
+# Cleans up debug logs in the specified directory.
+# @param temp_dir [String] The directory where debug logs are stored.
+# @example Cleaning up debug logs
+#   Lich.cleanup_debug_logs(TEMP_DIR)
+Lich.cleanup_debug_logs(TEMP_DIR)
 
 # todo: deprecate / remove for Ruby 3.2.1?
-# Checks for deprecated Ruby versions and handles trusted defaults.
-# @note This section is intended for backward compatibility.
 if (RUBY_VERSION =~ /^2\.[012]\./)
   begin
     did_trusted_defaults = Lich.db.get_first_value("SELECT value FROM lich_settings WHERE name='did_trusted_defaults';")

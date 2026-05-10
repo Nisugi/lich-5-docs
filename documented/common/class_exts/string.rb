@@ -1,38 +1,23 @@
-# Carve out from lich.rbw
-# extension to String class
 
-# Extends the String class with additional functionality.
-# This class adds methods to enhance string manipulation.
-# @example Extending String functionality
-#   my_string = "Hello"
-#   my_string.stream = "stream_value"
+# Represents a string object with additional functionality.
+# @example Creating a string object
+#   my_string = String.new("Hello, World!")
 class String
-  # Returns a duplicate of the string.
-  # @return [String] A duplicate of the original string.
-  # @example Duplicating a string
-  #   original = "Hello"
-  #   duplicate = original.to_s
-  #   puts duplicate # => "Hello"
+  # Returns a string representation of the object.
+  # @return [String] the string itself
   def to_s
     self.dup
   end
 
-  # Retrieves the stream value associated with the string.
-  # @return [Object, nil] The stream value or nil if not set.
-  # @example Accessing the stream
-  #   my_string = "Hello"
-  #   my_string.stream # => nil
+  # Returns the current stream associated with the string.
+  # @return [Object] the current stream
   def stream
     @stream
   end
 
-  # Sets the stream value for the string if not already set.
-  # @param val [Object] The value to set as the stream.
-  # @return [Object] The value that was set as the stream.
-  # @example Setting the stream
-  #   my_string = "Hello"
-  #   my_string.stream = "stream_value"
-  #   puts my_string.stream # => "stream_value"
+  # Sets the stream for the string if it hasn't been set already.
+  # @param val [Object] the stream to set
+  # @return [Object] the stream that was set
   def stream=(val)
     @stream ||= val
   end

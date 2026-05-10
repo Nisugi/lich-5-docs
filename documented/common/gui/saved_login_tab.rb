@@ -17,7 +17,7 @@ module Lich
 
         # Initializes a new SavedLoginTab instance.
         # @param parent [Object] The parent widget for this tab.
-        # @param entry_data [Array<Hash>] The data for saved login entries.
+        # @param entry_data [Array<Hash>] The saved login entries data.
         # @param theme_state [Object] The current theme state.
         # @param tab_layout_state [Object] The layout state of the tab.
         # @param autosort_state [Boolean] The autosort state for entries.
@@ -57,16 +57,16 @@ module Lich
         end
 
         # Refreshes the data displayed in the saved login tab.
-        # This method reloads the saved entries from the data directory and updates the UI.
+        # This method reloads the saved entries and updates the UI accordingly.
         # @return [void]
-        # @example Refreshing the saved login data
+        # @example Refreshing the data
         #   tab.refresh_data
         def refresh_data
           # Save current UI state before refresh
           saved_state = save_current_ui_state
 
           # Reload data from YAML
-          @entry_data = Lich::Common::GUI::YamlState.load_saved_entries(@data_dir, @ui_config.autosort_state)
+          @entry_data = Lich::Common::Authentication::EntryStore.load_saved_entries(@data_dir, @ui_config.autosort_state)
 
           # Rebuild the tab content with new data
           rebuild_tab_content
@@ -81,14 +81,14 @@ module Lich
           show_refresh_notification
         end
 
-        # Returns the tab widget for the saved login entries.
-        # @return [Object] The tab widget containing the saved logins.
+        # Returns the tab widget for the saved login tab.
+        # @return [Object] The tab widget.
         def tab_widget
           @quick_game_entry_tab
         end
 
         # Returns a hash of UI elements associated with the saved login tab.
-        # @return [Hash] A hash containing UI elements like custom launch entry, slider box, etc.
+        # @return [Hash] A hash containing UI elements.
         def ui_elements
           {
             custom_launch_entry: @custom_launch_entry,
@@ -307,7 +307,7 @@ module Lich
 
           # Process each unique account in original order (not affected by favorites sorting)
           # Load unsorted data to get original account order
-          unsorted_data = Lich::Common::GUI::YamlState.load_saved_entries(@data_dir, false)
+          unsorted_data = Lich::Common::Authentication::EntryStore.load_saved_entries(@data_dir, false)
           account_array = unsorted_data.map { |x| x[:user_id] }.uniq
           account_array.each { |account|
             last_game_name = nil
@@ -395,7 +395,7 @@ module Lich
             # Add account header if this is a new account
             if login_params.user_id.downcase != last_user_id
               last_user_id = login_params.user_id.downcase
-              quick_box.pack_start(Gtk::Label.new("Account: " + last_user_id), expand: false, fill: false, padding: 6)
+              quick_box.pack_start(Gtk::Label.new("Account: " + last_user_id), expand: false, fill: false, padding: 2)
             end
 
             # Create character entry with play and remove buttons
@@ -410,7 +410,7 @@ module Lich
             remove_button = Components.create_button(label: 'X')
 
             # Apply button styling
-            @button_provider = LoginTabUtils.create_button_css_provider
+            @button_provider = LoginTabUtils.create_compact_button_css_provider
             remove_button.style_context.add_provider(@button_provider, Gtk::StyleProvider::PRIORITY_USER)
             play_button.style_context.add_provider(@button_provider, Gtk::StyleProvider::PRIORITY_USER)
 
@@ -670,10 +670,12 @@ module Lich
             @ui_config.theme_state,
             @ui_config.tab_layout_state,
             @ui_config.autosort_state,
+            Lich.track_persistent_launcher_mode,
             {
               on_theme_change: @callbacks.on_theme_change,
               on_layout_change: @callbacks.on_layout_change,
-              on_sort_change: @callbacks.on_sort_change
+              on_sort_change: @callbacks.on_sort_change,
+              on_persistent_launcher_change: @callbacks.on_persistent_launcher_change
             }
           )
 

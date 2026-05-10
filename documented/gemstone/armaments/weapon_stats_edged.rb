@@ -1,11 +1,27 @@
 module Lich
   module Gemstone
     module Armaments
+      # Static array of weapon stats indexed by weapon identifiers. Each weapon
+      # entry contains metadata such as category, base name, alternative names,
+      # damage types, damage factors, armor avoidance by armor size group (ASG),
+      # base roundtime (RT), and minimum RT.
+      #
+      # damage_types: Hash of damage type percentages or values.
+      #   :slash    => % of slash damage (Float or nil)
+      #   :crush    => % of crush damage (Float or nil)
+      #   :puncture => % of puncture damage (Float or nil)
+      #   :special  => Array of special damage types (or empty array)
+      #
+      # damage factor array:
+      #  [0] = nil (none)    [1] = Cloth    [2] = Leather    [3] = Scale    [4] = Chain    [5] = Plate
+      #
+      # avd_by_asg array:
+      #  Cloth:   [1] ASG 1    [2] ASG 2      [3] nil      [4] nil
+      #  Leather: [5] ASG 5    [6] ASG 6    [7] ASG 7    [8] ASG 8
+      #  Scale:   [9] ASG 9    [10] ASG 10  [11] ASG 11  [12] ASG 12
+      #  Chain:   [13] ASG 13  [14] ASG 14  [15] ASG 15  [16] ASG 16
+      #  Plate:   [17] ASG 17  [18] ASG 18  [19] ASG 19  [20] ASG 20
       module WeaponStats
-# Static array of weapon stats indexed by weapon identifiers.
-# Each weapon entry contains metadata such as category, base name, alternative names,
-# damage types, damage factors, armor avoidance by armor size group (ASG),
-# base roundtime (RT), and minimum RT.
 # Static array of weapon stats indexed by weapon identifiers. Each weapon
 # entry contains metadata such as category, base name, alternative names,
 # damage types, damage factors, armor avoidance by armor size group (ASG),
@@ -41,14 +57,7 @@ module Lich
             :min_rt        => 4,
           },
 =end
-        # A collection of edged weapon statistics indexed by weapon identifiers.
-        # Each weapon's stats include category, base name, all names, damage types,
-        # damage factors, armor avoidance by armor size group, base roundtime, and minimum roundtime.
-        # @example Accessing weapon stats
-        #   weapon_stats = Lich::Gemstone::Armaments::WeaponStats.class_variable_get(:@@weapon_stats_edged)
         @@weapon_stats_edged = {
-          # Weapon statistics for the arrow.
-          # @return [Hash] A hash containing the weapon's stats.
           :arrow         => { # when swung, not when fired
             :category      => :edged,
             :base_name     => "arrow",
@@ -60,8 +69,6 @@ module Lich
             :base_rt       => 5,
             :min_rt        => 4,
           },
-          # Weapon statistics for the backsword.
-          # @return [Hash] A hash containing the weapon's stats.
           :backsword     => {
             :category      => :edged,
             :base_name     => "backsword",
@@ -73,8 +80,6 @@ module Lich
             :base_rt       => 5,
             :min_rt        => 4,
           },
-          # Weapon statistics for the bastard sword.
-          # @return [Hash] A hash containing the weapon's stats.
           :bastard_sword => {
             :category      => :edged,
             :base_name     => "bastard sword",
@@ -87,8 +92,6 @@ module Lich
             :min_rt        => 4,
             :grippable?    => true,
           },
-          # Weapon statistics for the broadsword.
-          # @return [Hash] A hash containing the weapon's stats.
           :broadsword    => {
             :category      => :edged,
             :base_name     => "broadsword",
@@ -100,8 +103,6 @@ module Lich
             :base_rt       => 5,
             :min_rt        => 4,
           },
-          # Weapon statistics for the dagger.
-          # @return [Hash] A hash containing the weapon's stats.
           :dagger        => {
             :category      => :edged,
             :base_name     => "dagger",
@@ -113,8 +114,6 @@ module Lich
             :base_rt       => 1,
             :min_rt        => 2,
           },
-          # Weapon statistics for the estoc.
-          # @return [Hash] A hash containing the weapon's stats.
           :estoc         => {
             :category      => :edged,
             :base_name     => "estoc",
@@ -126,8 +125,6 @@ module Lich
             :base_rt       => 4,
             :min_rt        => 4,
           },
-          # Weapon statistics for the falchion.
-          # @return [Hash] A hash containing the weapon's stats.
           :falchion      => {
             :category      => :edged,
             :base_name     => "falchion",
@@ -139,8 +136,6 @@ module Lich
             :base_rt       => 5,
             :min_rt        => 4,
           },
-          # Weapon statistics for the handaxe.
-          # @return [Hash] A hash containing the weapon's stats.
           :handaxe       => {
             :category      => :edged,
             :base_name     => "handaxe",
@@ -152,8 +147,6 @@ module Lich
             :base_rt       => 5,
             :min_rt        => 4,
           },
-          # Weapon statistics for the katana.
-          # @return [Hash] A hash containing the weapon's stats.
           :katana        => {
             :category         => :edged,
             :base_name        => "katana",
@@ -168,8 +161,6 @@ module Lich
             :weighting_amount => 10,
             :grippable?       => true,
           },
-          # Weapon statistics for the longsword.
-          # @return [Hash] A hash containing the weapon's stats.
           :longsword     => {
             :category      => :edged,
             :base_name     => "longsword",
@@ -181,8 +172,6 @@ module Lich
             :base_rt       => 4,
             :min_rt        => 4,
           },
-          # Weapon statistics for the main gauche.
-          # @return [Hash] A hash containing the weapon's stats.
           :main_gauche   => {
             :category      => :edged,
             :base_name     => "main gauche",
@@ -194,8 +183,6 @@ module Lich
             :base_rt       => 2,
             :min_rt        => 3,
           },
-          # Weapon statistics for the rapier.
-          # @return [Hash] A hash containing the weapon's stats.
           :rapier        => {
             :category      => :edged,
             :base_name     => "rapier",
@@ -207,8 +194,6 @@ module Lich
             :base_rt       => 2,
             :min_rt        => 3,
           },
-          # Weapon statistics for the scimitar.
-          # @return [Hash] A hash containing the weapon's stats.
           :scimitar      => {
             :category      => :edged,
             :base_name     => "scimitar",
@@ -220,8 +205,6 @@ module Lich
             :base_rt       => 4,
             :min_rt        => 4,
           },
-          # Weapon statistics for the short sword.
-          # @return [Hash] A hash containing the weapon's stats.
           :short_sword   => {
             :category      => :edged,
             :base_name     => "short sword",
@@ -233,8 +216,6 @@ module Lich
             :base_rt       => 3,
             :min_rt        => 3,
           },
-          # Weapon statistics for the whip-blade.
-          # @return [Hash] A hash containing the weapon's stats.
           :whip_blade    => {
             :category      => :edged,
             :base_name     => "whip-blade",

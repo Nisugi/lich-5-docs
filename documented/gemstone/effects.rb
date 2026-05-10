@@ -1,15 +1,15 @@
 module Lich
   module Gemstone
     module Effects
-      # Manages a collection of effects in the Lich system.
-      # This class includes methods to handle the registration and retrieval of effects.
-      # @example Creating a new effect registry
+      # Manages a collection of effects.
+      # Provides methods to access and manipulate effects.
+      # @example Creating a new registry
       #   registry = Lich::Gemstone::Effects::Registry.new("Active Effects")
       class Registry
         include Enumerable
 
         # Initializes a new Registry instance.
-        # @param dialog [String] The name of the dialog associated with this registry.
+        # @param dialog [String] The name of the dialog associated with the registry.
         # @return [Registry]
         def initialize(dialog)
           @dialog = dialog
@@ -22,7 +22,7 @@ module Lich
         end
 
         # Iterates over each effect in the registry.
-        # @yield [key, value] Yields each key-value pair in the registry.
+        # @yield [key, value] The key-value pair for each effect.
         # @return [Enumerator] An enumerator if no block is given.
         def each()
           to_h.each { |k, v| yield(k, v) }
@@ -30,7 +30,7 @@ module Lich
 
         # Retrieves the expiration time of a given effect.
         # @param effect [String, Regexp] The effect to check for expiration.
-        # @return [Integer] The expiration time in seconds since epoch, or 0 if not found.
+        # @return [Integer] The expiration time in seconds, or 0 if not found.
         def expiration(effect)
           if effect.is_a?(Regexp)
             to_h.find { |k, _v| k.to_s =~ effect }[1] || 0
@@ -69,7 +69,7 @@ module Lich
 
       # Displays the current effects in a formatted table.
       # @return [void]
-      # @example Displaying the current effects
+      # @example Displaying effects
       #   Lich::Gemstone::Effects.display
       def self.display
         effect_out = Terminal::Table.new :headings => ["ID", "Type", "Name", "Duration"]

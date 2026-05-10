@@ -1,32 +1,54 @@
+# frozen_string_literal: true
 
+require_relative '../authentication/gui'
+
+# Provides common GUI utilities for the Lich application
+# This module contains methods for creating and managing UI elements.
 module Lich
   module Common
     module GUI
-      # Provides utility methods for creating and managing login tab UI elements.
-      # @example Using LoginTabUtils
-      #   button_css = Lich::Common::GUI::LoginTabUtils.create_button_css_provider(font_size: 14)
+      # Utility methods for managing login tab UI elements
+      # This module provides methods to create CSS providers and handle UI interactions.
       module LoginTabUtils
-        # Creates a CSS provider for buttons with a specified font size.
-        # @param font_size [Integer] The font size for the button.
-        # @return [Gtk::CssProvider] The CSS provider for the button.
+        # Creates a CSS provider for buttons
+        # @param font_size [Integer] The font size for the button
+        # @return [Gtk::CssProvider] The CSS provider for the button
+        # @example
+        #   provider = LoginTabUtils.create_button_css_provider(font_size: 14)
         def self.create_button_css_provider(font_size: 12)
           css = Gtk::CssProvider.new
           css.load_from_data("button {border-radius: 5px; font-size: #{font_size}px;}")
           css
         end
 
-        # Creates a CSS provider for toggle buttons.
-        # @return [Gtk::CssProvider] The CSS provider for the toggle button.
+        # Creates a compact CSS provider for buttons
+        # @param font_size [Integer] The font size for the button
+        # @return [Gtk::CssProvider] The compact CSS provider for the button
+        # @example
+        #   provider = LoginTabUtils.create_compact_button_css_provider(font_size: 10)
+        def self.create_compact_button_css_provider(font_size: 11)
+          css = Gtk::CssProvider.new
+          css.load_from_data("button {border-radius: 3px; font-size: #{font_size}px; padding: 2px 6px; min-height: 0; min-width: 0;}")
+          css
+        end
+
+        # Creates a CSS provider for toggle buttons
+        # @return [Gtk::CssProvider] The CSS provider for the toggle button
+        # @example
+        #   provider = LoginTabUtils.create_toggle_button_css_provider
         def self.create_toggle_button_css_provider
           css = Gtk::CssProvider.new
           css.load_from_data("togglebutton {border-radius: 5px; font-size: 12px;}")
           css
         end
 
-        # Applies the specified theme to the given UI elements.
-        # @param theme_state [Boolean] Indicates whether to apply the dark theme.
-        # @param ui_elements [Hash] A hash of UI elements to style.
-        # @param providers [Hash] A hash of CSS providers for the elements.
+        # Applies the selected theme to UI elements
+        # @param theme_state [Boolean] Indicates if the dark theme is enabled
+        # @param ui_elements [Hash] A hash of UI elements to apply the theme to
+        # @param providers [Hash] A hash of CSS providers for the UI elements
+        # @return [void]
+        # @example
+        #   LoginTabUtils.apply_theme_to_ui_elements(true, ui_elements, providers)
         def self.apply_theme_to_ui_elements(theme_state, ui_elements, providers)
           if theme_state
             # Enable dark theme
@@ -53,62 +75,36 @@ module Lich
           end
         end
 
-        # Sets up the event handler for the play button.
-        # @param button [Gtk::Button] The play button to set up.
-        # @param login_info [Hash] The login information for authentication.
-        # @param callback [Proc] The callback to invoke on successful authentication.
+        # Sets up the handler for the play button
+        # @param button [Gtk::Button] The play button to set up
+        # @param login_info [Hash] The login information for authentication
+        # @param callback [Proc] The callback to execute on successful authentication
+        # @return [void]
+        # @example
+        #   LoginTabUtils.setup_play_button_handler(play_button, login_info, -> { puts "Authenticated!" })
         def self.setup_play_button_handler(button, login_info, callback)
           button.signal_connect('button-release-event') { |_owner, ev|
-            if (ev.event_type == Gdk::EventType::BUTTON_RELEASE)
-              if (ev.button == 1)
-                button.sensitive = false
-
-                # Authenticate and prepare launch data
-                launch_data_hash = Authentication.authenticate(
-                  account: login_info[:user_id],
-                  password: login_info[:password],
-                  character: login_info[:char_name],
-                  game_code: login_info[:game_code]
-                )
-
-                # Check if authentication succeeded (Hash) or failed (String error message)
-                if launch_data_hash.is_a?(Hash)
-                  launch_data = Authentication.prepare_launch_data(
-                    launch_data_hash,
-                    login_info[:frontend],
-                    login_info[:custom_launch],
-                    login_info[:custom_launch_dir]
-                  )
-
-                  # Call the play callback if provided
-                  callback.call(launch_data) if callback
-                else
-                  # Authentication failed - show error message
-                  error_dialog = Gtk::MessageDialog.new(
-                    parent: button.toplevel,
-                    flags: :modal,
-                    type: :error,
-                    buttons: :ok,
-                    message: "Authentication Failed"
-                  )
-                  error_dialog.secondary_text = launch_data_hash
-                  error_dialog.run
-                  error_dialog.destroy
-                  button.sensitive = true
-                end
-              elsif (ev.button == 3)
-                pp "I would be adding to a team tab"
-              end
+            if ev.event_type == Gdk::EventType::BUTTON_RELEASE && ev.button == 1
+              Lich::Common::Authentication::GUI.authenticate_and_launch(
+                button: button,
+                login_info: login_info,
+                on_success: callback
+              )
+            elsif ev.button == 3
+              pp "I would be adding to a team tab"
             end
           }
         end
 
-        # Sets up the event handler for the remove button.
-        # @param button [Gtk::Button] The remove button to set up.
-        # @param login_info [Hash] The login information associated with the character.
-        # @param char_box [Gtk::Box] The character box to hide on removal.
-        # @param default_icon [Gtk::Image] The default icon for the confirmation dialog.
-        # @param callback [Proc] The callback to invoke on removal.
+        # Sets up the handler for the remove button
+        # @param button [Gtk::Button] The remove button to set up
+        # @param login_info [Hash] The login information for the character
+        # @param char_box [Gtk::Box] The character box to hide
+        # @param default_icon [Gtk::Icon] The default icon for the dialog
+        # @param callback [Proc] The callback to execute on removal
+        # @return [void]
+        # @example
+        #   LoginTabUtils.setup_remove_button_handler(remove_button, login_info, char_box, default_icon, -> { puts "Removed!" })
         def self.setup_remove_button_handler(button, login_info, char_box, default_icon, callback)
           button.signal_connect('button-release-event') { |_owner, ev|
             if (ev.event_type == Gdk::EventType::BUTTON_RELEASE) and (ev.button == 1)
@@ -138,14 +134,17 @@ module Lich
           }
         end
 
-        # Creates the global settings components for the UI.
-        # @param parent_container [Gtk::Container] The parent container to hold the settings components.
-        # @param theme_state [Boolean] The initial state of the theme switch.
-        # @param tab_layout_state [Boolean] The initial state of the tab layout switch.
-        # @param autosort_state [Boolean] The initial state of the auto sort switch.
-        # @param callbacks [Hash] A hash of callback functions for state changes.
-        # @return [Hash] A hash containing the created UI components.
-        def self.create_global_settings_components(parent_container, theme_state, tab_layout_state, autosort_state, callbacks)
+        # Creates global settings components for the UI
+        # @param parent_container [Gtk::Container] The parent container to add components to
+        # @param theme_state [Boolean] The current theme state
+        # @param tab_layout_state [Boolean] The current tab layout state
+        # @param autosort_state [Boolean] The current autosort state
+        # @param persistent_launcher_state [Boolean] The current persistent launcher state
+        # @param callbacks [Hash] A hash of callback functions for state changes
+        # @return [Hash] A hash containing created UI components
+        # @example
+        #   components = LoginTabUtils.create_global_settings_components(parent_container, true, false, true, false, callbacks)
+        def self.create_global_settings_components(parent_container, theme_state, tab_layout_state, autosort_state, persistent_launcher_state, callbacks)
           # Create toggle button styling
           togglebutton_provider = create_toggle_button_css_provider
 
@@ -154,23 +153,37 @@ module Lich
           theme_select = Gtk::Switch.new
           tab_select = Gtk::Switch.new
           sort_select = Gtk::Switch.new
+          persistent_launcher_select = Gtk::Switch.new
           theme_select_label = Gtk::Label.new('Dark Theme')
           tab_select_label = Gtk::Label.new('Tab Layout')
           sort_select_label = Gtk::Label.new('AutoSort')
+          persistent_launcher_label = Gtk::Label.new('Multi-Launch')
           theme_select.set_active(true) if theme_state == true
           tab_select.set_active(true) if tab_layout_state == true
           sort_select.set_active(true) if autosort_state == true
+          # Keep the helper pure/testable by taking this state as input.
+          persistent_launcher_select.set_active(true) if persistent_launcher_state == true
 
           # Add switches to slider box
-          slider_box.pack_start(theme_select, expand: true, fill: false, padding: 0)
-          slider_box.pack_start(theme_select_label, expand: true, fill: false, padding: 0)
-          slider_box.pack_start(tab_select, expand: true, fill: false, padding: 0)
-          slider_box.pack_start(tab_select_label, expand: true, fill: false, padding: 0)
-          slider_box.pack_start(sort_select, expand: true, fill: false, padding: 0)
-          slider_box.pack_start(sort_select_label, expand: true, fill: false, padding: 0)
+          # slider_box = Gtk::Box.new(:vertical, 5)
+
+          row1 = Gtk::Box.new(:horizontal, 10)
+          row1.pack_start(theme_select, expand: false, fill: false, padding: 0)
+          row1.pack_start(theme_select_label, expand: false, fill: false, padding: 0)
+          row1.pack_start(tab_select, expand: false, fill: false, padding: 0)
+          row1.pack_start(tab_select_label, expand: false, fill: false, padding: 0)
+
+          # row2 = Gtk::Box.new(:horizontal, 10)
+          row1.pack_start(sort_select, expand: false, fill: false, padding: 0)
+          row1.pack_start(sort_select_label, expand: false, fill: false, padding: 0)
+          row1.pack_start(persistent_launcher_select, expand: false, fill: false, padding: 0)
+          row1.pack_start(persistent_launcher_label, expand: false, fill: false, padding: 0)
+
+          slider_box.pack_start(row1, expand: false, fill: false, padding: 0)
+          # slider_box.pack_start(row2, expand: false, fill: false, padding: 0)
 
           # Settings toggle button
-          settings_option = Gtk::ToggleButton.new(label: 'Change global GUI settings')
+          settings_option = Gtk::ToggleButton.new(label: 'GUI Settings')
           settings_option.style_context.add_provider(togglebutton_provider, Gtk::StyleProvider::PRIORITY_USER)
           parent_container.pack_start(settings_option, expand: false, fill: false, padding: 5)
           parent_container.pack_start(slider_box, expand: false, fill: false, padding: 5)
@@ -211,6 +224,13 @@ module Lich
             false
           }
 
+          # Persistent launcher switch handler
+          persistent_launcher_select.signal_connect('state-set') { |_widget, state|
+            Lich.track_persistent_launcher_mode = state
+            callbacks[:on_persistent_launcher_change]&.call(state)
+            false
+          }
+
           # Initially hide the slider box
           slider_box.visible = false
 
@@ -220,22 +240,30 @@ module Lich
             settings_option: settings_option,
             theme_select: theme_select,
             tab_select: tab_select,
-            sort_select: sort_select
+            sort_select: sort_select,
+            persistent_launcher_select: persistent_launcher_select
           }
         end
 
-        # Creates a custom launch command entry field.
-        # @return [Gtk::ComboBoxText] The combo box for custom launch commands.
+        # Creates a custom launch entry for commands
+        # @return [Gtk::ComboBoxText] The custom launch entry component
+        # @example
+        #   entry = LoginTabUtils.create_custom_launch_entry
         def self.create_custom_launch_entry
           custom_launch_entry = Gtk::ComboBoxText.new(entry: true)
           custom_launch_entry.child.set_placeholder_text("(enter custom launch command)")
           custom_launch_entry.append_text("Wizard.Exe /GGS /H127.0.0.1 /P%port% /K%key%")
           custom_launch_entry.append_text("Stormfront.exe /GGS /Hlocalhost /P%port% /K%key%")
+          custom_launch_entry.append_text("/Applications/Warlock.app/Contents/MacOS/Warlock --host localhost --port %port% --key %key%") if OS.mac?
+          custom_launch_entry.append_text("warlock --host localhost --port %port% --key %key%") if OS.windows?
+          custom_launch_entry.append_text("/usr/bin/warlock --host localhost --port %port% --key %key%") if OS.linux?
           custom_launch_entry
         end
 
-        # Creates a custom launch directory entry field.
-        # @return [Gtk::ComboBoxText] The combo box for custom launch directories.
+        # Creates a custom launch directory entry
+        # @return [Gtk::ComboBoxText] The custom launch directory component
+        # @example
+        #   dir = LoginTabUtils.create_custom_launch_dir
         def self.create_custom_launch_dir
           custom_launch_dir = Gtk::ComboBoxText.new(entry: true)
           custom_launch_dir.child.set_placeholder_text("(enter working directory for command)")

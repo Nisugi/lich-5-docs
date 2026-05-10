@@ -13,6 +13,7 @@ require_relative 'defs/ucs'
 module Lich
   module Gemstone
     # Combat Parser - Core parsing methods for combat events
+    #
     # Performance-optimized with lazy loading and selective pattern matching
     # @example Usage
     #   result = Lich::Gemstone::Combat::Parser.parse_attack(line)
@@ -26,6 +27,7 @@ module Lich
         # Non-greedy match to avoid spanning multiple creatures
         # Allow zero or more characters before <a> tag (e.g., "a creature" or just "creature")
         # Bold tag pattern - creatures are wrapped in bold tags
+        #
         # Non-greedy match to avoid spanning multiple creatures
         # Allow zero or more characters before <a> tag (e.g., "a creature" or just "creature")
         BOLD_WRAPPER_PATTERN = /<pushBold\/>([^<]*<a exist="[^"]+"[^>]+>[^<]+<\/a>)<popBold\/>/i.freeze
@@ -34,9 +36,9 @@ module Lich
           # Parses an attack line and extracts relevant information.
           #
           # @param line [String] The line containing the attack information.
-          # @return [Hash, nil] A hash containing attack details or nil if no attack is detected.
+          # @return [Hash, nil] A hash with attack details or nil if no attack is detected.
           # @example
-          #   attack_info = Lich::Gemstone::Combat::Parser.parse_attack("You attack the creature.")
+          #   result = parse_attack("You hit the creature!")
           def parse_attack(line)
             return nil unless attack_detector.match?(line)
 
@@ -58,7 +60,7 @@ module Lich
           # @param line [String] The line containing the damage information.
           # @return [Integer, nil] The damage value or nil if not found.
           # @example
-          #   damage = Lich::Gemstone::Combat::Parser.parse_damage("You deal 10 damage.")
+          #   damage = parse_damage("You deal 10 damage!")
           def parse_damage(line)
             result = Definitions::Damage.parse(line)
             result ? result[:damage] : nil
@@ -67,9 +69,9 @@ module Lich
           # Parses a status line and extracts the status information.
           #
           # @param line [String] The line containing the status information.
-          # @return [Hash, nil] A hash containing status details or nil if not found.
+          # @return [Hash, nil] The status details or nil if not found.
           # @example
-          #   status_info = Lich::Gemstone::Combat::Parser.parse_status("You are now stunned.")
+          #   status = parse_status("You are now stunned!")
           def parse_status(line)
             return nil unless Tracker.settings[:track_statuses]
 
@@ -80,15 +82,21 @@ module Lich
           # Parses a UCS line and extracts the UCS information.
           #
           # @param line [String] The line containing the UCS information.
-          # @return [Hash, nil] A hash containing UCS details or nil if not found.
+          # @return [Hash, nil] The UCS details or nil if not found.
           # @example
-          #   ucs_info = Lich::Gemstone::Combat::Parser.parse_ucs("You are now under a curse.")
+          #   ucs = parse_ucs("You have gained a new skill!")
           def parse_ucs(line)
             return nil unless Tracker.settings[:track_ucs]
 
             Definitions::UCS.parse(line)
           end
 
+          # Extracts a creature target from a line containing bolded links.
+          #
+          # @param line [String] The line containing the target information.
+          # @return [Hash, nil] A hash with target details or nil if not found.
+          # @example
+          #   target = extract_creature_target("<pushBold/><a exist=\"123\" noun=\"creature\">Creature Name</a><popBold/>")
           def extract_creature_target(line)
             # Check if line contains a bolded link
             bold_match = BOLD_WRAPPER_PATTERN.match(line)
@@ -109,6 +117,12 @@ module Lich
             }
           end
 
+          # Extracts a target from a regex match object.
+          #
+          # @param match [MatchData] The regex match object containing target information.
+          # @return [Hash, nil] A hash with target details or nil if not found.
+          # @example
+          #   target = extract_target_from_match(match)
           def extract_target_from_match(match)
             return nil unless match.names.include?('target')
             target_text = match[:target]
@@ -129,6 +143,12 @@ module Lich
             nil
           end
 
+          # Extracts a target from a line, only accepting bolded creatures.
+          #
+          # @param line [String] The line containing the target information.
+          # @return [Hash, nil] A hash with target details or nil if not found.
+          # @example
+          #   target = extract_target_from_line("<pushBold/><a exist=\"123\" noun=\"creature\">Creature Name</a><popBold/>")
           def extract_target_from_line(line)
             # ONLY accept bolded creatures as targets
             # Non-bolded links are equipment, objects, or other non-combatants

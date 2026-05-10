@@ -1,24 +1,29 @@
 # frozen_string_literal: true
 
 require_relative 'password_cipher'
-require_relative 'yaml_state'
+require_relative '../authentication/entry_store'
 
 module Lich
+  # Provides common functionality for the Lich project.
+  # @example Including the module
+  #   include Lich::Common
   module Common
     module GUI
+      # Manages password storage and retrieval.
+      # @example Changing a password
+      #   PasswordManager.change_password(entry: entry, new_password: "new_pass")
       module PasswordManager
         # Changes the password for a given entry based on the specified encryption mode.
         # @param entry [Hash] The entry containing the password and encryption mode.
         # @param new_password [String] The new password to set.
-        # @param account_name [String, nil] The account name for standard mode (required).
-        # @param master_password [String, nil] The master password for enhanced mode (required).
+        # @param account_name [String, nil] The account name for standard mode (optional).
+        # @param master_password [String, nil] The master password for enhanced mode (optional).
         # @return [Hash] The updated entry with the new password.
         # @raise [ArgumentError] If account_name or master_password is missing in their respective modes.
-        # @raise [NotImplementedError] If the encryption mode is not implemented.
-        # @raise [ArgumentError] If the encryption mode is unknown.
+        # @raise [NotImplementedError] If the ssh_key mode is used.
+        # @raise [ArgumentError] If an unknown encryption mode is provided.
         # @example Changing a password in standard mode
-        #   entry = { encryption_mode: :standard, password: "old_password" }
-        #   updated_entry = PasswordManager.change_password(entry: entry, new_password: "new_password", account_name: "user@example.com")
+        #   PasswordManager.change_password(entry: entry, new_password: "new_pass", account_name: "user@example.com")
         def self.change_password(entry:, new_password:, account_name: nil, master_password: nil)
           mode = entry[:encryption_mode]&.to_sym || :plaintext
 
@@ -56,15 +61,14 @@ module Lich
 
         # Retrieves the password for a given entry based on the specified encryption mode.
         # @param entry [Hash] The entry containing the password and encryption mode.
-        # @param account_name [String, nil] The account name for standard mode (required).
-        # @param master_password [String, nil] The master password for enhanced mode (required).
+        # @param account_name [String, nil] The account name for standard mode (optional).
+        # @param master_password [String, nil] The master password for enhanced mode (optional).
         # @return [String] The decrypted or plaintext password.
         # @raise [ArgumentError] If account_name or master_password is missing in their respective modes.
-        # @raise [NotImplementedError] If the encryption mode is not implemented.
-        # @raise [ArgumentError] If the encryption mode is unknown.
+        # @raise [NotImplementedError] If the ssh_key mode is used.
+        # @raise [ArgumentError] If an unknown encryption mode is provided.
         # @example Retrieving a password in enhanced mode
-        #   entry = { encryption_mode: :enhanced, password: "encrypted_password" }
-        #   password = PasswordManager.get_password(entry: entry, master_password: "master_password")
+        #   PasswordManager.get_password(entry: entry, master_password: "master_pass")
         def self.get_password(entry:, account_name: nil, master_password: nil)
           mode = entry[:encryption_mode]&.to_sym || :plaintext
           encrypted_password = entry[:password]

@@ -1,650 +1,371 @@
-## Let's have fun updating Lich5!
+# frozen_string_literal: true
+
+=begin
+  Composition root for the Lich5 update system.
+
+  Provides the public API surface for updating Lich5 core, managing snapshots,
+  syncing script repositories, and tracking individual files. Wires together
+  internal classes and manages lazy initialization of dependencies.
+
+  Supports both release-based updates and branch-based development workflows.
+=end
+
+require 'digest'
+require 'json'
+require 'net/http'
+require 'open-uri'
+require 'rubygems/package'
+require 'zlib'
+
+require_relative 'common/update/file_writer'
+require_relative 'common/update/status_reporter'
+require_relative 'common/update/github_client'
+require_relative 'common/update/channel_resolver'
+require_relative 'common/update/snapshot_manager'
+require_relative 'common/update/tracked_scripts'
+require_relative 'common/update/custom_repos'
+require_relative 'common/update/script_sync'
+require_relative 'common/update/file_updater'
+require_relative 'common/update/release_installer'
+require_relative 'common/update/branch_installer'
 
 module Lich
+  # Provides utility methods for the Lich5 update system.
+  # This module contains constants and methods related to updating the Lich5 core.
+  # @example Using the update module
+  #   Lich::Util::Update.request('--announce')
   module Util
     module Update
-      require 'json'
-      require 'open-uri'
-      require 'rubygems/package'
-      require 'zlib'
-
-      # Update channel constants
       # Update channel constants
       # The stable reference branch for updates.
       STABLE_REF = 'main'
-      # Fallback branch prefix for beta updates.
-      BETA_BRANCH_PREFIX = 'pre/beta' # fallback branch prefix for beta
-      # The name of the asset tarball for updates.
+      # The prefix used for beta branch names.
+      BETA_BRANCH_PREFIX = 'pre/beta'
+      # The name of the asset tarball for Lich5.
       ASSET_TARBALL_NAME = 'lich-5.tar.gz'
+      # The GitHub repository for Lich5.
+      GITHUB_REPO = 'elanthia-online/lich-5'
 
-      # simple in-memory cache for GitHub API responses
-      @_http_cache = {}
-      @_http_cache_ttl = 60 # seconds
+      # Script repository registry
+      SCRIPT_REPOS = {
+        'dr-scripts' => {
+          display_name: 'DR Scripts',
+          api_url: 'https://api.github.com/repos/elanthia-online/dr-scripts/git/trees/main?recursive=1',
+          raw_base_url: 'https://raw.githubusercontent.com/elanthia-online/dr-scripts/main',
+          tracking_mode: :all,
+          script_pattern: /^[^\/]+\.lic$/,
+          game_filter: /^DR/,
+          subdirs: {
+            'profiles' => { pattern: /^profiles\/base(?:-empty)?\.yaml$/, dest: File.join(SCRIPT_DIR, 'profiles') },
+            'data'     => { pattern: /^data\/base.+yaml$/, dest: File.join(SCRIPT_DIR, 'data') }
+          }
+        }.freeze,
+        'scripts'    => {
+          display_name: 'Core Scripts',
+          api_url: 'https://api.github.com/repos/elanthia-online/scripts/git/trees/master?recursive=1',
+          raw_base_url: 'https://raw.githubusercontent.com/elanthia-online/scripts/master',
+          tracking_mode: :explicit,
+          script_pattern: /^scripts\/[^\/]+\.lic$/,
+          script_prefix: 'scripts',
+          game_filter: nil,
+          default_tracked: %w[
+            alias.lic autostart.lic go2.lic jinx.lic log.lic
+            logxml.lic map.lic repository.lic vars.lic version.lic
+          ].freeze,
+          subdirs: {}
+        }.freeze,
+        'gs-scripts' => {
+          display_name: 'GS Scripts',
+          api_url: 'https://api.github.com/repos/elanthia-online/scripts/git/trees/master?recursive=1',
+          raw_base_url: 'https://raw.githubusercontent.com/elanthia-online/scripts/master',
+          tracking_mode: :explicit,
+          script_pattern: /^scripts\/[^\/]+\.lic$/,
+          script_prefix: 'scripts',
+          game_filter: /^GS/,
+          default_tracked: %w[
+            ewaggle.lic
+          ].freeze,
+          subdirs: {
+            'data' => { pattern: /^scripts\/(gameobj-data|effect-list)\.xml$/, dest: DATA_DIR, glob: '*.xml' }
+          }
+        }.freeze
+      }.freeze
 
-      @current = LICH_VERSION
-      @snapshot_core_script = ["alias.lic", "autostart.lic", "dependency.lic", "ewaggle.lic", "foreach.lic", "go2.lic", "infomon.lic",
-                               "jinx.lic", "lnet.lic", "log.lic", "logxml.lic", "map.lic", "repository.lic", "vars.lic", "version.lic"]
 
-      # Handles various update requests based on the command type.
+      # Handles various update requests based on the provided type.
       # @param type [String] The type of request to process.
       # @return [void]
-      # @raise [StandardError] If the command is unknown.
-      # @example
-      #   Lich::Util::Update.request('--update')
+      # @raise [StandardError] If the command type is unknown.
+      # @example Announcing the next version
+      #   Lich::Util::Update.request('--announce')
       def self.request(type = '--announce')
         case type
         when /^(?:--announce|-a)\b/
-          self.announce
+          release_installer.announce
+        when /^--branch=(.+)$/
+          branch_installer.download_branch_update($1)
         when /^--(?:beta|test)(?: --(?:(script|library|data))=(.+))?\b/
-          self.prep_betatest($1&.dup, $2&.dup)
+          release_installer.prep_betatest($1&.dup, $2&.dup)
         when /^(?:--help|-h)\b/
-          self.help # Ok, that's just wrong.
+          help
+        when /^--status\b/
+          show_status
         when /^(?:--update|-u)\b/
-          self.download_update
+          release_installer.download_release_update
         when /^--refresh\b/
-          respond; respond "This command has been removed."
+          respond
+          respond "This command has been removed."
         when /^(?:--revert|-r)\b/
-          self.revert
-        when /^--(?:(script|library|data))=(.+)\b/
-          self.update_file($1&.dup, $2&.dup)
-        when /^(?:--snapshot|-s)\b/ # this one needs to be after --script
-          self.snapshot
-        else
-          respond; respond "Command '#{type}' unknown, illegitimate and ignored.  Exiting . . ."; respond
-        end
-      end
-
-      # Announces the availability of a new version if applicable.
-      # @return [void]
-      # @example
-      #   Lich::Util::Update.announce
-      def self.announce
-        self.prep_update
-        if "#{LICH_VERSION}".chr == '5'
-          if Gem::Version.new(@current) < Gem::Version.new(@update_to)
-            if !@new_features.empty?
-              respond ''; _respond monsterbold_start() + "*** NEW VERSION AVAILABLE ***" + monsterbold_end()
-              respond ''; respond ''
-              respond ''; respond @new_features
-              respond ''
-              respond ''; respond "If you are interested in updating, run '#{$clean_lich_char}lich5-update --update' now."
-              respond ''
-            end
+          snapshot_manager.revert
+        when /^--add-custom=(\S+?)(?::(\S+))?$/
+          custom_repos_manager.add_custom_repo($1, $2)
+        when /^--remove-custom=(\S+)$/
+          custom_repos_manager.remove_custom_repo($1)
+        when /^--custom-repos$/
+          custom_repos_manager.list_custom_repos
+        when /^--sync(?:=(\S+))?$/
+          if $1
+            script_sync.sync_repo($1)
           else
-            respond ''; respond "Lich version #{LICH_VERSION} is good.  Enjoy!"; respond ''
+            script_sync.sync_all_repos
           end
+        when /^--track=(\S+):(\S+)$/
+          tracked_scripts_manager.track_script($1, $2)
+        when /^--untrack=(\S+):(\S+)$/
+          tracked_scripts_manager.untrack_script($1, $2)
+        when /^--tracked(?:=(\S+))?$/
+          tracked_scripts_manager.show_tracked($1)
+        when /^--(?:(script|library|data))=(?:(\S+):)?(.+)\b/
+          type_name = $1&.dup
+          repo = $2&.dup
+          file = $3&.dup
+          if repo
+            file_updater.update_file_from_repo(type_name, repo, file)
+          else
+            file_updater.update_file(type_name, file)
+          end
+        when /^(?:--snapshot|-s)\b/
+          snapshot_manager.snapshot
         else
-          # lich version 4 - just say 'no'
-          respond "This script does not support Lich #{LICH_VERSION}."
+          respond
+          respond "Command '#{type}' unknown, illegitimate and ignored.  Exiting . . ."
+          respond
         end
       end
 
-      # Displays help information for update commands.
+      # Syncs all script repositories for the current game.
       # @return [void]
-      # @example
-      #   Lich::Util::Update.help
+      # @example Syncing all repositories
+      #   Lich::Util::Update.sync_all_repos
+      def self.sync_all_repos
+        script_sync.sync_all_repos
+      end
+
+      # Updates the core data and scripts to the specified version.
+      # @param version [String] The version to update to.
+      # @return [void]
+      # @example Updating core data and scripts
+      #   Lich::Util::Update.update_core_data_and_scripts('1.0.0')
+      def self.update_core_data_and_scripts(version = LICH_VERSION)
+        file_updater.update_core_data_and_scripts(version)
+      end
+
+
       def self.help
         respond "
     --help                   Display this message
     --announce               Get summary of changes for next version
     --update                 Update all changes for next version
+    --branch=<name>          Update to a specific GitHub branch
+    --status                 Show current version and branch tracking info
     --snapshot               Grab current snapshot of Lich5 ecosystem and put in backup
     --revert                 Roll the Lich5 ecosystem back to the most recent snapshot
 
-  Example usage:
+  [Script repository sync]
+    #{$clean_lich_char}lich5-update --sync                              Sync all repos for current game
+    #{$clean_lich_char}lich5-update --sync=dr-scripts                   Sync only dr-scripts repo
+    #{$clean_lich_char}lich5-update --sync=scripts                      Sync only EO/scripts repo
+    #{$clean_lich_char}lich5-update --tracked                           List tracked scripts for all repos
+    #{$clean_lich_char}lich5-update --tracked=scripts                   List tracked scripts for one repo
+    #{$clean_lich_char}lich5-update --track=scripts:bigshot.lic         Add a script to tracked list
+    #{$clean_lich_char}lich5-update --untrack=scripts:bigshot.lic       Remove from tracked list
+
+  [Custom 3rd-party repositories]
+    #{$clean_lich_char}lich5-update --add-custom=owner/repo             Register a custom repo (default branch)
+    #{$clean_lich_char}lich5-update --add-custom=owner/repo:branch      Register with specific branch
+    #{$clean_lich_char}lich5-update --remove-custom=owner/repo          Unregister a custom repo
+    #{$clean_lich_char}lich5-update --custom-repos                      List registered custom repos
+    #{$clean_lich_char}lich5-update --track=owner/repo:script.lic       Track a script from custom repo
+    #{$clean_lich_char}lich5-update --sync=owner/repo                   Sync a custom repo
+    Custom scripts are installed to #{$clean_lich_char}scripts/custom/<owner-repo>/
+
+  [Individual file updates]
+    #{$clean_lich_char}lich5-update --script=<name>                     Update script (auto-detects repo)
+    #{$clean_lich_char}lich5-update --script=dr-scripts:<name>          Update script from specific repo
+    #{$clean_lich_char}lich5-update --data=dr-scripts:base-hunting.yaml Update data file from specific repo
+    #{$clean_lich_char}lich5-update --library=<name>                    Update library file from lich-5
 
   [One time suggestions]
     #{$clean_lich_char}autostart add --global lich5-update --announce    Check for new version at login
-    #{$clean_lich_char}autostart add --global lich5-update --update      To auto accept all updates at login
 
   [On demand suggestions]
+    #{$clean_lich_char}lich5-update --status                    Show current version and branch info
     #{$clean_lich_char}lich5-update --announce                  Check to see if a new version is available
     #{$clean_lich_char}lich5-update --update                    Update the Lich5 ecosystem to the current release
+    #{$clean_lich_char}lich5-update --branch=<name>             Update to a specific GitHub branch (advanced)
     #{$clean_lich_char}lich5-update --revert                    Roll the Lich5 ecosystem back to latest snapshot
-    #{$clean_lich_char}lich5-update --script=<NAME>             Update an individual script file found in Lich-5
-    #{$clean_lich_char}lich5-update --library=<NAME>            Update an individual library file found in Lich-5
-    #{$clean_lich_char}lich5-update --data=<NAME>               Update an individual data file found in Lich-5
 
-    *NOTE* If you use '--snapshot' in '#{$clean_lich_char}autostart' you will create a new
-                snapshot folder every time you log a character in.  NOT recommended.
+  [Branch update examples]
+    #{$clean_lich_char}lich5-update --branch=main               Update to the main stable branch
+    #{$clean_lich_char}lich5-update --branch=some_branch_name   Update to a different branch
+    #{$clean_lich_char}lich5-update --branch=owner:branch_name  Update to a fork's branch
+
+    *NOTE* Script repos sync automatically on login for both DR and GS.
     "
       end
 
-      # Creates a snapshot of the current Lich core files.
+      # Displays the current status of the Lich5 version and branch tracking.
       # @return [void]
-      # @example
-      #   Lich::Util::Update.snapshot
-      def self.snapshot
+      # @example Showing the current status
+      #   Lich::Util::Update.show_status
+      def self.show_status
         respond
-        respond 'Creating a snapshot of current Lich core files ONLY.'
+        respond "Lich5 Version Information:"
+        respond "  Version: #{LICH_VERSION}"
+
+        branch_info = get_branch_info
+        if branch_info
+          respond "  Type: Branch (Development)"
+          respond "  Branch: #{branch_info[:branch_name]}"
+          respond "  Repository: #{branch_info[:repository] || GITHUB_REPO}"
+          if branch_info[:updated_at]
+            updated = Time.at(branch_info[:updated_at])
+            days_ago = ((Time.now - updated) / 86400).to_i
+            respond "  Updated: #{updated.strftime('%Y-%m-%d %H:%M:%S')} (#{days_ago} day#{days_ago == 1 ? '' : 's'} ago)"
+          end
+          respond
+          respond "You are running a development branch, not a release package."
+        else
+          respond "  Type: Release Package"
+          respond
+          respond "To check for updates: #{$clean_lich_char}lich5-update --announce"
+        end
         respond
-        respond 'You may also wish to copy your entire Lich5 folder to'
-        respond 'another location for additional safety, after any'
-        respond 'additional requested updates are completed.'
-
-        ## Let's make the snapshot folder
-
-        snapshot_subdir = File.join(BACKUP_DIR, "L5-snapshot-#{Time.now.strftime("%Y-%m-%d-%H-%M-%S")}")
-        FileUtils.mkdir_p(snapshot_subdir)
-
-        ## lich.rbw main file backup
-
-        FileUtils.cp(File.join(LICH_DIR, File.basename($PROGRAM_NAME)), File.join(snapshot_subdir, File.basename($PROGRAM_NAME)))
-
-        ## LIB folder backup and it's subfolders
-
-        FileUtils.mkdir_p(File.join(snapshot_subdir, "lib"))
-        FileUtils.cp_r(LIB_DIR, snapshot_subdir)
-
-        ## here we should maintain a discrete array of script files (450K versus 10M plus)
-        ## we need to find a better way without hving to maintain this list
-
-        FileUtils.mkdir_p(File.join(snapshot_subdir, "scripts"))
-        @snapshot_core_script.each { |file|
-          FileUtils.cp(File.join(SCRIPT_DIR, file), File.join(snapshot_subdir, "scripts", file)) if File.exist?(File.join(SCRIPT_DIR, file))
-        }
-
-        respond
-        respond 'Current Lich ecosystem files (only) backed up to:'
-        respond "    #{snapshot_subdir}"
       end
 
-      # Prepares for beta testing of the next Lich release.
-      # @param type [String, nil] The type of beta test to prepare for.
-      # @param requested_file [String, nil] The specific file to update for beta testing.
+
+      # Stores the branch tracking information in the version file.
+      # @param branch_name [String] The name of the branch being tracked.
+      # @param repo [String] The repository of the branch.
+      # @param _version [String] The version of the branch (not used).
       # @return [void]
-      # @example
-      #   Lich::Util::Update.prep_betatest('--beta')
-      def self.prep_betatest(type = nil, requested_file = nil)
-        if type.nil?
-          respond 'You are electing to participate in the beta testing of the next Lich release.'
-          respond 'This beta test will include only Lich code, and does not include Ruby upates.'
-          respond 'While we will do everything we can to ensure you have a smooth experience, '
-          respond 'it is a test, and untoward things can result.  Please confirm your choice:'
-          respond "Please confirm your participation:  #{$clean_lich_char}send Y or #{$clean_lich_char}send N"
-          respond "You have 10 seconds to confirm, otherwise will be cancelled."
-          # we are only going to get the next client-input line, and if it does not confirm, we bail
-          # we are doing this to prevent hanging the client with various other inputs by the user
-          sync_thread = $_CLIENT_ || $_DETACHABLE_CLIENT_
-          timeout = Time.now + 10
-          line = nil
-          loop do
-            line = sync_thread.gets
-            break if line.is_a?(String) && line.strip =~ /^(?:<c>)?(?:#{$clean_lich_char}send|#{$clean_lich_char}s) /i
-            break if Time.now > timeout
-          end
-          if line.is_a?(String) && line =~ /send Y|s Y/i
-            @beta_response = 'accepted'
-            respond 'Beta test installation accepted.  Thank you for considering!'
-          else
-            @beta_response = 'rejected'
-            respond 'Aborting beta test installation request.  Thank you for considering!'
-            respond
-          end
+      # @example Storing branch tracking
+      #   Lich::Util::Update.store_branch_tracking('main', 'elanthia-online/lich-5', '1.0.0')
+      def self.store_branch_tracking(branch_name, repo, _version)
+        version_file_path = File.join(LIB_DIR, "version.rb")
+        version_content = File.read(version_file_path)
 
-          if @beta_response =~ /accepted/
-            # Resolve a viable beta ref (enforces: prerelease minor > stable minor)
-            ref = self.resolve_channel_ref(:beta)
-            if ref.nil?
-              respond 'No viable beta found. Aborting beta update.'
-              return
-            end
-            releases_url = "https://api.github.com/repos/elanthia-online/lich-5/releases"
-            update_info = URI.parse(releases_url).open.read
-            releases = JSON::parse(update_info)
-            record = releases.find { |r| r['prerelease'] && r['tag_name'] == (ref.start_with?('v') ? ref : "v#{ref}") }
-            if record
-              record.each { |entry, value|
-                if entry.include? 'tag_name'
-                  @update_to = value.sub('v', '')
-                elsif entry.include? 'assets'
-                  @holder = value
-                elsif entry.include? 'body'
-                  @new_features = value.gsub(/\#\# What's Changed.+$/m, '').gsub(/<!--[\s\S]*?-->/, '')
-                end
-              }
-              release_asset = @holder && @holder.find { |x| x['name'] =~ /\b#{ASSET_TARBALL_NAME}\b/ }
-              if release_asset
-                @zipfile = release_asset.fetch('browser_download_url')
-              else
-                @zipfile = "https://codeload.github.com/elanthia-online/lich-5/tar.gz/#{ref}"
-              end
-            else
-              @update_to = ref.sub(/^v/, '')
-              @zipfile = "https://codeload.github.com/elanthia-online/lich-5/tar.gz/#{ref}"
-            end
-            Lich::Util::Update.download_update
-          elsif @beta_response =~ /rejected/
-            nil
-          else
-            respond 'This is not where I want to be on a beta test request.'
-            respond
-          end
-        else
-          self.update_file(type, requested_file, 'beta')
-        end
+        version_content.gsub!(/\n# Branch tracking \(added by lich5-update --branch\).*?\n(?:LICH_BRANCH[^\n]*\n)*/m, '')
+
+        branch_tracking = <<~RUBY
+
+          # Branch tracking (added by lich5-update --branch)
+          LICH_BRANCH = #{branch_name.dump}
+          LICH_BRANCH_REPO = #{repo.dump}
+          LICH_BRANCH_UPDATED_AT = #{Time.now.to_i}
+        RUBY
+
+        version_content = version_content.rstrip + branch_tracking
+        File.write(version_file_path, version_content)
       end
 
-      # Resolves the reference for the specified update channel.
-      # @param channel [Symbol, String] The channel to resolve (e.g., :stable, :beta).
-      # @return [String, nil] The resolved reference or nil if not found.
-      # @example
-      #   Lich::Util::Update.resolve_channel_ref(:beta)
-      def self.resolve_channel_ref(channel)
-        case channel
-        when :stable, 'production'
-          STABLE_REF
-        when :beta
-          # Determine latest stable (non-prerelease) to enforce minor-bump rule
-          stable_tag = self.latest_stable_tag # e.g., "v5.14.3"
-          stable_major, stable_minor = self.major_minor_from(stable_tag)
-          env = ENV['LICH_BETA_REF']
-          return env unless env.nil? || env.empty?
-          tag = self.latest_prerelease_tag_greater_than(stable_major, stable_minor)
-          return tag if tag
-          branch = self.latest_prefixed_branch_greater_than(BETA_BRANCH_PREFIX, stable_major, stable_minor)
-          return branch if branch
-          nil
-        else
-          STABLE_REF
-        end
-      end
-
-      # Fetches JSON data from the specified GitHub URL with caching.
-      # @param url [String] The URL to fetch JSON data from.
-      # @return [Hash, nil] The parsed JSON data or nil on error.
-      # @raise [StandardError] If there is a network error.
-      # @example
-      #   Lich::Util::Update.fetch_github_json('https://api.github.com/repos/elanthia-online/lich-5/releases')
-      def self.fetch_github_json(url)
-        now = Time.now.to_i
-        entry = @_http_cache[url]
-        if entry && (now - entry[:ts] < @_http_cache_ttl)
-          return entry[:data]
-        end
-        begin
-          raw = URI.parse(url).open.read
-          data = JSON::parse(raw)
-          @_http_cache[url] = { ts: now, data: data }
-          data
-        rescue => e
-          respond "Update notice: network error fetching #{url.split('/repos/').last || url} (fetch_github_json): #{e.message}"
-          nil
-        end
-      end
-
-      # Retrieves the latest stable tag from GitHub releases.
-      # @return [String, nil] The latest stable tag or nil if not found.
-      # @example
-      #   Lich::Util::Update.latest_stable_tag
-      def self.latest_stable_tag
-        releases = fetch_github_json('https://api.github.com/repos/elanthia-online/lich-5/releases')
-        return nil unless releases.is_a?(Array)
-        stable = releases.select { |r| !r['prerelease'] && r['tag_name'] }.max_by { |r| self.version_key(r['tag_name']) }
-        stable && stable['tag_name']
-      end
-
-      # Finds the latest prerelease tag greater than the specified stable version.
-      # @param stable_major [Integer] The major version of the stable release.
-      # @param stable_minor [Integer] The minor version of the stable release.
-      # @return [String, nil] The latest prerelease tag or nil if not found.
-      # @example
-      #   Lich::Util::Update.latest_prerelease_tag_greater_than(5, 0)
-      def self.latest_prerelease_tag_greater_than(stable_major, stable_minor)
-        releases = fetch_github_json('https://api.github.com/repos/elanthia-online/lich-5/releases')
-        return nil unless releases.is_a?(Array)
-        prereleases = releases.select { |r| r['prerelease'] && r['tag_name'] }
-        return nil if prereleases.empty?
-        candidates = prereleases.select do |r|
-          maj, min = self.major_minor_from(r['tag_name'])
-          next false unless maj && min
-          (maj > stable_major) || (maj == stable_major && min > stable_minor)
-        end
-        return nil if candidates.empty?
-        tag = candidates.max_by { |r| self.version_key(r['tag_name']) }['tag_name']
-        tag.sub(/^v/, '')
-      end
-
-      # Finds the latest branch with the specified prefix that is greater than the stable version.
-      # @param prefix [String] The prefix to filter branches.
-      # @param stable_major [Integer] The major version of the stable release.
-      # @param stable_minor [Integer] The minor version of the stable release.
-      # @return [String, nil] The latest branch name or nil if not found.
-      # @example
-      #   Lich::Util::Update.latest_prefixed_branch_greater_than('pre/beta', 5, 0)
-      def self.latest_prefixed_branch_greater_than(prefix, stable_major, stable_minor)
-        branches = fetch_github_json('https://api.github.com/repos/elanthia-online/lich-5/branches?per_page=100')
-        return nil unless branches.is_a?(Array)
-        names = branches.map { |b| b['name'] }.compact
-        candidates = names.select { |n| n.start_with?(prefix) }
-        filtered = candidates.select do |n|
-          maj, min = self.major_minor_from(n)
-          maj && min && ((maj > stable_major) || (maj == stable_major && min > stable_minor))
-        end
-        return nil if filtered.empty?
-        begin
-          filtered.max_by { |n| self.version_key(n) }
-        rescue => e
-          respond "Update notice: ordering branches (latest_prefixed_branch_greater_than): #{e.message}"
-          filtered.sort.last
-        end
-      end
-
-      # Generates a version key from a tag or branch name for comparison.
-      # @param tag_or_name [String] The tag or branch name to generate a key from.
-      # @return [Gem::Version] The version key for comparison.
-      # @example
-      #   Lich::Util::Update.version_key('v5.0.0')
-      def self.version_key(tag_or_name)
-        s = tag_or_name.to_s
-        # strip leading 'v'
-        s = s.sub(/^v/, '')
-        # if this looks like a branch or path (e.g., "pre/beta/5.15.0" or "pre/beta-5.15.0"),
-        # extract the first version-looking substring to avoid prefix text interfering
-        if s =~ /(\d+\.\d+(?:\.\d+)?(?:-[0-9A-Za-z\.]+)?)/ # captures 1.2 or 1.2.3 and optional suffix like -beta.
-          s = Regexp.last_match(1)
-        end
-        # normalize beta prerelease so beta.10 > beta.9
-        s = s.gsub('-beta.', '.beta.').gsub(/-beta(?!\.)/, '.beta')
-        Gem::Version.new(s)
-      end
-
-      # Extracts the major and minor version numbers from a version string.
-      # @param str [String] The version string to parse.
-      # @return [Array<Integer, Integer>] An array containing the major and minor version numbers.
-      # @example
-      #   Lich::Util::Update.major_minor_from('v5.0.0')
-      def self.major_minor_from(str)
-        return [nil, nil] if str.nil?
-        s = str.to_s
-        s = s.sub(/^v/, '')
-        if s =~ /(\d+)\.(\d+)\.(\d+)/
-          return [$1.to_i, $2.to_i]
-        elsif s =~ /(\d+)\.(\d+)/
-          return [$1.to_i, $2.to_i]
-        else
-          [nil, nil]
-        end
-      end
-
-      # Prepares for an update by fetching the latest release information.
+      # Clears the branch tracking information from the version file.
       # @return [void]
-      # @example
-      #   Lich::Util::Update.prep_update
-      def self.prep_update
-        latest = fetch_github_json("https://api.github.com/repos/elanthia-online/lich-5/releases/latest")
-        if latest.is_a?(Hash) && latest['prerelease']
-          all = fetch_github_json('https://api.github.com/repos/elanthia-online/lich-5/releases')
-          if all.is_a?(Array)
-            stable = all.select { |r| !r['prerelease'] && r['tag_name'] }.max_by { |r| self.version_key(r['tag_name']) }
-            latest = stable if stable
-          end
-        end
-        unless latest.is_a?(Hash)
-          respond "Update notice: could not read latest release payload (prep_update)."
-          return
-        end
+      # @example Clearing branch tracking
+      #   Lich::Util::Update.clear_branch_tracking
+      def self.clear_branch_tracking
+        version_file_path = File.join(LIB_DIR, "version.rb")
+        return unless File.exist?(version_file_path)
 
-        @update_to = latest['tag_name'].to_s.sub('v', '')
-        @holder = latest['assets']
-        @new_features = latest['body'].to_s.gsub(/\#\# What's Changed.+$/m, '').gsub(/<!--[\s\S]*?-->/, '')
-        release_asset = @holder && @holder.find { |x| x['name'] =~ /\b#{ASSET_TARBALL_NAME}\b/ }
-        @zipfile = release_asset.fetch('browser_download_url')
+        version_content = File.read(version_file_path)
+        version_content.gsub!(/\n# Branch tracking \(added by lich5-update --branch\).*?\n(?:LICH_BRANCH[^\n]*\n)*/m, '')
+        version_content = version_content.rstrip + "\n"
+        File.write(version_file_path, version_content)
       end
 
-      # Downloads and applies the update to the Lich5 ecosystem.
-      # @return [void]
-      # @example
-      #   Lich::Util::Update.download_update
-      def self.download_update
-        ## This is the workhorse routine that does the file moves from an update
-        self.prep_update if @update_to.nil? or @update_to.empty?
-        if Gem::Version.new("#{@update_to}") <= Gem::Version.new("#{@current}")
-          respond ''; respond "Lich version #{LICH_VERSION} is good.  Enjoy!"; respond ''
-        else
-          respond; respond 'Getting reaady to update.  First we will create a'
-          respond 'snapshot in case there are problems with the update.'
-
-          self.snapshot
-
-          # download the requested update (can be prod release, or beta)
-          respond; respond "Downloading Lich5 version #{@update_to}"; respond
-          filename = "lich5-#{@update_to}"
-          File.open(File.join(TEMP_DIR, "#{filename}.tar.gz"), "wb") do |file|
-            file.write URI.parse(@zipfile).open.read
-          end
-
-          # unpack and prepare to use the requested update
-          FileUtils.mkdir_p(File.join(TEMP_DIR, filename))
-          Gem::Package.new("").extract_tar_gz(File.open(File.join(TEMP_DIR, "#{filename}.tar.gz"), "rb"), File.join(TEMP_DIR, filename))
-          new_target = Dir.children(File.join(TEMP_DIR, filename))
-          FileUtils.cp_r(File.join(TEMP_DIR, filename, new_target[0]), TEMP_DIR)
-          FileUtils.remove_dir(File.join(TEMP_DIR, filename))
-          FileUtils.mv(File.join(TEMP_DIR, new_target[0]), File.join(TEMP_DIR, filename))
-
-          # delete all existing lib files to not leave old ones behind
-          FileUtils.rm_rf(Dir.glob(File.join(LIB_DIR, "*")))
-
-          respond; respond 'Copying updated lich files to their locations.'
-
-          ## We do not care about local edits from players in the Lich5 / lib location
-          FileUtils.copy_entry(File.join(TEMP_DIR, filename, "lib"), File.join(LIB_DIR))
-          respond; respond "All Lich lib files have been updated."; respond
-
-          ## Use new method so can be reused to do a blanket update of core data & scripts
-          self.update_core_data_and_scripts(@update_to)
-
-          ## Finally we move the lich.rbw file into place to complete the update.  We do
-          ## not need to save a copy of this in the TEMP_DIR as previously done, since we
-          ## took the snapshot at the beginning.
-          lich_to_update = File.join(LICH_DIR, File.basename($PROGRAM_NAME))
-          update_to_lich = File.join(TEMP_DIR, filename, "lich.rbw")
-          File.open(update_to_lich, 'rb') { |r| File.open(lich_to_update, 'wb') { |w| w.write(r.read) } }
-
-          ## And we clen up after ourselves
-          FileUtils.remove_dir(File.join(TEMP_DIR, filename)) # we know these exist because
-          FileUtils.rm(File.join(TEMP_DIR, "#{filename}.tar.gz")) # we just processed them
-
-          respond; respond "Lich5 has been updated to Lich5 version #{@update_to}"
-          respond "You should exit the game, then log back in.  This will start the game"
-          respond "with your updated Lich.  Enjoy!"
-        end
-      end
-
-      # Reverts the Lich5 ecosystem to the most recent snapshot.
-      # @return [void]
-      # @example
-      #   Lich::Util::Update.revert
-      def self.revert
-        ## Since the request is to roll-back, we will do so destructively
-        ## without another snapshot and without worrying about saving files
-        ## that can be reinstalled with the lich5-update --update command
-
-        respond; respond 'Reverting Lich5 to previously installed version.'
-        revert_array = Dir.glob(File.join(BACKUP_DIR, "*")).sort.reverse
-        restore_snapshot = revert_array[0]
-        if restore_snapshot.empty? or /L5-snapshot/ !~ restore_snapshot
-          respond "No prior Lich5 version found. Seek assistance."
-        else
-          # delete all lib files
-          FileUtils.rm_rf(Dir.glob(File.join(LIB_DIR, "*")))
-          # copy all backed up lib files
-          FileUtils.cp_r(File.join(restore_snapshot, "lib", "."), LIB_DIR)
-          # delete array of core scripts
-          @snapshot_core_script.each { |file|
-            File.delete(File.join(SCRIPT_DIR, file)) if File.exist?(File.join(SCRIPT_DIR, file))
+      # Retrieves the current branch tracking information.
+      # @return [Hash, nil] A hash containing branch info or nil if not set.
+      # @example Getting branch info
+      #   info = Lich::Util::Update.get_branch_info
+      def self.get_branch_info
+        if defined?(LICH_BRANCH) && LICH_BRANCH && !LICH_BRANCH.empty?
+          {
+            branch_name: LICH_BRANCH,
+            repository: (defined?(LICH_BRANCH_REPO) ? LICH_BRANCH_REPO : nil),
+            updated_at: (defined?(LICH_BRANCH_UPDATED_AT) ? LICH_BRANCH_UPDATED_AT : nil)
           }
-          # copy all backed up core scripts (array to save, only array files in backup)
-          FileUtils.cp_r(File.join(restore_snapshot, "scripts", "."), SCRIPT_DIR)
-
-          # skip gameobj-data and spell-list (non-functional logically, previous versions
-          # already present and current files may contain local edits)
-
-          # update lich.rbw in stream because it is active (we hope)
-          lich_to_update = File.join(LICH_DIR, File.basename($PROGRAM_NAME))
-          update_to_lich = File.join(restore_snapshot, "lich.rbw")
-          File.open(update_to_lich, 'rb') { |r| File.open(lich_to_update, 'wb') { |w| w.write(r.read) } }
-
-          # as a courtesy to the player, remind which version they were rev'd back to
-          targetversion = ''
-          targetfile = File.open(File.join(LIB_DIR, "version.rb")).read
-          targetfile.each_line do |line|
-            if line =~ /LICH_VERSION\s+?=\s+?/
-              targetversion = line.sub(/LICH_VERSION\s+?=\s+?/, '').sub('"', '')
-            end
-          end
-          respond
-          respond "Lich5 has been reverted to Lich5 version #{targetversion}"
-          respond "You should exit the game, then log back in.  This will start the game"
-          respond "with your previous version of Lich.  Enjoy!"
         end
       end
 
-      # Updates a specific file based on the type and requested file name.
-      # @param type [String] The type of file to update (script, library, or data).
-      # @param rf [String] The name of the file to update.
-      # @param version [String] The version channel to use (default is 'production').
-      # @return [void]
-      # @raise [StandardError] If the file cannot be updated.
-      # @example
-      #   Lich::Util::Update.update_file('script', 'alias.lic')
-      def self.update_file(type, rf, version = 'production')
-        if version =~ /^(?:staging|master)$/i
-          respond 'Requested channel %s mapped to main (stable).' % [version]
-          version = 'production'
-        end
-        requested_file = rf
-        case type
-        when "script"
-          location = SCRIPT_DIR
-          if requested_file.downcase == 'dependency.lic'
-            remote_repo = "https://raw.githubusercontent.com/elanthia-online/dr-scripts/main"
-          else
-            remote_repo = "https://raw.githubusercontent.com/elanthia-online/scripts/master/scripts"
-          end
-          requested_file =~ /\.lic$/ ? requested_file_ext = ".lic" : requested_file_ext = "bad extension"
-        when "library"
-          location = LIB_DIR
-          case version
-          when "production"
-            remote_repo = "https://raw.githubusercontent.com/elanthia-online/lich-5/#{resolve_channel_ref(:stable)}/lib"
-          when "beta"
-            ref = resolve_channel_ref(:beta)
-            if ref.nil?
-              respond 'No viable beta found. Aborting beta update.'
-              return
-            end
-            remote_repo = "https://raw.githubusercontent.com/elanthia-online/lich-5/#{ref}/lib"
-          end
-          requested_file =~ /\.rb$/ ? requested_file_ext = ".rb" : requested_file_ext = "bad extension"
-        when "data"
-          location = DATA_DIR
-          remote_repo = "https://raw.githubusercontent.com/elanthia-online/scripts/master/scripts"
-          requested_file =~ /(\.(?:xml|ui))$/ ? requested_file_ext = $1&.dup : requested_file_ext = "bad extension"
-        end
-        unless requested_file_ext == "bad extension"
-          file_path = File.join(location, requested_file)
-          tmp_file_path = file_path + ".tmp"
-          old_file_path = file_path + ".old"
 
-          # Rename existing file to .old if it exists
-          if File.exist?(file_path)
-            File.rename(file_path, old_file_path)
-          end
-
-          begin
-            # Download to .tmp file first
-            File.open(tmp_file_path, "wb") do |file|
-              file.write URI.parse(File.join(remote_repo, requested_file)).open.read
-            end
-
-            # If successful, move .tmp to final location
-            File.rename(tmp_file_path, file_path)
-
-            # Clean up .old file if everything succeeded
-            File.delete(old_file_path) if File.exist?(old_file_path)
-
-            respond
-            respond "#{requested_file} has been updated."
-          rescue StandardError => e
-            # Log the actual error for debugging
-            respond
-            respond "Error updating #{requested_file}: #{e.class} - #{e.message}"
-            respond "Backtrace: #{e.backtrace.first(3).join(' | ')}" if $debug
-
-            # Clean up the .tmp file if it exists
-            if File.exist?(tmp_file_path)
-              begin
-                File.delete(tmp_file_path)
-                respond "Cleaned up incomplete temporary file."
-              rescue => cleanup_error
-                respond "Warning: Could not delete temporary file: #{cleanup_error.message}"
-              end
-            end
-
-            # Restore the .old file if it exists
-            if File.exist?(old_file_path)
-              begin
-                File.rename(old_file_path, file_path)
-                respond "Restored original file."
-              rescue => restore_error
-                respond "Warning: Could not restore original file: #{restore_error.message}"
-              end
-            end
-
-            respond
-            respond "The filename #{requested_file} is not available via lich5-update."
-            respond "Check the spelling of your requested file, or use '#{$clean_lich_char}jinx' to"
-            respond "download #{requested_file} from another repository."
-          end
-        else
-          respond
-          respond "The requested file #{requested_file} has an incorrect extension."
-          respond "Valid extensions are '.lic' for scripts, '.rb' for library files,"
-          respond "and '.xml' or '.ui' for data files. Please correct and try again."
-        end
+      # Returns the GitHub client instance used for API requests.
+      # @return [GitHubClient] The GitHub client instance.
+      def self.client
+        @client ||= GitHubClient.new
       end
 
-      # Updates core data and scripts for the specified version.
-      # @param version [String] The version to update to (default is the current LICH_VERSION).
-      # @return [void]
-      # @example
-      #   Lich::Util::Update.update_core_data_and_scripts('5.0.0')
-      def self.update_core_data_and_scripts(version = LICH_VERSION)
-        if XMLData.game !~ /^GS|^DR/
-          respond "invalid game type, unsure what scripts to update via Update.update_core_scripts"
-          return
-        end
-
-        updatable_scripts = {
-          "all" => ["alias.lic", "autostart.lic", "go2.lic", "jinx.lic", "log.lic", "logxml.lic", "map.lic", "repository.lic", "vars.lic", "version.lic"],
-          "gs"  => ["ewaggle.lic", "foreach.lic"],
-          "dr"  => ["dependency.lic"]
-        }
-
-        ## We DO care about local edits from players to the Lich5 / data files
-        ## specifically gameobj-data.xml and spell-list.xml.
-        ## Let's be a little more purposeful and gentle with these two files.
-        ["effect-list.xml"].each { |file|
-          transition_filename = "#{file}".sub(".xml", '')
-          newfilename = File.join(DATA_DIR, "#{transition_filename}-#{Time.now.to_i}.xml")
-          if File.exist?(File.join(DATA_DIR, file))
-            File.open(File.join(DATA_DIR, file), 'rb') { |r| File.open(newfilename, 'wb') { |w| w.write(r.read) } }
-            respond "The prior version of #{file} was renamed to #{newfilename}."
-          end
-          self.update_file('data', file)
-        }
-
-        ## We do not care about local edits from players to the Lich5 / script location
-        ## for CORE scripts (those required to run Lich5 properly)
-        updatable_scripts["all"].each { |script| self.update_file('script', script) }
-        updatable_scripts["gs"].each { |script| self.update_file('script', script) } if XMLData.game =~ /^GS/
-        updatable_scripts["dr"].each { |script| self.update_file('script', script) } if XMLData.game =~ /^DR/
-
-        ## Update Lich.db value with last updated version
-        Lich.core_updated_with_lich_version = version
+      # Returns the channel resolver instance used for resolving update channels.
+      # @return [ChannelResolver] The channel resolver instance.
+      def self.resolver
+        @resolver ||= ChannelResolver.new(client)
       end
-      # End module definitions
+
+      # Returns the snapshot manager instance used for managing snapshots.
+      # @return [SnapshotManager] The snapshot manager instance.
+      def self.snapshot_manager
+        @snapshot_manager ||= SnapshotManager.new
+      end
+
+      # Returns the release installer instance used for handling release updates.
+      # @return [ReleaseInstaller] The release installer instance.
+      def self.release_installer
+        ReleaseInstaller.new(client, resolver, snapshot_manager)
+      end
+
+      # Returns the branch installer instance used for handling branch updates.
+      # @return [BranchInstaller] The branch installer instance.
+      def self.branch_installer
+        @branch_installer ||= BranchInstaller.new(snapshot_manager, release_installer)
+      end
+
+      # Returns the script sync instance used for syncing scripts.
+      # @return [ScriptSync] The script sync instance.
+      def self.script_sync
+        @script_sync ||= ScriptSync.new(client)
+      end
+
+      # Returns the tracked scripts manager instance used for managing tracked scripts.
+      # @return [TrackedScripts] The tracked scripts manager instance.
+      def self.tracked_scripts_manager
+        @tracked_scripts_manager ||= TrackedScripts.new
+      end
+
+      # Returns the custom repositories manager instance used for managing custom repos.
+      # @return [CustomRepos] The custom repositories manager instance.
+      def self.custom_repos_manager
+        @custom_repos_manager ||= CustomRepos.new
+      end
+
+      # Returns the file updater instance used for updating files.
+      # @return [FileUpdater] The file updater instance.
+      def self.file_updater
+        @file_updater ||= FileUpdater.new(client, resolver)
+      end
+
+      private_class_method :client, :resolver, :snapshot_manager,
+                           :release_installer, :branch_installer,
+                           :script_sync, :tracked_scripts_manager,
+                           :custom_repos_manager, :file_updater
     end
   end
 end

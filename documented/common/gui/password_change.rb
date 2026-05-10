@@ -2,11 +2,17 @@
 
 require_relative 'master_password_manager'
 
+# Provides common functionality for the Lich application
+# This module serves as a namespace for various common components.
 module Lich
   module Common
     module GUI
+      # Handles the password change dialog in the GUI
+      # This module provides methods to display and manage the password change dialog.
+      # @example Showing the password change dialog
+      #   Lich::Common::GUI::PasswordChange.show_password_change_dialog(parent, data_dir, username)
       module PasswordChange
-        # Displays a dialog for changing the user's password.
+        # Displays the password change dialog.
         # @param parent [Gtk::Window] The parent window for the dialog.
         # @param data_dir [String] The directory where user data is stored.
         # @param username [String] The username of the account for which the password is being changed.
@@ -197,7 +203,7 @@ module Lich
           end
 
           def verify_current_password(data_dir, username, password)
-            yaml_file = Lich::Common::GUI::YamlState.yaml_file_path(data_dir)
+            yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
             # Check if YAML file exists
             return false unless File.exist?(yaml_file)
@@ -223,7 +229,7 @@ module Lich
               if encryption_mode == :plaintext
                 stored_password == password
               else
-                decrypted = YamlState.decrypt_password(
+                decrypted = Lich::Common::Authentication::EntryStore.decrypt_password(
                   stored_password,
                   mode: encryption_mode,
                   account_name: normalized_username,
@@ -238,7 +244,7 @@ module Lich
           end
 
           def change_password(data_dir, username, new_password)
-            yaml_file = Lich::Common::GUI::YamlState.yaml_file_path(data_dir)
+            yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
             yaml_data = YAML.load_file(yaml_file)
             encryption_mode = (yaml_data['encryption_mode'] || 'plaintext').to_sym
             # Normalize username before passing to AccountManager
@@ -251,7 +257,7 @@ module Lich
             encrypted_password = if encryption_mode == :plaintext
                                    new_password
                                  else
-                                   YamlState.encrypt_password(
+                                   Lich::Common::Authentication::EntryStore.encrypt_password(
                                      new_password,
                                      mode: encryption_mode,
                                      account_name: normalized_username,

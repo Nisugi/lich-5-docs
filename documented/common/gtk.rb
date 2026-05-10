@@ -1,29 +1,20 @@
-# Lich module
-# This module serves as a namespace for the Lich application.
-# @example Using the Lich module
-#   Lich::Common.some_method
 module Lich
-  # Common module
-  # This module contains common functionality for the Lich application.
-  # @example Including the Common module
-  #   include Lich::Common
   module Common
     if defined?(Gtk)
-      # Calling Gtk API in a thread other than the main thread may cause random segfaults
-      # Queues a block to be executed in the main Gtk thread.
+      # Queues a block to be executed after a timeout.
+      # This method allows you to run a block of code in the GTK main loop.
       # @param block [Proc] The block of code to execute.
-      # @return [Boolean] Returns false to prevent repeating the timeout.
-      # @raise StandardError if an error occurs during execution.
-      # @raise SyntaxError if a syntax error occurs.
-      # @raise SystemExit if the program is exiting.
-      # @raise SecurityError if a security violation occurs.
-      # @raise ThreadError if there is a thread-related error.
-      # @raise SystemStackError if the stack level is too deep.
-      # @raise LoadError if a required file cannot be loaded.
-      # @raise NoMemoryError if there is not enough memory.
+      # @return [Boolean] Returns false to indicate that the timeout should not repeat.
+      # @raise [StandardError] If an error occurs during execution of the block.
+      # @raise [SyntaxError] If a syntax error occurs in the block.
+      # @raise [SecurityError] If a security error occurs during execution.
+      # @raise [ThreadError] If a thread error occurs during execution.
+      # @raise [SystemExit] If a system exit is raised during execution.
+      # @raise [SystemStackError] If a system stack error occurs during execution.
+      # @raise [LoadError] If a load error occurs during execution.
+      # @raise [NoMemoryError] If a memory error occurs during execution.
       # @example Queuing a block
-      #   Gtk.queue { puts "Hello from Gtk!" }
-      # @note Calling Gtk API in a thread other than the main thread may cause random segfaults.
+      #   Gtk.queue { puts "Hello from GTK!" }
       def Gtk.queue(&block)
         GLib::Timeout.add(1) {
           begin
@@ -69,11 +60,14 @@ module Lich
       end
     end
 
-    # Checks for the existence of the logo.png file and creates it if it does not exist.
-    # @example Checking for logo existence
-    #   unless File.exist?('logo.png')
-    unless File.exist?('logo.png')
-      File.open('logo.png', 'wb') { |f|
+    # Checks for the existence of the logo file and creates it if it does not exist.
+    # This method ensures that the logo file is available for the application.
+    # @example Creating the logo file if it does not exist
+    #   unless File.exist?(File.join(LICH_DIR, 'logo.png'))
+    #     # logo file creation logic
+    #   end
+    unless File.exist?(File.join(LICH_DIR, 'logo.png'))
+      File.open(File.join(LICH_DIR, 'logo.png'), 'wb') { |f|
         f.write '
       iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAA
       CqaXHeAAAPrUlEQVR4Ae1bDVRT5xl+t7azXY/b2rOu7ep2zuaZm5unbqX7s7
@@ -169,14 +163,9 @@ module Lich
       }
     end
 
-    # Initializes the default icon and theme state when the application starts.
-    # @example Initializing application state
-    #   begin
-    #     Gtk.queue { ... }
-    #   end
     begin
       Gtk.queue {
-        @default_icon = GdkPixbuf::Pixbuf.new(:file => 'logo.png')
+        @default_icon = GdkPixbuf::Pixbuf.new(:file => File.join(LICH_DIR, 'logo.png'))
         # Add a function to call for when GTK is idle
         GLib::Idle.add do
           sleep 0.01

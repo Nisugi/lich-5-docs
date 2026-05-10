@@ -1,30 +1,29 @@
-# frozen_string_literal: true
 
 module Lich
   module Gemstone
-    # Gift class for tracking gift box status
-    # Gift class for tracking gift box status
-    #
-    # This class manages the state of a gift box, including tracking the start time,
-    # pulse count, and calculating remaining time.
-    # @example Initializing a gift
+    # Represents a gift in the Lich Gemstone module.
+    # This class manages the state of a gift including its start time and pulse count.
+    # @example Creating and using a gift
     #   Lich::Gemstone::Gift.init_gift
+    #   Lich::Gemstone::Gift.pulse
     class Gift
       class << self
         attr_reader :gift_start, :pulse_count
 
-        # Initializes the gift tracking system.
+        # Initializes the gift state.
+        # Sets the gift start time to the current time and resets the pulse count.
         # @return [void]
-        # @example Initializing the gift system
+        # @example Initializing a gift
         #   Lich::Gemstone::Gift.init_gift
         def init_gift
           @gift_start = Time.now
           @pulse_count = 0
         end
 
-        # Starts the gift tracking by resetting the start time and pulse count.
+        # Marks the gift as started.
+        # Resets the pulse count and updates the gift start time to the current time.
         # @return [void]
-        # @example Starting the gift tracking
+        # @example Starting a gift
         #   Lich::Gemstone::Gift.started
         def started
           @gift_start = Time.now
@@ -33,13 +32,13 @@ module Lich
 
         # Increments the pulse count by one.
         # @return [void]
-        # @example Incrementing the pulse count
+        # @example Incrementing pulse count
         #   Lich::Gemstone::Gift.pulse
         def pulse
           @pulse_count += 1
         end
 
-        # Calculates the remaining time in seconds based on the pulse count.
+        # Calculates the remaining time for the gift in seconds.
         # @return [Float] The remaining time in seconds.
         # @example Getting remaining time
         #   remaining_time = Lich::Gemstone::Gift.remaining
@@ -55,15 +54,15 @@ module Lich
           @gift_start + 594000
         end
 
-        # Serializes the current state of the gift.
+        # Serializes the gift state into an array.
         # @return [Array] An array containing the gift start time and pulse count.
-        # @example Serializing the gift state
+        # @example Serializing a gift
         #   serialized_data = Lich::Gemstone::Gift.serialize
         def serialize
           [@gift_start, @pulse_count]
         end
 
-        # Loads the serialized state of the gift from an array.
+        # Loads the gift state from a serialized array.
         # @param array [Array] An array containing the gift start time and pulse count.
         # @return [void]
         # @example Loading serialized data
@@ -75,15 +74,15 @@ module Lich
 
         # Marks the gift as ended by setting the pulse count to 360.
         # @return [void]
-        # @example Ending the gift tracking
+        # @example Ending a gift
         #   Lich::Gemstone::Gift.ended
         def ended
           @pulse_count = 360
         end
 
-        # Placeholder method for stopwatch functionality.
-        # @return [nil] This method currently does nothing.
-        # @example Using the stopwatch method
+        # Placeholder method for a stopwatch feature.
+        # @return [nil]
+        # @example Using stopwatch
         #   Lich::Gemstone::Gift.stopwatch
         def stopwatch
           nil

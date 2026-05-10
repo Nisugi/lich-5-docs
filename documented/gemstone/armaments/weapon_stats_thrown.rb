@@ -57,10 +57,6 @@ module Lich
             :min_rt        => 4,
           },
 =end
-        # Static array of weapon stats for thrown weapons.
-        # Each entry contains metadata about the weapon's category, base name,
-        # alternative names, damage types, damage factors, armor avoidance,
-        # base roundtime, and minimum roundtime.
         @@weapon_stats_thrown = {
           :bola         => {
             :category      => :thrown,

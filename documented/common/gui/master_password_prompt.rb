@@ -3,12 +3,15 @@
 require_relative 'master_password_prompt_ui'
 
 module Lich
+  # Provides common GUI functionality for the Lich project
+  # @example Using the MasterPasswordPrompt module
+  #   Lich::Common::GUI::MasterPasswordPrompt.show_create_master_password_dialog
   module Common
     module GUI
       module MasterPasswordPrompt
-        # Show the UI dialog to create a master password.
-        # This method prompts the user to create a master password and validates its strength.
-        # @return [String, nil] The master password if created, or nil if canceled.
+        # Show a dialog for creating a master password.
+        # This method displays a UI dialog to the user to create a master password.
+        # @return [String, nil] The created master password or nil if canceled.
         # @example Creating a master password
         #   password = Lich::Common::GUI::MasterPasswordPrompt.show_create_master_password_dialog
         def self.show_create_master_password_dialog
@@ -42,10 +45,10 @@ module Lich
           master_password
         end
 
-        # Show the UI dialog to enter a master password for recovery.
-        # This method prompts the user to enter their master password for recovery purposes.
-        # @param validation_test [Object] An optional validation test to verify the password.
-        # @return [String, nil] The entered master password if valid, or nil if canceled.
+        # Show a dialog for entering a master password for recovery.
+        # This method displays a UI dialog to the user to enter their master password for recovery purposes.
+        # @param validation_test [Object] An optional validation test object.
+        # @return [String, nil] The entered master password or nil if canceled.
         # @example Entering a master password for recovery
         #   password = Lich::Common::GUI::MasterPasswordPrompt.show_enter_master_password_dialog(validation_test)
         def self.show_enter_master_password_dialog(validation_test = nil)
@@ -61,9 +64,9 @@ module Lich
         end
 
         # Validate the provided master password against a validation test.
-        # This method checks if the given master password is valid based on the provided test.
+        # This method checks if the given master password is valid based on the provided validation test.
         # @param master_password [String] The master password to validate.
-        # @param validation_test [Object] The validation test to use for verification.
+        # @param validation_test [Object] The validation test object.
         # @return [Boolean] True if the password is valid, false otherwise.
         # @example Validating a master password
         #   is_valid = Lich::Common::GUI::MasterPasswordPrompt.validate_master_password(password, validation_test)
@@ -74,12 +77,12 @@ module Lich
         end
 
         # Show a warning dialog to the user.
-        # This method displays a modal dialog with a warning message and waits for user response.
+        # This method displays a modal warning dialog with a title and message, blocking until the user responds.
         # @param title [String] The title of the warning dialog.
         # @param message [String] The message to display in the dialog.
         # @return [Boolean] True if the user clicked 'Yes', false if 'No'.
         # @example Showing a warning dialog
-        #   user_accepted = Lich::Common::GUI::MasterPasswordPrompt.show_warning_dialog("Warning Title", "This is a warning message.")
+        #   user_accepted = Lich::Common::GUI::MasterPasswordPrompt.show_warning_dialog("Warning", "This is a warning message.")
         def self.show_warning_dialog(title, message)
           # Block until dialog completes
           response = nil

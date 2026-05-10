@@ -15,7 +15,7 @@ reconnect_if_wanted = proc {
     sleep reconnect_delay
     Lich.log 'info: reconnecting...'
     if (RUBY_PLATFORM =~ /mingw|win/i) and (RUBY_PLATFORM !~ /darwin/i)
-      if $frontend == 'stormfront'
+      if Frontend.client.eql?('stormfront')
         system 'taskkill /FI "WINDOWTITLE eq [GSIV: ' + Char.name + '*"' # fixme: window title changing to Gemstone IV: Char.name # name optional
       end
       args = ['start rubyw.exe']
@@ -35,32 +35,41 @@ reconnect_if_wanted = proc {
 }
 
 @main_thread = Thread.new {
+  Thread.current.abort_on_exception = true # Propagate exceptions to main thread
   test_mode = false
   $SEND_CHARACTER = '>'
   $cmd_prefix = '<c>'
-  $clean_lich_char = $frontend == 'genie' ? ',' : ';'
+  $clean_lich_char = Frontend.client.eql?('genie') ? ',' : ';'
   $lich_char = Regexp.escape($clean_lich_char)
   $lich_char_regex = Regexp.union(',', ';')
 
   @launch_data = nil
-  require File.join(LIB_DIR, 'common', 'eaccess.rb')
+  require File.join(LIB_DIR, 'common', 'authentication', 'eaccess.rb')
+  require File.join(LIB_DIR, 'common', 'account.rb')
+  # Lifecycle tracker is loaded here because startup context (argv/account)
+  # and shutdown sequencing both live in main runtime orchestration.
+  require File.join(LIB_DIR, 'common', 'session_lifecycle.rb')
 
   if ARGV.include?('--login')
     # CLI login flow: character authentication via saved entries
-    require File.join(LIB_DIR, 'common', 'cli', 'cli_login')
+    require File.join(LIB_DIR, 'common', 'authentication', 'cli')
 
     # Extract character name from --login argument
     requested_character = ARGV[ARGV.index('--login') + 1].capitalize
 
-    # Parse game code and frontend from remaining arguments
+    # Parse game code, frontend, and custom_launch from remaining arguments.
+    # In headless mode, the requested frontend still matters to runtime startup
+    # semantics, but it should not constrain saved-entry lookup.
     modifiers = ARGV.dup
-    requested_instance, requested_fe = Lich::Util::LoginHelpers.resolve_login_args(modifiers)
+    requested_instance, requested_fe, requested_custom_launch = Lich::Common::Authentication::LoginHelpers.resolve_login_args(modifiers)
+    lookup_frontend = Lich::Common::Authentication::LoginHelpers.resolve_lookup_frontend(requested_fe, ARGV)
 
     # Execute CLI login flow and get launch data
-    launch_data_array = Lich::Common::CLI::CLILogin.execute(
+    launch_data_array = Lich::Common::Authentication::CLI.execute(
       requested_character,
       game_code: requested_instance,
-      frontend: requested_fe,
+      frontend: lookup_frontend,
+      custom_launch: requested_custom_launch,
       data_dir: DATA_DIR
     )
 
@@ -68,15 +77,16 @@ reconnect_if_wanted = proc {
       Lich.log "info: CLI login successful for #{requested_character}"
       @launch_data = launch_data_array
     else
-      $stdout.puts "error: failed to authenticate for #{requested_character}"
+      $stderr.puts "error: failed to authenticate for #{requested_character}"
       Lich.log "error: CLI login failed for #{requested_character}"
-      exit 1
+      $stderr.flush
+      raise SystemExit.new(1) # With abort_on_exception=true, this propagates to main thread
     end
 
   ## GUI starts here
 
   elsif defined?(Gtk) and (ARGV.empty? or @argv_options[:gui])
-    require File.join(LIB_DIR, 'common', 'gui-login.rb')
+    require File.join(LIB_DIR, 'common', 'gui_login.rb')
     gui_login
   end
 
@@ -173,14 +183,14 @@ reconnect_if_wanted = proc {
       Lich.log "info: Current WINE working directory is #{custom_launch_dir}"
     end
     if ARGV.include?('--without-frontend')
-      $frontend = 'unknown'
+      Frontend.client = 'unknown'
       unless (game_key = @launch_data.find { |opt| opt =~ /KEY=/ }) && (game_key = game_key.split('=').last.chomp)
         $stdout.puts "error: launch_data contains no KEY info"
         Lich.log "error: launch_data contains no KEY info"
         exit(1)
       end
     elsif game =~ /SUKS/i
-      $frontend = 'suks'
+      Frontend.client = 'suks'
       unless (game_key = @launch_data.find { |opt| opt =~ /KEY=/ }) && (game_key = game_key.split('=').last.chomp)
         $stdout.puts "error: launch_data contains no KEY info"
         Lich.log "error: launch_data contains no KEY info"
@@ -217,17 +227,17 @@ reconnect_if_wanted = proc {
     Lich.log "info: game: #{game}"
     if ARGV.include?('--without-frontend')
       $_CLIENT_ = nil
-    elsif $frontend == 'suks'
+    elsif Frontend.client.eql?('suks')
       nil
     else
       if game =~ /WIZ/i
-        $frontend = 'wizard'
+        Frontend.client = 'wizard'
       elsif game =~ /STORM/i
-        $frontend = 'stormfront'
+        Frontend.client = 'stormfront'
       elsif game =~ /AVALON/i
-        $frontend = 'avalon'
+        Frontend.client = 'avalon'
       else
-        $frontend = 'unknown'
+        Frontend.client = 'unknown'
       end
       begin
         listener = TCPServer.new('127.0.0.1', nil)
@@ -236,9 +246,12 @@ reconnect_if_wanted = proc {
         Lich.log "error: cannot bind listen socket to local port: #{$!}\n\t#{$!.backtrace.join("\n\t")}"
         exit(1)
       end
-      accept_thread = Thread.new { $_CLIENT_ = SynchronizedSocket.new(listener.accept) }
-      localport = listener.addr[1]
-      Frontend.create_session_file(Account.character, listener.addr[2], listener.addr[1], display_session: false)
+      accept_thread = Thread.new {
+        accepted_socket, = listener.accept
+        $_CLIENT_ = SynchronizedSocket.new(accepted_socket)
+      }
+      localport = listener.local_address.ip_port
+      Frontend.create_session_file(Lich::Common::Account.character, listener.local_address.ip_address, localport, display_session: false)
       if custom_launch
         sal_filename = nil
         launcher_cmd = custom_launch.sub(/\%port\%/, localport.to_s).sub(/\%key\%/, game_key.to_s)
@@ -349,12 +362,7 @@ reconnect_if_wanted = proc {
     IPSocket.getaddress(@argv_options[:game_host])
     error_count = 0
     begin
-      listener = TCPServer.new('127.0.0.1', @argv_options[:game_port])
-      begin
-        listener.setsockopt(Socket::SOL_SOCKET, Socket::SO_REUSEADDR, 1)
-      rescue
-        Lich.log "warning: setsockopt with SO_REUSEADDR failed: #{$!}"
-      end
+      listener = Lich::Common::ReusableTCPServer.create('127.0.0.1', @argv_options[:game_port])
     rescue
       sleep 1
       if (error_count += 1) >= 30
@@ -383,7 +391,8 @@ reconnect_if_wanted = proc {
       exit
     }
     #      $_CLIENT_ = listener.accept
-    $_CLIENT_ = SynchronizedSocket.new(listener.accept)
+    accepted_socket, = listener.accept
+    $_CLIENT_ = SynchronizedSocket.new(accepted_socket)
     listener.close rescue nil
     timeout_thread.kill
     $stdout.puts "Connection with the local game client is open."
@@ -423,13 +432,6 @@ reconnect_if_wanted = proc {
 
   listener = nil
 
-  # backward compatibility
-  if $frontend =~ /^(?:wizard|avalon)$/
-    $fake_stormfront = true
-  else
-    $fake_stormfront = false
-  end
-
   undef :exit!
 
   if ARGV.include?('--without-frontend')
@@ -442,7 +444,7 @@ reconnect_if_wanted = proc {
       #
       # send version string
       #
-      client_string = "/FE:WIZARD /VERSION:1.0.1.22 /P:#{RUBY_PLATFORM} /XML"
+      client_string = Frontend::CLIENT_STRING
       $_CLIENTBUFFER_.push(client_string.dup)
       Game._puts(client_string)
       #
@@ -481,10 +483,8 @@ reconnect_if_wanted = proc {
       $login_time = Time.now
 
       if $offline_mode
-        # rubocop:disable Lint/Void
         nil
-        # rubocop:enable Lint/Void
-      elsif $frontend =~ /^(?:wizard|avalon)$/
+      elsif Frontend.supports_gsl?
         #
         # send the login key
         #
@@ -494,30 +494,13 @@ reconnect_if_wanted = proc {
         # take the version string from the client, ignore it, and ask the server for xml
         #
         $_CLIENT_.gets
-        client_string = "/FE:STORMFRONT /VERSION:1.0.1.26 /P:#{RUBY_PLATFORM} /XML"
-        $_CLIENTBUFFER_.push(client_string.dup)
-        Game._puts(client_string)
-        #
-        # tell the server we're ready
-        #
-        2.times {
-          sleep 0.3
-          $_CLIENTBUFFER_.push("#{$cmd_prefix}\r\n")
-          Game._puts($cmd_prefix)
-        }
-        #
-        # set up some stuff
-        #
-        for client_string in ["#{$cmd_prefix}_injury 2", "#{$cmd_prefix}_flag Display Inventory Boxes 1", "#{$cmd_prefix}_flag Display Dialog Boxes 0"]
-          $_CLIENTBUFFER_.push(client_string)
-          Game._puts(client_string)
-        end
+        Frontend.send_handshake(Frontend::CLIENT_STRING)
         #
         # client wants to send "GOOD", xml server won't recognize it
         # Avalon requires 2 gets to clear / Wizard only 1
-        2.times { $_CLIENT_.gets } if $frontend =~ /avalon/i
-        $_CLIENT_.gets if $frontend =~ /wizard/i
-      elsif $frontend =~ /^(?:frostbite)$/
+        2.times { $_CLIENT_.gets } if Frontend.client.eql?('avalon')
+        $_CLIENT_.gets if Frontend.client.eql?('wizard')
+      elsif Frontend.client.eql?('frostbite')
         #
         # send the login key
         #
@@ -528,30 +511,13 @@ reconnect_if_wanted = proc {
         # take the version string from the client, ignore it, and ask the server for xml
         #
         $_CLIENT_.gets
-        client_string = "/FE:STORMFRONT /VERSION:1.0.1.26 /P:#{RUBY_PLATFORM} /XML"
-        $_CLIENTBUFFER_.push(client_string.dup)
-        Game._puts(client_string)
-        #
-        # tell the server we're ready
-        #
-        2.times {
-          sleep 0.3
-          $_CLIENTBUFFER_.push("#{$cmd_prefix}\r\n")
-          Game._puts($cmd_prefix)
-        }
-        #
-        # set up some stuff
-        #
-        for client_string in ["#{$cmd_prefix}_injury 2", "#{$cmd_prefix}_flag Display Inventory Boxes 1", "#{$cmd_prefix}_flag Display Dialog Boxes 0"]
-          $_CLIENTBUFFER_.push(client_string)
-          Game._puts(client_string)
-        end
+        Frontend.send_handshake(Frontend::CLIENT_STRING)
       else
         if launcher_cmd =~ /mudlet/
           Game._puts(game_key)
           game_key = nil
 
-          client_string = "/FE:WIZARD /VERSION:1.0.1.22 /P:#{RUBY_PLATFORM} /XML"
+          client_string = Frontend::CLIENT_STRING
           $_CLIENTBUFFER_.push(client_string.dup)
           Game._puts(client_string)
 
@@ -616,9 +582,9 @@ reconnect_if_wanted = proc {
 
       begin
         while (client_string = $_CLIENT_.gets)
-          if $frontend =~ /^(?:wizard|avalon)$/
+          if Frontend.supports_gsl?
             client_string = "#{$cmd_prefix}#{client_string}"
-          elsif $frontend =~ /^(?:frostbite)$/
+          elsif Frontend.client.eql?('frostbite')
             client_string = fb_to_sf(client_string)
           end
           # Lich.log(client_string)
@@ -644,31 +610,86 @@ reconnect_if_wanted = proc {
     }
   end
 
+  session_name = Lich::InternalAPI::ActiveSessions::Lifecycle.resolve_session_name(
+    argv: ARGV,
+    account_character: (Lich::Common::Account.character rescue nil)
+  )
+  session_role = Lich::InternalAPI::ActiveSessions::Lifecycle.resolve_role(
+    argv: ARGV,
+    detachable_client_port: @argv_options[:detachable_client_port]
+  )
+  Lich::InternalAPI::ActiveSessions::Lifecycle.start(session_name: session_name, role: session_role)
+
   unless @argv_options[:detachable_client_port].nil?
     detachable_client_thread = Thread.new {
+      server = nil
       loop {
+        listener_connected = false
         begin
-          server = TCPServer.new(@argv_options[:detachable_client_host], @argv_options[:detachable_client_port])
-          char_name = ARGV[ARGV.index('--login') + 1].capitalize
-          Frontend.create_session_file(char_name, server.addr[2], server.addr[1])
+          # Close any existing server socket before creating a new one (credit: mrhoribu, PR #1157)
+          if server && !server.closed?
+            Lich.log "info: closing existing server socket before recreating"
+            server.close rescue nil
+          end
+          server = Lich::Common::ReusableTCPServer.create(@argv_options[:detachable_client_host], @argv_options[:detachable_client_port])
+          login_idx = ARGV.index('--login')
+          char_name = if !login_idx.nil? && ARGV[login_idx + 1]
+                        ARGV[login_idx + 1].capitalize
+                      end
 
-          $_DETACHABLE_CLIENT_ = SynchronizedSocket.new(server.accept)
+          begin
+            Frontend.create_session_file(char_name, server.local_address.ip_address, server.local_address.ip_port) if char_name
+          rescue => e
+            Lich.log "warning: failed to create session file: #{e}\n\t#{e.backtrace.join("\n\t")}"
+          end
+          Lich::InternalAPI::ActiveSessions::Lifecycle.update_listener(
+            host: server.local_address.ip_address,
+            port: server.local_address.ip_port,
+            connected: false
+          )
+
+          Lich.log "info: detachable client server listening on #{server.local_address.ip_address}:#{server.local_address.ip_port}"
+
+          accepted_socket, = server.accept
+          $_DETACHABLE_CLIENT_ = SynchronizedSocket.new(accepted_socket)
           $_DETACHABLE_CLIENT_.sync = true
-        rescue
-          Lich.log "#{$!}\n\t#{$!.backtrace.join("\n\t")}"
+          Lich.log "info: detachable client connected"
+
+          # Close server socket after accepting — only one client connects at a time
+          Lich::InternalAPI::ActiveSessions::Lifecycle.update_listener(
+            host: server.local_address.ip_address,
+            port: server.local_address.ip_port,
+            connected: true
+          )
+          listener_connected = true
           server.close rescue nil
+          server = nil
+        rescue => e
+          Lich.log "error: detachable_client_thread (server setup): #{e}\n\t#{e.backtrace.join("\n\t")}"
+          server.close rescue nil
+          server = nil
           $_DETACHABLE_CLIENT_.close rescue nil
           $_DETACHABLE_CLIENT_ = nil
+          begin
+            Frontend.cleanup_session_file
+          rescue => cleanup_error
+            Lich.log "warning: failed to cleanup session file: #{cleanup_error}\n\t#{cleanup_error.backtrace.join("\n\t")}"
+          end
+
+          Lich::InternalAPI::ActiveSessions::Lifecycle.clear_listener
           sleep 5
           next
         ensure
           server.close rescue nil
-          Frontend.cleanup_session_file
+          unless listener_connected
+            Frontend.cleanup_session_file
+            Lich::InternalAPI::ActiveSessions::Lifecycle.clear_listener
+          end
         end
         if $_DETACHABLE_CLIENT_
           begin
             unless ARGV.include?('--genie')
-              $frontend = 'profanity'
+              Frontend.client = 'profanity'
               Thread.new {
                 100.times { sleep 0.1; break if XMLData.indicator['IconJOINED'] }
                 init_str = "<progressBar id='mana' value='0' text='mana #{XMLData.mana}/#{XMLData.max_mana}'/>"
@@ -716,21 +737,28 @@ reconnect_if_wanted = proc {
               begin
                 $_IDLETIMESTAMP_ = Time.now
                 do_client(client_string)
-              rescue
-                respond "--- Lich: error: client_thread: #{$!}"
-                respond $!.backtrace.first
-                Lich.log "error: client_thread: #{$!}\n\t#{$!.backtrace.join("\n\t")}"
+              rescue => e
+                respond "--- Lich: error: client_thread: #{e}"
+                respond e.backtrace.first
+                Lich.log "error: client_thread: #{e}\n\t#{e.backtrace.join("\n\t")}"
               end
             end
-          rescue
-            respond "--- Lich: error: client_thread: #{$!}"
-            respond $!.backtrace.first
-            Lich.log "error: client_thread: #{$!}\n\t#{$!.backtrace.join("\n\t")}"
-            $_DETACHABLE_CLIENT_.close rescue nil
-            $_DETACHABLE_CLIENT_ = nil
+            Lich.log "info: detachable client disconnected"
+          rescue => e
+            respond "--- Lich: error: client_thread: #{e}"
+            respond e.backtrace.first
+            Lich.log "error: detachable_client_thread (communication): #{e}\n\t#{e.backtrace.join("\n\t")}"
           ensure
             $_DETACHABLE_CLIENT_.close rescue nil
             $_DETACHABLE_CLIENT_ = nil
+
+            begin
+              Frontend.cleanup_session_file
+            rescue => cleanup_error
+              Lich.log "warning: failed to cleanup session file: #{cleanup_error}\n\t#{cleanup_error.backtrace.join("\n\t")}"
+            end
+
+            Lich.log "info: detachable client cleaned up, ready for new connection"
           end
         end
         sleep 0.1
@@ -740,41 +768,60 @@ reconnect_if_wanted = proc {
     detachable_client_thread = nil
   end
 
-  wait_while { $offline_mode }
+  # Start process lifecycle reporting after core sockets/threads are initialized.
+  # Registration itself is deferred by SessionLifecycle to wait for XML game context.
+  session_name = Lich::Common::SessionLifecycle.resolve_session_name(
+    argv: ARGV,
+    account_character: (Lich::Common::Account.character rescue nil)
+  )
+  session_role = Lich::Common::SessionLifecycle.resolve_role(
+    argv: ARGV,
+    detachable_client_port: @argv_options[:detachable_client_port]
+  )
+  Lich::Common::SessionLifecycle.start(session_name: session_name, role: session_role)
+  begin
+    wait_while { $offline_mode }
 
-  if $frontend == 'wizard'
-    $link_highlight_start = "\207".force_encoding(Encoding::ASCII_8BIT)
-    $link_highlight_end = "\240".force_encoding(Encoding::ASCII_8BIT)
-    $speech_highlight_start = "\212".force_encoding(Encoding::ASCII_8BIT)
-    $speech_highlight_end = "\240".force_encoding(Encoding::ASCII_8BIT)
+    if Frontend.client.eql?('wizard')
+      $link_highlight_start = "\207".force_encoding(Encoding::ASCII_8BIT)
+      $link_highlight_end = "\240".force_encoding(Encoding::ASCII_8BIT)
+      $speech_highlight_start = "\212".force_encoding(Encoding::ASCII_8BIT)
+      $speech_highlight_end = "\240".force_encoding(Encoding::ASCII_8BIT)
+    end
+
+    client_thread.priority = 3
+
+    $_CLIENT_.puts "\n--- Lich v#{LICH_VERSION} is active.  Type #{$clean_lich_char}help for usage info.\n\n"
+
+    Game.thread.join
+    client_thread.kill rescue nil
+    detachable_client_thread.kill rescue nil
+
+    Lich.log 'info: stopping scripts...'
+    Script.running.each { |script| script.kill }
+    Script.hidden.each { |script| script.kill }
+    200.times { sleep 0.1; break if Script.running.empty? and Script.hidden.empty? }
+    Lich.log 'info: saving script settings...'
+    Infomon::Monitor.save_proc if defined?(Infomon::Monitor)
+    Settings.save
+    Vars.save
+    Lich.log 'info: closing connections...'
+    Lich::InternalAPI::ActiveSessions::Lifecycle.stop
+    Game.close
+    200.times { sleep 0.1; break if Game.closed? }
+    pause 0.5
+    $_CLIENT_.close
+    200.times { sleep 0.1; break if $_CLIENT_.closed? }
+    Lich.db.close
+    200.times { sleep 0.1; break if Lich.db.closed? }
+    reconnect_if_wanted.call # taking this out of play but may need to see if anyone's using it
+    Lich.log "info: exiting..."
+    Gtk.queue { Gtk.main_quit } if defined?(Gtk)
+    exit
+  ensure
+    # Guarantee lifecycle stop even on abnormal exit (e.g. abort_on_exception).
+    # Both .stop methods are idempotent -- safe to call if already stopped.
+    Lich::InternalAPI::ActiveSessions::Lifecycle.stop if defined?(Lich::InternalAPI::ActiveSessions::Lifecycle)
+    Lich::Common::SessionLifecycle.stop if defined?(Lich::Common::SessionLifecycle)
   end
-
-  client_thread.priority = 3
-
-  $_CLIENT_.puts "\n--- Lich v#{LICH_VERSION} is active.  Type #{$clean_lich_char}help for usage info.\n\n"
-
-  Game.thread.join
-  client_thread.kill rescue nil
-  detachable_client_thread.kill rescue nil
-
-  Lich.log 'info: stopping scripts...'
-  Script.running.each { |script| script.kill }
-  Script.hidden.each { |script| script.kill }
-  200.times { sleep 0.1; break if Script.running.empty? and Script.hidden.empty? }
-  Lich.log 'info: saving script settings...'
-  Infomon::Monitor.save_proc if defined?(Infomon::Monitor)
-  Settings.save
-  Vars.save
-  Lich.log 'info: closing connections...'
-  Game.close
-  200.times { sleep 0.1; break if Game.closed? }
-  pause 0.5
-  $_CLIENT_.close
-  200.times { sleep 0.1; break if $_CLIENT_.closed? }
-  Lich.db.close
-  200.times { sleep 0.1; break if Lich.db.closed? }
-  reconnect_if_wanted.call # taking this out of play but may need to see if anyone's using it
-  Lich.log "info: exiting..."
-  Gtk.queue { Gtk.main_quit } if defined?(Gtk)
-  exit
 }

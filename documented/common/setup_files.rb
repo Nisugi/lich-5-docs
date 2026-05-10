@@ -1,0 +1,326 @@
+# frozen_string_literal: true
+
+=begin
+  SetupFiles manages YAML configuration file loading, caching, and
+  cascading merge for lich scripts.
+
+  Supports:
+  - Base YAML files (base.yaml, base-empty.yaml)
+  - Character-specific YAML files ({character}-setup.yaml)
+  - Include files with recursive resolution and circular dependency protection
+  - Automatic caching with modification-time checking
+  - Deep-clone protection against in-memory mutation
+
+  @see https://elanthipedia.play.net/Lich_script_development#dependency
+=end
+
+require 'monitor'
+require 'ostruct'
+require 'set' # rubocop:disable Lint/RedundantRequireStatement -- needed for Ruby < 3.2
+require 'yaml'
+
+# Namespace for Lich related classes and modules
+# @example Using the Lich module
+#   Lich::Common::SetupFiles.new
+module Lich
+  module Common
+    # Indicates if core setup files are enabled.
+    # @return [Boolean] Always true.
+    CORE_SETUPFILES = true
+
+    # Manages YAML configuration file loading, caching, and cascading merge for lich scripts.
+    #
+    # Supports:
+    # - Base YAML files (base.yaml, base-empty.yaml)
+    # - Character-specific YAML files ({character}-setup.yaml)
+    # - Include files with recursive resolution and circular dependency protection
+    # - Automatic caching with modification-time checking
+    # - Deep-clone protection against in-memory mutation
+    # @example Creating a SetupFiles instance
+    #   setup_files = Lich::Common::SetupFiles.new
+    class SetupFiles
+      include MonitorMixin
+
+      class FileInfo
+        attr_reader :path, :name, :mtime
+
+        def initialize(path:, name:, data:, mtime:)
+          @path = path
+          @name = name
+          @data = data
+          @mtime = mtime
+        end
+
+        def data
+          Marshal.load(Marshal.dump(@data))
+        end
+
+        def peek(property)
+          Marshal.load(Marshal.dump(@data[property.to_sym]))
+        end
+
+        def to_s
+          File.join(@path, @name)
+        end
+
+        def inspect
+          "#<SetupFiles::FileInfo @name=#{@name}, @path=#{@path}, @mtime=#{@mtime}>"
+        end
+      end
+
+      # Initializes a new SetupFiles instance.
+      # @param debug [Boolean] Enables debug mode if true.
+      # @return [SetupFiles]
+      def initialize(debug = false)
+        super()
+        @files_cache = {}
+        @debug = debug
+      end
+
+      # Safely loads a YAML file and returns its content as a hash.
+      # @param filepath [String] The path to the YAML file.
+      # @return [Hash] The parsed YAML content.
+      # @raise [StandardError] If there is an error parsing the YAML file.
+      # @example Loading a YAML file
+      #   config = setup_files.safe_load_yaml("config.yaml")
+      def safe_load_yaml(filepath)
+        OpenStruct.new(YAML.unsafe_load_file(filepath)).to_h
+      rescue => e
+        safe_message("bold", "*** ERROR PARSING YAML FILE ***")
+        safe_message("bold", e.message)
+        {}
+      end
+
+      # Retrieves settings based on character suffixes.
+      # @param character_suffixes [Array<String>] An array of character suffixes to include in the settings.
+      # @return [Hash] The merged settings from the YAML files.
+      # @example Getting settings for a character
+      #   settings = setup_files.get_settings(["warrior"])
+      def get_settings(character_suffixes = [])
+        character_suffixes = ['setup', character_suffixes].flatten.compact.uniq
+        character_filenames = character_suffixes_to_filenames(character_suffixes)
+        reload_profiles(character_filenames)
+
+        initial_include_suffixes = character_filenames.reduce([]) do |result, filename|
+          result + (cache_get_by_filename(filename)&.peek('include') || [])
+        end
+        initial_include_filenames = initial_include_suffixes.map { |suffix| to_include_filename(suffix) }
+        include_filenames = resolve_includes_recursively(initial_include_filenames)
+        safe_log "#{self.class}::#{__callee__} resolved include_filenames=#{include_filenames}" if @debug
+
+        all_files = ['base.yaml', 'base-empty.yaml', include_filenames, character_filenames].flatten
+
+        # Peek pass: collect union_keys from all files (always unioned across files).
+        # Keys listed in union_keys get array union instead of overwrite during merge,
+        # allowing includes and character files to contribute to shared lists.
+        union_keys = all_files.reduce([]) do |keys, filename|
+          file_keys = cache_get_by_filename(filename)&.peek('union_keys') || []
+          (keys + file_keys).uniq
+        end
+
+        # Merge pass: union specified keys, overwrite everything else
+        settings = all_files.reduce({}) do |result, filename|
+          file_info = cache_get_by_filename(filename)
+          result.merge(file_info ? file_info.data : {}) do |key, old_val, new_val|
+            if union_keys.include?(key.to_s) && old_val.is_a?(Array) && new_val.is_a?(Array)
+              (old_val + new_val).uniq
+            else
+              new_val
+            end
+          end
+        end
+
+        transform_settings(settings)
+      end
+
+      # Retrieves data for a specific type from the YAML files.
+      # @param type [String] The type of data to retrieve.
+      # @return [Hash] The data associated with the specified type.
+      # @example Getting data for a type
+      #   data = setup_files.get_data("base")
+      def get_data(type)
+        filename = to_base_filename(type)
+        reload_data([filename])
+        transform_data(cache_get_by_filename(filename)&.data)
+      end
+
+      # Reloads the profiles and data for the SetupFiles instance.
+      # @return [void]
+      # @example Reloading profiles and data
+      #   setup_files.reload
+      def reload
+        reload_profiles(character_suffixes_to_filenames(['setup']))
+        reload_data
+      end
+
+      private
+
+      def scripts_data_path
+        @scripts_data_path ||= File.join(SCRIPT_DIR, 'data')
+      end
+
+      def character_name
+        name = defined?(Lich::Common::Account) && Lich::Common::Account.character
+        name || checkname
+      end
+
+      def scripts_profiles_path
+        @scripts_profiles_path ||= begin
+          game = defined?(XMLData) && XMLData.respond_to?(:game) && XMLData.game
+          if game && defined?(DATA_DIR) &&
+             File.exist?(File.join(DATA_DIR, game, "base.yaml")) &&
+             File.exist?(File.join(DATA_DIR, game, "base-empty.yaml")) &&
+             File.exist?(File.join(DATA_DIR, game, "#{character_name}-setup.yaml"))
+            safe_message("info", "Detected game instance-specific files. Loading settings from #{File.join(DATA_DIR, game)}")
+            File.join(DATA_DIR, game)
+          else
+            File.join(SCRIPT_DIR, 'profiles')
+          end
+        end
+      end
+
+      def reload_profiles(filenames = [])
+        load_files(get_profiles_glob_patterns(filenames))
+      end
+
+      def reload_data(filenames = [])
+        load_files(get_data_glob_patterns(filenames))
+      end
+
+      def get_profiles_glob_patterns(filenames = [])
+        get_glob_patterns(scripts_profiles_path, filenames)
+      end
+
+      def get_data_glob_patterns(filenames = [])
+        get_glob_patterns(scripts_data_path, filenames)
+      end
+
+      def get_glob_patterns(basepath = '.', filenames = [])
+        filenames = ["base*.yaml", "include*.yaml", filenames].flatten.compact.uniq
+        filenames.map { |filename| File.join(basepath, File.basename(filename)) }
+      end
+
+      def character_suffixes_to_filenames(character_suffixes)
+        character_suffixes.map { |suffix| to_character_filename(suffix) }
+      end
+
+      def to_character_filename(suffix)
+        "#{character_name}-#{suffix}.yaml"
+      end
+
+      def to_base_filename(suffix)
+        "base-#{suffix}.yaml"
+      end
+
+      def to_include_filename(suffix)
+        "include-#{suffix}.yaml"
+      end
+
+      def resolve_includes_recursively(filenames, visited = Set.new, include_order = [])
+        filenames.each do |filename|
+          next if visited.include?(filename)
+
+          visited << filename
+          reload_profiles([filename])
+          file_info = cache_get_by_filename(filename)
+          next unless file_info
+
+          nested_suffixes = file_info.peek('include') || []
+          safe_log "#{self.class}::#{__callee__} #{filename} has nested includes: #{nested_suffixes}" if @debug && !nested_suffixes.empty?
+          nested_filenames = nested_suffixes.map { |suffix| to_include_filename(suffix) }
+
+          resolve_includes_recursively(nested_filenames, visited, include_order)
+          include_order << filename
+        end
+        include_order
+      end
+
+      def load_files(glob_patterns = [])
+        synchronize do
+          safe_log "#{self.class}::#{__callee__} glob_patterns=#{glob_patterns}" if @debug
+          # Build a map of filename -> filepath for all files currently on disk
+          current_files = {}
+          glob_patterns.each do |glob_pattern|
+            Dir.glob(glob_pattern)
+               .select { |filepath| File.file?(filepath) }
+               .each { |filepath| current_files[File.basename(filepath)] ||= filepath }
+          end
+
+          # Evict cache entries whose backing files no longer exist on disk.
+          # Only remove entries whose path matches the directories being scanned
+          # AND whose name matches our glob patterns. This prevents a data-dir
+          # reload from evicting identically-named profile-dir entries.
+          scan_dirs = glob_patterns.map { |p| File.dirname(p) }.uniq
+          @files_cache.delete_if do |name, info|
+            scan_dirs.include?(info.path) &&
+              !current_files.key?(name) &&
+              glob_patterns.any? { |p| File.fnmatch(File.basename(p), name) }
+          end
+
+          current_files.each do |filename, filepath|
+            last_modified_date = File.mtime(filepath)
+            cached_file = cache_get_by_filename(filename)
+            safe_log "#{self.class}::#{__callee__} filepath=#{filepath}, last_modified_date=#{last_modified_date}, cached_file=#{cached_file.inspect}" if @debug
+            if cached_file.nil? || cached_file.mtime != last_modified_date
+              cache_put_by_filepath(filepath)
+            end
+          end
+        end
+      end
+
+      def cache_put_by_filepath(filepath)
+        synchronize do
+          safe_log "#{self.class}::#{__callee__} filepath=#{filepath}" if @debug
+          @files_cache[File.basename(filepath)] = FileInfo.new(
+            path: File.dirname(filepath),
+            name: File.basename(filepath),
+            mtime: File.mtime(filepath),
+            data: safe_load_yaml(filepath)
+          )
+        end
+      end
+
+      def cache_get_by_filename(filename)
+        safe_log "#{self.class}::#{__callee__} filename=#{filename}" if @debug
+        @files_cache[filename]
+      end
+
+      def transform_settings(settings)
+        safe_log "#{self.class}::#{__callee__}" if @debug
+        if defined?(Lich::DragonRealms::SettingsConfig)
+          config = Lich::DragonRealms::SettingsConfig::TRANSFORM_CONFIG
+          Lich::Common::SettingsTransformer.transform(settings, config, method(:get_data))
+        else
+          OpenStruct.new(settings)
+        end
+      end
+
+      def transform_data(original_data)
+        safe_log "#{self.class}::#{__callee__}" if @debug
+        data = OpenStruct.new(original_data)
+        data
+      rescue => e
+        safe_message("bold", "*** ERROR MODIFYING DATA ***")
+        safe_message("bold", e.message)
+        e.backtrace.each { |line| safe_message("bold", line) }
+        OpenStruct.new
+      end
+
+      def safe_message(type, text)
+        if defined?(Lich::Messaging) && Lich::Messaging.respond_to?(:msg)
+          Lich::Messaging.msg(type, text)
+        else
+          safe_log(text)
+        end
+      end
+
+      def safe_log(text)
+        if defined?(Lich) && Lich.respond_to?(:log)
+          Lich.log(text)
+        else
+          $stderr.puts(text)
+        end
+      end
+    end
+  end
+end

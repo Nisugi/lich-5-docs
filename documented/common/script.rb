@@ -1,26 +1,15 @@
-# Generated during infomon separation 230305
-# script bindings are convoluted, but don't change them without testing if:
-#    class methods such as Script.start and ExecScript.start become accessible without specifying the class name (which is just a syptom of a problem that will break scripts)
-#    local variables become shared between scripts
-#    local variable 'file' is shared between scripts, even though other local variables aren't
-#    defined methods are instantly inaccessible
-# also, don't put 'untrusted' in the name of the untrusted binding; it shows up in error messages and makes people think the error is caused by not trusting the script
-#
 
-# Main module for the Lich project
-# This module contains common functionality and classes for scripting.
-# @example Using the Lich module
-#   Lich::Common::Script.start(args)
+# The Lich module provides a framework for scripting and executing scripts in the Lich environment.
+# @example Including the Lich module
+#   include Lich
 module Lich
   module Common
-    # module Gemstone
-    # Class for handling script bindings
-    # This class provides methods to create script bindings.
-    # @example Creating a script binding
-    #   binding = Scripting.new.script
+    # The Scripting class provides methods for script execution.
+    # @example Creating a new scripting instance
+    #   scripting = Lich::Common::Scripting.new
     class Scripting
-      # Creates a new script binding
-      # @return [Binding] A new binding for a script
+      # Returns a binding for the script context.
+      # @return [Binding] The binding for the script context.
       def script
         Proc.new {}.binding
       end
@@ -30,13 +19,11 @@ module Lich
       Proc.new {}.binding
     end
 
-    # A proc that returns a trusted script binding
     TRUSTED_SCRIPT_BINDING = proc { _script }
 
-    # Class for managing scripts
-    # This class provides methods to start, manage, and interact with scripts.
-    # @example Starting a script
-    #   Script.start("my_script", args)
+    # The Script class represents a script that can be executed in the Lich environment.
+    # @example Creating a new script
+    #   script = Lich::Common::Script.new(file: "script.lic", args: ["arg1", "arg2"])
     class Script
       @@elevated_script_start = proc { |args|
         if args.empty?
@@ -77,16 +64,31 @@ module Lich
         end
 
         # fixme: look in wizard script directory
-        # fixme: allow subdirectories?
-        file_list = Dir.children(File.join(SCRIPT_DIR, "custom")).sort_by { |fn| fn.sub(/[.](lic|rb|cmd|wiz)$/, '') }.map { |s| s.prepend("/custom/") } + Dir.children(SCRIPT_DIR).sort_by { |fn| fn.sub(/[.](lic|rb|cmd|wiz)$/, '') }
-        if (file_name = (file_list.find { |val| val =~ /^(?:\/custom\/)?#{Regexp.escape(script_name)}\.(?:lic|rb|cmd|wiz)(?:\.gz|\.Z)?$/ || val =~ /^(?:\/custom\/)?#{Regexp.escape(script_name)}\.(?:lic|rb|cmd|wiz)(?:\.gz|\.Z)?$/i } || file_list.find { |val| val =~ /^(?:\/custom\/)?#{Regexp.escape(script_name)}[^.]+\.(?i:lic|rb|cmd|wiz)(?:\.gz|\.Z)?$/ } || file_list.find { |val| val =~ /^(?:\/custom\/)?#{Regexp.escape(script_name)}[^.]+\.(?:lic|rb|cmd|wiz)(?:\.gz|\.Z)?$/i }))
+        # Build file list: custom/ root, then custom/ subdirectories, then SCRIPT_DIR root
+        custom_base = File.join(SCRIPT_DIR, "custom")
+        custom_dirs = []
+        if File.directory?(custom_base)
+          custom_dirs << custom_base
+          Dir.children(custom_base).sort.each do |child|
+            child_path = File.join(custom_base, child)
+            custom_dirs << child_path if File.directory?(child_path)
+          end
+        end
+        file_list = custom_dirs.flat_map { |dir|
+          prefix = dir.sub(SCRIPT_DIR, '')
+          Dir.children(dir)
+             .select { |f| f =~ /\.(lic|rb|cmd|wiz)(\.(gz|Z))?$/i }
+             .sort_by { |fn| fn.sub(/\.[^.]+$/, '') }
+             .map { |s| "#{prefix}/#{s}" }
+        } + Dir.children(SCRIPT_DIR).sort_by { |fn| fn.sub(/[.](lic|rb|cmd|wiz)$/, '') }
+        if (file_name = (file_list.find { |val| val =~ /^(?:\/custom\/(?:[^\/]+\/)?)?#{Regexp.escape(script_name)}\.(?:lic|rb|cmd|wiz)(?:\.gz|\.Z)?$/ || val =~ /^(?:\/custom\/(?:[^\/]+\/)?)?#{Regexp.escape(script_name)}\.(?:lic|rb|cmd|wiz)(?:\.gz|\.Z)?$/i } || file_list.find { |val| val =~ /^(?:\/custom\/(?:[^\/]+\/)?)?#{Regexp.escape(script_name)}[^.]+\.(?i:lic|rb|cmd|wiz)(?:\.gz|\.Z)?$/ } || file_list.find { |val| val =~ /^(?:\/custom\/(?:[^\/]+\/)?)?#{Regexp.escape(script_name)}[^.]+\.(?:lic|rb|cmd|wiz)(?:\.gz|\.Z)?$/i }))
           script_name = file_name.sub(/\..{1,3}$/, '')
         end
         if file_name.nil?
           respond "--- Lich: could not find script '#{script_name}' in directory #{SCRIPT_DIR} or #{SCRIPT_DIR}/custom"
           next nil
         end
-        if (options[:force] != true) and (Script.running + Script.hidden).find { |s| s.name =~ /^#{Regexp.escape(script_name.sub('/custom/', ''))}$/i }
+        if (options[:force] != true) and (Script.running + Script.hidden).find { |s| s.name =~ /^#{Regexp.escape(script_name.sub(%r{/custom/([^/]+/)?}, ''))}$/i }
           respond "--- Lich: #{script_name} is already running (use #{$clean_lich_char}force [scriptname] if desired)."
           next nil
         end
@@ -302,18 +304,19 @@ module Lich
       @@running = Array.new
 
       attr_reader :name, :vars, :safe, :file_name, :label_order, :at_exit_procs
-      attr_accessor :quiet, :no_echo, :jump_label, :current_label, :want_downstream, :want_downstream_xml, :want_upstream, :want_script_output, :hidden, :paused, :silent, :no_pause_all, :no_kill_all, :downstream_buffer, :upstream_buffer, :unique_buffer, :die_with, :match_stack_labels, :match_stack_strings, :watchfor, :command_line, :ignore_pause
+      attr_accessor :quiet, :no_echo, :jump_label, :current_label, :want_downstream, :want_downstream_xml, :want_upstream, :want_script_output, :hidden, :paused, :silent, :no_pause_all, :no_kill_all, :downstream_buffer, :upstream_buffer, :unique_buffer, :die_with, :match_stack_labels, :match_stack_strings, :watchfor, :command_line, :ignore_pause, :killed_externally, :kill_source
 
-      # Custom error class for jump errors in scripts
       class JumpError < StandardError; end
       JUMP = JumpError.exception('JUMP')
       JUMP_ERROR = JumpError.exception('JUMP_ERROR')
 
-      # Retrieves the version of a script
-      # @param script_name [String] The name of the script
-      # @param script_version_required [String, nil] The required version of the script
-      # @return [Gem::Version, nil] The version of the script or nil if not found
-      # @raise [StandardError] If the script cannot be found
+      # Retrieves the version of a specified script.
+      # @param script_name [String] The name of the script to check.
+      # @param script_version_required [String, nil] The required version of the script.
+      # @return [Gem::Version, nil] The version of the script or nil if not found.
+      # @raise [StandardError] If an error occurs while retrieving the version.
+      # @example Checking a script version
+      #   version = Script.version("example_script.lic")
       def Script.version(script_name, script_version_required = nil)
         script_name = script_name.sub(/[.](lic|rb|cmd|wiz)$/, '')
         file_list = Dir.children(File.join(SCRIPT_DIR, "custom")).sort_by { |fn| fn.sub(/[.](lic|rb|cmd|wiz)$/, '') }.map { |s| s.prepend("/custom/") } + Dir.children(SCRIPT_DIR).sort_by { |fn| fn.sub(/[.](lic|rb|cmd|wiz)$/, '') }
@@ -351,14 +354,14 @@ module Lich
         end
       end
 
-      # Lists all currently running scripts
-      # @return [Array<Script>] An array of currently running scripts
+      # Lists all currently running scripts.
+      # @return [Array<Script>] An array of currently running scripts.
       def Script.list
         @@running.dup
       end
 
-      # Retrieves the currently running script
-      # @return [Script, nil] The current script or nil if none is running
+      # Retrieves the currently running script.
+      # @return [Script, nil] The currently running script or nil if none is running.
       def Script.current
         if (script = @@running.find { |s| s.has_thread?(Thread.current) })
           sleep 0.2 while script.paused? and not script.ignore_pause
@@ -368,6 +371,9 @@ module Lich
         end
       end
 
+      # Starts a new script with the given arguments.
+      # @param args [Array] The arguments to pass to the script.
+      # @return [Script] The newly started script.
       def Script.start(*args)
         @@elevated_script_start.call(args)
       end
@@ -407,6 +413,8 @@ module Lich
 
       def Script.kill(name)
         if (s = (@@running.find { |i| i.name == name }) || (@@running.find { |i| i.name =~ /^#{name}$/i }))
+          s.killed_externally = true
+          s.kill_source = caller[0..2]
           s.kill
           true
         else
@@ -422,9 +430,6 @@ module Lich
         end
       end
 
-      # Checks if a script exists
-      # @param script_name [String] The name of the script to check
-      # @return [Boolean] True if the script exists, false otherwise
       def Script.exists?(script_name)
         @@elevated_exists.call(script_name)
       end
@@ -472,10 +477,17 @@ module Lich
         @@elevated_log.call(data)
       end
 
+      # Retrieves the database connection for the current script.
+      # @return [SQLite3::Database, nil] The database connection or nil if not available.
       def Script.db
         @@elevated_db.call
       end
 
+      # Opens a file with the specified extension and mode.
+      # @param ext [String] The file extension.
+      # @param mode [String] The mode in which to open the file (default is 'r').
+      # @param block [Proc] An optional block to execute with the opened file.
+      # @return [File, nil] The opened file or nil if an error occurs.
       def Script.open_file(ext, mode = 'r', &block)
         @@elevated_open_file.call(ext, mode, block)
       end
@@ -507,7 +519,6 @@ module Lich
         end
       end
 
-      # moved from lich.rbw 2024
       def Script.self
         Script.current
       end
@@ -642,6 +653,8 @@ module Lich
         @label_order = Array.new
         @labels = Hash.new
         @killer_mutex = Mutex.new
+        @killed_externally = false
+        @kill_source = nil
         @ignore_pause = false
         data = nil
         if @file_name =~ /\.gz$/i
@@ -680,6 +693,7 @@ module Lich
       end
 
       def kill
+        source = @kill_source || caller[0..2]
         Thread.new {
           @killer_mutex.synchronize {
             if @@running.include?(self)
@@ -695,7 +709,13 @@ module Lich
                 @at_exit_procs.each { |p| report_errors { p.call } }
                 @die_with = @at_exit_procs = @downstream_buffer = @upstream_buffer = @match_stack_labels = @match_stack_strings = nil
                 @@running.delete(self)
-                respond("--- Lich: #{@custom ? 'custom/' : ''}#{@name} has exited.") unless @quiet
+                unless @quiet
+                  if @killed_externally
+                    respond("--- Lich: #{@custom ? 'custom/' : ''}#{@name} was killed. (#{source.first})")
+                  else
+                    respond("--- Lich: #{@custom ? 'custom/' : ''}#{@name} has exited.")
+                  end
+                end
                 GC.start
               rescue
                 respond "--- Lich: error: #{$!}"
@@ -873,18 +893,18 @@ module Lich
       end
     end
 
-    # Class for executing scripts
-    # This class extends Script to handle execution of command scripts.
-    # @example Starting an exec script
-    #   ExecScript.start("command_data")
+    # The ExecScript class represents a script that executes commands directly.
+    # @example Creating a new exec script
+    #   exec_script = Lich::Common::ExecScript.start("command", quiet: true)
     class ExecScript < Script
       @@name_exec_mutex = Mutex.new
       attr_reader :cmd_data
 
-      # Starts a new exec script
-      # @param cmd_data [String] The command data to execute
-      # @param options [Hash] Options for the script execution
-      # @return [ExecScript, false] The started exec script or false if failed
+      # Starts a new exec script with the given command data.
+      # @param cmd_data [String] The command data to execute.
+      # @param options [Hash] Options for the exec script.
+      # @option options [Boolean] :quiet Whether to suppress output (default is true).
+      # @return [ExecScript] The newly started exec script.
       def ExecScript.start(cmd_data, options = {})
         options = { :quiet => true } if options == true
         unless (new_script = ExecScript.new(cmd_data, options))
@@ -954,7 +974,6 @@ module Lich
         new_script
       end
 
-      # FIXME: when modernized, ensure proper use of variables and init of parent class
       # rubocop:disable Lint/MissingSuper
       def initialize(cmd_data, flags = Hash.new)
         @cmd_data = cmd_data
@@ -1003,18 +1022,16 @@ module Lich
       end
     end
 
-    # Class for handling wizard scripts
-    # This class extends Script to manage wizard-specific scripts.
-    # @example Starting a wizard script
-    #   WizardScript.new("wizard_script.lic")
+    # The WizardScript class represents a script specifically for wizard actions.
+    # @example Creating a new wizard script
+    #   wizard_script = Lich::Common::WizardScript.new("wizard_script.lic")
     class WizardScript < Script
-      # FIXME: when modernized, ensure proper use of variables and init of parent class
       # rubocop:disable Lint/MissingSuper
       # rubocop:disable Lint/UselessAssignment
       # rubocop:disable Lint/InterpolationCheck
-      # Initializes a new wizard script
-      # @param file_name [String] The name of the script file
-      # @param cli_vars [Array<String>] Command line variables for the script
+      # Initializes a new wizard script instance.
+      # @param file_name [String] The file name of the wizard script.
+      # @param cli_vars [Array] Command line variables to pass to the script.
       def initialize(file_name, cli_vars = [])
         @name = /.*[\/\\]+([^\.]+)\./.match(file_name).captures.first
         @file_name = file_name

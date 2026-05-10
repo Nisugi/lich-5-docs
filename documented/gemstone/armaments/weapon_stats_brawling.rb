@@ -1,11 +1,11 @@
 module Lich
   module Gemstone
     module Armaments
+      # Static array of weapon stats indexed by weapon identifiers.
+      # Each weapon entry contains metadata such as category, base name,
+      # alternative names, damage types, damage factors, armor avoidance by
+      # armor size group (ASG), base roundtime (RT), and minimum RT.
       module WeaponStats
-# Static array of weapon stats indexed by weapon identifiers.
-# Each weapon entry contains metadata such as category, base name, alternative names,
-# damage types, damage factors, armor avoidance by armor size group (ASG),
-# base roundtime (RT), and minimum RT.
 # Static array of weapon stats indexed by weapon identifiers. Each weapon
 # entry contains metadata such as category, base name, alternative names,
 # damage types, damage factors, armor avoidance by armor size group (ASG),
@@ -24,7 +24,15 @@ module Lich
 #
 # damage factor array:
 #  [0] = nil (none)    [1] = Cloth    [2] = Leather    [3] = Scale    [4] = Chain    [5] = Plate
+# damage factor array:
+#  [0] = nil (none)    [1] = Cloth    [2] = Leather    [3] = Scale    [4] = Chain    [5] = Plate
 #
+# avd_by_asg array:
+#  Cloth:   [1] ASG 1    [2] ASG 2      [3] nil      [4] nil
+#  Leather: [5] ASG 5    [6] ASG 6    [7] ASG 7    [8] ASG 8
+#  Scale:   [9] ASG 9    [10] ASG 10  [11] ASG 11  [12] ASG 12
+#  Chain:   [13] ASG 13  [14] ASG 14  [15] ASG 15  [16] ASG 16
+#  Plate:   [17] ASG 17  [18] ASG 18  [19] ASG 19  [20] ASG 20
 # avd_by_asg array:
 #  Cloth:   [1] ASG 1    [2] ASG 2      [3] nil      [4] nil
 #  Leather: [5] ASG 5    [6] ASG 6    [7] ASG 7    [8] ASG 8
@@ -34,7 +42,7 @@ module Lich
 #
 
 # Template for weapon stats
-# @example Example of weapon stats template
+# @example Example weapon stats template
 #   :Name   => {
 #       :category      => :unarmed,
 #       :base_name     => "Name",
@@ -58,19 +66,10 @@ module Lich
             :min_rt        => 4,
           },
 =end
-        # Static array of weapon stats for brawling weapons.
-        # @example Example of brawling weapon stats
-        #   @@weapon_stats_brawling = {
-        #     :closed_fist    => {
-        #       :category      => :brawling,
-        #       :base_name     => "closed fist",
-        #       :all_names     => ["closed fist"],
-        #       :damage_types  => { slash: 0.0, crush: 100.0, puncture: 0.0, special: [] },
-        #       :damage_factor => [nil, 0.100, 0.075, 0.040, 0.036, 0.032],
-        #       :avd_by_asg    => [nil, 25, 25, nil, nil, 20, 19, 18, 17, 10, 8, 6, 4, 5, 1, -3, -7, -5, -11, -17, -23],
-        #       :base_rt       => 1,
-        #       :min_rt        => 2,
-        #     },
+        # Static weapon stats for brawling weapons.
+        # @example Accessing weapon stats
+        #   stats = @@weapon_stats_brawling[:closed_fist]
+        #   puts stats[:base_name] # => "closed fist"
         @@weapon_stats_brawling = {
           :closed_fist    => {
             :category      => :brawling,

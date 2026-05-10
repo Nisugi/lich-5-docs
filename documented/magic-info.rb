@@ -1,10 +1,10 @@
-# Provides utility functions for the Lich project
-# @example Usage
+# Provides utility methods for the Lich project.
+# @example Including the Util module
 #   include Lich::Util
 module Lich
   module Util
-    # Handles magic information and commands
-    # @example Invoking magic commands
+    # Module for handling magic information commands.
+    # @example Using the Magicinfo module
     #   Lich::Util::Magicinfo.request('announce')
     module Magicinfo
       _respond "Landed in Magicinfo" if $infomon_debug
@@ -14,10 +14,10 @@ module Lich
       @gift_state = Lich.magicinfo_gift
       @messages_state = Lich.magicinfo_messages # for future need
 
-      # Processes a magic command request
-      # @param type [String] The type of command to process (default: 'announce')
+      # Handles requests for magic information commands.
+      # @param type [String] The type of request (e.g., 'announce', 'help')
       # @return [void]
-      # @raise [StandardError] If an invalid command type is provided
+      # @raise [StandardError] Raises an error for invalid commands.
       # @example Requesting help
       #   Lich::Util::Magicinfo.request('help')
       def self.request(type = 'announce')
@@ -55,7 +55,7 @@ module Lich
         end
       end
 
-      # Displays help information for magic commands
+      # Displays help information for magic commands.
       # @return [void]
       # @example Displaying help
       #   Lich::Util::Magicinfo.help
@@ -73,10 +73,9 @@ module Lich
         respond
       end
 
-      # Clears active spells or a specific spell
-      # @param rd [String, nil] The spell identifier to clear (optional)
+      # Clears active spells from the list.
+      # @param rd [String, nil] The spell to clear or nil to clear all spells.
       # @return [void]
-      # @raise [StandardError] If the spell cannot be identified
       # @example Clearing a specific spell
       #   Lich::Util::Magicinfo.clear('1')
       def self.clear(rd)
@@ -102,7 +101,7 @@ module Lich
         end
       end
 
-      # Toggles the display of spell circle labels
+      # Toggles the display of spell circle labels.
       # @return [void]
       # @example Toggling circle display
       #   Lich::Util::Magicinfo.circle
@@ -118,7 +117,7 @@ module Lich
         end
       end
 
-      # Toggles the display of spell duration messages
+      # Toggles the display of spell duration messages.
       # @return [void]
       # @example Toggling message display
       #   Lich::Util::Magicinfo.messages
@@ -133,7 +132,7 @@ module Lich
         respond('This command may be coming soon!')
       end
 
-      # Toggles the display of spell bonuses
+      # Toggles the display of spell bonuses.
       # @return [void]
       # @example Toggling bonus display
       #   Lich::Util::Magicinfo.bonus
@@ -149,7 +148,7 @@ module Lich
         end
       end
 
-      # Toggles the display of Gift of Lumnis information
+      # Toggles the display of Gift of Lumnis information.
       # @return [void]
       # @example Toggling gift display
       #   Lich::Util::Magicinfo.gift
@@ -165,7 +164,7 @@ module Lich
         end
       end
 
-      # Handles deprecated settings
+      # Handles deprecated settings.
       # @return [void]
       # @example Handling deprecated settings
       #   Lich::Util::Magicinfo.deprecated
@@ -173,10 +172,10 @@ module Lich
         respond('this setting is no longer used')
       end
 
-      # Sets the duration for a specific spell
-      # @param ra [String] The spell number and duration to set
+      # Sets the duration for a specified spell.
+      # @param ra [String] The spell number and duration to set.
       # @return [void]
-      # @raise [StandardError] If the spell cannot be found or duration is invalid
+      # @raise [StandardError] Raises an error for invalid spell numbers.
       # @example Setting a spell duration
       #   Lich::Util::Magicinfo.set('1 10')
       def self.set(ra)
@@ -201,7 +200,7 @@ module Lich
         end
       end
 
-      # Announces the current active spells and their details
+      # Announces the current active spells and their details.
       # @return [void]
       # @example Announcing active spells
       #   Lich::Util::Magicinfo.announce

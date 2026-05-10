@@ -1,17 +1,17 @@
 module Lich
   module Gemstone
-    # Represents a ready list for managing equipped items in the Lich game.
-    # This class provides methods to check, reset, and validate the items in the ready list.
-    # @example Creating a ready list
-    #   ready_list = Lich::Gemstone::ReadyList
+    # Represents a list of ready items and their management.
+    # This class provides methods to access and manipulate the ready list and store list.
+    # @example Accessing the ready list
+    #   ready_items = ReadyList.ready_list
     class ReadyList
       @checked = false
 
       # The original list of ready items.
-      # This constant defines the default items that can be included in the ready list.
+      # This constant defines the default items that can be ready.
       ORIGINAL_READY_LIST = [:shield, :weapon, :secondary_weapon, :ranged_weapon, :ammo_bundle, :ammo2_bundle, :sheath, :secondary_sheath, :wand]
       # The original list of store items.
-      # This constant defines the default items that can be included in the store list.
+      # This constant defines the default items that can be stored.
       ORIGINAL_STORE_LIST = [:shield, :weapon, :secondary_weapon, :ranged_weapon, :ammo_bundle, :wand]
 
       @ready_list = {
@@ -67,17 +67,13 @@ module Lich
 
         # Sets the checked status of the ready list.
         # @param value [Boolean] The new checked status.
-        # @return [Boolean] The updated checked status.
         def checked=(value)
           @checked = value
         end
 
         # Validates the items in the ready list.
-        # @param all [Boolean] If true, validates all items, otherwise only validates original ready items.
-        # @return [Boolean] True if all relevant items are valid, false otherwise.
-        # @note This method requires that the ready list has been checked before validation.
-        # @example Validating the ready list
-        #   is_valid = ready_list.valid?(all: true)
+        # @param all [Boolean] If true, validates all items; otherwise, only validates original ready items.
+        # @return [Boolean] True if all checked items are valid, false otherwise.
         def valid?(all: false)
           # check if existing ready items are valid or not
           return false unless checked?
@@ -92,10 +88,7 @@ module Lich
         end
 
         # Resets the ready and store lists.
-        # @param all [Boolean] If true, resets all items, otherwise only resets original items.
-        # @return [void]
-        # @example Resetting the ready list
-        #   ready_list.reset(all: true)
+        # @param all [Boolean] If true, resets all items; otherwise, only resets original items.
         def reset(all: false)
           @checked = false
           @ready_list.each do |key, _value|
@@ -110,19 +103,18 @@ module Lich
 
         # Checks the current settings of the ready list.
         # @param silent [Boolean] If true, suppresses output.
-        # @param quiet [Boolean] If true, uses a quiet output pattern.
+        # @param quiet [Boolean] If true, uses a quiet mode for checking.
         # @return [void]
-        # @example Checking the ready list
-        #   ready_list.check(silent: true)
+        # @note This method updates the checked status based on the results.
         def check(silent: false, quiet: false)
           if quiet
-            start_pattern = /<output class="mono"\/>/
+            start_pattern = /<output class="mono"\/>|^You are a ghost!/
           else
-            start_pattern = /Your current settings are:/
+            start_pattern = /Your current settings are:|^You are a ghost!/
           end
           waitrt?
-          Lich::Util.issue_command("ready list", start_pattern, silent: silent, quiet: quiet)
-          @checked = true
+          results = Lich::Util.issue_command("ready list", start_pattern, silent: silent, quiet: quiet)
+          @checked = results.any? { |line| line.match?(/Your current settings are:/) }
         end
       end
     end

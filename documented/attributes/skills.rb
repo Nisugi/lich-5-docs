@@ -1,26 +1,19 @@
 require "ostruct"
 
-# The main module for the Lich project
-# Contains submodules for various functionalities.
-# @example Including the Lich module
-#   include Lich
+# Provides functionality related to the Lich game system
+# This module serves as a namespace for the Gemstone module.
 module Lich
   module Gemstone
-    # Module for handling skills in the Lich project.
-    # Provides methods to calculate bonuses and manage skills.
-    # @example Accessing skills
-    #   Lich::Gemstone::Skills.to_bonus(5)
+    # Contains methods related to skills in the Lich game system
+    # This module provides methods to calculate bonuses and manage skills.
     module Skills
-      # extended function, now takes INT, Symbol, String but not shorthand Symbol, String
-      # Skills.to_bonus(Skills.combatmaneuvers), Skills.to_bonus(5),
-      # Skills.to_bonus(:combat_maneuvers), Skills.to_bonus('combat_maneuvers') as examples
-      # Calculates the bonus based on the number of ranks.
-      # @param ranks [Integer, String, Symbol] The ranks to calculate bonus for.
-      # @return [Integer] The calculated bonus.
-      # @raise [StandardError] If the input is not valid.
-      # @example Calculating bonus
-      #   bonus = Lich::Gemstone::Skills.to_bonus(30)
-      #   bonus = Lich::Gemstone::Skills.to_bonus(:combat_maneuvers)
+      # Calculates the bonus based on the number of ranks
+      # @param ranks [Integer, String, Symbol] The number of ranks or skill name
+      # @return [Integer] The calculated bonus
+      # @raise [RuntimeError] If the input is not an Integer, String, or Symbol
+      # @example
+      #   bonus = Skills.to_bonus(45) # => 5
+      #   bonus = Skills.to_bonus("two_weapon_combat")
       def self.to_bonus(ranks)
         case ranks
         when Integer
@@ -51,7 +44,8 @@ module Lich
         end
       end
 
-      # List of skills available in the Lich project.
+      # A list of all skills available in the Lich game system
+      # This constant holds the symbols representing each skill.
       @@skills = %i(two_weapon_combat armor_use shield_use combat_maneuvers edged_weapons blunt_weapons two_handed_weapons ranged_weapons thrown_weapons polearm_weapons brawling ambush multi_opponent_combat physical_fitness dodging arcane_symbols magic_item_use spell_aiming harness_power elemental_mana_control mental_mana_control spirit_mana_control elemental_lore_air elemental_lore_earth elemental_lore_fire elemental_lore_water spiritual_lore_blessings spiritual_lore_religion spiritual_lore_summoning sorcerous_lore_demonology sorcerous_lore_necromancy mental_lore_divination mental_lore_manipulation mental_lore_telepathy mental_lore_transference mental_lore_transformation survival disarming_traps picking_locks stalking_and_hiding perception climbing swimming first_aid trading pickpocketing)
       # todo: lich up through 5.6.2 returns rank as integer - should we extend to include bonus?
       @@skills.each do |skill|
@@ -78,10 +72,10 @@ module Lich
         end
       end
 
-      # Serializes the current skills into an array.
-      # @return [Array<Integer>] An array of skill ranks.
-      # @example Serializing skills
-      #   skills_array = Lich::Gemstone::Skills.serialize
+      # Serializes the current skills into an array
+      # @return [Array<Integer>] An array of skill ranks
+      # @example
+      #   ranks = Skills.serialize
       def self.serialize
         [self.two_weapon_combat, self.armor_use, self.shield_use, self.combat_maneuvers,
          self.edged_weapons, self.blunt_weapons, self.two_handed_weapons, self.ranged_weapons,

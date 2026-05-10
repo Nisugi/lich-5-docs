@@ -1,14 +1,5 @@
-# Contains the Lich project modules
-# @example Including the Lich module
-#   include Lich
 module Lich
-  # Contains the DragonRealms related functionality
-  # @example Including the DragonRealms module
-  #   include Lich::DragonRealms
   module DragonRealms
-    # Provides DRInfomon functionality for DragonRealms
-    # @example Including the DRInfomon module
-    #   include Lich::DragonRealms::DRInfomon
     module DRInfomon
       # The version of the DRInfomon module
       # @return [String] The current version of DRInfomon
@@ -19,16 +10,30 @@ module Lich
       DRINFOMON_CORE_LICH_DEFINES = %W(drinfomon common common-arcana common-crafting common-healing common-healing-data common-items common-money common-moonmage common-summoning common-theurgy common-travel common-validation events slackbot equipmanager spellmonitor)
 
       # Indicates if DRInfomon is included in the core Lich
-      # @return [Boolean] True if DRInfomon is in core Lich
+      # @return [Boolean] True if included in core Lich
       DRINFOMON_IN_CORE_LICH = true
       require_relative 'drinfomon/drdefs'
       require_relative 'drinfomon/drvariables'
+      require_relative 'drinfomon/drbanking'
       require_relative 'drinfomon/drparser'
       require_relative 'drinfomon/drskill'
       require_relative 'drinfomon/drstats'
       require_relative 'drinfomon/drroom'
       require_relative 'drinfomon/drspells'
       require_relative 'drinfomon/events'
+      require_relative 'drinfomon/drexpmonitor'
+      require_relative 'drinfomon/startup'
+
+      # Auto-start DRExpMonitor based on Lich.display_expgains setting
+      # - Defaults to ON for non-Genie frontends (Genie has built-in exp tracking)
+      # - Persisted: if user toggles it off, stays off across sessions
+      # Use ";display expgains" command to toggle on/off manually
+      # Use ";display inlineexp" to toggle inline gains in EXP window (off by default)
+      # Starts the DRExpMonitor if Lich.display_expgains is true
+      # @note Auto-starts based on Lich.display_expgains setting
+      # @example
+      #   DRExpMonitor.start if Lich.display_expgains
+      DRExpMonitor.start if Lich.display_expgains
     end
   end
 end

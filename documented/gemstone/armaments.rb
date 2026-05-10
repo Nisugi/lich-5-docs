@@ -2,13 +2,15 @@ require_relative "armaments/armor_stats.rb"
 require_relative "armaments/weapon_stats.rb"
 require_relative "armaments/shield_stats.rb"
 
+# Provides functionality related to armaments in the Lich game.
+# @example Including the Armaments module
+#   include Lich::Gemstone::Armaments
 module Lich
   module Gemstone
     module Armaments
       ##
       # A mapping of armor group indices to their names.
-      # @example Accessing armor group name
-      #   name = Armaments::AG_INDEX_TO_NAME[1]
+      # @type [Hash<Integer, String>]
       AG_INDEX_TO_NAME = {
         1 => "Cloth",
         2 => "Soft Leather",
@@ -18,9 +20,8 @@ module Lich
       }.freeze
 
       ##
-      # A mapping of armor subtype indices to their names.
-      # @example Accessing armor subtype name
-      #   name = Armaments::ASG_INDEX_TO_NAME[1]
+      # A mapping of armor sub-group indices to their names.
+      # @type [Hash<Integer, String>]
       ASG_INDEX_TO_NAME = {
         1  => "Robes",
         2  => "Light Leather",
@@ -46,8 +47,7 @@ module Lich
 
       ##
       # A mapping of spell circle indices to their names and abbreviations.
-      # @example Accessing spell circle name
-      #   spell_circle = Armaments::SPELL_CIRCLE_INDEX_TO_NAME[1]
+      # @type [Hash<Integer, Hash>]
       SPELL_CIRCLE_INDEX_TO_NAME = {
         0  => { name: "Action",                  abbr: "Act"    },
         1  => { name: "Minor Spiritual",         abbr: "MinSp"  },
@@ -72,11 +72,11 @@ module Lich
       }.freeze
 
       ##
-      # Finds an armament by name and returns its type and data.
+      # Finds an armament by its name.
       # @param name [String] The name of the armament to find.
       # @return [Hash, nil] A hash containing the type and data of the armament, or nil if not found.
       # @example Finding an armament
-      #   result = Armaments.find("sword")
+      #   result = Armaments.find("Sword")
       def self.find(name)
         name = name.downcase.strip
 
@@ -96,11 +96,11 @@ module Lich
       end
 
       ##
-      # Checks if the given name is valid by attempting to find it.
+      # Checks if the given name corresponds to a valid armament.
       # @param name [String] The name to validate.
       # @return [Boolean] True if the name is valid, false otherwise.
       # @example Validating an armament name
-      #   is_valid = Armaments.valid_name?("shield")
+      #   is_valid = Armaments.valid_name?("Shield")
       def self.valid_name?(name)
         name = name.downcase.strip
 
@@ -109,9 +109,9 @@ module Lich
       end
 
       ##
-      # Retrieves a list of names for armaments of a specified type.
-      # @param type [Symbol, nil] The type of armament (:weapon, :armor, :shield) or nil for all.
-      # @return [Array<String>] An array of unique armament names.
+      # Retrieves the names of armaments, optionally filtered by type.
+      # @param type [Symbol, nil] The type of armament (:weapon, :armor, :shield) to filter by.
+      # @return [Array<String>] An array of armament names.
       # @example Getting all armament names
       #   all_names = Armaments.names
       def self.names(type = nil)
@@ -125,9 +125,9 @@ module Lich
       end
 
       ##
-      # Retrieves a list of categories for armaments of a specified type.
-      # @param type [Symbol, nil] The type of armament (:weapon, :armor, :shield) or nil for all.
-      # @return [Array<String>] An array of unique armament categories.
+      # Retrieves the categories of armaments, optionally filtered by type.
+      # @param type [Symbol, nil] The type of armament (:weapon, :armor, :shield) to filter by.
+      # @return [Array<String>] An array of armament categories.
       # @example Getting all armament categories
       #   all_categories = Armaments.categories
       def self.categories(type = nil)
@@ -145,7 +145,7 @@ module Lich
       # @param name [String] The name of the armament.
       # @return [Symbol, nil] The type of the armament (:weapon, :armor, :shield) or nil if not found.
       # @example Getting the type of an armament
-      #   armament_type = Armaments.type_for("sword")
+      #   armament_type = Armaments.type_for("Axe")
       def self.type_for(name)
         name = name.downcase.strip
 
@@ -161,7 +161,7 @@ module Lich
       # @param name [String] The name of the armament.
       # @return [String, nil] The category of the armament or nil if not found.
       # @example Getting the category of an armament
-      #   armament_category = Armaments.category_for("sword")
+      #   category = Armaments.category_for("Plate Armor")
       def self.category_for(name)
         name = name.downcase.strip
 

@@ -10,17 +10,18 @@ require_relative "weapon_stats_thrown.rb"
 require_relative "weapon_stats_two_handed.rb"
 require_relative "weapon_stats_unarmed.rb"
 
-# Namespace for the Lich project
-# Contains modules related to the Gemstone game.
+# Contains the Lich module and its submodules
+# @example Including the Lich module
+#   include Lich
 module Lich
-  # Namespace for the Gemstone game
-  # Contains modules related to armaments and weapon statistics.
   module Gemstone
+    # Provides functionality related to armaments in the game
+    # @example Using Armaments
+    #   Armaments::WeaponStats.find("sword")
     module Armaments
-      # Module for managing weapon statistics
-      # Provides methods to find, list, and compare weapon stats.
-      # @example Listing all weapons
-      #   weapons = WeaponStats.list
+      # Manages weapon statistics and provides methods to access them
+      # @example Accessing weapon stats
+      #   stats = WeaponStats.list
       module WeaponStats
         # Static array of weapon stats indexed by weapon identifiers. Each weapon
         # entry contains metadata such as category, base name, alternative names,
@@ -60,7 +61,7 @@ module Lich
         Lich::Util.deep_freeze(@@weapon_stats)
 
         ##
-        # Finds a weapon by name and category
+        # Finds weapon information by name and category
         # @param name [String] The name of the weapon to find
         # @param category [Symbol, nil] The category of the weapon (optional)
         # @return [Hash, nil] The weapon information or nil if not found
@@ -105,7 +106,7 @@ module Lich
         end
 
         ##
-        # Returns the list of weapon categories
+        # Returns the available weapon categories
         # @return [Array<Symbol>] An array of weapon category symbols
         # @example Getting weapon categories
         #   categories = WeaponStats.categories
@@ -117,7 +118,7 @@ module Lich
         # Provides a summary of damage types for a given weapon
         # @param name [String] The name of the weapon
         # @param category [Symbol, nil] The category of the weapon (optional)
-        # @return [Hash, nil] A hash containing damage summary or nil if not found
+        # @return [Hash, nil] A hash summarizing the weapon's damage types or nil if not found
         # @example Getting damage summary
         #   summary = WeaponStats.damage_summary("sword")
         def self.damage_summary(name, category = nil)
@@ -140,7 +141,7 @@ module Lich
         # @param name [String] The name of the weapon
         # @param category [Symbol, nil] The category of the weapon (optional)
         # @return [Array<String>] An array of aliases for the weapon
-        # @example Getting aliases for a weapon
+        # @example Getting aliases
         #   aliases = WeaponStats.aliases_for("sword")
         def self.aliases_for(name, category = nil)
           name = name.downcase.strip
@@ -150,7 +151,7 @@ module Lich
         end
 
         ##
-        # Compares two weapons and returns their stats
+        # Compares two weapons and returns their statistics
         # @param name1 [String] The name of the first weapon
         # @param name2 [String] The name of the second weapon
         # @param category1 [Symbol, nil] The category of the first weapon (optional)
@@ -184,7 +185,7 @@ module Lich
         # @param filters [Hash] A hash of filters to apply to the search
         # @return [Array<Hash>] An array of weapons matching the filters
         # @example Searching for weapons
-        #   results = WeaponStats.search(damage_type: :slash, max_base_rt: 5)
+        #   results = WeaponStats.search(damage_type: :slash)
         def self.search(filters = {})
           results = []
 
@@ -251,10 +252,10 @@ module Lich
         end
 
         ##
-        # Returns a list of all weapon names
+        # Returns a unique list of all weapon names
         # @return [Array<String>] An array of unique weapon names
         # @example Getting all weapon names
-        #   names = WeaponStats.names
+        #   all_names = WeaponStats.names
         def self.names
           @@weapon_stats.values.flat_map do |weapons|
             weapons.values.map { |w| w[:all_names] }
@@ -276,7 +277,7 @@ module Lich
         end
 
         ##
-        # Returns the category for a given weapon name
+        # Returns the category of a given weapon name
         # @param name [String] The name of the weapon
         # @return [Symbol, nil] The category of the weapon or nil if not found
         # @example Getting the category for a weapon
@@ -291,8 +292,8 @@ module Lich
         ##
         # Returns a detailed string representation of a weapon
         # @param name [String] The name of the weapon
-        # @return [String] A formatted string with detailed weapon information
-        # @example Getting a detailed representation of a weapon
+        # @return [String] A formatted string with weapon details
+        # @example Getting a detailed representation
         #   details = WeaponStats.pretty_long("sword")
         def self.pretty_long(name)
           weapon = self.find(name)
@@ -358,11 +359,11 @@ module Lich
         end
 
         ##
-        # Returns a concise string representation of a weapon
+        # Returns a formatted string representation of a weapon
         # @param name [String] The name of the weapon
-        # @return [String] A formatted string with concise weapon information
-        # @example Getting a concise representation of a weapon
-        #   summary = WeaponStats.pretty("sword")
+        # @return [String] A formatted string with weapon details
+        # @example Getting a formatted representation
+        #   formatted = WeaponStats.pretty("sword")
         def self.pretty(name)
           weapon = self.find(name)
           return "\n(no data)\n" unless weapon.is_a?(Hash)
@@ -414,10 +415,10 @@ module Lich
 
         ##
         # Validates if a given name corresponds to a known weapon
-        # @param name [String] The name of the weapon to validate
+        # @param name [String] The name of the weapon
         # @return [Boolean] True if the name is valid, false otherwise
         # @example Validating a weapon name
-        #   is_valid = WeaponStats.valid_name?("sword")
+        #   valid = WeaponStats.valid_name?("sword")
         def self.valid_name?(name)
           name = name.downcase.strip
           @@weapon_stats.values.any? do |weapons|

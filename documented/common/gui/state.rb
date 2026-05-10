@@ -3,11 +3,11 @@ module Lich
   module Common
     module GUI
       module State
-        # Loads saved entries from a specified data directory.
+        # Loads saved entries from a specified directory.
         # @param data_dir [String] The directory where the entry.dat file is located.
         # @param autosort_state [Boolean] Determines the sorting order of the entries.
-        # @return [Array] The sorted array of entries or an empty array if loading fails.
-        # @raise [StandardError] If there is an issue reading the file.
+        # @return [Array] The sorted array of entries.
+        # @raise [StandardError] If there is an error reading the file.
         # @example
         #   entries = Lich::Common::GUI::State.load_saved_entries("/path/to/data", true)
         def self.load_saved_entries(data_dir, autosort_state)
@@ -35,11 +35,11 @@ module Lich
           end
         end
 
-        # Saves the given entry data to the specified data directory.
+        # Saves entries to a specified directory.
         # @param data_dir [String] The directory where the entry.dat file will be saved.
-        # @param entry_data [Array] The data to be saved as entries.
+        # @param entry_data [Array] The array of entries to save.
         # @return [Boolean] Returns true if the entries were saved successfully, false otherwise.
-        # @raise [StandardError] If there is an issue writing to the file.
+        # @raise [StandardError] If there is an error writing to the file.
         # @example
         #   success = Lich::Common::GUI::State.save_entries("/path/to/data", entries)
         def self.save_entries(data_dir, entry_data)
@@ -51,8 +51,8 @@ module Lich
           false
         end
 
-        # Applies the theme settings based on the provided state.
-        # @param theme_state [Boolean] Indicates whether to prefer a dark theme.
+        # Applies theme settings based on the provided state.
+        # @param theme_state [Boolean] Indicates whether to apply dark theme settings.
         # @return [void]
         # @example
         #   Lich::Common::GUI::State.apply_theme_settings(true)

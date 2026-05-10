@@ -3,26 +3,23 @@
 require_relative 'master_password_manager'
 require_relative 'master_password_prompt_ui'
 require_relative 'password_cipher'
-require_relative 'yaml_state'
+require_relative '../authentication/entry_store'
 require_relative 'accessibility'
 
-# Namespace for the Lich project
-# Contains common modules and functionality.
 module Lich
+  # Provides common GUI functionalities for the Lich application.
+  # @example Using the MasterPasswordChange module
+  #   Lich::Common::GUI::MasterPasswordChange.show_change_master_password_dialog(parent, data_dir)
   module Common
     module GUI
-      # Module for handling the master password change dialog
-      # Provides functionality to show the dialog and manage password changes.
-      # @example Showing the change password dialog
-      #   Lich::Common::GUI::MasterPasswordChange.show_change_master_password_dialog(parent, data_dir)
       module MasterPasswordChange
         # Displays a dialog for changing the master password.
         # @param parent [Gtk::Window] The parent window for the dialog.
-        # @param data_dir [String] The directory where data is stored.
-        # @return [Boolean] Returns true if the password was changed successfully, false otherwise.
+        # @param data_dir [String] The directory where account data is stored.
+        # @return [Boolean] Returns true if the password was changed successfully, otherwise false.
         # @raise [StandardError] Raises an error if there is an issue during the password change process.
-        # @example
-        #   success = Lich::Common::GUI::MasterPasswordChange.show_change_master_password_dialog(parent, data_dir)
+        # @example Showing the dialog
+        #   Lich::Common::GUI::MasterPasswordChange.show_change_master_password_dialog(parent, "/path/to/data")
         def self.show_change_master_password_dialog(parent, data_dir)
           # Create dialog
           dialog = Gtk::Dialog.new(
@@ -171,7 +168,7 @@ module Lich
               end
 
               # Validate current password
-              yaml_file = YamlState.yaml_file_path(data_dir)
+              yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
               unless File.exist?(yaml_file)
                 status_label.set_markup("<span foreground='red'>No account data found.</span>")
                 next
@@ -248,7 +245,7 @@ module Lich
           end
 
           def re_encrypt_all_accounts(yaml_data, data_dir, old_password, new_password)
-            yaml_file = YamlState.yaml_file_path(data_dir)
+            yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
             # Create backup first
             backup_file = "#{yaml_file}.backup"
@@ -291,7 +288,7 @@ module Lich
               yaml_data['master_password_validation_test'] = new_validation
 
               # Save YAML with password preservation
-              content = YamlState.generate_yaml_content(yaml_data)
+              content = Lich::Common::Authentication::EntryStore.generate_yaml_content(yaml_data)
               File.open(yaml_file, 'w', 0600) do |file|
                 file.write(content)
               end

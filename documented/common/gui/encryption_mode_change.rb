@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'yaml_state'
+require_relative '../authentication/entry_store'
 require_relative 'master_password_manager'
 require_relative 'master_password_prompt_ui'
 require_relative 'accessibility'
@@ -8,17 +8,21 @@ require_relative 'accessibility'
 module Lich
   module Common
     module GUI
+      # Module for handling the encryption mode change dialog.
+      # This module provides functionality to show a dialog for changing the encryption mode of stored passwords.
+      # @example Showing the change mode dialog
+      #   Lich::Common::GUI::EncryptionModeChange.show_change_mode_dialog(parent, data_dir)
       module EncryptionModeChange
-        # Displays a dialog for changing the encryption mode.
+        # Displays a dialog to change the encryption mode.
         # @param parent [Gtk::Window] The parent window for the dialog.
-        # @param data_dir [String] The directory containing the YAML data.
+        # @param data_dir [String] The directory where data is stored.
         # @param on_completion [Proc, nil] Optional callback to be called upon completion.
         # @return [Boolean] Returns true if the dialog was shown successfully.
         # @raise [StandardError] Raises an error if the YAML file cannot be loaded.
-        # @example
-        #   Lich::Common::GUI::EncryptionModeChange.show_change_mode_dialog(parent_window, "/path/to/data")
+        # @example Showing the dialog
+        #   Lich::Common::GUI::EncryptionModeChange.show_change_mode_dialog(parent, "/path/to/data")
         def self.show_change_mode_dialog(parent, data_dir, on_completion = nil)
-          yaml_file = YamlState.yaml_file_path(data_dir)
+          yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
           # Load current mode
           begin
@@ -235,8 +239,8 @@ module Lich
                 if validation_passed
                   Lich.log "debug: all validations passed, queuing mode change"
                   Gtk.queue do
-                    Lich.log "debug: in Gtk.queue, calling YamlState.change_encryption_mode"
-                    success = YamlState.change_encryption_mode(
+                    Lich.log "debug: in Gtk.queue, calling Lich::Common::Authentication::EntryStore.change_encryption_mode"
+                    success = Lich::Common::Authentication::EntryStore.change_encryption_mode(
                       data_dir,
                       selected_mode,
                       new_master_password
@@ -302,9 +306,6 @@ module Lich
         class << self
           private
 
-          # Returns a user-friendly display text for the given encryption mode.
-          # @param mode [Symbol] The encryption mode to display.
-          # @return [String] The display text corresponding to the encryption mode.
           def mode_display_text(mode)
             case mode
             when :plaintext
@@ -318,9 +319,6 @@ module Lich
             end
           end
 
-          # Displays a confirmation dialog for switching to plaintext mode.
-          # @param parent [Gtk::Window] The parent window for the dialog.
-          # @return [Boolean] Returns true if the user confirms switching to plaintext mode.
           def confirm_plaintext_mode_dialog(parent)
             result = nil
             mutex = Mutex.new
@@ -361,9 +359,6 @@ module Lich
             result
           end
 
-          # Displays an error dialog with a specified message.
-          # @param parent [Gtk::Window] The parent window for the dialog.
-          # @param message [String] The error message to display.
           def show_error_dialog(parent, message)
             dialog = Gtk::MessageDialog.new(
               parent: parent,

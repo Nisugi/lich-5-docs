@@ -7,30 +7,26 @@ Lich::Util.install_gem_requirements({ 'os' => true })
 require 'shellwords' # default gem
 require_relative 'windows_credential_manager'
 
+# Provides functionality for managing the master password in a secure manner.
+# @example Using the MasterPasswordManager
+#   Lich::Common::GUI::MasterPasswordManager.store_master_password("my_secure_password")
 module Lich
   module Common
     module GUI
-      # Manages the storage and retrieval of the master password
-      # This module provides functionality to store, retrieve, validate,
-      # and delete the master password using the system's keychain.
-      # @example Storing a master password
-      #   MasterPasswordManager.store_master_password("my_secret_password")
       module MasterPasswordManager
         # The service name used for storing the master password in the keychain.
         KEYCHAIN_SERVICE = 'lich5.master_password'
         # The number of iterations used for password validation.
         VALIDATION_ITERATIONS = 100_000
-        # The length of the key used for password validation.
+        # The length of the key used for validation.
         VALIDATION_KEY_LENGTH = 32
-        # The prefix used for the salt in password validation.
+        # The prefix used for the salt in validation.
         VALIDATION_SALT_PREFIX = 'lich5-master-password-validation-v1'
 
         # Checks if the keychain is available on the current operating system.
-        # @return [Boolean] true if the keychain is available, false otherwise
+        # @return [Boolean] true if the keychain is available, false otherwise.
         # @example Checking keychain availability
-        #   if MasterPasswordManager.keychain_available?
-        #     puts "Keychain is available"
-        #   end
+        #   Lich::Common::GUI::MasterPasswordManager.keychain_available?
         def self.keychain_available?
           if OS.mac?
             macos_keychain_available?
@@ -43,12 +39,12 @@ module Lich
           end
         end
 
-        # Stores the master password in the system's keychain.
-        # @param master_password [String] The master password to store
-        # @return [Boolean] true if the password was stored successfully, false otherwise
-        # @raise [StandardError] if an error occurs during storage
+        # Stores the master password in the keychain.
+        # @param master_password [String] The master password to store.
+        # @return [Boolean] true if the password was stored successfully, false otherwise.
+        # @raise [StandardError] if an error occurs during storage.
         # @example Storing a master password
-        #   MasterPasswordManager.store_master_password("my_secret_password")
+        #   Lich::Common::GUI::MasterPasswordManager.store_master_password("my_secure_password")
         def self.store_master_password(master_password)
           return false unless keychain_available?
 
@@ -66,11 +62,11 @@ module Lich
           false
         end
 
-        # Retrieves the master password from the system's keychain.
-        # @return [String, nil] the master password if found, nil otherwise
-        # @raise [StandardError] if an error occurs during retrieval
+        # Retrieves the master password from the keychain.
+        # @return [String, nil] The master password if found, nil otherwise.
+        # @raise [StandardError] if an error occurs during retrieval.
         # @example Retrieving the master password
-        #   password = MasterPasswordManager.retrieve_master_password
+        #   password = Lich::Common::GUI::MasterPasswordManager.retrieve_master_password
         def self.retrieve_master_password
           return nil unless keychain_available?
 
@@ -88,11 +84,11 @@ module Lich
           nil
         end
 
-        # Creates a validation test for the master password.
-        # @param master_password [String] The master password to validate
-        # @return [Hash] a hash containing the validation salt and hash
+        # Creates a validation test for the given master password.
+        # @param master_password [String] The master password to validate.
+        # @return [Hash] A hash containing the validation salt and hash.
         # @example Creating a validation test
-        #   validation_test = MasterPasswordManager.create_validation_test("my_secret_password")
+        #   validation_test = Lich::Common::GUI::MasterPasswordManager.create_validation_test("my_secure_password")
         def self.create_validation_test(master_password)
           random_salt = SecureRandom.random_bytes(16)
           full_salt = VALIDATION_SALT_PREFIX + random_salt
@@ -112,12 +108,12 @@ module Lich
         end
 
         # Validates the entered master password against the stored validation test.
-        # @param entered_password [String] The password entered by the user
-        # @param validation_test [Hash] The validation test hash
-        # @return [Boolean] true if the password is valid, false otherwise
-        # @raise [StandardError] if an error occurs during validation
+        # @param entered_password [String] The password entered by the user.
+        # @param validation_test [Hash] The validation test containing the salt and hash.
+        # @return [Boolean] true if the password is valid, false otherwise.
+        # @raise [StandardError] if an error occurs during validation.
         # @example Validating a master password
-        #   is_valid = MasterPasswordManager.validate_master_password("my_secret_password", validation_test)
+        #   is_valid = Lich::Common::GUI::MasterPasswordManager.validate_master_password("entered_password", validation_test)
         def self.validate_master_password(entered_password, validation_test)
           return false unless validation_test.is_a?(Hash)
           return false unless validation_test['validation_salt'] && validation_test['validation_hash']
@@ -140,11 +136,11 @@ module Lich
           end
         end
 
-        # Deletes the master password from the system's keychain.
-        # @return [Boolean] true if the password was deleted successfully, false otherwise
-        # @raise [StandardError] if an error occurs during deletion
+        # Deletes the master password from the keychain.
+        # @return [Boolean] true if the password was deleted successfully, false otherwise.
+        # @raise [StandardError] if an error occurs during deletion.
         # @example Deleting the master password
-        #   MasterPasswordManager.delete_master_password
+        #   Lich::Common::GUI::MasterPasswordManager.delete_master_password
         def self.delete_master_password
           return false unless keychain_available?
 
@@ -162,8 +158,16 @@ module Lich
           false
         end
 
+        # Returns whether the macOS Keychain CLI is available for launcher use.
+        #
+        # On some macOS + Ruby/GTK combinations, spawning a shell command here can
+        # raise during GUI startup before the launcher is fully built. Prefer a
+        # direct executable check for the system Keychain CLI.
         private_class_method def self.macos_keychain_available?
-          system('which security >/dev/null 2>&1')
+          File.executable?('/usr/bin/security')
+        rescue StandardError => e
+          Lich.log "error: Failed to check macOS keychain availability: #{e.message}"
+          false
         end
 
         private_class_method def self.store_macos_keychain(password)

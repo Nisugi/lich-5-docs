@@ -2,15 +2,13 @@
 module Lich
   module Common
     module GUI
-      # Module for game selection GUI functionality
-      # Provides methods to create and manage game selection interfaces.
-      # @example Using the GameSelection module
-      #   combo = Lich::Common::GUI::GameSelection.create_game_selection_combo
+      # Game code to display name mapping
+      # Maps internal game codes to user-friendly display names
+      # @example Accessing game mapping
+      #   puts Lich::Common::GUI::GameSelection::GAME_MAPPING
       module GameSelection
         # Game code to display name mapping
         # Maps internal game codes to user-friendly display names
-        # Game code to display name mapping
-        # Maps internal game codes to user-friendly display names.
         GAME_MAPPING = {
           'GS3' => 'GemStone IV',
           'GSX' => 'GemStone IV Platinum',
@@ -25,12 +23,12 @@ module Lich
         # Display name to game code mapping (reverse of GAME_MAPPING)
         # Used for converting user-selected display names back to game codes
         # Display name to game code mapping (reverse of GAME_MAPPING)
-        # Used for converting user-selected display names back to game codes.
+        # Used for converting user-selected display names back to game codes
         REVERSE_GAME_MAPPING = GAME_MAPPING.invert.freeze
 
-        # Creates a combo box for game selection.
-        # @param current_selection [String, nil] The game code to set as the default selection.
-        # @return [Gtk::ComboBoxText] The combo box populated with game options.
+        # Creates a combo box for game selection
+        # @param current_selection [String, nil] The currently selected game code
+        # @return [Gtk::ComboBoxText] The combo box with game options
         # @example Creating a game selection combo
         #   combo = Lich::Common::GUI::GameSelection.create_game_selection_combo("GS3")
         def self.create_game_selection_combo(current_selection = nil)
@@ -61,9 +59,9 @@ module Lich
           combo
         end
 
-        # Retrieves the game code corresponding to the selected game name in the combo box.
-        # @param combo [Gtk::ComboBoxText] The combo box from which to get the selected game.
-        # @return [String, nil] The game code of the selected game, or 'GS3' if not found.
+        # Retrieves the selected game code from the combo box
+        # @param combo [Gtk::ComboBoxText] The combo box containing game options
+        # @return [String, nil] The selected game code or nil if not found
         # @example Getting the selected game code
         #   code = Lich::Common::GUI::GameSelection.get_selected_game_code(combo)
         def self.get_selected_game_code(combo)
@@ -73,21 +71,20 @@ module Lich
           REVERSE_GAME_MAPPING[selected_text] || 'GS3' # Default to GS3 if not found
         end
 
-        # Gets the display name for a given game code.
-        # @param game_code [String] The internal game code.
-        # @return [String] The user-friendly display name for the game, or 'Unknown' if not found.
+        # Retrieves the display name for a given game code
+        # @param game_code [String] The game code to look up
+        # @return [String] The display name of the game or 'Unknown'
         # @example Getting a game name
         #   name = Lich::Common::GUI::GameSelection.get_game_name("GS3")
         def self.get_game_name(game_code)
           GAME_MAPPING[game_code] || 'Unknown'
         end
 
-        # Updates the game selection combo box with the current game options.
-        # @param combo [Gtk::ComboBoxText] The combo box to update.
-        # @param current_selection [String, nil] The game code to set as the default selection.
-        # @return [void]
+        # Updates the game selection combo box with new options
+        # @param combo [Gtk::ComboBoxText] The combo box to update
+        # @param current_selection [String, nil] The currently selected game code
         # @example Updating the game selection combo
-        #   Lich::Common::GUI::GameSelection.update_game_selection_combo(combo, "GSF")
+        #   Lich::Common::GUI::GameSelection.update_game_selection_combo(combo, "GSX")
         def self.update_game_selection_combo(combo, current_selection = nil)
           return unless combo
 

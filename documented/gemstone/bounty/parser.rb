@@ -1,16 +1,18 @@
 module Lich
   module Gemstone
-    # Represents a bounty in the Lich Gemstone module.
-    # This class is responsible for parsing bounty descriptions.
+    # Represents a bounty in the Lich game.
+    # This class handles the parsing of bounty descriptions.
     # @example Creating a bounty parser
-    #   bounty_parser = Lich::Gemstone::Bounty::Parser.new(description)
+    #   bounty = Lich::Gemstone::Bounty.new(description)
     class Bounty
-      # Parses bounty descriptions to extract task details.
-      # This class uses regular expressions to match various task types.
+      # Parses bounty descriptions to extract task information.
       # @example Parsing a bounty description
-      #   result = Lich::Gemstone::Bounty::Parser.parse(description)
+      #   parser = Lich::Gemstone::Bounty::Parser.new(description)
+      #   result = parser.parse
       class Parser
+        # Regular expression to match 'Hmm' phrases in task descriptions.
         HMM_REGEX = /(?:Hmm, I've got a task here from .*?(?<town>[A-Z].*?)\..*?)?/
+        # Regular expression to match location phrases in task descriptions.
         LOCATION_REGEX = /(?:on|in|near) (?:the\s+)?(?<area>[^.]+?)(?:\s+(?:near|between|under) (?<town>[^.]+))?/
         GUARD_REGEX = Regexp.union(
           /one of the guardsmen just inside the (?<town>Ta'Illistim) City Gate/,
@@ -27,9 +29,11 @@ module Lich
           /the captain of the (?<town>Contempt)/,
           /the elderly guard in the East Guardtower/
         )
+        # Regular expression to match concoction task descriptions.
         CONCOCTION_REGEX = /is working on a concoction that requires (?:an?|some|several) (?<herb>[^.]+?) found [oi]n (?:the\s+)?(?<area>[^.]+?)(?:\s+(?:near|under|between) [^.]+)?\.  These samples must be in pristine condition\.  You have been tasked to retrieve (?<number>\d+) (?:more\s+)?samples?\./
         TASK_MAYBE_REGEX = /^(?:The taskmaster told you:  ")/
 
+        # A hash mapping task types to their corresponding regular expressions.
         TASK_MATCHERS = {
           :none                => /^You are not currently assigned a task/,
           :bandit_assignment   => /#{HMM_REGEX}It appears they have a bandit problem they'd like you to solve/,
@@ -73,7 +77,7 @@ module Lich
             /^The .+, (?<npc_name>[^,]+), aboard the (?<town>\w+?) in .*? #{CONCOCTION_REGEX}$/
           ),
           :rescue              => /^You have been tasked to rescue the young (?:runaway|kidnapped) (?:son|daughter) of a local citizen\.  A local divinist has had visions of the child fleeing from an? (?<creature>[^.]+?) #{LOCATION_REGEX}\.  Find the area where the child was last seen and clear out the creatures that have been tormenting (?:him|her) in order to bring (?:him|her) out of hiding\.$/,
-          :skin                => /^You have been tasked to retrieve (?<number>\d+) (?<skin>[^.]+?)s? of at least (?<quality>[^.]+) quality for (?<npc_name>.+) in (?<town>[^.]+?)\.  You can SKIN them off the corpse of an? (?<creature>[^.]+) or purchase them from another adventurer\.  You can SELL the skins to the furrier as you collect them\."$/,
+          :skin                => /^You have been tasked to retrieve (?<number>\d+) (?<skin>[^.]+?)s? of at least (?<quality>[^.]+) quality for (?<npc_name>.+) in (?<town>[^.]+?)\.  You can SKIN them off the corpse of an? (?<creature>[^.]+) or purchase them from another adventurer\.  You can SELL the skins to the furrier as you collect them\."?$/,
           :cull                => Regexp.union(
             /^You have been tasked to(?: help (?<assist>\w+))? suppress (?<creature>[^.]+) activity #{LOCATION_REGEX}\.  You need to kill (?<number>\d+) (?:more\s+)?of them to complete your task\.$/,
             /^You have been tasked to help (?<assist>\w+) rescue a missing child by suppressing (?<creature>[^.]+) activity #{LOCATION_REGEX} during the rescue attempt\.  You need to kill (?<number>\d+) (?:more\s+)?of them to complete your task\.$/,
@@ -92,14 +96,10 @@ module Lich
           @description = description
         end
 
-        # Returns the description of the bounty.
-        # @return [String] The bounty description.
         attr_reader :description
 
         # Parses the bounty description and returns task details.
-        # @return [Hash, nil] A hash containing task details or nil if no match is found.
-        # @example
-        #   task_details = bounty_parser.parse
+        # @return [Hash, nil] A hash containing task type and details, or nil if no match.
         def parse
           TASK_MATCHERS.each do |(task_type, regex)|
             if (md = regex.match(description))
@@ -114,9 +114,9 @@ module Lich
           end
         end
 
-        # Extracts task details from the captured regex groups.
+        # Extracts task details from named captures.
         # @param captures [Hash] The named captures from the regex match.
-        # @return [Hash] A hash containing the task requirements.
+        # @return [Hash] A hash containing task requirements.
         def task_details_from(captures)
           {
             requirements: {}
@@ -159,7 +159,7 @@ module Lich
         end
 
         # Determines the town based on the captured town name and description.
-        # @param captured_town [String] The town name captured from the regex.
+        # @param captured_town [String] The town name captured from the description.
         # @return [String] The determined town name.
         def determine_town(captured_town)
           if description =~ /the sentry just outside town\.$/
@@ -177,9 +177,9 @@ module Lich
           end
         end
 
-        # Parses a bounty description string and returns task details.
-        # @param desc [String, nil] The description of the bounty to parse. Defaults to checkbounty.
-        # @return [Hash, nil] A hash containing task details or nil if no match is found.
+        # Parses a bounty description from a string.
+        # @param desc [String] The description of the bounty to parse.
+        # @return [Hash, nil] A hash containing task type and details, or nil if no match.
         def self.parse(desc = checkbounty)
           if desc&.empty?
             return

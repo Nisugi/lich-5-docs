@@ -2,16 +2,13 @@
 
 Lich::Util.install_gem_requirements({ 'ffi' => true })
 
-# Provides utility functions for the Lich project.
-# @example Usage
+# Provides functionality for the Lich application.
+# This module contains various utilities and classes for managing credentials on Windows.
+# @example Using the Lich module
 #   Lich::Common::GUI::WindowsCredentialManager.store_credential("target", "user", "pass")
 module Lich
   module Common
     module GUI
-      # Provides an interface to the Windows Credential Manager.
-      # This module allows storing, retrieving, and deleting credentials on Windows.
-      # @example Storing a credential
-      #   WindowsCredentialManager.store_credential("target", "user", "pass")
       module WindowsCredentialManager
         extend FFI::Library
 
@@ -30,15 +27,19 @@ module Lich
         CRED_TYPE_DOMAIN_EXTENDED = 6
 
         # CRED_PERSIST values
-        # Represents a credential that is valid for the current session.
+        # Represents a session persistence type for credentials.
         CRED_PERSIST_SESSION = 1
         CRED_PERSIST_LOCAL_MACHINE = 2
         CRED_PERSIST_ENTERPRISE = 3
 
         # Max credential size (512KB)
-        # Maximum size for a credential blob, set to 512KB.
+        # Maximum size for a credential blob in bytes (512KB).
         CRED_MAX_CREDENTIAL_BLOB_SIZE = 512 * 1024
 
+        # Represents a credential structure used for storing credentials in Windows.
+        # This class defines the layout of the credential structure used by the FFI library.
+        # @example Creating a new CredentialStruct
+        #   credential = CredentialStruct.new
         class CredentialStruct < FFI::Struct
           layout(
             :flags, :uint32,
@@ -67,7 +68,7 @@ module Lich
 
         class << self
           # Checks if the Windows Credential Manager is available.
-          # @return [Boolean] Returns true if available, false otherwise.
+          # @return [Boolean] true if available, false otherwise.
           # @example Checking availability
           #   if WindowsCredentialManager.available?
           #     puts "Credential Manager is available"
@@ -90,8 +91,8 @@ module Lich
           # @param password [String] The password associated with the credential.
           # @param comment [String, nil] An optional comment for the credential.
           # @param persist [Integer] The persistence type for the credential (default: CRED_PERSIST_LOCAL_MACHINE).
-          # @return [Boolean] Returns true if the credential was stored successfully, false otherwise.
-          # @raise [StandardError] Raises an error if storing fails.
+          # @return [Boolean] true if the credential was stored successfully, false otherwise.
+          # @raise [StandardError] If an error occurs during storage.
           # @example Storing a credential
           #   WindowsCredentialManager.store_credential("target", "user", "pass")
           def store_credential(target_name, username, password, comment = nil, persist = CRED_PERSIST_LOCAL_MACHINE)
@@ -145,8 +146,8 @@ module Lich
 
           # Retrieves a credential from the Windows Credential Manager.
           # @param target_name [String] The target name for the credential to retrieve.
-          # @return [String, nil] Returns the password if found, nil otherwise.
-          # @raise [StandardError] Raises an error if retrieval fails.
+          # @return [String, nil] The password if found, nil otherwise.
+          # @raise [StandardError] If an error occurs during retrieval.
           # @example Retrieving a credential
           #   password = WindowsCredentialManager.retrieve_credential("target")
           def retrieve_credential(target_name)
@@ -189,8 +190,8 @@ module Lich
 
           # Deletes a credential from the Windows Credential Manager.
           # @param target_name [String] The target name for the credential to delete.
-          # @return [Boolean] Returns true if the credential was deleted successfully, false otherwise.
-          # @raise [StandardError] Raises an error if deletion fails.
+          # @return [Boolean] true if the credential was deleted successfully, false otherwise.
+          # @raise [StandardError] If an error occurs during deletion.
           # @example Deleting a credential
           #   WindowsCredentialManager.delete_credential("target")
           def delete_credential(target_name)

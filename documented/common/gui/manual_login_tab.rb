@@ -8,17 +8,18 @@ module Lich
   module Common
     module GUI
       # Represents a manual login tab in the GUI.
+      # This class handles user authentication and UI elements for manual login.
       # @example Creating a manual login tab
       #   tab = ManualLoginTab.new(parent, entry_data, theme_state, default_icon, data_dir)
       class ManualLoginTab
         # Initializes a new ManualLoginTab.
-        # @param parent [Object] The parent widget.
-        # @param entry_data [Array] The entry data for the tab.
-        # @param theme_state [Boolean] The current theme state.
-        # @param default_icon [String] The default icon for the tab.
-        # @param data_dir [String] The directory for data storage.
-        # @param callbacks [Hash] Optional callbacks for events.
-        # @param autosort_state [Boolean] The state of autosorting.
+        # @param parent [Gtk::Widget] The parent widget for this tab.
+        # @param entry_data [Array] The initial entry data for the login.
+        # @param theme_state [Boolean] The current theme state (dark or light).
+        # @param default_icon [Gtk::Icon] The default icon for the tab.
+        # @param data_dir [String] The directory for storing data.
+        # @param callbacks [Hash] Optional callbacks for various events.
+        # @param autosort_state [Boolean] Indicates if the entries should be auto-sorted.
         # @return [ManualLoginTab]
         def initialize(parent, entry_data, theme_state, default_icon, data_dir, callbacks = {}, autosort_state = false)
           @parent = parent
@@ -48,7 +49,7 @@ module Lich
           @game_entry_tab
         end
 
-        # Returns the UI elements of the manual login tab.
+        # Returns the UI elements associated with the manual login tab.
         # @return [Hash] A hash containing the UI elements.
         def ui_elements
           {
@@ -58,7 +59,7 @@ module Lich
         end
 
         # Updates the theme state of the manual login tab.
-        # @param theme_state [Boolean] The new theme state.
+        # @param theme_state [Boolean] The new theme state (dark or light).
         # @return [void]
         def update_theme_state(theme_state)
           @theme_state = theme_state
@@ -67,11 +68,11 @@ module Lich
 
         # Refreshes the entry data from the YAML file.
         # @return [void]
-        # @raise [StandardError] If there is an error refreshing the data.
+        # @raise [StandardError] If there is an error loading the entry data.
         def refresh_entry_data
           begin
             # Reload data from YAML file using consistent autosort state
-            @entry_data = Lich::Common::GUI::YamlState.load_saved_entries(@data_dir, @autosort_state)
+            @entry_data = Lich::Common::Authentication::EntryStore.load_saved_entries(@data_dir, @autosort_state)
           rescue StandardError => e
             Lich.log "error: Failed to refresh entry data in ManualLoginTab: #{e.message}"
             # Fallback to empty array to prevent crashes
@@ -80,9 +81,9 @@ module Lich
         end
 
         # Updates the entry data with new values.
-        # @param new_entry_data [Array] The new entry data to set.
+        # @param new_entry_data [Array] The new entry data to update.
         # @return [void]
-        # @raise [StandardError] If there is an error updating the data.
+        # @raise [StandardError] If there is an error during the update.
         def update_entry_data(new_entry_data)
           begin
             # Validate input parameter
@@ -335,16 +336,17 @@ module Lich
                   password: pass_entry.text,
                   legacy: true
                 )
+              rescue Authentication::FatalAuthError, StandardError => e
+                liststore.clear
+                report_connect_error(e.message, connect_button, disconnect_button, user_id_entry, pass_entry)
+                next true
               end
               if login_info.to_s =~ /error/i
-                # Call the error callback if provided
-                if @callbacks.on_error
-                  @callbacks.on_error.call("\nSomething went wrong... probably invalid user ID or password.\n\nserver response: #{login_info}")
-                end
-                connect_button.sensitive = true
-                disconnect_button.sensitive = false
-                user_id_entry.sensitive = true
-                pass_entry.sensitive = true
+                liststore.clear
+                report_connect_error(
+                  "\nSomething went wrong... probably invalid user ID or password.\n\nserver response: #{login_info}",
+                  connect_button, disconnect_button, user_id_entry, pass_entry
+                )
               else
                 # Populate character list
                 liststore.clear
@@ -418,7 +420,7 @@ module Lich
                 game_code: selected_iter[0]
               )
 
-              launch_data = Authentication.prepare_launch_data(
+              launch_data = Authentication::LaunchData.prepare(
                 launch_data_hash,
                 frontend,
                 custom_launch,
@@ -432,14 +434,19 @@ module Lich
 
               # Save quick entry if selected
               if @make_quick_option.active?
-                entry_data = { :char_name => normalized_character, :game_code => selected_iter[0], :game_name => selected_iter[1], :user_id => normalized_account, :password => pass_entry.text, :frontend => frontend, :custom_launch => custom_launch, :custom_launch_dir => custom_launch_dir }
+                # Preserve encryption_mode from existing entries to prevent silent downgrade
+                existing_encryption_mode = @entry_data.first&.[](:encryption_mode) || :plaintext
+                entry_data = { :char_name => normalized_character, :game_code => selected_iter[0], :game_name => selected_iter[1], :user_id => normalized_account, :password => pass_entry.text, :frontend => frontend, :custom_launch => custom_launch, :custom_launch_dir => custom_launch_dir, :encryption_mode => existing_encryption_mode }
 
-                # Check for duplicate entries using normalized comparison for consistent matching
+                # Check for duplicate entries using normalized comparison for consistent matching.
+                # Uniqueness key includes custom_launch to allow multiple custom frontend entries
+                # for the same character (e.g., Wrayth + Custom, or multiple Custom variants).
                 existing_entry = @entry_data.find do |entry|
                   entry[:char_name].to_s.capitalize == entry_data[:char_name] &&
                     entry[:game_code] == entry_data[:game_code] &&
                     entry[:user_id].to_s.upcase == entry_data[:user_id] &&
-                    entry[:frontend] == entry_data[:frontend]
+                    entry[:frontend] == entry_data[:frontend] &&
+                    entry[:custom_launch] == entry_data[:custom_launch]
                 end
 
                 if existing_entry
@@ -459,21 +466,21 @@ module Lich
                     existing_entry[:custom_launch_dir] = entry_data[:custom_launch_dir]
                     @save_entry_data = true
 
-                    save_success = Lich::Common::GUI::YamlState.save_entries(@data_dir, @entry_data)
+                    save_success = Lich::Common::Authentication::EntryStore.save_entries(@data_dir, @entry_data)
                   end
                 else
                   @entry_data.push entry_data
                   @save_entry_data = true
 
                   # Trigger save through main GUI's save mechanism with synchronization
-                  save_success = Lich::Common::GUI::YamlState.save_entries(@data_dir, @entry_data)
+                  save_success = Lich::Common::Authentication::EntryStore.save_entries(@data_dir, @entry_data)
                 end
 
                 if save_success
                   # Reset save flag to prevent duplicate save on window destruction
                   @save_entry_data = false
                   # Refresh local cache with normalized data after successful save
-                  @entry_data = Lich::Common::GUI::YamlState.load_saved_entries(@data_dir, @autosort_state)
+                  @entry_data = Lich::Common::Authentication::EntryStore.load_saved_entries(@data_dir, @autosort_state)
                   # Trigger main GUI cache refresh only once after successful save
                   @callbacks.on_save.call(entry_data) if @callbacks.on_save
                 else
@@ -491,7 +498,7 @@ module Lich
                   if favorite_success
                     # Single optimized cache refresh after favorite marking
                     # This replaces multiple redundant refresh operations
-                    @entry_data = Lich::Common::GUI::YamlState.load_saved_entries(@data_dir, @autosort_state)
+                    @entry_data = Lich::Common::Authentication::EntryStore.load_saved_entries(@data_dir, @autosort_state)
 
                     # Critical: Trigger on_save callback again to refresh main GUI cache with favorite data
                     # This ensures the main GUI cache contains the updated favorite information
@@ -530,8 +537,19 @@ module Lich
 
               # Call the play callback if provided
               if @callbacks.on_play
+                play_context = {
+                  char_name: normalized_character,
+                  game_code: selected_iter[0],
+                  frontend: frontend,
+                  custom_launch: custom_launch
+                }
 
-                @callbacks.on_play.call(launch_data) # (login_params)
+                # Backward compatibility: support both 1-arg and 2-arg callback handlers.
+                if @callbacks.on_play.respond_to?(:arity) && @callbacks.on_play.arity == 1
+                  @callbacks.on_play.call(launch_data)
+                else
+                  @callbacks.on_play.call(launch_data, play_context)
+                end
               end
 
             end
@@ -558,6 +576,14 @@ module Lich
               false
             end
           }
+        end
+
+        def report_connect_error(message, connect_button, disconnect_button, user_id_entry, pass_entry)
+          connect_button.sensitive = true
+          disconnect_button.sensitive = false
+          user_id_entry.sensitive = true
+          pass_entry.sensitive = true
+          Authentication::GUI.show_error_dialog(connect_button, message)
         end
       end
     end

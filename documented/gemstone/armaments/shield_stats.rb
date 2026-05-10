@@ -1,10 +1,10 @@
 module Lich
   module Gemstone
     module Armaments
-      # Static array of shield stats indexed by shield identifiers. Each shield
-      # entry contains metadata such as category, alternative names, size and
-      # evade modifiers, and base weight.
       module ShieldStats
+        # Static array of shield stats indexed by shield identifiers. Each shield
+        # entry contains metadata such as category, alternative names, size and
+        # evade modifiers, and base weight.
         # Static array of shield stats indexed by shield identifiers. Each shield
         # entry contains metadata such as category, alternative names, size and
         # evade modifiers, and base weight.
@@ -66,11 +66,11 @@ module Lich
         end
 
         ##
-        # Finds shield information by name.
+        # Finds a shield by its name.
         # @param name [String] The name of the shield to find.
         # @return [Hash, nil] The shield information if found, otherwise nil.
         # @example Finding a shield by name
-        #   shield_info = ShieldStats.find("small shield")
+        #   shield = ShieldStats.find("small shield")
         def self.find(name)
           name = name.downcase.strip
 
@@ -117,7 +117,7 @@ module Lich
         end
 
         ##
-        # Returns a formatted string representation of the shield's information.
+        # Returns a formatted string representation of the shield's details.
         # @param name [String] The name of the shield to format.
         # @return [String] A formatted string with shield details.
         # @example Pretty printing a shield
@@ -152,9 +152,9 @@ module Lich
         end
 
         ##
-        # Returns a long formatted string representation of the shield's information.
+        # Returns a detailed formatted string representation of the shield's details.
         # @param name [String] The name of the shield to format.
-        # @return [String] A formatted string with shield details.
+        # @return [String] A detailed formatted string with shield details.
         # @example Pretty long printing a shield
         #   output = ShieldStats.pretty_long("small shield")
         def self.pretty_long(name)
@@ -164,7 +164,7 @@ module Lich
         ##
         # Returns all alternative names for a given shield.
         # @param name [String] The name of the shield.
-        # @return [Array<String>] An array of alternative names.
+        # @return [Array<String>] An array of alternative names for the shield.
         # @example Getting aliases for a shield
         #   aliases = ShieldStats.aliases_for("small shield")
         def self.aliases_for(name)
@@ -174,7 +174,7 @@ module Lich
         end
 
         ##
-        # Compares two shields and returns their attributes.
+        # Compares two shields by their names and returns their stats.
         # @param name1 [String] The name of the first shield.
         # @param name2 [String] The name of the second shield.
         # @return [Hash, nil] A hash containing the comparison data if both shields are found, otherwise nil.

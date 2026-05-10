@@ -1,38 +1,36 @@
 # Carve out deprecated (?) functions
 # 2024-06-13
 
-# The current version of the Lich5 project
 $version = LICH_VERSION
 $room_count = 0
 $psinet = false
 $stormfront = true
 
 # Checks if the character can survive poison.
-# @return [Boolean] Always returns true as there is no XML for poison rate.
+# This method is deprecated and does not use XML for poison rate.
+# @return [Boolean] Always returns true.
 # @example
-#   result = survivepoison?
-#   puts result # => true
+#   survivepoison? #=> true
 def survivepoison?
   echo 'survivepoison? called, but there is no XML for poison rate'
   return true
 end
 
 # Checks if the character can survive disease.
-# @return [Boolean] Always returns true as there is no XML for disease rate.
+# This method is deprecated and does not use XML for disease rate.
+# @return [Boolean] Always returns true.
 # @example
-#   result = survivedisease?
-#   puts result # => true
+#   survivedisease? #=> true
 def survivedisease?
   echo 'survivepoison? called, but there is no XML for disease rate'
   return true
 end
 
-# Fetches loot from the game object and stores it in the user's bag.
-# @param userbagchoice [String] The name of the bag to store loot in (default is UserVars.lootsack).
+# Fetches loot from the game object and places it in the user's bag.
+# @param userbagchoice [String] The name of the bag to store loot in. Defaults to UserVars.lootsack.
 # @return [Boolean] Returns false if there is no loot to fetch, otherwise returns true.
 # @example
-#   fetchloot
-#   fetchloot("my_custom_bag")
+#   fetchloot #=> true
 def fetchloot(userbagchoice = UserVars.lootsack)
   if GameObj.loot.empty?
     return false
@@ -60,11 +58,11 @@ def fetchloot(userbagchoice = UserVars.lootsack)
   end
 end
 
-# Takes items and stores them in the user's bag.
-# @param items [Array<String>] The items to take.
+# Takes specified items and places them in the user's bag.
+# @param items [Array] The items to take.
 # @return [void]
 # @example
-#   take("item1", "item2")
+#   take("sword", "shield")
 def take(*items)
   items.flatten!
   if (righthand? && lefthand?)
@@ -81,21 +79,15 @@ def take(*items)
   if unsh then fput("take my #{weap} from my #{UserVars.lootsack}") end
 end
 
-# class StringProc
-#  def StringProc._load(string)
-#    StringProc.new(string)
-#  end
-# end
 
-# Extends the String class with additional methods for compatibility.
+# Extends the String class with additional methods.
 # @example
-#   "example string".to_a # => ["example string"]
+#   "example".to_a #=> ["example"]
 class String
   # Converts the string to an array containing the string itself.
-  # @return [Array<String>] An array with the string as its only element.
+  # @return [Array] An array with the string as its only element.
   # @example
-  #   result = "hello world".to_a
-  #   puts result.inspect # => ["hello world"]
+  #   "hello".to_a #=> ["hello"]
   def to_a # for compatibility with Ruby 1.8
     [self]
   end
@@ -103,16 +95,15 @@ class String
   # Returns false, indicating that the string is not silent.
   # @return [Boolean] Always returns false.
   # @example
-  #   puts "test string".silent # => false
+  #   "test".silent #=> false
   def silent
     false
   end
 
-  # Splits the string into a list based on specific patterns.
-  # @return [Array<String>] An array of trimmed strings.
+  # Splits the string into a list based on specific delimiters.
+  # @return [Array] An array of non-empty trimmed strings.
   # @example
-  #   result = "You notice a tree and a rock".split_as_list
-  #   puts result.inspect # => ["tree", "rock"]
+  #   "You see a cat and a dog".split_as_list #=> ["cat", "dog"]
   def split_as_list
     string = self
     string.sub!(/^You (?:also see|notice) |^In the .+ you see /, ',')

@@ -1,13 +1,10 @@
-# Carve out class SharedBuffer
-# 2024-06-13
-# has rubocop Lint/HashCompareByIdentity errors that require research - temporarily disabled
 
 module Lich
   module Common
-    # A thread-safe buffer that allows multiple threads to read and write data.
-    # This class manages a shared buffer with a maximum size and provides methods to read from and write to it.
+    # Represents a thread-safe buffer that allows multiple threads to read and write data.
+    # This class manages a shared buffer with a maximum size and provides methods to read from and write to the buffer.
     # @example Creating a shared buffer
-    #   buffer = Lich::Common::SharedBuffer.new(max_size: 1000)
+    #   buffer = Lich::Common::SharedBuffer.new(max_size: 100)
     class SharedBuffer
       attr_accessor :max_size
 
@@ -26,7 +23,6 @@ module Lich
 
       # Retrieves the next line from the buffer, blocking if necessary.
       # @return [String, nil] The next line from the buffer or nil if no line is available.
-      # @note This method blocks until a line is available.
       def gets
         thread_id = Thread.current.object_id
         if @buffer_index[thread_id].nil?
@@ -68,7 +64,7 @@ module Lich
         return line
       end
 
-      # Clears the lines that have been read from the buffer.
+      # Clears the lines that have been read from the buffer for the current thread.
       # @return [Array<String>] An array of lines that were cleared from the buffer.
       def clear
         thread_id = Thread.current.object_id
@@ -100,8 +96,8 @@ module Lich
       end
 
       # rubocop:enable Lint/HashCompareByIdentity
-      # Adds a new line to the buffer, managing the size of the buffer.
-      # @param line [String] The line to be added to the buffer.
+      # Adds a new line to the buffer, ensuring the buffer does not exceed its maximum size.
+      # @param line [String] The line to add to the buffer.
       # @return [SharedBuffer] The current instance of SharedBuffer.
       def update(line)
         @buffer_mutex.synchronize {

@@ -1,19 +1,20 @@
-# frozen_string_literal: true
 
+# The Lich module
+# This module serves as a namespace for the Lich project.
 module Lich
   module Gemstone
     module Infomon
-      # this module handles all of the logic for parsing game lines that infomon depends on
-      # This module handles all of the logic for parsing game lines that infomon depends on
-      # @example Parsing a game line
+      # The XMLParser module
+      # This module contains patterns and methods for parsing XML data.
+      # @example Parsing a line
       #   result = XMLParser.parse(line)
       module XMLParser
         module Pattern
-          # Regular expression for matching short group messages
+          # A regular expression pattern for matching group-related messages.
           Group_Short = /(?:group|following you|IconJOINED)|^You are leading|(?:'s<\/a>|your) hand(?: tenderly)?\.\r?\n?$/
-          # Regular expression for matching arrival messages of other players
+          # A regular expression pattern for matching arrival messages.
           Also_Here_Arrival = /^Also here: /
-          # Regular expression for matching the prefix of NPC death messages
+          # A regular expression pattern for matching the prefix of NPC death messages.
           NpcDeathPrefix = Regexp.union(
             /The fire in the/,
             /With a surprised grunt, the/,
@@ -21,9 +22,16 @@ module Lich
             /You hear a sound like a weeping child as a white glow separates itself from the/,
             /A low gurgling sound comes from deep within the chest of the/,
             /(?:The|An?)/,
-            /One last prolonged bovine moan escapes from the/
+            /One last prolonged bovine moan escapes from the/,
+            /The spectral form of the/,
+            /All that remains of the/,
+            /The lights in(?: a)?/,
+            /The light in the/,
+            /With a final squeal the/,
+            /The head in/,
+            /The skeletal structure of( the)?/,
           )
-          # Regular expression for matching the postfix of NPC death messages
+          # A regular expression pattern for matching the postfix of NPC death messages.
           NpcDeathPostfix = Regexp.union(
             /body as it rises, disappearing into the heavens/,
             /falls to the ground and dies(?:, its feelers twitching)?/,
@@ -32,19 +40,19 @@ module Lich
             /body goes rigid and collapses to the floor, dead/,
             /slowly settles to the ground and begins to dissipate/,
             /falls to the ground motionless/,
-            /body goes rigid and <pushBold\/><a.*?>\w+<\/a><popBold\/> eyes roll back into <pushBold\/><a.*?>\w+<\/a><popBold\/> head as <pushBold\/><a.*?>\w+<\/a><popBold\/> dies/,
+            /body goes rigid and <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> eyes roll back into <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> head as <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> dies/,
             /growls one last time, and crumples to the ground in a heap/,
             /spins backwards and collapses dead/,
-            /falls to the ground as the stillness of death overtakes <pushBold\/><a.*?>(?:him|her|it)<\/a><popBold\/>/,
+            /falls to the ground as the stillness of death overtakes <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/>/,
             /crumples to the ground motionless/,
             /howls in agony one last time and dies/,
             /howls in agony while falling to the ground motionless/,
-            /moans pitifully as <pushBold\/><a.*?>(?:he|she|it)<\/a><popBold\/> is released/,
+            /moans pitifully as <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> is released/,
             /careens to the ground and crumples in a heap/,
             /hisses one last time and dies/,
             /flutters its wings one last time and dies/,
             /slumps to the ground with a final snarl/,
-            /horn dims as (?:his|her) lifeforce fades away/,
+            /horn dims as <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> lifeforce fades away/,
             /blinks in astonishment, then collapses in a motionless heap/,
             /collapses in a heap, its huge girth shaking the floor around it/,
             /goes limp and .*? falls over as the fire slowly fades from .*? eyes/,
@@ -83,54 +91,107 @@ module Lich
             /topples to the ground motionless/,
             /shudders violently for a moment, then goes still/,
             /rumbles in agony as .*? teeters for a moment, then tumbles to the ground with a thundering crash/,
-            /sinks to the ground, the fell light in (?:his|her) eyes guttering before going out entirely/,
+            /sinks to the ground, the fell light in <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> eyes guttering before going out entirely/,
+            /is sliced neatly in two/,
+            /falls back and dies/,
+            /bellows in rage one last time and dies/,
+            /looks up with hatred as <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> lets out <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> final breath/,
+            /falls on its side and lets out one last whimpering sigh of (?:sparks and blue mist|chartreuse vapors|water droplets)/,
+            /lets out one last whimpering sigh of (?:sparks and blue mist|chartreuse vapors|water droplets) and dies/,
+            /coughs up some blood and dies/,
+            /lets out a final, shrill shriek and dies/,
+            /crashes to the ground, (?:dead|motionless)/,
+            /falls to the ground, cursing, and dies/,
+            /falls to the ground in a crumpled heap/,
+            /clicks one last time and dies/,
+            /falls over with a curse, then dies/,
+            /crumples to the ground, spits out a curse, and dies/,
+            /screams silently one last time and dies/,
+            /eyes dim and finally go out/,
+            /vainly struggles to rise, then goes still/,
+            /dies; vitreous fluids escape its body/,
+            /drops to the ground and shudders a final time/,
+            /dies in a squirming, quivering heap/,
+            /shudders a final time and goes still/,
+            /collapses heavily into a heap on the ground and dies/,
+            /lets out a blood-curdling roar and dies/,
+            /stumbles and falls to the ground, twitches and dies/,
+            /gives a last angry stare and falls to the ground dead/,
+            /shudders violently as it dies/,
+            /is a charred ashen figure of its former self lying upon the floor/,
+            /rears up its head, then (?:falls to the ground and )?curls up into a ball, dead/,
+            /rolls over on its back, emits a final screech and dies/,
+            /arches its back in a tortured spasm and dies/,
+            /shudders violently before scattering into a disorganized pile/,
+            /shudders violently, before falling to the ground in a disorganized pile/,
+            /gurgles eerily and collapses into the water/,
+            /crumples to the ground, dead/,
+            /collapses and <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> eyes roll up as <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> dies/,
+            /eyes roll up as <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> dies/,
+            /writhes in agony, <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> wings flapping fruitlessly as <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> dies/,
+            /curses through <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> teeth as <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> dies/,
+            /screams wickedly with both mouths as <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> falls and dies/,
+            /spasms uncontrollably as <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> goes into shock and dies/,
+            /sinks to <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> knees as <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> chokes on <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> own blood and dies/,
+            /curses the day <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> was created and dies/,
+            /lets out a final curse as <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> dies/,
+            /chest spits out blood just before <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> dies/,
+            /collapses to the floor with a splash, gurgling once with a wrathful look on <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> face before expiring/,
+            /gurgles once and goes still, a wrathful look on <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> face/,
+            /gives a plaintive wail before <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> slumps to <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> side and dies/,
+            /tenses in agony as <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> begins to dissolve from the bottom up/,
+            /collapses, gurgling once with a wrathful look on <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> face before expiring/,
+            /clutches at <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> wounds as <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> falls, the life fading from <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> eyes/,
+            /chokes on <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> blood, gurgling noisily before finally dying/,
+            /attempts to get up but the effort drains the last of <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> life and <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> collapses dead/,
+            /eyes goes out and <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> ceases to move/,
+            /emits a hollow scream as ribbons of essence begin to wend away from <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> and into nothingness/,
+            /screams with rage as <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> falls to the ground and dies/,
           )
-          # Regular expression for matching complete NPC death messages
-          NpcDeathMessage = /^(?:<pushBold\/>)?#{NpcDeathPrefix} (?:<pushBold\/>)?<a.*?exist=["'](?<npc_id>\-?[0-9]+)["'].*?>.*?<\/a>(?:<popBold\/>)?(?:'s)? #{NpcDeathPostfix}[\.!]\r?\n?$/
+          # A regular expression pattern for matching complete NPC death messages.
+          NpcDeathMessage = /^(?:<pushBold\/>)?#{NpcDeathPrefix} (?:<pushBold\/>)?(?:(?:an?|some) )?<a.*?exist=["'](?<npc_id>\-?[0-9]+)["'].*?>.*?<\/a>(?:<popBold\/>)?(?:'s)? #{NpcDeathPostfix}[\.!]\r?\n?$/
 
           # the following are for parsing STOW LIST and setting of STOW containers
-          # Regular expression for matching the start of the stow list output
+          # A regular expression pattern for matching the start of the stow list output.
           StowListOutputStart = /^You have the following containers set as stow targets:\r?\n?$/
-          # Regular expression for matching individual stow containers
+          # A regular expression pattern for matching individual stow containers.
           StowListContainer = /^  (?:(?:an?|some) )?(?<before>[^<]+)?<a exist="(?<id>\d+)" noun="(?<noun>[^"]+)">(?<name>[^<]+)<\/a>(?<after> [^\(]+)? \((?<type>box|gem|herb|skin|wand|scroll|potion|trinket|reagent|lockpick|treasure|forageable|collectible|default)\)\r?\n?$/
-          # Regular expression for matching the setting of a stow container
+          # A regular expression pattern for setting a stow container.
           StowSetContainer1 = /^Set "(?:(?:an?|some) )?(?<before>[^<]+)?<a exist="(?<id>[^"]+)" noun="(?<noun>[^"]+)">(?<name>[^<]+)<\/a>(?<after> [^"]+)?" to be your STOW (?<type>BOX|GEM|HERB|SKIN|WAND|SCROLL|POTION|TRINKET|REAGENT|LOCKPICK|TREASURE|FORAGEABLE|COLLECTIBLE) container\.\r?\n?$/
-          # Regular expression for matching the setting of a default stow container
+          # A regular expression pattern for setting a default stow container.
           StowSetContainer2 = /Set "(?:(?:an?|some) )?(?<before>[^<]+)?<a exist="(?<id>[^"]+)" noun="(?<noun>[^"]+)">(?<name>[^<]+)<\/a>(?<after> [^"]+)?" to be your (?<type>default) STOW container\.\r?\n?$/
 
           # the following are for parsing READY LIST and setting of READY items
-          # Regular expression for matching the start of the ready list output
+          # A regular expression pattern for matching the start of the ready list output.
           ReadyListOutputStart = /^Your current settings are:\r?\n?$/
-          # Regular expression for matching normal ready list items
+          # A regular expression pattern for matching normal ready list items.
           ReadyListNormal = /^  (?<type>shield|(?:secondary |ranged )?weapon|ammo bundle|wand): \(?<d cmd=['"](?:store|ready) (?:SHIELD|2?WEAPON|RANGED|AMMO|WAND)(?: clear)?['"]>(?:(?:(?:an?|some) )?(?<before>[^<]+)?<a exist="(?<id>[^"]+)" noun="(?<noun>[^"]+)">(?<name>[^<]+)<\/a>(?<after> [^<]+)?|none)<\/d>\)? \(<d cmd='store set'>(?<store>worn if possible, stowed otherwise|stowed|put in (?:secondary )?sheath)<\/d>\)\r?\n?$/
-          # Regular expression for matching ammo2 bundle in the ready list
+          # A regular expression pattern for matching ammo2 bundle items in the ready list.
           ReadyListAmmo2 = /^  (?<type>ammo2 bundle): <d cmd="store AMMO2 clear">(?:(?:an?|some) )?(?<before>[^<]+)?<a exist="(?<id>[^"]+)" noun="(?<noun>[^"]+)">(?<name>[^<]+)<\/a>(?<after> [^<]+)?<\/d>\r?\n?$/
-          # Regular expression for matching the setting of sheaths in the ready list
+          # A regular expression pattern for matching sheath settings in the ready list.
           ReadyListSheathsSet = /^  (?<type>(?:secondary )?sheath): <d cmd="store 2?SHEATH clear">(?:(?:an?|some) )?(?<before>[^<]+)?<a exist="(?<id>[^"]+)" noun="(?<noun>[^"]+)">(?<name>[^<]+)<\/a>(?<after> [^<]+)?<\/d>\r?\n?$/
-          # Regular expression for matching the finished state of the ready list
+          # A regular expression pattern for matching the completion message of the ready list.
           ReadyListFinished = /To change your default item for a category that is already set, clear the category first by clicking on the item in the list above.  Click <d cmd="ready list">here<\/d> to update the list\.\r?\n?$/
-          # Regular expression for matching the clearing of a ready item
           ReadyItemClear = /^Cleared your default (?<type>shield|(?:secondary |ranged )?weapon|ammo2? bundle|(?:secondary )?sheath|wand)\.\r?\n?$/
-          # Regular expression for matching the setting of a ready item
           ReadyItemSet = /^Setting (?:(?:an?|some) )?(?<before>[^<]+)?<a exist="(?<id>[^"]+)" noun="(?<noun>[^"]+)">(?<name>[^<]+)<\/a>(?<after> [^<]+)? to be your default (?<type>shield|(?:secondary |ranged )?weapon|ammo2? bundle|(?:secondary )?sheath|wand)\.\r?\n?$/
-          # Regular expression for matching the storage setting of ready items
           ReadyStoreSet = /^When storing your (?<type>shield|(?:ranged |secondary )?weapon|ammo bundle|wand), it will be (?<store>worn if possible and stowed if not|stowed|stored in your (?:secondary )?sheath)\.\r?\n?$/
 
-          # Regular expression for matching the status prompt
           StatusPrompt = /<prompt time="[0-9]+">/
 
-          # Combined regular expression for all patterns used in parsing
+          # Overwatch patterns - simplified reference to the observer patterns
+          Overwatch_Short = Overwatch::Observer::Term::ANY
+
           All = Regexp.union(NpcDeathMessage, Group_Short, Also_Here_Arrival, StowListOutputStart, StowListContainer, StowSetContainer1, StowSetContainer2,
                              ReadyListOutputStart, ReadyListNormal, ReadyListAmmo2, ReadyListSheathsSet, ReadyListFinished, ReadyItemClear, ReadyItemSet,
-                             ReadyStoreSet, StatusPrompt)
+                             ReadyStoreSet, StatusPrompt, Overwatch_Short)
         end
 
-        # Parses a game line and returns the appropriate status
-        # @param line [String] The game line to parse
-        # @return [Symbol] Returns :ok, :noop, or raises an error
-        # @raise [StandardError] If an error occurs during parsing
+        # Parses a line of XML data.
+        # @param line [String] The line to parse.
+        # @return [Symbol] Returns :ok, :noop, or raises an error.
+        # @raise [StandardError] Raises an error if parsing fails.
         # @example Parsing a line
-        #   status = XMLParser.parse("Some game line")
+        #   result = XMLParser.parse(line)
         def self.parse(line)
           # O(1) vs O(N)
           return :noop unless line =~ Pattern::All
@@ -148,20 +209,25 @@ module Lich
               return :noop unless (match_data = Group::Observer.wants?(line))
               Group::Observer.consume(line.strip, match_data)
               :ok
+            when Pattern::Overwatch_Short
+              return :noop unless (match_data = Overwatch::Observer.wants?(line))
+              Overwatch::Observer.consume(line, match_data)
+              :ok
             when Pattern::Also_Here_Arrival
               return :noop unless Lich::Claim::Lock.locked?
-              line.scan(%r{<a exist=(?:'|")(?<id>.*?)(?:'|") noun=(?:'|")(?<noun>.*?)(?:'|")>(?<name>.*?)</a>}).each { |player_found| XMLData.arrival_pcs.push(player_found[1]) unless XMLData.arrival_pcs.include?(player_found[1]) }
+              line.scan(%r{<a exist=(?:'|")(?<id>.*?)(?:'|") noun=(?:'|")(?<noun>.*?)(?:'|")>(?<name>.*?)</a>}).each { |player_found|
+                next unless player_found[0].to_s.start_with?('-')
+                next if XMLData.arrival_pcs.include?(player_found[1])
+
+                XMLData.arrival_pcs.push(player_found[1])
+              }
               :ok
             when Pattern::StowListOutputStart
               StowList.reset
               :ok
             when Pattern::StowListContainer, Pattern::StowSetContainer1, Pattern::StowSetContainer2
               match = Regexp.last_match
-              if GameObj[match[:id]]
-                StowList.__send__("#{match[:type].downcase}=", GameObj[match[:id]])
-              else
-                StowList.__send__("#{match[:type].downcase}=", GameObj.new(match[:id], match[:noun], match[:name], (match[:before].nil? ? nil : match[:before].strip), (match[:after].nil? ? nil : match[:after].strip)))
-              end
+              StowList.__send__("#{match[:type].downcase}=", GameObj.index_or_create(match[:id], match[:noun], match[:name], (match[:before].nil? ? nil : match[:before].strip), (match[:after].nil? ? nil : match[:after].strip)))
               StowList.checked = true if line =~ Pattern::StowListContainer
               :ok
             when Pattern::ReadyListOutputStart
@@ -170,11 +236,7 @@ module Lich
             when Pattern::ReadyListNormal, Pattern::ReadyListAmmo2, Pattern::ReadyListSheathsSet, Pattern::ReadyItemSet
               match = Regexp.last_match
               unless match[:id].nil?
-                if GameObj[match[:id]]
-                  ReadyList.__send__("#{Lich::Util.normalize_name(match[:type].downcase)}=", GameObj[match[:id]])
-                else
-                  ReadyList.__send__("#{Lich::Util.normalize_name(match[:type].downcase)}=", GameObj.new(match[:id], match[:noun], match[:name], (match[:before].nil? ? nil : match[:before].strip), (match[:after].nil? ? nil : match[:after].strip)))
-                end
+                ReadyList.__send__("#{Lich::Util.normalize_name(match[:type].downcase)}=", GameObj.index_or_create(match[:id], match[:noun], match[:name], (match[:before].nil? ? nil : match[:before].strip), (match[:after].nil? ? nil : match[:after].strip)))
               end
               if match.named_captures.include?("store")
                 ReadyList.__send__("store_#{Lich::Util.normalize_name(match[:type].downcase)}=", match[:store])

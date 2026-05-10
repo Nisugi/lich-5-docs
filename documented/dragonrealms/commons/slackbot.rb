@@ -1,11 +1,21 @@
+# frozen_string_literal: true
+
+require 'json'
+require 'net/http'
+require 'openssl'
+require 'uri'
+
 module Lich
   module DragonRealms
-    # Represents a Slack bot for interacting with the Slack API.
-    # @example Creating a new Slack bot instance
+    # Represents a Slack bot that interacts with the Slack API.
+    # This class handles authentication, sending messages, and managing user lists.
+    # @example Creating a new Slack bot
     #   bot = Lich::DragonRealms::SlackBot.new
     class SlackBot
       class Error < StandardError; end
+
       class NetworkError < Error; end
+
       class ApiError < Error; end
 
       class ThrottlingError < ApiError
@@ -19,71 +29,56 @@ module Lich
 
       attr_reader :error_message
 
-      # The timeout duration for lnet connection attempts (in seconds).
-      LNET_CONNECTION_TIMEOUT = 30
+      # The base URL for the Slack API.
+      API_URL = 'https://slack.com/api/'
+      LNET_SCRIPT_NAME = 'lnet'
+      # An array of bot names that can be used to request a Slack token.
+      LICHBOTS = %w[Quilsilgas].freeze
+      # The timeout duration for requesting a Slack token.
+      TOKEN_REQUEST_TIMEOUT = 10
+      # The maximum number of retries for network requests.
+      MAX_NETWORK_RETRIES = 5
+      NO_USER_PATTERN = /\[server\]: "no user .*/.freeze
 
-      # Consider lnet connection stale if no activity for 2 minutes
-      # The duration to consider lnet connection stale if no activity occurs (in seconds).
+      LNET_CONNECTION_TIMEOUT = 30
       LNET_ACTIVITY_TIMEOUT = 120
 
-      # Base delay for exponential backoff on API retries.
-      # Slack recommends waiting at least 30 seconds before retrying after rate limits.
-      # See: https://api.slack.com/docs/rate-limits
-      # The base delay for exponential backoff on API retries (in seconds).
       BASE_RETRY_DELAY_SECONDS = 30
+      MAX_RETRY_DELAY_SECONDS = 300
 
-      # Maximum delay before giving up on retries (2 minutes)
-      # The maximum delay before giving up on retries (in seconds).
-      MAX_RETRY_DELAY_SECONDS = 120
+      USERS_CACHE_SCRIPT = '_slackbot_users_cache'
+      USERS_CACHE_TTL = 3600
+      # The maximum number of retries when throttled by the Slack API.
+      MAX_THROTTLE_RETRIES = 10
 
-      # Initializes a new instance of SlackBot.
-      # @return [SlackBot]
-      # @raise [Error] if lnet connection fails or Slack token is not found.
       def initialize
-        @api_url = 'https://slack.com/api/'
         @initialized = false
         @error_message = nil
 
-        unless authed?(UserVars.slack_token)
-          unless lnet_connected?
-            unless Script.running?('lnet')
-              unless Script.exists?('lnet')
-                @error_message = "lnet.lic not found - cannot retrieve Slack token"
-                return
-              end
-              start_script('lnet')
-            end
-            start_time = Time.now
-            until lnet_connected?
-              if (Time.now - start_time) > LNET_CONNECTION_TIMEOUT
-                @error_message = "lnet did not connect within #{LNET_CONNECTION_TIMEOUT} seconds."
-                return
-              end
-              pause 1
-            end
-          end
+        ensure_slack_token unless authed?(UserVars.slack_token)
+        return if @error_message
 
-          @lnet = (Script.running + Script.hidden).find { |val| val.name == 'lnet' }
-          unless find_token
-            @error_message = "Unable to locate a Slack token"
-            return
-          end
-        end
-
-        begin
-          @users_list = post('users.list', { 'token' => UserVars.slack_token })
-        rescue ApiError => e
-          Lich.log "error fetching user list: #{e.message}"
-          @users_list = { 'members' => [] }
-        end
-
+        fetch_users_list
         @initialized = true
       end
 
-      # Checks if the Slack bot has been initialized.
-      # @return [Boolean] true if initialized, false otherwise.
+      # Checks if the Slack bot has been initialized successfully.
+      # @return [Boolean] Returns true if initialized, false otherwise.
       def initialized?
         @initialized
+      end
+
+      # Reconnects the Slack bot to the Slack API.
+      # @return [Boolean] Returns true if reconnected successfully, false otherwise.
+      def reconnect!
+        @error_message = nil
+        @initialized = false
+
+        ensure_slack_token unless authed?(UserVars.slack_token)
+        return false if @error_message
+
+        fetch_users_list
+        @initialized = true
       end
 
       def lnet_connected?
@@ -91,7 +86,6 @@ module Lich
         return false unless LNet.server
         return false if LNet.server.closed?
 
-        # Check last activity if method exists
         if LNet.respond_to?(:last_recv) && LNet.last_recv
           return false if (Time.now - LNet.last_recv) > LNET_ACTIVITY_TIMEOUT
         end
@@ -101,64 +95,212 @@ module Lich
         false
       end
 
+      # Checks if the provided token is authenticated with the Slack API.
+      # @param token [String] The Slack token to authenticate.
+      # @return [Boolean] Returns true if authenticated, false otherwise.
       def authed?(token)
         return false unless token
+
+        post('auth.test', { 'token' => token })['ok']
+      rescue ApiError, NetworkError
+        false
+      end
+
+      # Sends a direct message to a specified user on Slack.
+      # @param username [String] The username of the recipient.
+      # @param message [String] The message to send.
+      # @return [nil] Returns nil if the message cannot be sent.
+      def direct_message(username, message)
+        if username.nil? || username.to_s.strip.empty?
+          Lich::Messaging.msg('bold', 'SlackBot: Cannot send message - no username provided. Check your slackbot_username setting.')
+          return nil
+        end
+
+        reconnect! unless initialized?
+
+        unless initialized?
+          Lich::Messaging.msg('bold', 'SlackBot: Cannot send message - not connected. Will retry on next attempt.')
+          return nil
+        end
+
+        dm_channel = get_dm_channel(username)
+        unless dm_channel
+          Lich::Messaging.msg('bold', "SlackBot: Cannot send message - user '#{username}' not found in Slack workspace.")
+          return nil
+        end
+
+        params = {
+          'token'   => UserVars.slack_token,
+          'channel' => dm_channel,
+          'text'    => "#{checkname}: #{message}",
+          'as_user' => 'true'
+        }
+        post('chat.postMessage', params)
+      rescue Error => e
+        Lich.log "SlackBot: Failed to send Slack message to #{username}: #{e.message}"
+        Lich::Messaging.msg('bold', "SlackBot: Failed to send Slack message to #{username}: #{e.message}")
+      end
+
+      private
+
+      def lnet_available?
+        !@lnet.nil?
+      end
+
+      def set_error(message)
+        @error_message = message
+        Lich::Messaging.msg('bold', "SlackBot: #{message}")
+      end
+
+      def ensure_slack_token
+        unless lnet_connected?
+          unless Script.exists?(LNET_SCRIPT_NAME)
+            set_error('lnet.lic not found - cannot retrieve Slack token')
+            return
+          end
+          start_script(LNET_SCRIPT_NAME) unless Script.running?(LNET_SCRIPT_NAME)
+          unless wait_for_lnet_connection
+            set_error("lnet did not connect within #{LNET_CONNECTION_TIMEOUT} seconds.")
+            return
+          end
+        end
+
+        @lnet = (Script.running + Script.hidden).find { |val| val.name == LNET_SCRIPT_NAME }
+        unless lnet_available?
+          set_error('lnet script object not found.')
+          return
+        end
+
+        return if find_token
+
+        set_error('Unable to locate a Slack token')
+      end
+
+      def wait_for_lnet_connection
+        start_time = Time.now
+        until lnet_connected?
+          return false if (Time.now - start_time) > LNET_CONNECTION_TIMEOUT
+
+          pause 1
+        end
+        true
+      end
+
+      def fetch_users_list
+        cached = read_users_cache
+        if cached
+          @users_list = { 'members' => cached['members'] }
+          Lich.log "SlackBot: Using cached users list (#{cached['members'].length} members)"
+          return
+        end
+
+        sleep rand(0.0..5.0)
+
+        cached = read_users_cache
+        if cached
+          @users_list = { 'members' => cached['members'] }
+          Lich.log "SlackBot: Using cached users list after jitter (#{cached['members'].length} members)"
+          return
+        end
+
+        @users_list = fetch_users_from_api
+        write_users_cache(@users_list['members']) if @users_list['members']&.any?
+      end
+
+      def fetch_users_from_api
+        retries = 0
         begin
-          post('auth.test', { 'token' => token })['ok']
-        rescue ApiError, NetworkError
-          false
+          post('users.list', { 'token' => UserVars.slack_token })
+        rescue ThrottlingError => e
+          cached = read_users_cache
+          if cached
+            Lich.log "SlackBot: Throttled, but another character cached the users list"
+            return { 'members' => cached['members'] }
+          end
+
+          if retries >= MAX_THROTTLE_RETRIES
+            Lich.log "SlackBot: Throttle retry limit (#{MAX_THROTTLE_RETRIES}) exceeded"
+            Lich::Messaging.msg('bold', "SlackBot: Rate limit retry exhausted. User list unavailable.")
+            return { 'members' => [] }
+          end
+
+          base_delay = e.retry_after || (BASE_RETRY_DELAY_SECONDS * (2**[retries, 3].min))
+          delay = [base_delay, MAX_RETRY_DELAY_SECONDS].min
+          jitter = rand(0..(delay * 0.5).to_i)
+          total_delay = delay + jitter
+          retries += 1
+          Lich.log "SlackBot: Throttled fetching users list. Retry ##{retries} in #{total_delay}s..."
+          Lich::Messaging.msg('bold', "SlackBot: Rate limited fetching users. Retrying in #{total_delay}s...") if retries <= 3
+          sleep total_delay
+          retry
+        rescue ApiError, NetworkError => e
+          Lich.log "SlackBot: Error fetching user list: #{e.message}"
+          Lich::Messaging.msg('bold', "SlackBot: Failed to fetch Slack user list: #{e.message}")
+          { 'members' => [] }
         end
       end
 
-      # Requests a Slack token from the specified lichbot.
-      # @param lichbot [String] The name of the lichbot to request the token from.
-      # @return [String, false] The Slack token if found, false otherwise.
+      def read_users_cache
+        data = Lich::Common::DB_Store.get_data(XMLData.game, USERS_CACHE_SCRIPT)
+        return nil if data.nil? || data.empty?
+        return nil unless data['fetched_at']
+        return nil if (Time.now.to_i - data['fetched_at']) > USERS_CACHE_TTL
+
+        data
+      end
+
+      def write_users_cache(members)
+        Lich::Common::DB_Store.store_data(
+          XMLData.game,
+          USERS_CACHE_SCRIPT,
+          { 'members' => members, 'fetched_at' => Time.now.to_i }
+        )
+        Lich.log "SlackBot: Cached #{members.length} Slack users for all characters"
+      end
+
+      def find_token
+        return false unless lnet_available?
+
+        Lich::Messaging.msg('plain', 'SlackBot: Looking for a token...')
+
+        LICHBOTS.any? do |bot|
+          token = request_token(bot)
+          authed = token && authed?(token)
+          UserVars.slack_token = token if authed
+          authed
+        end
+      end
+
       def request_token(lichbot)
-        ttl = 10
+        return false unless lnet_available?
+
         send_time = Time.now
         @lnet.unique_buffer.push("chat to #{lichbot} RequestSlackToken")
+        token_pattern = /\[Private\]-.*:#{Regexp.escape(lichbot)}: "slack_token: (?<token>.*)"/
+
         loop do
           line = get
           pause 0.05
-          return false if Time.now - send_time > ttl
+          return false if Time.now - send_time > TOKEN_REQUEST_TIMEOUT
 
-          case line
-          when /\[Private\]-.*:#{lichbot}: "slack_token: (.*)"/
-            msg = Regexp.last_match(1)
-            return msg != 'Not Found' ? msg : false
-          when /\[server\]: "no user .*/
-            return false
+          if (match = line&.match(token_pattern))
+            return match[:token] == 'Not Found' ? false : match[:token]
           end
-        end
-      end
-
-      # Attempts to find a valid Slack token from known lichbots.
-      # @return [Boolean] true if a valid token is found, false otherwise.
-      def find_token
-        lichbots = %w[Quilsilgas]
-        echo 'Looking for a token...'
-        pause until @lnet
-
-        lichbots.any? do |bot|
-          token = request_token(bot)
-          authed = authed?(token) if token
-          UserVars.slack_token = token if token && authed
-          authed
+          return false if line&.match?(NO_USER_PATTERN)
         end
       end
 
       # Sends a POST request to the Slack API.
       # @param method [String] The API method to call.
       # @param params [Hash] The parameters to send with the request.
-      # @return [Hash] The response body from the Slack API.
-      # @raise [ApiError] if the Slack API returns an error.
-      # @raise [NetworkError] if a network error occurs.
+      # @return [Hash] The response from the Slack API.
+      # @raise [NetworkError] If there is a network error.
+      # @raise [ApiError] If the Slack API returns an error.
       def post(method, params)
         retries = 0
-        max_retries = 5
 
         begin
-          uri = URI.parse("#{@api_url}#{method}")
+          uri = URI.parse("#{API_URL}#{method}")
           http = Net::HTTP.new(uri.host, uri.port)
           http.use_ssl = true
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
@@ -169,7 +311,7 @@ module Lich
 
           if res.code == '429'
             retry_after = res['Retry-After']&.to_i
-            raise ThrottlingError.new("Throttled by Slack API", retry_after)
+            raise ThrottlingError.new('Throttled by Slack API', retry_after)
           end
 
           raise NetworkError, "HTTP Error: #{res.code} #{res.message}" unless res.is_a?(Net::HTTPSuccess)
@@ -177,56 +319,28 @@ module Lich
           body = JSON.parse(res.body)
           raise ApiError, "Slack API Error: #{body['error']}" unless body['ok']
 
-          return body
+          body
         rescue JSON::ParserError => e
           raise ApiError, "Failed to parse Slack API response: #{e.message}"
-        rescue ThrottlingError => e
-          raise ApiError, "Throttled by Slack API. Max retries (#{max_retries}) exceeded." if retries >= max_retries
-          delay = e.retry_after || (BASE_RETRY_DELAY_SECONDS * (2**retries))
-          if delay > MAX_RETRY_DELAY_SECONDS
-            raise ApiError, "Throttled by Slack API. Retry delay (#{delay}s) exceeds maximum."
-          end
-          Lich.log "Throttled by Slack API. Retrying in #{delay} seconds..."
-          sleep delay
-          retries += 1
-          retry
         rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
                Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError, SocketError => e
-          raise NetworkError, "Network error. Max retries (#{max_retries}) exceeded." if retries >= max_retries
-          delay = BASE_RETRY_DELAY_SECONDS * (2**retries)
-          if delay > MAX_RETRY_DELAY_SECONDS
-            raise NetworkError, "Network error. Retry delay (#{delay}s) exceeds maximum."
-          end
-          Lich.log "Network error: #{e.message}. Retrying in #{delay} seconds..."
-          sleep delay
+          raise NetworkError, "SlackBot: Network error after #{MAX_NETWORK_RETRIES} retries: #{e.message}" if retries >= MAX_NETWORK_RETRIES
+
+          delay = [BASE_RETRY_DELAY_SECONDS * (2**retries), MAX_RETRY_DELAY_SECONDS].min
+          jitter = rand(0..(delay * 0.25).to_i)
+          total_delay = delay + jitter
           retries += 1
+          Lich.log "SlackBot: Network error: #{e.message}. Retry ##{retries} in #{total_delay}s..."
+          sleep total_delay
           retry
-        end
-      end
-
-      # Sends a direct message to a specified user on Slack.
-      # @param username [String] The username of the recipient.
-      # @param message [String] The message to send.
-      # @return [void]
-      # @raise [Error] if the DM channel cannot be found.
-      def direct_message(username, message)
-        begin
-          dm_channel = get_dm_channel(username)
-          raise Error, "Could not find DM channel for #{username}" unless dm_channel
-
-          params = { 'token' => UserVars.slack_token, 'channel' => dm_channel, 'text' => "#{checkname}: #{message}", 'as_user' => true }
-          post('chat.postMessage', params)
-        rescue Error => e
-          Lich.log "Failed to send Slack message to #{username}: #{e.message}"
         end
       end
 
       # Retrieves the direct message channel ID for a specified user.
-      # @param username [String] The username of the user.
-      # @return [String, nil] The DM channel ID if found, nil otherwise.
+      # @param username [String] The username of the recipient.
+      # @return [String, nil] Returns the channel ID if found, nil otherwise.
       def get_dm_channel(username)
-        user = @users_list['members'].find { |u| u['name'] == username }
-        user ? user['id'] : nil
+        @users_list['members']&.find { |u| u['name'] == username }&.[]('id')
       end
     end
   end

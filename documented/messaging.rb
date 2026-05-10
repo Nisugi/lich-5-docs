@@ -1,24 +1,23 @@
 =begin
-# messaging.rb: Core lich file for collection of various messaging Lich capabilities.
-# Entries added here should always be accessible from Lich::Messaging.feature namespace.
 messaging.rb: Core lich file for collection of various messaging Lich capabilities.
 Entries added here should always be accessible from Lich::Messaging.feature namespace.
 =end
 
-# The Lich module provides various functionalities for the Lich project.
+# Lich module for messaging capabilities.
+# This module contains various methods for handling messaging in the Lich framework.
+# @example Using the Lich::Messaging module
+#   Lich::Messaging.xml_encode("Hello World")
 module Lich
-  # The Messaging module contains methods for handling messaging capabilities in Lich.
-  # @example Using the Messaging module
-  #   Lich::Messaging.msg("info", "This is a message")
   module Messaging
-    # Encodes a message into XML format.
+    # Encodes a message to XML format.
     # @param msg [String] The message to encode.
-    # @return [String] The XML-encoded message.
+    # @return [String] The encoded message in XML format.
+    # @note If the Frontend does not support GSL, it will return the message encoded as XML directly.
     # @example Encoding a message
-    #   encoded_msg = Lich::Messaging.xml_encode("Hello, World!")
+    #   encoded_message = Lich::Messaging.xml_encode("Hello World")
     def self.xml_encode(msg)
-      if $frontend =~ /^(wizard|avalon)$/i
-        sf_to_wiz(msg.encode(:xml => :text), bypass_multiline: true)
+      if Frontend.supports_gsl?
+        sf_to_wiz(msg.encode(:xml => :text), bypass_multiline: true) || "" # sf_to_wiz returns nil when blank/new line only, which causes issue for messaging, always return string if nil
       else
         msg.encode(:xml => :text)
       end
@@ -26,22 +25,22 @@ module Lich
 
     # Formats a message to be displayed in monster bold style.
     # @param msg [String] The message to format.
-    # @param encode [Boolean] Whether to encode the message (default: true).
+    # @param encode [Boolean] Whether to encode the message to XML (default: true).
     # @return [String] The formatted message.
     # @example Formatting a monster bold message
-    #   bold_msg = Lich::Messaging.monsterbold("A fierce dragon appears!")
+    #   formatted_message = Lich::Messaging.monsterbold("A fierce dragon appears!")
     def self.monsterbold(msg, encode: true)
       # return monsterbold_start + self.xml_encode(msg) + monsterbold_end
       return msg_format("monster", msg, encode: encode)
     end
 
-    # Prepares a message for display in a specific stream window.
-    # @param msg [String] The message to display.
-    # @param window [String] The name of the stream window (default: "familiar").
-    # @param encode [Boolean] Whether to encode the message (default: true).
+    # Wraps a message in a stream window format.
+    # @param msg [String] The message to wrap.
+    # @param window [String] The type of stream window (default: "familiar").
+    # @param encode [Boolean] Whether to encode the message to XML (default: true).
     # @return [void]
-    # @example Displaying a message in the familiar stream
-    #   Lich::Messaging.stream_window("Hello, familiar!", "familiar")
+    # @example Wrapping a message in a stream window
+    #   Lich::Messaging.stream_window("Hello World", "speech")
     def self.stream_window(msg, window = "familiar", encode: true)
       msg = xml_encode(msg) if encode
       if XMLData.game =~ /^GS/
@@ -52,7 +51,7 @@ module Lich
 
       stream_window_before_txt = ""
       stream_window_after_txt = ""
-      if $frontend =~ /stormfront|profanity/i && allowed_streams.include?(window)
+      if Frontend.supports_streams? && allowed_streams.include?(window)
         stream_window_before_txt = "<pushStream id=\"#{window}\" ifClosedStyle=\"watching\"/>"
         stream_window_after_txt = "\r\n<popStream/>\r\n"
       else
@@ -71,14 +70,14 @@ module Lich
       _respond stream_window_before_txt + msg + stream_window_after_txt
     end
 
-    # Formats a message with specific styling based on type.
+    # Formats a message with a specific type and optional command link.
     # @param type [String] The type of message (default: "info").
     # @param msg [String] The message to format.
-    # @param cmd_link [String, nil] Optional command link for formatting.
-    # @param encode [Boolean] Whether to encode the message (default: true).
+    # @param cmd_link [String, nil] An optional command link to include (default: nil).
+    # @param encode [Boolean] Whether to encode the message to XML (default: true).
     # @return [String] The formatted message.
-    # @example Formatting an info message
-    #   formatted_msg = Lich::Messaging.msg_format("info", "This is an info message.")
+    # @example Formatting a message
+    #   formatted_message = Lich::Messaging.msg_format("error", "An error occurred!")
     def self.msg_format(type = "info", msg = "", cmd_link: nil, encode: true)
       msg = xml_encode(msg) if encode
       preset_color_before = ""
@@ -88,7 +87,7 @@ module Lich
         "dark red" => 133, "purple" => 134, "gold" => 135, "light grey" => 136, "blue" => 137,
         "bright green" => 138, "teal" => 139, "red" => 140, "pink" => 141, "yellow" => 142 }
 
-      if $frontend =~ /^(?:stormfront|frostbite|profanity|wrayth)$/
+      if Frontend.supports_xml?
         case type
         when "error", "yellow", "bold", "monster", "creature"
           preset_color_before = monsterbold_start
@@ -109,7 +108,7 @@ module Lich
           preset_color_before = "<d cmd='#{xml_encode(cmd_link)}'>"
           preset_color_after = "</d>"
         end
-      elsif $frontend =~ /^(?:wizard|avalon)$/
+      elsif Frontend.supports_gsl?
         case type
         when "error", "yellow", "bold", "monster", "creature"
           preset_color_before = monsterbold_start
@@ -159,39 +158,37 @@ module Lich
     # Sends a formatted message to the user.
     # @param type [String] The type of message (default: "info").
     # @param msg [String] The message to send.
-    # @param encode [Boolean] Whether to encode the message (default: true).
+    # @param encode [Boolean] Whether to encode the message to XML (default: true).
     # @return [void]
     # @example Sending a message
-    #   Lich::Messaging.msg("info", "This is a test message.")
+    #   Lich::Messaging.msg("info", "This is an informational message.")
     def self.msg(type = "info", msg = "", encode: true)
       return if type == "debug" && (Lich.debug_messaging.nil? || Lich.debug_messaging == "false" || Lich.debug_messaging == false)
       _respond msg_format(type, msg, encode: encode)
     end
 
-    # Creates a command link message.
+    # Creates a command link formatted message.
     # @param link_text [String] The text to display for the link.
     # @param link_action [String] The action to perform when the link is clicked.
-    # @param encode [Boolean] Whether to encode the message (default: true).
+    # @param encode [Boolean] Whether to encode the message to XML (default: true).
     # @return [String] The formatted command link message.
     # @example Creating a command link
-    #   link = Lich::Messaging.make_cmd_link("Click here", "do_something")
+    #   command_link = Lich::Messaging.make_cmd_link("Click here", "do_something")
     def self.make_cmd_link(link_text, link_action, encode: true)
       return msg_format("cmd", link_text, cmd_link: link_action, encode: encode)
     end
 
-    # defaulting encoding here to false instead of true like other methods due to backwards compatibility that it never encoded before
-    # whereas all the other methods were already encoding and therefor should default to allow for them.
     # Sends a message in mono format.
     # @param msg [String] The message to send.
-    # @param encode [Boolean] Whether to encode the message (default: false).
+    # @param encode [Boolean] Whether to encode the message to XML (default: false).
     # @return [void]
-    # @raise [StandardError] If msg is not a String.
+    # @raise [StandardError] If the message is not a String.
     # @example Sending a mono message
     #   Lich::Messaging.mono("This is a mono message.")
     def self.mono(msg, encode: false)
       return raise StandardError.new 'Lich::Messaging.mono only works with String parameters!' unless msg.is_a?(String)
       msg = xml_encode(msg) if encode
-      if $frontend =~ /^(?:stormfront|wrayth|genie)$/i
+      if Frontend.supports_mono?
         _respond "<output class=\"mono\"/>\n" + msg + "\n<output class=\"\"/>"
       else
         _respond msg.split("\n")

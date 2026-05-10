@@ -18,48 +18,45 @@ rescue StandardError => e
 end
 
 module Lich
-  # Provides utility methods for text processing
+  # Provides utility methods for text processing in Lich
   # @example Using the TextStripper module
-  #   stripped_text = Lich::Util::TextStripper.strip(text, Lich::Util::TextStripper::Mode::HTML)
+  #   stripped_text = Lich::Util::TextStripper.strip(html_content, Lich::Util::TextStripper::Mode::HTML)
   module Util
     # Module for stripping formatting from text
-    # This module provides methods to remove HTML, XML, and Markdown formatting from text.
+    # This module provides methods to strip HTML, XML, and Markdown formatting from text.
     # @example Stripping HTML from text
-    #   plain_text = Lich::Util::TextStripper.strip_html(html_text)
+    #   plain_text = Lich::Util::TextStripper.strip(html_content, Lich::Util::TextStripper::Mode::HTML)
     module TextStripper
       module Mode
         # Strip HTML tags
-        # Constant representing the HTML stripping mode
+        # Mode for stripping HTML tags
         HTML = :html
 
         # Strip XML tags
-        # Constant representing the XML stripping mode
+        # Mode for stripping XML tags
         XML = :xml
 
         # Strip Markdown/markup formatting
-        # Constant representing the MARKUP stripping mode
+        # Mode for stripping Markdown/markup formatting
         MARKUP = :markup
 
         # Alias for MARKUP (both :markup and :markdown are accepted)
-        # Alias for MARKUP, representing the MARKDOWN stripping mode
+        # Alias for MARKUP (both :markup and :markdown are accepted)
         MARKDOWN = :markdown
 
-        # Array of all available stripping modes
         ALL = [HTML, XML, MARKUP, MARKDOWN].freeze
 
-        # Checks if the given mode is valid
+        # Validates if the given mode is a supported stripping mode
         # @param mode [Symbol, String] The mode to validate
         # @return [Boolean] True if the mode is valid, false otherwise
-        # @example Validating a mode
-        #   Lich::Util::TextStripper.valid?(:html) # => true
         def self.valid?(mode)
           ALL.include?(mode.to_sym)
         end
 
-        # Returns a comma-separated list of all valid modes
+        # Returns a comma-separated list of valid modes
         # @return [String] A string listing all valid modes
-        # @example Listing modes
-        #   Lich::Util::TextStripper.list # => "html, xml, markup, markdown"
+        # @example Listing valid modes
+        #   puts Lich::Util::TextStripper.list
         def self.list
           ALL.join(', ')
         end
@@ -74,8 +71,6 @@ module Lich
       # Checks if Kramdown is required for the given mode
       # @param mode [Symbol] The mode to check
       # @return [Boolean] True if Kramdown is required, false otherwise
-      # @example Checking Kramdown requirement
-      #   Lich::Util::TextStripper.requires_kramdown?(:markup) # => true
       def self.requires_kramdown?(mode)
         MODE_TO_INPUT_FORMAT.key?(mode)
       end
@@ -85,8 +80,8 @@ module Lich
       # @param mode [Symbol] The mode to use for stripping
       # @return [String] The stripped text
       # @raise [ArgumentError] If the mode is invalid
-      # @example Stripping text
-      #   plain_text = Lich::Util::TextStripper.strip(html_text, Lich::Util::TextStripper::Mode::HTML)
+      # @example Stripping HTML
+      #   plain_text = Lich::Util::TextStripper.strip(html_content, Lich::Util::TextStripper::Mode::HTML)
       def self.strip(text, mode)
         return "" if text.nil? || text.empty?
 
@@ -121,12 +116,10 @@ module Lich
         text
       end
 
-      # Validates the given mode and normalizes it to a symbol
+      # Validates and normalizes the mode parameter
       # @param mode [Symbol, String] The mode to validate
       # @return [Symbol] The normalized mode
-      # @raise [ArgumentError] If the mode is invalid
-      # @example Validating a mode
-      #   Lich::Util::TextStripper.validate_mode(:html) # => :html
+      # @raise [ArgumentError] If the mode is not a Symbol or String or is invalid
       def self.validate_mode(mode)
         # Ensure mode is a Symbol or String
         unless mode.is_a?(Symbol) || mode.is_a?(String)
@@ -148,9 +141,7 @@ module Lich
 
       # Logs an error message along with the exception details
       # @param message [String] The error message to log
-      # @param exception [StandardError] The exception that occurred
-      # @example Logging an error
-      #   Lich::Util::TextStripper.log_error("An error occurred", e)
+      # @param exception [StandardError] The exception that was raised
       def self.log_error(message, exception)
         full_message = "TextStripper: #{message} (#{exception.class}: #{exception.message}). Returning original."
         respond(full_message)
@@ -161,9 +152,7 @@ module Lich
       # @param text [String] The text to be stripped
       # @param mode [Symbol] The mode to use for stripping
       # @return [String] The stripped text
-      # @raise [RuntimeError] If Kramdown is not loaded
-      # @example Stripping with Kramdown
-      #   plain_text = Lich::Util::TextStripper.strip_with_kramdown(markdown_text, Lich::Util::TextStripper::Mode::MARKDOWN)
+      # @raise [Kramdown::Error] If Kramdown fails to parse the text
       def self.strip_with_kramdown(text, mode)
         unless KRAMDOWN_LOADED
           respond("Need to restart Lich5 in order to use this method.")
@@ -180,8 +169,7 @@ module Lich
       # Strips XML tags from the given text
       # @param text [String] The XML text to be stripped
       # @return [String] The stripped text
-      # @example Stripping XML
-      #   plain_text = Lich::Util::TextStripper.strip_xml_with_rexml(xml_text)
+      # @raise [REXML::ParseException] If there is an error parsing the XML
       def self.strip_xml_with_rexml(text)
         # Try to parse as-is first (in case it's already well-formed XML)
         begin
@@ -195,11 +183,6 @@ module Lich
         extract_xml_text(doc.root).strip
       end
 
-      # Extracts text content from an XML element
-      # @param element [REXML::Element] The XML element to extract text from
-      # @return [String] The extracted text
-      # @example Extracting XML text
-      #   text = Lich::Util::TextStripper.extract_xml_text(xml_element)
       def self.extract_xml_text(element)
         return '' if element.nil?
 
@@ -224,11 +207,6 @@ module Lich
         text_parts.join
       end
 
-      # Extracts plain text from a Kramdown element
-      # @param element [Kramdown::Element] The Kramdown element to extract text from
-      # @return [String] The extracted plain text
-      # @example Extracting text from Kramdown
-      #   text = Lich::Util::TextStripper.extract_text(kramdown_element)
       def self.extract_text(element)
         return '' if element.nil?
 
@@ -260,11 +238,6 @@ module Lich
         end
       end
 
-      # Converts an HTML entity to its corresponding character
-      # @param entity [Symbol] The HTML entity to convert
-      # @return [String] The corresponding character
-      # @example Converting an entity
-      #   char = Lich::Util::TextStripper.entity_to_char(:nbsp) # => " "
       def self.entity_to_char(entity)
         if entity.respond_to?(:char)
           entity.char
@@ -281,11 +254,6 @@ module Lich
         end
       end
 
-      # Converts a smart quote type to its corresponding character
-      # @param quote_type [Symbol] The type of smart quote
-      # @return [String] The corresponding character
-      # @example Converting a smart quote
-      #   char = Lich::Util::TextStripper.smart_quote_to_char(:ldquo) # => "
       def self.smart_quote_to_char(quote_type)
         case quote_type
         when :lsquo, :rsquo then "'"
@@ -297,9 +265,7 @@ module Lich
       # Strips HTML tags from the given text
       # @param text [String] The HTML text to be stripped
       # @return [String] The stripped text
-      # @raise [RuntimeError] If Kramdown is not loaded
-      # @example Stripping HTML
-      #   plain_text = Lich::Util::TextStripper.strip_html(html_text)
+      # @note Kramdown must be loaded to use this method
       def self.strip_html(text)
         unless KRAMDOWN_LOADED
           respond("Need to restart Lich5 in order to use this method.")
@@ -312,8 +278,6 @@ module Lich
       # Strips XML tags from the given text
       # @param text [String] The XML text to be stripped
       # @return [String] The stripped text
-      # @example Stripping XML
-      #   plain_text = Lich::Util::TextStripper.strip_xml(xml_text)
       def self.strip_xml(text)
         strip_xml_with_rexml(text)
       end
@@ -321,9 +285,7 @@ module Lich
       # Strips Markdown/markup formatting from the given text
       # @param text [String] The text to be stripped
       # @return [String] The stripped text
-      # @raise [RuntimeError] If Kramdown is not loaded
-      # @example Stripping markup
-      #   plain_text = Lich::Util::TextStripper.strip_markup(markup_text)
+      # @note Kramdown must be loaded to use this method
       def self.strip_markup(text)
         unless KRAMDOWN_LOADED
           respond("Need to restart Lich5 in order to use this method.")
@@ -336,9 +298,7 @@ module Lich
       # Strips Markdown formatting from the given text
       # @param text [String] The Markdown text to be stripped
       # @return [String] The stripped text
-      # @raise [RuntimeError] If Kramdown is not loaded
-      # @example Stripping Markdown
-      #   plain_text = Lich::Util::TextStripper.strip_markdown(markdown_text)
+      # @note Kramdown must be loaded to use this method
       def self.strip_markdown(text)
         unless KRAMDOWN_LOADED
           respond("Need to restart Lich5 in order to use this method.")

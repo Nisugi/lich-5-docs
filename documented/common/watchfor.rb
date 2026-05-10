@@ -1,23 +1,18 @@
-# Carve out class WatchFor
-# 2024-06-13
-# has rubocop Lint issues (return nil) - overriding until it can be further researched
 
 module Lich
   module Common
-    # Represents a watcher for specific patterns in the script.
-    # This class allows you to define patterns to watch for and execute a block of code when those patterns are matched.
-    # @example Creating a watcher for a specific string
-    #   watcher = Lich::Common::Watchfor.new("example string") { puts "Matched!" }
+    # Represents a watcher that triggers a block when a specified string or regular expression is matched.
+    # This class allows you to monitor specific patterns in the script's execution.
+    # @example Creating a Watchfor instance
+    #   watcher = Lich::Common::Watchfor.new("pattern") { puts 'Matched!' }
     class Watchfor
       # rubocop:disable Lint/ReturnInVoidContext
       # Initializes a new Watchfor instance.
       # @param line [String, Regexp] The string or regular expression to watch for.
-      # @param theproc [Proc, nil] An optional Proc to execute if no block is given.
-      # @param block [Proc] The block of code to execute when the pattern is matched.
+      # @param theproc [Proc, nil] An optional proc to use if no block is given.
+      # @param block [Proc] The block to execute when the pattern is matched.
       # @return [nil] Returns nil if initialization fails due to invalid parameters.
       # @raise [ArgumentError] Raises an error if neither a string nor a regexp is provided.
-      # @example Initializing with a string
-      #   watcher = Lich::Common::Watchfor.new("test") { puts "Found!" }
       def initialize(line, theproc = nil, &block)
         return nil unless (script = Script.current)
 
@@ -39,9 +34,9 @@ module Lich
       end
 
       # rubocop:enable Lint/ReturnInVoidContext
-      # Clears all watch patterns from the current script.
-      # @return [void] This method does not return a value.
-      # @example Clearing all watchers
+      # Clears all watchfor patterns.
+      # @return [Hash] Returns an empty hash after clearing the patterns.
+      # @example Clearing all watchfor patterns
       #   Lich::Common::Watchfor.clear
       def Watchfor.clear
         script.watchfor = Hash.new

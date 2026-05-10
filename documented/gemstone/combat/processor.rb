@@ -8,14 +8,12 @@
 require_relative '../creature'
 require_relative '../critranks'
 
-# Contains the Lich module and its submodules
-# @example Including the Lich module
-#   include Lich
+# Namespace for the Lich project
+# Contains modules related to the Gemstone combat system.
 module Lich
   module Gemstone
-    # Contains the Combat submodule of Gemstone
-    # @example Including the Combat module
-    #   include Lich::Gemstone::Combat
+    # Module for handling combat mechanics
+    # Provides methods for processing combat events.
     module Combat
       module Processor
         module_function
@@ -23,8 +21,8 @@ module Lich
         # Processes a chunk of combat data
         # @param chunk [String] The raw combat data to process
         # @return [void]
-        # @example Processing combat data
-        #   process("<combat_data>")
+        # @example
+        #   process("combat data here")
         def process(chunk)
           events = parse_events(chunk)
           return if events.empty?
@@ -37,7 +35,7 @@ module Lich
         # Parses lines of combat data into events
         # @param lines [Array<String>] The lines of combat data to parse
         # @return [Array<Hash>] An array of parsed events
-        # @example Parsing combat lines
+        # @example
         #   events = parse_events(lines)
         def parse_events(lines)
           events = []
@@ -194,7 +192,7 @@ module Lich
         # Persists a combat event to the creature
         # @param event [Hash] The event data to persist
         # @return [void]
-        # @example Persisting an event
+        # @example
         #   persist_event(event)
         def persist_event(event)
           target = event[:target]
@@ -253,7 +251,7 @@ module Lich
         # @param ucs_result [Hash] The UCS result data
         # @param current_target [Hash, nil] The current target, if any
         # @return [void]
-        # @example Applying UCS to a target
+        # @example
         #   apply_ucs_to_target(ucs_result, current_target)
         def apply_ucs_to_target(ucs_result, current_target = nil)
           target_id = ucs_result[:target_id]
@@ -287,13 +285,13 @@ module Lich
           respond "[Combat] Error applying UCS: #{e.message}" if Tracker.debug?
         end
 
-        # Applies a status effect to a target creature
+        # Applies a status effect to a target
         # @param status [Symbol] The status to apply
         # @param target_name_or_id [String] The target's name or ID
         # @param target_id [Integer, nil] The target's ID, if known
         # @param action [Symbol] The action to perform (:add or :remove)
         # @return [void]
-        # @example Applying a status to a target
+        # @example
         #   apply_status_to_target(:stunned, "Goblin", nil, :add)
         def apply_status_to_target(status, target_name_or_id, target_id = nil, action = :add)
           # Handle both name lookup and direct ID
@@ -320,10 +318,10 @@ module Lich
           end
         end
 
-        # Maps critical hit locations to body part format
-        # @param location [String, nil] The location string to map
-        # @return [String, nil] The mapped body part or nil if not found
-        # @example Mapping a critical hit location
+        # Maps critical ranks locations to body part names
+        # @param location [String, nil] The location to map
+        # @return [String, nil] The mapped body part name or nil if not found
+        # @example
         #   body_part = map_critranks_to_body_part("leftarm")
         def map_critranks_to_body_part(location)
           return nil unless location

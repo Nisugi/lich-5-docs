@@ -1,13 +1,14 @@
 
 module Lich
   module Gemstone
-    # Represents the character's injury status in the Gemstone module.
+    # Represents the Injured status of a character in the Lich game.
+    # This class handles the management of injuries and their effects on character abilities.
     # @example Creating an instance of Injured
     #   injured_status = Lich::Gemstone::Injured
     class Injured < Gemstone::CharacterStatus
       class << self
-        # A constant that groups body parts for injury checks.
-        # Each key represents a group of body parts.
+        # A constant that defines groups of body parts for injury management.
+        # Each group contains symbols representing the body parts.
         BODY_PART_GROUPS = {
           eyes: %i[leftEye rightEye],
           arms: %i[leftArm rightArm],
@@ -25,7 +26,7 @@ module Lich
 
         # Retrieves injury data, utilizing caching for efficiency.
         # @return [Array] An array containing wounds and scars data.
-        # @note This method uses a mutex for thread safety.
+        # @note This method uses a mutex to ensure thread safety when accessing cached data.
         # @example
         #   wounds, scars = get_injury_data
         def get_injury_data
@@ -57,10 +58,10 @@ module Lich
         end
 
         # Calculates the effective injury from wounds and scars for a given body part.
-        # @param body_part [Symbol] The body part to check (e.g., :leftArm).
-        # @param wounds_hash [Hash] A hash containing wounds data.
-        # @param scars_hash [Hash] A hash containing scars data.
-        # @return [Integer] The effective injury value.
+        # @param body_part [Symbol] The body part to check for injuries.
+        # @param wounds_hash [Hash] A hash containing wound data.
+        # @param scars_hash [Hash] A hash containing scar data.
+        # @return [Integer] The maximum effective injury value.
         # @example
         #   effective_injury = effective_injury_from_hashes(:leftArm, wounds_hash, scars_hash)
         def effective_injury_from_hashes(body_part, wounds_hash, scars_hash)
@@ -72,13 +73,13 @@ module Lich
         end
 
         # Checks if there are injuries at a specific rank for given body parts.
-        # @param rank [Integer] The rank of injury to check.
-        # @param wounds_hash [Hash] A hash containing wounds data.
-        # @param scars_hash [Hash] A hash containing scars data.
+        # @param rank [Integer] The rank of injury to check for.
+        # @param wounds_hash [Hash] A hash containing wound data.
+        # @param scars_hash [Hash] A hash containing scar data.
         # @param parts [Array<Symbol>] The body parts to check.
-        # @return [Boolean] True if any part has an injury at the specified rank.
+        # @return [Boolean] True if any specified body part has an injury at the given rank.
         # @example
-        #   has_injuries = injuries_at_rank?(2, wounds_hash, scars_hash, :leftArm, :rightArm)
+        #   has_injury = injuries_at_rank?(2, wounds_hash, scars_hash, :leftArm, :rightArm)
         def injuries_at_rank?(rank, wounds_hash, scars_hash, *parts)
           parts.flatten.any? do |part|
             effective_injury_from_hashes(part, wounds_hash, scars_hash) == rank
@@ -86,13 +87,13 @@ module Lich
         end
 
         # Checks if there are injuries at or above a specific rank for given body parts.
-        # @param rank [Integer] The rank of injury to check.
-        # @param wounds_hash [Hash] A hash containing wounds data.
-        # @param scars_hash [Hash] A hash containing scars data.
+        # @param rank [Integer] The rank of injury to check for.
+        # @param wounds_hash [Hash] A hash containing wound data.
+        # @param scars_hash [Hash] A hash containing scar data.
         # @param parts [Array<Symbol>] The body parts to check.
-        # @return [Boolean] True if any part has an injury at or above the specified rank.
+        # @return [Boolean] True if any specified body part has an injury at or above the given rank.
         # @example
-        #   has_injuries = injuries_at_or_above_rank?(2, wounds_hash, scars_hash, :leftArm, :rightArm)
+        #   has_injury = injuries_at_or_above_rank?(2, wounds_hash, scars_hash, :leftArm, :rightArm)
         def injuries_at_or_above_rank?(rank, wounds_hash, scars_hash, *parts)
           parts.flatten.any? do |part|
             effective_injury_from_hashes(part, wounds_hash, scars_hash) >= rank

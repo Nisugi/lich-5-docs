@@ -10,8 +10,8 @@ module Lich
   module Common
     module GUI
       # User Interface for managing accounts in the Lich application.
-      # Provides functionality to create, add, and manage accounts and characters.
-      # @example Creating the management window
+      # Provides functionality to create, view, and modify accounts and characters.
+      # @example Creating a management window
       #   Lich::Common::GUI::AccountManagerUI.create_management_window("/path/to/data")
       class AccountManagerUI
         # Creates and displays the account management window.
@@ -33,27 +33,31 @@ module Lich
           @data_change_callback = nil
           @tab_communicator = nil
           @notifications_registered = false
+          @tab_indices = {}
         end
 
         # Sets a callback to be invoked when account data changes.
         # @param callback [Proc] The callback to be invoked on data changes.
         # @return [void]
         # @example
-        #   manager.set_data_change_callback(->(type, data) { puts "Data changed: #{type}" })
+        #   ui.set_data_change_callback(->(type, data) { puts "Data changed: #{type}" })
         def set_data_change_callback(callback)
           @data_change_callback = callback
         end
 
-        # Registers the UI to receive notifications about account changes.
+        # Registers the UI for notifications from the tab communicator.
         # @param tab_communicator [Object] The communicator for tab notifications.
         # @return [void]
         # @example
-        #   manager.register_for_notifications(tab_communicator)
+        #   ui.register_for_notifications(tab_communicator)
         def register_for_notifications(tab_communicator)
           @tab_communicator = tab_communicator
           @accounts_store = nil # Will be set when accounts tab is created
         end
 
+        # Registers a callback to handle incoming notifications.
+        # @return [void]
+        # @note This method will not register if notifications are already registered or if the tab communicator is not set.
         def register_notification_callback
           return if @notifications_registered || !@tab_communicator
           return unless @notebook
@@ -89,7 +93,7 @@ module Lich
         # @return [void]
         # @raise [StandardError] If an error occurs while refreshing the display.
         # @example
-        #   manager.refresh_accounts_display
+        #   ui.refresh_accounts_display
         def refresh_accounts_display
           return unless @accounts_store
 
@@ -109,7 +113,7 @@ module Lich
         # @param insert_at_position [Integer, nil] The position to insert the tab at, or nil to append.
         # @return [void]
         # @example
-        #   manager.create_accounts_tab(notebook)
+        #   ui.create_accounts_tab(notebook)
         def create_accounts_tab(notebook, insert_at_position = nil)
           # Store notebook reference for use in callbacks
           @notebook = notebook
@@ -191,11 +195,11 @@ module Lich
 
           # Create add account button
           add_account_button = Gtk::Button.new(label: "Add Account")
-          button_box.pack_start(add_account_button, expand: false, fill: false, padding: 0)
+          # button_box.pack_start(add_account_button, expand: false, fill: false, padding: 0)
 
           # Create add character button
           add_character_button = Gtk::Button.new(label: "Add Character")
-          button_box.pack_start(add_character_button, expand: false, fill: false, padding: 0)
+          # button_box.pack_start(add_character_button, expand: false, fill: false, padding: 0)
 
           # Create change password button
           change_password_button = Gtk::Button.new(label: "Change Password")
@@ -349,11 +353,11 @@ module Lich
           populate_accounts_view(accounts_store)
         end
 
-        # Creates the add character tab in the management window.
+        # Creates the tab for adding a new character.
         # @param notebook [Gtk::Notebook] The notebook to add the tab to.
         # @return [void]
         # @example
-        #   manager.create_add_character_tab(notebook)
+        #   ui.create_add_character_tab(notebook)
         def create_add_character_tab(notebook)
           # Create tab content
           add_box = Gtk::Box.new(:vertical, 10)
@@ -462,11 +466,11 @@ module Lich
           populate_account_combo(account_combo)
         end
 
-        # Creates the add account tab in the management window.
+        # Creates the tab for adding a new account.
         # @param notebook [Gtk::Notebook] The notebook to add the tab to.
         # @return [void]
         # @example
-        #   manager.create_add_account_tab(notebook)
+        #   ui.create_add_account_tab(notebook)
         def create_add_account_tab(notebook)
           # Create tab content
           add_account_box = Gtk::Box.new(:vertical, 10)
@@ -631,11 +635,11 @@ module Lich
           }
         end
 
-        # Creates the encryption management tab in the management window.
+        # Creates the tab for managing encryption settings.
         # @param notebook [Gtk::Notebook] The notebook to add the tab to.
         # @return [void]
         # @example
-        #   manager.create_encryption_management_tab(notebook)
+        #   ui.create_encryption_management_tab(notebook)
         def create_encryption_management_tab(notebook)
           # Create encryption management content
           encryption_box = Gtk::Box.new(:vertical, 10)
@@ -677,7 +681,7 @@ module Lich
           # Check encryption mode and keychain availability
           has_keychain = MasterPasswordManager.keychain_available?
           mode = nil
-          yaml_file = YamlState.yaml_file_path(@data_dir)
+          yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(@data_dir)
 
           if File.exist?(yaml_file)
             begin
@@ -888,7 +892,7 @@ module Lich
         end
 
         def account_already_exists?(username)
-          yaml_file = Lich::Common::GUI::YamlState.yaml_file_path(@data_dir)
+          yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(@data_dir)
           return false unless File.exist?(yaml_file)
 
           begin
@@ -966,7 +970,7 @@ module Lich
           # Load saved sort state
           sort_state = load_sort_state
 
-          if sort_state[:column] && sort_state[:order]
+          if sort_state[:column].is_a?(Integer) && sort_state[:order]
             # Convert symbol to GTK constant
             gtk_order = symbol_to_gtk_sort_type(sort_state[:order])
             store.set_sort_column_id(sort_state[:column], gtk_order) if gtk_order
@@ -974,8 +978,8 @@ module Lich
 
           # Save sort state when it changes
           store.signal_connect('sort-column-changed') do
-            column_id, order = store.sort_column_id
-            if column_id && order
+            has_sort, column_id, order = store.sort_column_id
+            if has_sort && column_id && order
               # Convert GTK constant to symbol for storage
               symbol_order = gtk_sort_type_to_symbol(order)
               save_sort_state(column_id, symbol_order) if symbol_order
@@ -1157,7 +1161,7 @@ module Lich
           end
 
           # Check YAML file and encryption mode
-          yaml_file = YamlState.yaml_file_path(@data_dir)
+          yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(@data_dir)
           unless File.exist?(yaml_file)
             button.visible = false
             button.sensitive = false
@@ -1188,7 +1192,7 @@ module Lich
           @change_encryption_mode_button.visible = true
 
           # Check if YAML file exists with accounts
-          yaml_file = YamlState.yaml_file_path(@data_dir)
+          yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(@data_dir)
           unless File.exist?(yaml_file)
             @change_encryption_mode_button.sensitive = false
             return
@@ -1226,7 +1230,6 @@ module Lich
 
           # Create notebook for tabs (store as instance variable for tab recreation)
           @notebook = Gtk::Notebook.new
-          @tab_indices = {} # Registry for tab indices to avoid hardcoding page numbers
 
           # Create tabs
           create_accounts_tab(@notebook)

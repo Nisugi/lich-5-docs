@@ -1,67 +1,50 @@
-# frozen_string_literal: true
 
 module Lich
   module Common
-    # Path navigator to encapsulate path navigation logic
-    #
-    # This class provides methods to manage and navigate through a path structure.
-    # It interacts with a database adapter to retrieve and manipulate settings.
-    # @example Creating a path navigator
+    # Manages navigation through a path structure in a database.
+    # This class provides methods to set, reset, and navigate paths.
+    # @example Creating a PathNavigator instance
     #   navigator = Lich::Common::PathNavigator.new(db_adapter)
     class PathNavigator
+      # Initializes a new PathNavigator instance.
+      # @param db_adapter [Object] The database adapter used for retrieving settings.
       def initialize(db_adapter)
         @db_adapter = db_adapter
         @path = []
       end
 
+      # The current path being navigated.
+      # @return [Array] The current path.
       attr_reader :path
 
-      # Allow external callers to drive the effective path
-      #
-      # This method sets the current path to the provided new path.
-      # @param new_path [Array, Object] The new path to set, can be an array or a single object.
-      # @return [void]
-      # @example Setting a new path
-      #   navigator.set_path(["level1", "level2"])
+      # Sets the current path to a new value.
+      # @param new_path [Array, Object] The new path to set.
+      # @return [Array] The newly set path.
       def set_path(new_path)
         @path = Array(new_path).dup
       end
 
-      # Resets the current path to an empty state.
-      #
-      # This method clears the existing path.
-      # @return [void]
-      # @example Resetting the path
-      #   navigator.reset_path
+      # Resets the current path to an empty array.
+      # @return [Array] The reset path (empty).
       def reset_path
         @path = []
       end
 
-      # Resets the path and returns a specified value.
-      #
-      # This method clears the current path and returns the provided value.
+      # Resets the current path and returns a specified value.
       # @param value [Object] The value to return after resetting the path.
       # @return [Object] The provided value.
-      # @example Resetting the path and returning a value
-      #   result = navigator.reset_path_and_return("default")
       def reset_path_and_return(value)
         reset_path
         value
       end
 
-      # Navigate to the node at "path" (or @path if nil).
-      # Returns [target, root]
-      #
-      # This method navigates through the path segments to find the target node.
-      # It can create missing containers if specified.
-      # @param script_name [String] the script namespace (e.g., Script.current.name)
-      # @param create_missing [Boolean] whether to create intermediate containers
-      # @param scope [String] settings scope (e.g., "GS3:CharName")
-      # @param path [Array, nil] path segments; integers index arrays, symbols/strings index hashes
-      # @return [Array(Object, Hash|Array)] [target_node, root_object]
-      # @raise ArgumentError if an invalid array index is encountered
-      # @example Navigating to a path
-      #   target, root = navigator.navigate_to_path("my_script", true, "GS3:CharName", ["level1", "level2"])
+      # Navigates to a specified path based on the script name and scope.
+      # @param script_name [String] The name of the script to navigate.
+      # @param create_missing [Boolean] Whether to create missing path elements (default: true).
+      # @param scope [String] The scope for the navigation (default: ":").
+      # @param path [Array, nil] The path to navigate to (default: nil).
+      # @return [Array] An array containing the target and root elements.
+      # @raise ArgumentError if an invalid array index is encountered.
       def navigate_to_path(script_name, create_missing = true, scope = ":", path = nil)
         work_path = path ? Array(path) : @path
         root = @db_adapter.get_settings(script_name, scope)

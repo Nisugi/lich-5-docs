@@ -4,7 +4,7 @@ require 'ostruct'
 module Lich
   module Gemstone
     # Represents a template for creatures in the game.
-    # This class is responsible for loading and managing creature templates.
+    # This class manages the loading and creation of creature templates.
     # @example Loading all creature templates
     #   Lich::Gemstone::CreatureTemplate.load_all
     class CreatureTemplate
@@ -62,8 +62,9 @@ module Lich
       end
 
       # Loads all creature templates from the specified directory.
-      # This method will only load templates if they haven't been loaded already.
+      # This method will only load templates if they haven't been loaded yet.
       # @return [void]
+      # @raise [StandardError] If there is an error loading a template.
       def self.load_all
         return if @@loaded
 
@@ -107,7 +108,7 @@ module Lich
       BOON_REGEX = /^(#{BOON_ADJECTIVES.join('|')})\s+/i.freeze
 
       # Cleans up the template name by removing boon adjectives.
-      # @param template_name [String] The name of the template to clean.
+      # @param template_name [String] The name of the template to fix.
       # @return [String] The cleaned template name.
       def self.fix_template_name(template_name)
         name = template_name.dup.downcase
@@ -118,7 +119,7 @@ module Lich
       # Loads template data from a file content string.
       # @param file_content [String] The content of the template file.
       # @param path [String] The path of the template file.
-      # @return [Hash] The loaded template data.
+      # @return [Hash] The parsed template data.
       # @raise [RuntimeError] If the loaded data is not a Hash.
       def self.load_template_data(file_content, path)
         # Use binding.eval for slightly better isolation
@@ -133,6 +134,9 @@ module Lich
       end
       private_class_method :load_template_data
 
+      # Retrieves a creature template by name.
+      # @param name [String] The name of the template to retrieve.
+      # @return [CreatureTemplate, nil] The creature template if found, otherwise nil.
       def self.[](name)
         load_all unless @@loaded
         return nil unless name
@@ -179,8 +183,8 @@ module Lich
     end
 
     # Represents an instance of a creature in the game.
-    # This class manages the state and attributes of a creature during gameplay.
-    # @example Creating a new creature instance
+    # This class manages the state and behavior of individual creatures.
+    # @example Creating a creature instance
     #   creature = Lich::Gemstone::CreatureInstance.new(1, "Goblin", "Goblin")
     class CreatureInstance
       @@instances = {}
@@ -240,8 +244,8 @@ module Lich
         @template ||= CreatureTemplate[@name]
       end
 
-      # Checks if the creature instance has an associated template.
-      # @return [Boolean] True if the instance has a template, otherwise false.
+      # Checks if this creature instance has an associated template.
+      # @return [Boolean] True if a template is associated, false otherwise.
       def has_template?
         !template.nil?
       end
@@ -275,7 +279,7 @@ module Lich
         respond "  -status: #{status}" if $creature_debug
       end
 
-      # Cleans up expired status effects from the creature instance.
+      # Cleans up any expired status effects from the creature instance.
       # @return [void]
       def cleanup_expired_statuses
         return unless @status_timestamps && !@status_timestamps.empty?
@@ -289,8 +293,8 @@ module Lich
       end
 
       # Checks if the creature instance has a specific status effect.
-      # @param status [String] The status to check.
-      # @return [Boolean] True if the status is present, otherwise false.
+      # @param status [String] The status to check for.
+      # @return [Boolean] True if the status is present, false otherwise.
       def has_status?(status)
         cleanup_expired_statuses # Clean up expired statuses first
         @status.include?(status.to_s)
@@ -317,7 +321,7 @@ module Lich
       end
 
       # Sets the UCS position for the creature instance.
-      # @param position [String, Integer] The new position to set.
+      # @param position [String, Integer] The position to set.
       # @return [void]
       def set_ucs_position(position)
         new_tier = position_to_tier(position)
@@ -331,8 +335,8 @@ module Lich
         respond "  UCS: position=#{new_tier}" if $creature_debug
       end
 
-      # Sets the UCS tier-up for the creature instance.
-      # @param attack_type [String] The type of attack that triggered the tier-up.
+      # Sets the UCS tier up for the creature instance.
+      # @param attack_type [String] The type of attack that caused the tier up.
       # @return [void]
       def set_ucs_tierup(attack_type)
         @ucs_tierup = attack_type
@@ -349,7 +353,7 @@ module Lich
       end
 
       # Checks if the creature instance is currently smote.
-      # @return [Boolean] True if smote, otherwise false.
+      # @return [Boolean] True if smote, false otherwise.
       def smote?
         return false unless @ucs_smote
 
@@ -371,29 +375,30 @@ module Lich
       end
 
       # Checks if the UCS data for the creature instance has expired.
-      # @return [Boolean] True if expired, otherwise false.
+      # @return [Boolean] True if expired, false otherwise.
       def ucs_expired?
         return true unless @ucs_updated
         (Time.now - @ucs_updated) > UCS_TTL
       end
 
       # Retrieves the UCS position for the creature instance.
-      # @return [Integer, nil] The current UCS position, or nil if expired.
+      # @return [Integer, nil] The UCS position if not expired, otherwise nil.
       def ucs_position
         return nil if ucs_expired?
         @ucs_position
       end
 
-      # Retrieves the UCS tier-up for the creature instance.
-      # @return [String, nil] The current UCS tier-up, or nil if expired.
+      # Retrieves the UCS tier up for the creature instance.
+      # @return [String, nil] The UCS tier up if not expired, otherwise nil.
       def ucs_tierup
         return nil if ucs_expired?
         @ucs_tierup
       end
 
-      # Adds an injury to a specified body part of the creature instance.
+      # Adds an injury to a specific body part of the creature instance.
       # @param body_part [String] The body part to injure.
-      # @param amount [Integer] The amount of injury to add, defaults to 1.
+      # @param amount [Integer] The amount of injury to add.
+      # @return [void]
       # @raise [ArgumentError] If the body part is invalid.
       def add_injury(body_part, amount = 1)
         unless BODY_PARTS.include?(body_part.to_s)
@@ -402,10 +407,10 @@ module Lich
         @injuries[body_part.to_sym] += amount
       end
 
-      # Checks if the creature instance is injured at a specified location.
-      # @param location [String] The body part to check for injury.
-      # @param threshold [Integer] The injury threshold to check against, defaults to 1.
-      # @return [Boolean] True if injured, otherwise false.
+      # Checks if a specific body part of the creature instance is injured above a threshold.
+      # @param location [String] The body part to check.
+      # @param threshold [Integer] The injury threshold.
+      # @return [Boolean] True if injured above the threshold, false otherwise.
       def injured?(location, threshold = 1)
         @injuries[location.to_sym] >= threshold
       end
@@ -417,19 +422,19 @@ module Lich
       end
 
       # Checks if the creature instance has a fatal critical hit.
-      # @return [Boolean] True if it has, otherwise false.
+      # @return [Boolean] True if it has, false otherwise.
       def fatal_crit?
         @fatal_crit
       end
 
-      # Returns a list of body parts that are injured above a specified threshold.
-      # @param threshold [Integer] The injury threshold to check against, defaults to 1.
+      # Retrieves the locations of injuries above a specified threshold.
+      # @param threshold [Integer] The injury threshold.
       # @return [Array<Symbol>] An array of injured body parts.
       def injured_locations(threshold = 1)
         @injuries.select { |_, value| value >= threshold }.keys
       end
 
-      # Adds damage taken to the creature instance.
+      # Adds damage to the creature instance.
       # @param amount [Integer] The amount of damage to add.
       # @return [void]
       def add_damage(amount)
@@ -465,34 +470,34 @@ module Lich
         [max_hp - @damage_taken, 0].max
       end
 
-      # Calculates the percentage of current hit points relative to max hit points.
-      # @return [Float, nil] The percentage of current hit points, or nil if max_hp is not set.
+      # Retrieves the percentage of current hit points relative to max hit points.
+      # @return [Float, nil] The hit points percentage, or nil if max_hp is not set.
       def hp_percent
         return nil unless max_hp && max_hp > 0
         ((current_hp.to_f / max_hp) * 100).round(1)
       end
 
-      # Checks if the creature instance is below a specified hit point threshold.
-      # @param threshold [Integer] The hit point threshold to check against, defaults to 25.
-      # @return [Boolean] True if below the threshold, otherwise false.
+      # Checks if the creature instance is below a certain hit points threshold.
+      # @param threshold [Integer] The hit points threshold.
+      # @return [Boolean] True if below the threshold, false otherwise.
       def low_hp?(threshold = 25)
         return false unless hp_percent
         hp_percent <= threshold
       end
 
       # Checks if the creature instance is dead (current HP is 0).
-      # @return [Boolean] True if dead, otherwise false.
+      # @return [Boolean] True if dead, false otherwise.
       def dead?
         current_hp == 0
       end
 
-      # Resets the damage taken for the creature instance to zero.
+      # Resets the damage taken by the creature instance to zero.
       # @return [void]
       def reset_damage
         @damage_taken = 0
       end
 
-      # Retrieves essential data for the creature instance.
+      # Retrieves essential data about the creature instance.
       # @return [Hash] A hash containing essential attributes of the creature instance.
       def essential_data
         {
@@ -533,11 +538,6 @@ module Lich
           size >= @@max_size
         end
 
-        # Registers a new creature instance with the specified name and ID.
-        # @param name [String] The name of the creature.
-        # @param id [Integer] The unique identifier for the creature instance.
-        # @param noun [String, nil] The noun used to refer to the creature, defaults to nil.
-        # @return [CreatureInstance, nil] The registered creature instance, or nil if registration failed.
         def register(name, id, noun = nil)
           return nil unless auto_register?
           return @@instances[id.to_i] if @@instances[id.to_i] # Already exists
@@ -559,11 +559,14 @@ module Lich
           instance
         end
 
+        # Retrieves a creature instance by its ID.
+        # @param id [Integer] The ID of the creature instance to retrieve.
+        # @return [CreatureInstance, nil] The creature instance if found, otherwise nil.
         def [](id)
           @@instances[id.to_i]
         end
 
-        # Returns all registered creature instances.
+        # Retrieves all registered creature instances.
         # @return [Array<CreatureInstance>] An array of all creature instances.
         def all
           @@instances.values
@@ -583,33 +586,31 @@ module Lich
     end
 
     # Provides methods for managing creature instances.
-    # This module serves as a facade for interacting with creature instances.
+    # @example Registering a creature
+    #   Lich::Gemstone::Creature.register("Goblin", 1)
     module Creature
-      # Retrieves a creature instance by ID.
-      # @param id [Integer] The ID of the creature instance to retrieve.
-      # @return [CreatureInstance, nil] The creature instance if found, otherwise nil.
       def self.[](id)
         CreatureInstance[id]
       end
 
-      # Registers a new creature instance with the specified name and ID.
+      # Registers a new creature instance through the Creature module.
       # @param name [String] The name of the creature.
       # @param id [Integer] The unique identifier for the creature instance.
-      # @param noun [String, nil] The noun used to refer to the creature, defaults to nil.
+      # @param noun [String, nil] The noun used to refer to the creature.
       # @return [CreatureInstance, nil] The registered creature instance, or nil if registration failed.
       def self.register(name, id, noun = nil)
         CreatureInstance.register(name, id, noun)
       end
 
       # Configures the creature instance settings.
-      # @param options [Hash] Configuration options for the creature instances.
+      # @param options [Hash] Configuration options for the creature instance.
       # @return [void]
       def self.configure(**options)
         CreatureInstance.configure(**options)
       end
 
-      # Retrieves statistics about the current state of creature instances.
-      # @return [Hash] A hash containing instance and template statistics.
+      # Retrieves statistics about the creature instances and templates.
+      # @return [Hash] A hash containing statistics about instances and templates.
       def self.stats
         {
           instances: CreatureInstance.size,
@@ -619,14 +620,14 @@ module Lich
         }
       end
 
-      # Clears all registered creature instances.
+      # Clears all registered creature instances through the Creature module.
       # @return [void]
       def self.clear
         CreatureInstance.clear
       end
 
-      # Cleans up old creature instances based on specified options.
-      # @param options [Hash] Options for cleanup criteria.
+      # Cleans up old creature instances through the Creature module.
+      # @param options [Hash] Options for cleanup.
       # @return [void]
       def self.cleanup_old(**options)
         CreatureInstance.cleanup_old(**options)
@@ -646,7 +647,6 @@ module Lich
     end
 
     # Represents a special ability of a creature.
-    # This class holds the name and note of the ability.
     # @example Creating a special ability
     #   ability = Lich::Gemstone::SpecialAbility.new(name: "Fireball", note: "A powerful fire spell.")
     class SpecialAbility
@@ -659,7 +659,8 @@ module Lich
     end
 
     # Represents the treasure associated with a creature.
-    # This class manages the treasure data, including coins, gems, and magic items.
+    # @example Creating a treasure
+    #   treasure = Lich::Gemstone::Treasure.new(coins: true, gems: false)
     class Treasure
       def initialize(data = {})
         @data = {
@@ -674,19 +675,19 @@ module Lich
       end
 
       # Checks if the treasure has coins.
-      # @return [Boolean] True if coins are present, otherwise false.
+      # @return [Boolean] True if the treasure has coins, false otherwise.
       def has_coins? = !!@data[:coins]
       # Checks if the treasure has gems.
-      # @return [Boolean] True if gems are present, otherwise false.
+      # @return [Boolean] True if the treasure has gems, false otherwise.
       def has_gems? = !!@data[:gems]
       # Checks if the treasure has boxes.
-      # @return [Boolean] True if boxes are present, otherwise false.
+      # @return [Boolean] True if the treasure has boxes, false otherwise.
       def has_boxes? = !!@data[:boxes]
       # Checks if the treasure has skin.
-      # @return [Boolean] True if skin is present, otherwise false.
+      # @return [Boolean] True if the treasure has skin, false otherwise.
       def has_skin? = !!@data[:skin]
-      # Checks if a blunt weapon is required to access the treasure.
-      # @return [Boolean] True if blunt is required, otherwise false.
+      # Checks if the treasure requires a blunt item.
+      # @return [Boolean] True if blunt is required, false otherwise.
       def blunt_required? = !!@data[:blunt_required]
 
       # Converts the treasure data to a hash.
@@ -695,7 +696,8 @@ module Lich
     end
 
     # Represents the messaging associated with a creature.
-    # This class manages various messages related to the creature's actions.
+    # @example Creating messaging for a creature
+    #   messaging = Lich::Gemstone::Messaging.new(description: "A fierce creature.")
     class Messaging
       attr_accessor :description, :arrival, :flee, :death,
                     :spell_prep, :frenzy, :sympathy, :bite,
@@ -726,10 +728,10 @@ module Lich
         end
       end
 
-      # Displays a message for a specified field, substituting placeholders.
-      # @param field [Symbol] The field to display the message for.
+      # Displays a specific message field with substitutions.
+      # @param field [Symbol] The field to display.
       # @param subs [Hash] Substitutions for placeholders in the message.
-      # @return [String] The formatted message.
+      # @return [String] The displayed message.
       def display(field, subs = {})
         msg = send(field)
         if msg.is_a?(Array)
@@ -741,7 +743,7 @@ module Lich
         end
       end
 
-      # Matches a string against the template's regex.
+      # Matches a string against the template and returns captured groups.
       # @param str [String] The string to match.
       # @param literals [Hash] Literal values for placeholders.
       # @return [Hash, nil] The matched data if successful, otherwise nil.
@@ -756,7 +758,8 @@ module Lich
     end
 
     # Represents the defensive attributes of a creature.
-    # This class manages various defensive capabilities and immunities.
+    # @example Creating defense attributes
+    #   defense = Lich::Gemstone::DefenseAttributes.new(asg: 5, melee: "1..3")
     class DefenseAttributes
       attr_accessor :asg, :melee, :ranged, :bolt, :udf,
                     :bar_td, :cle_td, :emp_td, :pal_td,
@@ -765,7 +768,7 @@ module Lich
                     :defensive_spells, :defensive_abilities, :special_defenses
 
       # Initializes a new defense attributes object.
-      # @param data [Hash] The data for the defense attributes.
+      # @param data [Hash] The data for the defense attributes, including various defenses.
       # @return [DefenseAttributes]
       def initialize(data)
         @asg = data[:asg]
@@ -801,7 +804,8 @@ module Lich
     end
 
     # Represents a template with placeholders for dynamic content.
-    # This class manages the template string and its placeholders.
+    # @example Creating a placeholder template
+    #   template = Lich::Gemstone::PlaceholderTemplate.new("{Pronoun} attacks!", {Pronoun: ["He", "She"]})
     class PlaceholderTemplate
       def initialize(template, placeholders = {})
         @template = template
@@ -817,9 +821,9 @@ module Lich
         @placeholders
       end
 
-      # Converts the template to a display string, substituting placeholders with values.
+      # Converts the template to a display string with substitutions.
       # @param subs [Hash] Substitutions for placeholders in the template.
-      # @return [String] The formatted display string.
+      # @return [String] The displayed template.
       def to_display(subs = {})
         line = @template.dup
         @placeholders.each do |key, options|

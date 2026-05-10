@@ -11,7 +11,7 @@ module Lich
       # Default settings for memory releaser
       # Default settings for memory releaser
       DEFAULT_SETTINGS = {
-        auto_start: false, # Disabled by default, user must enable
+        auto_start: true, # Disabled by default, user must enable
         interval: 900, # default of 15 minutes
         verbose: false,
       }.freeze
@@ -118,13 +118,11 @@ module Lich
           @enabled = true
         end
 
-        # Loads settings from the database
+        # Loads settings from InstanceSettings
         # @return [Hash] The loaded settings
-        # @raise [StandardError] If there's an error loading settings
         def load_settings
-          # Load from DB_Store with per-character scope
-          scope = "#{XMLData.game}:#{XMLData.name}"
-          stored_settings = Lich::Common::DB_Store.read(scope, 'lich_memory_releaser') || {}
+          # Load from InstanceSettings with per-character scope
+          stored_settings = Lich::Common::InstanceSettings['memoryreleaser'] || {}
           @settings = DEFAULT_SETTINGS.merge(stored_settings)
 
           # Apply loaded settings to instance variables
@@ -141,14 +139,11 @@ module Lich
           @settings
         end
 
-        # Saves current settings to the database
+        # Saves current settings back to InstanceSettings
         # @return [Hash] The saved settings
-        # @raise [StandardError] If there's an error saving settings
         def save_settings
-          # Save current settings to DB_Store with per-character scope
-          scope = "#{XMLData.game}:#{XMLData.name}"
-          Lich::Common::DB_Store.save(scope, 'lich_memory_releaser', @settings)
-          @settings
+          # Save current settings back to InstanceSettings with per-character scope
+          Lich::Common::InstanceSettings['memoryreleaser'] = @settings
         rescue => e
           respond "[MemoryReleaser] Error saving settings: #{e.message}"
           @settings
@@ -188,9 +183,15 @@ module Lich
           enabled
         end
 
+        # Perform a complete memory release cycle
+        #
         def release
+          before = print_memory_stats if @verbose
+          Lich::Common::GameObj.prune_index!(ttl: @interval, verbose: @verbose)
           run_gc
           release_to_os
+          after = print_memory_stats if @verbose
+          print_memory_diff(before, after) if @verbose
           log "Memory release completed"
         end
 
@@ -525,13 +526,14 @@ module Lich
       # Class-level singleton instance
       @instance = nil
 
+      # Class-level methods for MemoryReleaser
       class << self
         attr_reader :command_queue
 
         attr_reader :worker_thread
 
         # Retrieves the singleton instance of the MemoryReleaser
-        # @return [Manager] The singleton instance of the Manager
+        # @return [Manager] The singleton instance
         def instance
           @mutex ||= Mutex.new
           @mutex.synchronize {
@@ -548,65 +550,65 @@ module Lich
           }
         end
 
-        # Starts the memory releaser worker using the singleton instance
+        # Starts the memory releaser using the singleton instance
         # @param interval [Integer, nil] The interval in seconds (optional)
-        # @param verbose [Boolean, nil] Whether to enable verbose logging (optional)
-        # @return [Thread, nil] The worker thread if started, otherwise nil
+        # @param verbose [Boolean, nil] Whether to enable verbose output (optional)
+        # @return [Thread, nil] The worker thread or nil if failed to start
         def start(interval: nil, verbose: nil)
           instance.start(interval: interval, verbose: verbose)
         end
 
-        # Stops the memory releaser worker using the singleton instance
+        # Stops the memory releaser using the singleton instance
         # @return [void]
         def stop
           instance.stop
         end
 
         # Enables auto-start for the memory releaser using the singleton instance
-        # @return [Boolean] The status of auto-start after enabling
+        # @return [Boolean] Always returns true
         def auto_start!
           instance.auto_start!
         end
 
         # Disables auto-start for the memory releaser using the singleton instance
-        # @return [Boolean] The status of auto-start after disabling
+        # @return [Boolean] Always returns false
         def auto_disable!
           instance.auto_disable!
         end
 
         # Sets the interval for memory release using the singleton instance
-        # @param seconds [Integer] The interval in seconds (minimum 60)
-        # @return [Integer] The new interval
+        # @param seconds [Integer] The interval in seconds
+        # @return [Integer] The set interval
         def interval!(seconds)
           instance.interval!(seconds)
         end
 
-        # Sets the verbose mode for logging using the singleton instance
-        # @param enabled [Boolean] Whether to enable verbose logging
-        # @return [Boolean] The new verbose status
+        # Sets the verbosity of the memory releaser using the singleton instance
+        # @param enabled [Boolean] Whether to enable verbose output
+        # @return [Boolean] The new verbosity setting
         def verbose!(enabled)
           instance.verbose!(enabled)
         end
 
-        # Releases memory using the singleton instance
+        # Performs a complete memory release cycle using the singleton instance
         # @return [void]
         def release
           instance.release
         end
 
-        # Checks if the memory releaser worker is currently running using the singleton instance
+        # Checks if the memory releaser is currently running using the singleton instance
         # @return [Boolean] True if running, false otherwise
         def running?
           instance.running?
         end
 
         # Retrieves the current status of the memory releaser using the singleton instance
-        # @return [Hash] The current status including running, enabled, auto_start, interval, verbose, and platform
+        # @return [Hash] The status information
         def status
           instance.status
         end
 
-        # Runs a benchmark to show memory usage before and after release using the singleton instance
+        # Runs a benchmark for memory usage before and after release using the singleton instance
         # @return [void]
         def benchmark
           instance.benchmark
@@ -616,6 +618,15 @@ module Lich
           @instance&.stop
           @instance = nil
         end
+      end
+
+      # Trigger auto-start check on module load
+      Thread.new do
+        sleep(0.5) until (defined?(XMLData))
+        sleep(0.5) until (defined?(InstanceSettings))
+        sleep(0.5) while XMLData.game.nil? || XMLData.name.nil?
+        sleep(5)
+        Lich::Util::MemoryReleaser.instance
       end
     end
   end

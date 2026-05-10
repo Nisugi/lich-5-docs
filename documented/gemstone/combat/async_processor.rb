@@ -9,15 +9,12 @@ require 'concurrent'
 module Lich
   module Gemstone
     module Combat
-      # Async Combat Processor - Thread-safe combat processing for performance
-      #
-      # This class manages asynchronous processing of combat actions using a thread pool.
-      # It ensures thread safety and efficient resource management.
+      # AsyncProcessor handles asynchronous combat processing in a thread-safe manner.
+      # It manages a pool of threads to process combat data efficiently.
       # @example Creating an AsyncProcessor instance
       #   processor = Lich::Gemstone::Combat::AsyncProcessor.new(4)
       class AsyncProcessor
         # Initializes a new AsyncProcessor instance.
-        #
         # @param max_threads [Integer] The maximum number of threads to use for processing.
         # @return [AsyncProcessor]
         def initialize(max_threads = 2)
@@ -28,13 +25,12 @@ module Lich
           @last_compact = Time.now
         end
 
-        # Processes a chunk of combat actions asynchronously.
-        #
-        # @param chunk [Array] An array of combat actions to process.
+        # Processes a chunk of combat data asynchronously.
+        # @param chunk [Array] The chunk of combat data to process.
         # @return [Thread] The thread that is processing the chunk.
-        # @raise [StandardError] If an error occurs during processing.
-        # @example Processing a chunk of actions
-        #   processor.process_async(actions)
+        # @raise [StandardError] If there is an error during processing.
+        # @example Processing a chunk of combat data
+        #   processor.process_async(data_chunk)
         def process_async(chunk)
           return if chunk.empty?
 
@@ -75,7 +71,6 @@ module Lich
         end
 
         # Shuts down the AsyncProcessor, waiting for all threads to finish.
-        #
         # @return [void]
         # @example Shutting down the processor
         #   processor.shutdown
@@ -90,8 +85,7 @@ module Lich
         end
 
         # Returns statistics about the current state of the AsyncProcessor.
-        #
-        # @return [Hash] A hash containing statistics such as active threads, total alive threads, and processing details.
+        # @return [Hash] A hash containing statistics such as active threads and total alive threads.
         # @example Getting processor statistics
         #   stats = processor.stats
         def stats

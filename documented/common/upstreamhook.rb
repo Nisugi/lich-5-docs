@@ -1,25 +1,21 @@
-# Carve out from lich.rbw
-# UpstreamHook class 2024-06-13
 
 module Lich
   module Common
     # Handles upstream hooks for the Lich project.
-    # This class allows adding, running, removing, and listing hooks that can modify client strings.
+    # This class allows adding, running, removing, and listing hooks.
     # @example Adding a hook
-    #   UpstreamHook.add("example_hook", Proc.new { |str| str.upcase })
+    #   UpstreamHook.add("hook_name", Proc.new { |client| ... })
     class UpstreamHook
-      # A class variable that stores the registered upstream hooks.
       @@upstream_hooks ||= Hash.new
-      # A class variable that stores the sources of the registered upstream hooks.
       @@upstream_hook_sources ||= Hash.new
 
       # Adds a new upstream hook.
       # @param name [String] The name of the hook.
-      # @param action [Proc] The action to be executed when the hook is run.
+      # @param action [Proc] The action to be executed when the hook is triggered.
       # @return [Boolean] Returns true if the hook was added successfully, false otherwise.
       # @raise [StandardError] Raises an error if action is not a Proc.
       # @example Adding a hook
-      #   UpstreamHook.add("example_hook", Proc.new { |str| str.upcase })
+      #   UpstreamHook.add("example_hook", Proc.new { |client| ... })
       def UpstreamHook.add(name, action)
         unless action.is_a?(Proc)
           echo "UpstreamHook: not a Proc (#{action})"
@@ -30,11 +26,9 @@ module Lich
       end
 
       # Runs all registered upstream hooks in order.
-      # @param client_string [String] The string to be modified by the hooks.
-      # @return [String, nil] Returns the modified string or nil if any hook returns nil.
-      # @raise [StandardError] Catches exceptions from hook actions and removes the faulty hook.
-      # @example Running hooks
-      #   modified_string = UpstreamHook.run("input string")
+      # @param client_string [String] The input string to be processed by the hooks.
+      # @return [String, nil] Returns the processed string or nil if any hook returns nil.
+      # @raise [StandardError] Catches exceptions from hook execution and logs them.
       def UpstreamHook.run(client_string)
         for key in @@upstream_hooks.keys
           begin
@@ -51,9 +45,7 @@ module Lich
 
       # Removes an upstream hook by name.
       # @param name [String] The name of the hook to remove.
-      # @return [void] This method does not return a value.
-      # @example Removing a hook
-      #   UpstreamHook.remove("example_hook")
+      # @return [void]
       def UpstreamHook.remove(name)
         @@upstream_hook_sources.delete(name)
         @@upstream_hooks.delete(name)
@@ -61,16 +53,12 @@ module Lich
 
       # Lists all registered upstream hooks.
       # @return [Array<String>] An array of hook names.
-      # @example Listing hooks
-      #   hooks = UpstreamHook.list
       def UpstreamHook.list
         @@upstream_hooks.keys.dup
       end
 
-      # Displays the sources of all registered upstream hooks in a table format.
-      # @return [String] A formatted string representation of the hook sources.
-      # @example Displaying hook sources
-      #   UpstreamHook.sources
+      # Provides a formatted table of hook sources.
+      # @return [String] A string representation of the table showing hooks and their sources.
       def UpstreamHook.sources
         info_table = Terminal::Table.new :headings => ['Hook', 'Source'],
                                          :rows     => @@upstream_hook_sources.to_a,
@@ -78,10 +66,8 @@ module Lich
         Lich::Messaging.mono(info_table.to_s)
       end
 
-      # Retrieves the hash of upstream hook sources.
-      # @return [Hash<String, String>] A hash mapping hook names to their sources.
-      # @example Getting hook sources
-      #   sources = UpstreamHook.hook_sources
+      # Returns a hash of upstream hook sources.
+      # @return [Hash] A hash mapping hook names to their sources.
       def UpstreamHook.hook_sources
         @@upstream_hook_sources
       end

@@ -1,26 +1,7 @@
 module Lich
   module Common
-    # Provides persistent variable storage per game/character combination.
-    # Variables are automatically loaded from SQLite database on first access
-    # and periodically saved every 5 minutes via background thread.
-    #
-    # All keys are normalized to strings for consistent access regardless of
-    # whether they're accessed via bracket notation or method syntax.
-    #
-    # @example Basic usage
-    #   Vars['my_var'] = 'value'
-    #   Vars['my_var']  #=> 'value'
-    #   Vars[:my_var]   #=> 'value' (symbols are converted to strings)
-    #
-    # @example Using method syntax
-    #   Vars.my_var = 'value'
-    #   Vars.my_var  #=> 'value'
-    #
-    # @example Using ||= operator
-    #   Vars['config'] ||= { setting: 'default' }
     module Vars
       # @!visibility private
-      # Load states for the variables system
       module LoadState
         UNLOADED = :unloaded
         LOADING  = :loading
@@ -31,11 +12,9 @@ module Lich
       @@md5        = nil
       @@load_state = LoadState::UNLOADED
 
-      # Normalizes a key to a string for consistent storage and retrieval
-      #
-      # @param key [String, Symbol, Object] the key to normalize
-      # @return [String] the normalized string key
-      # @api private
+      # Normalizes the given key to a string.
+      # @param key [Object] The key to normalize.
+      # @return [String] The normalized key as a string.
       def self.normalize_key(key)
         key.to_s
       end
@@ -108,33 +87,22 @@ module Lich
         }
       }
 
-      # Retrieves a variable value by name
-      #
-      # Keys are normalized to strings, so symbols and strings are equivalent.
-      #
-      # @param name [String, Symbol] the variable name
-      # @return [Object, nil] the variable value, or nil if not set
-      #
+      # Retrieves the value associated with the given name.
+      # @param name [String, Symbol] The name of the variable to retrieve.
+      # @return [Object, nil] The value associated with the name, or nil if not found.
       # @example
-      #   Vars['my_setting']  #=> "some value"
-      #   Vars[:my_setting]   #=> "some value" (same result)
+      #   value = Vars["my_var"]
       def Vars.[](name)
         @@load.call unless @@load_state == LoadState::LOADED
         @@vars[normalize_key(name)]
       end
 
-      # Sets a variable value by name
-      #
-      # Keys are normalized to strings, so symbols and strings are equivalent.
-      #
-      # @param name [String, Symbol] the variable name
-      # @param val [Object, nil] the value to set; nil deletes the variable
-      # @return [Object, nil] the value that was set
-      #
+      # Sets the value for the given name.
+      # @param name [String, Symbol] The name of the variable to set.
+      # @param val [Object] The value to assign to the variable.
+      # @return [void]
       # @example
-      #   Vars['my_setting'] = 'new value'
-      #   Vars[:my_setting] = 'new value'  # equivalent
-      #   Vars['my_setting'] = nil  # deletes the variable
+      #   Vars["my_var"] = "new_value"
       def Vars.[]=(name, val)
         @@load.call unless @@load_state == LoadState::LOADED
         key = normalize_key(name)
@@ -145,43 +113,27 @@ module Lich
         end
       end
 
-      # Returns a duplicate of all variables as a Hash
-      #
-      # @return [Hash] a copy of all stored variables with string keys
-      #
+      # Returns a duplicate of the current variables hash.
+      # @return [Hash] A duplicate of the variables hash.
       # @example
       #   all_vars = Vars.list
-      #   all_vars.keys  #=> ['var1', 'var2', ...]
       def Vars.list
         @@load.call unless @@load_state == LoadState::LOADED
         @@vars.dup
       end
 
-      # Immediately saves all variables to the database
-      #
-      # @return [nil]
-      #
+      # Saves the current variables to the database if modified.
+      # @return [void]
       # @example
-      #   Vars['important'] = 'data'
-      #   Vars.save  # Force immediate save instead of waiting for auto-save
+      #   Vars.save
       def Vars.save
         @@save.call
       end
 
-      # Handles dynamic method calls for variable access
-      #
-      # Supports both getter and setter syntax. All keys are normalized to strings.
-      # - `Vars.my_var` retrieves variable named "my_var"
-      # - `Vars.my_var = value` sets variable named "my_var"
-      # - `Vars['key']` and `Vars['key'] = value` also work through this
-      #
-      # @param method_name [Symbol] the method name being called
-      # @param args [Array] arguments passed to the method
-      # @return [Object, nil] the variable value or result of setter
-      #
-      # @example
-      #   Vars.my_setting = 'value'
-      #   Vars.my_setting  #=> 'value'
+      # Handles method calls that are not explicitly defined.
+      # @param method_name [Symbol] The name of the method being called.
+      # @param args [Array] The arguments passed to the method.
+      # @return [Object, nil] The value associated with the method name, or nil if not found.
       def Vars.method_missing(method_name, *args)
         @@load.call unless @@load_state == LoadState::LOADED
 
@@ -210,15 +162,10 @@ module Lich
         end
       end
 
-      # Declares that method_missing can respond to valid Ruby method names
-      #
-      # Only returns true for method names that could be valid Ruby identifiers
-      # or the bracket operators. This helps catch obvious typos while still
-      # allowing dynamic variable access.
-      #
-      # @param method_name [Symbol] the method name to check
-      # @param _include_private [Boolean] whether to include private methods
-      # @return [Boolean] true if the method name is a valid variable name
+      # Checks if the object responds to the given method name.
+      # @param method_name [Symbol] The name of the method to check.
+      # @param _include_private [Boolean] Whether to include private methods in the check.
+      # @return [Boolean] True if the method exists, false otherwise.
       def Vars.respond_to_missing?(method_name, _include_private = false)
         method_str = method_name.to_s
 

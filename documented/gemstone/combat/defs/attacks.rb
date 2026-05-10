@@ -1,10 +1,25 @@
 
 
+# The Lich module contains all components related to the Lich game.
+# @example Including the Lich module
+#   include Lich
 module Lich
+  # The Gemstone module contains functionalities related to the Gemstone game.
+  # @example Including the Gemstone module
+  #   include Lich::Gemstone
   module Gemstone
+    # The Combat module handles combat-related actions and definitions.
+    # @example Including the Combat module
+    #   include Lich::Gemstone::Combat
     module Combat
+      # The Definitions module contains various combat definitions.
+      # @example Including the Definitions module
+      #   include Lich::Gemstone::Combat::Definitions
       module Definitions
         module Attacks
+          # Represents an attack definition with a name and patterns.
+          # @example Creating an attack definition
+          #   attack = AttackDef.new(:attack, [pattern])
           AttackDef = Struct.new(:name, :patterns)
 
           # Core attack patterns - most common combat actions
@@ -69,6 +84,7 @@ module Lich
             # AttackDef.new(:hamstring, [/You(?: make a precise)? attempt to grapple (?<target>[^!]+)!/].freeze),
           ].freeze
 
+          # Shield attacks
           SHIELD_ATTACKS = [].freeze
 
           # Companion/pet attacks

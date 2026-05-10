@@ -8,21 +8,21 @@
 
 require File.join(LIB_DIR, 'util', 'opts.rb')
 require File.join(LIB_DIR, 'common', 'cli', 'cli_orchestration.rb')
+require File.join(LIB_DIR, 'main', 'arg_normalization.rb')
+require File.join(LIB_DIR, 'main', 'help_text.rb')
 
-# Namespace for the Lich project
-# Contains all main modules and classes related to Lich.
 module Lich
+  # Main module for the Lich project
+  # This module contains the ArgvOptions module for handling command line arguments.
+  # @example Using the ArgvOptions module
+  #   options = Lich::Main::ArgvOptions.process_argv
   module Main
     # Module for processing command line arguments
     # This module handles the parsing and validation of command line options.
-    # @example Parsing command line options
-    #   options = Lich::Main::ArgvOptions::OptionParser.execute
+    # @example Parsing command line arguments
+    #   options = Lich::Main::ArgvOptions.process_argv
     module ArgvOptions
 
-      # Module for parsing command line options
-      # This module defines methods to execute and handle command line options.
-      # @example Executing option parsing
-      #   options = Lich::Main::ArgvOptions::OptionParser.execute
       module OptionParser
         def self.execute
           @argv_options = {}
@@ -30,8 +30,8 @@ module Lich
 
           ARGV.each do |arg|
             case arg
-            when '-h', '--help'
-              print_help
+            when '-h', '--help', /^--help=.+$/
+              print_help(HelpText.topic_from_argv(ARGV, arg))
               exit
             when '-v', '--version'
               print_version
@@ -114,7 +114,7 @@ module Lich
         end
 
         # Handles the SAL file argument and validates its existence.
-        # @param arg [String] The SAL file argument to handle.
+        # @param arg [String] The SAL file argument
         # @return [void]
         # @note This method modifies the @argv_options hash.
         def self.handle_sal_file(arg)
@@ -127,108 +127,32 @@ module Lich
           end
         end
 
-        # Handles the dark mode option from command line arguments.
-        # @param value [String] The value indicating dark mode status (true|false|on|off).
+        # Handles the dark mode setting based on the provided value.
+        # @param value [String] The value indicating dark mode ('true', 'false', 'on', 'off')
         # @return [void]
         # @note This method modifies the @argv_options hash.
         def self.handle_dark_mode(value)
-          @argv_options[:dark_mode] = value =~ /^(true|on)$/i
+          # Regex returns Integer/nil; force strict boolean for persisted settings.
+          @argv_options[:dark_mode] = !!(value =~ /^(true|on)$/i)
           if defined?(Gtk)
             @theme_state = Lich.track_dark_mode = @argv_options[:dark_mode]
             Gtk::Settings.default.gtk_application_prefer_dark_theme = true if @theme_state == true
           end
         end
 
-        # Prints the help message for command line options.
+        # Prints the help text for the command line options.
+        # @param topic [String, nil] The specific topic to display help for
         # @return [void]
         # @example Displaying help
-        #   Lich::Main::ArgvOptions::OptionParser.print_help
-        def self.print_help
-          puts 'Usage:  lich [OPTION]'
-          puts 'General Options:'
-          puts '  -h,   --help            Display this list.'
-          puts '  -v,   --version         Display the program version number and credits.'
-          puts '  -d,   --directory       Set the main Lich program directory.'
-          puts '        --script-dir      Set the directory where Lich looks for scripts.'
-          puts '        --data-dir        Set the directory where Lich will store script data.'
-          puts '        --temp-dir        Set the directory where Lich will store temporary files.'
-          puts '        --hosts-dir       Set the directory containing game server host definitions.'
-          puts '        --hosts-file      Set the hosts file to use for host name resolution.'
-          puts '  -w,   --wizard          Run in Wizard mode (default).'
-          puts '  -s,   --stormfront      Run in StormFront mode.'
-          puts '        --avalon          Run in Avalon mode.'
-          puts '        --frostbite       Run in Frostbite mode.'
-          puts '        --gui             Enable GUI (default).'
-          puts '        --no-gui          Run without GUI (headless mode).'
-          puts '        --dark-mode       Enable/disable dark mode (true|false|on|off). See example below.'
-          puts '        --gemstone        Connect to the Gemstone IV Prime server (default).'
-          puts '        --shattered       Connect to the Gemstone IV Shattered server.'
-          puts '        --dragonrealms    Connect to the DragonRealms server.'
-          puts '        --fallen          Connect to the DragonRealms Fallen server.'
-          puts '        --platinum        Connect to the Gemstone IV/DragonRealms Platinum server.'
-          puts '        --test            Connect to the test instance of the selected game server.'
-          puts '  -g,   --game            Set the IP address and port of the game. See example below.'
-          puts ''
-          puts 'Login and Connection Options:'
-          puts '        --login           Login with the specified character name.'
-          puts '        --without-frontend Run without a frontend (headless mode).'
-          puts '        --detachable-client Enable detachable client mode on specified port or host:port.'
-          puts '        --reconnect       Automatically reconnect if connection is lost.'
-          puts '        --reconnect-delay Set delay (in seconds) before attempting reconnection.'
-          puts '        --start-scripts   Specify scripts to start after successful login.'
-          puts '        --save            Save login credentials after successful login.'
-          puts ''
-          puts 'Account and Password Options:'
-          puts '        --account         Specify game account name.'
-          puts '        --password        Specify game account password.'
-          puts '        --frontend        Specify frontend type (wizard, stormfront, avalon, genie, frostbite).'
-          puts ''
-          puts 'Encryption Management Options:'
-          puts '  -aa, --add-account    Add a new account with password. See example below.'
-          puts '  -cap, --change-account-password'
-          puts '                        Change password for specified account. See example below.'
-          puts '  -cmp, --change-master-password'
-          puts '                        Change the master password for Enhanced encryption mode.'
-          puts '  -rmp, --recover-master-password'
-          puts '                        Recover a lost master password (requires backup recovery).'
-          puts '        --convert-entries Convert existing account entries to specified encryption mode.'
-          puts '                        Usage: --convert-entries [plaintext|standard|enhanced]'
-          puts '  -cem, --change-encryption-mode'
-          puts '                        Change the global encryption mode for all accounts.'
-          puts '  -mp, --master-password'
-          puts '                        Specify master password for Enhanced mode operations.'
-          puts ''
-          puts 'Legacy Installation Options:'
-          puts '       --install         Configure Windows/WINE registry for SGE integration.'
-          puts '       --uninstall       Remove Lich from registry.'
-          puts '       --link-to-sge     Link Lich to Simutronics Game Entry.'
-          puts '       --unlink-from-sge Unlink Lich from Simutronics Game Entry.'
-          puts '       --link-to-sal     Link Lich to SAL (Simutronics Account Launcher).'
-          puts '       --unlink-from-sal Unlink Lich from SAL.'
-          puts ''
-          puts 'Examples:'
-          puts '  lich -w -d /usr/bin/lich/'
-          puts '       ... (run Lich in Wizard mode using the dir \'/usr/bin/lich/\' as the program\'s home)'
-          puts '  lich -g gs3.simutronics.net:4000'
-          puts '       ... (run Lich using the IP address \'gs3.simutronics.net\' and the port number \'4000\')'
-          puts '  lich --dragonrealms --test --genie'
-          puts '       ... (run Lich connected to DragonRealms Test server for the Genie frontend)'
-          puts '  lich --script-dir /mydir/scripts'
-          puts '       ... (run Lich with its script directory set to \'/mydir/scripts\')'
-          puts '  lich -aa MyAccount MyPassword --frontend stormfront'
-          puts '       ... (add a new account with StormFront frontend)'
-          puts '  lich -cap MyAccount NewPassword'
-          puts '       ... (change password for MyAccount to NewPassword)'
-          puts '  lich --convert-entries enhanced'
-          puts '       ... (convert all saved entries to Enhanced encryption mode with master password)'
-          puts '  lich --login MyCharName --no-gui --detachable-client=8000 --dark-mode=true'
-          puts '       ... (login without GUI in headless mode with detachable client on port 8000)'
+        #   ArgvOptions::OptionParser.print_help
+        def self.print_help(topic = nil)
+          puts HelpText.render(topic)
         end
 
-        # Prints the version information of the Lich program.
+        # Prints the version information of the Lich project.
         # @return [void]
-        # @example Displaying version
-        #   Lich::Main::ArgvOptions::OptionParser.print_version
+        # @example Displaying version information
+        #   ArgvOptions::OptionParser.print_version
         def self.print_version
           puts "The Lich, version #{LICH_VERSION}"
           puts ' (an implementation of the Ruby interpreter by Yukihiro Matsumoto designed to be a \'script engine\' for text-based MUDs)'
@@ -242,8 +166,10 @@ module Lich
         end
       end
 
-      # Module for handling side effects of command line options
-      # This module applies side effects based on the parsed options.
+      # Module for handling side effects based on parsed options
+      # This module applies side effects after options have been processed.
+      # @example Executing side effects
+      #   options = ArgvOptions::SideEffects.execute(processed_options)
       module SideEffects
         def self.execute(argv_options)
           handle_hosts_dir(argv_options)
@@ -252,10 +178,6 @@ module Lich
           argv_options
         end
 
-        # Handles the hosts directory option from command line arguments.
-        # @param argv_options [Hash] The parsed command line options.
-        # @return [void]
-        # @note This method modifies the argv_options hash.
         def self.handle_hosts_dir(argv_options)
           if (arg = ARGV.find { |a| a == '--hosts-dir' })
             i = ARGV.index(arg)
@@ -272,24 +194,18 @@ module Lich
           end
         end
 
-        # Handles the detachable client option from command line arguments.
-        # @param argv_options [Hash] The parsed command line options.
-        # @return [void]
-        # @note This method modifies the argv_options hash.
         def self.handle_detachable_client(argv_options)
           argv_options[:detachable_client_host] = '127.0.0.1'
           argv_options[:detachable_client_port] = nil
           if (arg = ARGV.find { |a| a =~ /^\-\-detachable\-client=[0-9]+$/ })
             argv_options[:detachable_client_port] = /^\-\-detachable\-client=([0-9]+)$/.match(arg).captures.first.to_i
+          elsif (arg = ARGV.find { |a| a =~ /^\-\-detachable\-client=auto$/i })
+            argv_options[:detachable_client_port] = 0
           elsif (arg = ARGV.find { |a| a =~ /^\-\-detachable\-client=((?:\d{1,3}\.){3}\d{1,3}):([0-9]{1,5})$/ })
             argv_options[:detachable_client_host], argv_options[:detachable_client_port] = /^\-\-detachable\-client=((?:\d{1,3}\.){3}\d{1,3}):([0-9]{1,5})$/.match(arg).captures
           end
         end
 
-        # Handles launching the SAL file if specified in options.
-        # @param argv_options [Hash] The parsed command line options.
-        # @return [void]
-        # @note This method may exit the program if the SAL file does not exist.
         def self.handle_sal_launch(argv_options)
           return unless argv_options[:sal]
 
@@ -326,12 +242,16 @@ module Lich
         end
       end
 
-      # Module for handling game connection options
-      # This module processes game connection parameters from command line arguments.
+      # Module for handling game connection configurations
+      # This module manages the connection settings based on command line arguments.
+      # @example Executing game connection handling
+      #   options = ArgvOptions::GameConnection.execute(processed_options)
       module GameConnection
         # Executes the game connection handling based on parsed options.
-        # @param processed_options [Hash] The processed command line options.
-        # @return [Hash] The modified options after handling game connections.
+        # @param processed_options [Hash] The processed command line options
+        # @return [Hash] The modified options after handling game connections
+        # @example Executing game connection handling
+        #   modified_options = ArgvOptions::GameConnection.execute(processed_options)
         def self.execute(processed_options)
           if (arg = ARGV.find { |a| a == '-g' || a == '--game' })
             handle_explicit_game_connection(arg, processed_options)
@@ -339,9 +259,9 @@ module Lich
             handle_shattered_connection(processed_options)
           elsif ARGV.include?('--fallen')
             handle_fallen_connection(processed_options)
-          elsif ARGV.include?('--gemstone')
+          elsif Lich::Common::Authentication::LoginHelpers.gemstone_flag?(ARGV)
             handle_gemstone_connection(processed_options)
-          elsif ARGV.include?('--dragonrealms')
+          elsif Lich::Common::Authentication::LoginHelpers.dragonrealms_flag?(ARGV)
             handle_dragonrealms_connection(processed_options)
           else
             processed_options[:game_host] = nil
@@ -351,11 +271,6 @@ module Lich
           processed_options
         end
 
-        # Handles explicit game connection parameters from command line arguments.
-        # @param arg [String] The game connection argument.
-        # @param processed_options [Hash] The processed command line options.
-        # @return [void]
-        # @note This method modifies the processed_options hash.
         def self.handle_explicit_game_connection(arg, processed_options)
           processed_options[:game_host], processed_options[:game_port] = ARGV[ARGV.index(arg) + 1].split(':')
           processed_options[:game_port] = processed_options[:game_port].to_i
@@ -456,8 +371,6 @@ module Lich
           end
         end
 
-        # Determines the frontend type based on command line arguments.
-        # @return [String] The determined frontend type (e.g., 'wizard', 'stormfront').
         def self.determine_frontend
           if ARGV.any? { |a| a == '-s' || a == '--stormfront' }
             'stormfront'
@@ -473,11 +386,20 @@ module Lich
         end
       end
 
-      # Processes command line arguments and applies necessary configurations.
-      # @return [Hash] The final processed options after all steps.
+      # Processes the command line arguments and applies necessary configurations.
+      # @return [Hash] The final processed options after all steps
+      # @example Processing command line arguments
+      #   final_options = Lich::Main::ArgvOptions.process_argv
       def self.process_argv
         # Step 1: Clean launcher.exe
         ARGV.delete_if { |arg| arg =~ /launcher\.exe/i }
+
+        begin
+          ArgNormalization.normalize!(ARGV)
+        rescue ArgumentError => e
+          $stderr.puts "error: #{e.message}"
+          exit 1
+        end
 
         # Step 2: Handle early-exit CLI operations (now in lib/common/cli/cli_orchestration.rb)
         Lich::Common::CLI::CLIOrchestration.execute

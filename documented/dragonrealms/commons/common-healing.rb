@@ -1,59 +1,71 @@
-# Module for Lich game functionalities
-# This module contains various functionalities related to the Lich game.
+
+# The Lich module provides various utilities for the DragonRealms game.
+# @example Including the Lich module
+#   include Lich
 module Lich
-  # Module for DragonRealms game functionalities
-  # This module contains functionalities specific to the DragonRealms game.
   module DragonRealms
-    # Module for DragonRealms Combat Healing
-    # This module provides methods for checking health and managing wounds.
+    # The DRCH module contains methods for health management in DragonRealms.
+    # @example Using DRCH methods
+    #   DRCH.check_health
     module DRCH
       module_function
 
-      # Checks if there are any tendable bleeders
-      # @return [Boolean] true if there are tendable bleeders, false otherwise
+      # Strips XML tags from the given lines.
+      # @param lines [Array<String>] The lines containing XML to be stripped.
+      # @return [Array<String>] The lines without XML tags.
       # @example
-      #   has_tendable_bleeders? #=> true
-      def has_tendable_bleeders?
-        health_data = check_health
-        return true if health_data['bleeders'].values.flatten.any? { |wound| wound.tendable? }
-
-        return false
+      #   clean_lines = DRCH.strip_xml(raw_lines)
+      def strip_xml(lines)
+        DRC.strip_xml(lines)
       end
 
-      # Uses HEALTH command to check for poisons, diseases, bleeders, parasites, and lodged items.
-      # Based on this diagnostic information, you should be able to prioritize how you heal
-      # yourself with medicinal potions and salves, or healing spells.
-      # Uses HEALTH command to check for poisons, diseases, bleeders, parasites, and lodged items.
-      # Based on this diagnostic information, you should be able to prioritize how you heal
-      # yourself with medicinal potions and salves, or healing spells.
-      # @return [Hash] A hash containing health data including wounds, bleeders, parasites, lodged items, poisoned, diseased, and score
+      # Checks if there are any tendable bleeders.
+      # @return [Boolean] True if there are tendable bleeders, false otherwise.
       # @example
-      #   health_data = check_health
-      #   puts health_data["wounds"]
+      #   if DRCH.has_tendable_bleeders?
+      #     puts "You have tendable bleeders."
+      #   end
+      def has_tendable_bleeders?
+        check_health.has_tendable_bleeders?
+      end
+
+      # Checks the health status and returns a HealthResult object.
+      # @return [HealthResult] The health status of the character.
+      # @example
+      #   health_status = DRCH.check_health
       def check_health
-        parasites_regex = Regexp.union($DRCH_PARASITES_REGEX_LIST)
+        health_lines = Lich::Util.issue_command(
+          'health',
+          /^Your body feels\b/,
+          /<prompt/,
+          usexml: true,
+          quiet: true,
+          include_end: false
+        )
+        if health_lines.nil?
+          Lich::Messaging.msg("bold", "DRCH: Failed to capture HEALTH output (timeout).")
+          return HealthResult.new
+        end
+
+        parse_health_lines(strip_xml(health_lines))
+      end
+
+      # Parses health lines and extracts health information.
+      # @param health_lines [Array<String>] The lines containing health information.
+      # @return [HealthResult] The parsed health result.
+      # @example
+      #   result = DRCH.parse_health_lines(health_lines)
+      def parse_health_lines(health_lines)
+        parasites_regex = Regexp.union(PARASITES_REGEX)
         wounds_line = nil
         parasites_line = nil
         lodged_line = nil
         diseased = false
         poisoned = false
 
-        DRC.bput('health', 'You have', 'You feel somewhat tired and seem to be having trouble breathing', 'Your wounds', 'Your body')
-        pause 0.5
-        health_lines = reget(50).map(&:strip).reverse
-
         health_lines.each do |line|
           case line
-          when /^Your body feels\b.*(?:strength|battered|beat up|bad shape|death's door|dead)/
-            # While iterating the game output in reverse,
-            # this line represents the start of `HEALTH` command
-            # so we can now break out of the loop and avoid
-            # parsing text prior to the latest HEALTH command.
-            # We don't need to parse this line, just use implicit `health` numeric variable.
-            break
-          when /Your spirit feels\b.*(?:mighty and unconquerable|full of life|strong|wavering slightly|shaky|weak|cold|empty|lifeless|dead)/
-            # This line is your spirit health.
-            # We don't need to parse this line, just use implicit `spirit` numeric variable.
+          when /^Your body feels\b/, /^Your spirit feels\b/, /^You are .*fatigued/, /^You feel fully rested/
             next
           when /^You have (?!no significant injuries)(?!.* lodged .* in(?:to)? your)(?!.* infection)(?!.* poison(?:ed)?)(?!.* #{parasites_regex})/
             wounds_line = line
@@ -74,476 +86,491 @@ module Lich
         lodged_items = parse_lodged_items(lodged_line)
         score = calculate_score(wounds)
 
-        return {
-          'wounds'    => wounds,
-          'bleeders'  => bleeders,
-          'parasites' => parasites,
-          'lodged'    => lodged_items,
-          'poisoned'  => poisoned,
-          'diseased'  => diseased,
-          'score'     => score
-        }
+        HealthResult.new(
+          wounds: wounds,
+          bleeders: bleeders,
+          parasites: parasites,
+          lodged: lodged_items,
+          poisoned: poisoned,
+          diseased: diseased,
+          score: score
+        )
       end
 
-      # Uses PERCEIVE HEALTH SELF command to check for wounds and scars.
-      # Returns a map of any wounds where the keys
-      # are the severity and the values are the list of wounds.
-      # Uses PERCEIVE HEALTH SELF command to check for wounds and scars.
-      # Returns a map of any wounds where the keys
-      # are the severity and the values are the list of wounds.
-      # @return [Hash] A hash containing perceived health data including wounds and score
+      # Allows an empath to perceive their own health status.
+      # @return [HealthResult, nil] The perceived health result or nil if not an empath.
       # @example
-      #   perceived_health_data = perceive_health
+      #   health = DRCH.perceive_health
       def perceive_health
-        return unless DRStats.empath?
+        unless DRStats.empath?
+          Lich::Messaging.msg("bold", "DRCH: Only empaths can perceive health.")
+          return nil
+        end
 
-        case DRC.bput('perceive health self', 'feel only an aching emptiness', 'Roundtime')
-        when 'feel only an aching emptiness'
-          # Empath is permashocked and cannot perceive wounds.
+        lines = Lich::Util.issue_command(
+          'perceive health self',
+          /injuries include\.\.\.|feel only an aching emptiness/,
+          /<prompt/,
+          usexml: true,
+          quiet: true,
+          include_end: false,
+          timeout: 15
+        )
+        if lines.nil?
+          Lich::Messaging.msg("bold", "DRCH: Failed to capture PERCEIVE HEALTH output (timeout).")
+          return nil
+        end
+
+        lines = strip_xml(lines)
+
+        if lines.any? { |line| line =~ /feel only an aching emptiness/ }
+          waitrt?
           return check_health
         end
 
-        perceived_health_data = parse_perceived_health
-
-        # Return same response as `check_health` but with wound details per perceive health.
+        perceived = parse_perceived_health_lines(lines)
         health_data = check_health
-        health_data['wounds'] = perceived_health_data['wounds']
-        health_data['score'] = perceived_health_data['score']
 
-        # The `perceive health self` command incurs roundtime. We delayed waiting until now so that
-        # the script can use that time to parse the output rather than waiting unnecessarily.
         waitrt?
-        return health_data
+
+        HealthResult.new(
+          wounds: perceived.wounds,
+          bleeders: health_data.bleeders,
+          parasites: health_data.parasites,
+          lodged: health_data.lodged,
+          poisoned: health_data.poisoned,
+          diseased: health_data.diseased,
+          vitality: perceived.vitality,
+          dead: perceived.dead,
+          score: perceived.score
+        )
       end
 
-      # Checks the health of another target using empathic abilities.
-      # @param target [String] The name of the target to perceive health
-      # @return [Hash, nil] A hash containing perceived health data or nil if unable to perceive
+      # Allows an empath to perceive the health status of another character.
+      # @param target [String] The name of the target character.
+      # @return [HealthResult, nil] The perceived health result or nil if not an empath.
       # @example
-      #   health_data = perceive_health_other("John")
+      #   health = DRCH.perceive_health_other("John")
       def perceive_health_other(target)
-        return unless DRStats.empath?
-
-        case DRC.bput("touch #{target}", 'Touch what', 'feels cold and you are unable to sense anything', 'avoids your touch', 'You sense a successful empathic link has been forged between you and (?<name>\w+)\.', /^You quickly recoil/)
-        when 'avoids your touch', 'feels cold and you are unable to sense anything', 'Touch what', /^You quickly recoil/
+        unless DRStats.empath?
+          Lich::Messaging.msg("bold", "DRCH: Only empaths can perceive health of others.")
           return nil
-        when /You sense a successful empathic link has been forged between you and (?<name>\w+)\./
-          # The target passed to the method might be abbreviated
-          # or not match the exact casing as the person's actual name.
-          # Since this value becomes part of regex patterns later,
-          # make sure we're using the actual character's name.
-          target = Regexp.last_match[:name]
         end
 
-        return parse_perceived_health(target)
+        touch_lines = Lich::Util.issue_command(
+          "touch #{target}",
+          /You sense a successful empathic link|Touch what|feels cold|avoids your touch|You quickly recoil/,
+          /<prompt/,
+          usexml: true,
+          quiet: true,
+          include_end: false,
+          timeout: 10
+        )
+        if touch_lines.nil?
+          Lich::Messaging.msg("bold", "DRCH: Failed to capture TOUCH output for #{target} (timeout).")
+          return nil
+        end
+
+        touch_lines = strip_xml(touch_lines)
+
+        if touch_lines.any? { |line| line =~ /Touch what|feels cold|avoids your touch|You quickly recoil/ }
+          Lich::Messaging.msg("bold", "DRCH: Unable to perceive health of #{target}.")
+          return nil
+        end
+
+        # Extract actual character name from the empathic link message.
+        # The target passed to the method may be abbreviated or differently cased.
+        touch_lines.each do |line|
+          match = line.match(/between you and (?<name>\w+)\./)
+          if match
+            target = match[:name]
+            break
+          end
+        end
+
+        parse_perceived_health_lines(touch_lines)
       end
 
-      # Examples of what this parses can be found in test/test_check_health.rb
-      # Parses the perceived health data of a target.
-      # @param target [String, nil] The name of the target to perceive health, defaults to nil for self
-      # @return [Hash, nil] A hash containing perceived health data or nil if not found
+      # Parses lines of perceived health information.
+      # @param lines [Array<String>] The lines containing perceived health information.
+      # @return [HealthResult] The parsed perceived health result.
       # @example
-      #   health_data = parse_perceived_health("John")
-      def parse_perceived_health(target = nil)
-        pause 0.5 # Pause to wait for the full response to come back from the server
-
-        stop_line = target.nil? ? 'Your injuries include...' : "You sense a successful empathic link has been forged between you and #{target}\."
-        health_lines = reget(100).map(&:strip).reverse
-        if !health_lines.include?(stop_line)
-          return
-        end
-
-        parasites_regex = Regexp.union($DRCH_PARASITES_REGEX_LIST)
-
+      #   result = DRCH.parse_perceived_health_lines(lines)
+      def parse_perceived_health_lines(lines)
+        parasites_regex = Regexp.union(PARASITES_REGEX)
         poisons_regex = Regexp.union([
                                        /^[\w]+ (?:has|have) a .* poison/,
                                        /having trouble breathing/,
                                        /Cyanide poison/
                                      ])
-
         diseases_regex = Regexp.union([
-                                        /^[\w]+ wounds are (badly )?infected/,
+                                        /^[\w]+ wounds are (?:badly )?infected/,
                                         /^[\w]+ (?:has|have) a dormant infection/,
                                         /^[\w]+ (?:body|skin) is covered (?:in|with) open oozing sores/
                                       ])
-
-        dead_regex = Regexp.union([
-                                    /^(He|She) is dead/
-                                  ])
+        dead_regex = /^(?:He|She) is dead/
+        vitality_regex = /has (\d+)% vitality remaining/
 
         perceived_wounds = Hash.new { |h, k| h[k] = [] }
         perceived_parasites = Hash.new { |h, k| h[k] = [] }
         perceived_poison = false
         perceived_disease = false
+        perceived_vitality = 100
         wound_body_part = nil
         dead = false
 
-        health_lines
-          .take_while { |line| line != stop_line }
-          .reverse # put back in normal order so we parse <body part> line then <wound> lines
-          .each do |line|
-            case line
-            when dead_regex
-              dead = true
-            when diseases_regex
-              perceived_disease = true
-            when poisons_regex
-              perceived_poison = true
-            when parasites_regex
-              line =~ /.* on (?:his|her|your) (?<body_part>[\w\s]*)/
-              body_part = Regexp.last_match(1)
-              severity = 1
-              perceived_parasites[severity] << Wound.new(
-                body_part: body_part,
-                severity: severity
-              )
-            when /^Wounds to the (.+):/
-              wound_body_part = Regexp.last_match(1)
-              perceived_wounds[wound_body_part] = []
-            when /^(Fresh|Scars) (External|Internal)/
-              # Do regex then grab matches for wound details.
-              line =~ $DRCH_PERCEIVE_HEALTH_SEVERITY_REGEX
-              severity = $DRCH_WOUND_TO_SEVERITY_MAP[Regexp.last_match[:severity]]
-              is_internal = Regexp.last_match[:location] == 'Internal'
-              is_scar = Regexp.last_match[:freshness] == 'Scars'
-              perceived_wounds[body_part] << Wound.new(
-                body_part: wound_body_part,
-                severity: severity,
-                is_internal: is_internal,
-                is_scar: is_scar
-              )
-            end
-          end
+        lines.each do |line|
+          case line
+          when dead_regex
+            dead = true
+          when vitality_regex
+            perceived_vitality = Regexp.last_match(1).to_i
+          when diseases_regex
+            perceived_disease = true
+          when poisons_regex
+            perceived_poison = true
+          when parasites_regex
+            match = line.match(/.* on (?:his|her|your) (?<body_part>[\w\s]*)/)
+            body_part = match[:body_part] if match
+            perceived_parasites[1] << Wound.new(body_part: body_part, severity: 1)
+          when /^Wounds to the /
+            match = line.match(/^Wounds to the (?<body_part>.+):/)
+            wound_body_part = match[:body_part] if match
+            perceived_wounds[wound_body_part] = []
+          when /^(?:Fresh|Scars) (?:External|Internal)/
+            match = line.match(PERCEIVE_HEALTH_SEVERITY_REGEX)
+            next unless match
+            next unless wound_body_part
 
-        # Now go through the preceived wounds map (key=body part)
-        # and bucket the wounds by severity into the 'wounds' map (key=severity).
+            severity = WOUND_SEVERITY[match[:severity]]
+            perceived_wounds[wound_body_part] << Wound.new(
+              body_part: wound_body_part,
+              severity: severity,
+              is_internal: match[:location] == 'Internal',
+              is_scar: match[:freshness] == 'Scars'
+            )
+          end
+        end
+
+        # Bucket wounds by severity.
         wounds = Hash.new { |h, k| h[k] = [] }
         perceived_wounds.values.flatten.each do |wound|
           wounds[wound.severity] << wound
         end
 
-        return {
-          'wounds'    => wounds,
-          'parasites' => perceived_parasites,
-          'poisoned'  => perceived_poison,
-          'diseased'  => perceived_disease,
-          'dead'      => dead,
-          'score'     => calculate_score(wounds)
-        }
+        HealthResult.new(
+          wounds: wounds,
+          parasites: perceived_parasites,
+          poisoned: perceived_poison,
+          diseased: perceived_disease,
+          dead: dead,
+          vitality: perceived_vitality,
+          score: calculate_score(wounds)
+        )
       end
 
-      # Given lines of text from the HEALTH command output in reverse,
-      # returns a map of any bleeding wounds where the keys
-      # are the severity and the values are the list of bleeding wounds.
-      # Given lines of text from the HEALTH command output in reverse,
-      # returns a map of any bleeding wounds where the keys
-      # are the severity and the values are the list of bleeding wounds.
-      # @param health_lines [Array<String>] Lines of health command output
-      # @return [Hash] A hash containing bleeding wounds categorized by severity
+      # Parses health lines to extract information about bleeders.
+      # @param health_lines [Array<String>] The lines containing health information.
+      # @return [Hash] A hash of bleeders categorized by severity.
       # @example
-      #   bleeders = parse_bleeders(health_lines)
+      #   bleeders = DRCH.parse_bleeders(health_lines)
       def parse_bleeders(health_lines)
         bleeders = Hash.new { |h, k| h[k] = [] }
-        bleeder_line_regex = /^\b(inside\s+)?((l\.|r\.|left|right)\s+)?(head|eye|neck|chest|abdomen|back|arm|hand|leg|tail|skin)\b/
-        if health_lines.grep(/^Bleeding|^\s*\bArea\s+Rate\b/).any?
-          health_lines
-            .drop_while { |line| !(bleeder_line_regex =~ line) }
-            .take_while { |line| bleeder_line_regex =~ line }
-            .each do |line|
-              # Do regex then look for the body part match.
-              line =~ $DRCH_WOUND_BODY_PART_REGEX
-              body_part = Regexp.last_match.names.find { |x| Regexp.last_match[x.to_sym] }
-              body_part = Regexp.last_match[:part] if body_part == 'part'
-              # Standardize on full word for 'left' and 'right'.
-              # Internal bleeders use the abbreviations.
-              body_part = body_part.gsub('l.', 'left').gsub('r.', 'right')
-              # Check for the bleeding severity.
-              bleed_rate = /(?:head|eye|neck|chest|abdomen|back|arm|hand|leg|tail|skin)\s+(.+)/.match(line)[1]
-              severity = $DRCH_BLEED_RATE_TO_SEVERITY_MAP[bleed_rate][:severity]
-              # Check if internal or not. Want an actual boolean result here, not just "truthy/falsey".
-              is_internal = line =~ /^inside/ ? true : false
-              bleeders[severity] << Wound.new(
-                body_part: body_part,
-                severity: severity,
-                bleeding_rate: bleed_rate,
-                is_internal: is_internal
-              )
-            end
-        end
-        return bleeders
+        return bleeders unless health_lines.grep(/^Bleeding|^\s*\bArea\s+Rate\b/).any?
+
+        health_lines
+          .drop_while { |line| !(BLEEDER_LINE_REGEX =~ line) }
+          .take_while { |line| BLEEDER_LINE_REGEX =~ line }
+          .each do |line|
+            match = line.match(WOUND_BODY_PART_REGEX)
+            next unless match
+
+            body_part = match.names.find { |name| match[name.to_sym] }
+            body_part = match[:part] if body_part == 'part'
+            body_part = body_part.gsub('l.', 'left').gsub('r.', 'right')
+
+            rate_match = line.match(/(?:head|eye|neck|chest|abdomen|back|arm|hand|leg|tail|skin)\s+(?<rate>.+)/)
+            next unless rate_match
+
+            bleed_rate = rate_match[:rate].strip
+            bleed_info = BLEED_RATE_TO_SEVERITY[bleed_rate]
+            next unless bleed_info
+
+            bleeders[bleed_info[:severity]] << Wound.new(
+              body_part: body_part,
+              severity: bleed_info[:severity],
+              bleeding_rate: bleed_rate,
+              is_internal: line.start_with?('inside')
+            )
+          end
+
+        bleeders
       end
 
-      # Given the line of text from the HEALTH command output that expresses
-      # external and internal wounds and scars, returns a map of any wounds where
-      # the keys are the severity and the values are the list of wounds.
-      # Given the line of text from the HEALTH command output that expresses
-      # external and internal wounds and scars, returns a map of any wounds where
-      # the keys are the severity and the values are the list of wounds.
-      # @param wounds_line [String] The line containing wound descriptions
-      # @return [Hash] A hash containing wounds categorized by severity
+      # Parses a line of wounds information.
+      # @param wounds_line [String] The line containing wounds information.
+      # @return [Hash] A hash of wounds categorized by severity.
       # @example
-      #   wounds = parse_wounds(wounds_line)
+      #   wounds = DRCH.parse_wounds(wounds_line)
       def parse_wounds(wounds_line)
         wounds = Hash.new { |h, k| h[k] = [] }
-        if wounds_line
-          # Remove commas within wound text so we can split on each wound phrase.
-          # For example "a bruised, swollen and slashed left eye" => "a bruised swollen and slashed left eye"
-          wounds_line = wounds_line.gsub($DRCH_WOUND_COMMA_SEPARATOR, '')
-          # Remove the tidbits at the start and end of the sentence that aren't pertinent.
-          wounds_line = wounds_line.gsub(/^You have\s+/, '').gsub(/\.$/, '')
-          wounds_line.split(',').map(&:strip).each do |wound|
-            $DRCH_WOUND_SEVERITY_REGEX_MAP.each do |regex, template|
-              next unless wound =~ regex
+        return wounds unless wounds_line
 
-              body_part = Regexp.last_match.names.find { |x| Regexp.last_match[x.to_sym] }
-              body_part = Regexp.last_match[:part] if body_part == 'part'
-              wounds[template[:severity]] << Wound.new(
-                body_part: body_part,
-                severity: template[:severity],
-                is_internal: template[:internal],
-                is_scar: template[:scar]
-              )
-            end
+        wounds_line = wounds_line.gsub(WOUND_COMMA_SEPARATOR, '')
+        wounds_line = wounds_line.gsub(/^You have\s+/, '').gsub(/\.$/, '')
+        wounds_line.split(',').map(&:strip).each do |wound|
+          WOUND_SEVERITY_REGEX_MAP.each do |regex, template|
+            match = wound.match(regex)
+            next unless match
+
+            body_part = match.names.find { |name| match[name.to_sym] }
+            body_part = match[:part] if body_part == 'part'
+
+            wounds[template[:severity]] << Wound.new(
+              body_part: body_part,
+              severity: template[:severity],
+              is_internal: template[:internal],
+              is_scar: template[:scar]
+            )
           end
         end
-        return wounds
+
+        wounds
       end
 
-      # Given the line of text from the HEALTH command output that expresses
-      # parasites latched to you, returns a map of any parasites where the keys
-      # are the severity and the values are the list of wounds.
-      # Given the line of text from the HEALTH command output that expresses
-      # parasites latched to you, returns a map of any parasites where the keys
-      # are the severity and the values are the list of wounds.
-      # @param parasites_line [String] The line containing parasite descriptions
-      # @return [Hash] A hash containing parasites categorized by severity
+      # Parses a line of parasites information.
+      # @param parasites_line [String] The line containing parasites information.
+      # @return [Hash] A hash of parasites categorized by severity.
       # @example
-      #   parasites = parse_parasites(parasites_line)
+      #   parasites = DRCH.parse_parasites(parasites_line)
       def parse_parasites(parasites_line)
         parasites = Hash.new { |h, k| h[k] = [] }
-        if parasites_line
-          # Remove the tidbits at the start and end of the sentence that aren't pertinent.
-          parasites_line = parasites_line.gsub(/^You have\s+/, '').gsub(/\.$/, '')
-          parasites_line.split(',').map(&:strip).each do |parasite|
-            # Do regex then look for the body part match.
-            parasite =~ $DRCH_PARASITE_BODY_PART_REGEX
-            body_part = Regexp.last_match[:part].to_s
-            severity = 1
-            parasites[severity] << Wound.new(
-              body_part: body_part,
-              severity: severity,
-              is_parasite: true
-            )
-          end
+        return parasites unless parasites_line
+
+        parasites_line = parasites_line.gsub(/^You have\s+/, '').gsub(/\.$/, '')
+        parasites_line.split(',').map(&:strip).each do |parasite|
+          match = parasite.match(PARASITE_BODY_PART_REGEX)
+          next unless match
+
+          parasites[1] << Wound.new(
+            body_part: match[:part],
+            severity: 1,
+            is_parasite: true
+          )
         end
-        return parasites
+
+        parasites
       end
 
-      # Given the line of text from the HEALTH command output
-      # that expresses items lodged into you,
-      # returns a map of any lodged items where the keys
-      # are the severity and the values are the list of wounds.
-      # Given the line of text from the HEALTH command output that expresses
-      # items lodged into you,
-      # returns a map of any lodged items where the keys
-      # are the severity and the values are the list of wounds.
-      # @param lodged_line [String] The line containing lodged item descriptions
-      # @return [Hash] A hash containing lodged items categorized by severity
+      # Parses a line of lodged items information.
+      # @param lodged_line [String] The line containing lodged items information.
+      # @return [Hash] A hash of lodged items categorized by severity.
       # @example
-      #   lodged_items = parse_lodged_items(lodged_line)
+      #   lodged_items = DRCH.parse_lodged_items(lodged_line)
       def parse_lodged_items(lodged_line)
         lodged_items = Hash.new { |h, k| h[k] = [] }
-        if lodged_line
-          # Remove the tidbits at the start and end of the sentence that aren't pertinent.
-          lodged_line = lodged_line.gsub(/^You have\s+/, '').gsub(/\.$/, '')
-          lodged_line.split(',').map(&:strip).each do |wound|
-            # Do regex then look for the body part match.
-            wound =~ $DRCH_LODGED_BODY_PART_REGEX
-            body_part = Regexp.last_match.names.find { |x| Regexp.last_match[x.to_sym] }
-            body_part = Regexp.last_match[:part] if body_part == 'part'
-            # Check for the lodged severity.
-            severity = /\blodged\s+(.*)\s+in(?:to)? your\b/.match(wound)[1]
-            severity = $DRCH_LODGED_TO_SEVERITY_MAP[severity]
-            lodged_items[severity] << Wound.new(
-              body_part: body_part,
-              severity: severity,
-              is_lodged_item: true
-            )
-          end
+        return lodged_items unless lodged_line
+
+        lodged_line = lodged_line.gsub(/^You have\s+/, '').gsub(/\.$/, '')
+        lodged_line.split(',').map(&:strip).each do |wound|
+          match = wound.match(LODGED_BODY_PART_REGEX)
+          next unless match
+
+          body_part = match.names.find { |name| match[name.to_sym] }
+          body_part = match[:part] if body_part == 'part'
+
+          severity_match = wound.match(/\blodged\s+(?<depth>.+)\s+in(?:to)? your\b/)
+          next unless severity_match
+
+          severity = LODGED_SEVERITY[severity_match[:depth]]
+
+          lodged_items[severity] << Wound.new(
+            body_part: body_part,
+            severity: severity,
+            is_lodged_item: true
+          )
         end
-        return lodged_items
+
+        lodged_items
       end
 
-      # Tends to a specified wound on the body.
-      # @param body_part [String] The body part to tend
-      # @param person [String] The person to tend, defaults to 'my'
-      # @return [Boolean] true if tending was successful, false otherwise
+      # Binds a wound on the specified body part.
+      # @param body_part [String] The body part to bind.
+      # @param person [String] The person to bind (default is 'my').
+      # @return [Boolean] True if the binding was successful, false otherwise.
       # @example
-      #   success = bind_wound("left arm")
+      #   success = DRCH.bind_wound("arm")
       def bind_wound(body_part, person = 'my')
-        # Either you tended it or it already has bandages on. Good job!
-        tend_success = [
-          /You work carefully at tending/,
-          /You work carefully at binding/,
-          /That area has already been tended to/,
-          /That area is not bleeding/
-        ]
-        # Yeouch, you couldn't tend the wound. Might have made it worse!
-        tend_failure = [
-          /You fumble/,
-          /too injured for you to do that/,
-          /TEND allows for the tending of wounds/,
-          /^You must have a hand free/
-        ]
-        # You dislodged ammo or a parasite, discard it. Note, some parasites go away and don't
-        # end up in your hand. Fine, it'll just fail to dispose.
-        tend_dislodge = [
-          /^You \w+ remove (a|the|some) (.*) from/,
-          /^As you reach for the clay fragment/
-        ]
-
-        result = DRC.bput("tend #{person} #{body_part}", *tend_success, *tend_failure, *tend_dislodge)
+        result = DRC.bput("tend #{person} #{body_part}", *TEND_SUCCESS_PATTERNS, *TEND_FAILURE_PATTERNS, *TEND_DISLODGE_PATTERNS)
         waitrt?
         case result
-        when *tend_dislodge
-          DRCI.dispose_trash(Regexp.last_match(2), get_settings.worn_trashcan, get_settings.worn_trashcan_verb)
+        when *TEND_DISLODGE_PATTERNS
+          dislodge_match = result.match(/^You \w+ remove (?:a|the|some) (?<item>.+) from/)
+          DRCI.dispose_trash(dislodge_match[:item], get_settings.worn_trashcan, get_settings.worn_trashcan_verb) if dislodge_match
           bind_wound(body_part, person)
-        when *tend_failure
+        when *TEND_FAILURE_PATTERNS
           false
         else
           true
         end
       end
 
-      # Unwraps the bandages from a specified wound.
-      # @param body_part [String] The body part to unwrap
-      # @param person [String] The person to unwrap, defaults to 'my'
-      # @return [void]
+      # Unwraps a wound on the specified body part.
+      # @param body_part [String] The body part to unwrap.
+      # @param person [String] The person to unwrap (default is 'my').
+      # @return [Boolean] True if the unwrapping was successful, false otherwise.
       # @example
-      #   unwrap_wound("left arm")
+      #   success = DRCH.unwrap_wound("arm")
       def unwrap_wound(body_part, person = 'my')
         DRC.bput("unwrap #{person} #{body_part}", 'You unwrap .* bandages', 'That area is not tended', 'You may undo the affects of TENDing')
         waitrt?
       end
 
-      # Skill check to tend a bleeding wound.
-      # If you're not skilled enough you may make things worse and incur long roundtime.
-      # Skill check to tend a bleeding wound.
-      # If you're not skilled enough you may make things worse and incur long roundtime.
-      # @param bleed_rate [String] The rate of bleeding
-      # @param internal [Boolean] Whether the wound is internal, defaults to false
-      # @return [Boolean] true if skilled enough to tend the wound, false otherwise
+      # Checks if the character has the skill to tend a wound based on bleed rate.
+      # @param bleed_rate [String] The bleed rate of the wound.
+      # @param internal [Boolean] Whether the wound is internal (default is false).
+      # @return [Boolean] True if skilled enough to tend the wound, false otherwise.
       # @example
-      #   is_skilled = skilled_to_tend_wound?("light")
+      #   if DRCH.skilled_to_tend_wound?("fast")
+      #     puts "You can tend this wound."
+      #   end
       def skilled_to_tend_wound?(bleed_rate, internal = false)
+        bleed_info = BLEED_RATE_TO_SEVERITY[bleed_rate]
+        return false unless bleed_info
+
         skill_target = internal ? :skill_to_tend_internal : :skill_to_tend
-        min_skill = $DRCH_BLEED_RATE_TO_SEVERITY_MAP[bleed_rate][skill_target]
+        min_skill = bleed_info[skill_target]
         return false if min_skill.nil?
 
         DRSkill.getrank('First Aid') >= min_skill
       end
 
-      # Compute a weighted summary score from a wound list.
-      # Commonly used for thresholding for healing activities
-      # Compute a weighted summary score from a wound list.
-      # Commonly used for thresholding for healing activities
-      # @param wounds_by_severity [Hash] A hash of wounds categorized by severity
-      # @return [Integer] The calculated score
+      # Calculates a score based on the severity of wounds.
+      # @param wounds_by_severity [Hash] A hash of wounds categorized by severity.
+      # @return [Integer] The calculated score.
       # @example
-      #   score = calculate_score(wounds)
+      #   score = DRCH.calculate_score(wounds)
       def calculate_score(wounds_by_severity)
         wounds_by_severity.map { |severity, wound_list| (severity**2) * wound_list.count }.reduce(:+) || 0
       end
 
-      # Represents a wound on a character's body.
-      # This class encapsulates details about the wound such as body part, severity, and bleeding rate.
-      class Wound
-        attr_accessor :body_part, :severity, :bleeding_rate
+      # Represents the result of a health check.
+      # Contains information about wounds, bleeders, parasites, and more.
+      # @example
+      #   result = HealthResult.new(wounds: wounds, bleeders: bleeders)
+      class HealthResult
+        attr_reader :wounds, :bleeders, :parasites, :lodged,
+                    :poisoned, :diseased, :score, :dead, :vitality
 
-        # The part of the body that's wounded, like 'left hand' or 'abdomen'.
-        # At this time, at what rate is the wound bleeding, like 'light' or 'moderate(tended)'.
-        # Initializes a new Wound object.
-        # @param body_part [String] The part of the body that's wounded
-        # @param severity [Integer] The severity of the wound
-        # @param bleeding_rate [String] The rate at which the wound is bleeding
-        # @param is_internal [Boolean] Whether the wound is internal
-        # @param is_scar [Boolean] Whether the wound is a scar
-        # @param is_parasite [Boolean] Whether the wound is caused by a parasite
-        # @param is_lodged_item [Boolean] Whether the wound is caused by a lodged item
-        # @return [Wound] The initialized wound object
-        # @example
-        #   wound = Wound.new(body_part: "left arm", severity: 2)
-        def initialize(
-          body_part: nil,
-          severity: nil,
-
-          bleeding_rate: nil,
-          is_internal: false,
-          is_scar: false,
-          is_parasite: false,
-          is_lodged_item: false
-        )
-          @body_part = body_part.nil? ? nil : body_part.downcase
-          @severity = severity
-          @bleeding_rate = bleeding_rate.nil? ? nil : bleeding_rate.downcase
-          @is_internal = !!is_internal
-          @is_scar = !!is_scar
-          @is_parasite = !!is_parasite
-          @is_lodged_item = !!is_lodged_item
+        def initialize(wounds: {}, bleeders: {}, parasites: {}, lodged: {},
+                       poisoned: false, diseased: false, score: 0, dead: false,
+                       vitality: 100)
+          @wounds = wounds
+          @bleeders = bleeders
+          @parasites = parasites
+          @lodged = lodged
+          @poisoned = poisoned
+          @diseased = diseased
+          @score = score
+          @dead = dead
+          @vitality = vitality
         end
 
-        # Checks if the wound is currently bleeding.
-        # @return [Boolean] true if the wound is bleeding, false otherwise
+        def [](key)
+          send(key.to_sym)
+        end
+
+        def injured?
+          score > 0
+        end
+
         def bleeding?
-          return !@bleeding_rate.nil? && !@bleeding_rate.empty? && @bleeding_rate != '(tended)'
+          bleeders.values.flatten.any?(&:bleeding?)
         end
 
-        # Checks if the wound is internal.
-        # @return [Boolean] true if the wound is internal, false otherwise
+        def has_tendable_bleeders?
+          bleeders.values.flatten.any?(&:tendable?)
+        end
+      end
+
+      # Represents a wound on a character.
+      # Contains details about the wound's severity, location, and type.
+      # @example
+      #   wound = Wound.new(body_part: "arm", severity: 2)
+      class Wound
+        attr_reader :body_part, :severity, :bleeding_rate
+
+        def initialize(body_part: nil, severity: nil, bleeding_rate: nil,
+                       is_internal: false, is_scar: false,
+                       is_parasite: false, is_lodged_item: false)
+          @body_part = body_part&.downcase
+          @severity = severity
+          @bleeding_rate = bleeding_rate&.downcase
+          @internal = !!is_internal
+          @scar = !!is_scar
+          @parasite = !!is_parasite
+          @lodged_item = !!is_lodged_item
+        end
+
+        def bleeding?
+          !@bleeding_rate.nil? && !@bleeding_rate.empty? && @bleeding_rate != '(tended)'
+        end
+
         def internal?
-          return @is_internal
+          @internal
         end
 
-        # Checks if the wound is a scar.
-        # @return [Boolean] true if the wound is a scar, false otherwise
         def scar?
-          return @is_scar
+          @scar
         end
 
-        # Checks if the wound is caused by a parasite.
-        # @return [Boolean] true if the wound is caused by a parasite, false otherwise
         def parasite?
-          return @is_parasite
+          @parasite
         end
 
-        # Checks if the wound is caused by a lodged item.
-        # @return [Boolean] true if the wound is caused by a lodged item, false otherwise
         def lodged?
-          return @is_lodged_item
+          @lodged_item
         end
 
-        # Checks if the wound can be tended to.
-        # @return [Boolean] true if the wound is tendable, false otherwise
         def tendable?
           return true if parasite?
           return true if lodged?
           return false if @body_part =~ /skin/
-          return false if !bleeding?
+          return false unless bleeding?
           return false if @bleeding_rate =~ /tended|clotted/
 
-          return DRCH.skilled_to_tend_wound?(@bleeding_rate, internal?)
+          DRCH.skilled_to_tend_wound?(@bleeding_rate, internal?)
         end
 
-        # Returns the location type of the wound.
-        # @return [String] 'internal' if the wound is internal, 'external' otherwise
         def location
           internal? ? 'internal' : 'external'
         end
 
-        # Returns the type of the wound.
-        # @return [String] 'scar' if the wound is a scar, 'wound' otherwise
         def type
           scar? ? 'scar' : 'wound'
+        end
+
+        def to_h
+          {
+            body_part: @body_part,
+            severity: @severity,
+            bleeding_rate: @bleeding_rate,
+            internal: @internal,
+            scar: @scar,
+            parasite: @parasite,
+            lodged_item: @lodged_item
+          }
+        end
+
+        def to_s
+          parts = [@body_part || 'unknown']
+          parts << "severity:#{@severity}" if @severity
+          parts << "bleeding:#{@bleeding_rate}" if @bleeding_rate
+          parts << location
+          parts << type
+          parts << 'parasite' if parasite?
+          parts << 'lodged' if lodged?
+          "Wound(#{parts.join(', ')})"
         end
       end
     end

@@ -1,20 +1,14 @@
-# frozen_string_literal: true
 
+# Lich module
+# This module serves as a namespace for the Lich project.
 module Lich
+  # Gemstone module
+  # This module contains functionality related to the Gemstone game.
   module Gemstone
-    # CLI commands for Infomon
-    #
-    # This module contains command-line interface (CLI) commands for managing Infomon data.
-    # @example Using the Infomon CLI
-    #   Lich::Gemstone::Infomon.sync
     module Infomon
-      # CLI commands for Infomon
-      # Synchronizes Infomon data with the current character's settings.
-      #
-      # This method checks for active spells that may interfere with the sync process,
-      # and retrieves various character information to update Infomon.
+      # Synchronizes the Infomon data.
+      # This method retrieves and updates the character's Infomon settings.
       # @return [void]
-      # @raise [StandardError] if there is an issue during command execution.
       # @example Syncing Infomon data
       #   Lich::Gemstone::Infomon.sync
       def self.sync
@@ -29,7 +23,7 @@ module Lich
           end
           shroud_detected = true
         end
-        request = { 'info'               => /<a exist=.+#{XMLData.name}/,
+        request = { 'info full'          => /<a exist=.+#{XMLData.name}/,
                     'skill'              => /<a exist=.+#{XMLData.name}/,
                     'spell'              => %r{<output class="mono"/>},
                     'experience'         => %r{<output class="mono"/>},
@@ -56,10 +50,8 @@ module Lich
         Infomon.set('infomon.last_sync_version', LICH_VERSION)
       end
 
-      # Resets and repopulates the Infomon character table.
-      #
-      # This method deletes the existing character table, recreates it, and then
-      # syncs the data again. This is a destructive operation.
+      # Resets the Infomon data.
+      # This method deletes the character table, recreates it, and repopulates it.
       # @return [void]
       # @example Resetting Infomon data
       #   Lich::Gemstone::Infomon.redo!
@@ -71,10 +63,8 @@ module Lich
         respond 'Infomon reset is now complete.'
       end
 
-      # Displays stored Infomon information for the current character.
-      #
-      # This method can display either a full or filtered view of the stored data.
-      # @param full [Boolean] Whether to display all data (default: false)
+      # Displays stored Infomon information.
+      # @param full [Boolean] If true, displays all information; otherwise, filters out zero values.
       # @return [void]
       # @example Showing Infomon data
       #   Lich::Gemstone::Infomon.show(true)
@@ -82,6 +72,8 @@ module Lich
         response = []
         # display all stored db values
         respond "Displaying stored information for #{XMLData.name}"
+        # Flush async SQL queue before reading from DB to ensure consistency
+        Infomon.flush
         Infomon.table.map([:key, :value]).each { |k, v|
           response << "#{k} : #{v.inspect}\n"
         }
@@ -95,13 +87,12 @@ module Lich
         respond response
       end
 
-      # Checks if a refresh of the Infomon database is needed.
-      #
-      # This method determines if the database needs to be refreshed based on the
-      # last sync date and version of the Infomon data structure.
-      # @return [Boolean] true if a refresh is needed, false otherwise
-      # @example Checking if a database refresh is needed
-      #   Lich::Gemstone::Infomon.db_refresh_needed?
+      # Checks if a database refresh is needed.
+      # @return [Boolean] Returns true if a refresh is required, false otherwise.
+      # @example Checking if refresh is needed
+      #   if Lich::Gemstone::Infomon.db_refresh_needed?
+      #     puts "Refresh required"
+      #   end
       def self.db_refresh_needed?
         # Change date below to the last date of infomon.db structure change to allow for a forced reset of data.
         # Change Lich version below to also force a refresh of DB as well due to new API/methods used by infomon (introduction of CHE and account subscription status for example).

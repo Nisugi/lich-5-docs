@@ -4,16 +4,17 @@ require 'ostruct'
 
 module Lich
   module Util
-    # Provides utility methods for parsing command line options.
+    # A class for parsing command line options.
+    # This class provides methods to parse options based on a given schema.
     # @example Parsing command line options
-    #   options = Lich::Util::Opts.parse(ARGV, schema)
+    #   options = Opts.parse(ARGV, schema)
     class Opts
       # Parses command line arguments based on the provided schema.
       # @param argv [Array<String>] The command line arguments to parse.
       # @param schema [Hash] The schema defining the options and their configurations.
       # @return [OpenStruct] An OpenStruct containing the parsed options.
       # @example
-      #   options = Lich::Util::Opts.parse(ARGV, { verbose: { default: false, type: :boolean } })
+      #   options = Opts.parse(ARGV, { verbose: { default: false, type: :boolean } })
       def self.parse(argv, schema = {})
         options = {}
 
@@ -60,8 +61,6 @@ module Lich
       # @param index [Integer] The index of the current argument in argv.
       # @param config [Hash] The configuration for the option being parsed.
       # @return [Object] The parsed value based on the option type.
-      # @example
-      #   value = Lich::Util::Opts.parse_value(ARGV, 0, { type: :string })
       def self.parse_value(argv, index, config)
         case config[:type]
         when :boolean
@@ -88,8 +87,6 @@ module Lich
       # @param value [String] The value to parse.
       # @param config [Hash] The configuration for the option being parsed.
       # @return [Object] The parsed value based on the option type.
-      # @example
-      #   parsed_value = Lich::Util::Opts.parse_value_with_content("true", { type: :boolean })
       def self.parse_value_with_content(value, config)
         # If custom parser provided, use it first
         return config[:parser].call(value) if config[:parser]

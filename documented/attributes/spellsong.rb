@@ -1,21 +1,18 @@
 module Lich
   module Gemstone
-    # Represents a spellsong in the Lich5 project.
-    # This class manages the duration and effects of bard spells.
+    # Represents a spellsong in the Lich Gemstone module.
+    # This class handles the management of bard spells, including their duration and renewal.
     # @example Creating a spellsong
     #   Lich::Gemstone::Spellsong.sync
     class Spellsong
-      # The last renewed time for the spellsong.
       @@renewed ||= 0.to_f
-      # The default duration of the spellsong in seconds.
       @@song_duration ||= 120.to_f
-      # Stores the last calculated duration parameters.
       @@duration_calcs ||= []
 
       # Synchronizes the spellsong duration based on active bard spells.
       # @return [String] A message indicating the status of the synchronization.
-      # @raise [StandardError] If no active bard spells are found.
-      # @example
+      # @raise [NoMethodError] If there are no active bard spells.
+      # @example Syncing the spellsong
       #   Lich::Gemstone::Spellsong.sync
       def self.sync
         timed_spell = Effects::Spells.to_h.keys.find { |k| k.to_s.match(/10[0-9][0-9]/) }
@@ -25,33 +22,31 @@ module Lich
 
       # Updates the renewed time to the current time.
       # @return [Time] The updated renewed time.
-      # @example
+      # @example Renewing the spellsong
       #   Lich::Gemstone::Spellsong.renewed
       def self.renewed
         @@renewed = Time.now
       end
 
       # Sets the renewed time to a specified value.
-      # @param val [Time] The new renewed time.
-      # @return [Time] The updated renewed time.
-      # @example
+      # @param val [Time] The time to set as renewed.
+      # @example Setting the renewed time
       #   Lich::Gemstone::Spellsong.renewed = Time.now
       def self.renewed=(val)
         @@renewed = val
       end
 
-      # Returns the last renewed time.
+      # Returns the last renewed time of the spellsong.
       # @return [Time] The last renewed time.
-      # @example
+      # @example Getting the renewed time
       #   Lich::Gemstone::Spellsong.renewed_at
       def self.renewed_at
         @@renewed
       end
 
-      # Calculates the remaining time left for the spellsong.
+      # Calculates the time left for the spellsong.
       # @return [Float] The time left in minutes.
-      # @raise [StandardError] If the profession is not Bard.
-      # @example
+      # @example Getting the time left
       #   Lich::Gemstone::Spellsong.timeleft
       def self.timeleft
         return 0.0 if Stats.prof != 'Bard'
@@ -60,7 +55,7 @@ module Lich
 
       # Serializes the current state of the spellsong.
       # @return [Float] The time left for the spellsong.
-      # @example
+      # @example Serializing the spellsong
       #   Lich::Gemstone::Spellsong.serialize
       def self.serialize
         self.timeleft
@@ -68,7 +63,7 @@ module Lich
 
       # Calculates the duration of the spellsong based on various stats.
       # @return [Float] The duration of the spellsong in seconds.
-      # @example
+      # @example Getting the duration
       #   Lich::Gemstone::Spellsong.duration
       def self.duration
         return @@song_duration if @@duration_calcs == [Stats.level, Stats.log[1], Stats.inf[1], Skills.mltelepathy]
@@ -81,7 +76,7 @@ module Lich
       # Calculates the base duration of the spellsong based on the level.
       # @param level [Integer] The level of the bard.
       # @return [Integer] The base duration in seconds.
-      # @example
+      # @example Getting the base duration
       #   Lich::Gemstone::Spellsong.duration_base_level(50)
       def self.duration_base_level(level = Stats.level)
         total = 120
@@ -102,7 +97,7 @@ module Lich
 
       # Calculates the total renewal cost for active spellsongs.
       # @return [Integer] The total renewal cost.
-      # @example
+      # @example Getting the renewal cost
       #   Lich::Gemstone::Spellsong.renew_cost
       def self.renew_cost
         # fixme: multi-spell penalty?
@@ -122,7 +117,7 @@ module Lich
 
       # Calculates the durability of the sonic armor.
       # @return [Integer] The durability value.
-      # @example
+      # @example Getting sonic armor durability
       #   Lich::Gemstone::Spellsong.sonicarmordurability
       def self.sonicarmordurability
         210 + (Stats.level / 2).round + Skills.to_bonus(Skills.elair)
@@ -130,7 +125,7 @@ module Lich
 
       # Calculates the durability of the sonic blade.
       # @return [Integer] The durability value.
-      # @example
+      # @example Getting sonic blade durability
       #   Lich::Gemstone::Spellsong.sonicbladedurability
       def self.sonicbladedurability
         160 + (Stats.level / 2).round + Skills.to_bonus(Skills.elair)
@@ -138,7 +133,7 @@ module Lich
 
       # Returns the durability of the sonic weapon.
       # @return [Integer] The durability value.
-      # @example
+      # @example Getting sonic weapon durability
       #   Lich::Gemstone::Spellsong.sonicweapondurability
       def self.sonicweapondurability
         self.sonicbladedurability
@@ -146,7 +141,7 @@ module Lich
 
       # Calculates the durability of the sonic shield.
       # @return [Integer] The durability value.
-      # @example
+      # @example Getting sonic shield durability
       #   Lich::Gemstone::Spellsong.sonicshielddurability
       def self.sonicshielddurability
         125 + (Stats.level / 2).round + Skills.to_bonus(Skills.elair)
@@ -154,7 +149,7 @@ module Lich
 
       # Calculates the haste bonus for the tonis spell.
       # @return [Integer] The haste bonus value.
-      # @example
+      # @example Getting tonis haste bonus
       #   Lich::Gemstone::Spellsong.tonishastebonus
       def self.tonishastebonus
         bonus = -1
@@ -163,17 +158,17 @@ module Lich
         bonus
       end
 
-      # Calculates the push down value for depression.
+      # Calculates the push down value for depression spells.
       # @return [Integer] The push down value.
-      # @example
+      # @example Getting depression push down
       #   Lich::Gemstone::Spellsong.depressionpushdown
       def self.depressionpushdown
         20 + Skills.mltelepathy
       end
 
-      # Calculates the slow value for depression.
+      # Calculates the slow value for depression spells.
       # @return [Integer] The slow value.
-      # @example
+      # @example Getting depression slow
       #   Lich::Gemstone::Spellsong.depressionslow
       def self.depressionslow
         thresholds = [10, 25, 45, 70, 100]
@@ -184,7 +179,7 @@ module Lich
 
       # Calculates the number of targets that can be held.
       # @return [Integer] The number of holding targets.
-      # @example
+      # @example Getting holding targets
       #   Lich::Gemstone::Spellsong.holdingtargets
       def self.holdingtargets
         1 + ((Spells.bard - 1) / 7).truncate
@@ -192,7 +187,7 @@ module Lich
 
       # Returns the cost of renewing the spellsong.
       # @return [Integer] The renewal cost.
-      # @example
+      # @example Getting the cost
       #   Lich::Gemstone::Spellsong.cost
       def self.cost
         self.renew_cost
@@ -200,7 +195,7 @@ module Lich
 
       # Calculates the dodge bonus for the tonis spell.
       # @return [Integer] The dodge bonus value.
-      # @example
+      # @example Getting tonis dodge bonus
       #   Lich::Gemstone::Spellsong.tonisdodgebonus
       def self.tonisdodgebonus
         thresholds = [1, 2, 3, 5, 8, 10, 14, 17, 21, 26, 31, 36, 42, 49, 55, 63, 70, 78, 87, 96]
@@ -211,7 +206,7 @@ module Lich
 
       # Calculates the dodge bonus for the mirrors spell.
       # @return [Integer] The dodge bonus value.
-      # @example
+      # @example Getting mirrors dodge bonus
       #   Lich::Gemstone::Spellsong.mirrorsdodgebonus
       def self.mirrorsdodgebonus
         20 + ((Spells.bard - 19) / 2).round
@@ -219,7 +214,7 @@ module Lich
 
       # Calculates the cost for the mirrors spell.
       # @return [Array<Integer>] The cost values.
-      # @example
+      # @example Getting mirrors cost
       #   Lich::Gemstone::Spellsong.mirrorscost
       def self.mirrorscost
         [19 + ((Spells.bard - 19) / 5).truncate, 8 + ((Spells.bard - 19) / 10).truncate]
@@ -227,7 +222,7 @@ module Lich
 
       # Calculates the sonic bonus based on bard level.
       # @return [Integer] The sonic bonus value.
-      # @example
+      # @example Getting sonic bonus
       #   Lich::Gemstone::Spellsong.sonicbonus
       def self.sonicbonus
         (Spells.bard / 2).round
@@ -235,7 +230,7 @@ module Lich
 
       # Calculates the sonic armor bonus.
       # @return [Integer] The sonic armor bonus value.
-      # @example
+      # @example Getting sonic armor bonus
       #   Lich::Gemstone::Spellsong.sonicarmorbonus
       def self.sonicarmorbonus
         self.sonicbonus + 15
@@ -243,7 +238,7 @@ module Lich
 
       # Calculates the sonic blade bonus.
       # @return [Integer] The sonic blade bonus value.
-      # @example
+      # @example Getting sonic blade bonus
       #   Lich::Gemstone::Spellsong.sonicbladebonus
       def self.sonicbladebonus
         self.sonicbonus + 10
@@ -251,7 +246,7 @@ module Lich
 
       # Returns the sonic weapon bonus.
       # @return [Integer] The sonic weapon bonus value.
-      # @example
+      # @example Getting sonic weapon bonus
       #   Lich::Gemstone::Spellsong.sonicweaponbonus
       def self.sonicweaponbonus
         self.sonicbladebonus
@@ -259,7 +254,7 @@ module Lich
 
       # Calculates the sonic shield bonus.
       # @return [Integer] The sonic shield bonus value.
-      # @example
+      # @example Getting sonic shield bonus
       #   Lich::Gemstone::Spellsong.sonicshieldbonus
       def self.sonicshieldbonus
         self.sonicbonus + 10
@@ -267,7 +262,7 @@ module Lich
 
       # Calculates the valor bonus based on bard level.
       # @return [Integer] The valor bonus value.
-      # @example
+      # @example Getting valor bonus
       #   Lich::Gemstone::Spellsong.valorbonus
       def self.valorbonus
         10 + (([Spells.bard, Stats.level].min - 10) / 2).round
@@ -275,7 +270,7 @@ module Lich
 
       # Calculates the cost for the valor spell.
       # @return [Array<Integer>] The cost values.
-      # @example
+      # @example Getting valor cost
       #   Lich::Gemstone::Spellsong.valorcost
       def self.valorcost
         [10 + (self.valorbonus / 2), 3 + (self.valorbonus / 5)]
@@ -283,7 +278,7 @@ module Lich
 
       # Calculates the cost for the luck spell.
       # @return [Array<Integer>] The cost values.
-      # @example
+      # @example Getting luck cost
       #   Lich::Gemstone::Spellsong.luckcost
       def self.luckcost
         [6 + ((Spells.bard - 6) / 4), (6 + ((Spells.bard - 6) / 4) / 2).round]
@@ -291,15 +286,15 @@ module Lich
 
       # Returns the mana cost for spells.
       # @return [Array<Integer>] The mana cost values.
-      # @example
+      # @example Getting mana cost
       #   Lich::Gemstone::Spellsong.manacost
       def self.manacost
         [18, 15]
       end
 
-      # Returns the fortitude cost for spells.
-      # @return [Array<Integer>] The fortitude cost values.
-      # @example
+      # Returns the fortification cost for spells.
+      # @return [Array<Integer>] The fortification cost values.
+      # @example Getting fortification cost
       #   Lich::Gemstone::Spellsong.fortcost
       def self.fortcost
         [3, 1]
@@ -307,7 +302,7 @@ module Lich
 
       # Returns the shield cost for spells.
       # @return [Array<Integer>] The shield cost values.
-      # @example
+      # @example Getting shield cost
       #   Lich::Gemstone::Spellsong.shieldcost
       def self.shieldcost
         [9, 4]
@@ -315,7 +310,7 @@ module Lich
 
       # Returns the weapon cost for spells.
       # @return [Array<Integer>] The weapon cost values.
-      # @example
+      # @example Getting weapon cost
       #   Lich::Gemstone::Spellsong.weaponcost
       def self.weaponcost
         [12, 4]
@@ -323,7 +318,7 @@ module Lich
 
       # Returns the armor cost for spells.
       # @return [Array<Integer>] The armor cost values.
-      # @example
+      # @example Getting armor cost
       #   Lich::Gemstone::Spellsong.armorcost
       def self.armorcost
         [14, 5]
@@ -331,7 +326,7 @@ module Lich
 
       # Returns the sword cost for spells.
       # @return [Array<Integer>] The sword cost values.
-      # @example
+      # @example Getting sword cost
       #   Lich::Gemstone::Spellsong.swordcost
       def self.swordcost
         [25, 15]

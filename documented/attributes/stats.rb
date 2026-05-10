@@ -1,67 +1,72 @@
 require "ostruct"
 
-# Provides functionality related to the Lich project
-# @example Using the Lich module
-#   Lich::Gemstone::Stats.race
+# Provides functionality related to the Lich project.
+# @example Usage
+#   include Lich::Gemstone::Stats
 module Lich
   module Gemstone
-    # Provides methods to retrieve various character statistics
-    # @example Accessing character stats
-    #   Lich::Gemstone::Stats.level
+    # Contains methods for retrieving and manipulating character statistics.
+    # @example Accessing stats
+    #   Lich::Gemstone::Stats.race
     module Stats
-      # Retrieves the character's race
-      # @return [String] The character's race
+      # Retrieves the character's race.
+      # @return [String] The character's race.
       # @example
       #   Lich::Gemstone::Stats.race
       def self.race
         Infomon.get("stat.race")
       end
 
-      # Retrieves the character's profession
-      # @return [String] The character's profession
+      # Retrieves the character's profession.
+      # @return [String] The character's profession.
       # @example
       #   Lich::Gemstone::Stats.profession
       def self.profession
         Infomon.get("stat.profession")
       end
 
-      # Retrieves the character's profession (alias for profession)
-      # @return [String] The character's profession
+      # Retrieves the character's profession (alias for profession).
+      # @return [String] The character's profession.
       # @example
       #   Lich::Gemstone::Stats.prof
       def self.prof
         self.profession
       end
 
-      # Retrieves the character's gender
-      # @return [String] The character's gender
+      # Retrieves the character's gender.
+      # @return [String] The character's gender.
       # @example
       #   Lich::Gemstone::Stats.gender
       def self.gender
         Infomon.get("stat.gender")
       end
 
-      # Retrieves the character's age
-      # @return [Integer] The character's age
+      # Retrieves the character's age.
+      # @return [Integer] The character's age.
       # @example
       #   Lich::Gemstone::Stats.age
       def self.age
         Infomon.get("stat.age")
       end
 
-      # Retrieves the character's level
-      # @return [Integer] The character's level
+      # Retrieves the character's level.
+      # @return [Integer] The character's level.
       # @example
       #   Lich::Gemstone::Stats.level
       def self.level
         XMLData.level
       end
 
-      # List of character stats
-      # @note This constant is used to define methods for each stat dynamically.
+      # List of base stats for the character.
       @@stats = %i(strength constitution dexterity agility discipline aura logic intuition wisdom influence)
       @@stats.each do |stat|
         self.define_singleton_method(stat) do
+          # Base stats (from 'info full') - nil if user hasn't run 'info full'
+          base = OpenStruct.new(
+            value: Lich::Gemstone::Infomon.get("stat.%s.base" % stat),
+            bonus: Lich::Gemstone::Infomon.get("stat.%s.base_bonus" % stat)
+          )
+
           enhanced = OpenStruct.new(
             value: Lich::Gemstone::Infomon.get("stat.%s.enhanced" % stat),
             bonus: Lich::Gemstone::Infomon.get("stat.%s.enhanced_bonus" % stat)
@@ -70,6 +75,7 @@ module Lich
           return OpenStruct.new(
             value: Lich::Gemstone::Infomon.get("stat.%s" % stat),
             bonus: Lich::Gemstone::Infomon.get("stat.%s_bonus" % stat),
+            base: base,
             enhanced: enhanced
           )
         end
@@ -82,15 +88,20 @@ module Lich
           stat = Lich::Gemstone::Stats.send(long_hand)
           [stat.value, stat.bonus]
         end
-        # next we need to polyfill `enhanced_<shorthand>` for backwards compat
+        # polyfill `base_<shorthand>` for base stats (from 'info full')
+        self.define_singleton_method("base_%s" % shorthand) do
+          stat = Lich::Gemstone::Stats.send(long_hand)
+          [stat.base.value, stat.base.bonus]
+        end
+        # polyfill `enhanced_<shorthand>` for backwards compat
         self.define_singleton_method("enhanced_%s" % shorthand) do
           stat = Lich::Gemstone::Stats.send(long_hand)
           [stat.enhanced.value, stat.enhanced.bonus]
         end
       end
 
-      # Calculates the experience points needed for the next level
-      # @return [Integer] The experience points needed
+      # Calculates the experience points needed for the next level.
+      # @return [Integer] The experience points needed.
       # @example
       #   Lich::Gemstone::Stats.exp
       def self.exp
@@ -102,8 +113,8 @@ module Lich
         end
       end
 
-      # Serializes the character's stats into an array
-      # @return [Array] An array of character stats
+      # Serializes the character's stats into an array.
+      # @return [Array] An array of the character's stats.
       # @example
       #   Lich::Gemstone::Stats.serialize
       def self.serialize
@@ -115,7 +126,11 @@ module Lich
          self.enhanced_str, self.enhanced_con, self.enhanced_dex,
          self.enhanced_agi, self.enhanced_dis, self.enhanced_aur,
          self.enhanced_log, self.enhanced_int, self.enhanced_wis,
-         self.enhanced_inf]
+         self.enhanced_inf,
+         self.base_str, self.base_con, self.base_dex,
+         self.base_agi, self.base_dis, self.base_aur,
+         self.base_log, self.base_int, self.base_wis,
+         self.base_inf]
       end
     end
   end

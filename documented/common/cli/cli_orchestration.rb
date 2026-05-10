@@ -1,23 +1,26 @@
 # frozen_string_literal: true
 
 require_relative 'cli_options_registry'
-require_relative 'cli_password_manager'
+require_relative 'active_sessions_query'
+require_relative '../authentication/cli_password'
 require_relative 'cli_conversion'
 require_relative 'cli_encryption_mode_change'
-require_relative 'cli_login'
+require_relative '../authentication/cli'
 
 module Lich
   module Common
     module CLI
-      # Provides orchestration for CLI commands in the Lich application
-      # @example Executing CLI commands
+      # Provides orchestration for CLI commands in the Lich application.
+      # @example Executing CLI orchestration
       #   Lich::Common::CLI::CLIOrchestration.execute
       module CLIOrchestration
-        # Executes the CLI commands based on the provided arguments.
+        # Executes the CLI orchestration by processing command line arguments.
         # @return [void]
-        # @example Executing commands
+        # @example Executing the orchestration
         #   Lich::Common::CLI::CLIOrchestration.execute
         def self.execute
+          ActiveSessionsQuery.execute
+
           ARGV.each do |arg|
             case arg
             when /^--change-account-password$/, /^-cap$/
@@ -42,7 +45,7 @@ module Lich
           end
         end
 
-        # Checks if conversion is required before login.
+        # Checks if conversion is required before a login attempt.
         # @return [void]
         # @raise [SystemExit] if conversion is needed
         # @example Checking conversion before login
@@ -55,11 +58,11 @@ module Lich
           end
         end
 
-        # Handles the change of an account password.
-        # @return [Integer] The exit status of the operation
-        # @param account [String] The account whose password is to be changed
-        # @param new_password [String] The new password for the account
-        # @raise [SystemExit] if required arguments are missing
+        # Handles the change of an account password via CLI.
+        # @param account [String] The account whose password is to be changed.
+        # @param new_password [String] The new password for the account.
+        # @return [Integer] Exit status code.
+        # @raise [SystemExit] if arguments are missing or invalid.
         # @example Changing an account password
         #   Lich::Common::CLI::CLIOrchestration.handle_change_account_password
         def self.handle_change_account_password
@@ -75,15 +78,15 @@ module Lich
             exit 1
           end
 
-          exit Lich::Common::CLI::PasswordManager.change_account_password(account, new_password)
+          exit Lich::Common::Authentication::CLIPassword.change_account_password(account, new_password)
         end
 
-        # Handles the addition of a new account.
-        # @return [Integer] The exit status of the operation
-        # @param account [String] The account to be added
-        # @param password [String] The password for the new account
-        # @param frontend [String, nil] The optional frontend for the account
-        # @raise [SystemExit] if required arguments are missing
+        # Handles the addition of a new account via CLI.
+        # @param account [String] The account to be added.
+        # @param password [String] The password for the new account.
+        # @param frontend [String, nil] Optional frontend specification.
+        # @return [Integer] Exit status code.
+        # @raise [SystemExit] if arguments are missing or invalid.
         # @example Adding a new account
         #   Lich::Common::CLI::CLIOrchestration.handle_add_account
         def self.handle_add_account
@@ -99,15 +102,45 @@ module Lich
             exit 1
           end
 
+          # Check if YAML file exists; if not, check for DAT and auto-convert to plaintext
+          yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(DATA_DIR)
+          unless File.exist?(yaml_file)
+            if Lich::Common::CLI::CLIConversion.conversion_needed?(DATA_DIR)
+              $stdout.puts ''
+              $stdout.puts '=' * 80
+              $stdout.puts 'WARNING: No YAML entry file found. Legacy entry.dat detected.'
+              $stdout.puts 'Creating plaintext YAML file to support this operation.'
+              $stdout.puts '=' * 80
+              $stdout.puts ''
+              $stdout.puts 'SECURITY NOTICE: Plaintext storage is not recommended except for'
+              $stdout.puts 'accessibility requirements. Passwords will be stored in clear text.'
+              $stdout.puts ''
+              $stdout.puts 'To upgrade encryption later, use:'
+              $stdout.puts "  ruby #{File.join(LICH_DIR, 'lich.rbw')} --change-encryption-mode enhanced"
+              $stdout.puts '  or: -cem enhanced'
+              $stdout.puts '=' * 80
+              $stdout.puts ''
+
+              # Perform plaintext conversion
+              success = Lich::Common::CLI::CLIConversion.convert(DATA_DIR, :plaintext)
+              unless success
+                $stdout.puts 'error: Failed to create YAML file from legacy data.'
+                exit 1
+              end
+              # Continue with add-account operation below
+            end
+            # No DAT file either - CLIPassword.add_account will create new YAML
+          end
+
           frontend = ARGV[ARGV.index('--frontend') + 1] if ARGV.include?('--frontend')
-          exit Lich::Common::CLI::PasswordManager.add_account(account, password, frontend)
+          exit Lich::Common::Authentication::CLIPassword.add_account(account, password, frontend)
         end
 
-        # Handles the change of the master password.
-        # @return [Integer] The exit status of the operation
-        # @param old_password [String] The current master password
-        # @param new_password [String, nil] The new master password (optional)
-        # @raise [SystemExit] if required arguments are missing
+        # Handles the change of the master password via CLI.
+        # @param old_password [String] The current master password.
+        # @param new_password [String, nil] The new master password (optional).
+        # @return [Integer] Exit status code.
+        # @raise [SystemExit] if arguments are missing or invalid.
         # @example Changing the master password
         #   Lich::Common::CLI::CLIOrchestration.handle_change_master_password
         def self.handle_change_master_password
@@ -124,12 +157,12 @@ module Lich
             exit 1
           end
 
-          exit Lich::Common::CLI::PasswordManager.change_master_password(old_password, new_password)
+          exit Lich::Common::Authentication::CLIPassword.change_master_password(old_password, new_password)
         end
 
-        # Handles the recovery of the master password.
-        # @return [Integer] The exit status of the operation
-        # @param new_password [String, nil] The new master password (optional)
+        # Handles the recovery of the master password via CLI.
+        # @param new_password [String, nil] The new master password (optional).
+        # @return [Integer] Exit status code.
         # @example Recovering the master password
         #   Lich::Common::CLI::CLIOrchestration.handle_recover_master_password
         def self.handle_recover_master_password
@@ -137,13 +170,13 @@ module Lich
           new_password = ARGV[idx + 1]
 
           # new_password is optional - if not provided, user will be prompted interactively
-          exit Lich::Common::CLI::PasswordManager.recover_master_password(new_password)
+          exit Lich::Common::Authentication::CLIPassword.recover_master_password(new_password)
         end
 
-        # Handles the conversion of entries to a specified encryption mode.
-        # @return [Integer] The exit status of the operation
-        # @param encryption_mode_str [String] The encryption mode to convert to
-        # @raise [SystemExit] if required arguments are missing or invalid
+        # Handles the conversion of entries to a specified encryption mode via CLI.
+        # @param encryption_mode_str [String] The encryption mode to convert to.
+        # @return [Integer] Exit status code.
+        # @raise [SystemExit] if arguments are missing or invalid.
         # @example Converting entries
         #   Lich::Common::CLI::CLIOrchestration.handle_convert_entries
         def self.handle_convert_entries
@@ -166,7 +199,7 @@ module Lich
           # For enhanced mode, prompt for master password and store in keychain before conversion
           # This way migrate_from_legacy will find it in keychain and not try to show GUI dialog
           if encryption_mode_str == 'enhanced'
-            master_password = Lich::Common::CLI::PasswordManager.prompt_and_confirm_password('Enter new master password for enhanced encryption')
+            master_password = Lich::Common::Authentication::CLIPassword.prompt_and_confirm_password('Enter new master password for enhanced encryption')
             if master_password.nil?
               puts 'error: Master password creation cancelled'
               exit 1
@@ -196,12 +229,11 @@ module Lich
           end
         end
 
-        # Handles the change of the encryption mode.
-        # @return [Integer] The exit status of the operation
-        # @param mode_arg [String] The new encryption mode to set
-        # @param master_password [String, nil] The optional master password for enhanced mode
-        # @raise [SystemExit] if required arguments are missing
-        # @example Changing the encryption mode
+        # Handles the change of encryption mode via CLI.
+        # @param mode_arg [String] The new encryption mode to set.
+        # @return [Integer] Exit status code.
+        # @raise [SystemExit] if arguments are missing or invalid.
+        # @example Changing encryption mode
         #   Lich::Common::CLI::CLIOrchestration.handle_change_encryption_mode
         def self.handle_change_encryption_mode
           idx = ARGV.index { |a| a =~ /^--change-encryption-mode$|^-cem$/ }

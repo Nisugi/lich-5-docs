@@ -7,20 +7,17 @@ module Lich
         module UCS
           # Pattern for position updates - use .+ not .*
           # Example: "You have good positioning against a kobold."
-          # Pattern for position updates - use .+ not .* 
-          # Example: "You have good positioning against a kobold."
+          # Pattern for position updates - use .+ not .*\n# Example: "You have good positioning against a kobold."
           POSITION_PATTERN = /^You have (decent|good|excellent) positioning against.+<a exist="([0-9]+)"/i.freeze
 
           # Pattern for tierup vulnerability
           # Example: "Strike leaves foe vulnerable to a followup jab attack!"
-          # Pattern for tierup vulnerability
-          # Example: "Strike leaves foe vulnerable to a followup jab attack!"
+          # Pattern for tierup vulnerability\n# Example: "Strike leaves foe vulnerable to a followup jab attack!"
           TIERUP_PATTERN = /Strike leaves foe vulnerable to a followup (jab|grapple|punch|kick) attack!/i.freeze
 
           # Pattern for smite applied (crimson mist)
           # Use .+ not .*
-          # Pattern for smite applied (crimson mist)
-          # Use .+ not .*
+          # Pattern for smite applied (crimson mist)\n# Use .+ not .*
           SMITE_APPLIED_PATTERN = /^ *A crimson mist suddenly surrounds .+<a exist="([0-9]+)"/i.freeze
 
           # Pattern for smite held in corporeal plane
@@ -32,16 +29,7 @@ module Lich
           SMITE_REMOVED_PATTERN = /^ *The crimson mist surrounding .+<a exist="([0-9]+)".+returns to an ethereal state/i.freeze
 
           class << self
-            # Parses a line of text to extract combat information.
-            # 
-            # This method matches the line against various patterns to determine
-            # the type of combat event and returns relevant data.
-            # 
-            # @param line [String] The line of text to parse.
-            # @return [Hash, nil] A hash containing the parsed data or nil if no match is found.
-            # @example Parsing a position update
-            #   result = UCS.parse("You have good positioning against a kobold.")
-            #   # => {:type=>:position, :target_id=>1, :value=>"good"}
+            # Parses a line of text to extract combat information\n# @param line [String] The line of text to parse\n# @return [Hash, nil] A hash containing the parsed information or nil if no match is found\n# @example\n#   result = UCS.parse("You have good positioning against a kobold.")
             def parse(line)
               # Position update
               if (match = POSITION_PATTERN.match(line))

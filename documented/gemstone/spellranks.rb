@@ -1,27 +1,20 @@
-# Carve out class SpellRanks
-# 2024-06-13
 
 module Lich
   module Gemstone
-    # Represents the spell ranks in the Lich5 project.
-    # This class handles loading, saving, and managing spell rank data.
+    # Represents the SpellRanks class which manages spell rank data.
+    # This class handles loading and saving spell ranks from a data file.
     # @example Loading spell ranks
     #   SpellRanks.load
     class SpellRanks
-      # A class variable that holds the list of spell ranks.
       @@list      ||= Array.new
-      # A class variable that holds the timestamp for the last load.
       @@timestamp ||= 0
-      # A class variable that indicates whether the spell ranks have been loaded.
       @@loaded    ||= false
-      # The name of the spell rank.
       attr_reader :name
-      # Accessors for various spell rank attributes.
       attr_accessor :minorspiritual, :majorspiritual, :cleric, :minorelemental, :majorelemental, :minormental, :ranger, :sorcerer, :wizard, :bard, :empath, :paladin, :arcanesymbols, :magicitemuse, :monk
 
       # Loads the spell ranks from a data file.
       # @return [void]
-      # @raise [StandardError] if there is an error loading the data.
+      # @raise [StandardError] if there is an error loading the data
       # @example Loading spell ranks
       #   SpellRanks.load
       def SpellRanks.load
@@ -49,7 +42,7 @@ module Lich
 
       # Saves the current spell ranks to a data file.
       # @return [void]
-      # @raise [StandardError] if there is an error saving the data.
+      # @raise [StandardError] if there is an error saving the data
       # @example Saving spell ranks
       #   SpellRanks.save
       def SpellRanks.save
@@ -64,14 +57,14 @@ module Lich
       end
 
       # Retrieves the current timestamp for the spell ranks.
-      # @return [Integer] the current timestamp.
+      # @return [Integer] the current timestamp
       def SpellRanks.timestamp
         SpellRanks.load unless @@loaded
         @@timestamp
       end
 
       # Sets the timestamp for the spell ranks.
-      # @param val [Integer] The new timestamp value.
+      # @param val [Integer] the new timestamp value
       # @return [void]
       def SpellRanks.timestamp=(val)
         SpellRanks.load unless @@loaded
@@ -79,8 +72,8 @@ module Lich
       end
 
       # Finds a spell rank by name.
-      # @param name [String] The name of the spell rank to find.
-      # @return [SpellRanks, nil] the found spell rank or nil if not found.
+      # @param name [String] the name of the spell rank to find
+      # @return [SpellRank, nil] the found spell rank or nil if not found
       # @example Finding a spell rank
       #   rank = SpellRanks["Fireball"]
       def SpellRanks.[](name)
@@ -89,22 +82,22 @@ module Lich
       end
 
       # Retrieves the list of all spell ranks.
-      # @return [Array<SpellRanks>] an array of all spell ranks.
+      # @return [Array<SpellRank>] the list of spell ranks
       def SpellRanks.list
         SpellRanks.load unless @@loaded
         @@list
       end
 
       # Handles calls to undefined methods for the SpellRanks class.
-      # @param arg [Symbol] The name of the method that was called.
+      # @param arg [Symbol] the name of the method that was called
       # @return [void]
       def SpellRanks.method_missing(arg = nil)
         echo "error: unknown method #{arg} for class SpellRanks"
         respond caller[0..1]
       end
 
-      # Initializes a new SpellRanks object with a name.
-      # @param name [String] The name of the spell rank.
+      # Initializes a new instance of SpellRanks with a name.
+      # @param name [String] the name of the spell rank
       # @return [void]
       def initialize(name)
         SpellRanks.load unless @@loaded

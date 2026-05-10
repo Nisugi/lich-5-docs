@@ -1,20 +1,9 @@
 # frozen_string_literal: true
 
-#
-# module CritRanks used to resolve critical hits into their mechanical results
-# queries against crit_tables files in lib/crit_tables/
-# 20240625
-#
 
-#
-# See generic_critical_table.rb for the general template used
-#
 module Lich
   module Gemstone
-    # Module CritRanks used to resolve critical hits into their mechanical results
-    #
-    # This module queries against crit_tables files in lib/crit_tables/
-    #
+    # Provides functionality for managing critical ranks in the Gemstone module.
     # @example Usage
     #   Lich::Gemstone::CritRanks.init
     module CritRanks
@@ -23,10 +12,10 @@ module Lich
       @locations       = []
       @ranks           = []
 
-      # Initializes the critical table by loading critical_table.rb files.
+      # Initializes the critical ranks data by loading necessary files.
       # @return [void]
-      # @note This method will only load files if the critical table is empty.
-      # @example Initializing the critical table
+      # @note This method will only run if the critical table is empty.
+      # @example Initializing critical ranks
       #   Lich::Gemstone::CritRanks.init
       def self.init
         return unless @critical_table.empty?
@@ -36,25 +25,25 @@ module Lich
         create_indices
       end
 
-      # Returns the current critical table.
-      # @return [Hash] The critical table containing critical hit data.
+      # Returns the critical table.
+      # @return [Hash] The critical table containing rank data.
       # @example Accessing the critical table
-      #   critical_data = Lich::Gemstone::CritRanks.table
+      #   critical_table = Lich::Gemstone::CritRanks.table
       def self.table
         @critical_table
       end
 
-      # Reloads the critical table by clearing it and reinitializing.
+      # Reloads the critical ranks data, clearing the existing table first.
       # @return [void]
-      # @example Reloading the critical table
+      # @example Reloading critical ranks
       #   Lich::Gemstone::CritRanks.reload!
       def self.reload!
         @critical_table = {}
         init
       end
 
-      # Returns an array of table names from the critical table.
-      # @return [Array<String>] An array of table names.
+      # Returns an array of table names derived from the types.
+      # @return [Array<String>] The list of table names.
       # @example Getting table names
       #   table_names = Lich::Gemstone::CritRanks.tables
       def self.tables
@@ -65,35 +54,36 @@ module Lich
         @tables
       end
 
-      # Returns an array of types from the critical table.
-      # @return [Array] An array of types.
-      # @example Getting types
+      # Returns the types of critical ranks.
+      # @return [Array<Symbol>] The array of types.
+      # @example Accessing types
       #   types = Lich::Gemstone::CritRanks.types
       def self.types
         @types
       end
 
-      # Returns an array of locations from the critical table.
-      # @return [Array] An array of locations.
-      # @example Getting locations
+      # Returns the locations associated with critical ranks.
+      # @return [Array<String>] The array of locations.
+      # @example Accessing locations
       #   locations = Lich::Gemstone::CritRanks.locations
       def self.locations
         @locations
       end
 
-      # Returns an array of ranks from the critical table.
-      # @return [Array] An array of ranks.
-      # @example Getting ranks
+      # Returns the ranks associated with critical ranks.
+      # @return [Array<String>] The array of ranks.
+      # @example Accessing ranks
       #   ranks = Lich::Gemstone::CritRanks.ranks
       def self.ranks
         @ranks
       end
 
-      # Cleans the provided key by converting it to a standard format.
+      # Cleans and normalizes the provided key for consistency.
       # @param key [String, Symbol, Integer] The key to clean.
       # @return [String, Integer] The cleaned key.
       # @example Cleaning a key
-      #   cleaned_key = Lich::Gemstone::CritRanks.clean_key(:SomeKey)
+      #   cleaned_key = Lich::Gemstone::CritRanks.clean_key(:Example)
+      #   # => "example"
       def self.clean_key(key)
         return key.to_i if key.is_a?(Integer) || key =~ (/^\d+$/)
         return key.downcase if key.is_a?(Symbol)
@@ -101,13 +91,13 @@ module Lich
         key.strip.downcase.gsub(/[ -]/, '_')
       end
 
-      # Validates the provided key against a list of valid keys.
+      # Validates the provided key against a list of valid options.
       # @param key [String, Symbol, Integer] The key to validate.
-      # @param valid [Array] An array of valid keys.
+      # @param valid [Array<String>] The array of valid keys.
       # @return [String] The cleaned key if valid.
       # @raise [RuntimeError] If the key is invalid.
       # @example Validating a key
-      #   valid_key = Lich::Gemstone::CritRanks.validate(:SomeKey, Lich::Gemstone::CritRanks.types)
+      #   valid_key = Lich::Gemstone::CritRanks.validate(:example, [:example, :test])
       def self.validate(key, valid)
         clean = clean_key(key)
         raise "Invalid key '#{key}', expecting one of #{valid.join(',')}" unless valid.include?(clean)
@@ -118,8 +108,6 @@ module Lich
       # Creates indices for types, locations, and ranks from the critical table.
       # @return [void]
       # @note This method is called internally to set up the indices.
-      # @example Creating indices
-      #   Lich::Gemstone::CritRanks.create_indices
       def self.create_indices
         @index_rx ||= {}
         @critical_table.each do |type, typedata|
@@ -134,9 +122,9 @@ module Lich
         end
       end
 
-      # Parses a line against the regex patterns in the critical table.
+      # Parses a line against the defined regex indices to find matches.
       # @param line [String] The line to parse.
-      # @return [Hash] A hash of matched regex patterns and their data.
+      # @return [Array] An array of matches found.
       # @example Parsing a line
       #   matches = Lich::Gemstone::CritRanks.parse("Some input line")
       def self.parse(line)
@@ -146,13 +134,13 @@ module Lich
       end
 
       # Fetches data from the critical table based on type, location, and rank.
-      # @param type [String] The type of critical hit.
-      # @param location [String] The location of the critical hit.
-      # @param rank [String] The rank of the critical hit.
-      # @return [Hash, nil] The data for the specified type, location, and rank, or nil if not found.
-      # @raise [StandardError] If an error occurs during fetching.
+      # @param type [Symbol] The type of critical rank.
+      # @param location [String] The location associated with the rank.
+      # @param rank [String] The rank to fetch.
+      # @return [Hash, nil] The data associated with the specified type, location, and rank, or nil if not found.
+      # @raise [RuntimeError] If any of the parameters are invalid.
       # @example Fetching data
-      #   data = Lich::Gemstone::CritRanks.fetch(:type, :location, :rank)
+      #   data = Lich::Gemstone::CritRanks.fetch(:type, "location", "rank")
       def self.fetch(type, location, rank)
         table.dig(
           validate(type, types),

@@ -1,13 +1,11 @@
-# Carve out from lich.rbw
-# extension to class Nilclass 2024-06-13
 
-# Extends the NilClass to provide additional methods.
-# This class overrides several methods to return nil or empty values.
+# Represents the NilClass, which is the class of the nil object.
+# This class provides methods that return nil or behave as if nil.
 # @example Using NilClass methods
 #   nil.dup # => nil
-#   nil.split # => []
+#   nil.to_s # => ""
 class NilClass
-  # Returns a duplicate of nil.
+  # Returns a duplicate of the nil object.
   # @return [NilClass] Always returns nil.
   # @example
   #   nil.dup # => nil
@@ -16,7 +14,7 @@ class NilClass
   end
 
   # Handles calls to methods that do not exist on nil.
-  # @param _args [Array] The arguments passed to the missing method.
+  # @param args [Array] The arguments passed to the missing method.
   # @return [NilClass] Always returns nil.
   # @example
   #   nil.some_method # => nil
@@ -24,8 +22,8 @@ class NilClass
     nil
   end
 
-  # Splits nil into an array.
-  # @param _val [Array] The delimiter(s) to split by (ignored).
+  # Splits the nil object into an array.
+  # @param val [Array] The delimiter(s) to split by (not used).
   # @return [Array] Returns an empty array.
   # @example
   #   nil.split # => []
@@ -33,7 +31,7 @@ class NilClass
     Array.new
   end
 
-  # Converts nil to a string.
+  # Converts the nil object to a string.
   # @return [String] Returns an empty string.
   # @example
   #   nil.to_s # => ""
@@ -41,7 +39,7 @@ class NilClass
     ""
   end
 
-  # Strips whitespace from nil.
+  # Strips whitespace from the nil object.
   # @return [String] Returns an empty string.
   # @example
   #   nil.strip # => ""
@@ -49,16 +47,16 @@ class NilClass
     ""
   end
 
-  # Adds a value to nil.
+  # Adds the nil object to another value.
   # @param val [Object] The value to add to nil.
-  # @return [Object] Returns the value passed in.
+  # @return [Object] Returns the other value.
   # @example
   #   nil + 5 # => 5
   def +(val)
     val
   end
 
-  # Checks if nil is closed.
+  # Checks if the nil object is closed.
   # @return [Boolean] Always returns true.
   # @example
   #   nil.closed? # => true

@@ -1,29 +1,14 @@
-# The root namespace for Lich scripting extensions.
 module Lich
-  # Namespace for Gemstone IV-specific modules and helpers.
   module Gemstone
     # Provides logic for detecting, checking, and using PSM3 armor techniques in GemStone IV.
     #
     # This module defines a registry of available armor-related abilities and wraps common queries
-    # like whether a technique is known, affordable, or currently usable. It also provides the
-    # `use` method to execute the appropriate command in-game, handling roundtime and feedback matching.
+    # Provides logic for detecting, checking, and using PSM3 armor techniques in GemStone IV.
     #
-    # Techniques are stored in a constant hash, and dynamic methods are defined for both long and short
-    # names of each technique.
-    #
-    # @example
-    #   if Armor.available?("armor_blessing")
-    #     Armor.use("armor_blessing")
-    #   end
+    # This module defines a registry of available armor-related abilities and wraps common queries
+    # @example Accessing armor techniques
+    #   techniques = Armor.armor_lookups
     module Armor
-      # Mapping of armor technique identifiers to their associated data, including:
-      # - short name
-      # - usage command
-      # - regex to match expected in-game output
-      # - cost to use
-      # - type of technique (buff, passive, etc.)
-      #
-      # @return [Hash<String, Hash>] A lookup table of armor techniques
       @@armor_techniques = {
         "armor_blessing"      => {
           :short_name => "blessing",
@@ -116,10 +101,10 @@ module Lich
         }
       }
 
-      # Returns a simplified array, for lookup purposes, of armor technique hashes with
-      # long name, short name, and cost.
-      #
-      # @return [Array<Hash>] An array of hashes with keys :long_name, :short_name, and :cost
+      # Returns a list of available armor techniques with their long and short names and costs.
+      # @return [Array<Hash>] An array of hashes containing long names, short names, and costs of armor techniques.
+      # @example Listing armor techniques
+      #   Armor.armor_lookups.each { |technique| puts technique[:long_name] }
       def self.armor_lookups
         @@armor_techniques.map do |long_name, psm|
           {
@@ -130,83 +115,67 @@ module Lich
         end
       end
 
-      # Looks up the rank known of an armor technique.
-      #
-      # @param name [String] The name of the armor technique
-      # @return [Integer] The rank of the technique, or 0 if unknown
-      # @example
-      #   Armor["armor_blessing"] => 2
-      #   Armor["armor_blessing"] => 0 # if not known
+      # Retrieves the armor technique associated with the given name.
+      # @param name [String] The name of the armor technique to retrieve.
+      # @return [Hash, nil] The armor technique hash if found, otherwise nil.
+      # @example Getting an armor technique
+      #   technique = Armor["armor_blessing"]
       def Armor.[](name)
         return PSMS.assess(name, 'Armor')
       end
 
-      # Determines if the character knows an armor technique at all, and
-      # optionally if the character knows it at the specified rank.
-      #
-      # @param name [String] The name of the armor technique
-      # @param min_rank [Integer] Optionally, the minimum rank to test against (default: 1, so known)
-      # @return [Boolean] True if the technique is known at or above the given rank
-      # @example
-      #   Armor.known?("armor_blessing") => true # if any number of ranks is known
-      #   Armor.known?("armor_blessing", min_rank: 2) => false # if only rank 1 is known
+      # Checks if the specified armor technique is known and meets the minimum rank requirement.
+      # @param name [String] The name of the armor technique to check.
+      # @param min_rank [Integer] The minimum rank required to consider the technique known.
+      # @return [Boolean] True if the technique is known and meets the rank requirement, false otherwise.
+      # @example Checking if a technique is known
+      #   Armor.known?("armor_blessing", 1)
       def Armor.known?(name, min_rank: 1)
         min_rank = 1 unless min_rank >= 1 # in case a 0 or below is passed
         Armor[name] >= min_rank
       end
 
-      # Determines if an armor technique is affordable, and optionally tests
-      # affordability with a given number of FORCERTs having been used (including the current one).
-      #
-      # @param name [String] The name of the armor technique
-      # @param forcert_count [Integer] Optionally, the count of FORCERTs being used, including for this execution (default: 0)
-      # @return [Boolean] True if the technique can be used with available FORCERTs
-      # @example
-      #   Armor.affordable?("armor_blessing") => true # if enough skill and stamina
-      #   Armor.affordable?("armor_blessing", forcert_count: 1) => false  # if not enough skill or stamina
+      # Determines if the specified armor technique can be afforded based on the forcert count.
+      # @param name [String] The name of the armor technique to check affordability for.
+      # @param forcert_count [Integer] The count of forcerts available.
+      # @return [Boolean] True if the technique is affordable, false otherwise.
+      # @example Checking affordability
+      #   Armor.affordable?("armor_blessing", 2)
       def Armor.affordable?(name, forcert_count: 0)
         return PSMS.assess(name, 'Armor', true, forcert_count: forcert_count)
       end
 
-      # Determines if an armor technique is available to use right now by testing:
-      # - if the technique is known
-      # - if the technique is affordable
-      # - if the technique is not on cooldown
-      # - if the character is not overexerted
-      # - if the character is capable of performing the number of FORCERTs specified
-      #
-      # @param name [String] The name of the armor technique
-      # @param min_rank [Integer] Optionally, the minimum rank to check (default: 1)
-      # @param forcert_count [Integer] Optionally, the count of FORCERTs being used (default: 0)
-      # @return [Boolean] True if the technique is known, affordable, and not on cooldown or
-      # blocked by overexertion
-      # @example
-      #   Armor.available?("armor_blessing") => true # if known, affordable, not on cooldown, and not overexerted
+      # Checks if the specified armor technique is known, affordable, and available for use.
+      # @param name [String] The name of the armor technique to check availability for.
+      # @param min_rank [Integer] The minimum rank required to consider the technique available.
+      # @param forcert_count [Integer] The count of forcerts available.
+      # @return [Boolean] True if the technique is available, false otherwise.
+      # @example Checking availability
+      #   Armor.available?("armor_blessing", 1, 2)
       def Armor.available?(name, min_rank: 1, forcert_count: 0)
         Armor.known?(name, min_rank: min_rank) &&
           Armor.affordable?(name, forcert_count: forcert_count) &&
           PSMS.available?(name)
       end
 
-      # Checks whether the technique's buff is currently active.
-      #
-      # @param name [String] The technique's name
-      # @return [Boolean] True if buff is already active
+      # Checks if the specified armor technique's buff is currently active.
+      # @param name [String] The name of the armor technique to check.
+      # @return [Boolean, nil] True if the buff is active, false if not, nil if the technique does not have a buff.
+      # @example Checking if a buff is active
+      #   active = Armor.buff_active?("armor_blessing")
       def Armor.buff_active?(name)
         return unless @@armor_techniques.fetch(PSMS.find_name(name, "Armor")[:long_name]).key?(:buff)
         Effects::Buffs.active?(@@armor_techniques.fetch(PSMS.find_name(name, "Armor")[:long_name])[:buff])
       end
 
-      # Attempts to use an armor technique, optionally on a target.
-      #
-      # @param name [String] The name of the armor technique
-      # @param target [String, Integer, GameObj] The target of the technique (optional). If unspecified, the technique will be used on the character.
-      # @param results_of_interest [Regexp, nil] Additional regex to capture from result (optional)
-      # @param forcert_count [Integer] Number of FORCERTs to use (default: 0)
-      # @return [String, nil] The result of the regex match, or nil if unavailable
-      # @example
-      #   Armor.use("armor_blessing") # attempt to use armor blessing on self
-      #   Armor.use("armor_blessing", "Dissonance") # attempt to use armor blessing on Dissonance
+      # Uses the specified armor technique on a target, if available.
+      # @param name [String] The name of the armor technique to use.
+      # @param target [String, Integer, GameObj] The target of the technique.
+      # @param results_of_interest [Regexp, nil] Additional regex to match results of interest.
+      # @param forcert_count [Integer] The count of forcerts available.
+      # @return [String, nil] The result of using the technique, or nil if not available.
+      # @example Using an armor technique
+      #   result = Armor.use("armor_blessing", "myself")
       def Armor.use(name, target = "", results_of_interest: nil, forcert_count: 0)
         return unless Armor.available?(name, forcert_count: forcert_count)
 
@@ -252,25 +221,15 @@ module Lich
         usage_result
       end
 
-      # Returns the "success" regex associated with a given armor technique name.
-      # This regex is used to match the expected output when the technique is successfully *attempted*.
-      # It does not necessarily indicate that the technique was successful in its effect, or even
-      # that the technique was executed at all.
-      #
-      # @param name [String] The technique name
-      # @return [Regexp] The regex used to match technique success or effects
-      # @example
-      #   Armor.regexp("armor_blessing") => /As \w+ prays? over \w+(?:'s)? [\w\s]+, you sense that (?:the Arkati's|a) blessing will be granted against magical attacks\./i
+      # Retrieves the regex pattern associated with the specified armor technique.
+      # @param name [String] The name of the armor technique to retrieve the regex for.
+      # @return [Regexp] The regex pattern for the armor technique.
+      # @example Getting the regex for a technique
+      #   regex = Armor.regexp("armor_blessing")
       def Armor.regexp(name)
         @@armor_techniques.fetch(PSMS.find_name(name, "Armor")[:long_name])[:regex]
       end
 
-      # Defines dynamic getter methods for both long and short names of each armor technique.
-      #
-      # @note This block dynamically defines methods like `Armor.blessing` and `Armor.armor_blessing`
-      # @example
-      #   Armor.blessing # returns the rank of armor_blessing based on the short name
-      #   Armor.armor_blessing # returns the rank of armor_blessing based on the long name
       Armor.armor_lookups.each { |armor|
         self.define_singleton_method(armor[:short_name]) do
           Armor[armor[:short_name]]

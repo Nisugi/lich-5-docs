@@ -1,6 +1,6 @@
 require "ostruct"
 
-# Contains the Lich module and its related functionalities
+# Contains the Lich module and its submodules
 # @example Including the Lich module
 #   include Lich
 module Lich
@@ -106,7 +106,7 @@ module Lich
       end
 
       # Retrieves the last updated timestamp for total experience
-      # @return [Time, nil] The last updated time or nil if not available
+      # @return [Time, nil] The last updated timestamp or nil if not available
       # @example
       #   Lich::Gemstone::Experience.updated_at
       def self.updated_at
@@ -114,7 +114,7 @@ module Lich
         timestamp ? Time.at(timestamp) : nil
       end
 
-      # Checks if the experience data is stale based on a given threshold
+      # Checks if the experience data is stale based on a threshold
       # @param threshold [ActiveSupport::Duration] The duration threshold to check against
       # @return [Boolean] True if stale, false otherwise
       # @example
@@ -124,7 +124,7 @@ module Lich
         updated_at < threshold.ago
       end
 
-      # Checks if the experience data was recently updated based on a given threshold
+      # Checks if the experience data was recently updated based on a threshold
       # @param threshold [ActiveSupport::Duration] The duration threshold to check against
       # @return [Boolean] True if recently updated, false otherwise
       # @example

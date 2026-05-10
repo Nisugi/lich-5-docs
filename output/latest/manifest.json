@@ -1,202 +1,235 @@
 {
   "processed_files": {
     "lich-source/lib/init.rb": {
-      "timestamp": "2025-11-07T07:29:29.233470",
+      "timestamp": "2026-05-10T16:50:09.595692",
       "provider": "openai",
-      "content_hash": "9c27aeace5c73a06",
-      "file_name": "init.rb"
+      "content_hash": "167b77985d37e235",
+      "file_name": "init.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/deprecated.rb": {
-      "timestamp": "2025-11-07T07:29:38.667200",
+      "timestamp": "2026-05-10T16:50:10.952688",
       "provider": "openai",
       "content_hash": "91e3fef91d5e5335",
-      "file_name": "deprecated.rb"
+      "file_name": "deprecated.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/magic-info.rb": {
-      "timestamp": "2025-11-07T07:29:39.095673",
+      "timestamp": "2026-05-10T16:50:14.195695",
       "provider": "openai",
       "content_hash": "9886d3a668fbc244",
-      "file_name": "magic-info.rb"
+      "file_name": "magic-info.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/messaging.rb": {
-      "timestamp": "2025-11-07T07:29:41.538725",
+      "timestamp": "2026-05-10T16:50:15.007514",
       "provider": "openai",
-      "content_hash": "f1ec43167baf3660",
-      "file_name": "messaging.rb"
+      "content_hash": "c50418fd4b4ea88a",
+      "file_name": "messaging.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/constants.rb": {
-      "timestamp": "2025-11-07T07:29:42.673058",
+      "timestamp": "2026-05-10T16:50:18.396806",
       "provider": "openai",
       "content_hash": "131143db58143bc3",
-      "file_name": "constants.rb"
+      "file_name": "constants.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/version.rb": {
-      "timestamp": "2025-11-10T02:21:31.309906",
+      "timestamp": "2026-05-10T16:50:14.104040",
       "provider": "openai",
-      "content_hash": "ace3f79a471d0898",
-      "file_name": "version.rb"
+      "content_hash": "bd1f15456da2f05e",
+      "file_name": "version.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/stash.rb": {
-      "timestamp": "2025-11-07T07:29:48.875915",
+      "timestamp": "2026-05-10T16:50:27.628040",
       "provider": "openai",
-      "content_hash": "b4a48acdec51e10b",
-      "file_name": "stash.rb"
+      "content_hash": "d7936c967216f303",
+      "file_name": "stash.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/attributes/spells.rb": {
-      "timestamp": "2025-11-07T07:29:51.412888",
+      "timestamp": "2026-05-10T16:53:50.969373",
       "provider": "openai",
       "content_hash": "74244757692657ff",
-      "file_name": "spells.rb"
+      "file_name": "spells.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/sessionvars.rb": {
-      "timestamp": "2025-11-07T07:29:52.284239",
+      "timestamp": "2026-05-10T16:50:19.610608",
       "provider": "openai",
       "content_hash": "06e463be9b745699",
-      "file_name": "sessionvars.rb"
+      "file_name": "sessionvars.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/wine.rb": {
-      "timestamp": "2025-11-07T07:29:52.657127",
+      "timestamp": "2026-05-10T16:50:09.387008",
       "provider": "openai",
-      "content_hash": "5f9916b09572e710",
-      "file_name": "wine.rb"
+      "content_hash": "009c086254c3555d",
+      "file_name": "wine.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/attributes/skills.rb": {
-      "timestamp": "2025-11-07T07:29:55.982237",
+      "timestamp": "2026-05-10T16:53:43.806239",
       "provider": "openai",
       "content_hash": "34e299b799d3d823",
-      "file_name": "skills.rb"
+      "file_name": "skills.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/attributes/resources.rb": {
-      "timestamp": "2026-01-12T23:22:12.594438",
+      "timestamp": "2026-05-10T16:53:43.971342",
       "provider": "openai",
       "content_hash": "90aef4151dd555c3",
-      "file_name": "resources.rb"
+      "file_name": "resources.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/attributes/stats.rb": {
-      "timestamp": "2025-11-07T07:30:07.265296",
+      "timestamp": "2026-05-10T16:53:51.423035",
       "provider": "openai",
-      "content_hash": "6cd1825b4eb34a83",
-      "file_name": "stats.rb"
+      "content_hash": "c2e6d5e9c893b55b",
+      "file_name": "stats.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/bounty.rb": {
-      "timestamp": "2025-11-07T07:30:12.794013",
+      "timestamp": "2026-05-10T16:51:03.905953",
       "provider": "openai",
       "content_hash": "7381d6ddd7151b0e",
-      "file_name": "bounty.rb"
+      "file_name": "bounty.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/attributes/spellsong.rb": {
-      "timestamp": "2025-11-07T07:30:18.691477",
+      "timestamp": "2026-05-10T16:54:10.625432",
       "provider": "openai",
       "content_hash": "555d33c1f1326333",
-      "file_name": "spellsong.rb"
+      "file_name": "spellsong.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/effects.rb": {
-      "timestamp": "2025-11-07T07:30:22.581678",
+      "timestamp": "2026-05-10T16:51:09.042663",
       "provider": "openai",
       "content_hash": "adb1b2027e44e67f",
-      "file_name": "effects.rb"
+      "file_name": "effects.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/stowlist.rb": {
-      "timestamp": "2025-11-07T07:30:24.322649",
+      "timestamp": "2026-05-10T16:50:47.176723",
       "provider": "openai",
-      "content_hash": "ef3520c381f47bde",
-      "file_name": "stowlist.rb"
+      "content_hash": "c48a21bbcf7e771d",
+      "file_name": "stowlist.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/gift.rb": {
-      "timestamp": "2025-11-07T07:30:26.550103",
+      "timestamp": "2026-05-10T16:51:00.633131",
       "provider": "openai",
       "content_hash": "1aa3a6c1b2c3ac4d",
-      "file_name": "gift.rb"
+      "file_name": "gift.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/society.rb": {
-      "timestamp": "2025-11-07T07:30:32.194296",
+      "timestamp": "2026-05-10T16:51:03.767396",
       "provider": "openai",
       "content_hash": "f299655d68d31879",
-      "file_name": "society.rb"
+      "file_name": "society.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/wounds.rb": {
-      "timestamp": "2025-11-07T07:30:33.299366",
+      "timestamp": "2026-05-10T16:50:49.235609",
       "provider": "openai",
       "content_hash": "54ea81026c783d8f",
-      "file_name": "wounds.rb"
+      "file_name": "wounds.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/disk.rb": {
-      "timestamp": "2025-11-07T07:30:37.040918",
+      "timestamp": "2026-05-10T16:50:41.196446",
       "provider": "openai",
       "content_hash": "60133080c47f9098",
-      "file_name": "disk.rb"
+      "file_name": "disk.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/attributes/char.rb": {
-      "timestamp": "2025-11-07T07:30:37.864938",
+      "timestamp": "2026-05-10T16:54:14.514870",
       "provider": "openai",
       "content_hash": "6c03cc345bc7a7d7",
-      "file_name": "char.rb"
+      "file_name": "char.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/readylist.rb": {
-      "timestamp": "2025-11-07T07:30:43.570761",
+      "timestamp": "2026-05-10T16:50:29.598228",
       "provider": "openai",
-      "content_hash": "def3158585aa3cdd",
-      "file_name": "readylist.rb"
+      "content_hash": "b174c66ee689b0d4",
+      "file_name": "readylist.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/scars.rb": {
-      "timestamp": "2025-11-07T07:30:45.138349",
+      "timestamp": "2026-05-10T16:50:59.261504",
       "provider": "openai",
       "content_hash": "d69afe47766bd828",
-      "file_name": "scars.rb"
+      "file_name": "scars.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/lich.rb": {
-      "timestamp": "2026-01-12T23:23:17.504959",
+      "timestamp": "2026-05-10T16:50:52.376979",
       "provider": "openai",
-      "content_hash": "ce67ce9c11b87a48",
-      "file_name": "lich.rb"
+      "content_hash": "ff769ea5ca35d47b",
+      "file_name": "lich.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/sk.rb": {
-      "timestamp": "2026-01-12T23:22:29.885849",
+      "timestamp": "2026-05-10T16:51:13.560876",
       "provider": "openai",
       "content_hash": "4bb1a6010466e6a9",
-      "file_name": "sk.rb"
+      "file_name": "sk.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/infomon.rb": {
-      "timestamp": "2026-01-12T23:22:45.472967",
+      "timestamp": "2026-05-10T16:50:49.593599",
       "provider": "openai",
-      "content_hash": "00fa239b9c276c7c",
-      "file_name": "infomon.rb"
+      "content_hash": "39c26fd60a0424bb",
+      "file_name": "infomon.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/experience.rb": {
-      "timestamp": "2026-01-12T23:22:52.080584",
+      "timestamp": "2026-05-10T16:50:40.860131",
       "provider": "openai",
       "content_hash": "87119f8bbad02b93",
-      "file_name": "experience.rb"
+      "file_name": "experience.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/critranks.rb": {
-      "timestamp": "2025-11-07T07:31:02.695682",
+      "timestamp": "2026-05-10T16:50:52.676504",
       "provider": "openai",
       "content_hash": "2f798a0528e54a88",
-      "file_name": "critranks.rb"
+      "file_name": "critranks.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/claim.rb": {
-      "timestamp": "2025-11-07T07:31:09.542969",
+      "timestamp": "2026-05-10T16:50:41.910834",
       "provider": "openai",
       "content_hash": "222002a89221a67e",
-      "file_name": "claim.rb"
+      "file_name": "claim.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/spellranks.rb": {
-      "timestamp": "2025-11-07T07:31:12.698045",
+      "timestamp": "2026-05-10T16:50:31.462488",
       "provider": "openai",
       "content_hash": "ebd8363e8cf2eedf",
-      "file_name": "spellranks.rb"
+      "file_name": "spellranks.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/games.rb": {
-      "timestamp": "2026-01-12T23:22:32.615937",
+      "timestamp": "2026-05-10T16:50:58.528031",
       "provider": "openai",
-      "content_hash": "cd3850f3be93d4d3",
-      "file_name": "games.rb"
+      "content_hash": "8d8cac5d73890387",
+      "file_name": "games.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/infomon/xmlparser.rb": {
-      "timestamp": "2025-11-07T07:31:23.389524",
+      "timestamp": "2026-05-10T16:51:51.363209",
       "provider": "openai",
-      "content_hash": "7cdef6fedc4e2bb7",
-      "file_name": "xmlparser.rb"
+      "content_hash": "08c8a7a4cc58ce84",
+      "file_name": "xmlparser.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/infomon/currency.rb": {
       "timestamp": "2025-11-07T07:31:25.603588",
@@ -205,100 +238,116 @@
       "file_name": "currency.rb"
     },
     "lich-source/lib/gemstone/psms.rb": {
-      "timestamp": "2025-11-07T07:31:25.811572",
+      "timestamp": "2026-05-10T16:50:59.691074",
       "provider": "openai",
-      "content_hash": "bbc1c642b6790b38",
-      "file_name": "psms.rb"
+      "content_hash": "b42d98b9acad30dc",
+      "file_name": "psms.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/societies/order_of_voln.rb": {
-      "timestamp": "2025-11-07T07:31:28.986456",
+      "timestamp": "2026-05-10T16:51:51.792685",
       "provider": "openai",
       "content_hash": "db0895c0497a5f44",
-      "file_name": "order_of_voln.rb"
+      "file_name": "order_of_voln.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/infomon/cli.rb": {
-      "timestamp": "2025-11-07T07:31:31.786594",
+      "timestamp": "2026-05-10T16:51:55.378559",
       "provider": "openai",
-      "content_hash": "4134d97e3794841f",
-      "file_name": "cli.rb"
+      "content_hash": "e130f6c73bd7da19",
+      "file_name": "cli.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/societies/guardians_of_sunfist.rb": {
-      "timestamp": "2025-11-07T07:31:32.688502",
+      "timestamp": "2026-05-10T16:51:53.424469",
       "provider": "openai",
       "content_hash": "cf897a6022a16e3c",
-      "file_name": "guardians_of_sunfist.rb"
+      "file_name": "guardians_of_sunfist.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/group.rb": {
-      "timestamp": "2025-11-07T07:31:33.176879",
+      "timestamp": "2026-05-10T16:51:12.251886",
       "provider": "openai",
       "content_hash": "be31d65173743edb",
-      "file_name": "group.rb"
+      "file_name": "group.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/infomon/parser.rb": {
-      "timestamp": "2026-01-12T23:25:15.207984",
+      "timestamp": "2026-05-10T16:52:39.016244",
       "provider": "openai",
-      "content_hash": "c61f6fc6717b1540",
-      "file_name": "parser.rb"
+      "content_hash": "09e3301ac19bc9fb",
+      "file_name": "parser.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/infomon/activespell.rb": {
-      "timestamp": "2025-11-07T07:31:38.016506",
+      "timestamp": "2026-05-10T16:51:50.859863",
       "provider": "openai",
-      "content_hash": "39e77eede6873f7b",
-      "file_name": "activespell.rb"
+      "content_hash": "c82415f21627705a",
+      "file_name": "activespell.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/infomon/cache.rb": {
-      "timestamp": "2025-11-07T07:31:48.255847",
+      "timestamp": "2026-05-10T16:51:52.137197",
       "provider": "openai",
       "content_hash": "c01cdf36c88f3fb3",
-      "file_name": "cache.rb"
+      "file_name": "cache.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/infomon/status.rb": {
-      "timestamp": "2025-11-07T07:31:58.867260",
+      "timestamp": "2026-05-10T16:52:06.775615",
       "provider": "openai",
-      "content_hash": "618d627e4a8c77c5",
-      "file_name": "status.rb"
+      "content_hash": "567f695e29f374bc",
+      "file_name": "status.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/psms/ascension.rb": {
-      "timestamp": "2025-11-07T07:31:58.980950",
+      "timestamp": "2026-05-10T16:52:00.796989",
       "provider": "openai",
       "content_hash": "44106521d13cc8e5",
-      "file_name": "ascension.rb"
+      "file_name": "ascension.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/psms/shield.rb": {
-      "timestamp": "2025-11-07T07:32:01.662844",
+      "timestamp": "2026-05-10T16:52:07.826626",
       "provider": "openai",
       "content_hash": "a6b159126d755238",
-      "file_name": "shield.rb"
+      "file_name": "shield.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/psms/armor.rb": {
-      "timestamp": "2025-11-07T07:32:08.191103",
+      "timestamp": "2026-05-10T16:52:14.062820",
       "provider": "openai",
       "content_hash": "b9016b94aa077873",
-      "file_name": "armor.rb"
+      "file_name": "armor.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/societies/council_of_light.rb": {
-      "timestamp": "2025-11-07T07:32:08.784680",
+      "timestamp": "2026-05-10T16:51:50.676016",
       "provider": "openai",
       "content_hash": "ac9d9eba0f570df0",
-      "file_name": "council_of_light.rb"
+      "file_name": "council_of_light.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/psms/feat.rb": {
-      "timestamp": "2025-11-07T07:32:12.769836",
+      "timestamp": "2026-05-10T16:52:01.543953",
       "provider": "openai",
       "content_hash": "933b10ad663cadfd",
-      "file_name": "feat.rb"
+      "file_name": "feat.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/bounty/parser.rb": {
-      "timestamp": "2026-01-12T23:24:30.729672",
+      "timestamp": "2026-05-10T16:51:12.616129",
       "provider": "openai",
-      "content_hash": "50bf0389077fd50e",
-      "file_name": "parser.rb"
+      "content_hash": "fdcb3b6cf5ddab20",
+      "file_name": "parser.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/db_store.rb": {
-      "timestamp": "2025-11-07T07:32:28.150170",
+      "timestamp": "2026-05-10T16:54:25.455056",
       "provider": "openai",
       "content_hash": "3d4e19cdcc77cd98",
-      "file_name": "db_store.rb"
+      "file_name": "db_store.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui-login.rb": {
       "timestamp": "2026-01-12T23:24:31.129228",
@@ -307,10 +356,11 @@
       "file_name": "gui-login.rb"
     },
     "lich-source/lib/gemstone/psms/warcry.rb": {
-      "timestamp": "2025-11-07T07:32:29.967912",
+      "timestamp": "2026-05-10T16:52:03.246503",
       "provider": "openai",
       "content_hash": "3a816bcbfed84146",
-      "file_name": "warcry.rb"
+      "file_name": "warcry.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui-saved-login.rb": {
       "timestamp": "2025-11-07T07:32:33.030414",
@@ -319,52 +369,60 @@
       "file_name": "gui-saved-login.rb"
     },
     "lich-source/lib/gemstone/psms/cman.rb": {
-      "timestamp": "2026-01-12T23:24:20.160349",
+      "timestamp": "2026-05-10T16:52:19.126255",
       "provider": "openai",
       "content_hash": "3a10ca45b31fa061",
-      "file_name": "cman.rb"
+      "file_name": "cman.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/psms/weapon.rb": {
-      "timestamp": "2025-11-07T07:32:38.829442",
+      "timestamp": "2026-05-10T16:52:05.854157",
       "provider": "openai",
       "content_hash": "1bc95a3e3761a3d3",
-      "file_name": "weapon.rb"
+      "file_name": "weapon.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/sharedbuffer.rb": {
-      "timestamp": "2025-11-07T07:32:40.762055",
+      "timestamp": "2026-05-10T16:54:37.712654",
       "provider": "openai",
       "content_hash": "79e8f3011f383088",
-      "file_name": "sharedbuffer.rb"
+      "file_name": "sharedbuffer.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/front-end.rb": {
-      "timestamp": "2026-01-12T23:24:53.505563",
+      "timestamp": "2026-05-10T16:54:30.602650",
       "provider": "openai",
-      "content_hash": "321e36a86883b45f",
-      "file_name": "front-end.rb"
+      "content_hash": "ff01dd8955eb95a4",
+      "file_name": "front-end.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/hmr.rb": {
-      "timestamp": "2025-11-07T07:32:42.903588",
+      "timestamp": "2026-05-10T16:53:58.814463",
       "provider": "openai",
-      "content_hash": "4437b954ef059134",
-      "file_name": "hmr.rb"
+      "content_hash": "cb183b4ed002273d",
+      "file_name": "hmr.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/xmlparser.rb": {
-      "timestamp": "2026-01-12T23:24:38.277243",
+      "timestamp": "2026-05-10T16:54:01.228484",
       "provider": "openai",
-      "content_hash": "75cf506dd2310052",
-      "file_name": "xmlparser.rb"
+      "content_hash": "2db0cd96d20f4c05",
+      "file_name": "xmlparser.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/account.rb": {
-      "timestamp": "2025-11-07T07:32:49.747642",
+      "timestamp": "2026-05-10T16:54:33.003523",
       "provider": "openai",
       "content_hash": "30aa7707fb394712",
-      "file_name": "account.rb"
+      "file_name": "account.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/vars.rb": {
-      "timestamp": "2025-11-10T02:21:47.384928",
+      "timestamp": "2026-05-10T16:54:22.854053",
       "provider": "openai",
       "content_hash": "8ca3282064fc485d",
-      "file_name": "vars.rb"
+      "file_name": "vars.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/eaccess.rb": {
       "timestamp": "2026-01-12T23:24:35.102365",
@@ -373,10 +431,11 @@
       "file_name": "eaccess.rb"
     },
     "lich-source/lib/common/downstreamhook.rb": {
-      "timestamp": "2025-11-07T07:32:53.983492",
+      "timestamp": "2026-05-10T16:54:32.307119",
       "provider": "openai",
       "content_hash": "b1a71318ac59ed2d",
-      "file_name": "downstreamhook.rb"
+      "file_name": "downstreamhook.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/game-loader.rb": {
       "timestamp": "2026-01-12T23:24:43.686228",
@@ -385,28 +444,32 @@
       "file_name": "game-loader.rb"
     },
     "lich-source/lib/common/watchfor.rb": {
-      "timestamp": "2025-11-07T07:32:59.637681",
+      "timestamp": "2026-05-10T16:54:34.312741",
       "provider": "openai",
       "content_hash": "eaa135f7ab1cdd7c",
-      "file_name": "watchfor.rb"
+      "file_name": "watchfor.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/limitedarray.rb": {
-      "timestamp": "2025-11-07T07:33:01.046704",
+      "timestamp": "2026-05-10T16:54:15.974113",
       "provider": "openai",
       "content_hash": "c0af49f0c01a773b",
-      "file_name": "limitedarray.rb"
+      "file_name": "limitedarray.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/log.rb": {
-      "timestamp": "2025-11-07T07:33:04.873677",
+      "timestamp": "2026-05-10T16:54:27.425778",
       "provider": "openai",
       "content_hash": "1ca146487c4f9261",
-      "file_name": "log.rb"
+      "file_name": "log.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/uservars.rb": {
-      "timestamp": "2025-11-10T02:21:31.860504",
+      "timestamp": "2026-05-10T16:54:48.144459",
       "provider": "openai",
       "content_hash": "95dea5c35265fdbb",
-      "file_name": "uservars.rb"
+      "file_name": "uservars.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui-manual-login.rb": {
       "timestamp": "2025-11-07T07:33:11.638173",
@@ -415,310 +478,361 @@
       "file_name": "gui-manual-login.rb"
     },
     "lich-source/lib/gemstone/bounty/task.rb": {
-      "timestamp": "2025-11-07T07:33:12.718697",
+      "timestamp": "2026-05-10T16:51:30.833730",
       "provider": "openai",
       "content_hash": "64fdbec76793a8c3",
-      "file_name": "task.rb"
+      "file_name": "task.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gtk.rb": {
-      "timestamp": "2025-11-07T07:33:14.993927",
+      "timestamp": "2026-05-10T16:54:01.023859",
       "provider": "openai",
-      "content_hash": "a88019e256ab108e",
-      "file_name": "gtk.rb"
+      "content_hash": "4bc6aa6ffbe2204c",
+      "file_name": "gtk.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/upstreamhook.rb": {
-      "timestamp": "2025-11-07T07:33:24.318232",
+      "timestamp": "2026-05-10T16:53:57.003621",
       "provider": "openai",
       "content_hash": "7d8ff90e12605e8e",
-      "file_name": "upstreamhook.rb"
+      "file_name": "upstreamhook.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/script.rb": {
-      "timestamp": "2025-11-07T07:33:33.835932",
+      "timestamp": "2026-05-10T16:54:24.633728",
       "provider": "openai",
-      "content_hash": "870aee0eed81d7bd",
-      "file_name": "script.rb"
+      "content_hash": "0a9621b3afdae90f",
+      "file_name": "script.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/class_exts/stringproc.rb": {
-      "timestamp": "2025-11-07T07:33:36.891811",
+      "timestamp": "2026-05-10T16:54:50.783743",
       "provider": "openai",
       "content_hash": "cefd9a6539df4787",
-      "file_name": "stringproc.rb"
+      "file_name": "stringproc.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/class_exts/matchdata.rb": {
-      "timestamp": "2026-01-12T23:24:54.526115",
+      "timestamp": "2026-05-10T16:54:45.053000",
       "provider": "openai",
       "content_hash": "780c3f6821ff58ee",
-      "file_name": "matchdata.rb"
+      "file_name": "matchdata.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/class_exts/string.rb": {
-      "timestamp": "2025-11-07T07:33:41.596346",
+      "timestamp": "2026-05-10T16:54:42.654151",
       "provider": "openai",
       "content_hash": "5ef7056bf1efd1ea",
-      "file_name": "string.rb"
+      "file_name": "string.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/class_exts/hash.rb": {
-      "timestamp": "2025-11-07T07:33:42.849543",
+      "timestamp": "2026-05-10T16:54:48.154706",
       "provider": "openai",
       "content_hash": "4608013e18843b5b",
-      "file_name": "hash.rb"
+      "file_name": "hash.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/settings.rb": {
-      "timestamp": "2026-01-12T23:25:28.304697",
+      "timestamp": "2026-05-10T16:54:42.771378",
       "provider": "openai",
-      "content_hash": "309f0d59ea594952",
-      "file_name": "settings.rb"
+      "content_hash": "87cc0cc7284e8385",
+      "file_name": "settings.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/class_exts/synchronizedsocket.rb": {
-      "timestamp": "2025-11-07T07:33:46.554847",
+      "timestamp": "2026-05-10T16:54:51.284226",
       "provider": "openai",
       "content_hash": "fbe0e59f78b55afe",
-      "file_name": "synchronizedsocket.rb"
+      "file_name": "synchronizedsocket.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/class_exts/numeric.rb": {
-      "timestamp": "2026-01-12T23:25:04.014784",
+      "timestamp": "2026-05-10T16:54:44.263337",
       "provider": "openai",
       "content_hash": "9fe1a5dbf86f7293",
-      "file_name": "numeric.rb"
+      "file_name": "numeric.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/settings/path_navigator.rb": {
-      "timestamp": "2025-11-07T07:33:55.537820",
+      "timestamp": "2026-05-10T16:55:51.349117",
       "provider": "openai",
       "content_hash": "c2e6e6e6dcf3390d",
-      "file_name": "path_navigator.rb"
+      "file_name": "path_navigator.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/class_exts/nilclass.rb": {
-      "timestamp": "2025-11-07T07:33:58.412189",
+      "timestamp": "2026-05-10T16:54:42.963984",
       "provider": "openai",
       "content_hash": "44c925bc042c06e5",
-      "file_name": "nilclass.rb"
+      "file_name": "nilclass.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/settings/database_adapter.rb": {
-      "timestamp": "2025-11-07T07:34:03.808999",
+      "timestamp": "2026-05-10T16:56:01.262557",
       "provider": "openai",
       "content_hash": "1274c46852882881",
-      "file_name": "database_adapter.rb"
+      "file_name": "database_adapter.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/settings/charsettings.rb": {
-      "timestamp": "2025-11-07T07:34:07.796903",
+      "timestamp": "2026-05-10T16:56:01.309965",
       "provider": "openai",
       "content_hash": "1490af28e022d59c",
-      "file_name": "charsettings.rb"
+      "file_name": "charsettings.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/map/map_gs.rb": {
-      "timestamp": "2026-01-12T23:25:42.249476",
+      "timestamp": "2026-05-10T16:56:05.662150",
       "provider": "openai",
-      "content_hash": "15b972de910874dc",
-      "file_name": "map_gs.rb"
+      "content_hash": "2046679c3e3f2ad4",
+      "file_name": "map_gs.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/settings/gamesettings.rb": {
-      "timestamp": "2025-11-07T07:34:16.124288",
+      "timestamp": "2026-05-10T16:56:16.884551",
       "provider": "openai",
       "content_hash": "c510ff316052c7f8",
-      "file_name": "gamesettings.rb"
+      "file_name": "gamesettings.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/spell.rb": {
-      "timestamp": "2025-11-07T07:34:17.821281",
+      "timestamp": "2026-05-10T16:54:58.193437",
       "provider": "openai",
-      "content_hash": "7890428e2c449ac5",
-      "file_name": "spell.rb"
+      "content_hash": "25041c549da2c9a9",
+      "file_name": "spell.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/commons.rb": {
-      "timestamp": "2025-11-07T07:34:18.296884",
+      "timestamp": "2026-05-10T16:52:15.628400",
       "provider": "openai",
-      "content_hash": "1fdb8e2247e5109d",
-      "file_name": "commons.rb"
+      "content_hash": "54bbb5e5100f1547",
+      "file_name": "commons.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/main/main.rb": {
-      "timestamp": "2026-01-12T23:26:35.482840",
+      "timestamp": "2026-05-10T16:50:17.125992",
       "provider": "openai",
-      "content_hash": "a44767c45f45605c",
-      "file_name": "main.rb"
+      "content_hash": "1bfe899ab8a99f5a",
+      "file_name": "main.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/drinfomon.rb": {
-      "timestamp": "2025-11-07T07:34:23.882079",
+      "timestamp": "2026-05-10T16:52:20.571606",
       "provider": "openai",
-      "content_hash": "1ed86eeb85b4858a",
-      "file_name": "drinfomon.rb"
+      "content_hash": "09264631ef397a7b",
+      "file_name": "drinfomon.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/util/util.rb": {
-      "timestamp": "2026-01-12T23:26:39.285918",
+      "timestamp": "2026-05-10T16:53:43.893666",
       "provider": "openai",
-      "content_hash": "b10386e72f7ea506",
-      "file_name": "util.rb"
+      "content_hash": "c56b4b2499131f6b",
+      "file_name": "util.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/map/map_dr.rb": {
-      "timestamp": "2026-01-12T23:25:40.261728",
+      "timestamp": "2026-05-10T16:56:05.313508",
       "provider": "openai",
-      "content_hash": "dce57bb6b9aaf92f",
-      "file_name": "map_dr.rb"
+      "content_hash": "5ba9dc18d219d67b",
+      "file_name": "map_dr.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gameobj.rb": {
-      "timestamp": "2026-01-12T23:25:38.004568",
+      "timestamp": "2026-05-10T16:54:46.724976",
       "provider": "openai",
-      "content_hash": "df986db7ed3394f9",
-      "file_name": "gameobj.rb"
+      "content_hash": "7d8796796e0283d7",
+      "file_name": "gameobj.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/main/argv_options.rb": {
-      "timestamp": "2026-01-12T23:26:57.079076",
+      "timestamp": "2026-05-10T16:50:27.660530",
       "provider": "openai",
-      "content_hash": "df4b53e456449e88",
-      "file_name": "argv_options.rb"
+      "content_hash": "52616caf06c133d7",
+      "file_name": "argv_options.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/commons/slackbot.rb": {
-      "timestamp": "2026-01-12T23:26:53.042552",
+      "timestamp": "2026-05-10T16:52:27.374511",
       "provider": "openai",
-      "content_hash": "e0df3a40fa9facf8",
-      "file_name": "slackbot.rb"
+      "content_hash": "f4f06eeb9502f9d0",
+      "file_name": "slackbot.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/commons/common-money.rb": {
-      "timestamp": "2025-11-07T07:35:12.610641",
+      "timestamp": "2026-05-10T16:52:45.109542",
       "provider": "openai",
-      "content_hash": "1b1c595e2138d7c2",
-      "file_name": "common-money.rb"
+      "content_hash": "999c2abbab1c85cb",
+      "file_name": "common-money.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/commons/equipmanager.rb": {
-      "timestamp": "2026-01-12T23:27:15.049712",
+      "timestamp": "2026-05-10T16:53:02.090340",
       "provider": "openai",
-      "content_hash": "b330d670bc552811",
-      "file_name": "equipmanager.rb"
+      "content_hash": "82434a26003846d9",
+      "file_name": "equipmanager.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/settings/settings_proxy.rb": {
-      "timestamp": "2026-01-12T23:26:00.218579",
+      "timestamp": "2026-05-10T16:55:56.103701",
       "provider": "openai",
-      "content_hash": "a4653a459ba764ea",
-      "file_name": "settings_proxy.rb"
+      "content_hash": "ce5e90cd00cd68ce",
+      "file_name": "settings_proxy.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/commons/common-healing.rb": {
-      "timestamp": "2025-11-07T07:35:29.760350",
+      "timestamp": "2026-05-10T16:52:55.856407",
       "provider": "openai",
-      "content_hash": "67c5b5b33ecd6bca",
-      "file_name": "common-healing.rb"
+      "content_hash": "a6c78833d8308745",
+      "file_name": "common-healing.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/commons/common-crafting.rb": {
-      "timestamp": "2025-11-07T07:35:35.310715",
+      "timestamp": "2026-05-10T16:53:25.027615",
       "provider": "openai",
-      "content_hash": "65fdba9cf403dcf1",
-      "file_name": "common-crafting.rb"
+      "content_hash": "a24f68134f539fc4",
+      "file_name": "common-crafting.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/commons/common-summoning.rb": {
-      "timestamp": "2026-01-12T23:27:04.325621",
+      "timestamp": "2026-05-10T16:52:35.452807",
       "provider": "openai",
-      "content_hash": "2ec9eac831ce0f95",
-      "file_name": "common-summoning.rb"
+      "content_hash": "6a1aa873fc3a883b",
+      "file_name": "common-summoning.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/commons/common-validation.rb": {
-      "timestamp": "2025-11-07T07:35:47.926386",
+      "timestamp": "2026-05-10T16:52:55.610269",
       "provider": "openai",
-      "content_hash": "d2b6355b8289f29d",
-      "file_name": "common-validation.rb"
+      "content_hash": "4d17b5ba6da149c6",
+      "file_name": "common-validation.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/commons/common.rb": {
-      "timestamp": "2025-11-07T07:36:06.066956",
+      "timestamp": "2026-05-10T16:54:18.195256",
       "provider": "openai",
-      "content_hash": "1124ae25fa7ef94c",
-      "file_name": "common.rb"
+      "content_hash": "cbb6778be358245f",
+      "file_name": "common.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/commons/common-moonmage.rb": {
-      "timestamp": "2025-11-07T07:36:07.909091",
+      "timestamp": "2026-05-10T16:53:16.496572",
       "provider": "openai",
-      "content_hash": "c606410a80a5028c",
-      "file_name": "common-moonmage.rb"
+      "content_hash": "55153f223cafbe47",
+      "file_name": "common-moonmage.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/commons/common-healing-data.rb": {
-      "timestamp": "2025-11-07T07:36:08.844484",
+      "timestamp": "2026-05-10T16:53:04.149072",
       "provider": "openai",
-      "content_hash": "4a415024215db8fd",
-      "file_name": "common-healing-data.rb"
+      "content_hash": "30d6ff3de4452fcc",
+      "file_name": "common-healing-data.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/commons/common-travel.rb": {
-      "timestamp": "2025-11-07T07:36:15.382986",
+      "timestamp": "2026-05-10T16:52:40.934416",
       "provider": "openai",
-      "content_hash": "d1a7199afbcfa435",
-      "file_name": "common-travel.rb"
+      "content_hash": "5163e137f1609c77",
+      "file_name": "common-travel.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/commons/common-arcana.rb": {
-      "timestamp": "2026-01-12T23:28:09.322642",
+      "timestamp": "2026-05-10T16:53:35.712448",
       "provider": "openai",
-      "content_hash": "894c7afc93ea7923",
-      "file_name": "common-arcana.rb"
+      "content_hash": "3767955ca8b6c53e",
+      "file_name": "common-arcana.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/commons/common-theurgy.rb": {
-      "timestamp": "2025-11-07T07:36:23.384183",
+      "timestamp": "2026-05-10T16:52:47.714801",
       "provider": "openai",
-      "content_hash": "ed4b5ad05bfc37ed",
-      "file_name": "common-theurgy.rb"
+      "content_hash": "cbb65380a4bf5f55",
+      "file_name": "common-theurgy.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/drinfomon/drparser.rb": {
-      "timestamp": "2026-01-12T23:27:30.787913",
+      "timestamp": "2026-05-10T16:53:06.156745",
       "provider": "openai",
-      "content_hash": "25e014e11d6b6297",
-      "file_name": "drparser.rb"
+      "content_hash": "23f23c789f6fc8c5",
+      "file_name": "drparser.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/drinfomon/drspells.rb": {
-      "timestamp": "2025-11-07T07:36:29.497030",
+      "timestamp": "2026-05-10T16:53:14.211014",
       "provider": "openai",
-      "content_hash": "a1e865995720c9a0",
-      "file_name": "drspells.rb"
+      "content_hash": "764149ca268d27be",
+      "file_name": "drspells.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/drinfomon/events.rb": {
-      "timestamp": "2025-11-07T07:36:35.847819",
+      "timestamp": "2026-05-10T16:53:21.724255",
       "provider": "openai",
-      "content_hash": "ac6960b12e1befdf",
-      "file_name": "events.rb"
+      "content_hash": "4c9483f7c6ce4ec6",
+      "file_name": "events.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/drinfomon/drskill.rb": {
-      "timestamp": "2026-01-12T23:27:32.632866",
+      "timestamp": "2026-05-10T16:53:40.605176",
       "provider": "openai",
-      "content_hash": "89dbc7363c124527",
-      "file_name": "drskill.rb"
+      "content_hash": "e90cc0400de85557",
+      "file_name": "drskill.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/drinfomon/drdefs.rb": {
-      "timestamp": "2025-11-07T07:36:51.905607",
+      "timestamp": "2026-05-10T16:53:17.977273",
       "provider": "openai",
-      "content_hash": "0d20ac1f1fee86ff",
-      "file_name": "drdefs.rb"
+      "content_hash": "994f8edcd3180e66",
+      "file_name": "drdefs.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/drinfomon/drvariables.rb": {
-      "timestamp": "2025-11-07T07:36:53.886361",
+      "timestamp": "2026-05-10T16:53:34.990453",
       "provider": "openai",
-      "content_hash": "23fd4c766df6a317",
-      "file_name": "drvariables.rb"
+      "content_hash": "297f3e1a15d0e3ba",
+      "file_name": "drvariables.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/drinfomon/drroom.rb": {
-      "timestamp": "2025-11-07T07:36:56.162730",
+      "timestamp": "2026-05-10T16:53:26.697688",
       "provider": "openai",
-      "content_hash": "a4a929732e7322e4",
-      "file_name": "drroom.rb"
+      "content_hash": "99392b0e61d631db",
+      "file_name": "drroom.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/drinfomon/drstats.rb": {
-      "timestamp": "2025-11-07T07:37:30.661937",
+      "timestamp": "2026-05-10T16:54:03.055234",
       "provider": "openai",
-      "content_hash": "07c4eedd1ee248c4",
-      "file_name": "drstats.rb"
+      "content_hash": "eaeef36497854033",
+      "file_name": "drstats.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/dragonrealms/commons/common-items.rb": {
-      "timestamp": "2026-01-12T23:28:32.677719",
+      "timestamp": "2026-05-10T16:53:09.697713",
       "provider": "openai",
-      "content_hash": "f8d0480264ef482b",
-      "file_name": "common-items.rb"
+      "content_hash": "ff88905a275c1e9a",
+      "file_name": "common-items.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/update.rb": {
-      "timestamp": "2026-01-12T23:22:35.179203",
+      "timestamp": "2026-05-10T16:50:20.990318",
       "provider": "openai",
-      "content_hash": "815f7a83bc307a31",
-      "file_name": "update.rb"
+      "content_hash": "fc7582c9ca0439e5",
+      "file_name": "update.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/buffer.rb": {
-      "timestamp": "2026-01-12T23:24:49.882325",
+      "timestamp": "2026-05-10T16:54:13.503484",
       "provider": "openai",
       "content_hash": "45d01c147db0753e",
-      "file_name": "buffer.rb"
+      "file_name": "buffer.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/global_defs.rb": {
-      "timestamp": "2025-11-07T02:22:51.156380",
+      "timestamp": "2026-05-10T16:52:23.014693",
       "provider": "openai",
-      "content_hash": "ba8c0123f44f1a68",
-      "file_name": "global_defs.rb"
+      "content_hash": "58ebf807cce08006",
+      "file_name": "global_defs.rb",
+      "validation_status": "passed"
     },
     "/home/runner/work/lich-5-docs/lich-5-docs/lich-source/lib/common/vars.rb": {
       "timestamp": "2025-11-10T02:54:30.574348",
@@ -727,22 +841,25 @@
       "file_name": "vars.rb"
     },
     "lich-source/lib/gemstone/currency.rb": {
-      "timestamp": "2026-01-12T23:22:15.108185",
+      "timestamp": "2026-05-10T16:51:11.311059",
       "provider": "openai",
       "content_hash": "2820e6f58401738f",
-      "file_name": "currency.rb"
+      "file_name": "currency.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/injured.rb": {
-      "timestamp": "2026-01-12T23:22:19.854019",
+      "timestamp": "2026-05-10T16:50:56.761009",
       "provider": "openai",
       "content_hash": "79f027db61efc3d7",
-      "file_name": "injured.rb"
+      "file_name": "injured.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/armaments.rb": {
-      "timestamp": "2026-01-12T23:22:29.829232",
+      "timestamp": "2026-05-10T16:50:37.237385",
       "provider": "openai",
       "content_hash": "2464fac9eb86ec1b",
-      "file_name": "armaments.rb"
+      "file_name": "armaments.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/creatures/_creature_template.rb": {
       "timestamp": "2026-01-12T23:22:45.895540",
@@ -853,166 +970,193 @@
       "file_name": "behemothic_gorefrost_golem.rb"
     },
     "lich-source/lib/gemstone/armaments/weapon_stats_hybrid.rb": {
-      "timestamp": "2026-01-12T23:23:33.044240",
+      "timestamp": "2026-05-10T16:51:39.313598",
       "provider": "openai",
       "content_hash": "cff64194b0864da6",
-      "file_name": "weapon_stats_hybrid.rb"
+      "file_name": "weapon_stats_hybrid.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/armaments/weapon_stats_unarmed.rb": {
-      "timestamp": "2026-01-12T23:23:34.709097",
+      "timestamp": "2026-05-10T16:51:33.471701",
       "provider": "openai",
       "content_hash": "c57b9015a93baa65",
-      "file_name": "weapon_stats_unarmed.rb"
+      "file_name": "weapon_stats_unarmed.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/armaments/weapon_stats_two_handed.rb": {
-      "timestamp": "2026-01-12T23:23:40.767055",
+      "timestamp": "2026-05-10T16:51:31.527052",
       "provider": "openai",
       "content_hash": "ef3390e8697f2ab8",
-      "file_name": "weapon_stats_two_handed.rb"
+      "file_name": "weapon_stats_two_handed.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/armaments/weapon_stats_blunt.rb": {
-      "timestamp": "2026-01-12T23:23:43.691828",
+      "timestamp": "2026-05-10T16:51:28.158127",
       "provider": "openai",
       "content_hash": "a058c723ace08247",
-      "file_name": "weapon_stats_blunt.rb"
+      "file_name": "weapon_stats_blunt.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/armaments/weapon_stats_edged.rb": {
-      "timestamp": "2026-01-12T23:23:45.068248",
+      "timestamp": "2026-05-10T16:51:40.950126",
       "provider": "openai",
       "content_hash": "1b049d12b0b1f11c",
-      "file_name": "weapon_stats_edged.rb"
+      "file_name": "weapon_stats_edged.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/armaments/weapon_stats_brawling.rb": {
-      "timestamp": "2026-01-12T23:23:47.395852",
+      "timestamp": "2026-05-10T16:51:32.314253",
       "provider": "openai",
       "content_hash": "f52b8e175d0bba69",
-      "file_name": "weapon_stats_brawling.rb"
+      "file_name": "weapon_stats_brawling.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/armaments/weapon_stats_ranged.rb": {
-      "timestamp": "2026-01-12T23:23:49.077240",
+      "timestamp": "2026-05-10T16:51:34.745389",
       "provider": "openai",
       "content_hash": "69b10b0087df1711",
-      "file_name": "weapon_stats_ranged.rb"
+      "file_name": "weapon_stats_ranged.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/armaments/weapon_stats_runestave.rb": {
-      "timestamp": "2026-01-12T23:23:49.834625",
+      "timestamp": "2026-05-10T16:51:36.336897",
       "provider": "openai",
       "content_hash": "f4822bc0e3c629b8",
-      "file_name": "weapon_stats_runestave.rb"
+      "file_name": "weapon_stats_runestave.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/creature.rb": {
-      "timestamp": "2026-01-12T23:23:57.608011",
+      "timestamp": "2026-05-10T16:51:55.090586",
       "provider": "openai",
       "content_hash": "db19e7c2d7e5e1de",
-      "file_name": "creature.rb"
+      "file_name": "creature.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/armaments/weapon_stats_thrown.rb": {
-      "timestamp": "2026-01-12T23:23:59.296095",
+      "timestamp": "2026-05-10T16:51:43.058929",
       "provider": "openai",
       "content_hash": "50a5c6d6ac0617de",
-      "file_name": "weapon_stats_thrown.rb"
+      "file_name": "weapon_stats_thrown.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/armaments/armor_stats.rb": {
-      "timestamp": "2026-01-12T23:24:00.651961",
+      "timestamp": "2026-05-10T16:51:36.130967",
       "provider": "openai",
       "content_hash": "04c4a9838aaff8c0",
-      "file_name": "armor_stats.rb"
+      "file_name": "armor_stats.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/armaments/weapon_stats_polearm.rb": {
-      "timestamp": "2026-01-12T23:24:01.935092",
+      "timestamp": "2026-05-10T16:51:33.791701",
       "provider": "openai",
       "content_hash": "797fd9c530ad7e13",
-      "file_name": "weapon_stats_polearm.rb"
+      "file_name": "weapon_stats_polearm.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/armaments/weapon_stats_natural.rb": {
-      "timestamp": "2026-01-12T23:24:07.134949",
+      "timestamp": "2026-05-10T16:51:24.760932",
       "provider": "openai",
       "content_hash": "3ca1a7130572eeb9",
-      "file_name": "weapon_stats_natural.rb"
+      "file_name": "weapon_stats_natural.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/combat/async_processor.rb": {
-      "timestamp": "2026-01-12T23:24:08.907442",
+      "timestamp": "2026-05-10T16:51:23.476469",
       "provider": "openai",
       "content_hash": "a92045b2d4e06537",
-      "file_name": "async_processor.rb"
+      "file_name": "async_processor.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/armaments/shield_stats.rb": {
-      "timestamp": "2026-01-12T23:24:13.573278",
+      "timestamp": "2026-05-10T16:51:38.824039",
       "provider": "openai",
       "content_hash": "77a57d1dd4158f71",
-      "file_name": "shield_stats.rb"
+      "file_name": "shield_stats.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/armaments/weapon_stats.rb": {
-      "timestamp": "2026-01-12T23:24:13.707656",
+      "timestamp": "2026-05-10T16:51:40.776922",
       "provider": "openai",
       "content_hash": "eb5320bd172c1e6c",
-      "file_name": "weapon_stats.rb"
+      "file_name": "weapon_stats.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/combat/defs/statuses.rb": {
-      "timestamp": "2026-01-12T23:24:18.869257",
+      "timestamp": "2026-05-10T16:51:21.737388",
       "provider": "openai",
       "content_hash": "12f944c7b06392a0",
-      "file_name": "statuses.rb"
+      "file_name": "statuses.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/combat/parser.rb": {
-      "timestamp": "2026-01-12T23:24:19.716304",
+      "timestamp": "2026-05-10T16:51:22.341049",
       "provider": "openai",
       "content_hash": "bd2b88851f0cc10f",
-      "file_name": "parser.rb"
+      "file_name": "parser.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/combat/processor.rb": {
-      "timestamp": "2026-01-12T23:24:19.863837",
+      "timestamp": "2026-05-10T16:51:17.685665",
       "provider": "openai",
       "content_hash": "afa571641ee9763f",
-      "file_name": "processor.rb"
+      "file_name": "processor.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/combat/defs/damage.rb": {
-      "timestamp": "2026-01-12T23:24:19.948185",
+      "timestamp": "2026-05-10T16:51:18.633538",
       "provider": "openai",
       "content_hash": "8b1c9d511e6ee0f8",
-      "file_name": "damage.rb"
+      "file_name": "damage.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/combat/tracker.rb": {
-      "timestamp": "2026-01-12T23:24:20.267176",
+      "timestamp": "2026-05-10T16:51:24.708514",
       "provider": "openai",
       "content_hash": "d0bf8bca35f99927",
-      "file_name": "tracker.rb"
+      "file_name": "tracker.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/combat/defs/attacks.rb": {
-      "timestamp": "2026-01-12T23:24:25.846373",
+      "timestamp": "2026-05-10T16:51:28.002768",
       "provider": "openai",
       "content_hash": "0cb33c78052d50b7",
-      "file_name": "attacks.rb"
+      "file_name": "attacks.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/gemstone/combat/defs/ucs.rb": {
-      "timestamp": "2026-01-12T23:24:27.405990",
+      "timestamp": "2026-05-10T16:51:22.776428",
       "provider": "openai",
       "content_hash": "2e10306983288631",
-      "file_name": "ucs.rb"
+      "file_name": "ucs.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/socketconfigurator.rb": {
-      "timestamp": "2026-01-12T23:24:46.536242",
+      "timestamp": "2026-05-10T16:54:11.805491",
       "provider": "openai",
       "content_hash": "058c3546f5a9e8d7",
-      "file_name": "socketconfigurator.rb"
+      "file_name": "socketconfigurator.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/cli/cli_encryption_mode_change.rb": {
-      "timestamp": "2026-01-12T23:25:07.966606",
+      "timestamp": "2026-05-10T16:56:04.758048",
       "provider": "openai",
-      "content_hash": "dbadf1363d36ab74",
-      "file_name": "cli_encryption_mode_change.rb"
+      "content_hash": "9c644b7be74bc672",
+      "file_name": "cli_encryption_mode_change.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/cli/cli_options_registry.rb": {
-      "timestamp": "2026-01-12T23:25:12.237952",
+      "timestamp": "2026-05-10T16:56:11.402121",
       "provider": "openai",
       "content_hash": "08cc832d66300f4f",
-      "file_name": "cli_options_registry.rb"
+      "file_name": "cli_options_registry.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/cli/cli_conversion.rb": {
-      "timestamp": "2026-01-12T23:25:14.922663",
+      "timestamp": "2026-05-10T16:56:12.665563",
       "provider": "openai",
-      "content_hash": "a2a5bb35209d9d79",
-      "file_name": "cli_conversion.rb"
+      "content_hash": "92ab700ce1decbca",
+      "file_name": "cli_conversion.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/cli/cli_password_manager.rb": {
       "timestamp": "2026-01-12T23:25:21.474967",
@@ -1027,34 +1171,39 @@
       "file_name": "cli_login.rb"
     },
     "lich-source/lib/common/gui/password_manager.rb": {
-      "timestamp": "2026-01-12T23:25:28.793822",
+      "timestamp": "2026-05-10T16:54:54.783797",
       "provider": "openai",
-      "content_hash": "874fbdecfdbaf3a9",
-      "file_name": "password_manager.rb"
+      "content_hash": "90f88ef6e5a3fb2b",
+      "file_name": "password_manager.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/conversion_ui.rb": {
-      "timestamp": "2026-01-12T23:25:33.941243",
+      "timestamp": "2026-05-10T16:54:50.012114",
       "provider": "openai",
-      "content_hash": "2944f19c762e8ef1",
-      "file_name": "conversion_ui.rb"
+      "content_hash": "682c3290120c915c",
+      "file_name": "conversion_ui.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/cli/cli_orchestration.rb": {
-      "timestamp": "2026-01-12T23:25:41.044610",
+      "timestamp": "2026-05-10T16:56:11.560379",
       "provider": "openai",
-      "content_hash": "37afb9dae20a491c",
-      "file_name": "cli_orchestration.rb"
+      "content_hash": "c67dcc91ce9f34f6",
+      "file_name": "cli_orchestration.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/password_cipher.rb": {
-      "timestamp": "2026-01-12T23:25:43.856775",
+      "timestamp": "2026-05-10T16:54:53.013066",
       "provider": "openai",
-      "content_hash": "c31756d21fc88ac7",
-      "file_name": "password_cipher.rb"
+      "content_hash": "ada61404758825f8",
+      "file_name": "password_cipher.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/master_password_prompt.rb": {
-      "timestamp": "2026-01-12T23:25:51.567707",
+      "timestamp": "2026-05-10T16:55:19.185129",
       "provider": "openai",
       "content_hash": "156b9f69c57c3321",
-      "file_name": "master_password_prompt.rb"
+      "file_name": "master_password_prompt.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/authentication.rb": {
       "timestamp": "2026-01-12T23:25:52.692951",
@@ -1063,130 +1212,151 @@
       "file_name": "authentication.rb"
     },
     "lich-source/lib/common/gui/account_manager_ui.rb": {
-      "timestamp": "2026-01-12T23:26:01.251961",
+      "timestamp": "2026-05-10T16:55:11.917357",
       "provider": "openai",
-      "content_hash": "bae66af13dea7583",
-      "file_name": "account_manager_ui.rb"
+      "content_hash": "c03926a542404bcc",
+      "file_name": "account_manager_ui.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/login_tab_utils.rb": {
-      "timestamp": "2026-01-12T23:26:01.849300",
+      "timestamp": "2026-05-10T16:55:05.491991",
       "provider": "openai",
-      "content_hash": "c587230db4e4544b",
-      "file_name": "login_tab_utils.rb"
+      "content_hash": "7a051e14c6f75fa3",
+      "file_name": "login_tab_utils.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/password_change.rb": {
-      "timestamp": "2026-01-12T23:26:03.486747",
+      "timestamp": "2026-05-10T16:55:01.697815",
       "provider": "openai",
-      "content_hash": "c6862a5efcd2e971",
-      "file_name": "password_change.rb"
+      "content_hash": "49d58bc6fdf5d129",
+      "file_name": "password_change.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/saved_login_tab.rb": {
-      "timestamp": "2026-01-12T23:26:04.425731",
+      "timestamp": "2026-05-10T16:55:12.488405",
       "provider": "openai",
-      "content_hash": "aec3ec4e88dc0cac",
-      "file_name": "saved_login_tab.rb"
+      "content_hash": "7e4f8361b0e83ad5",
+      "file_name": "saved_login_tab.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/theme_utils.rb": {
-      "timestamp": "2026-01-12T23:26:04.444385",
+      "timestamp": "2026-05-10T16:55:02.759063",
       "provider": "openai",
       "content_hash": "ee78c28bced09c81",
-      "file_name": "theme_utils.rb"
+      "file_name": "theme_utils.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/favorites_manager.rb": {
-      "timestamp": "2026-01-12T23:26:06.484599",
+      "timestamp": "2026-05-10T16:55:32.451375",
       "provider": "openai",
-      "content_hash": "5db0ed5701b8fca2",
-      "file_name": "favorites_manager.rb"
+      "content_hash": "9ea5969e261c7351",
+      "file_name": "favorites_manager.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/account_manager.rb": {
-      "timestamp": "2026-01-12T23:26:07.501198",
+      "timestamp": "2026-05-10T16:55:02.820237",
       "provider": "openai",
-      "content_hash": "e0fe7db043b3b564",
-      "file_name": "account_manager.rb"
+      "content_hash": "72f7b773089e5939",
+      "file_name": "account_manager.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/state.rb": {
-      "timestamp": "2026-01-12T23:26:09.140721",
+      "timestamp": "2026-05-10T16:55:16.270697",
       "provider": "openai",
       "content_hash": "7f31496e40fc47d6",
-      "file_name": "state.rb"
+      "file_name": "state.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/encryption_mode_change.rb": {
-      "timestamp": "2026-01-12T23:26:12.536292",
+      "timestamp": "2026-05-10T16:55:05.692755",
       "provider": "openai",
-      "content_hash": "9a6b7388168f6073",
-      "file_name": "encryption_mode_change.rb"
+      "content_hash": "4f9612968e3b54ca",
+      "file_name": "encryption_mode_change.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/manual_login_tab.rb": {
-      "timestamp": "2026-01-12T23:26:13.976036",
+      "timestamp": "2026-05-10T16:55:11.682047",
       "provider": "openai",
-      "content_hash": "4e978fec08d24cbb",
-      "file_name": "manual_login_tab.rb"
+      "content_hash": "5cc1a670bbeae8a4",
+      "file_name": "manual_login_tab.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/windows_credential_manager.rb": {
-      "timestamp": "2026-01-12T23:26:14.024383",
+      "timestamp": "2026-05-10T16:55:25.384401",
       "provider": "openai",
       "content_hash": "b8cf4e07aee9ba8b",
-      "file_name": "windows_credential_manager.rb"
+      "file_name": "windows_credential_manager.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/master_password_manager.rb": {
-      "timestamp": "2026-01-12T23:26:14.597362",
+      "timestamp": "2026-05-10T16:55:01.295342",
       "provider": "openai",
-      "content_hash": "0b845c1ed3f2ff3e",
-      "file_name": "master_password_manager.rb"
+      "content_hash": "3822afbb9c0cc423",
+      "file_name": "master_password_manager.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/master_password_change.rb": {
-      "timestamp": "2026-01-12T23:26:15.140992",
+      "timestamp": "2026-05-10T16:55:14.499658",
       "provider": "openai",
-      "content_hash": "a9ee93391235c4f6",
-      "file_name": "master_password_change.rb"
+      "content_hash": "01a3d2e8086440b9",
+      "file_name": "master_password_change.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/game_selection.rb": {
-      "timestamp": "2026-01-12T23:26:16.450610",
+      "timestamp": "2026-05-10T16:55:12.647034",
       "provider": "openai",
       "content_hash": "65d3c6471a397665",
-      "file_name": "game_selection.rb"
+      "file_name": "game_selection.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/tab_communicator.rb": {
-      "timestamp": "2026-01-12T23:26:22.141091",
+      "timestamp": "2026-05-10T16:54:53.141109",
       "provider": "openai",
       "content_hash": "a723d6d264880b2e",
-      "file_name": "tab_communicator.rb"
+      "file_name": "tab_communicator.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/components.rb": {
-      "timestamp": "2026-01-12T23:26:24.194097",
+      "timestamp": "2026-05-10T16:55:03.313327",
       "provider": "openai",
       "content_hash": "6d277e8af3ab59c4",
-      "file_name": "components.rb"
+      "file_name": "components.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/master_password_prompt_ui.rb": {
-      "timestamp": "2026-01-12T23:26:29.493265",
+      "timestamp": "2026-05-10T16:55:14.915956",
       "provider": "openai",
       "content_hash": "4a1f98288db7f3e2",
-      "file_name": "master_password_prompt_ui.rb"
+      "file_name": "master_password_prompt_ui.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/accessibility.rb": {
-      "timestamp": "2026-01-12T23:26:31.542610",
+      "timestamp": "2026-05-10T16:55:11.446103",
       "provider": "openai",
       "content_hash": "bee0c063ad3e5f3f",
-      "file_name": "accessibility.rb"
+      "file_name": "accessibility.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/parameter_objects.rb": {
-      "timestamp": "2026-01-12T23:26:33.462323",
+      "timestamp": "2026-05-10T16:55:16.283322",
       "provider": "openai",
-      "content_hash": "4e83d1a782d9ce1c",
-      "file_name": "parameter_objects.rb"
+      "content_hash": "c7159013c69c359f",
+      "file_name": "parameter_objects.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/utilities.rb": {
-      "timestamp": "2026-01-12T23:26:34.597788",
+      "timestamp": "2026-05-10T16:55:06.006147",
       "provider": "openai",
       "content_hash": "693631259f03b925",
-      "file_name": "utilities.rb"
+      "file_name": "utilities.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/util/opts.rb": {
-      "timestamp": "2026-01-12T23:26:38.008440",
+      "timestamp": "2026-05-10T16:53:40.313316",
       "provider": "openai",
       "content_hash": "c2e2602437e3d8d5",
-      "file_name": "opts.rb"
+      "file_name": "opts.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/util/login_helpers.rb": {
       "timestamp": "2026-01-12T23:26:48.310541",
@@ -1195,22 +1365,388 @@
       "file_name": "login_helpers.rb"
     },
     "lich-source/lib/util/memoryreleaser.rb": {
-      "timestamp": "2026-01-12T23:26:54.772535",
+      "timestamp": "2026-05-10T16:53:49.834957",
       "provider": "openai",
-      "content_hash": "b0338c4bd162c164",
-      "file_name": "memoryreleaser.rb"
+      "content_hash": "d6d36fdbe7474fe1",
+      "file_name": "memoryreleaser.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/util/textstripper.rb": {
-      "timestamp": "2026-01-12T23:27:08.152756",
+      "timestamp": "2026-05-10T16:53:39.809015",
       "provider": "openai",
       "content_hash": "a054566cfe8ebe21",
-      "file_name": "textstripper.rb"
+      "file_name": "textstripper.rb",
+      "validation_status": "passed"
     },
     "lich-source/lib/common/gui/yaml_state.rb": {
       "timestamp": "2026-01-12T23:27:21.593945",
       "provider": "openai",
       "content_hash": "aacb540d11c7dde5",
       "file_name": "yaml_state.rb"
+    },
+    "lich-source/lib/main/arg_normalization.rb": {
+      "timestamp": "2026-05-10T16:50:23.450380",
+      "provider": "openai",
+      "content_hash": "3379f9eebf2a08a2",
+      "file_name": "arg_normalization.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/main/help_text.rb": {
+      "timestamp": "2026-05-10T16:50:31.105272",
+      "provider": "openai",
+      "content_hash": "5b9a45b11264fa2c",
+      "file_name": "help_text.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/gemstone/overwatch.rb": {
+      "timestamp": "2026-05-10T16:51:05.553602",
+      "provider": "openai",
+      "content_hash": "b83cc564c734d516",
+      "file_name": "overwatch.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/internal_api/active_sessions/server.rb": {
+      "timestamp": "2026-05-10T16:52:12.591089",
+      "provider": "openai",
+      "content_hash": "d9e5e9f38f39e531",
+      "file_name": "server.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/internal_api/active_sessions/registry.rb": {
+      "timestamp": "2026-05-10T16:52:15.239966",
+      "provider": "openai",
+      "content_hash": "4e3bc0729c8b6cf2",
+      "file_name": "registry.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/internal_api/active_sessions/lifecycle.rb": {
+      "timestamp": "2026-05-10T16:52:23.481037",
+      "provider": "openai",
+      "content_hash": "e2b311ff2ae96f55",
+      "file_name": "lifecycle.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/internal_api/active_sessions.rb": {
+      "timestamp": "2026-05-10T16:52:24.106015",
+      "provider": "openai",
+      "content_hash": "4713ce74112ea005",
+      "file_name": "active_sessions.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/internal_api/active_sessions/client.rb": {
+      "timestamp": "2026-05-10T16:52:34.871901",
+      "provider": "openai",
+      "content_hash": "8dee05bae5af92e1",
+      "file_name": "client.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/dragonrealms/commons/common-money-data.rb": {
+      "timestamp": "2026-05-10T16:52:43.013930",
+      "provider": "openai",
+      "content_hash": "eec54aa5b34158bc",
+      "file_name": "common-money-data.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/gemstone/psms/qstrike.rb": {
+      "timestamp": "2026-05-10T16:52:54.029215",
+      "provider": "openai",
+      "content_hash": "1fc00a12d86ac501",
+      "file_name": "qstrike.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/dragonrealms/dependency/settings_config.rb": {
+      "timestamp": "2026-05-10T16:52:57.938406",
+      "provider": "openai",
+      "content_hash": "3f61c8f3a357d182",
+      "file_name": "settings_config.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/dragonrealms/drinfomon/startup.rb": {
+      "timestamp": "2026-05-10T16:53:14.637084",
+      "provider": "openai",
+      "content_hash": "cac43eeaf2d2e953",
+      "file_name": "startup.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/dragonrealms/drinfomon/drexpmonitor.rb": {
+      "timestamp": "2026-05-10T16:53:20.786361",
+      "provider": "openai",
+      "content_hash": "223241e65b256e2d",
+      "file_name": "drexpmonitor.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/dragonrealms/drinfomon/drbanking.rb": {
+      "timestamp": "2026-05-10T16:53:35.636928",
+      "provider": "openai",
+      "content_hash": "1bd5fa528bd7579a",
+      "file_name": "drbanking.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/api/active_sessions.rb": {
+      "timestamp": "2026-05-10T16:53:54.028477",
+      "provider": "openai",
+      "content_hash": "cc85aba12bb5fbb5",
+      "file_name": "active_sessions.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/attributes/enhancive.rb": {
+      "timestamp": "2026-05-10T16:53:56.375577",
+      "provider": "openai",
+      "content_hash": "4db61efa457d2272",
+      "file_name": "enhancive.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/reusable_tcp_server.rb": {
+      "timestamp": "2026-05-10T16:54:02.079614",
+      "provider": "openai",
+      "content_hash": "139cb13c1b98d539",
+      "file_name": "reusable_tcp_server.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/arg_parser.rb": {
+      "timestamp": "2026-05-10T16:54:05.979625",
+      "provider": "openai",
+      "content_hash": "ef73393d8dba6885",
+      "file_name": "arg_parser.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/gameloader.rb": {
+      "timestamp": "2026-05-10T16:54:06.371310",
+      "provider": "openai",
+      "content_hash": "d8c72d6b94392872",
+      "file_name": "gameloader.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/setup_files.rb": {
+      "timestamp": "2026-05-10T16:54:10.123541",
+      "provider": "openai",
+      "content_hash": "3585b3beddde0836",
+      "file_name": "setup_files.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/watchable.rb": {
+      "timestamp": "2026-05-10T16:54:14.279857",
+      "provider": "openai",
+      "content_hash": "5b8165e7fad27ecb",
+      "file_name": "watchable.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/session_lifecycle.rb": {
+      "timestamp": "2026-05-10T16:54:15.051490",
+      "provider": "openai",
+      "content_hash": "7c6147ec91ba319c",
+      "file_name": "session_lifecycle.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/feature_flags.rb": {
+      "timestamp": "2026-05-10T16:54:26.004050",
+      "provider": "openai",
+      "content_hash": "526263b9661bf47f",
+      "file_name": "feature_flags.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/session_launcher.rb": {
+      "timestamp": "2026-05-10T16:54:29.642896",
+      "provider": "openai",
+      "content_hash": "f67d2dd56a74e7b0",
+      "file_name": "session_launcher.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/postload.rb": {
+      "timestamp": "2026-05-10T16:54:35.849154",
+      "provider": "openai",
+      "content_hash": "f5f803eb91c49caf",
+      "file_name": "postload.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/settings_transformer.rb": {
+      "timestamp": "2026-05-10T16:54:39.586159",
+      "provider": "openai",
+      "content_hash": "6370f5b7dbb4e77c",
+      "file_name": "settings_transformer.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/gui_login.rb": {
+      "timestamp": "2026-05-10T16:54:43.171354",
+      "provider": "openai",
+      "content_hash": "4511cb8e8474ef93",
+      "file_name": "gui_login.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/gui/window_settings.rb": {
+      "timestamp": "2026-05-10T16:54:57.419589",
+      "provider": "openai",
+      "content_hash": "db1fe895831d6d9d",
+      "file_name": "window_settings.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/authentication/launch_data.rb": {
+      "timestamp": "2026-05-10T16:55:22.859779",
+      "provider": "openai",
+      "content_hash": "17d388c4449faaa6",
+      "file_name": "launch_data.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/authentication/eaccess.rb": {
+      "timestamp": "2026-05-10T16:55:23.812807",
+      "provider": "openai",
+      "content_hash": "8dec8e068c5bed7c",
+      "file_name": "eaccess.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/authentication/authenticator.rb": {
+      "timestamp": "2026-05-10T16:55:24.901098",
+      "provider": "openai",
+      "content_hash": "7593c73a44e4fa2f",
+      "file_name": "authenticator.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/update/snapshot_manager.rb": {
+      "timestamp": "2026-05-10T16:55:29.280471",
+      "provider": "openai",
+      "content_hash": "94d7703462b78bf9",
+      "file_name": "snapshot_manager.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/authentication/cli.rb": {
+      "timestamp": "2026-05-10T16:55:30.967887",
+      "provider": "openai",
+      "content_hash": "86c2aeb6e04976eb",
+      "file_name": "cli.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/authentication/gui.rb": {
+      "timestamp": "2026-05-10T16:55:31.837170",
+      "provider": "openai",
+      "content_hash": "9b87189ac9bdaa07",
+      "file_name": "gui.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/authentication/cli_password.rb": {
+      "timestamp": "2026-05-10T16:55:32.646447",
+      "provider": "openai",
+      "content_hash": "85423505e7dd35e1",
+      "file_name": "cli_password.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/update/branch_installer.rb": {
+      "timestamp": "2026-05-10T16:55:33.819120",
+      "provider": "openai",
+      "content_hash": "aa8268db72e29930",
+      "file_name": "branch_installer.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/update/tracked_scripts.rb": {
+      "timestamp": "2026-05-10T16:55:35.470337",
+      "provider": "openai",
+      "content_hash": "e1409e6781769597",
+      "file_name": "tracked_scripts.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/update/file_writer.rb": {
+      "timestamp": "2026-05-10T16:55:36.830167",
+      "provider": "openai",
+      "content_hash": "4b04915794d8b620",
+      "file_name": "file_writer.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/update/github_client.rb": {
+      "timestamp": "2026-05-10T16:55:37.109008",
+      "provider": "openai",
+      "content_hash": "8bed534f1e1caaef",
+      "file_name": "github_client.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/update/script_sync.rb": {
+      "timestamp": "2026-05-10T16:55:37.798402",
+      "provider": "openai",
+      "content_hash": "1c2f6b3b7845c795",
+      "file_name": "script_sync.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/update/status_reporter.rb": {
+      "timestamp": "2026-05-10T16:55:40.251087",
+      "provider": "openai",
+      "content_hash": "b1060138642e9fd4",
+      "file_name": "status_reporter.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/authentication/login_helpers.rb": {
+      "timestamp": "2026-05-10T16:55:41.801670",
+      "provider": "openai",
+      "content_hash": "06bef56ece8492b2",
+      "file_name": "login_helpers.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/update/release_installer.rb": {
+      "timestamp": "2026-05-10T16:55:43.885330",
+      "provider": "openai",
+      "content_hash": "2074fb075660c700",
+      "file_name": "release_installer.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/update/channel_resolver.rb": {
+      "timestamp": "2026-05-10T16:55:43.920028",
+      "provider": "openai",
+      "content_hash": "f99d280eb1eb7548",
+      "file_name": "channel_resolver.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/update/custom_repos.rb": {
+      "timestamp": "2026-05-10T16:55:44.220204",
+      "provider": "openai",
+      "content_hash": "b774b898405f15bc",
+      "file_name": "custom_repos.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/update/file_updater.rb": {
+      "timestamp": "2026-05-10T16:55:45.475879",
+      "provider": "openai",
+      "content_hash": "6ffb859272b32e1b",
+      "file_name": "file_updater.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/settings/instance_settings.rb": {
+      "timestamp": "2026-05-10T16:55:52.552047",
+      "provider": "openai",
+      "content_hash": "c0d4ac1444ac844d",
+      "file_name": "instance_settings.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/settings/sessions_settings.rb": {
+      "timestamp": "2026-05-10T16:55:59.640433",
+      "provider": "openai",
+      "content_hash": "dfd88a43c57f4a23",
+      "file_name": "sessions_settings.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/settings/session_database_adapter.rb": {
+      "timestamp": "2026-05-10T16:56:00.370897",
+      "provider": "openai",
+      "content_hash": "1fdff0d0e90c9434",
+      "file_name": "session_database_adapter.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/authentication/entry_store.rb": {
+      "timestamp": "2026-05-10T16:56:05.479265",
+      "provider": "openai",
+      "content_hash": "4e9388dcf6e9cceb",
+      "file_name": "entry_store.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/map/map_base.rb": {
+      "timestamp": "2026-05-10T16:56:08.332186",
+      "provider": "openai",
+      "content_hash": "b4e4aaae948ba19a",
+      "file_name": "map_base.rb",
+      "validation_status": "passed"
+    },
+    "lich-source/lib/common/cli/active_sessions_query.rb": {
+      "timestamp": "2026-05-10T16:56:11.157992",
+      "provider": "openai",
+      "content_hash": "43765479f4cda67c",
+      "file_name": "active_sessions_query.rb",
+      "validation_status": "passed"
     }
   },
   "failed_files": [

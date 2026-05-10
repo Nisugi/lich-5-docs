@@ -3,20 +3,20 @@ util.rb: Core lich file for collection of utilities to extend Lich capabilities.
 Entries added here should always be accessible from Lich::Util.feature namespace.
 =end
 
+# Provides utility methods for the Lich project.
+# This module includes various utility functions that extend the capabilities of Lich.
+# @example Using the Lich::Util module
+#   Lich::Util.normalize_name("Example Name")
 module Lich
-  # Provides a collection of utilities to extend Lich capabilities.
-  # Entries added here should always be accessible from Lich::Util feature namespace.
-  # @example Accessing a utility method
-  #   Lich::Util.normalize_name("Example Name")
   module Util
     include Enumerable
 
-    # Normalizes the lookup for effects based on the value type.
-    # @param effect [String] The effect type to look up.
-    # @param val [String, Integer, Symbol] The value to normalize.
-    # @return [Boolean] True if the lookup is valid, false otherwise.
-    # @raise [RuntimeError] If the value type is invalid.
-    # @example
+    # Normalizes the lookup for effects based on the provided value.
+    # @param effect [String] The name of the effect to look up.
+    # @param val [String, Integer, Symbol] The value to normalize and look up.
+    # @return [Boolean] Returns true if the normalized value exists in the effect's lookup.
+    # @raise [RuntimeError] Raises an error if the lookup case is invalid.
+    # @example Normalizing a lookup
     #   Lich::Util.normalize_lookup("some_effect", "some_value")
     def self.normalize_lookup(effect, val)
       caller_type = "Effects::#{effect}"
@@ -40,14 +40,9 @@ module Lich
     # - Removes colons and apostrophes.
     # - Converts symbols to strings.
     # Normalizes a given name by converting it to a lowercase string and replacing or removing certain characters.
-    #
-    # The normalization process handles the following cases:
-    # - Converts spaces and hyphens to underscores.
-    # - Removes colons and apostrophes.
-    # - Converts symbols to strings.
     # @param name [String, Symbol] The name to normalize.
     # @return [String] The normalized name.
-    # @example
+    # @example Normalizing a name
     #   Lich::Util.normalize_name("Example Name")
     def self.normalize_name(name)
       normal_name = name.to_s.downcase
@@ -60,27 +55,27 @@ module Lich
 
     # Generates a unique anonymous hook name based on the current time and a prefix.
     # @param prefix [String] An optional prefix for the hook name.
-    # @return [String] The generated anonymous hook name.
-    # @example
+    # @return [String] A unique anonymous hook name.
+    # @example Generating an anonymous hook
     #   Lich::Util.anon_hook("test")
     def self.anon_hook(prefix = '')
       now = Time.now
       "Util::#{prefix}-#{now}-#{Random.rand(10000)}"
     end
 
-    # Issues a command and captures the output based on start and end patterns.
-    # @param command [String] The command to issue.
+    # Issues a command and captures the output based on the provided patterns.
+    # @param command [String] The command to execute.
     # @param start_pattern [Regexp] The pattern to identify the start of the output.
     # @param end_pattern [Regexp] The pattern to identify the end of the output (default: /<prompt/).
     # @param include_end [Boolean] Whether to include the end line in the result (default: true).
-    # @param timeout [Integer] The timeout for the command (default: 5).
-    # @param silent [Boolean, nil] Whether to suppress output (default: nil).
+    # @param timeout [Integer] The maximum time to wait for the command to complete (default: 5).
+    # @param silent [Boolean] Whether to suppress output (default: nil).
     # @param usexml [Boolean] Whether to use XML output (default: true).
     # @param quiet [Boolean] Whether to suppress output during processing (default: false).
     # @param use_fput [Boolean] Whether to use fput instead of put (default: true).
-    # @return [Array<String>] The captured output lines.
-    # @raise [Timeout::Error] If the command times out.
-    # @example
+    # @return [Array<String>] The lines of output captured from the command.
+    # @raise [Interrupt] Raises an interrupt if the command times out.
+    # @example Issuing a command
     #   output = Lich::Util.issue_command("some_command", /start_pattern/, /end_pattern/)
     def self.issue_command(command, start_pattern, end_pattern = /<prompt/, include_end: true, timeout: 5, silent: nil, usexml: true, quiet: false, use_fput: true)
       result = []
@@ -153,38 +148,38 @@ module Lich
     end
 
     # Issues a command quietly and captures the output in XML format.
-    # @param command [String] The command to issue.
+    # @param command [String] The command to execute.
     # @param start_pattern [Regexp] The pattern to identify the start of the output.
     # @param end_pattern [Regexp] The pattern to identify the end of the output (default: /<prompt/).
     # @param include_end [Boolean] Whether to include the end line in the result (default: true).
-    # @param timeout [Integer] The timeout for the command (default: 5).
+    # @param timeout [Integer] The maximum time to wait for the command to complete (default: 5).
     # @param silent [Boolean] Whether to suppress output (default: true).
-    # @return [Array<String>] The captured output lines.
-    # @example
+    # @return [Array<String>] The lines of output captured from the command.
+    # @example Issuing a quiet command in XML
     #   output = Lich::Util.quiet_command_xml("some_command", /start_pattern/, /end_pattern/)
     def self.quiet_command_xml(command, start_pattern, end_pattern = /<prompt/, include_end = true, timeout = 5, silent = true)
       return issue_command(command, start_pattern, end_pattern, include_end: include_end, timeout: timeout, silent: silent, usexml: true, quiet: true)
     end
 
     # Issues a command quietly and captures the output.
-    # @param command [String] The command to issue.
+    # @param command [String] The command to execute.
     # @param start_pattern [Regexp] The pattern to identify the start of the output.
     # @param end_pattern [Regexp] The pattern to identify the end of the output.
     # @param include_end [Boolean] Whether to include the end line in the result (default: true).
-    # @param timeout [Integer] The timeout for the command (default: 5).
+    # @param timeout [Integer] The maximum time to wait for the command to complete (default: 5).
     # @param silent [Boolean] Whether to suppress output (default: true).
-    # @return [Array<String>] The captured output lines.
-    # @example
+    # @return [Array<String>] The lines of output captured from the command.
+    # @example Issuing a quiet command
     #   output = Lich::Util.quiet_command("some_command", /start_pattern/, /end_pattern/)
     def self.quiet_command(command, start_pattern, end_pattern, include_end = true, timeout = 5, silent = true)
       return issue_command(command, start_pattern, end_pattern, include_end: include_end, timeout: timeout, silent: silent, usexml: false, quiet: true)
     end
 
-    # Counts the amount of silver available within a specified timeout.
-    # @param timeout [Integer] The timeout for the count operation (default: 3).
-    # @return [Integer] The amount of silver counted.
-    # @example
-    #   silver_amount = Lich::Util.silver_count(5)
+    # Retrieves the silver count from the output of a command.
+    # @param timeout [Integer] The maximum time to wait for the command to complete (default: 3).
+    # @return [Integer] The silver count as an integer.
+    # @example Retrieving silver count
+    #   count = Lich::Util.silver_count(5)
     def self.silver_count(timeout = 3)
       silence_me unless (undo_silence = silence_me)
       result = ''
@@ -230,15 +225,16 @@ module Lich
     end
 
     # Installs the specified Ruby gems and requires them if needed.
-    # @param gems_to_install [Hash] A hash of gem names and whether to require them after installation.
-    # @raise [ArgumentError] If the input is not a hash or has invalid types.
-    # @example
+    # @param gems_to_install [Hash] A hash of gem names and whether to require them.
+    # @param user_install [Boolean] Whether to install gems for the user (default: false).
+    # @raise [ArgumentError] Raises an error if gems_to_install is not a Hash.
+    # @example Installing gem requirements
     #   Lich::Util.install_gem_requirements({"gem_name" => true})
-    def self.install_gem_requirements(gems_to_install)
+    def self.install_gem_requirements(gems_to_install, user_install: false)
       raise ArgumentError, "install_gem_requirements must be passed a Hash" unless gems_to_install.is_a?(Hash)
       require "rubygems"
       require "rubygems/dependency_installer"
-      installer = Gem::DependencyInstaller.new({ :user_install => true, :document => nil })
+      installer = Gem::DependencyInstaller.new({ :user_install => user_install, :document => nil })
       installed_gems = Gem::Specification.map { |gem| gem.name }.sort.uniq
       failed_gems = []
 
@@ -248,30 +244,49 @@ module Lich
         end
         begin
           unless installed_gems.include?(gem_name)
-            respond("--- Lich: Installing missing ruby gem '#{gem_name}' now, please wait!")
-            installer.install(gem_name)
-            respond("--- Lich: Done installing '#{gem_name}' gem!")
+            respond("--- Lich: Installing missing ruby gem '#{gem_name}' now, please wait!") if defined?(Script)
+            Lich.log("--- Lich: Installing missing ruby gem '#{gem_name}' now, please wait!")
+            result = installer.install(gem_name)
+            Gem.clear_paths
+            Gem::Specification.reset
+            Gem::Specification.find_by_name(gem_name).activate
+            Lich.log("RubyGem Installer Result: #{result.inspect}")
+            unless Gem::Specification.map { |gem| gem.name }.sort.uniq.include?(gem_name)
+              Lich.log("RubyGems failed, attempting system method instead!")
+              result = system(File.join(RbConfig::CONFIG['bindir'], 'gem'), 'install', gem_name)
+              Lich.log("SYSTEM Call Result: #{result.inspect}")
+              Gem.clear_paths
+              Gem::Specification.reset
+              Gem::Specification.find_by_name(gem_name).activate
+            end
+            respond("--- Lich: Done installing '#{gem_name}' gem!") if defined?(Script)
+            Lich.log("--- Lich: Done installing '#{gem_name}' gem!")
           end
           require gem_name if should_require
-        rescue StandardError
-          respond("--- Lich: error: Failed to install Ruby gem: #{gem_name}")
-          respond("--- Lich: error: #{$!}")
-          Lich.log("error: Failed to install Ruby gem: #{gem_name}")
+        rescue LoadError, StandardError
+          respond("--- Lich: error: Failed to install/require Ruby gem: #{gem_name}") if defined?(Script)
+          respond("--- Lich: error: #{$!}") if defined?(Script)
+          Lich.log("installed_gems.include?(#{gem_name}): #{installed_gems.include?(gem_name)} - #{installed_gems.find_all { |gem| gem == gem_name }.inspect}")
+          Lich.log("error: Failed to install/require Ruby gem: #{gem_name}")
           Lich.log("error: #{$!}")
           failed_gems.push(gem_name)
         end
       end
       unless failed_gems.empty?
-        raise("Please install the failed gems: #{failed_gems.join(', ')} to run #{$lich_char}#{Script.current.name}")
+        if defined?(Script.current.name) && Script.current.name != "unknown"
+          raise("Please install the failed gems: #{failed_gems.join(', ')} manually to run #{$lich_char}#{Script.current.name}")
+        else
+          raise("Please install the failed gems: #{failed_gems.join(', ')} manually to continue.")
+        end
       end
     end
 
     ##
-    # Deep freezes an object, including all nested elements.
-    # @param obj [Object] The object to deep freeze.
-    # @return [Object] The deep-frozen object.
-    # @example
-    #   frozen_obj = Lich::Util.deep_freeze({"key" => "value"})
+    # Deeply freezes an object, including all nested objects.
+    # @param obj [Object] The object to freeze.
+    # @return [Object] The frozen object.
+    # @example Deep freezing an object
+    #   frozen_obj = Lich::Util.deep_freeze({"key" => ["value"]})
     def self.deep_freeze(obj)
       case obj
       when Hash

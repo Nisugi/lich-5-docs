@@ -3,29 +3,36 @@
 require_relative 'master_password_manager'
 
 module Lich
+  # Provides common functionality for the Lich application.
+  # This module serves as a namespace for shared components.
+  # @example Including the Common module
+  #   include Lich::Common
   module Common
     module GUI
+      # Handles the user interface for data conversion.
+      # This module provides methods to show conversion dialogs and manage data format transitions.
+      # @example Showing the conversion dialog
+      #   Lich::Common::GUI::ConversionUI.show_conversion_dialog(parent, data_dir, on_conversion_complete)
       module ConversionUI
-        # Checks if data conversion is needed based on the presence of entry.dat and entry.yaml files.
+        # Determines if data conversion is needed based on the presence of files.
         # @param data_dir [String] The directory containing the data files.
         # @return [Boolean] Returns true if conversion is needed, false otherwise.
-        # @note This method assumes that the data directory is valid.
+        # @note This method currently does not handle new installs with no dat_file.
         def self.conversion_needed?(data_dir)
           dat_file = File.join(data_dir, "entry.dat")
-          yml_file = Lich::Common::GUI::YamlState.yaml_file_path(data_dir)
+          yml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
           # TODO: need a guard for new installs with no dat_file
           File.exist?(dat_file) && !File.exist?(yml_file)
         end
 
-        # Displays a dialog for data conversion with options for encryption mode.
+        # Displays a dialog for the user to convert data from entry.dat to entry.yaml format.
         # @param parent [Gtk::Window] The parent window for the dialog.
         # @param data_dir [String] The directory containing the data files.
-        # @param on_conversion_complete [Proc] A callback to be executed when conversion is complete.
+        # @param on_conversion_complete [Proc] A callback to execute when conversion is complete.
         # @return [void]
-        # @raise [StandardError] Raises an error if the dialog cannot be displayed.
-        # @example
-        #   show_conversion_dialog(parent_window, "/path/to/data", -> { puts "Conversion done!" })
+        # @example Showing the conversion dialog
+        #   Lich::Common::GUI::ConversionUI.show_conversion_dialog(parent, data_dir, -> { puts "Conversion complete!" })
         def self.show_conversion_dialog(parent, data_dir, on_conversion_complete)
           has_keychain = MasterPasswordManager.keychain_available?
 
@@ -65,7 +72,7 @@ module Lich
           info_text = "<span size='large'>Your existing saved entries data will be converted to a new format. This is a one-time process and your original saved entries data will be retained unmodified."
 
           # Only show entry.dat file info if conversion hasn't happened yet
-          unless File.exist?(Lich::Common::GUI::YamlState.yaml_file_path(DATA_DIR))
+          unless File.exist?(Lich::Common::Authentication::EntryStore.yaml_file_path(DATA_DIR))
             info_text += "\n\nExisting:\t\t#{DATA_DIR}/entry.dat\n" +
                          "Converted:\t#{DATA_DIR}/entry.yaml\n\n" +
                          "entry.dat will no longer be used, and may be deleted at your convenience"
@@ -231,7 +238,7 @@ module Lich
                   sleep(0.5)
 
                   # Perform the actual conversion using existing method with selected mode
-                  success = YamlState.migrate_from_legacy(data_dir, encryption_mode: selected_mode)
+                  success = Lich::Common::Authentication::EntryStore.migrate_from_legacy(data_dir, encryption_mode: selected_mode)
 
                   Gtk.queue do
                     progress_bar.fraction = 0.8

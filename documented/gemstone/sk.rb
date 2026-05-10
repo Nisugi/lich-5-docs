@@ -1,11 +1,20 @@
+# Module for Lich project
+# Contains functionality related to SK spells.
 module Lich
   module Gemstone
+    # Module for handling SK spells
+    # Provides methods to manage known spells.
+    # @example Using SK module
+    #   Lich::Gemstone::SK.add(123)
+    #   Lich::Gemstone::SK.list
     module SK
       @sk_known = nil
 
-      # Retrieves the known SK spells.
-      # If the known spells are not set, it attempts to read from the database.
-      # @return [Array, nil] The list of known SK spells or nil if not set.
+      # Retrieves the list of known SK spells.
+      # @return [Array<String>] The list of known SK spell numbers.
+      # @raise [StandardError] If there is an issue reading from the database.
+      # @example Getting known spells
+      #   known_spells = Lich::Gemstone::SK.sk_known
       def self.sk_known
         if @sk_known.nil?
           val = DB_Store.read("#{XMLData.game}:#{XMLData.name}", "sk_known")
@@ -23,9 +32,11 @@ module Lich
         return @sk_known
       end
 
-      # Sets the known SK spells.
-      # @param val [Array] The list of SK spells to be known.
+      # Sets the list of known SK spells.
+      # @param val [Array<String>] The new list of known SK spell numbers.
       # @return [void]
+      # @example Setting known spells
+      #   Lich::Gemstone::SK.sk_known = ["123", "456"]
       def self.sk_known=(val)
         unless @sk_known == val
           DB_Store.save("#{XMLData.game}:#{XMLData.name}", "sk_known", val)
@@ -36,6 +47,8 @@ module Lich
       # Checks if a specific spell is known.
       # @param spell [Object] The spell object to check.
       # @return [Boolean] True if the spell is known, false otherwise.
+      # @example Checking if a spell is known
+      #   Lich::Gemstone::SK.known?(some_spell)
       def self.known?(spell)
         self.sk_known if @sk_known.nil?
         @sk_known.include?(spell.num.to_s)
@@ -43,13 +56,17 @@ module Lich
 
       # Lists the current known SK spells.
       # @return [void]
+      # @example Listing known spells
+      #   Lich::Gemstone::SK.list
       def self.list
         respond "Current SK Spells: #{@sk_known.inspect}"
         respond ""
       end
 
-      # Provides help information for managing SK spells.
+      # Provides help information for SK commands.
       # @return [void]
+      # @example Displaying help
+      #   Lich::Gemstone::SK.help
       def self.help
         respond "   Script to add SK spells to be known and used with Spell API calls."
         respond ""
@@ -60,26 +77,32 @@ module Lich
         respond ""
       end
 
-      # Adds one or more spell numbers to the known SK spells.
-      # @param numbers [Array] The spell numbers to add.
+      # Adds new SK spell numbers to the known list.
+      # @param numbers [Array<Integer>] The spell numbers to add.
       # @return [void]
+      # @example Adding spells
+      #   Lich::Gemstone::SK.add(123, 456)
       def self.add(*numbers)
         self.sk_known = (@sk_known + numbers).uniq
         self.list
       end
 
-      # Removes one or more spell numbers from the known SK spells.
-      # @param numbers [Array] The spell numbers to remove.
+      # Removes SK spell numbers from the known list.
+      # @param numbers [Array<Integer>] The spell numbers to remove.
       # @return [void]
+      # @example Removing spells
+      #   Lich::Gemstone::SK.remove(123)
       def self.remove(*numbers)
         self.sk_known = (@sk_known - numbers).uniq
         self.list
       end
 
-      # Main entry point for managing SK spells based on the action provided.
-      # @param action [Symbol] The action to perform (:add, :rm, :list, or :help).
-      # @param spells [String, nil] The spell numbers to process, if applicable.
+      # Main entry point for SK commands.
+      # @param action [Symbol] The action to perform (:add, :rm, :list).
+      # @param spells [String, nil] The spell numbers as a space-separated string.
       # @return [void]
+      # @example Executing main command
+      #   Lich::Gemstone::SK.main(:add, "123 456")
       def self.main(action = help, spells = nil)
         self.sk_known if @sk_known.nil?
         action = action.to_sym

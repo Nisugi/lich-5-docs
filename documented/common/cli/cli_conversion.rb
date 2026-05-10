@@ -1,29 +1,35 @@
 # frozen_string_literal: true
 
-require_relative '../gui/yaml_state'
+require_relative '../authentication/entry_store'
 
 module Lich
+  # Provides common functionality for the Lich project
+  # This module contains various utilities and classes used across the Lich application.
   module Common
     module CLI
+      # Provides methods for converting entry data formats in the CLI
+      # This module handles the conversion of legacy entry data to the new format.
+      # @example Checking if conversion is needed
+      #   if Lich::Common::CLI::CLIConversion.conversion_needed?("/path/to/data")
       module CLIConversion
-        # Checks if conversion is needed based on the presence of entry.dat and absence of entry.yaml
-        # @param data_dir [String] The directory containing the data files
+        # Checks if conversion of entry data is needed
+        # @param data_dir [String] The directory containing the entry data
         # @return [Boolean] True if conversion is needed, false otherwise
-        # @example
+        # @example Checking conversion necessity
         #   Lich::Common::CLI::CLIConversion.conversion_needed?("/path/to/data")
         def self.conversion_needed?(data_dir)
           dat_file = File.join(data_dir, 'entry.dat')
-          yaml_file = Lich::Common::GUI::YamlState.yaml_file_path(data_dir)
+          yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
           File.exist?(dat_file) && !File.exist?(yaml_file)
         end
 
-        # Converts entry.dat to entry.yaml format with specified encryption mode
-        # @param data_dir [String] The directory containing the data files
+        # Converts entry data from the legacy format to the new format
+        # @param data_dir [String] The directory containing the entry data
         # @param encryption_mode [String, Symbol] The encryption mode to use for the conversion
         # @return [Boolean] True if conversion was successful, false otherwise
-        # @raise StandardError if conversion fails
-        # @example
+        # @raise [StandardError] If an error occurs during conversion
+        # @example Converting entry data
         #   Lich::Common::CLI::CLIConversion.convert("/path/to/data", :standard)
         def self.convert(data_dir, encryption_mode)
           # Normalize encryption_mode to symbol if string is passed
@@ -31,7 +37,7 @@ module Lich
 
           # Validate preconditions
           dat_file = File.join(data_dir, 'entry.dat')
-          yaml_file = Lich::Common::GUI::YamlState.yaml_file_path(data_dir)
+          yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
           unless File.exist?(dat_file)
             Lich.log "error: entry.dat not found at #{dat_file}"
@@ -43,12 +49,12 @@ module Lich
             return false
           end
 
-          # Delegate to YamlState for the actual conversion
+          # Delegate to EntryStore for the actual conversion
           # For enhanced mode, migrate_from_legacy will prompt user to create master password
-          result = Lich::Common::GUI::YamlState.migrate_from_legacy(data_dir, encryption_mode: mode)
+          result = Lich::Common::Authentication::EntryStore.migrate_from_legacy(data_dir, encryption_mode: mode)
 
           unless result
-            Lich.log "error: YamlState.migrate_from_legacy returned false"
+            Lich.log "error: EntryStore.migrate_from_legacy returned false"
           end
 
           result
@@ -58,8 +64,9 @@ module Lich
           false
         end
 
-        # Prints a help message for users regarding the conversion process
-        # @example
+        # Prints a help message for users regarding entry data conversion
+        # This method provides instructions on how to convert saved entries to the new format.
+        # @example Displaying conversion help
         #   Lich::Common::CLI::CLIConversion.print_conversion_help_message
         def self.print_conversion_help_message
           lich_script = File.join(LICH_DIR, 'lich.rbw')

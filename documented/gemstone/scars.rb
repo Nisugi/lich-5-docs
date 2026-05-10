@@ -1,22 +1,18 @@
-# frozen_string_literal: true
 
 module Lich
   module Gemstone
-    # Scars class for tracking character scars
-    # Scars class for tracking character scars
-    #
-    # This class provides methods to access and manage scars on various body parts of a character.
-    # It defines both primary and alias methods for body parts, as well as composite methods for groups of body parts.
-    # @example Accessing a character's left eye scar
+    # Represents the scars of a character in the game.
+    # This class provides methods to access and manipulate scar data for various body parts.
+    # @example Accessing scars
     #   scars = Lich::Gemstone::Scars.new
-    #   scar_level = scars.leftEye
+    #   scars.leftEye
     class Scars < Gemstone::CharacterStatus # GameBase::CharacterStatus
       class << self
         # Body part accessor methods
         # XML from Simutronics drives the structure of the scar naming (eg. leftEye)
         # The following is a hash of the body parts and shorthand aliases created for more idiomatic Ruby
-        # A hash of body parts and their shorthand aliases.
-        # This constant drives the structure of the scar naming convention.
+        # A hash mapping body parts to their shorthand aliases.
+        # This constant is used to define methods for each body part.
         BODY_PARTS = {
           leftEye: ['leye'],
           rightEye: ['reye'],
@@ -51,13 +47,9 @@ module Lich
           end
         end
 
-        # Alias snake_case methods for overachievers
-        # Retrieves the scar level for the left eye using snake_case.
-        #
-        # @return [Integer, nil] The scar level for the left eye or nil if not present.
-        # @note This method is an alias for leftEye.
-        # @example
-        #   scar_level = scars.left_eye
+        # Returns the scar level for the left eye using snake_case.
+        # @return [Integer, nil] The scar level or nil if not present.
+        # @note This is an alias for the leftEye method.
         def left_eye; leftEye; end
         def right_eye; rightEye; end
         def left_arm; leftArm; end
@@ -69,13 +61,9 @@ module Lich
         def left_foot; leftFoot; end
         def right_foot; rightFoot; end
 
-        # Composite scar methods
-        # Retrieves the maximum scar level for both arms and hands.
-        #
-        # @return [Integer, nil] The maximum scar level among the arms and hands or nil if not present.
-        # @note This method uses 'both' injury mode for consistency.
-        # @example
-        #   max_scar = scars.arms
+        # Returns the maximum scar level for both arms and hands.
+        # @return [Integer, nil] The maximum scar level or nil if not present.
+        # @note Uses 'both' injury mode for consistency.
         def arms
           fix_injury_mode('both')
           [
@@ -86,12 +74,9 @@ module Lich
           ].max
         end
 
-        # Retrieves the maximum scar level for all limbs (arms and legs).
-        #
-        # @return [Integer, nil] The maximum scar level among all limbs or nil if not present.
-        # @note This method uses 'both' injury mode for consistency.
-        # @example
-        #   max_scar = scars.limbs
+        # Returns the maximum scar level for both arms, hands, legs.
+        # @return [Integer, nil] The maximum scar level or nil if not present.
+        # @note Uses 'both' injury mode for consistency.
         def limbs
           fix_injury_mode('both')
           [
@@ -104,12 +89,9 @@ module Lich
           ].max
         end
 
-        # Retrieves the maximum scar level for the torso.
-        #
-        # @return [Integer, nil] The maximum scar level for the torso or nil if not present.
-        # @note This method uses 'both' injury mode for consistency.
-        # @example
-        #   max_scar = scars.torso
+        # Returns the maximum scar level for the torso area.
+        # @return [Integer, nil] The maximum scar level or nil if not present.
+        # @note Uses 'both' injury mode for consistency.
         def torso
           fix_injury_mode('both')
           [
@@ -121,26 +103,17 @@ module Lich
           ].max
         end
 
-        # Helper method to get scar level for any body part
-        # Retrieves the scar level for a specified body part.
-        #
+        # Returns the scar level for a specified body part.
         # @param part [Symbol] The body part to check (e.g., :leftEye).
-        # @return [Integer, nil] The scar level for the specified body part or nil if not present.
-        # @note This method uses 'both' injury mode for consistency.
-        # @example
-        #   scar_level = scars.scar_level(:leftEye)
+        # @return [Integer, nil] The scar level or nil if not present.
         def scar_level(part)
           fix_injury_mode('both')
           XMLData.injuries[part.to_s] && XMLData.injuries[part.to_s]['scar']
         end
 
-        # Helper method to get all scar levels
-        # Retrieves the scar levels for all body parts.
-        #
+        # Returns a hash of all scars for each body part.
         # @return [Hash] A hash mapping body parts to their scar levels.
-        # @note This method temporarily changes the injury mode to 'scar' to retrieve actual scar level data.
-        # @example
-        #   all_scar_levels = scars.all_scars
+        # @note This method temporarily changes the injury mode to 'scar' to retrieve data.
         def all_scars
           begin
             fix_injury_mode('scar') # for this one call, we want to get actual scar level data

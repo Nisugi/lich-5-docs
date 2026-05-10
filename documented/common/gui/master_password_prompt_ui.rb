@@ -3,9 +3,9 @@ module Lich
   module Common
     module GUI
       # UI for prompting the user for the master password.
-      # This class provides various dialog methods for password input and validation.
+      # This class handles the display of various dialogs related to password management.
       # @example Showing the master password dialog
-      #   result = Lich::Common::GUI::MasterPasswordPromptUI.show_dialog
+      #   Lich::Common::GUI::MasterPasswordPromptUI.show_dialog
       class MasterPasswordPromptUI
         # Displays a dialog for the user to enter their master password.
         # This method blocks until the dialog is completed.
@@ -30,9 +30,9 @@ module Lich
 
         # Displays a dialog indicating that the master password recovery was successful.
         # This method blocks until the dialog is completed.
-        # @return [String, nil] The entered master password or nil if canceled.
+        # @return [Hash] A hash containing the result of the dialog.
         # @example
-        #   password = Lich::Common::GUI::MasterPasswordPromptUI.show_recovery_success_dialog
+        #   result = Lich::Common::GUI::MasterPasswordPromptUI.show_recovery_success_dialog
         def self.show_recovery_success_dialog
           # Block until dialog completes, using condition variable for sync
           result = nil
@@ -50,12 +50,11 @@ module Lich
         end
 
         # Displays a dialog to confirm the master password when changing encryption modes.
-        # This method blocks until the dialog is completed.
-        # @param validation_test [Object, nil] Optional validation test for the password.
+        # @param validation_test [Proc, nil] A validation test for the password.
         # @param leaving_enhanced [Boolean] Indicates if the user is leaving enhanced mode.
         # @return [String, nil] The entered master password or nil if canceled.
         # @example
-        #   password = Lich::Common::GUI::MasterPasswordPromptUI.show_password_confirmation_for_mode_change(validation_test)
+        #   password = Lich::Common::GUI::MasterPasswordPromptUI.show_password_confirmation_for_mode_change
         def self.show_password_confirmation_for_mode_change(validation_test = nil, leaving_enhanced: false)
           result = nil
           mutex = Mutex.new
@@ -85,11 +84,10 @@ module Lich
         end
 
         # Displays a dialog for the user to enter their master password to access data.
-        # This method blocks until the dialog is completed.
-        # @param validation_test [Object, nil] Optional validation test for the password.
+        # @param validation_test [Proc, nil] A validation test for the password.
         # @return [String, nil] The entered master password or nil if canceled.
         # @example
-        #   password = Lich::Common::GUI::MasterPasswordPromptUI.show_password_for_data_access(validation_test)
+        #   password = Lich::Common::GUI::MasterPasswordPromptUI.show_password_for_data_access
         def self.show_password_for_data_access(validation_test = nil)
           result = nil
           mutex = Mutex.new
@@ -110,12 +108,11 @@ module Lich
           result
         end
 
-        # Displays a dialog for the user to enter their master password for recovery.
-        # This method blocks until the dialog is completed.
-        # @param validation_test [Object, nil] Optional validation test for the password.
+        # Displays a dialog for recovering the master password.
+        # @param validation_test [Proc, nil] A validation test for the password.
         # @return [String, nil] The entered master password or nil if canceled.
         # @example
-        #   password = Lich::Common::GUI::MasterPasswordPromptUI.show_password_recovery_dialog(validation_test)
+        #   password = Lich::Common::GUI::MasterPasswordPromptUI.show_password_recovery_dialog
         def self.show_password_recovery_dialog(validation_test = nil)
           result = nil
           mutex = Mutex.new
@@ -137,16 +134,20 @@ module Lich
           result
         end
 
-        # Displays a dialog for the user to recover their master password.
+        # Displays a dialog for recovering the master password.
         # This method is an alias for show_password_recovery_dialog.
-        # @param validation_test [Object, nil] Optional validation test for the password.
+        # @param validation_test [Proc, nil] A validation test for the password.
         # @return [String, nil] The entered master password or nil if canceled.
         # @example
-        #   password = Lich::Common::GUI::MasterPasswordPromptUI.show_recovery_dialog(validation_test)
+        #   password = Lich::Common::GUI::MasterPasswordPromptUI.show_recovery_dialog
         def self.show_recovery_dialog(validation_test = nil)
           show_password_recovery_dialog(validation_test)
         end
 
+        # Creates a modal dialog for master password creation.
+        # @return [String, nil] The created master password or nil if canceled.
+        # @example
+        #   password = master_password_prompt_ui.create_dialog
         def create_dialog
           # Create modal dialog for master password creation
           dialog = Gtk::Dialog.new(
@@ -346,14 +347,13 @@ module Lich
         end
 
         # Creates a modal dialog for validating the master password.
-        # This method blocks until the dialog is completed.
-        # @param validation_test [Object, nil] Optional validation test for the password.
+        # @param validation_test [Proc, nil] A validation test for the password.
         # @param title [String] The title of the dialog.
         # @param instructions [String] Instructions to display in the dialog.
-        # @param show_success_dialog [Boolean] Indicates if a success dialog should be shown after validation.
-        # @return [Hash] A hash containing the entered password and a flag indicating if the session should continue.
+        # @param show_success_dialog [Boolean] Whether to show a success dialog after validation.
+        # @return [Hash] A hash containing the password and session continuation status.
         # @example
-        #   result = Lich::Common::GUI::MasterPasswordPromptUI.create_password_validation_dialog(validation_test, title: "Validate Password", instructions: "Enter your password:")
+        #   result = master_password_prompt_ui.create_password_validation_dialog
         def create_password_validation_dialog(validation_test = nil, title: "Validate Master Password", instructions: "Enter your master password:", show_success_dialog: false)
           # Create modal dialog for password validation
           # Single password entry - validates against PBKDF2 test
@@ -452,6 +452,11 @@ module Lich
           { password: password, continue_session: continue_session }
         end
 
+        # Creates a recovery dialog for the master password.
+        # @param validation_test [Proc, nil] A validation test for the password.
+        # @return [String, nil] The entered master password or nil if canceled.
+        # @example
+        #   password = master_password_prompt_ui.create_recovery_dialog
         def create_recovery_dialog(validation_test = nil)
           create_password_validation_dialog(
             validation_test,
@@ -463,10 +468,9 @@ module Lich
         end
 
         # Creates a modal dialog for confirming the success of the master password recovery.
-        # This method blocks until the dialog is completed.
-        # @return [Hash] A hash containing a flag indicating if the session should continue.
+        # @return [Hash] A hash containing the continuation status of the session.
         # @example
-        #   result = Lich::Common::GUI::MasterPasswordPromptUI.create_recovery_success_dialog
+        #   result = master_password_prompt_ui.create_recovery_success_dialog
         def create_recovery_success_dialog
           # Create modal dialog for master password recovery success confirmation
           dialog = Gtk::Dialog.new(
@@ -530,8 +534,8 @@ module Lich
           { continue_session: continue_session }
         end
 
-        # Creates a checkbox to toggle the visibility of password entries.
-        # @param content_box [Gtk::Box] The box to which the checkbox will be added.
+        # Creates and wires a checkbox to show/hide password characters.
+        # @param content_box [Gtk::Box] The content box to add the checkbox to.
         # @param entries_to_toggle [Array<Gtk::Entry>] The entries whose visibility will be toggled.
         # @return [Gtk::CheckButton] The created checkbox.
         # @example

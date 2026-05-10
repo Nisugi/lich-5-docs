@@ -1,25 +1,19 @@
 require "ostruct"
 
-# Contains the Lich project modules
-#
-# This module serves as a namespace for the Lich project.
+# The Lich module contains functionality related to the Lich project.
+# @example Including the Lich module
+#   include Lich
 module Lich
-  # Contains the Gemstone related functionality
-  #
-  # This module provides various functionalities related to the Gemstone game.
   module Gemstone
-    # Provides methods to handle spells in the Gemstone game
-    #
-    # This module includes methods for retrieving spell circles, active spells, and known spells.
+    # The Spells module provides methods to manage and retrieve spell information.
     # @example Retrieving a spell circle name
     #   circle_name = Lich::Gemstone::Spells.get_circle_name(1)
     module Spells
-      # Retrieves the name of the spell circle based on the given number
-      # @param num [Integer] The circle number
-      # @return [String] The name of the spell circle
-      # @example
+      # Retrieves the name of the spell circle based on the given number.
+      # @param num [Integer] The number representing the spell circle.
+      # @return [String] The name of the spell circle.
+      # @example Getting a circle name
       #   name = Lich::Gemstone::Spells.get_circle_name(1) # => "Minor Spirit"
-      # @note Circle numbers are predefined and should be within the valid range.
       def self.get_circle_name(num)
         case num.to_s
         when '1' then 'Minor Spirit'
@@ -48,17 +42,17 @@ module Lich
         end
       end
 
-      # Retrieves the currently active spells
-      # @return [Array<Spell>] An array of active spells
-      # @example
+      # Retrieves the currently active spells.
+      # @return [Array<Spell>] An array of active spells.
+      # @example Getting active spells
       #   active_spells = Lich::Gemstone::Spells.active
       def self.active
         Spell.active
       end
 
-      # Retrieves a list of known spells
-      # @return [Array<Spell>] An array of known spells
-      # @example
+      # Retrieves a list of known spells.
+      # @return [Array<Spell>] An array of known spells.
+      # @example Getting known spells
       #   known_spells = Lich::Gemstone::Spells.known
       def self.known
         known_spells = Array.new
@@ -66,12 +60,11 @@ module Lich
         return known_spells
       end
 
-      # Checks if a cooldown is required for the given spell
-      # @param spell [Spell] The spell to check for cooldown
-      # @return [Symbol] :ok if no cooldown is required
-      # @example
+      # Checks if a cooldown is required for the given spell and applies it if necessary.
+      # @param spell [Spell] The spell to check for cooldown.
+      # @return [Symbol] :ok if no cooldown is required.
+      # @example Checking cooldown
       #   result = Lich::Gemstone::Spells.require_cooldown(spell)
-      # @note This method assumes specific spell number ranges for cooldown logic.
       def self.require_cooldown(spell)
         if (spell.num.to_i > 9013) && (spell.num.to_i < 9042) # Assume Aspect: Ranger
           cooldown_spell = Spell[spell.num + 1]
@@ -83,17 +76,15 @@ module Lich
         end
       end
 
-      # Serializes the spell lists into an array
-      # @return [Array<Integer>] An array of spell ranks
-      # @example
+      # Serializes the spell lists into an array.
+      # @return [Array<Integer>] An array of serialized spell ranks.
+      # @example Serializing spells
       #   serialized_spells = Lich::Gemstone::Spells.serialize
       def self.serialize
         [self.minor_elemental, self.major_elemental, self.minor_spiritual, self.major_spiritual, self.wizard, self.sorcerer, self.ranger, self.paladin, self.empath, self.cleric, self.bard, self.minormental]
       end
 
-      # List of spell types for the Gemstone game
-      #
-      # This constant holds the symbols representing different spell lists.
+      # A list of spell types available in the system.
       @@spell_lists = %i(major_elemental major_spiritual minor_elemental minor_mental minor_spiritual bard cleric empath paladin ranger sorcerer wizard)
       # returns rank as integer
       @@spell_lists.each do |spell_list|

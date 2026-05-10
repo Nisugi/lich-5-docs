@@ -2,25 +2,27 @@
 module Lich
   module Common
     module GUI
-      # Handles communication for tab data changes.
-      # This class allows for registering callbacks that are invoked when data changes occur.
-      # @example Creating a TabCommunicator and registering a callback
+      # Handles communication for tabs in the GUI.
+      # This class allows for registering and notifying data change callbacks.
+      # @example Creating a TabCommunicator instance
       #   communicator = Lich::Common::GUI::TabCommunicator.new
-      #   communicator.register_data_change_callback(lambda { |change_type, data| puts "Data changed: #{change_type}, #{data}" })
       class TabCommunicator
+        # Initializes a new TabCommunicator instance.
+        # @return [TabCommunicator]
         def initialize
           @data_change_callbacks = []
         end
 
-        # Registers a callback to be invoked when data changes.
-        # @param callback [Proc] The callback to be invoked on data change.
+        # Registers a callback to be notified when data changes.
+        # @param callback [Proc] The callback to register.
         # @return [void]
+        # @note Callbacks must respond to :call.
         def register_data_change_callback(callback)
           @data_change_callbacks << callback if callback.respond_to?(:call)
         end
 
         # Notifies all registered callbacks that data has changed.
-        # @param change_type [Symbol] The type of change that occurred (default: :general).
+        # @param change_type [Symbol] The type of change (default: :general).
         # @param data [Hash] The data associated with the change (default: {}).
         # @return [void]
         # @raise [StandardError] If an error occurs during callback execution.
@@ -36,8 +38,8 @@ module Lich
           end
         end
 
-        # Unregisters a previously registered callback.
-        # @param callback [Proc] The callback to be removed.
+        # Unregisters a previously registered data change callback.
+        # @param callback [Proc] The callback to unregister.
         # @return [void]
         def unregister_data_change_callback(callback)
           @data_change_callbacks.delete(callback)

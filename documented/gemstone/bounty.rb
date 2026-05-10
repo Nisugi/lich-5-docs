@@ -4,11 +4,12 @@ require_relative "./bounty/task"
 module Lich
   module Gemstone
     # Represents a bounty in the Lich Gemstone module.
-    # This class provides methods to interact with bounty tasks.
-    # @example Accessing the current bounty task
-    #   bounty = Lich::Gemstone::Bounty.current
+    # This class handles tasks related to bounties.
+    # @example Creating a bounty instance
+    #   bounty = Lich::Gemstone::Bounty.new
     class Bounty
-      # A list of known task matchers for bounties.
+      # A list of known tasks for bounties.
+      # This constant holds the keys from the task matchers defined in the Parser.
       KNOWN_TASKS = Parser::TASK_MATCHERS.keys
 
       # Retrieves the current bounty task.
@@ -21,18 +22,17 @@ module Lich
 
       # Alias for the current bounty task.
       # @return [Task] The current bounty task instance.
-      # @example Accessing the task method
+      # @example Getting the current bounty task via alias
       #   task = Lich::Gemstone::Bounty.task
       def self.task
         current
       end
 
-      # Retrieves bounty information for a specified person from LNet.
-      # @param person [String] The name of the person to look up.
-      # @return [Task, nil] A Task instance if found, otherwise nil.
-      # @raise [StandardError] If there is an issue with the LNet request.
-      # @example Getting bounty information from LNet
-      #   bounty_info = Lich::Gemstone::Bounty.lnet("John Doe")
+      # Retrieves bounty information for a given person from LNet.
+      # @param person [String] The name of the person to retrieve bounty information for.
+      # @return [Task, nil] The bounty task instance or nil if not found.
+      # @example Getting bounty information for a person
+      #   task = Lich::Gemstone::Bounty.lnet("John Doe")
       def self.lnet(person)
         if (target_info = LNet.get_data(person.dup, 'bounty'))
           Task.new(Parser.parse(target_info))

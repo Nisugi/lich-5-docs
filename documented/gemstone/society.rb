@@ -2,72 +2,45 @@ require_relative '../util/util.rb' # needed to ensure it loads before Society tr
 
 module Lich
   module Gemstone
-
-    # The Society class provides accessors for a character's society membership, rank, and task data.
-    #
-    # All methods rely on Infomon or XMLData, and a future rewrite might shift responsibility to
-    # character-specific data models or direct game scraping.
+    ##
+    # Represents a society in the Lich game.
+    # This class provides methods to access society membership, status, rank, and tasks.
     # @example Accessing society information
-    #   membership = Lich::Gemstone::Society.membership
+    #   status = Lich::Gemstone::Society.status
     class Society
-
-      # Retrieves the character's society membership status.
-      #
-      # @return [String, nil] The name of the society:
-      #   - "Order of Voln"
-      #   - "Council of Light"
-      #   - "Guardians of Sunfist"
-      #   - or `nil`/"None" if not a member
-      # @example Getting membership status
-      #   society_name = Lich::Gemstone::Society.membership
+      ##
+      # Retrieves the current membership status of the society.
+      # @return [String] The membership status.
       def self.membership
         Infomon.get("society.status")
       end
 
-      # Retrieves the character's society membership status.
-      #
-      # @return [String, nil] The name of the society:
-      #   - "Order of Voln"
-      #   - "Council of Light"
-      #   - "Guardians of Sunfist"
-      #   - or `nil`/"None" if not a member
-      # @example Getting status
+      ##
+      # Retrieves the current status of the society.
+      # @return [String] The current society status.
+      # @example Getting society status
       #   status = Lich::Gemstone::Society.status
       def self.status
         self.membership
       end
 
-      # Retrieves the character's current rank within their society.
-      #
-      # @return [Integer] The rank number, or 0 if not a member
-      # @example Getting rank
-      #   rank = Lich::Gemstone::Society.rank
+      ##
+      # Retrieves the current rank of the society.
+      # @return [String] The current society rank.
       def self.rank
         Infomon.get("society.rank")
       end
 
-      # Retrieves the current task assigned by the society, if any.
-      #
-      # The current society task, or "You are not currently in a society." if not a member, or
-      # "It is your eternal duty to release undead creatures from their suffering in the name of the Great Spirit Voln." if
-      # a Voln Master.
-      #
-      # @return [String] The current society task message.
-      #   Examples:
-      #   - A task description
-      #   - "You are not currently in a society."
-      #   - "It is your eternal duty to release undead creatures..." (Voln masters)
-      # @example Getting current task
-      #   task_message = Lich::Gemstone::Society.task
+      ##
+      # Retrieves the current task of the society.
+      # @return [String] The current society task.
       def self.task
         XMLData.society_task
       end
 
-      # Bundles the current society status and rank into a simple structure.
-      #
-      # @return [Array<(String, Integer)>] An array in the format `[status, rank]`
-      # @example Serializing society data
-      #   data = Lich::Gemstone::Society.serialize
+      ##
+      # Serializes the society's membership and rank into an array.
+      # @return [Array] An array containing the membership status and rank.
       def self.serialize
         [self.membership, self.rank]
       end
@@ -76,44 +49,39 @@ module Lich
       ## DEPRECATED METHODS ##
       ########################
 
-      # @deprecated Use {#membership} instead.  Deprecated 6/2025
-      #
-      # @return [String] The current society membership
-      # @example Getting deprecated membership
-      #   membership = Lich::Gemstone::Society.member
+      ##
+      # Retrieves the membership status of the society (deprecated).
+      # @deprecated Use Society.membership instead.
+      # @return [String] The membership status.
       def self.member
         Lich.deprecated("Society.member", "Society.membership", caller[0], fe_log: false)
         self.membership
       end
 
-      # @deprecated Use {#rank} instead.  Deprecated 6/2025
-      #
-      # @return [Integer] The current society rank
-      # @example Getting deprecated rank
-      #   rank = Lich::Gemstone::Society.step
+      ##
+      # Retrieves the rank of the society (deprecated).
+      # @deprecated Use Society.rank instead.
+      # @return [String] The society rank.
       def self.step
         Lich.deprecated("Society.step", "Society.rank", caller[0], fe_log: false)
         self.rank
       end
 
-      # @deprecated Use {OrderOfVoln.favor} instead.  Deprecated 6/2025
-      #
-      # @return [Integer] The amount of Voln favor
-      # @example Getting deprecated favor
-      #   favor_amount = Lich::Gemstone::Society.favor
+      ##
+      # Retrieves the favor of the Order of Voln (deprecated).
+      # @deprecated Use Society::OrderOfVoln.favor instead.
+      # @return [String] The favor of the Order of Voln.
       def self.favor
         Lich.deprecated("Society.favor", "Society::OrderOfVoln.favor", caller[0], fe_log: false)
         # Infomon.get('resources.voln_favor')
         Societies::OrderOfVoln.favor
       end
 
-      # Looks up an ability definition from a society hash using a normalized short or long name.
-      #
-      # @param name [String] The user-facing name (short or long) of the ability
-      # @param lookups [Hash<String, Hash>] The base hash keyed by short_name
-      # @return [Hash, nil] The matching entry from the base hash, or nil if not found
-      # @example Looking up an ability
-      #   ability = Lich::Gemstone::Society.lookup("Ability Name", lookups)
+      ##
+      # Looks up a name in the provided lookups.
+      # @param name [String] The name to look up.
+      # @param lookups [Array<Hash>] The array of lookup entries.
+      # @return [Hash, nil] The found entry or nil if not found.
       def self.lookup(name, lookups)
         normalized = Lich::Util.normalize_name(name)
 
@@ -125,30 +93,21 @@ module Lich
         end
       end
 
-      # Resolves a value that may be a static literal or a lambda/proc.
-      #
-      # If the value responds to `:call` (i.e., is a `Proc` or `lambda`), it is called and
-      # the result is returned. Otherwise, the value is returned as-is.
-      #
-      # @param value [Object, Proc] The value to resolve
-      # @return [Object] The resolved value, or the original value if not callable
-      # @example Resolving a value
-      #   resolved_value = Lich::Gemstone::Society.resolve(value)
+      ##
+      # Resolves a value, calling it if it's a Proc.
+      # @param value [Object] The value to resolve.
+      # @param context [Object, nil] The context to pass to the Proc if applicable.
+      # @return [Object] The resolved value.
       def self.resolve(value, context = nil)
         return value.call if value.respond_to?(:call) && value.arity == 0
         return value.call(context) if value.respond_to?(:call) && value.arity == 1
         value
       end
 
-      # Defines singleton accessors for both short and long names on a given target class.
-      #
-      # Method names are normalized using {Lich::Util.normalize_name}, which ensures
-      # compatibility with Ruby method naming (e.g., downcased, underscores instead of spaces, etc.).
-      #
-      # @param target_class [Class] The class to define singleton methods on (typically `self`)
-      # @param data [Hash<String, Hash>] The metadata hash (e.g., `@@voln_symbols`)
-      # @example Defining name methods
-      #   Lich::Gemstone::Society.define_name_methods(SomeClass, data)
+      ##
+      # Defines name methods on the target class based on provided data.
+      # @param target_class [Class] The class to define methods on.
+      # @param data [Hash] The data containing names for method definitions.
       def self.define_name_methods(target_class, data)
         data.values.each do |entry|
           short_method = Lich::Util.normalize_name(entry[:short_name])
@@ -167,16 +126,21 @@ require_relative 'societies/council_of_light.rb'
 require_relative 'societies/guardians_of_sunfist.rb'
 require_relative 'societies/order_of_voln.rb'
 
-# This module provides a simple namespace for accessing society classes.
 module Lich::Gemstone::Societies
+  # Retrieves the Order of Voln society.
+  # @return [Class] The OrderOfVoln class.
   def self.voln
     OrderOfVoln
   end
 
+  # Retrieves the Council of Light society.
+  # @return [Class] The CouncilOfLight class.
   def self.col
     CouncilOfLight
   end
 
+  # Retrieves the Guardians of Sunfist society.
+  # @return [Class] The GuardiansOfSunfist class.
   def self.sunfist
     GuardiansOfSunfist
   end

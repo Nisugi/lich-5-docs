@@ -1,28 +1,12 @@
-# The root module for Lich scripting.
+# The Lich module
+# This module serves as a namespace for the Lich project.
 module Lich
-  # GemStone IV-specific extensions for Lich.
   module Gemstone
-    # Provides access to Feats learned by a character in GemStone IV.
-    #
-    # This module supports checking feat knowledge, availability, and cost (including FORCERT use),
-    # as well as triggering their usage. Each feat is described in a metadata hash which includes:
-    # - long and short names
-    # - cost
-    # - expected in-game output (regex)
-    # - optional usage string for execution
-    #
-    # Dynamic accessor methods are created for each feat's long and short name.
-    # @example Using a feat
-    #   Feat.use("covert_art_escape_artist")
+    # The Feat module
+    # This module contains features related to the game mechanics.
+    # @example Accessing a feat
+    #   feat = Feat["absorb_magic"]
     module Feat
-      # A registry of all known feats and their properties.
-      #
-      # @return [Hash<String, Hash>] A mapping of feat names to metadata including:
-      #   - `:short_name` [String]
-      #   - `:type` [String, nil]
-      #   - `:cost` [Integer]
-      #   - `:regex` [Regexp] for expected output
-      #   - `:usage` [String, nil] command usage
       @@feats = {
         "absorb_magic"              => {
           :short_name => "absorbmagic",
@@ -273,11 +257,8 @@ module Lich
         }
       }
 
-      # Returns a simplified list of feat metadata.
-      #
-      # @return [Array<Hash>] Each hash includes :long_name, :short_name, and :cost
-      # @example
-      #   Feat.feat_lookups # returns an array of feat metadata
+      # Retrieves a list of feats with their long and short names and costs.
+      # @return [Array<Hash>] An array of hashes containing feat details.
       def self.feat_lookups
         @@feats.map do |long_name, psm|
           {
@@ -288,84 +269,55 @@ module Lich
         end
       end
 
-      # Looks up the rank known of a feat.
-      #
-      # @param name [String] The name of the feat
-      # @return [Integer] The rank of the technique, or 0 if unknown
-      # @example
-      #   Feat["covert_art_escape_artist"] => 1 # if known
-      #   Feat["covert_art_escape_artist"] => 0 # if not known
-      # Looks up the rank known of a feat.
+      # Retrieves a feat by its name.
+      # @param name [String] The name of the feat to retrieve.
+      # @return [Hash, nil] The feat details or nil if not found.
       def Feat.[](name)
         return PSMS.assess(name, 'Feat')
       end
 
-      # Determines if the character knows a feat at all, and
-      # optionally if the character knows it at the specified rank.
-      #
-      # @param name [String] The name of the feat
-      # @param min_rank [Integer] Optionally, the minimum rank to test against (default: 1, so known)
-      # @return [Boolean] True if the feat is known at or above the given rank
-      # @example
-      #   Feat.known?("covert_art_escape_artist") => true # if any number of ranks is known
-      #   Feat.known?("covert_art_escape_artist", min_rank: 2) => false # if only rank 1 is known
+      # Checks if a feat is known and meets the minimum rank requirement.
+      # @param name [String] The name of the feat to check.
+      # @param min_rank [Integer] The minimum rank required to consider the feat known.
+      # @return [Boolean] True if the feat is known and meets the rank requirement.
       def Feat.known?(name, min_rank: 1)
         min_rank = 1 unless min_rank >= 1 # in case a 0 or below is passed
         Feat[name] >= min_rank
       end
 
-      # Determines if an Feat is affordable, and optionally tests
-      # affordability with a given number of FORCERTs having been used (including the current one).
-      #
-      # @param name [String] The name of the Feat
-      # @param forcert_count [Integer] Optionally, the count of FORCERTs being used, including for this execution (default: 0)
-      # @return [Boolean] True if the feat can be used with available FORCERTs
-      # @example
-      #   Feat.affordable?("covert_art_escape_artist") => true # if enough skill and stamina
-      #   Feat.affordable?("covert_art_escape_artist", forcert_count: 1) => false  # if not enough skill or stamina
+      # Checks if a feat can be afforded based on the current resources.
+      # @param name [String] The name of the feat to check affordability for.
+      # @param forcert_count [Integer] The number of forcerts available.
+      # @return [Boolean] True if the feat is affordable.
       def Feat.affordable?(name, forcert_count: 0)
         return PSMS.assess(name, 'Feat', true, forcert_count: forcert_count)
       end
 
-      # Determines if a Feat is available to use right now by testing:
-      # - if the feat is known
-      # - if the feat is affordable
-      # - if the feat is not on cooldown
-      # - if the character is not overexerted
-      # - if the character is capable of performing the number of FORCERTs specified
-      #
-      # @param name [String] The name of the Feat technique
-      # @param min_rank [Integer] Optionally, the minimum rank to check (default: 1)
-      # @param forcert_count [Integer] Optionally, the count of FORCERTs being used (default: 0)
-      # @return [Boolean] True if the technique is known, affordable, and not on cooldown or
-      # blocked by overexertion
-      # @example
-      #   Feat.available?("covert_art_escape_artist") => true # if known, affordable, not on cooldown, and not overexerted
+      # Checks if a feat is available for use based on known status, affordability, and availability.
+      # @param name [String] The name of the feat to check.
+      # @param min_rank [Integer] The minimum rank required to consider the feat available.
+      # @param forcert_count [Integer] The number of forcerts available.
+      # @return [Boolean] True if the feat is available.
       def Feat.available?(name, min_rank: 1, forcert_count: 0)
         Feat.known?(name, min_rank: min_rank) &&
           Feat.affordable?(name, forcert_count: forcert_count) &&
           PSMS.available?(name)
       end
 
-      # Checks whether the feat's buff is currently active.
-      #
-      # @param name [String] The feat's name
-      # @return [Boolean] True if buff is already active
+      # Checks if a buff associated with a feat is currently active.
+      # @param name [String] The name of the feat to check for active buff.
+      # @return [Boolean, nil] True if the buff is active, nil if the feat does not have a buff.
       def Feat.buff_active?(name)
         return unless @@feats.fetch(PSMS.find_name(name, "Feat")[:long_name]).key?(:buff)
         Effects::Buffs.active?(@@feats.fetch(PSMS.find_name(name, "Feat")[:long_name])[:buff])
       end
 
-      # Attempts to use an Feat, optionally on a target.
-      #
-      # @param name [String] The name of the Feat
-      # @param target [String, Integer, GameObj] The target of the feat (optional).  If unspecified, the technique will be used on the character.
-      # @param results_of_interest [Regexp, nil] Additional regex to capture from result (optional)
-      # @param forcert_count [Integer] Number of FORCERTs to use (default: 0)
-      # @return [String, nil] The result of the regex match, or nil if unavailable
-      # @example
-      #   Feat.use("covert_art_escape_artist") # attempt to use the feat on self
-      #   Feat.use("covert_art_escape_artist", "Dissonance") # attempt to use Feat blessing on Dissonance
+      # Uses a feat on a target, processing the results of the action.
+      # @param name [String] The name of the feat to use.
+      # @param target [String, GameObj, Integer] The target of the feat.
+      # @param results_of_interest [Regexp, nil] Additional regex to match results of interest.
+      # @param forcert_count [Integer] The number of forcerts available.
+      # @return [String, nil] The result of using the feat or nil if not available.
       def Feat.use(name, target = "", results_of_interest: nil, forcert_count: 0)
         return unless Feat.available?(name, forcert_count: forcert_count)
 
@@ -410,25 +362,13 @@ module Lich
         usage_result
       end
 
-      # Returns the "success" regex associated with a given Feat technique name.
-      # This regex is used to match the expected output when the technique is successfully *attempted*.
-      # It does not necessarily indicate that the technique was successful in its effect, or even
-      # that the technique was executed at all.
-      #
-      # @param name [String] The technique name
-      # @return [Regexp] The regex used to match technique success or effects
-      # @example
-      #   Feat.regexp("covert_art_escape_artist") => /As \w+ prays? over \w+(?:'s)? [\w\s]+, you sense that (?:the Arkati's|a) blessing will be granted against magical attacks\./i
+      # Retrieves the regex associated with a feat.
+      # @param name [String] The name of the feat to retrieve the regex for.
+      # @return [Regexp] The regex pattern associated with the feat.
       def Feat.regexp(name)
         @@feats.fetch(PSMS.find_name(name, "Feat")[:long_name])[:regex]
       end
 
-      # Defines dynamic getter methods for both long and short names of each Feat technique.
-      #
-      # @note This block dynamically defines methods like `Feat.blessing` and `Feat.covert_art_escape_artist`
-      # @example
-      #   Feat.blessing # returns the rank of covert_art_escape_artist based on the short name
-      #   Feat.covert_art_escape_artist # returns the rank of covert_art_escape_artist based on the long name
       Feat.feat_lookups.each { |feat|
         self.define_singleton_method(feat[:short_name]) do
           Feat[feat[:short_name]]

@@ -3,17 +3,17 @@
 # @example Creating a match data object
 #   match_data = /\d+/.match("123").to_struct
 class MatchData
-  # Converts the match data to an OpenStruct object.
+  # Converts the match data to an OpenStruct.
   # @return [OpenStruct] An OpenStruct representation of the match data.
-  # @example Converting to OpenStruct
+  # @example
   #   struct = match_data.to_struct
   def to_struct
     OpenStruct.new to_hash
   end
 
   # Converts the match data to a hash.
-  # @return [Hash] A hash representation of the match data, with names as keys and captures as values.
-  # @example Converting to hash
+  # @return [Hash] A hash representation of the match data with names as keys and captures as values.
+  # @example
   #   hash = match_data.to_hash
   def to_hash
     self.names.zip(self.captures.map(&:strip).map do |capture|
