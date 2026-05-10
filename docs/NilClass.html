@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "NilClass";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,34 +96,28 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/class_exts/nilclass.rb</dd>
+    <dd>documented/common/class_exts/nilclass.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Extends the NilClass to provide additional methods. This class overrides several methods to return nil or empty values.</p>
-
+    <p>Represents the NilClass, which is the class of the nil object.</p>
+<p>This class provides methods that return nil or behave as if they are nil.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Using NilClass methods</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='kw'>nil</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span> <span class='comment'># =&gt; nil
-</span><span class='kw'>nil</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span> <span class='comment'># =&gt; []</span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>Object</li>
+    
+  </ul>
 
 </div>
 
@@ -155,9 +151,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Adds a value to nil.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Adds the nil object to another value.</p></div></span>
   
 </li>
 
@@ -179,9 +173,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if nil is closed.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the nil object is considered closed.</p></div></span>
   
 </li>
 
@@ -189,7 +181,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#dup-instance_method" title="#dup (instance method)">#<strong>dup</strong>  &#x21d2; NilClass </a>
+      <a href="#dup-instance_method" title="#dup (instance method)">#<strong>dup</strong>  &#x21d2; nil </a>
     
 
     
@@ -203,9 +195,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns a duplicate of nil.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns a duplicate of the nil object.</p></div></span>
   
 </li>
 
@@ -213,7 +203,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#method_missing-instance_method" title="#method_missing (instance method)">#<strong>method_missing</strong>(*_args)  &#x21d2; NilClass </a>
+      <a href="#method_missing-instance_method" title="#method_missing (instance method)">#<strong>method_missing</strong>(*_args)  &#x21d2; nil </a>
     
 
     
@@ -227,9 +217,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Handles calls to methods that do not exist on nil.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Handles calls to methods that do not exist on the nil object.</p></div></span>
   
 </li>
 
@@ -251,9 +239,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Splits nil into an array.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Splits the nil object into an array.</p></div></span>
   
 </li>
 
@@ -275,9 +261,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Strips whitespace from nil.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Removes whitespace from the nil object.</p></div></span>
   
 </li>
 
@@ -299,14 +283,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Converts nil to a string.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Converts the nil object to a string.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 <div id="method_missing_details" class="method_details_list">
@@ -319,7 +302,7 @@
     <div class="method_details first">
   <h3 class="signature first" id="method_missing-instance_method">
   
-    #<strong>method_missing</strong>(*_args)  &#x21d2; <tt><span class='object_link'><a href="" title="NilClass (class)">NilClass</a></span></tt> 
+    #<strong>method_missing</strong>(*_args)  &#x21d2; <tt>nil</tt> 
   
 
   
@@ -327,27 +310,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Handles calls to methods that do not exist on nil.</p>
-
+    <p>Handles calls to methods that do not exist on the nil object.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='kw'>nil</span><span class='period'>.</span><span class='id identifier rubyid_some_method'>some_method</span> <span class='comment'># =&gt; nil</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
       
-        <span class='name'>_args</span>
+        <span class='name'>args</span>
       
       
         <span class='type'>(<tt>Array</tt>)</span>
@@ -355,9 +328,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The arguments passed to the missing method.</p>
-</div>
+        <div class='inline'><p>the arguments passed to the missing method</p></div>
       
     </li>
   
@@ -369,14 +340,9 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="" title="NilClass (class)">NilClass</a></span></tt>)</span>
+        <span class='type'>(<tt>nil</tt>)</span>
       
       
-      
-        &mdash;
-        <div class='inline'>
-<p>Always returns nil.</p>
-</div>
       
     </li>
   
@@ -388,12 +354,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+16
+17
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/class_exts/nilclass.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/common/class_exts/nilclass.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid__args'>_args</span><span class='rparen'>)</span>
   <span class='kw'>nil</span>
@@ -421,22 +387,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Adds a value to nil.</p>
-
+    <p>Adds the nil object to another value.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='kw'>nil</span> <span class='op'>+</span> <span class='int'>5</span> <span class='comment'># =&gt; 5</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -449,9 +405,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The value to add to nil.</p>
-</div>
+        <div class='inline'><p>the value to add</p></div>
       
     </li>
   
@@ -468,9 +422,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns the value passed in.</p>
-</div>
+        <div class='inline'><p>the value passed in</p></div>
       
     </li>
   
@@ -482,12 +434,12 @@
       <pre class="lines">
 
 
-57
-58
-59</pre>
+42
+43
+44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/class_exts/nilclass.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'documented/common/class_exts/nilclass.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='op'>+</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_val'>val</span>
@@ -508,22 +460,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if nil is closed.</p>
-
+    <p>Checks if the nil object is considered closed.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='kw'>nil</span><span class='period'>.</span><span class='id identifier rubyid_closed?'>closed?</span> <span class='comment'># =&gt; true</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -535,9 +477,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Always returns true.</p>
-</div>
+        <div class='inline'><p>always returns true</p></div>
       
     </li>
   
@@ -549,12 +489,12 @@
       <pre class="lines">
 
 
-65
-66
-67</pre>
+48
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/class_exts/nilclass.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'documented/common/class_exts/nilclass.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_closed?'>closed?</span>
   <span class='kw'>true</span>
@@ -567,7 +507,7 @@
       <div class="method_details ">
   <h3 class="signature " id="dup-instance_method">
   
-    #<strong>dup</strong>  &#x21d2; <tt><span class='object_link'><a href="" title="NilClass (class)">NilClass</a></span></tt> 
+    #<strong>dup</strong>  &#x21d2; <tt>nil</tt> 
   
 
   
@@ -575,36 +515,21 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns a duplicate of nil.</p>
-
+    <p>Returns a duplicate of the nil object.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='kw'>nil</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span> <span class='comment'># =&gt; nil</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="" title="NilClass (class)">NilClass</a></span></tt>)</span>
+        <span class='type'>(<tt>nil</tt>)</span>
       
       
-      
-        &mdash;
-        <div class='inline'>
-<p>Always returns nil.</p>
-</div>
       
     </li>
   
@@ -616,12 +541,12 @@
       <pre class="lines">
 
 
-14
-15
-16</pre>
+9
+10
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/class_exts/nilclass.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'documented/common/class_exts/nilclass.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dup'>dup</span>
   <span class='kw'>nil</span>
@@ -642,27 +567,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Splits nil into an array.</p>
-
+    <p>Splits the nil object into an array.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='kw'>nil</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span> <span class='comment'># =&gt; []</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
       
-        <span class='name'>_val</span>
+        <span class='name'>val</span>
       
       
         <span class='type'>(<tt>Array</tt>)</span>
@@ -670,9 +585,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The delimiter(s) to split by (ignored).</p>
-</div>
+        <div class='inline'><p>the delimiter(s) to split by</p></div>
       
     </li>
   
@@ -689,9 +602,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns an empty array.</p>
-</div>
+        <div class='inline'><p>an empty array</p></div>
       
     </li>
   
@@ -703,12 +614,12 @@
       <pre class="lines">
 
 
-32
-33
-34</pre>
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/class_exts/nilclass.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'documented/common/class_exts/nilclass.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid__val'>_val</span><span class='rparen'>)</span>
   <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -729,22 +640,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Strips whitespace from nil.</p>
-
+    <p>Removes whitespace from the nil object.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='kw'>nil</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span> <span class='comment'># =&gt; &quot;&quot;</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -756,9 +657,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns an empty string.</p>
-</div>
+        <div class='inline'><p>an empty string</p></div>
       
     </li>
   
@@ -770,12 +669,12 @@
       <pre class="lines">
 
 
-48
-49
-50</pre>
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/class_exts/nilclass.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'documented/common/class_exts/nilclass.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_strip'>strip</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
@@ -796,22 +695,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Converts nil to a string.</p>
-
+    <p>Converts the nil object to a string.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='kw'>nil</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='comment'># =&gt; &quot;&quot;</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -823,9 +712,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns an empty string.</p>
-</div>
+        <div class='inline'><p>an empty string</p></div>
       
     </li>
   
@@ -837,12 +724,12 @@
       <pre class="lines">
 
 
-40
-41
-42</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/class_exts/nilclass.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'documented/common/class_exts/nilclass.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
@@ -857,9 +744,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:19:01 2026 by
+  Generated on Sun May 10 17:26:33 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

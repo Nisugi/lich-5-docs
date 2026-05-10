@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::Room";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -96,8 +98,9 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/map/map_dr.rb<span class="defines">,<br />
+    <dd>documented/common/map/map_dr.rb<span class="defines">,<br>
   documented/common/map/map_gs.rb</span>
+
 </dd>
   </dl>
   
@@ -112,7 +115,7 @@
   <h2>Instance Attribute Summary</h2>
   
   <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="Map.html" title="Lich::Common::Map (class)">Map</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Map.html#check_location-instance_method" title="Lich::Common::Map#check_location (method)">#check_location</a></span>, <span class='object_link'><a href="Map.html#climate-instance_method" title="Lich::Common::Map#climate (method)">#climate</a></span>, <span class='object_link'><a href="Map.html#description-instance_method" title="Lich::Common::Map#description (method)">#description</a></span>, <span class='object_link'><a href="Map.html#id-instance_method" title="Lich::Common::Map#id (method)">#id</a></span>, <span class='object_link'><a href="Map.html#image-instance_method" title="Lich::Common::Map#image (method)">#image</a></span>, <span class='object_link'><a href="Map.html#image_coords-instance_method" title="Lich::Common::Map#image_coords (method)">#image_coords</a></span>, <span class='object_link'><a href="Map.html#location-instance_method" title="Lich::Common::Map#location (method)">#location</a></span>, <span class='object_link'><a href="Map.html#paths-instance_method" title="Lich::Common::Map#paths (method)">#paths</a></span>, <span class='object_link'><a href="Map.html#room_objects-instance_method" title="Lich::Common::Map#room_objects (method)">#room_objects</a></span>, <span class='object_link'><a href="Map.html#tags-instance_method" title="Lich::Common::Map#tags (method)">#tags</a></span>, <span class='object_link'><a href="Map.html#terrain-instance_method" title="Lich::Common::Map#terrain (method)">#terrain</a></span>, <span class='object_link'><a href="Map.html#timeto-instance_method" title="Lich::Common::Map#timeto (method)">#timeto</a></span>, <span class='object_link'><a href="Map.html#title-instance_method" title="Lich::Common::Map#title (method)">#title</a></span>, <span class='object_link'><a href="Map.html#uid-instance_method" title="Lich::Common::Map#uid (method)">#uid</a></span>, <span class='object_link'><a href="Map.html#unique_loot-instance_method" title="Lich::Common::Map#unique_loot (method)">#unique_loot</a></span>, <span class='object_link'><a href="Map.html#wayto-instance_method" title="Lich::Common::Map#wayto (method)">#wayto</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Map.html#check_location-instance_method" title="Lich::Common::Map#check_location (method)">#check_location</a></span>, <span class='object_link'><a href="Map.html#climate-instance_method" title="Lich::Common::Map#climate (method)">#climate</a></span>, <span class='object_link'><a href="Map.html#description-instance_method" title="Lich::Common::Map#description (method)">#description</a></span>, <span class='object_link'><a href="Map.html#genie_id-instance_method" title="Lich::Common::Map#genie_id (method)">#genie_id</a></span>, <span class='object_link'><a href="Map.html#genie_pos-instance_method" title="Lich::Common::Map#genie_pos (method)">#genie_pos</a></span>, <span class='object_link'><a href="Map.html#genie_zone-instance_method" title="Lich::Common::Map#genie_zone (method)">#genie_zone</a></span>, <span class='object_link'><a href="Map.html#id-instance_method" title="Lich::Common::Map#id (method)">#id</a></span>, <span class='object_link'><a href="Map.html#image-instance_method" title="Lich::Common::Map#image (method)">#image</a></span>, <span class='object_link'><a href="Map.html#image_coords-instance_method" title="Lich::Common::Map#image_coords (method)">#image_coords</a></span>, <span class='object_link'><a href="Map.html#location-instance_method" title="Lich::Common::Map#location (method)">#location</a></span>, <span class='object_link'><a href="Map.html#paths-instance_method" title="Lich::Common::Map#paths (method)">#paths</a></span>, <span class='object_link'><a href="Map.html#room_objects-instance_method" title="Lich::Common::Map#room_objects (method)">#room_objects</a></span>, <span class='object_link'><a href="Map.html#tags-instance_method" title="Lich::Common::Map#tags (method)">#tags</a></span>, <span class='object_link'><a href="Map.html#terrain-instance_method" title="Lich::Common::Map#terrain (method)">#terrain</a></span>, <span class='object_link'><a href="Map.html#timeto-instance_method" title="Lich::Common::Map#timeto (method)">#timeto</a></span>, <span class='object_link'><a href="Map.html#title-instance_method" title="Lich::Common::Map#title (method)">#title</a></span>, <span class='object_link'><a href="Map.html#uid-instance_method" title="Lich::Common::Map#uid (method)">#uid</a></span>, <span class='object_link'><a href="Map.html#unique_loot-instance_method" title="Lich::Common::Map#unique_loot (method)">#unique_loot</a></span>, <span class='object_link'><a href="Map.html#wayto-instance_method" title="Lich::Common::Map#wayto (method)">#wayto</a></span></p>
 
 
   
@@ -145,10 +148,34 @@
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#respond_to_missing%3F-class_method" title="respond_to_missing? (class method)">.<strong>respond_to_missing?</strong>(*args)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
     </ul>
+    
   
 
 
+  
   
   
   
@@ -158,8 +185,15 @@
   
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Map.html" title="Lich::Common::Map (class)">Map</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Map.html#[]-class_method" title="Lich::Common::Map.[] (method)">[]</a></span>, <span class='object_link'><a href="Map.html#clear-class_method" title="Lich::Common::Map.clear (method)">clear</a></span>, <span class='object_link'><a href="Map.html#current-class_method" title="Lich::Common::Map.current (method)">current</a></span>, <span class='object_link'><a href="Map.html#current_or_new-class_method" title="Lich::Common::Map.current_or_new (method)">current_or_new</a></span>, <span class='object_link'><a href="Map.html#current_room_id-class_method" title="Lich::Common::Map.current_room_id (method)">current_room_id</a></span>, <span class='object_link'><a href="Map.html#current_room_id=-class_method" title="Lich::Common::Map.current_room_id= (method)">current_room_id=</a></span>, <span class='object_link'><a href="Map.html#desc-instance_method" title="Lich::Common::Map#desc (method)">#desc</a></span>, <span class='object_link'><a href="Map.html#dijkstra-class_method" title="Lich::Common::Map.dijkstra (method)">dijkstra</a></span>, <span class='object_link'><a href="Map.html#dijkstra-instance_method" title="Lich::Common::Map#dijkstra (method)">#dijkstra</a></span>, <span class='object_link'><a href="Map.html#estimate_time-class_method" title="Lich::Common::Map.estimate_time (method)">estimate_time</a></span>, <span class='object_link'><a href="Map.html#find_all_nearest_by_tag-instance_method" title="Lich::Common::Map#find_all_nearest_by_tag (method)">#find_all_nearest_by_tag</a></span>, <span class='object_link'><a href="Map.html#find_nearest-instance_method" title="Lich::Common::Map#find_nearest (method)">#find_nearest</a></span>, <span class='object_link'><a href="Map.html#find_nearest_by_tag-instance_method" title="Lich::Common::Map#find_nearest_by_tag (method)">#find_nearest_by_tag</a></span>, <span class='object_link'><a href="Map.html#findpath-class_method" title="Lich::Common::Map.findpath (method)">findpath</a></span>, <span class='object_link'><a href="Map.html#fuzzy_room_id-instance_method" title="Lich::Common::Map#fuzzy_room_id (method)">#fuzzy_room_id</a></span>, <span class='object_link'><a href="Map.html#fuzzy_room_id-class_method" title="Lich::Common::Map.fuzzy_room_id (method)">fuzzy_room_id</a></span>, <span class='object_link'><a href="Map.html#geo-instance_method" title="Lich::Common::Map#geo (method)">#geo</a></span>, <span class='object_link'><a href="Map.html#get_free_id-class_method" title="Lich::Common::Map.get_free_id (method)">get_free_id</a></span>, <span class='object_link'><a href="Map.html#get_location-class_method" title="Lich::Common::Map.get_location (method)">get_location</a></span>, <span class='object_link'><a href="Map.html#ids_from_uid-class_method" title="Lich::Common::Map.ids_from_uid (method)">ids_from_uid</a></span>, <span class='object_link'><a href="Map.html#images-class_method" title="Lich::Common::Map.images (method)">images</a></span>, <span class='object_link'><a href="Map.html#initialize-instance_method" title="Lich::Common::Map#initialize (method)">#initialize</a></span>, <span class='object_link'><a href="Map.html#inspect-instance_method" title="Lich::Common::Map#inspect (method)">#inspect</a></span>, <span class='object_link'><a href="Map.html#list-class_method" title="Lich::Common::Map.list (method)">list</a></span>, <span class='object_link'><a href="Map.html#load-class_method" title="Lich::Common::Map.load (method)">load</a></span>, <span class='object_link'><a href="Map.html#load_dat-class_method" title="Lich::Common::Map.load_dat (method)">load_dat</a></span>, <span class='object_link'><a href="Map.html#load_json-class_method" title="Lich::Common::Map.load_json (method)">load_json</a></span>, <span class='object_link'><a href="Map.html#load_uids-class_method" title="Lich::Common::Map.load_uids (method)">load_uids</a></span>, <span class='object_link'><a href="Map.html#load_xml-class_method" title="Lich::Common::Map.load_xml (method)">load_xml</a></span>, <span class='object_link'><a href="Map.html#loaded-class_method" title="Lich::Common::Map.loaded (method)">loaded</a></span>, <span class='object_link'><a href="Map.html#locations-class_method" title="Lich::Common::Map.locations (method)">locations</a></span>, <span class='object_link'><a href="Map.html#map_name-instance_method" title="Lich::Common::Map#map_name (method)">#map_name</a></span>, <span class='object_link'><a href="Map.html#map_roomsize-instance_method" title="Lich::Common::Map#map_roomsize (method)">#map_roomsize</a></span>, <span class='object_link'><a href="Map.html#map_x-instance_method" title="Lich::Common::Map#map_x (method)">#map_x</a></span>, <span class='object_link'><a href="Map.html#map_y-instance_method" title="Lich::Common::Map#map_y (method)">#map_y</a></span>, <span class='object_link'><a href="Map.html#match_current-class_method" title="Lich::Common::Map.match_current (method)">match_current</a></span>, <span class='object_link'><a href="Map.html#match_fuzzy-class_method" title="Lich::Common::Map.match_fuzzy (method)">match_fuzzy</a></span>, <span class='object_link'><a href="Map.html#match_multi_ids-class_method" title="Lich::Common::Map.match_multi_ids (method)">match_multi_ids</a></span>, <span class='object_link'><a href="Map.html#match_no_uid-class_method" title="Lich::Common::Map.match_no_uid (method)">match_no_uid</a></span>, <span class='object_link'><a href="Map.html#outside%3F-instance_method" title="Lich::Common::Map#outside? (method)">#outside?</a></span>, <span class='object_link'><a href="Map.html#path_to-instance_method" title="Lich::Common::Map#path_to (method)">#path_to</a></span>, <span class='object_link'><a href="Map.html#previous-class_method" title="Lich::Common::Map.previous (method)">previous</a></span>, <span class='object_link'><a href="Map.html#previous_room_id-class_method" title="Lich::Common::Map.previous_room_id (method)">previous_room_id</a></span>, <span class='object_link'><a href="Map.html#previous_room_id=-class_method" title="Lich::Common::Map.previous_room_id= (method)">previous_room_id=</a></span>, <span class='object_link'><a href="Map.html#previous_uid-class_method" title="Lich::Common::Map.previous_uid (method)">previous_uid</a></span>, <span class='object_link'><a href="Map.html#reload-class_method" title="Lich::Common::Map.reload (method)">reload</a></span>, <span class='object_link'><a href="Map.html#save-class_method" title="Lich::Common::Map.save (method)">save</a></span>, <span class='object_link'><a href="Map.html#save_json-class_method" title="Lich::Common::Map.save_json (method)">save_json</a></span>, <span class='object_link'><a href="Map.html#save_xml-class_method" title="Lich::Common::Map.save_xml (method)">save_xml</a></span>, <span class='object_link'><a href="Map.html#set_current-class_method" title="Lich::Common::Map.set_current (method)">set_current</a></span>, <span class='object_link'><a href="Map.html#set_fuzzy-class_method" title="Lich::Common::Map.set_fuzzy (method)">set_fuzzy</a></span>, <span class='object_link'><a href="Map.html#tags-class_method" title="Lich::Common::Map.tags (method)">tags</a></span>, <span class='object_link'><a href="Map.html#to_i-instance_method" title="Lich::Common::Map#to_i (method)">#to_i</a></span>, <span class='object_link'><a href="Map.html#to_json-class_method" title="Lich::Common::Map.to_json (method)">to_json</a></span>, <span class='object_link'><a href="Map.html#to_json-instance_method" title="Lich::Common::Map#to_json (method)">#to_json</a></span>, <span class='object_link'><a href="Map.html#to_s-instance_method" title="Lich::Common::Map#to_s (method)">#to_s</a></span>, <span class='object_link'><a href="Map.html#uids-class_method" title="Lich::Common::Map.uids (method)">uids</a></span>, <span class='object_link'><a href="Map.html#uids_add-class_method" title="Lich::Common::Map.uids_add (method)">uids_add</a></span>, <span class='object_link'><a href="Map.html#uids_clear-class_method" title="Lich::Common::Map.uids_clear (method)">uids_clear</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Map.html#[]-class_method" title="Lich::Common::Map.[] (method)">[]</a></span>, <span class='object_link'><a href="Map.html#by_genie_ref-class_method" title="Lich::Common::Map.by_genie_ref (method)">by_genie_ref</a></span>, <span class='object_link'><a href="Map.html#clear-class_method" title="Lich::Common::Map.clear (method)">clear</a></span>, <span class='object_link'><a href="Map.html#clear_tags_cache-class_method" title="Lich::Common::Map.clear_tags_cache (method)">clear_tags_cache</a></span>, <span class='object_link'><a href="Map.html#current-class_method" title="Lich::Common::Map.current (method)">current</a></span>, <span class='object_link'><a href="Map.html#current_or_new-class_method" title="Lich::Common::Map.current_or_new (method)">current_or_new</a></span>, <span class='object_link'><a href="Map.html#current_room_id-class_method" title="Lich::Common::Map.current_room_id (method)">current_room_id</a></span>, <span class='object_link'><a href="Map.html#current_room_id=-class_method" title="Lich::Common::Map.current_room_id= (method)">current_room_id=</a></span>, <span class='object_link'><a href="Map.html#fuzzy_room_id-instance_method" title="Lich::Common::Map#fuzzy_room_id (method)">#fuzzy_room_id</a></span>, <span class='object_link'><a href="Map.html#fuzzy_room_id-class_method" title="Lich::Common::Map.fuzzy_room_id (method)">fuzzy_room_id</a></span>, <span class='object_link'><a href="Map.html#get_free_id-class_method" title="Lich::Common::Map.get_free_id (method)">get_free_id</a></span>, <span class='object_link'><a href="Map.html#get_location-class_method" title="Lich::Common::Map.get_location (method)">get_location</a></span>, <span class='object_link'><a href="Map.html#ids_from_uid-class_method" title="Lich::Common::Map.ids_from_uid (method)">ids_from_uid</a></span>, <span class='object_link'><a href="Map.html#images-class_method" title="Lich::Common::Map.images (method)">images</a></span>, <span class='object_link'><a href="Map.html#initialize-instance_method" title="Lich::Common::Map#initialize (method)">#initialize</a></span>, <span class='object_link'><a href="Map.html#json_extra_fields-instance_method" title="Lich::Common::Map#json_extra_fields (method)">#json_extra_fields</a></span>, <span class='object_link'><a href="Map.html#list-class_method" title="Lich::Common::Map.list (method)">list</a></span>, <span class='object_link'><a href="Map.html#list=-class_method" title="Lich::Common::Map.list= (method)">list=</a></span>, <span class='object_link'><a href="Map.html#load-class_method" title="Lich::Common::Map.load (method)">load</a></span>, <span class='object_link'><a href="Map.html#load_json-class_method" title="Lich::Common::Map.load_json (method)">load_json</a></span>, <span class='object_link'><a href="Map.html#load_uids-class_method" title="Lich::Common::Map.load_uids (method)">load_uids</a></span>, <span class='object_link'><a href="Map.html#load_xml-class_method" title="Lich::Common::Map.load_xml (method)">load_xml</a></span>, <span class='object_link'><a href="Map.html#loaded-class_method" title="Lich::Common::Map.loaded (method)">loaded</a></span>, <span class='object_link'><a href="Map.html#loaded%3F-class_method" title="Lich::Common::Map.loaded? (method)">loaded?</a></span>, <span class='object_link'><a href="Map.html#locations-class_method" title="Lich::Common::Map.locations (method)">locations</a></span>, <span class='object_link'><a href="Map.html#mark_loaded-class_method" title="Lich::Common::Map.mark_loaded (method)">mark_loaded</a></span>, <span class='object_link'><a href="Map.html#match_current-class_method" title="Lich::Common::Map.match_current (method)">match_current</a></span>, <span class='object_link'><a href="Map.html#match_fuzzy-class_method" title="Lich::Common::Map.match_fuzzy (method)">match_fuzzy</a></span>, <span class='object_link'><a href="Map.html#match_multi_ids-class_method" title="Lich::Common::Map.match_multi_ids (method)">match_multi_ids</a></span>, <span class='object_link'><a href="Map.html#match_no_uid-class_method" title="Lich::Common::Map.match_no_uid (method)">match_no_uid</a></span>, <span class='object_link'><a href="Map.html#previous-class_method" title="Lich::Common::Map.previous (method)">previous</a></span>, <span class='object_link'><a href="Map.html#previous_room_id-class_method" title="Lich::Common::Map.previous_room_id (method)">previous_room_id</a></span>, <span class='object_link'><a href="Map.html#previous_room_id=-class_method" title="Lich::Common::Map.previous_room_id= (method)">previous_room_id=</a></span>, <span class='object_link'><a href="Map.html#previous_uid-class_method" title="Lich::Common::Map.previous_uid (method)">previous_uid</a></span>, <span class='object_link'><a href="Map.html#save_xml-class_method" title="Lich::Common::Map.save_xml (method)">save_xml</a></span>, <span class='object_link'><a href="Map.html#set_current-class_method" title="Lich::Common::Map.set_current (method)">set_current</a></span>, <span class='object_link'><a href="Map.html#set_fuzzy-class_method" title="Lich::Common::Map.set_fuzzy (method)">set_fuzzy</a></span>, <span class='object_link'><a href="Map.html#synchronize_load-class_method" title="Lich::Common::Map.synchronize_load (method)">synchronize_load</a></span>, <span class='object_link'><a href="Map.html#tags-class_method" title="Lich::Common::Map.tags (method)">tags</a></span>, <span class='object_link'><a href="Map.html#to_s-instance_method" title="Lich::Common::Map#to_s (method)">#to_s</a></span>, <span class='object_link'><a href="Map.html#uids-class_method" title="Lich::Common::Map.uids (method)">uids</a></span>, <span class='object_link'><a href="Map.html#uids_clear-class_method" title="Lich::Common::Map.uids_clear (method)">uids_clear</a></span></p>
 
+  
+  
+  
+  
+  
+  
+  
   <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
@@ -187,15 +221,67 @@
       <pre class="lines">
 
 
-1009
-1010
-1011</pre>
+678
+679
+680</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 1009</span>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 678</span>
 
-<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::Room (class)">Room</a></span></span><span class='period'>.</span><span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
-  <span class='kw'>super</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='kw'>super</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="respond_to_missing?-class_method">
+  
+    .<strong>respond_to_missing?</strong>(*args)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+682
+683
+684</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 682</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_respond_to_missing?'>respond_to_missing?</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='kw'>super</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -207,9 +293,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:59 2026 by
+  Generated on Sun May 10 17:26:32 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

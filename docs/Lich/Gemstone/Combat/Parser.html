@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Combat::Parser";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,7 +80,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/combat/parser.rb</dd>
+    <dd>documented/gemstone/combat/parser.rb
+</dd>
   </dl>
   
 </div>
@@ -95,14 +98,29 @@
         <dt id="TARGET_LINK_PATTERN-constant" class="">TARGET_LINK_PATTERN =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Target link pattern - extract creatures/players from XML Target link pattern - extract creatures/players from XML</p>
-
+    <p>Target link pattern - extract creatures/players from XML
+Target link pattern - extract creatures/players from XML.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'>TARGET_LINK_PATTERN</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;a exist=\&quot;123\&quot; noun=\&quot;creature\&quot;&gt;Goblin&lt;/a&gt;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; #&lt;MatchData &quot;&lt;a exist=\&quot;123\&quot; noun=\&quot;creature\&quot;&gt;Goblin&lt;/a&gt;&quot; id:&quot;123&quot; noun:&quot;creature&quot; name:&quot;Goblin&quot;&gt;</span></code></pre>
+    
+  </div>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>#extract_creature_target</li>
+    
+  </ul>
 
 </div>
         </dt>
@@ -111,14 +129,33 @@
         <dt id="BOLD_WRAPPER_PATTERN-constant" class="">BOLD_WRAPPER_PATTERN =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Bold tag pattern - creatures are wrapped in bold tags Non-greedy match to avoid spanning multiple creatures Allow zero or more characters before &lt;a&gt; tag (e.g., “a creature” or just “creature”) Bold tag pattern - creatures are wrapped in bold tags Non-greedy match to avoid spanning multiple creatures Allow zero or more characters before &lt;a&gt; tag (e.g., “a creature” or just “creature”)</p>
-
+    <p>Bold tag pattern - creatures are wrapped in bold tags
+Non-greedy match to avoid spanning multiple creatures
+Allow zero or more characters before <a> tag (e.g., &quot;a creature&quot; or just &quot;creature&quot;)
+Bold tag pattern - creatures are wrapped in bold tags.</p>
+<p>Non-greedy match to avoid spanning multiple creatures.
+Allow zero or more characters before <a> tag (e.g., &quot;a creature&quot; or just &quot;creature&quot;).</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'>BOLD_WRAPPER_PATTERN</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;pushBold/&gt;&lt;a exist=\&quot;123\&quot; noun=\&quot;creature\&quot;&gt;Goblin&lt;/a&gt;&lt;popBold/&gt;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; #&lt;MatchData &quot;&lt;pushBold/&gt;&lt;a exist=\&quot;123\&quot; noun=\&quot;creature\&quot;&gt;Goblin&lt;/a&gt;&lt;popBold/&gt;&quot; ...&gt;</span></code></pre>
+    
+  </div>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>#extract_creature_target</li>
+    
+  </ul>
 
 </div>
         </dt>
@@ -144,7 +181,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#extract_creature_target-class_method" title="extract_creature_target (class method)">.<strong>extract_creature_target</strong>(line)  &#x21d2; Object </a>
+      <a href="#extract_creature_target-class_method" title="extract_creature_target (class method)">.<strong>extract_creature_target</strong>(line)  &#x21d2; Hash<sup>?</sup> </a>
     
 
     
@@ -158,7 +195,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Extracts a creature target from a line containing bolded links.</p></div></span>
   
 </li>
 
@@ -166,7 +203,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#extract_target_from_line-class_method" title="extract_target_from_line (class method)">.<strong>extract_target_from_line</strong>(line)  &#x21d2; Object </a>
+      <a href="#extract_target_from_line-class_method" title="extract_target_from_line (class method)">.<strong>extract_target_from_line</strong>(line)  &#x21d2; Hash<sup>?</sup> </a>
     
 
     
@@ -180,7 +217,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Extracts target information from a line, only accepting bolded creatures.</p></div></span>
   
 </li>
 
@@ -188,7 +225,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#extract_target_from_match-class_method" title="extract_target_from_match (class method)">.<strong>extract_target_from_match</strong>(match)  &#x21d2; Object </a>
+      <a href="#extract_target_from_match-class_method" title="extract_target_from_match (class method)">.<strong>extract_target_from_match</strong>(match)  &#x21d2; Hash<sup>?</sup> </a>
     
 
     
@@ -202,7 +239,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Extracts target information from a regex match object.</p></div></span>
   
 </li>
 
@@ -224,9 +261,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Parses an attack line and extracts relevant information.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Parses a combat attack line and extracts relevant information.</p></div></span>
   
 </li>
 
@@ -248,9 +283,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Parses a damage line and extracts the damage value.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Parses a damage line and extracts the damage value.</p></div></span>
   
 </li>
 
@@ -272,9 +305,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Parses a status line and extracts the status information.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Parses a status line and returns the status information.</p></div></span>
   
 </li>
 
@@ -296,14 +327,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Parses a UCS line and extracts the UCS information.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Parses a UCS line and returns the UCS information.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -315,40 +345,92 @@
       <div class="method_details first">
   <h3 class="signature first" id="extract_creature_target-class_method">
   
-    .<strong>extract_creature_target</strong>(line)  &#x21d2; <tt>Object</tt> 
+    .<strong>extract_creature_target</strong>(line)  &#x21d2; <tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt><sup>?</sup> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Extracts a creature target from a line containing bolded links.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_extract_creature_target'>extract_creature_target</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;pushBold/&gt;&lt;a exist=\&quot;123\&quot; noun=\&quot;creature\&quot;&gt;Goblin&lt;/a&gt;&lt;popBold/&gt;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; { id: 123, noun: &quot;creature&quot;, name: &quot;Goblin&quot; }</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>line</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the line containing the target information.</p></div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the extracted target information or nil if not found.</p></div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110</pre>
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/parser.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/parser.rb', line 117</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_extract_creature_target'>extract_creature_target</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='comment'># Check if line contains a bolded link
@@ -377,26 +459,78 @@
       <div class="method_details ">
   <h3 class="signature " id="extract_target_from_line-class_method">
   
-    .<strong>extract_target_from_line</strong>(line)  &#x21d2; <tt>Object</tt> 
+    .<strong>extract_target_from_line</strong>(line)  &#x21d2; <tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt><sup>?</sup> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Extracts target information from a line, only accepting bolded creatures.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_extract_target_from_line'>extract_target_from_line</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;pushBold/&gt;&lt;a exist=\&quot;123\&quot; noun=\&quot;creature\&quot;&gt;Goblin&lt;/a&gt;&lt;popBold/&gt;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; { id: 123, noun: &quot;creature&quot;, name: &quot;Goblin&quot; }</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>line</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the line containing the target information.</p></div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the extracted target information or nil if not found.</p></div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-132
-133
-134
-135
-136</pre>
+171
+172
+173
+174
+175</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/parser.rb', line 132</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/parser.rb', line 171</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_extract_target_from_line'>extract_target_from_line</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='comment'># ONLY accept bolded creatures as targets
@@ -411,40 +545,92 @@
       <div class="method_details ">
   <h3 class="signature " id="extract_target_from_match-class_method">
   
-    .<strong>extract_target_from_match</strong>(match)  &#x21d2; <tt>Object</tt> 
+    .<strong>extract_target_from_match</strong>(match)  &#x21d2; <tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt><sup>?</sup> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Extracts target information from a regex match object.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_extract_target_from_match'>extract_target_from_match</span><span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; { id: 123, noun: &quot;creature&quot;, name: &quot;Goblin&quot; }</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>match</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../MatchData.html" title="MatchData (class)">MatchData</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the regex match object containing target information.</p></div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the extracted target information or nil if not found.</p></div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130</pre>
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/parser.rb', line 112</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/parser.rb', line 144</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_extract_target_from_match'>extract_target_from_match</span><span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='period'>.</span><span class='id identifier rubyid_names'>names</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>target</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -481,9 +667,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Parses an attack line and extracts relevant information.</p>
-
+    <p>Parses a combat attack line and extracts relevant information.</p>
 
   </div>
 </div>
@@ -493,7 +677,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_attack_info'>attack_info</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Parser (module)">Parser</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse_attack'>parse_attack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You attack the creature.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_parse_attack'>parse_attack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You attack the Goblin!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; { name: &quot;attack_name&quot;, target: { id: 123, noun: &quot;creature&quot;, name: &quot;Goblin&quot; }, damaging: true }</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -509,9 +694,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The line containing the attack information.</p>
-</div>
+        <div class='inline'><p>the line containing the attack information.</p></div>
       
     </li>
   
@@ -528,13 +711,20 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash containing attack details or nil if no attack is detected.</p>
-</div>
+        <div class='inline'><p>a hash with attack details or nil if no attack is detected.</p></div>
       
     </li>
   
 </ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>#attack_lookup</li>
+    
+      <li>#attack_detector</li>
+    
+  </ul>
 
 </div><table class="source_code">
   <tr>
@@ -542,24 +732,24 @@
       <pre class="lines">
 
 
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
 53
-54</pre>
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/parser.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/parser.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_attack'>parse_attack</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_attack_detector'>attack_detector</span><span class='period'>.</span><span class='id identifier rubyid_match?'>match?</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
@@ -592,9 +782,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Parses a damage line and extracts the damage value.</p>
-
+    <p>Parses a damage line and extracts the damage value.</p>
 
   </div>
 </div>
@@ -604,7 +792,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_damage'>damage</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Parser (module)">Parser</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse_damage'>parse_damage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You deal 10 damage.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_parse_damage'>parse_damage</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You deal 50 damage!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; 50</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -620,9 +809,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The line containing the damage information.</p>
-</div>
+        <div class='inline'><p>the line containing the damage information.</p></div>
       
     </li>
   
@@ -639,9 +826,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The damage value or nil if not found.</p>
-</div>
+        <div class='inline'><p>the damage value or nil if not found.</p></div>
       
     </li>
   
@@ -653,13 +838,13 @@
       <pre class="lines">
 
 
-62
-63
-64
-65</pre>
+76
+77
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/parser.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/parser.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_damage'>parse_damage</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Definitions.html" title="Lich::Gemstone::Combat::Definitions (module)">Definitions</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Definitions/Damage.html" title="Lich::Gemstone::Combat::Definitions::Damage (module)">Damage</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse'><span class='object_link'><a href="Definitions/Damage.html#parse-class_method" title="Lich::Gemstone::Combat::Definitions::Damage.parse (method)">parse</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
@@ -682,8 +867,12 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Parses a status line and extracts the status information.</p>
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>Only returns a result if tracking statuses is enabled.</p></div>
+  </div>
 
+<p>Parses a status line and returns the status information.</p>
 
   </div>
 </div>
@@ -693,7 +882,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_status_info'>status_info</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Parser (module)">Parser</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse_status'>parse_status</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You are now stunned.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_parse_status'>parse_status</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You are now stunned!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; { status: &quot;stunned&quot;, action: &quot;status_action&quot; }</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -709,9 +899,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The line containing the status information.</p>
-</div>
+        <div class='inline'><p>the line containing the status information.</p></div>
       
     </li>
   
@@ -728,9 +916,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash containing status details or nil if not found.</p>
-</div>
+        <div class='inline'><p>the parsed status information or nil if not tracking statuses.</p></div>
       
     </li>
   
@@ -742,15 +928,15 @@
       <pre class="lines">
 
 
-73
-74
-75
-76
-77
-78</pre>
+89
+90
+91
+92
+93
+94</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/parser.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/parser.rb', line 89</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_status'>parse_status</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_settings'><span class='object_link'><a href="Tracker.html#settings-class_method" title="Lich::Gemstone::Combat::Tracker.settings (method)">settings</a></span></span><span class='lbracket'>[</span><span class='symbol'>:track_statuses</span><span class='rbracket'>]</span>
@@ -775,8 +961,12 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Parses a UCS line and extracts the UCS information.</p>
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>Only returns a result if tracking UCS is enabled.</p></div>
+  </div>
 
+<p>Parses a UCS line and returns the UCS information.</p>
 
   </div>
 </div>
@@ -786,7 +976,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_ucs_info'>ucs_info</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Parser (module)">Parser</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse_ucs'>parse_ucs</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You are now under a curse.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_parse_ucs'>parse_ucs</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You have gained a new skill!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; { skill: &quot;new_skill&quot; }</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -802,9 +993,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The line containing the UCS information.</p>
-</div>
+        <div class='inline'><p>the line containing the UCS information.</p></div>
       
     </li>
   
@@ -821,9 +1010,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash containing UCS details or nil if not found.</p>
-</div>
+        <div class='inline'><p>the parsed UCS information or nil if not tracking UCS.</p></div>
       
     </li>
   
@@ -835,14 +1022,14 @@
       <pre class="lines">
 
 
-86
-87
-88
-89
-90</pre>
+104
+105
+106
+107
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/parser.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/parser.rb', line 104</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_ucs'>parse_ucs</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_settings'><span class='object_link'><a href="Tracker.html#settings-class_method" title="Lich::Gemstone::Combat::Tracker.settings (method)">settings</a></span></span><span class='lbracket'>[</span><span class='symbol'>:track_ucs</span><span class='rbracket'>]</span>
@@ -859,9 +1046,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:51 2026 by
+  Generated on Sun May 10 17:26:24 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

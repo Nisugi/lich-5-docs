@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::GameLoader";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,16 +80,17 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/game-loader.rb</dd>
+    <dd>documented/common/gameloader.rb<span class="defines">,<br>
+  documented/common/game-loader.rb</span>
+
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Module responsible for loading game-specific resources.</p>
-
+    <p>Module responsible for loading game-specific resources.</p>
 
   </div>
 </div>
@@ -97,9 +100,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Loading the Gemstone game</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Loading the Gemstone game</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'>GameLoader</span><span class='period'>.</span><span class='id identifier rubyid_load!'><span class='object_link'><a href="#load!-class_method" title="Lich::Common::GameLoader.load! (method)">load!</a></span></span></code></pre>
     
@@ -138,9 +139,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Placeholder for any cleanup or finalization after loading.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Placeholder for any cleanup or finalization after loading.</p></div></span>
   
 </li>
 
@@ -162,9 +161,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Loads common dependencies required for the game.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Loads common dependencies required for the game.</p></div></span>
   
 </li>
 
@@ -186,9 +183,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Loads all resources specific to the Dragon Realms game.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Loads all resources specific to the Dragon Realms game.</p></div></span>
   
 </li>
 
@@ -210,9 +205,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Loads all resources specific to the Gemstone game.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Loads all resources specific to the Gemstone game.</p></div></span>
   
 </li>
 
@@ -234,14 +227,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Loads the appropriate game based on the XMLData configuration.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Loads the appropriate game based on the XMLData configuration.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -261,9 +253,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Placeholder for any cleanup or finalization after loading.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Placeholder for any cleanup or finalization after loading.</p>
 
   </div>
 </div>
@@ -276,16 +266,38 @@
       <pre class="lines">
 
 
-69
-70
-71</pre>
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/game-loader.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gameloader.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_common_after'>common_after</span>
-  <span class='comment'># nil
-</span><span class='kw'>end</span></pre>
+  <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>common</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>postload.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="PostLoad.html" title="Lich::Common::PostLoad (module)">PostLoad</a></span></span><span class='period'>.</span><span class='id identifier rubyid_register'><span class='object_link'><a href="PostLoad.html#register-class_method" title="Lich::Common::PostLoad.register (method)">register</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>settings_init</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='comment'># When the game server sends malformed &lt;settingsInfo  space not found ...&gt; XML,
+</span>    <span class='comment'># it means this character has never logged in with the Wrayth client.
+</span>    <span class='comment'># The reactive fix in handle_xml_error patches the XML and sets the flag.
+</span>    <span class='comment'># Here we send a dummy &lt;db&gt; command to seed a valid client record so
+</span>    <span class='comment'># the server sends properly formatted settingsInfo on future connects.
+</span>    <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../GameBase.html" title="Lich::GameBase (module)">GameBase</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GameBase/Game.html" title="Lich::GameBase::Game (class)">Game</a></span></span><span class='period'>.</span><span class='id identifier rubyid_settings_init_needed?'><span class='object_link'><a href="../GameBase/Game.html#settings_init_needed%3F-class_method" title="Lich::GameBase::Game.settings_init_needed? (method)">settings_init_needed?</a></span></span>
+      <span class='const'>Game</span><span class='period'>.</span><span class='id identifier rubyid__puts'>_puts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;db&gt;&lt;settings client=&#39;1.0.1.28&#39;&gt;&lt;/settings&gt;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='const'><span class='object_link'><a href="PostLoad.html" title="Lich::Common::PostLoad (module)">PostLoad</a></span></span><span class='period'>.</span><span class='id identifier rubyid_watch!'><span class='object_link'><a href="PostLoad.html#watch!-class_method" title="Lich::Common::PostLoad.watch! (method)">watch!</a></span></span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -302,9 +314,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Loads common dependencies required for the game.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Loads common dependencies required for the game.</p>
 
   </div>
 </div>
@@ -323,12 +333,14 @@
 13
 14
 15
-16</pre>
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/game-loader.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gameloader.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_common_before'>common_before</span>
+  <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>common</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>account.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>common</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>log.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>common</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>spell.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>util</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>util.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -351,9 +363,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Loads all resources specific to the Dragon Realms game.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Loads all resources specific to the Dragon Realms game.</p>
 
   </div>
 </div>
@@ -366,24 +376,28 @@
       <pre class="lines">
 
 
-58
-59
-60
-61
 62
 63
 64
-65</pre>
+65
+66
+67
+68
+69
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/game-loader.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gameloader.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dragon_realms'>dragon_realms</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_common_before'>common_before</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>common</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>map</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>map_dr.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>attributes</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>char.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dragonrealms</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dependency</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>settings_config.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dragonrealms</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>drinfomon.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dragonrealms</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>commons.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='const'>DRInfomon</span><span class='period'>.</span><span class='id identifier rubyid_watch!'>watch!</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_common_after'>common_after</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -402,9 +416,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Loads all resources specific to the Gemstone game.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Loads all resources specific to the Gemstone game.</p>
 
   </div>
 </div>
@@ -417,7 +429,6 @@
       <pre class="lines">
 
 
-20
 21
 22
 23
@@ -451,10 +462,14 @@
 51
 52
 53
-54</pre>
+54
+55
+56
+57
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/game-loader.rb', line 20</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gameloader.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_gemstone'>gemstone</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_common_before'>common_before</span>
@@ -463,11 +478,13 @@
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gemstone</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>effects.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gemstone</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bounty.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gemstone</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>claim.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gemstone</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>overwatch.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gemstone</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>infomon.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>attributes</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>resources.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>attributes</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stats.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>attributes</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>spells.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>attributes</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>skills.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>attributes</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>enhancive.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gemstone</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>society.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gemstone</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>infomon</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>status.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gemstone</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>experience.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -475,7 +492,7 @@
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gemstone</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>infomon</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>activespell.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gemstone</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>psms.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>attributes</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>char.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gemstone</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>infomon</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gemstone</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='comment'># require File.join(LIB_DIR, &#39;gemstone&#39;, &#39;character&#39;, &#39;disk.rb&#39;) # dup
 </span>  <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gemstone</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>group.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gemstone</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>critranks</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -489,6 +506,7 @@
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gemstone</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stowlist.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>LIB_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gemstone</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>armaments.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='const'>ActiveSpell</span><span class='period'>.</span><span class='id identifier rubyid_watch!'>watch!</span>
+  <span class='const'>Infomon</span><span class='period'>.</span><span class='id identifier rubyid_watch!'>watch!</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_common_after'>common_after</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -507,9 +525,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Loads the appropriate game based on the XMLData configuration.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Loads the appropriate game based on the XMLData configuration.</p>
 
   </div>
 </div>
@@ -519,9 +535,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Loading a game</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Loading a game</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::GameLoader (module)">GameLoader</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load!'>load!</span></code></pre>
     
@@ -538,9 +552,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>if the game cannot be loaded.</p>
-</div>
+        <div class='inline'><p>if the game cannot be loaded.</p></div>
       
     </li>
   
@@ -552,15 +564,15 @@
       <pre class="lines">
 
 
-78
-79
-80
-81
-82
-83</pre>
+92
+93
+94
+95
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/game-loader.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gameloader.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_load!'>load!</span>
   <span class='id identifier rubyid_sleep'>sleep</span> <span class='float'>0.1</span> <span class='kw'>while</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_game'>game</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -578,9 +590,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:50 2026 by
+  Generated on Sun May 10 17:26:22 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

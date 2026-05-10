@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::GUI::Accessibility";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,7 +80,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/gui/accessibility.rb</dd>
+    <dd>documented/common/gui/accessibility.rb
+</dd>
   </dl>
   
 </div>
@@ -115,9 +118,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Adds keyboard navigation capabilities to a widget.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Adds keyboard navigation properties to a widget.</p></div></span>
   
 </li>
 
@@ -139,9 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Adds a keyboard shortcut to a widget.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Adds a keyboard shortcut to a widget.</p></div></span>
   
 </li>
 
@@ -163,9 +162,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Announces a message through a widget for assistive technologies.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Announces a message through a widget for assistive technologies.</p></div></span>
   
 </li>
 
@@ -187,9 +184,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Creates an accessible label for an input widget.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Creates a label that is accessible and connects it to an input widget.</p></div></span>
   
 </li>
 
@@ -197,7 +192,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_atk_role-class_method" title="get_atk_role (class method)">.<strong>get_atk_role</strong>(role_symbol)  &#x21d2; Atk::Role<sup>?</sup> </a>
+      <a href="#get_atk_role-class_method" title="get_atk_role (class method)">.<strong>get_atk_role</strong>(role_symbol)  &#x21d2; Object<sup>?</sup> </a>
     
 
     
@@ -211,9 +206,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the ATK role corresponding to a given symbol.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the ATK role corresponding to a given symbol.</p></div></span>
   
 </li>
 
@@ -221,7 +214,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize_accessibility-class_method" title="initialize_accessibility (class method)">.<strong>initialize_accessibility</strong>  &#x21d2; Object </a>
+      <a href="#initialize_accessibility-class_method" title="initialize_accessibility (class method)">.<strong>initialize_accessibility</strong>  &#x21d2; void </a>
     
 
     
@@ -235,9 +228,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Initializes accessibility features for the GUI.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Initializes accessibility features for the GUI.</p></div></span>
   
 </li>
 
@@ -259,9 +250,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Makes a widget accessible for assistive technologies.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Makes a widget accessible for assistive technologies.</p></div></span>
   
 </li>
 
@@ -283,9 +272,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Makes a button accessible for assistive technologies.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Makes a button accessible for assistive technologies.</p></div></span>
   
 </li>
 
@@ -307,9 +294,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Makes a combo box accessible for assistive technologies.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Makes a combo box accessible for assistive technologies.</p></div></span>
   
 </li>
 
@@ -331,9 +316,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Makes an entry widget accessible for assistive technologies.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Makes an entry widget accessible for assistive technologies.</p></div></span>
   
 </li>
 
@@ -355,9 +338,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Makes a tab in a notebook accessible for assistive technologies.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Makes a tab in a notebook accessible for assistive technologies.</p></div></span>
   
 </li>
 
@@ -379,14 +360,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Makes a window accessible for assistive technologies.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Makes a window accessible for assistive technologies.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -406,26 +386,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Adds keyboard navigation capabilities to a widget.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Adds keyboard navigation properties to a widget.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Adding keyboard navigation</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add_keyboard_navigation'>add_keyboard_navigation</span><span class='lparen'>(</span><span class='id identifier rubyid_my_widget'>my_widget</span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='int'>1</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -438,9 +404,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The widget to add keyboard navigation to.</p>
-</div>
+        <div class='inline'><p>the widget to add keyboard navigation to</p></div>
       
     </li>
   
@@ -456,9 +420,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Whether the widget can receive focus.</p>
-</div>
+        <div class='inline'><p>whether the widget can receive focus</p></div>
       
     </li>
   
@@ -474,9 +436,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The tab order of the widget.</p>
-</div>
+        <div class='inline'><p>the tab order for the widget</p></div>
       
     </li>
   
@@ -489,6 +449,10 @@
       <pre class="lines">
 
 
+141
+142
+143
+144
 145
 146
 147
@@ -496,14 +460,10 @@
 149
 150
 151
-152
-153
-154
-155
-156</pre>
+152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 145</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 141</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_add_keyboard_navigation'>add_keyboard_navigation</span><span class='lparen'>(</span><span class='id identifier rubyid_widget'>widget</span><span class='comma'>,</span> <span class='id identifier rubyid_can_focus'>can_focus</span> <span class='op'>=</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='id identifier rubyid_tab_order'>tab_order</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>begin</span>
@@ -514,7 +474,7 @@
       <span class='id identifier rubyid_widget'>widget</span><span class='period'>.</span><span class='id identifier rubyid_set_property'>set_property</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tab-position</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_tab_order'>tab_order</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not set keyboard navigation: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not set keyboard navigation: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -533,26 +493,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Adds a keyboard shortcut to a widget.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Adds a keyboard shortcut to a widget.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Adding a keyboard shortcut</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add_keyboard_shortcut'>add_keyboard_shortcut</span><span class='lparen'>(</span><span class='id identifier rubyid_my_widget'>my_widget</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>F1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='symbol'>:control</span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -565,9 +511,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The widget to add the shortcut to.</p>
-</div>
+        <div class='inline'><p>the widget to add the shortcut to</p></div>
       
     </li>
   
@@ -581,9 +525,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The key for the shortcut.</p>
-</div>
+        <div class='inline'><p>the key for the shortcut</p></div>
       
     </li>
   
@@ -599,9 +541,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The modifiers for the shortcut (e.g., [:control]).</p>
-</div>
+        <div class='inline'><p>an array of modifiers for the shortcut</p></div>
       
     </li>
   
@@ -614,6 +554,11 @@
       <pre class="lines">
 
 
+160
+161
+162
+163
+164
 165
 166
 167
@@ -649,15 +594,10 @@
 197
 198
 199
-200
-201
-202
-203
-204
-205</pre>
+200</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 165</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 160</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_add_keyboard_shortcut'>add_keyboard_shortcut</span><span class='lparen'>(</span><span class='id identifier rubyid_widget'>widget</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_modifiers'>modifiers</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_widget'>widget</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:add_accelerator</span><span class='rparen'>)</span>
@@ -697,7 +637,7 @@
       <span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not add keyboard shortcut: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not add keyboard shortcut: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -716,26 +656,13 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Announces a message through a widget for assistive technologies.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Announces a message through a widget for assistive technologies.</p>
+<p>This method temporarily changes the accessible name to the message.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Announcing a message</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_announce'>announce</span><span class='lparen'>(</span><span class='id identifier rubyid_my_widget'>my_widget</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>New message received</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -748,9 +675,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The widget to announce the message through.</p>
-</div>
+        <div class='inline'><p>the widget to announce the message through</p></div>
       
     </li>
   
@@ -764,27 +689,21 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The message to announce.</p>
-</div>
+        <div class='inline'><p>the message to announce</p></div>
       
     </li>
   
     <li>
       
-        <span class='name'>_priority</span>
+        <span class='name'>priority</span>
       
       
         <span class='type'>(<tt>Symbol</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>:medium</tt>)</em>
-      
       
         &mdash;
-        <div class='inline'>
-<p>The priority of the announcement (default: :medium).</p>
-</div>
+        <div class='inline'><p>the priority of the announcement (default: :medium)</p></div>
       
     </li>
   
@@ -797,6 +716,11 @@
       <pre class="lines">
 
 
+209
+210
+211
+212
+213
 214
 215
 216
@@ -823,15 +747,10 @@
 237
 238
 239
-240
-241
-242
-243
-244
-245</pre>
+240</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 214</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 209</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_announce'>announce</span><span class='lparen'>(</span><span class='id identifier rubyid_widget'>widget</span><span class='comma'>,</span> <span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='id identifier rubyid__priority'>_priority</span> <span class='op'>=</span> <span class='symbol'>:medium</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_widget'>widget</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:get_accessible</span><span class='rparen'>)</span>
@@ -862,7 +781,7 @@
       <span class='kw'>end</span>
     <span class='kw'>end</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not announce message: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not announce message: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -881,26 +800,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Creates an accessible label for an input widget.</p>
-
+    <p>Creates a label that is accessible and connects it to an input widget.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Creating an accessible label</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_label'>label</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_accessible_label'>create_accessible_label</span><span class='lparen'>(</span><span class='id identifier rubyid_my_box'>my_box</span><span class='comma'>,</span> <span class='id identifier rubyid_my_entry'>my_entry</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Username</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:left</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -913,9 +818,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The container to add the label and input to.</p>
-</div>
+        <div class='inline'><p>the container to add the label and input to</p></div>
       
     </li>
   
@@ -929,9 +832,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The input widget to associate with the label.</p>
-</div>
+        <div class='inline'><p>the input widget to connect to the label</p></div>
       
     </li>
   
@@ -945,9 +846,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The text for the label.</p>
-</div>
+        <div class='inline'><p>the text for the label</p></div>
       
     </li>
   
@@ -963,9 +862,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The position of the label relative to the input (e.g., :left, :right).</p>
-</div>
+        <div class='inline'><p>the position of the label relative to the input (default: :left)</p></div>
       
     </li>
   
@@ -982,9 +879,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The created label.</p>
-</div>
+        <div class='inline'><p>the created label</p></div>
       
     </li>
   
@@ -996,6 +891,12 @@
       <pre class="lines">
 
 
+249
+250
+251
+252
+253
+254
 255
 256
 257
@@ -1046,16 +947,10 @@
 302
 303
 304
-305
-306
-307
-308
-309
-310
-311</pre>
+305</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 255</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 249</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_accessible_label'>create_accessible_label</span><span class='lparen'>(</span><span class='id identifier rubyid_container'>container</span><span class='comma'>,</span> <span class='id identifier rubyid_input'>input</span><span class='comma'>,</span> <span class='id identifier rubyid_text'>text</span><span class='comma'>,</span> <span class='id identifier rubyid_position'>position</span> <span class='op'>=</span> <span class='symbol'>:left</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_label'>label</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Label</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
@@ -1122,7 +1017,7 @@
       <div class="method_details ">
   <h3 class="signature " id="get_atk_role-class_method">
   
-    .<strong>get_atk_role</strong>(role_symbol)  &#x21d2; <tt>Atk::Role</tt><sup>?</sup> 
+    .<strong>get_atk_role</strong>(role_symbol)  &#x21d2; <tt>Object</tt><sup>?</sup> 
   
 
   
@@ -1130,26 +1025,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the ATK role corresponding to a given symbol.</p>
-
+    <p>Retrieves the ATK role corresponding to a given symbol.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Getting an ATK role</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_role'>role</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_atk_role'>get_atk_role</span><span class='lparen'>(</span><span class='symbol'>:button</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1162,9 +1043,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The symbol representing the role (e.g., :button).</p>
-</div>
+        <div class='inline'><p>the symbol representing the role</p></div>
       
     </li>
   
@@ -1176,14 +1055,12 @@
     <li>
       
       
-        <span class='type'>(<tt>Atk::Role</tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt>Object</tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The corresponding ATK role or nil if not found.</p>
-</div>
+        <div class='inline'><p>the corresponding ATK role or nil if not found</p></div>
       
     </li>
   
@@ -1195,6 +1072,13 @@
       <pre class="lines">
 
 
+311
+312
+313
+314
+315
+316
+317
 318
 319
 320
@@ -1220,17 +1104,10 @@
 340
 341
 342
-343
-344
-345
-346
-347
-348
-349
-350</pre>
+343</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 318</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 311</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_atk_role'>get_atk_role</span><span class='lparen'>(</span><span class='id identifier rubyid_role_symbol'>role_symbol</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'>Atk</span><span class='op'>::</span><span class='const'>Role</span><span class='rparen'>)</span>
@@ -1261,7 +1138,7 @@
     <span class='kw'>else</span> <span class='kw'>nil</span>
     <span class='kw'>end</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not get ATK role: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not get ATK role: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>nil</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1273,7 +1150,7 @@
       <div class="method_details ">
   <h3 class="signature " id="initialize_accessibility-class_method">
   
-    .<strong>initialize_accessibility</strong>  &#x21d2; <tt>Object</tt> 
+    .<strong>initialize_accessibility</strong>  &#x21d2; <tt>void</tt> 
   
 
   
@@ -1281,34 +1158,14 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Accessibility is not available on any non-linux platform.</p>
-</div>
-  </div>
-
-
-<p>Initializes accessibility features for the GUI. In GTK3, accessibility is enabled by default through ATK.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Initializes accessibility features for the GUI.</p>
+<p>This method ensures that accessibility is enabled by referencing a Gail widget type.
+Accessibility is not available on any non-linux platform.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Initializing accessibility</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_initialize_accessibility'>initialize_accessibility</span></code></pre>
-    
-  </div>
-
 
 </div><table class="source_code">
   <tr>
@@ -1337,7 +1194,7 @@
 </span>  <span class='kw'>begin</span>
     <span class='const'>GLib</span><span class='op'>::</span><span class='const'>Object</span><span class='period'>.</span><span class='id identifier rubyid_type_from_name'>type_from_name</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GailWidget</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='const'>NoMethodError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not initialize accessibility: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'>OS</span><span class='period'>.</span><span class='id identifier rubyid_linux?'>linux?</span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not initialize accessibility: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'>OS</span><span class='period'>.</span><span class='id identifier rubyid_linux?'>linux?</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1356,26 +1213,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Makes a widget accessible for assistive technologies.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Makes a widget accessible for assistive technologies.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Making a widget accessible</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_accessible'>make_accessible</span><span class='lparen'>(</span><span class='id identifier rubyid_my_widget'>my_widget</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>My Widget</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This is a widget</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:button</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1388,9 +1231,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The widget to make accessible.</p>
-</div>
+        <div class='inline'><p>the widget to make accessible</p></div>
       
     </li>
   
@@ -1404,9 +1245,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The accessible name for the widget.</p>
-</div>
+        <div class='inline'><p>the accessible name for the widget</p></div>
       
     </li>
   
@@ -1422,9 +1261,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The accessible description for the widget.</p>
-</div>
+        <div class='inline'><p>an optional description for the widget</p></div>
       
     </li>
   
@@ -1440,9 +1277,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The role of the widget (e.g., :button, :text).</p>
-</div>
+        <div class='inline'><p>an optional role for the widget</p></div>
       
     </li>
   
@@ -1455,6 +1290,7 @@
       <pre class="lines">
 
 
+29
 30
 31
 32
@@ -1475,11 +1311,10 @@
 47
 48
 49
-50
-51</pre>
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_accessible'>make_accessible</span><span class='lparen'>(</span><span class='id identifier rubyid_widget'>widget</span><span class='comma'>,</span> <span class='id identifier rubyid_label'>label</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_role'>role</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_widget'>widget</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:get_accessible</span><span class='rparen'>)</span>
@@ -1500,7 +1335,7 @@
       <span class='id identifier rubyid_accessible'>accessible</span><span class='period'>.</span><span class='id identifier rubyid_set_role'>set_role</span><span class='lparen'>(</span><span class='id identifier rubyid_role_value'>role_value</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_role_value'>role_value</span>
     <span class='kw'>end</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not make widget accessible: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not make widget accessible: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1519,26 +1354,13 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Makes a button accessible for assistive technologies.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Makes a button accessible for assistive technologies.</p>
+<p>This method ensures that the button has a visible label for screen readers.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Making a button accessible</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_button_accessible'>make_button_accessible</span><span class='lparen'>(</span><span class='id identifier rubyid_my_button'>my_button</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Submit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Click to submit the form</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1551,9 +1373,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The button to make accessible.</p>
-</div>
+        <div class='inline'><p>the button to make accessible</p></div>
       
     </li>
   
@@ -1567,9 +1387,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The accessible name for the button.</p>
-</div>
+        <div class='inline'><p>the accessible name for the button</p></div>
       
     </li>
   
@@ -1585,9 +1403,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The accessible description for the button.</p>
-</div>
+        <div class='inline'><p>an optional description for the button</p></div>
       
     </li>
   
@@ -1600,6 +1416,7 @@
       <pre class="lines">
 
 
+59
 60
 61
 62
@@ -1612,11 +1429,10 @@
 69
 70
 71
-72
-73</pre>
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_button_accessible'>make_button_accessible</span><span class='lparen'>(</span><span class='id identifier rubyid_button'>button</span><span class='comma'>,</span> <span class='id identifier rubyid_label'>label</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_make_accessible'>make_accessible</span><span class='lparen'>(</span><span class='id identifier rubyid_button'>button</span><span class='comma'>,</span> <span class='id identifier rubyid_label'>label</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span><span class='comma'>,</span> <span class='symbol'>:button</span><span class='rparen'>)</span>
@@ -1629,7 +1445,7 @@
       <span class='id identifier rubyid_button'>button</span><span class='period'>.</span><span class='id identifier rubyid_label'>label</span> <span class='op'>=</span> <span class='id identifier rubyid_label'>label</span>
     <span class='kw'>end</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not set button label: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not set button label: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1648,26 +1464,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Makes a combo box accessible for assistive technologies.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Makes a combo box accessible for assistive technologies.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Making a combo box accessible</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_combo_accessible'>make_combo_accessible</span><span class='lparen'>(</span><span class='id identifier rubyid_my_combo'>my_combo</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Select an option</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Choose from the list</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1680,9 +1482,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The combo box to make accessible.</p>
-</div>
+        <div class='inline'><p>the combo box to make accessible</p></div>
       
     </li>
   
@@ -1696,9 +1496,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The accessible name for the combo box.</p>
-</div>
+        <div class='inline'><p>the accessible name for the combo box</p></div>
       
     </li>
   
@@ -1714,9 +1512,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The accessible description for the combo box.</p>
-</div>
+        <div class='inline'><p>an optional description for the combo box</p></div>
       
     </li>
   
@@ -1729,12 +1525,12 @@
       <pre class="lines">
 
 
-93
-94
-95</pre>
+90
+91
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 90</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_combo_accessible'>make_combo_accessible</span><span class='lparen'>(</span><span class='id identifier rubyid_combo'>combo</span><span class='comma'>,</span> <span class='id identifier rubyid_label'>label</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_make_accessible'>make_accessible</span><span class='lparen'>(</span><span class='id identifier rubyid_combo'>combo</span><span class='comma'>,</span> <span class='id identifier rubyid_label'>label</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span><span class='comma'>,</span> <span class='symbol'>:combo_box</span><span class='rparen'>)</span>
@@ -1755,26 +1551,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Makes an entry widget accessible for assistive technologies.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Makes an entry widget accessible for assistive technologies.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Making an entry accessible</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_entry_accessible'>make_entry_accessible</span><span class='lparen'>(</span><span class='id identifier rubyid_my_entry'>my_entry</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Username</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Enter your username</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1787,9 +1569,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The entry widget to make accessible.</p>
-</div>
+        <div class='inline'><p>the entry to make accessible</p></div>
       
     </li>
   
@@ -1803,9 +1583,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The accessible name for the entry.</p>
-</div>
+        <div class='inline'><p>the accessible name for the entry</p></div>
       
     </li>
   
@@ -1821,9 +1599,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The accessible description for the entry.</p>
-</div>
+        <div class='inline'><p>an optional description for the entry</p></div>
       
     </li>
   
@@ -1836,12 +1612,12 @@
       <pre class="lines">
 
 
-82
-83
-84</pre>
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 80</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_entry_accessible'>make_entry_accessible</span><span class='lparen'>(</span><span class='id identifier rubyid_entry'>entry</span><span class='comma'>,</span> <span class='id identifier rubyid_label'>label</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_make_accessible'>make_accessible</span><span class='lparen'>(</span><span class='id identifier rubyid_entry'>entry</span><span class='comma'>,</span> <span class='id identifier rubyid_label'>label</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span><span class='comma'>,</span> <span class='symbol'>:text</span><span class='rparen'>)</span>
@@ -1862,26 +1638,13 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Makes a tab in a notebook accessible for assistive technologies.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Makes a tab in a notebook accessible for assistive technologies.</p>
+<p>This method also makes the page itself accessible.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Making a tab accessible</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_tab_accessible'>make_tab_accessible</span><span class='lparen'>(</span><span class='id identifier rubyid_my_notebook'>my_notebook</span><span class='comma'>,</span> <span class='id identifier rubyid_my_page'>my_page</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Tab 1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This is the first tab</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1894,9 +1657,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The notebook containing the tab.</p>
-</div>
+        <div class='inline'><p>the notebook containing the tab</p></div>
       
     </li>
   
@@ -1910,9 +1671,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The page to make accessible.</p>
-</div>
+        <div class='inline'><p>the page to make accessible</p></div>
       
     </li>
   
@@ -1926,9 +1685,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The accessible name for the tab.</p>
-</div>
+        <div class='inline'><p>the accessible name for the tab</p></div>
       
     </li>
   
@@ -1944,9 +1701,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The accessible description for the tab.</p>
-</div>
+        <div class='inline'><p>an optional description for the tab</p></div>
       
     </li>
   
@@ -1959,6 +1714,9 @@
       <pre class="lines">
 
 
+102
+103
+104
 105
 106
 107
@@ -1969,13 +1727,10 @@
 112
 113
 114
-115
-116
-117
-118</pre>
+115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 105</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 102</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_tab_accessible'>make_tab_accessible</span><span class='lparen'>(</span><span class='id identifier rubyid_notebook'>notebook</span><span class='comma'>,</span> <span class='id identifier rubyid_page'>page</span><span class='comma'>,</span> <span class='id identifier rubyid_tab_label'>tab_label</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>begin</span>
@@ -1988,7 +1743,7 @@
     <span class='comment'># Also make the page itself accessible
 </span>    <span class='id identifier rubyid_make_accessible'>make_accessible</span><span class='lparen'>(</span><span class='id identifier rubyid_page'>page</span><span class='comma'>,</span> <span class='id identifier rubyid_tab_label'>tab_label</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span><span class='comma'>,</span> <span class='symbol'>:panel</span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not make tab accessible: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not make tab accessible: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2007,26 +1762,13 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Makes a window accessible for assistive technologies.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Makes a window accessible for assistive technologies.</p>
+<p>This method ensures that the window has a title for screen readers.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Making a window accessible</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span></span><span class='period'>.</span><span class='id identifier rubyid_make_window_accessible'>make_window_accessible</span><span class='lparen'>(</span><span class='id identifier rubyid_my_window'>my_window</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Main Window</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This is the main application window</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2039,9 +1781,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The window to make accessible.</p>
-</div>
+        <div class='inline'><p>the window to make accessible</p></div>
       
     </li>
   
@@ -2055,9 +1795,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The accessible name for the window.</p>
-</div>
+        <div class='inline'><p>the accessible title for the window</p></div>
       
     </li>
   
@@ -2073,9 +1811,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The accessible description for the window.</p>
-</div>
+        <div class='inline'><p>an optional description for the window</p></div>
       
     </li>
   
@@ -2088,19 +1824,19 @@
       <pre class="lines">
 
 
+124
+125
+126
 127
 128
 129
 130
 131
 132
-133
-134
-135
-136</pre>
+133</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 127</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/accessibility.rb', line 124</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_window_accessible'>make_window_accessible</span><span class='lparen'>(</span><span class='id identifier rubyid_window'>window</span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_make_accessible'>make_accessible</span><span class='lparen'>(</span><span class='id identifier rubyid_window'>window</span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span><span class='comma'>,</span> <span class='symbol'>:window</span><span class='rparen'>)</span>
@@ -2109,7 +1845,7 @@
 </span>  <span class='kw'>begin</span>
     <span class='id identifier rubyid_window'>window</span><span class='period'>.</span><span class='id identifier rubyid_title'>title</span> <span class='op'>=</span> <span class='id identifier rubyid_title'>title</span> <span class='kw'>if</span> <span class='id identifier rubyid_window'>window</span><span class='period'>.</span><span class='id identifier rubyid_title'>title</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_window'>window</span><span class='period'>.</span><span class='id identifier rubyid_title'>title</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not set window title: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not set window title: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2122,9 +1858,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:52 2026 by
+  Generated on Sun May 10 17:26:24 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

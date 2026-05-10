@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::SocketConfigurator";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,33 +80,22 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/socketconfigurator.rb</dd>
+    <dd>documented/common/socketconfigurator.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Provides methods to configure socket options. This module handles both Windows and Unix socket configurations.</p>
-
+    <p>Configures socket options for different platforms.</p>
+<p>This module handles the configuration of socket options
+for both Windows and Unix-like systems.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Configuring a socket</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'>SocketConfigurator</span><span class='period'>.</span><span class='id identifier rubyid_configure'><span class='object_link'><a href="#configure-class_method" title="Lich::Common::SocketConfigurator.configure (method)">configure</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='label'>keepalive:</span> <span class='lbrace'>{</span> <span class='label'>enable:</span> <span class='kw'>true</span> <span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-
 
 </div><h2>Defined Under Namespace</h2>
 <p class="children">
@@ -148,9 +139,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Configures the given socket with specified options.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Configures the given socket with specified options.</p></div></span>
   
 </li>
 
@@ -172,9 +161,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Configures socket options for Unix-based systems.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Configures socket options for Unix-like systems.</p></div></span>
   
 </li>
 
@@ -196,14 +183,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Configures socket options for Windows systems.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Configures socket options for Windows systems.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -223,9 +209,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Configures the given socket with specified options.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Configures the given socket with specified options.</p>
 
   </div>
 </div>
@@ -235,11 +219,15 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Configuring a socket with custom options</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Configure a socket with custom settings</p></div></h5>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::SocketConfigurator (module)">SocketConfigurator</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configure'>configure</span><span class='lparen'>(</span><span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='label'>keepalive:</span> <span class='lbrace'>{</span> <span class='label'>enable:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>idle:</span> <span class='int'>60</span> <span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::SocketConfigurator (module)">SocketConfigurator</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configure'>configure</span><span class='lparen'>(</span><span class='id identifier rubyid_my_socket'>my_socket</span><span class='comma'>,</span>
+  <span class='label'>keepalive:</span> <span class='lbrace'>{</span> <span class='label'>enable:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>idle:</span> <span class='int'>120</span><span class='comma'>,</span> <span class='label'>interval:</span> <span class='int'>30</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='label'>linger:</span> <span class='lbrace'>{</span> <span class='label'>enable:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>timeout:</span> <span class='int'>5</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='label'>timeout:</span> <span class='lbrace'>{</span> <span class='label'>recv:</span> <span class='int'>30</span><span class='comma'>,</span> <span class='label'>send:</span> <span class='int'>30</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='label'>buffer_size:</span> <span class='lbrace'>{</span> <span class='label'>recv:</span> <span class='int'>32768</span><span class='comma'>,</span> <span class='label'>send:</span> <span class='int'>32768</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='label'>tcp_nodelay:</span> <span class='kw'>true</span><span class='comma'>,</span>
+  <span class='label'>tcp_maxrt:</span> <span class='int'>10</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -255,9 +243,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The socket to configure.</p>
-</div>
+        <div class='inline'><p>the socket to configure</p></div>
       
     </li>
   
@@ -273,9 +259,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Options for TCP keep-alive settings.</p>
-</div>
+        <div class='inline'><p>options for TCP keepalive settings</p></div>
       
     </li>
   
@@ -291,9 +275,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Options for socket linger settings.</p>
-</div>
+        <div class='inline'><p>options for connection linger settings</p></div>
       
     </li>
   
@@ -309,9 +291,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Options for receive and send timeouts.</p>
-</div>
+        <div class='inline'><p>options for receive/send timeouts</p></div>
       
     </li>
   
@@ -327,9 +307,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Options for receive and send buffer sizes.</p>
-</div>
+        <div class='inline'><p>options for receive/send buffer sizes</p></div>
       
     </li>
   
@@ -345,9 +323,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Whether to disable Nagle’s algorithm.</p>
-</div>
+        <div class='inline'><p>whether to disable Nagle's algorithm</p></div>
       
     </li>
   
@@ -363,9 +339,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Maximum retransmission time.</p>
-</div>
+        <div class='inline'><p>maximum retransmission time</p></div>
       
     </li>
   
@@ -382,9 +356,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If socket configuration fails.</p>
-</div>
+        <div class='inline'><p>if configuration fails</p></div>
       
     </li>
   
@@ -396,30 +368,30 @@
       <pre class="lines">
 
 
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
 119
 120
 121
 122
 123
-124</pre>
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/socketconfigurator.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'documented/common/socketconfigurator.rb', line 119</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_configure'>configure</span><span class='lparen'>(</span><span class='id identifier rubyid_sock'>sock</span><span class='comma'>,</span>
                    <span class='label'>keepalive:</span> <span class='lbrace'>{</span> <span class='label'>enable:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>idle:</span> <span class='int'>120</span><span class='comma'>,</span> <span class='label'>interval:</span> <span class='int'>30</span> <span class='rbrace'>}</span><span class='comma'>,</span>
@@ -428,7 +400,7 @@
                    <span class='label'>buffer_size:</span> <span class='lbrace'>{</span> <span class='label'>recv:</span> <span class='int'>32768</span><span class='comma'>,</span> <span class='label'>send:</span> <span class='int'>32768</span> <span class='rbrace'>}</span><span class='comma'>,</span>
                    <span class='label'>tcp_nodelay:</span> <span class='kw'>true</span><span class='comma'>,</span>
                    <span class='label'>tcp_maxrt:</span> <span class='int'>10</span><span class='rparen'>)</span>
-  <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Configuring socket: keepalive=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_keepalive'>keepalive</span><span class='embexpr_end'>}</span><span class='tstring_content'>, linger=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_linger'>linger</span><span class='embexpr_end'>}</span><span class='tstring_content'>, timeout=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_timeout'>timeout</span><span class='embexpr_end'>}</span><span class='tstring_content'>, buffer_size=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_buffer_size'>buffer_size</span><span class='embexpr_end'>}</span><span class='tstring_content'>, tcp_nodelay=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tcp_nodelay'>tcp_nodelay</span><span class='embexpr_end'>}</span><span class='tstring_content'>, tcp_maxrt=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tcp_maxrt'>tcp_maxrt</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Configuring socket: keepalive=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_keepalive'>keepalive</span><span class='embexpr_end'>}</span><span class='tstring_content'>, linger=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_linger'>linger</span><span class='embexpr_end'>}</span><span class='tstring_content'>, timeout=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_timeout'>timeout</span><span class='embexpr_end'>}</span><span class='tstring_content'>, buffer_size=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_buffer_size'>buffer_size</span><span class='embexpr_end'>}</span><span class='tstring_content'>, tcp_nodelay=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tcp_nodelay'>tcp_nodelay</span><span class='embexpr_end'>}</span><span class='tstring_content'>, tcp_maxrt=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tcp_maxrt'>tcp_maxrt</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
   <span class='kw'>begin</span>
     <span class='kw'>if</span> <span class='const'>Gem</span><span class='period'>.</span><span class='id identifier rubyid_win_platform?'>win_platform?</span>
@@ -436,9 +408,9 @@
     <span class='kw'>else</span>
       <span class='id identifier rubyid_configure_unix'>configure_unix</span><span class='lparen'>(</span><span class='id identifier rubyid_sock'>sock</span><span class='comma'>,</span> <span class='id identifier rubyid_keepalive'>keepalive</span><span class='comma'>,</span> <span class='id identifier rubyid_linger'>linger</span><span class='comma'>,</span> <span class='id identifier rubyid_timeout'>timeout</span><span class='comma'>,</span> <span class='id identifier rubyid_buffer_size'>buffer_size</span><span class='comma'>,</span> <span class='id identifier rubyid_tcp_nodelay'>tcp_nodelay</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
-    <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Socket configuration successful</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Socket configuration successful</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Socket configuration failed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> - </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\t</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n\t</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Socket configuration failed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> - </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\t</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n\t</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_raise'>raise</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -458,17 +430,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method is specific to Unix systems.</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Configures socket options for Unix-based systems.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Configures socket options for Unix-like systems.</p>
 
   </div>
 </div>
@@ -486,9 +448,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The socket to configure.</p>
-</div>
+        <div class='inline'><p>the socket to configure</p></div>
       
     </li>
   
@@ -502,9 +462,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Options for TCP keep-alive settings.</p>
-</div>
+        <div class='inline'><p>options for TCP keepalive settings</p></div>
       
     </li>
   
@@ -518,9 +476,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Options for socket linger settings.</p>
-</div>
+        <div class='inline'><p>options for connection linger settings</p></div>
       
     </li>
   
@@ -534,9 +490,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Options for receive and send timeouts.</p>
-</div>
+        <div class='inline'><p>options for receive/send timeouts</p></div>
       
     </li>
   
@@ -550,9 +504,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Options for receive and send buffer sizes.</p>
-</div>
+        <div class='inline'><p>options for receive/send buffer sizes</p></div>
       
     </li>
   
@@ -566,9 +518,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Whether to disable Nagle’s algorithm.</p>
-</div>
+        <div class='inline'><p>whether to disable Nagle's algorithm</p></div>
       
     </li>
   
@@ -585,9 +535,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If socket configuration fails.</p>
-</div>
+        <div class='inline'><p>if configuration fails</p></div>
       
     </li>
   
@@ -599,21 +547,6 @@
       <pre class="lines">
 
 
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
 152
 153
 154
@@ -652,19 +585,34 @@
 187
 188
 189
-190</pre>
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/socketconfigurator.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'documented/common/socketconfigurator.rb', line 152</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_configure_unix'>configure_unix</span><span class='lparen'>(</span><span class='id identifier rubyid_sock'>sock</span><span class='comma'>,</span> <span class='id identifier rubyid_keepalive'>keepalive</span><span class='comma'>,</span> <span class='id identifier rubyid_linger'>linger</span><span class='comma'>,</span> <span class='id identifier rubyid_timeout'>timeout</span><span class='comma'>,</span> <span class='id identifier rubyid_buffer_size'>buffer_size</span><span class='comma'>,</span> <span class='id identifier rubyid_tcp_nodelay'>tcp_nodelay</span><span class='rparen'>)</span>
   <span class='comment'># Helper: error-checked setsockopt
 </span>  <span class='id identifier rubyid_check_setsockopt'>check_setsockopt</span> <span class='op'>=</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_level'>level</span><span class='comma'>,</span> <span class='id identifier rubyid_option'>option</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
     <span class='kw'>begin</span>
       <span class='id identifier rubyid_sock'>sock</span><span class='period'>.</span><span class='id identifier rubyid_setsockopt'>setsockopt</span><span class='lparen'>(</span><span class='id identifier rubyid_level'>level</span><span class='comma'>,</span> <span class='id identifier rubyid_option'>option</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unix setsockopt succeeded: level=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_level'>level</span><span class='embexpr_end'>}</span><span class='tstring_content'>, option=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_option'>option</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unix setsockopt succeeded: level=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_level'>level</span><span class='embexpr_end'>}</span><span class='tstring_content'>, option=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_option'>option</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unix setsockopt failed: level=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_level'>level</span><span class='embexpr_end'>}</span><span class='tstring_content'>, option=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_option'>option</span><span class='embexpr_end'>}</span><span class='tstring_content'>, error=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unix setsockopt failed: level=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_level'>level</span><span class='embexpr_end'>}</span><span class='tstring_content'>, option=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_option'>option</span><span class='embexpr_end'>}</span><span class='tstring_content'>, error=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
       <span class='id identifier rubyid_raise'>raise</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -708,7 +656,7 @@
 </span>    <span class='id identifier rubyid_check_setsockopt'>check_setsockopt</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='const'>Socket</span><span class='op'>::</span><span class='const'>IPPROTO_TCP</span><span class='comma'>,</span> <span class='const'>Socket</span><span class='op'>::</span><span class='const'>TCP_USER_TIMEOUT</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_user_timeout_ms'>user_timeout_ms</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>i</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-  <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unix socket configuration error: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> - </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unix socket configuration error: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> - </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -727,17 +675,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method is specific to Windows systems.</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Configures socket options for Windows systems.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Configures socket options for Windows systems.</p>
 
   </div>
 </div>
@@ -755,9 +693,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The socket to configure.</p>
-</div>
+        <div class='inline'><p>the socket to configure</p></div>
       
     </li>
   
@@ -771,9 +707,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Options for TCP keep-alive settings.</p>
-</div>
+        <div class='inline'><p>options for TCP keepalive settings</p></div>
       
     </li>
   
@@ -787,9 +721,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Options for socket linger settings.</p>
-</div>
+        <div class='inline'><p>options for connection linger settings</p></div>
       
     </li>
   
@@ -803,9 +735,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Options for receive and send timeouts.</p>
-</div>
+        <div class='inline'><p>options for receive/send timeouts</p></div>
       
     </li>
   
@@ -819,9 +749,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Options for receive and send buffer sizes.</p>
-</div>
+        <div class='inline'><p>options for receive/send buffer sizes</p></div>
       
     </li>
   
@@ -835,9 +763,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Whether to disable Nagle’s algorithm.</p>
-</div>
+        <div class='inline'><p>whether to disable Nagle's algorithm</p></div>
       
     </li>
   
@@ -851,9 +777,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Maximum retransmission time.</p>
-</div>
+        <div class='inline'><p>maximum retransmission time</p></div>
       
     </li>
   
@@ -870,9 +794,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If socket configuration fails.</p>
-</div>
+        <div class='inline'><p>if configuration fails</p></div>
       
     </li>
   
@@ -884,21 +806,6 @@
       <pre class="lines">
 
 
-205
-206
-207
-208
-209
-210
-211
-212
-213
-214
-215
-216
-217
-218
-219
 220
 221
 222
@@ -974,19 +881,34 @@
 292
 293
 294
-295</pre>
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/socketconfigurator.rb', line 205</span>
+      <pre class="code"><span class="info file"># File 'documented/common/socketconfigurator.rb', line 220</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_configure_windows'>configure_windows</span><span class='lparen'>(</span><span class='id identifier rubyid_sock'>sock</span><span class='comma'>,</span> <span class='id identifier rubyid_keepalive'>keepalive</span><span class='comma'>,</span> <span class='id identifier rubyid_linger'>linger</span><span class='comma'>,</span> <span class='id identifier rubyid_timeout'>timeout</span><span class='comma'>,</span> <span class='id identifier rubyid_buffer_size'>buffer_size</span><span class='comma'>,</span> <span class='id identifier rubyid_tcp_nodelay'>tcp_nodelay</span><span class='comma'>,</span> <span class='id identifier rubyid_tcp_maxrt'>tcp_maxrt</span><span class='rparen'>)</span>
   <span class='comment'># Helper: error-checked setsockopt using Ruby&#39;s Socket API
 </span>  <span class='id identifier rubyid_check_setsockopt'>check_setsockopt</span> <span class='op'>=</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_level'>level</span><span class='comma'>,</span> <span class='id identifier rubyid_option'>option</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
     <span class='kw'>begin</span>
       <span class='id identifier rubyid_sock'>sock</span><span class='period'>.</span><span class='id identifier rubyid_setsockopt'>setsockopt</span><span class='lparen'>(</span><span class='id identifier rubyid_level'>level</span><span class='comma'>,</span> <span class='id identifier rubyid_option'>option</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Windows setsockopt succeeded: level=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_level'>level</span><span class='embexpr_end'>}</span><span class='tstring_content'>, option=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_option'>option</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Windows setsockopt succeeded: level=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_level'>level</span><span class='embexpr_end'>}</span><span class='tstring_content'>, option=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_option'>option</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Windows setsockopt failed: level=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_level'>level</span><span class='embexpr_end'>}</span><span class='tstring_content'>, option=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_option'>option</span><span class='embexpr_end'>}</span><span class='tstring_content'>, error=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Windows setsockopt failed: level=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_level'>level</span><span class='embexpr_end'>}</span><span class='tstring_content'>, option=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_option'>option</span><span class='embexpr_end'>}</span><span class='tstring_content'>, error=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
       <span class='id identifier rubyid_raise'>raise</span> <span class='const'>SystemCallError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>setsockopt(level=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_level'>level</span><span class='embexpr_end'>}</span><span class='tstring_content'>, option=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_option'>option</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -1011,17 +933,17 @@
         <span class='id identifier rubyid_ret'>ret</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="SocketConfigurator/WinFFI.html" title="Lich::Common::SocketConfigurator::WinFFI (module)">WinFFI</a></span></span><span class='period'>.</span><span class='const'>WSAIoctl</span><span class='lparen'>(</span><span class='id identifier rubyid_fd'>fd</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="SocketConfigurator/WinFFI.html" title="Lich::Common::SocketConfigurator::WinFFI (module)">WinFFI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SocketConfigurator/WinFFI.html#SIO_KEEPALIVE_VALS-constant" title="Lich::Common::SocketConfigurator::WinFFI::SIO_KEEPALIVE_VALS (constant)">SIO_KEEPALIVE_VALS</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_ka'>ka</span><span class='period'>.</span><span class='id identifier rubyid_to_ptr'>to_ptr</span><span class='comma'>,</span> <span class='id identifier rubyid_ka'>ka</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='comma'>,</span>
                               <span class='kw'>nil</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_bytes_returned'>bytes_returned</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
         <span class='kw'>if</span> <span class='id identifier rubyid_ret'>ret</span> <span class='op'>==</span> <span class='int'>0</span>
-          <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>WSAIoctl keepalive configuration succeeded</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+          <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>WSAIoctl keepalive configuration succeeded</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
         <span class='kw'>else</span>
           <span class='id identifier rubyid_errno'>errno</span> <span class='op'>=</span> <span class='const'>FFI</span><span class='period'>.</span><span class='id identifier rubyid_errno'>errno</span>
-          <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>WSAIoctl keepalive failed (errno=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_errno'>errno</span><span class='embexpr_end'>}</span><span class='tstring_content'>), using default Windows keepalive settings</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+          <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>WSAIoctl keepalive failed (errno=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_errno'>errno</span><span class='embexpr_end'>}</span><span class='tstring_content'>), using default Windows keepalive settings</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
         <span class='kw'>end</span>
       <span class='kw'>else</span>
-        <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not get OS handle for WSAIoctl, using default Windows keepalive settings</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not get OS handle for WSAIoctl, using default Windows keepalive settings</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
       <span class='kw'>end</span>
     <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>WSAIoctl keepalive configuration failed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> - </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Continuing with basic keepalive enabled (default Windows settings)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>WSAIoctl keepalive configuration failed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> - </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Continuing with basic keepalive enabled (default Windows settings)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
@@ -1058,16 +980,16 @@
 </span>      <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'>Socket</span><span class='op'>::</span><span class='const'>TCP_MAXRT</span><span class='rparen'>)</span>
         <span class='id identifier rubyid_check_setsockopt'>check_setsockopt</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='const'>Socket</span><span class='op'>::</span><span class='const'>IPPROTO_TCP</span><span class='comma'>,</span> <span class='const'>Socket</span><span class='op'>::</span><span class='const'>TCP_MAXRT</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_tcp_maxrt'>tcp_maxrt</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>i</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
       <span class='kw'>else</span>
-        <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TCP_MAXRT constant not available in Ruby&#39;s Socket API</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TCP_MAXRT constant not available in Ruby&#39;s Socket API</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
       <span class='kw'>end</span>
     <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TCP_MAXRT not supported on this Windows version: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TCP_MAXRT not supported on this Windows version: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
-  <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Windows socket configuration completed successfully</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Windows socket configuration completed successfully</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-  <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Windows socket configuration error: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> - </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Windows socket configuration error: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> - </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1080,9 +1002,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:52 2026 by
+  Generated on Sun May 10 17:26:25 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

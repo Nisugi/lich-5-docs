@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::GUI::AccountManager";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,7 +80,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/gui/account_manager.rb</dd>
+    <dd>documented/common/gui/account_manager.rb
+</dd>
   </dl>
   
 </div>
@@ -115,9 +118,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Adds a character to the specified account.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Adds a character to an existing account.</p></div></span>
   
 </li>
 
@@ -139,9 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Adds or updates an account with the given username and password.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Adds a new account or updates an existing account with the provided data.</p></div></span>
   
 </li>
 
@@ -163,9 +162,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Changes the password for the specified account.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Changes the password for an existing account.</p></div></span>
   
 </li>
 
@@ -187,9 +184,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Converts authentication data into character format.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Converts authentication data into character format.</p></div></span>
   
 </li>
 
@@ -211,9 +206,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves a list of account usernames.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves a list of account usernames from the data directory.</p></div></span>
   
 </li>
 
@@ -235,9 +228,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves all accounts with their associated characters.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves all accounts and their associated characters from the data directory.</p></div></span>
   
 </li>
 
@@ -259,9 +250,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves characters for a specified account.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves characters associated with a specific account.</p></div></span>
   
 </li>
 
@@ -283,9 +272,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Removes an account with the given username.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Removes an account by username from the account data.</p></div></span>
   
 </li>
 
@@ -307,9 +294,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Removes a character from the specified account.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Removes a character from an existing account.</p></div></span>
   
 </li>
 
@@ -331,9 +316,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Converts the account data to a legacy format.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Converts account data to a legacy format.</p></div></span>
   
 </li>
 
@@ -355,14 +338,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Updates the properties of a character in the specified account.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Updates properties of an existing character in an account.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -382,26 +364,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Adds a character to the specified account.</p>
-
+    <p>Adds a character to an existing account.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Adding a character</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add_character'>add_character</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>char_name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hero</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>game_code:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>game1</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -414,9 +382,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where account data is stored.</p>
-</div>
+        <div class='inline'><p>the directory where account data is stored</p></div>
       
     </li>
   
@@ -430,9 +396,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username of the account.</p>
-</div>
+        <div class='inline'><p>the username of the account</p></div>
       
     </li>
   
@@ -446,9 +410,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The character data to add.</p>
-</div>
+        <div class='inline'><p>the character data to add</p></div>
       
     </li>
   
@@ -465,27 +427,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash containing success status and message.</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If an error occurs while adding the character.</p>
-</div>
+        <div class='inline'><p>a result hash indicating success or failure</p></div>
       
     </li>
   
@@ -497,6 +439,11 @@
       <pre class="lines">
 
 
+164
+165
+166
+167
+168
 169
 170
 171
@@ -552,16 +499,13 @@
 221
 222
 223
-224
-225
-226
-227</pre>
+224</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 169</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 164</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_add_character'>add_character</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_character_data'>character_data</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="YamlState.html#yaml_file_path-class_method" title="Lich::Common::GUI::YamlState.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="../Authentication/EntryStore.html#yaml_file_path-class_method" title="Lich::Common::Authentication::EntryStore.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
 
   <span class='comment'># Check if YAML file exists
 </span>  <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
@@ -584,17 +528,19 @@
 </span>    <span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>accounts</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_normalized_username'>normalized_username</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>characters</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
 
     <span class='comment'># Check for duplicate character using normalized comparison
+</span>    <span class='comment'># Including custom_launch allows multiple entries for same character with different launch configurations
 </span>    <span class='id identifier rubyid_existing_character'>existing_character</span> <span class='op'>=</span> <span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>accounts</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_normalized_username'>normalized_username</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>characters</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_char'>char</span><span class='op'>|</span>
       <span class='id identifier rubyid_char'>char</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>char_name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_normalized_char_name'>normalized_char_name</span> <span class='op'>&amp;&amp;</span>
         <span class='id identifier rubyid_char'>char</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>game_code</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_character_data'>character_data</span><span class='lbracket'>[</span><span class='symbol'>:game_code</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span>
-        <span class='id identifier rubyid_char'>char</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>frontend</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_character_data'>character_data</span><span class='lbracket'>[</span><span class='symbol'>:frontend</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_char'>char</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>frontend</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_character_data'>character_data</span><span class='lbracket'>[</span><span class='symbol'>:frontend</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span>
+        <span class='id identifier rubyid_char'>char</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>custom_launch</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_character_data'>character_data</span><span class='lbracket'>[</span><span class='symbol'>:custom_launch</span><span class='rbracket'>]</span>
     <span class='kw'>end</span>
 
     <span class='comment'># Return specific message if character already exists
 </span>    <span class='kw'>if</span> <span class='id identifier rubyid_existing_character'>existing_character</span>
       <span class='kw'>return</span> <span class='lbrace'>{</span>
         <span class='label'>success:</span> <span class='kw'>false</span><span class='comma'>,</span>
-        <span class='label'>message:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Character &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_normalized_char_name'>normalized_char_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; already exists for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_character_data'>character_data</span><span class='lbracket'>[</span><span class='symbol'>:game_code</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_character_data'>character_data</span><span class='lbracket'>[</span><span class='symbol'>:frontend</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>). Duplicates are not allowed.</span><span class='tstring_end'>&quot;</span></span>
+        <span class='label'>message:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Character &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_normalized_char_name'>normalized_char_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; already exists for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_character_data'>character_data</span><span class='lbracket'>[</span><span class='symbol'>:game_code</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_character_data'>character_data</span><span class='lbracket'>[</span><span class='symbol'>:frontend</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>) with this launch configuration. Duplicates are not allowed.</span><span class='tstring_end'>&quot;</span></span>
       <span class='rbrace'>}</span>
     <span class='kw'>end</span>
 
@@ -615,7 +561,7 @@
       <span class='kw'>return</span> <span class='lbrace'>{</span> <span class='label'>success:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>message:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to save character data. Please check file permissions.</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
     <span class='kw'>end</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error adding character: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error adding character: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='lbrace'>{</span> <span class='label'>success:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>message:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error adding character: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -635,26 +581,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Adds or updates an account with the given username and password.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Adds a new account or updates an existing account with the provided data.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Adding a new account</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add_or_update_account'>add_or_update_account</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>password123</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='lbrace'>{</span> <span class='label'>char_name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hero</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>game_code:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>game1</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -667,9 +599,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where account data is stored.</p>
-</div>
+        <div class='inline'><p>the directory where account data is stored</p></div>
       
     </li>
   
@@ -683,9 +613,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username for the account.</p>
-</div>
+        <div class='inline'><p>the username for the account</p></div>
       
     </li>
   
@@ -699,9 +627,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The password for the account.</p>
-</div>
+        <div class='inline'><p>the password for the account</p></div>
       
     </li>
   
@@ -717,32 +643,12 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>(optional) An array of character data associated with the account.</p>
-</div>
+        <div class='inline'><p>optional list of character data associated with the account</p></div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If the master password is required but not found.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -750,6 +656,8 @@
       <pre class="lines">
 
 
+13
+14
 15
 16
 17
@@ -851,10 +759,10 @@
 113</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_add_or_update_account'>add_or_update_account</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='id identifier rubyid_characters'>characters</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="YamlState.html#yaml_file_path-class_method" title="Lich::Common::GUI::YamlState.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="../Authentication/EntryStore.html#yaml_file_path-class_method" title="Lich::Common::Authentication::EntryStore.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
 
   <span class='comment'># Normalize username to UPCASE for consistent storage
 </span>  <span class='id identifier rubyid_normalized_username'>normalized_username</span> <span class='op'>=</span> <span class='id identifier rubyid_username'>username</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span>
@@ -864,7 +772,7 @@
                 <span class='kw'>begin</span>
                   <span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_load_file'>load_file</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
                 <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-                  <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error loading YAML entry file: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+                  <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error loading YAML entry file: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
                   <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>accounts</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='rbrace'>}</span>
                 <span class='kw'>end</span>
               <span class='kw'>else</span>
@@ -880,13 +788,13 @@
   <span class='kw'>if</span> <span class='id identifier rubyid_encryption_mode'>encryption_mode</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span> <span class='op'>==</span> <span class='symbol'>:enhanced</span>
     <span class='id identifier rubyid_master_password'>master_password</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="MasterPasswordManager.html" title="Lich::Common::GUI::MasterPasswordManager (module)">MasterPasswordManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_retrieve_master_password'><span class='object_link'><a href="MasterPasswordManager.html#retrieve_master_password-class_method" title="Lich::Common::GUI::MasterPasswordManager.retrieve_master_password (method)">retrieve_master_password</a></span></span>
     <span class='kw'>if</span> <span class='id identifier rubyid_master_password'>master_password</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Enhanced mode enabled but master password not found in Keychain</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Enhanced mode enabled but master password not found in Keychain</span><span class='tstring_end'>&quot;</span></span>
       <span class='id identifier rubyid_raise'>raise</span> <span class='const'>StandardError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Master password required for enhanced mode encryption</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
   <span class='comment'># Encrypt the password based on encryption mode
-</span>  <span class='id identifier rubyid_encrypted_password'>encrypted_password</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_encrypt_password'><span class='object_link'><a href="YamlState.html#encrypt_password-class_method" title="Lich::Common::GUI::YamlState.encrypt_password (method)">encrypt_password</a></span></span><span class='lparen'>(</span>
+</span>  <span class='id identifier rubyid_encrypted_password'>encrypted_password</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_encrypt_password'><span class='object_link'><a href="../Authentication/EntryStore.html#encrypt_password-class_method" title="Lich::Common::Authentication::EntryStore.encrypt_password (method)">encrypt_password</a></span></span><span class='lparen'>(</span>
     <span class='id identifier rubyid_password'>password</span><span class='comma'>,</span>
     <span class='label'>mode:</span> <span class='id identifier rubyid_encryption_mode'>encryption_mode</span><span class='comma'>,</span>
     <span class='label'>account_name:</span> <span class='id identifier rubyid_normalized_username'>normalized_username</span><span class='comma'>,</span>
@@ -919,11 +827,13 @@
 </span>      <span class='id identifier rubyid_characters'>characters</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_new_char'>new_char</span><span class='op'>|</span>
         <span class='id identifier rubyid_normalized_new_char_name'>normalized_new_char_name</span> <span class='op'>=</span> <span class='id identifier rubyid_new_char'>new_char</span><span class='lbracket'>[</span><span class='symbol'>:char_name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_capitalize'>capitalize</span>
 
-        <span class='comment'># Check if character already exists (by char_name, game_code, frontend)
+        <span class='comment'># Check if character already exists (by char_name, game_code, frontend, custom_launch)
+</span>        <span class='comment'># Including custom_launch allows multiple entries for same character with different launch configurations
 </span>        <span class='id identifier rubyid_existing_char'>existing_char</span> <span class='op'>=</span> <span class='id identifier rubyid_existing_characters'>existing_characters</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_existing'>existing</span><span class='op'>|</span>
           <span class='id identifier rubyid_existing'>existing</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>char_name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_normalized_new_char_name'>normalized_new_char_name</span> <span class='op'>&amp;&amp;</span>
             <span class='id identifier rubyid_existing'>existing</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>game_code</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_new_char'>new_char</span><span class='lbracket'>[</span><span class='symbol'>:game_code</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span>
-            <span class='id identifier rubyid_existing'>existing</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>frontend</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_new_char'>new_char</span><span class='lbracket'>[</span><span class='symbol'>:frontend</span><span class='rbracket'>]</span>
+            <span class='id identifier rubyid_existing'>existing</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>frontend</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_new_char'>new_char</span><span class='lbracket'>[</span><span class='symbol'>:frontend</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span>
+            <span class='id identifier rubyid_existing'>existing</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>custom_launch</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_new_char'>new_char</span><span class='lbracket'>[</span><span class='symbol'>:custom_launch</span><span class='rbracket'>]</span>
         <span class='kw'>end</span>
 
         <span class='comment'># Only add if character doesn&#39;t already exist
@@ -968,26 +878,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Changes the password for the specified account.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Changes the password for an existing account.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Changing an account password</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_change_password'>change_password</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>newpassword456</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1000,9 +896,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where account data is stored.</p>
-</div>
+        <div class='inline'><p>the directory where account data is stored</p></div>
       
     </li>
   
@@ -1016,9 +910,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username of the account.</p>
-</div>
+        <div class='inline'><p>the username of the account</p></div>
       
     </li>
   
@@ -1032,9 +924,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The new password for the account.</p>
-</div>
+        <div class='inline'><p>the new password for the account</p></div>
       
     </li>
   
@@ -1047,14 +937,14 @@
       <pre class="lines">
 
 
+152
+153
+154
 155
-156
-157
-158
-159</pre>
+156</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 155</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 152</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_change_password'>change_password</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_new_password'>new_password</span><span class='rparen'>)</span>
   <span class='comment'># Normalize username to UPCASE for consistent storage
@@ -1077,26 +967,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Converts authentication data into character format.</p>
-
+    <p>Converts authentication data into character format.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Converting auth data to characters</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_characters'>characters</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_convert_auth_data_to_characters'>convert_auth_data_to_characters</span><span class='lparen'>(</span><span class='id identifier rubyid_auth_data'>auth_data</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>stormfront</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1109,9 +985,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The authentication data to convert.</p>
-</div>
+        <div class='inline'><p>the authentication data to convert</p></div>
       
     </li>
   
@@ -1127,9 +1001,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>(optional) The frontend to associate with the characters.</p>
-</div>
+        <div class='inline'><p>the frontend to associate with the characters</p></div>
       
     </li>
   
@@ -1146,9 +1018,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of characters converted from the authentication data.</p>
-</div>
+        <div class='inline'><p>an array of character hashes</p></div>
       
     </li>
   
@@ -1160,6 +1030,14 @@
       <pre class="lines">
 
 
+325
+326
+327
+328
+329
+330
+331
+332
 333
 334
 335
@@ -1172,18 +1050,10 @@
 342
 343
 344
-345
-346
-347
-348
-349
-350
-351
-352
-353</pre>
+345</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 333</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 325</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_convert_auth_data_to_characters'>convert_auth_data_to_characters</span><span class='lparen'>(</span><span class='id identifier rubyid_auth_data'>auth_data</span><span class='comma'>,</span> <span class='id identifier rubyid_frontend'>frontend</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stormfront</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_characters'>characters</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -1222,26 +1092,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves a list of account usernames.</p>
-
+    <p>Retrieves a list of account usernames from the data directory.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Getting account usernames</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_usernames'>usernames</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_accounts'>get_accounts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1254,9 +1110,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where account data is stored.</p>
-</div>
+        <div class='inline'><p>the directory where account data is stored</p></div>
       
     </li>
   
@@ -1273,27 +1127,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of account usernames.</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If an error occurs while retrieving accounts.</p>
-</div>
+        <div class='inline'><p>an array of usernames</p></div>
       
     </li>
   
@@ -1305,26 +1139,26 @@
       <pre class="lines">
 
 
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
 361
 362
 363
-364
-365
-366
-367
-368
-369
-370
-371
-372
-373
-374</pre>
+364</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 361</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 351</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_accounts'>get_accounts</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="YamlState.html#yaml_file_path-class_method" title="Lich::Common::GUI::YamlState.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="../Authentication/EntryStore.html#yaml_file_path-class_method" title="Lich::Common::Authentication::EntryStore.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
 
   <span class='comment'># Load existing data
 </span>  <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
@@ -1333,7 +1167,7 @@
     <span class='id identifier rubyid_yaml_data'>yaml_data</span> <span class='op'>=</span> <span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_load_file'>load_file</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>accounts</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='op'>&amp;.</span><span class='id identifier rubyid_keys'>keys</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error getting accounts: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error getting accounts: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1353,26 +1187,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves all accounts with their associated characters.</p>
-
+    <p>Retrieves all accounts and their associated characters from the data directory.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Getting all accounts</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_accounts'>accounts</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_all_accounts'>get_all_accounts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1385,9 +1205,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where account data is stored.</p>
-</div>
+        <div class='inline'><p>the directory where account data is stored</p></div>
       
     </li>
   
@@ -1404,27 +1222,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash of usernames and their associated characters.</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If an error occurs while retrieving all accounts.</p>
-</div>
+        <div class='inline'><p>a hash of usernames and their associated character data</p></div>
       
     </li>
   
@@ -1436,6 +1234,18 @@
       <pre class="lines">
 
 
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
 382
 383
 384
@@ -1454,25 +1264,13 @@
 397
 398
 399
-400
-401
-402
-403
-404
-405
-406
-407
-408
-409
-410
-411
-412</pre>
+400</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 382</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 370</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_all_accounts'>get_all_accounts</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="YamlState.html#yaml_file_path-class_method" title="Lich::Common::GUI::YamlState.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="../Authentication/EntryStore.html#yaml_file_path-class_method" title="Lich::Common::Authentication::EntryStore.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
 
   <span class='comment'># Load existing data
 </span>  <span class='kw'>return</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
@@ -1498,7 +1296,7 @@
 
     <span class='id identifier rubyid_accounts'>accounts</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error getting all accounts: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error getting all accounts: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1518,26 +1316,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves characters for a specified account.</p>
-
+    <p>Retrieves characters associated with a specific account.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Getting characters for an account</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_characters'>characters</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_characters'>get_characters</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user1</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1550,9 +1334,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where account data is stored.</p>
-</div>
+        <div class='inline'><p>the directory where account data is stored</p></div>
       
     </li>
   
@@ -1566,9 +1348,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username of the account.</p>
-</div>
+        <div class='inline'><p>the username of the account</p></div>
       
     </li>
   
@@ -1585,27 +1365,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of characters associated with the account.</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If an error occurs while retrieving characters.</p>
-</div>
+        <div class='inline'><p>an array of character hashes</p></div>
       
     </li>
   
@@ -1617,6 +1377,20 @@
       <pre class="lines">
 
 
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
 421
 422
 423
@@ -1628,27 +1402,13 @@
 429
 430
 431
-432
-433
-434
-435
-436
-437
-438
-439
-440
-441
-442
-443
-444
-445
-446</pre>
+432</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 421</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 407</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_characters'>get_characters</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="YamlState.html#yaml_file_path-class_method" title="Lich::Common::GUI::YamlState.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="../Authentication/EntryStore.html#yaml_file_path-class_method" title="Lich::Common::Authentication::EntryStore.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
 
   <span class='comment'># Load existing data
 </span>  <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
@@ -1669,7 +1429,7 @@
       <span class='id identifier rubyid_char'>char</span><span class='period'>.</span><span class='id identifier rubyid_transform_keys'>transform_keys</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_sym</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error getting characters: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error getting characters: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1689,26 +1449,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Removes an account with the given username.</p>
-
+    <p>Removes an account by username from the account data.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Removing an account</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_remove_account'>remove_account</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user1</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1721,9 +1467,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where account data is stored.</p>
-</div>
+        <div class='inline'><p>the directory where account data is stored</p></div>
       
     </li>
   
@@ -1737,9 +1481,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username of the account to remove.</p>
-</div>
+        <div class='inline'><p>the username of the account to remove</p></div>
       
     </li>
   
@@ -1756,27 +1498,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns true if the account was removed, false otherwise.</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If an error occurs while removing the account.</p>
-</div>
+        <div class='inline'><p>true if the account was removed, false otherwise</p></div>
       
     </li>
   
@@ -1788,6 +1510,8 @@
       <pre class="lines">
 
 
+120
+121
 122
 123
 124
@@ -1810,15 +1534,13 @@
 141
 142
 143
-144
-145
-146</pre>
+144</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 120</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_remove_account'>remove_account</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="YamlState.html#yaml_file_path-class_method" title="Lich::Common::GUI::YamlState.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="../Authentication/EntryStore.html#yaml_file_path-class_method" title="Lich::Common::Authentication::EntryStore.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
 
   <span class='comment'># Load existing data
 </span>  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
@@ -1838,7 +1560,7 @@
     <span class='comment'># Save updated data with verification
 </span>    <span class='id identifier rubyid_write_yaml_with_headers'>write_yaml_with_headers</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='comma'>,</span> <span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error removing account: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error removing account: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>false</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1858,26 +1580,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Removes a character from the specified account.</p>
-
+    <p>Removes a character from an existing account.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Removing a character</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_remove_character'>remove_character</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hero</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>game1</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1890,9 +1598,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where account data is stored.</p>
-</div>
+        <div class='inline'><p>the directory where account data is stored</p></div>
       
     </li>
   
@@ -1906,9 +1612,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username of the account.</p>
-</div>
+        <div class='inline'><p>the username of the account</p></div>
       
     </li>
   
@@ -1922,9 +1626,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the character to remove.</p>
-</div>
+        <div class='inline'><p>the name of the character to remove</p></div>
       
     </li>
   
@@ -1938,9 +1640,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game code of the character.</p>
-</div>
+        <div class='inline'><p>the game code associated with the character</p></div>
       
     </li>
   
@@ -1956,9 +1656,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>(optional) The frontend of the character.</p>
-</div>
+        <div class='inline'><p>optional frontend specification for character removal</p></div>
       
     </li>
   
@@ -1975,27 +1673,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns true if the character was removed, false otherwise.</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If an error occurs while removing the character.</p>
-</div>
+        <div class='inline'><p>true if the character was removed, false otherwise</p></div>
       
     </li>
   
@@ -2007,6 +1685,11 @@
       <pre class="lines">
 
 
+234
+235
+236
+237
+238
 239
 240
 241
@@ -2045,18 +1728,13 @@
 274
 275
 276
-277
-278
-279
-280
-281
-282</pre>
+277</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 239</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 234</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_remove_character'>remove_character</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='comma'>,</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span> <span class='id identifier rubyid_frontend'>frontend</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="YamlState.html#yaml_file_path-class_method" title="Lich::Common::GUI::YamlState.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="../Authentication/EntryStore.html#yaml_file_path-class_method" title="Lich::Common::Authentication::EntryStore.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
 
   <span class='comment'># Load existing data
 </span>  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
@@ -2095,7 +1773,7 @@
     <span class='comment'># Save updated data with verification
 </span>    <span class='id identifier rubyid_write_yaml_with_headers'>write_yaml_with_headers</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='comma'>,</span> <span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error removing character: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error removing character: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>false</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -2115,26 +1793,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Converts the account data to a legacy format.</p>
-
+    <p>Converts account data to a legacy format.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Converting to legacy format</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_legacy_data'>legacy_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_legacy_format'>to_legacy_format</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2147,9 +1811,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where account data is stored.</p>
-</div>
+        <div class='inline'><p>the directory where account data is stored</p></div>
       
     </li>
   
@@ -2166,27 +1828,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of data in legacy format.</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If an error occurs while converting to legacy format.</p>
-</div>
+        <div class='inline'><p>the converted legacy format data</p></div>
       
     </li>
   
@@ -2198,35 +1840,35 @@
       <pre class="lines">
 
 
-454
-455
-456
-457
-458
-459
-460
-461
-462
-463
-464
-465
-466
-467</pre>
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 454</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 438</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_legacy_format'>to_legacy_format</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="YamlState.html#yaml_file_path-class_method" title="Lich::Common::GUI::YamlState.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="../Authentication/EntryStore.html#yaml_file_path-class_method" title="Lich::Common::Authentication::EntryStore.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
 
   <span class='comment'># Load existing data
 </span>  <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
 
   <span class='kw'>begin</span>
     <span class='id identifier rubyid_yaml_data'>yaml_data</span> <span class='op'>=</span> <span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_load_file'>load_file</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
-    <span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_convert_yaml_to_legacy_format'><span class='object_link'><a href="YamlState.html#convert_yaml_to_legacy_format-class_method" title="Lich::Common::GUI::YamlState.convert_yaml_to_legacy_format (method)">convert_yaml_to_legacy_format</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_convert_yaml_to_legacy_format'><span class='object_link'><a href="../Authentication/EntryStore.html#convert_yaml_to_legacy_format-class_method" title="Lich::Common::Authentication::EntryStore.convert_yaml_to_legacy_format (method)">convert_yaml_to_legacy_format</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error converting to legacy format: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error converting to legacy format: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -2246,26 +1888,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Updates the properties of a character in the specified account.</p>
-
+    <p>Updates properties of an existing character in an account.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Updating a character</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update_character'>update_character</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hero</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>game1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>game_name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>New Game</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2278,9 +1906,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where account data is stored.</p>
-</div>
+        <div class='inline'><p>the directory where account data is stored</p></div>
       
     </li>
   
@@ -2294,9 +1920,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username of the account.</p>
-</div>
+        <div class='inline'><p>the username of the account</p></div>
       
     </li>
   
@@ -2310,9 +1934,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the character to update.</p>
-</div>
+        <div class='inline'><p>the name of the character to update</p></div>
       
     </li>
   
@@ -2326,9 +1948,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game code of the character.</p>
-</div>
+        <div class='inline'><p>the game code associated with the character</p></div>
       
     </li>
   
@@ -2342,9 +1962,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash of properties to update for the character.</p>
-</div>
+        <div class='inline'><p>a hash of properties to update</p></div>
       
     </li>
   
@@ -2361,27 +1979,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns true if the character was updated, false otherwise.</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If an error occurs while updating the character.</p>
-</div>
+        <div class='inline'><p>true if the character was updated, false otherwise</p></div>
       
     </li>
   
@@ -2393,6 +1991,13 @@
       <pre class="lines">
 
 
+287
+288
+289
+290
+291
+292
+293
 294
 295
 296
@@ -2417,20 +2022,13 @@
 315
 316
 317
-318
-319
-320
-321
-322
-323
-324
-325</pre>
+318</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 294</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager.rb', line 287</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update_character'>update_character</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='comma'>,</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span> <span class='id identifier rubyid_updates'>updates</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="YamlState.html#yaml_file_path-class_method" title="Lich::Common::GUI::YamlState.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="../Authentication/EntryStore.html#yaml_file_path-class_method" title="Lich::Common::Authentication::EntryStore.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
 
   <span class='comment'># Load existing data
 </span>  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
@@ -2457,7 +2055,7 @@
     <span class='comment'># Save updated data with verification
 </span>    <span class='id identifier rubyid_write_yaml_with_headers'>write_yaml_with_headers</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='comma'>,</span> <span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error updating character: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error updating character: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>false</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -2471,9 +2069,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:52 2026 by
+  Generated on Sun May 10 17:26:25 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

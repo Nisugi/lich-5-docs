@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Lich::Common::Authentication::CLI
+  
+    &mdash; Lich 5 Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
+
+<script type="text/javascript">
+  pathId = "Lich::Common::Authentication::CLI";
+  relpath = '../../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../../_index.html">Index (C)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span>
+     &raquo; 
+    <span class="title">CLI</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Lich::Common::Authentication::CLI
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>documented/common/authentication/cli.rb
+</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#decrypt_and_authenticate-class_method" title="decrypt_and_authenticate (class method)">.<strong>decrypt_and_authenticate</strong>(char_entry, entry_data)  &#x21d2; LaunchData<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Decrypts the character's password and authenticates with the game server.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#execute-class_method" title="execute (class method)">.<strong>execute</strong>(character_name, game_code: nil, frontend: nil, custom_launch: nil, data_dir: nil)  &#x21d2; LaunchData<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Executes the CLI login process for a character.</p></div></span>
+  
+</li>
+
+      
+    </ul>
+    
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="decrypt_and_authenticate-class_method">
+  
+    .<strong>decrypt_and_authenticate</strong>(char_entry, entry_data)  &#x21d2; <tt><span class='object_link'><a href="LaunchData.html" title="Lich::Common::Authentication::LaunchData (module)">LaunchData</a></span></tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Decrypts the character's password and authenticates with the game server.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Authenticate a character</p></div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Authentication::CLI (module)">CLI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_decrypt_and_authenticate'>decrypt_and_authenticate</span><span class='lparen'>(</span><span class='id identifier rubyid_char_entry'>char_entry</span><span class='comma'>,</span> <span class='id identifier rubyid_entry_data'>entry_data</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>char_entry</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the character entry containing authentication details.</p></div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>entry_data</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the entry data containing additional information.</p></div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="LaunchData.html" title="Lich::Common::Authentication::LaunchData (module)">LaunchData</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>returns launch data on successful authentication, or nil on failure.</p></div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/authentication/cli.rb', line 97</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_decrypt_and_authenticate'>decrypt_and_authenticate</span><span class='lparen'>(</span><span class='id identifier rubyid_char_entry'>char_entry</span><span class='comma'>,</span> <span class='id identifier rubyid_entry_data'>entry_data</span><span class='rparen'>)</span>
+  <span class='comment'># Get encryption mode from YAML
+</span>  <span class='id identifier rubyid_encryption_mode'>encryption_mode</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_entry_data'>entry_data</span><span class='lbracket'>[</span><span class='symbol'>:encryption_mode</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>plaintext</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
+
+  <span class='comment'># Decrypt the password
+</span>  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_plaintext_password'>plaintext_password</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_decrypt_password'><span class='object_link'><a href="EntryStore.html#decrypt_password-class_method" title="Lich::Common::Authentication::EntryStore.decrypt_password (method)">decrypt_password</a></span></span><span class='lparen'>(</span>
+      <span class='id identifier rubyid_char_entry'>char_entry</span><span class='lbracket'>[</span><span class='symbol'>:password</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>mode:</span> <span class='id identifier rubyid_encryption_mode'>encryption_mode</span><span class='comma'>,</span>
+      <span class='label'>account_name:</span> <span class='id identifier rubyid_char_entry'>char_entry</span><span class='lbracket'>[</span><span class='symbol'>:username</span><span class='rbracket'>]</span>
+    <span class='rparen'>)</span>
+  <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to decrypt password: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>return</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>unless</span> <span class='id identifier rubyid_plaintext_password'>plaintext_password</span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: No password available for character</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>return</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Authenticate with game server
+</span>  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_auth_data'>auth_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='period'>.</span><span class='id identifier rubyid_authenticate'><span class='object_link'><a href="../Authentication.html#authenticate-class_method" title="Lich::Common::Authentication.authenticate (method)">authenticate</a></span></span><span class='lparen'>(</span>
+      <span class='label'>account:</span> <span class='id identifier rubyid_char_entry'>char_entry</span><span class='lbracket'>[</span><span class='symbol'>:username</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>password:</span> <span class='id identifier rubyid_plaintext_password'>plaintext_password</span><span class='comma'>,</span>
+      <span class='label'>character:</span> <span class='id identifier rubyid_char_entry'>char_entry</span><span class='lbracket'>[</span><span class='symbol'>:char_name</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>game_code:</span> <span class='id identifier rubyid_char_entry'>char_entry</span><span class='lbracket'>[</span><span class='symbol'>:game_code</span><span class='rbracket'>]</span>
+    <span class='rparen'>)</span>
+
+    <span class='comment'># Format and return launch data
+</span>    <span class='const'><span class='object_link'><a href="LaunchData.html" title="Lich::Common::Authentication::LaunchData (module)">LaunchData</a></span></span><span class='period'>.</span><span class='id identifier rubyid_prepare'><span class='object_link'><a href="LaunchData.html#prepare-class_method" title="Lich::Common::Authentication::LaunchData.prepare (method)">prepare</a></span></span><span class='lparen'>(</span>
+      <span class='id identifier rubyid_auth_data'>auth_data</span><span class='comma'>,</span>
+      <span class='id identifier rubyid_char_entry'>char_entry</span><span class='lbracket'>[</span><span class='symbol'>:frontend</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='id identifier rubyid_char_entry'>char_entry</span><span class='lbracket'>[</span><span class='symbol'>:custom_launch</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='id identifier rubyid_char_entry'>char_entry</span><span class='lbracket'>[</span><span class='symbol'>:custom_launch_dir</span><span class='rbracket'>]</span>
+    <span class='rparen'>)</span>
+  <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Authentication failed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>return</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="execute-class_method">
+  
+    .<strong>execute</strong>(character_name, game_code: nil, frontend: nil, custom_launch: nil, data_dir: nil)  &#x21d2; <tt><span class='object_link'><a href="LaunchData.html" title="Lich::Common::Authentication::LaunchData (module)">LaunchData</a></span></tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Executes the CLI login process for a character.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Successful login</p></div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::Authentication::CLI (module)">CLI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hero</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>game_code:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>game123</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>character_name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of the character to log in.</p></div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>game_code</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>optional game code for the character.</p></div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>frontend</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>optional frontend identifier.</p></div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>custom_launch</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>optional custom launch parameters.</p></div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>data_dir</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>optional directory for data files.</p></div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="LaunchData.html" title="Lich::Common::Authentication::LaunchData (module)">LaunchData</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>returns launch data on success, or nil on failure.</p></div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/authentication/cli.rb', line 29</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_character_name'>character_name</span><span class='comma'>,</span> <span class='label'>game_code:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>frontend:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>custom_launch:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>data_dir:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_data_dir'>data_dir</span> <span class='op'>||=</span> <span class='const'>DATA_DIR</span>
+
+  <span class='comment'># Validate inputs
+</span>  <span class='kw'>unless</span> <span class='id identifier rubyid_character_name'>character_name</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_character_name'>character_name</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Character name is required</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>return</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Validate master password availability before attempting login (required for Enhanced encryption mode)
+</span>  <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="CLIPassword.html" title="Lich::Common::Authentication::CLIPassword (module)">CLIPassword</a></span></span><span class='period'>.</span><span class='id identifier rubyid_validate_master_password_available'><span class='object_link'><a href="CLIPassword.html#validate_master_password_available-class_method" title="Lich::Common::Authentication::CLIPassword.validate_master_password_available (method)">validate_master_password_available</a></span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Master password validation failed during CLI login</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>return</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Load raw YAML data (not decrypted yet)
+</span>  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="EntryStore.html#yaml_file_path-class_method" title="Lich::Common::Authentication::EntryStore.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: No saved entries YAML file found</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>return</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_yaml_data'>yaml_data</span> <span class='op'>=</span> <span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_safe_load_file'>safe_load_file</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='comma'>,</span> <span class='label'>permitted_classes:</span> <span class='lbracket'>[</span><span class='const'>Symbol</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_entry_data'>entry_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="LoginHelpers.html" title="Lich::Common::Authentication::LoginHelpers (module)">LoginHelpers</a></span></span><span class='period'>.</span><span class='id identifier rubyid_symbolize_keys'><span class='object_link'><a href="LoginHelpers.html#symbolize_keys-class_method" title="Lich::Common::Authentication::LoginHelpers.symbolize_keys (method)">symbolize_keys</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='rparen'>)</span>
+  <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to load YAML data: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>return</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Find matching character(s) using login_helpers
+</span>  <span class='id identifier rubyid_matching_entries'>matching_entries</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="LoginHelpers.html" title="Lich::Common::Authentication::LoginHelpers (module)">LoginHelpers</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_character_by_name_game_and_frontend'><span class='object_link'><a href="LoginHelpers.html#find_character_by_name_game_and_frontend-class_method" title="Lich::Common::Authentication::LoginHelpers.find_character_by_name_game_and_frontend (method)">find_character_by_name_game_and_frontend</a></span></span><span class='lparen'>(</span>
+    <span class='id identifier rubyid_entry_data'>entry_data</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_character_name'>character_name</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_frontend'>frontend</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_custom_launch'>custom_launch</span>
+  <span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_matching_entries'>matching_entries</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_matching_entries'>matching_entries</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: No matching character found for: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_character_name'>character_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>return</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Select best match from candidates
+</span>  <span class='id identifier rubyid_char_entry'>char_entry</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="LoginHelpers.html" title="Lich::Common::Authentication::LoginHelpers (module)">LoginHelpers</a></span></span><span class='period'>.</span><span class='id identifier rubyid_select_best_fit'><span class='object_link'><a href="LoginHelpers.html#select_best_fit-class_method" title="Lich::Common::Authentication::LoginHelpers.select_best_fit (method)">select_best_fit</a></span></span><span class='lparen'>(</span>
+    <span class='label'>char_data_sets:</span> <span class='id identifier rubyid_matching_entries'>matching_entries</span><span class='comma'>,</span>
+    <span class='label'>requested_character:</span> <span class='id identifier rubyid_character_name'>character_name</span><span class='comma'>,</span>
+    <span class='label'>requested_instance:</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span>
+    <span class='label'>requested_fe:</span> <span class='id identifier rubyid_frontend'>frontend</span>
+  <span class='rparen'>)</span>
+
+  <span class='kw'>unless</span> <span class='id identifier rubyid_char_entry'>char_entry</span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Could not select character entry from matches</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>return</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Decrypt password and authenticate
+</span>  <span class='id identifier rubyid_decrypt_and_authenticate'>decrypt_and_authenticate</span><span class='lparen'>(</span><span class='id identifier rubyid_char_entry'>char_entry</span><span class='comma'>,</span> <span class='id identifier rubyid_entry_data'>entry_data</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Sun May 10 17:26:25 2026 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.43 (ruby-3.2.11).
+</div>
+
+    </div>
+  <script type="text/javascript">
+// Navigation helper for YARD docs
+// Adds persistent navigation links, fixes sidebar navigation, and theme toggle
+
+(function() {
+  'use strict';
+
+  // Calculate root path for assets
+  function getRootPath() {
+    var path = window.location.pathname;
+    var rootPath = '';
+
+    if (path.includes('/Lich/')) {
+      var parts = path.split('/').filter(function(p) { return p; });
+      var docsIndex = parts.indexOf('lich-5-docs');
+      if (docsIndex >= 0) {
+        var subParts = parts.slice(docsIndex + 1);
+        rootPath = '../'.repeat(subParts.length - 1);
+      }
+    }
+
+    if (!rootPath && !path.endsWith('/index.html') && !path.endsWith('/')) {
+      var pathParts = path.split('/').filter(function(p) { return p && p !== 'index.html'; });
+      var docsIdx = pathParts.indexOf('lich-5-docs');
+      if (docsIdx >= 0) {
+        rootPath = '../'.repeat(pathParts.length - docsIdx - 2);
+      }
+    }
+
+    return rootPath;
+  }
+
+  // Inject theme CSS
+  function injectThemeCSS() {
+    if (document.getElementById('theme-css')) return;
+
+    var rootPath = getRootPath();
+
+    // Try multiple paths to find the CSS
+    var paths = [
+      rootPath + 'css/theme.css',
+      'css/theme.css',
+      '../css/theme.css',
+      '../../css/theme.css',
+      '/css/theme.css'
+    ];
+
+    var link = document.createElement('link');
+    link.id = 'theme-css';
+    link.rel = 'stylesheet';
+    link.href = paths[0];
+
+    // Add error handler to try alternative paths
+    var pathIndex = 0;
+    link.onerror = function() {
+      pathIndex++;
+      if (pathIndex < paths.length) {
+        link.href = paths[pathIndex];
+      }
+    };
+
+    document.head.appendChild(link);
+
+    // Also inject critical inline styles as fallback
+    injectInlineStyles();
+  }
+
+  // Inject critical inline styles for immediate dark mode
+  function injectInlineStyles() {
+    if (document.getElementById('theme-inline-css')) return;
+
+    var style = document.createElement('style');
+    style.id = 'theme-inline-css';
+    style.textContent = [
+      // Root elements
+      '[data-theme="dark"] { --bg-dark: #1a1a2e; --text-dark: #e8e8e8; }',
+      'html[data-theme="dark"], html[data-theme="dark"] body { background-color: #1a1a2e !important; color: #e8e8e8 !important; }',
+      'body[data-theme="dark"] { background-color: #1a1a2e !important; color: #e8e8e8 !important; }',
+      // Sidebar frames
+      '[data-theme="dark"] #menu, [data-theme="dark"] .menu, [data-theme="dark"] nav { background-color: #16213e !important; }',
+      '[data-theme="dark"] #full_list, [data-theme="dark"] .objects, [data-theme="dark"] .list { background-color: #16213e !important; }',
+      // Table of Contents
+      '[data-theme="dark"] #toc, [data-theme="dark"] .toc, [data-theme="dark"] #table_of_contents { background-color: #1a1a2e !important; border-color: #333 !important; }',
+      '[data-theme="dark"] #toc a, [data-theme="dark"] .toc a { color: #5dade2 !important; }',
+      '[data-theme="dark"] #toc li, [data-theme="dark"] .toc li { background-color: transparent !important; }',
+      // File listing badges on index page
+      '[data-theme="dark"] .alpha_listing a, [data-theme="dark"] .file_listing a, [data-theme="dark"] p.children a { background-color: #16213e !important; border-color: #333 !important; }',
+      '[data-theme="dark"] .r1 a, [data-theme="dark"] .r2 a, [data-theme="dark"] .index_list a { background-color: #16213e !important; border-color: #333 !important; }',
+      // Defined in box
+      '[data-theme="dark"] .defined_in, [data-theme="dark"] .defines, [data-theme="dark"] dl.box, [data-theme="dark"] .box_info { background-color: #16213e !important; border-color: #333 !important; }',
+      // Expand/collapse buttons and show/hide links
+      '[data-theme="dark"] .summary_toggle, [data-theme="dark"] a.toggle, [data-theme="dark"] .expand, [data-theme="dark"] .collapse { background-color: #0f3460 !important; border-color: #333 !important; color: #5dade2 !important; }',
+      '[data-theme="dark"] .show_all, [data-theme="dark"] .hide_all, [data-theme="dark"] a.show, [data-theme="dark"] a.hide { background-color: #0f3460 !important; border-color: #333 !important; color: #5dade2 !important; }',
+      '[data-theme="dark"] .more, [data-theme="dark"] a.more, [data-theme="dark"] .less, [data-theme="dark"] a.less { background-color: #0f3460 !important; border-color: #333 !important; color: #5dade2 !important; }',
+      '[data-theme="dark"] dl.box a, [data-theme="dark"] .box_info a, [data-theme="dark"] .showAll, [data-theme="dark"] .hideAll { background-color: #0f3460 !important; border-color: #333 !important; color: #5dade2 !important; }',
+      '[data-theme="dark"] h2 a, [data-theme="dark"] h3 a, [data-theme="dark"] a[href="#"] { background-color: #0f3460 !important; border-color: #333 !important; color: #5dade2 !important; }',
+      // Method summary badges
+      '[data-theme="dark"] .summary_signature a, [data-theme="dark"] ul.summary a, [data-theme="dark"] .summary a { background-color: #16213e !important; border-color: #333 !important; }',
+      // Links
+      '[data-theme="dark"] a { color: #5dade2 !important; }',
+      // Tables
+      '[data-theme="dark"] table th, [data-theme="dark"] thead { background-color: #1e3a5f !important; color: #e8e8e8 !important; }',
+      '[data-theme="dark"] table td { background-color: #1a1a2e !important; color: #b8b8b8 !important; }',
+      // Forms
+      '[data-theme="dark"] input { background-color: #1a1a2e !important; color: #e8e8e8 !important; border-color: #333 !important; }',
+      // Text
+      '[data-theme="dark"] small { color: #888 !important; }',
+      '[data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3, [data-theme="dark"] h4 { color: #e8e8e8 !important; }',
+      '[data-theme="dark"] p, [data-theme="dark"] li, [data-theme="dark"] span { color: #b8b8b8 !important; }',
+      // Definition lists
+      '[data-theme="dark"] dt, [data-theme="dark"] dd { background-color: transparent !important; }',
+      // Catch-all for any remaining white backgrounds
+      '[data-theme="dark"] div, [data-theme="dark"] section, [data-theme="dark"] article, [data-theme="dark"] aside { background-color: inherit !important; }'
+    ].join('\n');
+    document.head.appendChild(style);
+  }
+
+  // Get saved theme or detect system preference
+  function getPreferredTheme() {
+    var saved = localStorage.getItem('yard-theme');
+    if (saved) return saved;
+
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
+    return 'light';
+  }
+
+  // Apply theme to a document
+  function applyThemeToDocument(doc, theme) {
+    if (!doc || !doc.documentElement) return;
+    doc.documentElement.setAttribute('data-theme', theme);
+
+    // Also set on body for broader compatibility
+    if (doc.body) {
+      doc.body.setAttribute('data-theme', theme);
+    }
+  }
+
+  // Inject inline styles into a document
+  function injectInlineStylesToDocument(doc) {
+    if (!doc || !doc.head) return;
+    if (doc.getElementById('theme-inline-css')) return;
+
+    var style = doc.createElement('style');
+    style.id = 'theme-inline-css';
+    style.textContent = [
+      // Root elements - critical for frame backgrounds
+      '[data-theme="dark"] { --bg-dark: #1a1a2e; --text-dark: #e8e8e8; }',
+      'html[data-theme="dark"], html[data-theme="dark"] body { background-color: #1a1a2e !important; color: #e8e8e8 !important; }',
+      'body[data-theme="dark"] { background-color: #1a1a2e !important; color: #e8e8e8 !important; }',
+      // Sidebar frames
+      '[data-theme="dark"] #menu, [data-theme="dark"] .menu, [data-theme="dark"] nav { background-color: #16213e !important; }',
+      '[data-theme="dark"] #full_list, [data-theme="dark"] .objects, [data-theme="dark"] .list { background-color: #16213e !important; }',
+      '[data-theme="dark"] li { background-color: transparent !important; }',
+      // Table of Contents
+      '[data-theme="dark"] #toc, [data-theme="dark"] .toc, [data-theme="dark"] #table_of_contents { background-color: #1a1a2e !important; border-color: #333 !important; }',
+      '[data-theme="dark"] #toc a, [data-theme="dark"] .toc a { color: #5dade2 !important; }',
+      '[data-theme="dark"] #toc li, [data-theme="dark"] .toc li { background-color: transparent !important; }',
+      // File listing badges on index page
+      '[data-theme="dark"] .alpha_listing a, [data-theme="dark"] .file_listing a, [data-theme="dark"] p.children a { background-color: #16213e !important; border-color: #333 !important; }',
+      '[data-theme="dark"] .r1 a, [data-theme="dark"] .r2 a, [data-theme="dark"] .index_list a { background-color: #16213e !important; border-color: #333 !important; }',
+      // Defined in box
+      '[data-theme="dark"] .defined_in, [data-theme="dark"] .defines, [data-theme="dark"] dl.box, [data-theme="dark"] .box_info { background-color: #16213e !important; border-color: #333 !important; }',
+      // Expand/collapse buttons and show/hide links
+      '[data-theme="dark"] .summary_toggle, [data-theme="dark"] a.toggle, [data-theme="dark"] .expand, [data-theme="dark"] .collapse { background-color: #0f3460 !important; border-color: #333 !important; color: #5dade2 !important; }',
+      '[data-theme="dark"] .show_all, [data-theme="dark"] .hide_all, [data-theme="dark"] a.show, [data-theme="dark"] a.hide { background-color: #0f3460 !important; border-color: #333 !important; color: #5dade2 !important; }',
+      '[data-theme="dark"] .more, [data-theme="dark"] a.more, [data-theme="dark"] .less, [data-theme="dark"] a.less { background-color: #0f3460 !important; border-color: #333 !important; color: #5dade2 !important; }',
+      '[data-theme="dark"] dl.box a, [data-theme="dark"] .box_info a, [data-theme="dark"] .showAll, [data-theme="dark"] .hideAll { background-color: #0f3460 !important; border-color: #333 !important; color: #5dade2 !important; }',
+      '[data-theme="dark"] h2 a, [data-theme="dark"] h3 a, [data-theme="dark"] a[href="#"] { background-color: #0f3460 !important; border-color: #333 !important; color: #5dade2 !important; }',
+      // Method summary badges
+      '[data-theme="dark"] .summary_signature a, [data-theme="dark"] ul.summary a, [data-theme="dark"] .summary a { background-color: #16213e !important; border-color: #333 !important; }',
+      // Links
+      '[data-theme="dark"] a { color: #5dade2 !important; }',
+      // Tables
+      '[data-theme="dark"] table th, [data-theme="dark"] thead { background-color: #1e3a5f !important; color: #e8e8e8 !important; }',
+      '[data-theme="dark"] table td, [data-theme="dark"] table tr { background-color: #1a1a2e !important; color: #b8b8b8 !important; }',
+      '[data-theme="dark"] table tr:nth-child(even), [data-theme="dark"] table tr:nth-child(even) td { background-color: #16213e !important; }',
+      // Forms
+      '[data-theme="dark"] input { background-color: #1a1a2e !important; color: #e8e8e8 !important; border-color: #333 !important; }',
+      // Text
+      '[data-theme="dark"] small { color: #888 !important; }',
+      '[data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3, [data-theme="dark"] h4 { color: #e8e8e8 !important; }',
+      '[data-theme="dark"] p, [data-theme="dark"] span { color: #b8b8b8 !important; }',
+      // Definition lists
+      '[data-theme="dark"] dt, [data-theme="dark"] dd { background-color: transparent !important; }',
+      // Content area
+      '[data-theme="dark"] #content { background-color: #1a1a2e !important; }',
+      '[data-theme="dark"] pre, [data-theme="dark"] code { background-color: #0d1117 !important; color: #c9d1d9 !important; }',
+      // Catch-all
+      '[data-theme="dark"] div, [data-theme="dark"] section { background-color: inherit !important; }'
+    ].join('\n');
+    doc.head.appendChild(style);
+  }
+
+  // Inject theme CSS into a document
+  function injectThemeCSSIntoDocument(doc, rootPath) {
+    if (!doc || !doc.head) return;
+
+    // Always inject inline styles first as fallback
+    injectInlineStylesToDocument(doc);
+
+    if (doc.getElementById('theme-css')) return;
+
+    // Try multiple paths
+    var paths = [
+      rootPath + 'css/theme.css',
+      'css/theme.css',
+      '../css/theme.css',
+      '../../css/theme.css'
+    ];
+
+    var link = doc.createElement('link');
+    link.id = 'theme-css';
+    link.rel = 'stylesheet';
+    link.href = paths[0];
+
+    var pathIndex = 0;
+    link.onerror = function() {
+      pathIndex++;
+      if (pathIndex < paths.length) {
+        link.href = paths[pathIndex];
+      }
+    };
+
+    doc.head.appendChild(link);
+  }
+
+  // Apply theme to all frames
+  function applyThemeToAllFrames(theme) {
+    var rootPath = getRootPath();
+
+    // Apply to main document
+    applyThemeToDocument(document, theme);
+    injectThemeCSSIntoDocument(document, rootPath);
+
+    // Apply to all frames and iframes
+    try {
+      var frames = document.querySelectorAll('frame, iframe');
+      frames.forEach(function(frame) {
+        try {
+          var frameDoc = frame.contentDocument || frame.contentWindow.document;
+          if (frameDoc) {
+            applyThemeToDocument(frameDoc, theme);
+            // Calculate root path relative to frame
+            var frameRootPath = rootPath || '';
+            injectThemeCSSIntoDocument(frameDoc, frameRootPath);
+          }
+        } catch (e) {
+          // Cross-origin frame, skip
+        }
+      });
+
+      // Also check parent frames (if we're in a frame)
+      if (window.parent && window.parent !== window) {
+        try {
+          applyThemeToDocument(window.parent.document, theme);
+          injectThemeCSSIntoDocument(window.parent.document, rootPath);
+        } catch (e) {
+          // Cross-origin, skip
+        }
+      }
+
+      // Check top-level window
+      if (window.top && window.top !== window) {
+        try {
+          applyThemeToDocument(window.top.document, theme);
+          injectThemeCSSIntoDocument(window.top.document, rootPath);
+
+          // Apply to all frames from top
+          var topFrames = window.top.document.querySelectorAll('frame, iframe');
+          topFrames.forEach(function(frame) {
+            try {
+              var frameDoc = frame.contentDocument || frame.contentWindow.document;
+              if (frameDoc) {
+                applyThemeToDocument(frameDoc, theme);
+                injectThemeCSSIntoDocument(frameDoc, '');
+              }
+            } catch (e) {}
+          });
+        } catch (e) {
+          // Cross-origin, skip
+        }
+      }
+    } catch (e) {
+      // Frames not accessible
+    }
+  }
+
+  // Apply theme
+  function applyTheme(theme) {
+    localStorage.setItem('yard-theme', theme);
+
+    // Apply to all documents
+    applyThemeToAllFrames(theme);
+
+    var btn = document.getElementById('theme-toggle');
+    if (btn) {
+      btn.textContent = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+      btn.title = 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode';
+    }
+  }
+
+  // Toggle theme
+  function toggleTheme() {
+    var current = document.documentElement.getAttribute('data-theme') || 'light';
+    var newTheme = current === 'dark' ? 'light' : 'dark';
+    applyTheme(newTheme);
+  }
+
+  // Check if we're in a sidebar/list frame (should not add nav)
+  function isListFrame() {
+    var path = window.location.pathname.toLowerCase();
+    // Skip list frames
+    if (path.includes('class_list') ||
+        path.includes('file_list') ||
+        path.includes('method_list') ||
+        path.includes('_list.html') ||
+        path.includes('frames.html')) {
+      return true;
+    }
+    // Skip if this is a frame with full_list (sidebar)
+    if (document.getElementById('full_list') && !document.getElementById('content')) {
+      return true;
+    }
+    // Skip if we're clearly in a sub-frame
+    if (window.frameElement) {
+      return true;
+    }
+    return false;
+  }
+
+  function addNavLinks() {
+    // Don't add nav to list/sidebar frames
+    if (isListFrame()) return;
+
+    var content = document.getElementById('content');
+    if (!content) return;
+
+    if (document.getElementById('quick-nav')) return;
+
+    var rootPath = getRootPath();
+
+    var nav = document.createElement('div');
+    nav.id = 'quick-nav';
+    nav.style.cssText = 'padding: 8px 15px; margin-bottom: 15px; border-radius: 4px; border: 1px solid #ddd; font-size: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;';
+
+    var links = document.createElement('div');
+    links.innerHTML = '<a href="' + rootPath + 'index.html" style="margin-right: 15px; text-decoration: none;">Home</a> | ' +
+                      '<a href="' + rootPath + '_index.html" style="margin-left: 15px; margin-right: 15px; text-decoration: none;">All Classes</a> | ' +
+                      '<a href="' + rootPath + 'file.psm-reference.html" style="margin-left: 15px; text-decoration: none;">PSM Guide</a>';
+
+    var themeBtn = document.createElement('button');
+    themeBtn.id = 'theme-toggle';
+    themeBtn.type = 'button';
+    themeBtn.onclick = toggleTheme;
+
+    nav.appendChild(links);
+    nav.appendChild(themeBtn);
+
+    content.insertBefore(nav, content.firstChild);
+
+    var currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    themeBtn.textContent = currentTheme === 'dark' ? '☀️ Light' : '🌙 Dark';
+    themeBtn.title = 'Switch to ' + (currentTheme === 'dark' ? 'light' : 'dark') + ' mode';
+  }
+
+  // Fix sidebar links - only run in actual sidebar/list frames
+  function fixAllSidebarLinks() {
+    // Only fix links if we're in a list frame
+    if (!isListFrame()) return;
+
+    // Get all possible sidebar/menu containers
+    var selectors = [
+      '#full_list',
+      '#menu',
+      '.menu',
+      '#full_list_content',
+      '.class_list',
+      '.objects',
+      '.sidebar',
+      '#list',
+      '.y_list'
+    ];
+
+    selectors.forEach(function(selector) {
+      var containers = document.querySelectorAll(selector);
+      containers.forEach(function(container) {
+        // Add click handler to container that forces navigation
+        if (!container.dataset.navFixed) {
+          container.dataset.navFixed = 'true';
+
+          container.addEventListener('click', function(e) {
+            // Find the clicked link
+            var target = e.target;
+            while (target && target !== container) {
+              if (target.tagName === 'A') {
+                var href = target.getAttribute('href');
+                if (href && href !== '#' && !href.startsWith('javascript:')) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  e.stopImmediatePropagation();
+
+                  // Navigate the parent/top frame, not this frame
+                  if (window.parent && window.parent !== window) {
+                    window.parent.location.href = target.href;
+                  } else if (window.top && window.top !== window) {
+                    window.top.location.href = target.href;
+                  } else {
+                    window.location.href = target.href;
+                  }
+                  return false;
+                }
+              }
+              target = target.parentNode;
+            }
+          }, true); // Capture phase
+        }
+
+        // Also fix individual links
+        var links = container.querySelectorAll('a');
+        links.forEach(function(link) {
+          if (!link.dataset.navFixed) {
+            link.dataset.navFixed = 'true';
+            var href = link.getAttribute('href');
+            if (href && href !== '#' && !href.startsWith('javascript:')) {
+              // Store the original href
+              var fullHref = link.href;
+
+              // Override onclick - navigate parent frame
+              link.onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (window.parent && window.parent !== window) {
+                  window.parent.location.href = fullHref;
+                } else if (window.top && window.top !== window) {
+                  window.top.location.href = fullHref;
+                } else {
+                  window.location.href = fullHref;
+                }
+                return false;
+              };
+            }
+          }
+        });
+      });
+    });
+  }
+
+  // Watch for dynamically loaded content - only in list frames
+  function observeForNewLinks() {
+    // Only observe in list frames
+    if (!isListFrame()) return;
+
+    var observer = new MutationObserver(function(mutations) {
+      var hasNewNodes = mutations.some(function(m) {
+        return m.addedNodes.length > 0;
+      });
+      if (hasNewNodes) {
+        // Delay slightly to let YARD's JS run first
+        setTimeout(fixAllSidebarLinks, 10);
+      }
+    });
+
+    if (document.body) {
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    }
+  }
+
+  // Initialize
+  function init() {
+    injectThemeCSS();
+    applyTheme(getPreferredTheme());
+    addNavLinks();
+    fixAllSidebarLinks();
+    observeForNewLinks();
+  }
+
+  // Run when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // Run periodically to catch all dynamic content and frames
+  var intervals = [50, 100, 250, 500, 1000, 2000, 3000];
+  intervals.forEach(function(ms) {
+    setTimeout(function() {
+      fixAllSidebarLinks();
+      // Reapply theme to catch any newly loaded frames
+      var theme = localStorage.getItem('yard-theme') || getPreferredTheme();
+      applyThemeToAllFrames(theme);
+    }, ms);
+  });
+
+  // Also run on any click anywhere (last resort) - only in list frames
+  document.addEventListener('click', function(e) {
+    // Only handle in list frames
+    if (!isListFrame()) return;
+
+    if (e.target.tagName === 'A') {
+      var href = e.target.getAttribute('href');
+      if (href && href !== '#' && !href.startsWith('javascript:')) {
+        // Check if it's a sidebar link
+        var inSidebar = e.target.closest('#full_list, #menu, .menu, .sidebar');
+        if (inSidebar) {
+          e.preventDefault();
+          e.stopPropagation();
+          // Navigate parent frame
+          if (window.parent && window.parent !== window) {
+            window.parent.location.href = e.target.href;
+          } else {
+            window.location.href = e.target.href;
+          }
+        }
+      }
+    }
+  }, true);
+
+  // Listen for system theme changes
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+      if (!localStorage.getItem('yard-theme')) {
+        applyTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

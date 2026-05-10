@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Experience";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,33 +80,27 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/experience.rb</dd>
+    <dd>documented/gemstone/experience.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Provides methods to access experience-related data</p>
-
+    <p>The Experience module provides methods to access and calculate experience-related data.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Accessing experience data</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>Experience</span><span class='period'>.</span><span class='id identifier rubyid_fame'><span class='object_link'><a href="#fame-class_method" title="Lich::Gemstone::Experience.fame (method)">fame</a></span></span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Lich::Gemstone</a></span></li>
+    
+  </ul>
 
 </div>
 
@@ -138,9 +134,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the current ascension experience.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the current ascension experience value.</p></div></span>
   
 </li>
 
@@ -162,9 +156,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the deaths sting value.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the deaths sting value.</p></div></span>
   
 </li>
 
@@ -186,9 +178,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the number of deeds.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the deeds value.</p></div></span>
   
 </li>
 
@@ -210,9 +200,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the current experience.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the current experience value.</p></div></span>
   
 </li>
 
@@ -234,9 +222,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the current fame value.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the current fame value.</p></div></span>
   
 </li>
 
@@ -258,9 +244,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the current field experience.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the current field experience value.</p></div></span>
   
 </li>
 
@@ -282,9 +266,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the maximum field experience.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the maximum field experience value.</p></div></span>
   
 </li>
 
@@ -306,9 +288,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the long-term experience.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the long-term experience value.</p></div></span>
   
 </li>
 
@@ -330,9 +310,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Calculates the percentage of ascension experience to total experience.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Calculates the percentage of ascension experience relative to total experience.</p></div></span>
   
 </li>
 
@@ -354,9 +332,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Calculates the percentage of current experience to total experience.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Calculates the percentage of current experience relative to total experience.</p></div></span>
   
 </li>
 
@@ -378,9 +354,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Calculates the percentage of current field experience to maximum field experience.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Calculates the percentage of current field experience relative to maximum field experience.</p></div></span>
   
 </li>
 
@@ -402,9 +376,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the experience data was recently updated based on a given threshold.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the experience data was updated recently based on the given threshold.</p></div></span>
   
 </li>
 
@@ -426,9 +398,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the experience data is stale based on a given threshold.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the experience data is stale based on the given threshold.</p></div></span>
   
 </li>
 
@@ -450,9 +420,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the total experience.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the total experience value.</p></div></span>
   
 </li>
 
@@ -474,14 +442,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the last updated timestamp for total experience.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the timestamp of the last update for total experience.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -501,9 +468,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the current ascension experience</p>
-
+    <p>Retrieves the current ascension experience value.</p>
 
   </div>
 </div>
@@ -512,6 +477,8 @@
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
+      
+        <h5 class="example_title"><div class='inline'><p>Get current ascension experience</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Experience (module)">Experience</a></span></span><span class='period'>.</span><span class='id identifier rubyid_axp'>axp</span></code></pre>
     
@@ -528,9 +495,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The current ascension experience</p>
-</div>
+        <div class='inline'><p>the current ascension experience value.</p></div>
       
     </li>
   
@@ -568,9 +533,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the deaths sting value</p>
-
+    <p>Retrieves the deaths sting value.</p>
 
   </div>
 </div>
@@ -579,6 +542,8 @@
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
+      
+        <h5 class="example_title"><div class='inline'><p>Get deaths sting</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Experience (module)">Experience</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deaths_sting'>deaths_sting</span></code></pre>
     
@@ -595,9 +560,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The deaths sting value</p>
-</div>
+        <div class='inline'><p>the deaths sting value.</p></div>
       
     </li>
   
@@ -635,9 +598,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the number of deeds</p>
-
+    <p>Retrieves the deeds value.</p>
 
   </div>
 </div>
@@ -646,6 +607,8 @@
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
+      
+        <h5 class="example_title"><div class='inline'><p>Get deeds</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Experience (module)">Experience</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deeds'>deeds</span></code></pre>
     
@@ -662,9 +625,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The number of deeds</p>
-</div>
+        <div class='inline'><p>the deeds value.</p></div>
       
     </li>
   
@@ -702,9 +663,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the current experience</p>
-
+    <p>Retrieves the current experience value.</p>
 
   </div>
 </div>
@@ -713,6 +672,8 @@
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
+      
+        <h5 class="example_title"><div class='inline'><p>Get current experience</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Experience (module)">Experience</a></span></span><span class='period'>.</span><span class='id identifier rubyid_exp'>exp</span></code></pre>
     
@@ -729,9 +690,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The current experience</p>
-</div>
+        <div class='inline'><p>the current experience value.</p></div>
       
     </li>
   
@@ -769,9 +728,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the current fame value</p>
-
+    <p>Retrieves the current fame value.</p>
 
   </div>
 </div>
@@ -780,6 +737,8 @@
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
+      
+        <h5 class="example_title"><div class='inline'><p>Get current fame</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Experience (module)">Experience</a></span></span><span class='period'>.</span><span class='id identifier rubyid_fame'>fame</span></code></pre>
     
@@ -796,9 +755,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The current fame value</p>
-</div>
+        <div class='inline'><p>the current fame value.</p></div>
       
     </li>
   
@@ -836,9 +793,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the current field experience</p>
-
+    <p>Retrieves the current field experience value.</p>
 
   </div>
 </div>
@@ -847,6 +802,8 @@
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
+      
+        <h5 class="example_title"><div class='inline'><p>Get current field experience</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Experience (module)">Experience</a></span></span><span class='period'>.</span><span class='id identifier rubyid_fxp_current'>fxp_current</span></code></pre>
     
@@ -863,9 +820,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The current field experience</p>
-</div>
+        <div class='inline'><p>the current field experience value.</p></div>
       
     </li>
   
@@ -903,9 +858,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the maximum field experience</p>
-
+    <p>Retrieves the maximum field experience value.</p>
 
   </div>
 </div>
@@ -914,6 +867,8 @@
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
+      
+        <h5 class="example_title"><div class='inline'><p>Get maximum field experience</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Experience (module)">Experience</a></span></span><span class='period'>.</span><span class='id identifier rubyid_fxp_max'>fxp_max</span></code></pre>
     
@@ -930,9 +885,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The maximum field experience</p>
-</div>
+        <div class='inline'><p>the maximum field experience value.</p></div>
       
     </li>
   
@@ -970,9 +923,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the long-term experience</p>
-
+    <p>Retrieves the long-term experience value.</p>
 
   </div>
 </div>
@@ -981,6 +932,8 @@
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
+      
+        <h5 class="example_title"><div class='inline'><p>Get long-term experience</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Experience (module)">Experience</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lte'>lte</span></code></pre>
     
@@ -997,9 +950,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The long-term experience</p>
-</div>
+        <div class='inline'><p>the long-term experience value.</p></div>
       
     </li>
   
@@ -1037,9 +988,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Calculates the percentage of ascension experience to total experience</p>
-
+    <p>Calculates the percentage of ascension experience relative to total experience.</p>
 
   </div>
 </div>
@@ -1048,6 +997,8 @@
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
+      
+        <h5 class="example_title"><div class='inline'><p>Get percentage of ascension experience</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Experience (module)">Experience</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_axp'>percent_axp</span></code></pre>
     
@@ -1064,9 +1015,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The percentage of ascension experience</p>
-</div>
+        <div class='inline'><p>the percentage of ascension experience.</p></div>
       
     </li>
   
@@ -1104,9 +1053,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Calculates the percentage of current experience to total experience</p>
-
+    <p>Calculates the percentage of current experience relative to total experience.</p>
 
   </div>
 </div>
@@ -1115,6 +1062,8 @@
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
+      
+        <h5 class="example_title"><div class='inline'><p>Get percentage of current experience</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Experience (module)">Experience</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_exp'>percent_exp</span></code></pre>
     
@@ -1131,9 +1080,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The percentage of current experience</p>
-</div>
+        <div class='inline'><p>the percentage of current experience.</p></div>
       
     </li>
   
@@ -1171,9 +1118,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Calculates the percentage of current field experience to maximum field experience</p>
-
+    <p>Calculates the percentage of current field experience relative to maximum field experience.</p>
 
   </div>
 </div>
@@ -1182,6 +1127,8 @@
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
+      
+        <h5 class="example_title"><div class='inline'><p>Get percentage of current field experience</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Experience (module)">Experience</a></span></span><span class='period'>.</span><span class='id identifier rubyid_percent_fxp'>percent_fxp</span></code></pre>
     
@@ -1198,9 +1145,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The percentage of current field experience</p>
-</div>
+        <div class='inline'><p>the percentage of current field experience.</p></div>
       
     </li>
   
@@ -1238,9 +1183,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the experience data was recently updated based on a given threshold</p>
-
+    <p>Checks if the experience data was updated recently based on the given threshold.</p>
 
   </div>
 </div>
@@ -1250,7 +1193,9 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Experience (module)">Experience</a></span></span><span class='period'>.</span><span class='id identifier rubyid_recently_updated?'>recently_updated?</span><span class='lparen'>(</span><span class='int'>5</span><span class='period'>.</span><span class='id identifier rubyid_minutes'>minutes</span><span class='rparen'>)</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>Check if experience data was recently updated</p></div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Experience (module)">Experience</a></span></span><span class='period'>.</span><span class='id identifier rubyid_recently_updated?'>recently_updated?</span><span class='lparen'>(</span><span class='int'>5</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1261,16 +1206,14 @@
         <span class='name'>threshold</span>
       
       
-        <span class='type'>(<tt>ActiveSupport::Duration</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>5.minutes</tt>)</em>
       
       
         &mdash;
-        <div class='inline'>
-<p>The duration threshold to check against</p>
-</div>
+        <div class='inline'><p>the time threshold to check against in minutes.</p></div>
       
     </li>
   
@@ -1287,9 +1230,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if recently updated, false otherwise</p>
-</div>
+        <div class='inline'><p>true if recently updated, false otherwise.</p></div>
       
     </li>
   
@@ -1329,9 +1270,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the experience data is stale based on a given threshold</p>
-
+    <p>Checks if the experience data is stale based on the given threshold.</p>
 
   </div>
 </div>
@@ -1341,7 +1280,9 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Experience (module)">Experience</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stale?'>stale?</span><span class='lparen'>(</span><span class='int'>24</span><span class='period'>.</span><span class='id identifier rubyid_hours'>hours</span><span class='rparen'>)</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>Check if experience data is stale</p></div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Experience (module)">Experience</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stale?'>stale?</span><span class='lparen'>(</span><span class='int'>24</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -1352,16 +1293,14 @@
         <span class='name'>threshold</span>
       
       
-        <span class='type'>(<tt>ActiveSupport::Duration</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>24.hours</tt>)</em>
       
       
         &mdash;
-        <div class='inline'>
-<p>The duration threshold to check against</p>
-</div>
+        <div class='inline'><p>the time threshold to check against in hours.</p></div>
       
     </li>
   
@@ -1378,9 +1317,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if stale, false otherwise</p>
-</div>
+        <div class='inline'><p>true if stale, false otherwise.</p></div>
       
     </li>
   
@@ -1420,9 +1357,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the total experience</p>
-
+    <p>Retrieves the total experience value.</p>
 
   </div>
 </div>
@@ -1431,6 +1366,8 @@
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
+      
+        <h5 class="example_title"><div class='inline'><p>Get total experience</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Experience (module)">Experience</a></span></span><span class='period'>.</span><span class='id identifier rubyid_txp'>txp</span></code></pre>
     
@@ -1447,9 +1384,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The total experience</p>
-</div>
+        <div class='inline'><p>the total experience value.</p></div>
       
     </li>
   
@@ -1487,9 +1422,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the last updated timestamp for total experience</p>
-
+    <p>Retrieves the timestamp of the last update for total experience.</p>
 
   </div>
 </div>
@@ -1498,6 +1431,8 @@
   <div class="examples">
     <h4 class="tag_title">Examples:</h4>
     
+      
+        <h5 class="example_title"><div class='inline'><p>Get last updated timestamp</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Experience (module)">Experience</a></span></span><span class='period'>.</span><span class='id identifier rubyid_updated_at'>updated_at</span></code></pre>
     
@@ -1514,9 +1449,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The last updated time or nil if not available</p>
-</div>
+        <div class='inline'><p>the last updated timestamp or nil if not available.</p></div>
       
     </li>
   
@@ -1550,9 +1483,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:50 2026 by
+  Generated on Sun May 10 17:26:23 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::GameBase::GameInstance::Base";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,7 +96,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/games.rb</dd>
+    <dd>documented/games.rb
+</dd>
   </dl>
   
 </div>
@@ -102,8 +105,13 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Base class for game instances This class provides common functionality for all game instances.</p>
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This class is intended to be subclassed for specific game types.</p></div>
+  </div>
 
+<p>Base class for game instances.</p>
+<p>This class provides the core functionality for all game instances.</p>
 
   </div>
 </div>
@@ -176,7 +184,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#clean_serverstring-instance_method" title="#clean_serverstring (instance method)">#<strong>clean_serverstring</strong>(server_string)  &#x21d2; String </a>
+      <a href="#buffer_room_objs-instance_method" title="#buffer_room_objs (instance method)">#<strong>buffer_room_objs</strong>(server_string)  &#x21d2; Object </a>
     
 
     
@@ -190,9 +198,29 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Cleans the server string for processing.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clean_serverstring-instance_method" title="#clean_serverstring (instance method)">#<strong>clean_serverstring</strong>(server_string)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -222,7 +250,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_documentation_url-instance_method" title="#get_documentation_url (instance method)">#<strong>get_documentation_url</strong>  &#x21d2; String </a>
+      <a href="#get_documentation_url-instance_method" title="#get_documentation_url (instance method)">#<strong>get_documentation_url</strong>  &#x21d2; Object </a>
     
 
     
@@ -236,9 +264,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the documentation URL for the game instance.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -246,7 +272,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#handle_atmospherics-instance_method" title="#handle_atmospherics (instance method)">#<strong>handle_atmospherics</strong>(server_string)  &#x21d2; String </a>
+      <a href="#handle_atmospherics-instance_method" title="#handle_atmospherics (instance method)">#<strong>handle_atmospherics</strong>(server_string)  &#x21d2; Object </a>
     
 
     
@@ -260,9 +286,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Handles atmospherics in the server string.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -270,7 +294,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#handle_combat_tags-instance_method" title="#handle_combat_tags (instance method)">#<strong>handle_combat_tags</strong>(server_string)  &#x21d2; String </a>
+      <a href="#handle_combat_tags-instance_method" title="#handle_combat_tags (instance method)">#<strong>handle_combat_tags</strong>(server_string)  &#x21d2; Object </a>
     
 
     
@@ -284,9 +308,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Handles combat tags in the server string.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -332,9 +354,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A new instance of Base.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>A new instance of Base.</p></div></span>
   
 </li>
 
@@ -342,7 +362,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#modify_room_display-instance_method" title="#modify_room_display (instance method)">#<strong>modify_room_display</strong>(alt_string, uid_from_string, lichid_from_uid_string)  &#x21d2; String </a>
+      <a href="#modify_room_display-instance_method" title="#modify_room_display (instance method)">#<strong>modify_room_display</strong>(alt_string, uid_from_string, lichid_from_uid_string)  &#x21d2; Object </a>
     
 
     
@@ -356,9 +376,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Modifies the room display string.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -366,7 +384,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#process_game_specific_data-instance_method" title="#process_game_specific_data (instance method)">#<strong>process_game_specific_data</strong>(server_string)  &#x21d2; void </a>
+      <a href="#process_game_specific_data-instance_method" title="#process_game_specific_data (instance method)">#<strong>process_game_specific_data</strong>(server_string)  &#x21d2; Object </a>
     
 
     
@@ -380,9 +398,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Processes game-specific data from the server string.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -390,7 +406,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#process_room_display-instance_method" title="#process_room_display (instance method)">#<strong>process_room_display</strong>(alt_string)  &#x21d2; String </a>
+      <a href="#process_room_display-instance_method" title="#process_room_display (instance method)">#<strong>process_room_display</strong>(alt_string)  &#x21d2; Object </a>
     
 
     
@@ -404,14 +420,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Processes the room display string.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 <div id="constructor_details" class="method_details_list">
@@ -428,9 +443,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns a new instance of Base.</p>
-
+    <p>Returns a new instance of Base.</p>
 
   </div>
 </div>
@@ -443,19 +456,21 @@
       <pre class="lines">
 
 
-39
-40
-41
-42
-43</pre>
+48
+49
+50
+51
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/games.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'documented/games.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='ivar'>@atmospherics</span> <span class='op'>=</span> <span class='kw'>false</span>
   <span class='ivar'>@combat_count</span> <span class='op'>=</span> <span class='int'>0</span>
   <span class='ivar'>@end_combat_tags</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;prompt</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;clearStream</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;component</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;pushStream id=\&quot;percWindow</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+  <span class='ivar'>@pending_room_objs</span> <span class='op'>=</span> <span class='kw'>nil</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -484,12 +499,12 @@
       <pre class="lines">
 
 
-118
-119
-120</pre>
+87
+88
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/games.rb', line 118</span>
+      <pre class="code"><span class="info file"># File 'documented/games.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_atmospherics'>atmospherics</span>
   <span class='ivar'>@atmospherics</span>
@@ -514,12 +529,12 @@
       <pre class="lines">
 
 
-122
-123
-124</pre>
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/games.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'documented/games.rb', line 91</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_atmospherics='>atmospherics=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='ivar'>@atmospherics</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -530,9 +545,77 @@
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="buffer_room_objs-instance_method">
+  
+    #<strong>buffer_room_objs</strong>(server_string)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/games.rb', line 95</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_buffer_room_objs'>buffer_room_objs</span><span class='lparen'>(</span><span class='id identifier rubyid_server_string'>server_string</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@pending_room_objs</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_server_string'>server_string</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;/component&gt;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_combined'>combined</span> <span class='op'>=</span> <span class='ivar'>@pending_room_objs</span> <span class='op'>+</span> <span class='id identifier rubyid_server_string'>server_string</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\r\n$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Combined split room component: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_combined'>combined</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='ivar'>@pending_room_objs</span> <span class='op'>=</span> <span class='kw'>nil</span>
+      <span class='kw'>return</span> <span class='lbracket'>[</span><span class='kw'>false</span><span class='comma'>,</span> <span class='id identifier rubyid_combined'>combined</span><span class='rbracket'>]</span>
+    <span class='kw'>else</span>
+      <span class='ivar'>@pending_room_objs</span> <span class='op'>=</span> <span class='ivar'>@pending_room_objs</span> <span class='op'>+</span> <span class='id identifier rubyid_server_string'>server_string</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\r\n$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='kw'>return</span> <span class='lbracket'>[</span><span class='kw'>true</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_server_string'>server_string</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:&lt;\/?(?:pushStream|popStream)[^&gt;]*&gt;\s*)*&lt;component id=&#39;room (?:objs|players)&#39;&gt;.*\.\.\.wait \d+ seconds?\.\r\n$</span><span class='regexp_end'>/</span></span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_server_string'>server_string</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;/component&gt;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Open-ended room component tag, buffering: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_server_string'>server_string</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'># Strip the &quot;...wait N seconds.\r\n&quot; part, keep the opening tag and any content before it
+</span>    <span class='ivar'>@pending_room_objs</span> <span class='op'>=</span> <span class='id identifier rubyid_server_string'>server_string</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\.\.\.wait \d+ seconds?\.\r\n$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='lbracket'>[</span><span class='kw'>true</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+
+  <span class='lbracket'>[</span><span class='kw'>false</span><span class='comma'>,</span> <span class='id identifier rubyid_server_string'>server_string</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="clean_serverstring-instance_method">
   
-    #<strong>clean_serverstring</strong>(server_string)  &#x21d2; <tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>clean_serverstring</strong>(server_string)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -541,59 +624,11 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Cleans the server string for processing</p>
-
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_cleaned_string'>cleaned_string</span> <span class='op'>=</span> <span class='id identifier rubyid_instance'>instance</span><span class='period'>.</span><span class='id identifier rubyid_clean_serverstring'>clean_serverstring</span><span class='lparen'>(</span><span class='id identifier rubyid_raw_string'>raw_string</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>server_string</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The raw server string to clean</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The cleaned server string</p>
-</div>
-      
-    </li>
-  
-</ul>
 <p class="tag_title">Raises:</p>
 <ul class="raise">
   
@@ -603,11 +638,6 @@
         <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
-      
-        &mdash;
-        <div class='inline'>
-<p>If not implemented in a subclass</p>
-</div>
       
     </li>
   
@@ -619,12 +649,12 @@
       <pre class="lines">
 
 
-51
-52
-53</pre>
+55
+56
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/games.rb', line 51</span>
+      <pre class="code"><span class="info file"># File 'documented/games.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clean_serverstring'>clean_serverstring</span><span class='lparen'>(</span><span class='id identifier rubyid_server_string'>server_string</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> must implement #clean_serverstring</span><span class='tstring_end'>&quot;</span></span>
@@ -649,12 +679,12 @@
       <pre class="lines">
 
 
-114
-115
-116</pre>
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/games.rb', line 114</span>
+      <pre class="code"><span class="info file"># File 'documented/games.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_combat_count'>combat_count</span>
   <span class='ivar'>@combat_count</span>
@@ -667,7 +697,7 @@
       <div class="method_details ">
   <h3 class="signature " id="get_documentation_url-instance_method">
   
-    #<strong>get_documentation_url</strong>  &#x21d2; <tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>get_documentation_url</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -676,39 +706,11 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Retrieves the documentation URL for the game instance</p>
-
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='id identifier rubyid_instance'>instance</span><span class='period'>.</span><span class='id identifier rubyid_get_documentation_url'>get_documentation_url</span></code></pre>
-    
-  </div>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The documentation URL</p>
-</div>
-      
-    </li>
-  
-</ul>
 <p class="tag_title">Raises:</p>
 <ul class="raise">
   
@@ -718,11 +720,6 @@
         <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
-      
-        &mdash;
-        <div class='inline'>
-<p>If not implemented in a subclass</p>
-</div>
       
     </li>
   
@@ -734,12 +731,12 @@
       <pre class="lines">
 
 
-80
-81
-82</pre>
+67
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/games.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'documented/games.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_documentation_url'>get_documentation_url</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> must implement #get_documentation_url</span><span class='tstring_end'>&quot;</span></span>
@@ -752,7 +749,7 @@
       <div class="method_details ">
   <h3 class="signature " id="handle_atmospherics-instance_method">
   
-    #<strong>handle_atmospherics</strong>(server_string)  &#x21d2; <tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>handle_atmospherics</strong>(server_string)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -761,59 +758,11 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Handles atmospherics in the server string</p>
-
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_processed_string'>processed_string</span> <span class='op'>=</span> <span class='id identifier rubyid_instance'>instance</span><span class='period'>.</span><span class='id identifier rubyid_handle_atmospherics'>handle_atmospherics</span><span class='lparen'>(</span><span class='id identifier rubyid_raw_string'>raw_string</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>server_string</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The server string containing atmospherics</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The processed server string</p>
-</div>
-      
-    </li>
-  
-</ul>
 <p class="tag_title">Raises:</p>
 <ul class="raise">
   
@@ -823,11 +772,6 @@
         <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
-      
-        &mdash;
-        <div class='inline'>
-<p>If not implemented in a subclass</p>
-</div>
       
     </li>
   
@@ -839,12 +783,12 @@
       <pre class="lines">
 
 
-71
-72
-73</pre>
+63
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/games.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'documented/games.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_handle_atmospherics'>handle_atmospherics</span><span class='lparen'>(</span><span class='id identifier rubyid_server_string'>server_string</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> must implement #handle_atmospherics</span><span class='tstring_end'>&quot;</span></span>
@@ -857,7 +801,7 @@
       <div class="method_details ">
   <h3 class="signature " id="handle_combat_tags-instance_method">
   
-    #<strong>handle_combat_tags</strong>(server_string)  &#x21d2; <tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>handle_combat_tags</strong>(server_string)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -866,59 +810,11 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Handles combat tags in the server string</p>
-
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_processed_string'>processed_string</span> <span class='op'>=</span> <span class='id identifier rubyid_instance'>instance</span><span class='period'>.</span><span class='id identifier rubyid_handle_combat_tags'>handle_combat_tags</span><span class='lparen'>(</span><span class='id identifier rubyid_raw_string'>raw_string</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>server_string</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The server string containing combat tags</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The processed server string</p>
-</div>
-      
-    </li>
-  
-</ul>
 <p class="tag_title">Raises:</p>
 <ul class="raise">
   
@@ -928,11 +824,6 @@
         <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
-      
-        &mdash;
-        <div class='inline'>
-<p>If not implemented in a subclass</p>
-</div>
       
     </li>
   
@@ -944,12 +835,12 @@
       <pre class="lines">
 
 
-61
-62
-63</pre>
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/games.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'documented/games.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_handle_combat_tags'>handle_combat_tags</span><span class='lparen'>(</span><span class='id identifier rubyid_server_string'>server_string</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> must implement #handle_combat_tags</span><span class='tstring_end'>&quot;</span></span>
@@ -974,14 +865,14 @@
       <pre class="lines">
 
 
-128
-129
-130
-131
-132</pre>
+120
+121
+122
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/games.rb', line 128</span>
+      <pre class="code"><span class="info file"># File 'documented/games.rb', line 120</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_increment_combat_count'>increment_combat_count</span><span class='lparen'>(</span><span class='id identifier rubyid_server_string'>server_string</span><span class='rparen'>)</span>
   <span class='ivar'>@combat_count</span> <span class='op'>+=</span> <span class='id identifier rubyid_server_string'>server_string</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;pushStream id=\&quot;combat\&quot; /&gt;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
@@ -996,7 +887,7 @@
       <div class="method_details ">
   <h3 class="signature " id="modify_room_display-instance_method">
   
-    #<strong>modify_room_display</strong>(alt_string, uid_from_string, lichid_from_uid_string)  &#x21d2; <tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>modify_room_display</strong>(alt_string, uid_from_string, lichid_from_uid_string)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -1005,59 +896,11 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Modifies the room display string</p>
-
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_modified_string'>modified_string</span> <span class='op'>=</span> <span class='id identifier rubyid_instance'>instance</span><span class='period'>.</span><span class='id identifier rubyid_modify_room_display'>modify_room_display</span><span class='lparen'>(</span><span class='id identifier rubyid_room_string'>room_string</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>alt_string</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The room display string to modify</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The modified room display string</p>
-</div>
-      
-    </li>
-  
-</ul>
 <p class="tag_title">Raises:</p>
 <ul class="raise">
   
@@ -1067,11 +910,6 @@
         <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
-      
-        &mdash;
-        <div class='inline'>
-<p>If not implemented in a subclass</p>
-</div>
       
     </li>
   
@@ -1083,12 +921,12 @@
       <pre class="lines">
 
 
-100
-101
-102</pre>
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/games.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'documented/games.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_modify_room_display'>modify_room_display</span><span class='lparen'>(</span><span class='id identifier rubyid_alt_string'>alt_string</span><span class='comma'>,</span> <span class='id identifier rubyid_uid_from_string'>uid_from_string</span><span class='comma'>,</span> <span class='id identifier rubyid_lichid_from_uid_string'>lichid_from_uid_string</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> must implement #modify_room_display</span><span class='tstring_end'>&quot;</span></span>
@@ -1101,7 +939,7 @@
       <div class="method_details ">
   <h3 class="signature " id="process_game_specific_data-instance_method">
   
-    #<strong>process_game_specific_data</strong>(server_string)  &#x21d2; <tt>void</tt> 
+    #<strong>process_game_specific_data</strong>(server_string)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -1109,42 +947,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Processes game-specific data from the server string</p>
-
+    
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_instance'>instance</span><span class='period'>.</span><span class='id identifier rubyid_process_game_specific_data'>process_game_specific_data</span><span class='lparen'>(</span><span class='id identifier rubyid_raw_string'>raw_string</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>server_string</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The server string containing game-specific data</p>
-</div>
-      
-    </li>
-  
-</ul>
-
 <p class="tag_title">Raises:</p>
 <ul class="raise">
   
@@ -1154,11 +962,6 @@
         <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
-      
-        &mdash;
-        <div class='inline'>
-<p>If not implemented in a subclass</p>
-</div>
       
     </li>
   
@@ -1170,12 +973,12 @@
       <pre class="lines">
 
 
-90
-91
-92</pre>
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/games.rb', line 90</span>
+      <pre class="code"><span class="info file"># File 'documented/games.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_game_specific_data'>process_game_specific_data</span><span class='lparen'>(</span><span class='id identifier rubyid_server_string'>server_string</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> must implement #process_game_specific_data</span><span class='tstring_end'>&quot;</span></span>
@@ -1188,7 +991,7 @@
       <div class="method_details ">
   <h3 class="signature " id="process_room_display-instance_method">
   
-    #<strong>process_room_display</strong>(alt_string)  &#x21d2; <tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt> 
+    #<strong>process_room_display</strong>(alt_string)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -1197,59 +1000,11 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Processes the room display string</p>
-
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_processed_string'>processed_string</span> <span class='op'>=</span> <span class='id identifier rubyid_instance'>instance</span><span class='period'>.</span><span class='id identifier rubyid_process_room_display'>process_room_display</span><span class='lparen'>(</span><span class='id identifier rubyid_room_string'>room_string</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>alt_string</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The room display string to process</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The processed room display string</p>
-</div>
-      
-    </li>
-  
-</ul>
 <p class="tag_title">Raises:</p>
 <ul class="raise">
   
@@ -1259,11 +1014,6 @@
         <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
-      
-        &mdash;
-        <div class='inline'>
-<p>If not implemented in a subclass</p>
-</div>
       
     </li>
   
@@ -1275,12 +1025,12 @@
       <pre class="lines">
 
 
-110
-111
-112</pre>
+79
+80
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/games.rb', line 110</span>
+      <pre class="code"><span class="info file"># File 'documented/games.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_room_display'>process_room_display</span><span class='lparen'>(</span><span class='id identifier rubyid_alt_string'>alt_string</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> must implement #process_room_display</span><span class='tstring_end'>&quot;</span></span>
@@ -1295,9 +1045,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:56 2026 by
+  Generated on Sun May 10 17:26:29 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

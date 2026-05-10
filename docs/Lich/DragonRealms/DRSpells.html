@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::DragonRealms::DRSpells";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,33 +80,21 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/dragonrealms/drinfomon/drspells.rb</dd>
+    <dd>documented/dragonrealms/drinfomon/drspells.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Provides functionality related to spells in the DragonRealms game. This module manages known spells, feats, and spellbook formats.</p>
-
+    <p>Module for managing spells in DragonRealms.</p>
+<p>This module contains methods to access and manipulate known spells and features.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Accessing known spells</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_known_spells'>known_spells</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../DragonRealms.html" title="Lich::DragonRealms (module)">DragonRealms</a></span></span><span class='op'>::</span><span class='const'>DRSpells</span><span class='period'>.</span><span class='id identifier rubyid_known_spells'><span class='object_link'><a href="#known_spells-class_method" title="Lich::DragonRealms::DRSpells.known_spells (method)">known_spells</a></span></span></code></pre>
-    
-  </div>
-
 
 </div>
   
@@ -116,43 +106,19 @@
     <dl class="constants">
       
         <dt id="known_spells-classvariable" class="">@@known_spells =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>A hash storing known spells.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='lbrace'>{</span><span class='rbrace'>}</span></pre></dd>
       
         <dt id="known_feats-classvariable" class="">@@known_feats =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>A hash storing known feats.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='lbrace'>{</span><span class='rbrace'>}</span></pre></dd>
       
         <dt id="spellbook_format-classvariable" class="">@@spellbook_format =
           <div class="docstring">
   <div class="discussion">
-    
-<p>The format of the spellbook, can be ‘column-formatted’ or ‘non-column’.</p>
-
+    <p>'column-formatted' or 'non-column'</p>
 
   </div>
 </div>
@@ -164,50 +130,17 @@
         <dd><pre class="code"><span class='kw'>nil</span></pre></dd>
       
         <dt id="grabbing_known_spells-classvariable" class="">@@grabbing_known_spells =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Indicates if the module is currently grabbing known spells.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='kw'>false</span></pre></dd>
       
         <dt id="grabbing_known_barbarian_abilities-classvariable" class="">@@grabbing_known_barbarian_abilities =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Indicates if the module is currently grabbing known barbarian abilities.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='kw'>false</span></pre></dd>
       
         <dt id="grabbing_known_khri-classvariable" class="">@@grabbing_known_khri =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Indicates if the module is currently grabbing known khri.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='kw'>false</span></pre></dd>
       
@@ -231,7 +164,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#active_spells-class_method" title="active_spells (class method)">.<strong>active_spells</strong>  &#x21d2; Hash </a>
+      <a href="#active_spells-class_method" title="active_spells (class method)">.<strong>active_spells</strong>  &#x21d2; Array&lt;String&gt; </a>
     
 
     
@@ -245,9 +178,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the currently active spells.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the currently active spells.</p></div></span>
   
 </li>
 
@@ -266,12 +197,10 @@
   
   
   
-  
+  <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the module is currently grabbing known barbarian abilities.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if known barbarian abilities are being grabbed.</p></div></span>
   
 </li>
 
@@ -279,7 +208,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#check_known_barbarian_abilities=-class_method" title="check_known_barbarian_abilities= (class method)">.<strong>check_known_barbarian_abilities=</strong>(val)  &#x21d2; Boolean </a>
+      <a href="#check_known_barbarian_abilities=-class_method" title="check_known_barbarian_abilities= (class method)">.<strong>check_known_barbarian_abilities=</strong>(val)  &#x21d2; Object </a>
     
 
     
@@ -293,9 +222,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the state of grabbing known barbarian abilities.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -314,12 +241,10 @@
   
   
   
-  
+  <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the module is currently grabbing known khri.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if known khri are being grabbed.</p></div></span>
   
 </li>
 
@@ -327,7 +252,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#grabbing_known_khri=-class_method" title="grabbing_known_khri= (class method)">.<strong>grabbing_known_khri=</strong>(val)  &#x21d2; Boolean </a>
+      <a href="#grabbing_known_khri=-class_method" title="grabbing_known_khri= (class method)">.<strong>grabbing_known_khri=</strong>(val)  &#x21d2; Object </a>
     
 
     
@@ -341,9 +266,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the state of grabbing known khri.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -351,7 +274,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#grabbing_known_spells-class_method" title="grabbing_known_spells (class method)">.<strong>grabbing_known_spells</strong>  &#x21d2; Boolean </a>
+      <a href="#grabbing_known_spells-class_method" title="grabbing_known_spells (class method)">.<strong>grabbing_known_spells</strong>  &#x21d2; Object </a>
     
 
     
@@ -365,9 +288,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the module is currently grabbing known spells.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -375,7 +296,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#grabbing_known_spells=-class_method" title="grabbing_known_spells= (class method)">.<strong>grabbing_known_spells=</strong>(val)  &#x21d2; Boolean </a>
+      <a href="#grabbing_known_spells=-class_method" title="grabbing_known_spells= (class method)">.<strong>grabbing_known_spells=</strong>(val)  &#x21d2; Object </a>
     
 
     
@@ -389,9 +310,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the state of grabbing known spells.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -413,9 +332,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the known feats.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns a hash of known feats.</p></div></span>
   
 </li>
 
@@ -437,9 +354,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the known spells.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns a hash of known spells.</p></div></span>
   
 </li>
 
@@ -447,7 +362,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#slivers-class_method" title="slivers (class method)">.<strong>slivers</strong>  &#x21d2; Array </a>
+      <a href="#slivers-class_method" title="slivers (class method)">.<strong>slivers</strong>  &#x21d2; Array&lt;String&gt; </a>
     
 
     
@@ -461,9 +376,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the slivers of currently active spells.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the slivers of currently active spells.</p></div></span>
   
 </li>
 
@@ -485,9 +398,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the current spellbook format.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the current spellbook format.</p></div></span>
   
 </li>
 
@@ -495,7 +406,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#spellbook_format=-class_method" title="spellbook_format= (class method)">.<strong>spellbook_format=</strong>(val)  &#x21d2; String </a>
+      <a href="#spellbook_format=-class_method" title="spellbook_format= (class method)">.<strong>spellbook_format=</strong>(val)  &#x21d2; Object </a>
     
 
     
@@ -509,9 +420,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the spellbook format.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -519,7 +428,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#stellar_percentage-class_method" title="stellar_percentage (class method)">.<strong>stellar_percentage</strong>  &#x21d2; Float </a>
+      <a href="#stellar_percentage-class_method" title="stellar_percentage (class method)">.<strong>stellar_percentage</strong>  &#x21d2; Integer </a>
     
 
     
@@ -533,14 +442,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the stellar percentage of active spells.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the stellar percentage of active spells.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -552,7 +460,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="active_spells-class_method">
   
-    .<strong>active_spells</strong>  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt> 
+    .<strong>active_spells</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt> 
   
 
   
@@ -560,9 +468,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the currently active spells.</p>
-
+    <p>Retrieves the currently active spells.</p>
 
   </div>
 </div>
@@ -574,14 +480,12 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash of active spells.</p>
-</div>
+        <div class='inline'><p>list of active spells.</p></div>
       
     </li>
   
@@ -593,12 +497,12 @@
       <pre class="lines">
 
 
-24
-25
-26</pre>
+21
+22
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_active_spells'>active_spells</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_dr_active_spells'>dr_active_spells</span>
@@ -619,9 +523,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the module is currently grabbing known barbarian abilities.</p>
-
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Checks if known barbarian abilities are being grabbed.</p>
 
   </div>
 </div>
@@ -638,9 +544,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if grabbing known barbarian abilities, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if grabbing, false otherwise.</p></div>
       
     </li>
   
@@ -652,12 +556,12 @@
       <pre class="lines">
 
 
-67
-68
-69</pre>
+60
+61
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_check_known_barbarian_abilities'>check_known_barbarian_abilities</span>
   <span class='cvar'>@@grabbing_known_barbarian_abilities</span>
@@ -670,73 +574,24 @@
       <div class="method_details ">
   <h3 class="signature " id="check_known_barbarian_abilities=-class_method">
   
-    .<strong>check_known_barbarian_abilities=</strong>(val)  &#x21d2; <tt>Boolean</tt> 
+    .<strong>check_known_barbarian_abilities=</strong>(val)  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Sets the state of grabbing known barbarian abilities.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>val</span>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The state to set for grabbing known barbarian abilities.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The value that was set.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-74
-75
-76</pre>
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_check_known_barbarian_abilities='>check_known_barbarian_abilities=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@grabbing_known_barbarian_abilities</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -757,9 +612,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the module is currently grabbing known khri.</p>
-
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Checks if known khri are being grabbed.</p>
 
   </div>
 </div>
@@ -776,9 +633,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if grabbing known khri, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if grabbing, false otherwise.</p></div>
       
     </li>
   
@@ -790,12 +645,12 @@
       <pre class="lines">
 
 
-80
-81
-82</pre>
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_grabbing_known_khri'>grabbing_known_khri</span>
   <span class='cvar'>@@grabbing_known_khri</span>
@@ -808,73 +663,24 @@
       <div class="method_details ">
   <h3 class="signature " id="grabbing_known_khri=-class_method">
   
-    .<strong>grabbing_known_khri=</strong>(val)  &#x21d2; <tt>Boolean</tt> 
+    .<strong>grabbing_known_khri=</strong>(val)  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Sets the state of grabbing known khri.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>val</span>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The state to set for grabbing known khri.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The value that was set.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-87
-88
-89</pre>
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_grabbing_known_khri='>grabbing_known_khri=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@grabbing_known_khri</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -887,53 +693,24 @@
       <div class="method_details ">
   <h3 class="signature " id="grabbing_known_spells-class_method">
   
-    .<strong>grabbing_known_spells</strong>  &#x21d2; <tt>Boolean</tt> 
+    .<strong>grabbing_known_spells</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Checks if the module is currently grabbing known spells.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>True if grabbing known spells, false otherwise.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-54
-55
-56</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_grabbing_known_spells'>grabbing_known_spells</span>
   <span class='cvar'>@@grabbing_known_spells</span>
@@ -946,73 +723,24 @@
       <div class="method_details ">
   <h3 class="signature " id="grabbing_known_spells=-class_method">
   
-    .<strong>grabbing_known_spells=</strong>(val)  &#x21d2; <tt>Boolean</tt> 
+    .<strong>grabbing_known_spells=</strong>(val)  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Sets the state of grabbing known spells.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>val</span>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The state to set for grabbing known spells.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The value that was set.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-61
-62
-63</pre>
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_grabbing_known_spells='>grabbing_known_spells=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@grabbing_known_spells</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -1033,9 +761,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the known feats.</p>
-
+    <p>Returns a hash of known feats.</p>
 
   </div>
 </div>
@@ -1052,9 +778,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash of known feats.</p>
-</div>
+        <div class='inline'><p>known feats with their details.</p></div>
       
     </li>
   
@@ -1066,12 +790,12 @@
       <pre class="lines">
 
 
-36
-37
-38</pre>
+33
+34
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_known_feats'>known_feats</span>
   <span class='cvar'>@@known_feats</span>
@@ -1092,9 +816,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the known spells.</p>
-
+    <p>Returns a hash of known spells.</p>
 
   </div>
 </div>
@@ -1111,9 +833,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash of known spells.</p>
-</div>
+        <div class='inline'><p>known spells with their details.</p></div>
       
     </li>
   
@@ -1125,12 +845,12 @@
       <pre class="lines">
 
 
-30
-31
-32</pre>
+27
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_known_spells'>known_spells</span>
   <span class='cvar'>@@known_spells</span>
@@ -1143,7 +863,7 @@
       <div class="method_details ">
   <h3 class="signature " id="slivers-class_method">
   
-    .<strong>slivers</strong>  &#x21d2; <tt>Array</tt> 
+    .<strong>slivers</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt> 
   
 
   
@@ -1151,9 +871,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the slivers of currently active spells.</p>
-
+    <p>Retrieves the slivers of currently active spells.</p>
 
   </div>
 </div>
@@ -1165,14 +883,12 @@
     <li>
       
       
-        <span class='type'>(<tt>Array</tt>)</span>
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of spell slivers.</p>
-</div>
+        <div class='inline'><p>list of spell slivers.</p></div>
       
     </li>
   
@@ -1184,12 +900,12 @@
       <pre class="lines">
 
 
-42
-43
-44</pre>
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_slivers'>slivers</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_dr_active_spells_slivers'>dr_active_spells_slivers</span>
@@ -1210,9 +926,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the current spellbook format.</p>
-
+    <p>Retrieves the current spellbook format.</p>
 
   </div>
 </div>
@@ -1229,9 +943,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The spellbook format, or nil if not set.</p>
-</div>
+        <div class='inline'><p>the format of the spellbook or nil if not set.</p></div>
       
     </li>
   
@@ -1243,12 +955,12 @@
       <pre class="lines">
 
 
-93
-94
-95</pre>
+81
+82
+83</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 81</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_spellbook_format'>spellbook_format</span>
   <span class='cvar'>@@spellbook_format</span>
@@ -1261,73 +973,24 @@
       <div class="method_details ">
   <h3 class="signature " id="spellbook_format=-class_method">
   
-    .<strong>spellbook_format=</strong>(val)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+    .<strong>spellbook_format=</strong>(val)  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Sets the spellbook format.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>val</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The format to set for the spellbook.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The value that was set.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-100
-101
-102</pre>
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_spellbook_format='>spellbook_format=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@spellbook_format</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -1340,7 +1003,7 @@
       <div class="method_details ">
   <h3 class="signature " id="stellar_percentage-class_method">
   
-    .<strong>stellar_percentage</strong>  &#x21d2; <tt>Float</tt> 
+    .<strong>stellar_percentage</strong>  &#x21d2; <tt>Integer</tt> 
   
 
   
@@ -1348,9 +1011,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the stellar percentage of active spells.</p>
-
+    <p>Retrieves the stellar percentage of active spells.</p>
 
   </div>
 </div>
@@ -1362,14 +1023,12 @@
     <li>
       
       
-        <span class='type'>(<tt>Float</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The stellar percentage.</p>
-</div>
+        <div class='inline'><p>percentage value.</p></div>
       
     </li>
   
@@ -1381,12 +1040,12 @@
       <pre class="lines">
 
 
-48
-49
-50</pre>
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drspells.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_stellar_percentage'>stellar_percentage</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_dr_active_spells_stellar_percentage'>dr_active_spells_stellar_percentage</span>
@@ -1401,9 +1060,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:54 2026 by
+  Generated on Sun May 10 17:26:27 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

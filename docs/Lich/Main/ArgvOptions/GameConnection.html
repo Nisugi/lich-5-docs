@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Main::ArgvOptions::GameConnection";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,16 +80,16 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/main/argv_options.rb</dd>
+    <dd>documented/main/argv_options.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Module for handling game connection options This module processes game connection parameters from command line arguments.</p>
-
+    <p>Module for handling game connection configurations.</p>
+<p>This module manages the connection settings based on the command-line arguments.</p>
 
   </div>
 </div>
@@ -112,7 +114,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#determine_frontend-class_method" title="determine_frontend (class method)">.<strong>determine_frontend</strong>  &#x21d2; String </a>
+      <a href="#determine_frontend-class_method" title="determine_frontend (class method)">.<strong>determine_frontend</strong>  &#x21d2; Object </a>
     
 
     
@@ -126,9 +128,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Determines the frontend type based on command line arguments.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -150,9 +150,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Executes the game connection handling based on parsed options.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Executes the game connection configuration based on command-line options.</p></div></span>
   
 </li>
 
@@ -182,7 +180,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#handle_explicit_game_connection-class_method" title="handle_explicit_game_connection (class method)">.<strong>handle_explicit_game_connection</strong>(arg, processed_options)  &#x21d2; void </a>
+      <a href="#handle_explicit_game_connection-class_method" title="handle_explicit_game_connection (class method)">.<strong>handle_explicit_game_connection</strong>(arg, processed_options)  &#x21d2; Object </a>
     
 
     
@@ -196,9 +194,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Handles explicit game connection parameters from command line arguments.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -270,6 +266,7 @@
 
       
     </ul>
+    
   
 
 
@@ -281,63 +278,34 @@
       <div class="method_details first">
   <h3 class="signature first" id="determine_frontend-class_method">
   
-    .<strong>determine_frontend</strong>  &#x21d2; <tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt> 
+    .<strong>determine_frontend</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Determines the frontend type based on command line arguments.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The determined frontend type (e.g., ‘wizard’, ‘stormfront’).</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-461
-462
-463
-464
-465
-466
-467
-468
-469
-470
-471
-472
-473</pre>
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/main/argv_options.rb', line 461</span>
+      <pre class="code"><span class="info file"># File 'documented/main/argv_options.rb', line 374</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_determine_frontend'>determine_frontend</span>
   <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='op'>|</span> <span class='id identifier rubyid_a'>a</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-s</span><span class='tstring_end'>&#39;</span></span> <span class='op'>||</span> <span class='id identifier rubyid_a'>a</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--stormfront</span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span>
@@ -368,9 +336,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Executes the game connection handling based on parsed options.</p>
-
+    <p>Executes the game connection configuration based on command-line options.</p>
+<p>This method determines the appropriate game connection settings based on the provided arguments.</p>
 
   </div>
 </div>
@@ -388,9 +355,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The processed command line options.</p>
-</div>
+        <div class='inline'><p>the processed command-line options</p></div>
       
     </li>
   
@@ -407,9 +372,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The modified options after handling game connections.</p>
-</div>
+        <div class='inline'><p>the updated processed options with game connection settings</p></div>
       
     </li>
   
@@ -421,27 +384,27 @@
       <pre class="lines">
 
 
-335
-336
-337
-338
-339
-340
-341
-342
-343
-344
-345
-346
-347
-348
-349
-350
-351
-352</pre>
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/main/argv_options.rb', line 335</span>
+      <pre class="code"><span class="info file"># File 'documented/main/argv_options.rb', line 255</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_processed_options'>processed_options</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_arg'>arg</span> <span class='op'>=</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='op'>|</span> <span class='id identifier rubyid_a'>a</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-g</span><span class='tstring_end'>&#39;</span></span> <span class='op'>||</span> <span class='id identifier rubyid_a'>a</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--game</span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -450,14 +413,14 @@
     <span class='id identifier rubyid_handle_shattered_connection'>handle_shattered_connection</span><span class='lparen'>(</span><span class='id identifier rubyid_processed_options'>processed_options</span><span class='rparen'>)</span>
   <span class='kw'>elsif</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--fallen</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_handle_fallen_connection'>handle_fallen_connection</span><span class='lparen'>(</span><span class='id identifier rubyid_processed_options'>processed_options</span><span class='rparen'>)</span>
-  <span class='kw'>elsif</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--gemstone</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common/Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common/Authentication/LoginHelpers.html" title="Lich::Common::Authentication::LoginHelpers (module)">LoginHelpers</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gemstone_flag?'><span class='object_link'><a href="../../Common/Authentication/LoginHelpers.html#gemstone_flag%3F-class_method" title="Lich::Common::Authentication::LoginHelpers.gemstone_flag? (method)">gemstone_flag?</a></span></span><span class='lparen'>(</span><span class='const'>ARGV</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_handle_gemstone_connection'>handle_gemstone_connection</span><span class='lparen'>(</span><span class='id identifier rubyid_processed_options'>processed_options</span><span class='rparen'>)</span>
-  <span class='kw'>elsif</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--dragonrealms</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common/Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common/Authentication/LoginHelpers.html" title="Lich::Common::Authentication::LoginHelpers (module)">LoginHelpers</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dragonrealms_flag?'><span class='object_link'><a href="../../Common/Authentication/LoginHelpers.html#dragonrealms_flag%3F-class_method" title="Lich::Common::Authentication::LoginHelpers.dragonrealms_flag? (method)">dragonrealms_flag?</a></span></span><span class='lparen'>(</span><span class='const'>ARGV</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_handle_dragonrealms_connection'>handle_dragonrealms_connection</span><span class='lparen'>(</span><span class='id identifier rubyid_processed_options'>processed_options</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_processed_options'>processed_options</span><span class='lbracket'>[</span><span class='symbol'>:game_host</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span>
     <span class='id identifier rubyid_processed_options'>processed_options</span><span class='lbracket'>[</span><span class='symbol'>:game_port</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>info: no force-mode info given</span><span class='tstring_end'>&#39;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>info: no force-mode info given</span><span class='tstring_end'>&#39;</span></span>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_processed_options'>processed_options</span>
 <span class='kw'>end</span></pre>
@@ -481,42 +444,42 @@
       <pre class="lines">
 
 
-425
-426
-427
-428
-429
-430
-431
-432
-433
-434
-435
-436
-437
-438
-439
-440
-441
-442
-443
-444
-445
-446
-447
-448
-449
-450
-451
-452
-453
-454
-455
-456
-457</pre>
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/main/argv_options.rb', line 425</span>
+      <pre class="code"><span class="info file"># File 'documented/main/argv_options.rb', line 340</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_handle_dragonrealms_connection'>handle_dragonrealms_connection</span><span class='lparen'>(</span><span class='id identifier rubyid_processed_options'>processed_options</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--platinum</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -559,85 +522,30 @@
       <div class="method_details ">
   <h3 class="signature " id="handle_explicit_game_connection-class_method">
   
-    .<strong>handle_explicit_game_connection</strong>(arg, processed_options)  &#x21d2; <tt>void</tt> 
+    .<strong>handle_explicit_game_connection</strong>(arg, processed_options)  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method modifies the processed_options hash.</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Handles explicit game connection parameters from command line arguments.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>arg</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The game connection argument.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>processed_options</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The processed command line options.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-359
-360
-361
-362
-363
-364
-365
-366
-367</pre>
+274
+275
+276
+277
+278
+279
+280
+281
+282</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/main/argv_options.rb', line 359</span>
+      <pre class="code"><span class="info file"># File 'documented/main/argv_options.rb', line 274</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_handle_explicit_game_connection'>handle_explicit_game_connection</span><span class='lparen'>(</span><span class='id identifier rubyid_arg'>arg</span><span class='comma'>,</span> <span class='id identifier rubyid_processed_options'>processed_options</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_processed_options'>processed_options</span><span class='lbracket'>[</span><span class='symbol'>:game_host</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_processed_options'>processed_options</span><span class='lbracket'>[</span><span class='symbol'>:game_port</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>ARGV</span><span class='lbracket'>[</span><span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span><span class='lparen'>(</span><span class='id identifier rubyid_arg'>arg</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>:</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -668,25 +576,25 @@
       <pre class="lines">
 
 
-408
-409
-410
-411
-412
-413
-414
-415
-416
-417
-418
-419
-420
-421
-422
-423</pre>
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/main/argv_options.rb', line 408</span>
+      <pre class="code"><span class="info file"># File 'documented/main/argv_options.rb', line 323</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_handle_fallen_connection'>handle_fallen_connection</span><span class='lparen'>(</span><span class='id identifier rubyid_processed_options'>processed_options</span><span class='rparen'>)</span>
   <span class='gvar'>$platinum</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -724,34 +632,34 @@
       <pre class="lines">
 
 
-369
-370
-371
-372
-373
-374
-375
-376
-377
-378
-379
-380
-381
-382
-383
-384
-385
-386
-387
-388
-389
-390
-391
-392
-393</pre>
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/main/argv_options.rb', line 369</span>
+      <pre class="code"><span class="info file"># File 'documented/main/argv_options.rb', line 284</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_handle_gemstone_connection'>handle_gemstone_connection</span><span class='lparen'>(</span><span class='id identifier rubyid_processed_options'>processed_options</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'>ARGV</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--platinum</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -798,21 +706,21 @@
       <pre class="lines">
 
 
-395
-396
-397
-398
-399
-400
-401
-402
-403
-404
-405
-406</pre>
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/main/argv_options.rb', line 395</span>
+      <pre class="code"><span class="info file"># File 'documented/main/argv_options.rb', line 310</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_handle_shattered_connection'>handle_shattered_connection</span><span class='lparen'>(</span><span class='id identifier rubyid_processed_options'>processed_options</span><span class='rparen'>)</span>
   <span class='gvar'>$platinum</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -836,9 +744,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:49 2026 by
+  Generated on Sun May 10 17:26:23 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

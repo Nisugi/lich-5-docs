@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::GUI::ManualLoginTab";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,33 +96,28 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/gui/manual_login_tab.rb</dd>
+    <dd>documented/common/gui/manual_login_tab.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a manual login tab in the GUI.</p>
-
+    <p>Represents a manual login tab in the GUI.</p>
+<p>This class handles user authentication and UI elements for manual login.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Creating a manual login tab</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_tab'>tab</span> <span class='op'>=</span> <span class='const'>ManualLoginTab</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::GUI::ManualLoginTab#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_parent'>parent</span><span class='comma'>,</span> <span class='id identifier rubyid_entry_data'>entry_data</span><span class='comma'>,</span> <span class='id identifier rubyid_theme_state'>theme_state</span><span class='comma'>,</span> <span class='id identifier rubyid_default_icon'>default_icon</span><span class='comma'>,</span> <span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">for related GUI components.</a></span></li>
+    
+  </ul>
 
 </div>
 
@@ -156,9 +153,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Initializes a new ManualLoginTab.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Initializes a new ManualLoginTab instance.</p></div></span>
   
 </li>
 
@@ -166,7 +161,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#refresh_entry_data-instance_method" title="#refresh_entry_data (instance method)">#<strong>refresh_entry_data</strong>  &#x21d2; void </a>
+      <a href="#refresh_entry_data-instance_method" title="#refresh_entry_data (instance method)">#<strong>refresh_entry_data</strong>  &#x21d2; Object </a>
     
 
     
@@ -180,9 +175,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Refreshes the entry data from the YAML file.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -204,9 +197,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the tab widget for the manual login.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the tab widget for this manual login.</p></div></span>
   
 </li>
 
@@ -214,7 +205,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#ui_elements-instance_method" title="#ui_elements (instance method)">#<strong>ui_elements</strong>  &#x21d2; Hash </a>
+      <a href="#ui_elements-instance_method" title="#ui_elements (instance method)">#<strong>ui_elements</strong>  &#x21d2; Object </a>
     
 
     
@@ -228,9 +219,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the UI elements of the manual login tab.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -252,9 +241,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Updates the entry data with new values.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Updates the entry data for the login tab.</p></div></span>
   
 </li>
 
@@ -276,14 +263,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Updates the theme state of the manual login tab.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Updates the theme state of the UI elements.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 <div id="constructor_details" class="method_details_list">
@@ -300,9 +286,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Initializes a new ManualLoginTab.</p>
-
+    <p>Initializes a new ManualLoginTab instance.</p>
 
   </div>
 </div>
@@ -315,14 +299,12 @@
         <span class='name'>parent</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Gtk::Widget</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The parent widget.</p>
-</div>
+        <div class='inline'><p>the parent widget for this tab</p></div>
       
     </li>
   
@@ -331,14 +313,12 @@
         <span class='name'>entry_data</span>
       
       
-        <span class='type'>(<tt>Array</tt>)</span>
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span>&gt;</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The entry data for the tab.</p>
-</div>
+        <div class='inline'><p>initial entry data for the login</p></div>
       
     </li>
   
@@ -352,9 +332,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The current theme state.</p>
-</div>
+        <div class='inline'><p>indicates if dark theme is enabled</p></div>
       
     </li>
   
@@ -363,14 +341,12 @@
         <span class='name'>default_icon</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+        <span class='type'>(<tt>Gtk::Icon</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The default icon for the tab.</p>
-</div>
+        <div class='inline'><p>default icon for the tab</p></div>
       
     </li>
   
@@ -384,9 +360,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory for data storage.</p>
-</div>
+        <div class='inline'><p>directory for storing data</p></div>
       
     </li>
   
@@ -402,9 +376,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Optional callbacks for events.</p>
-</div>
+        <div class='inline'><p>optional callbacks for various events</p></div>
       
     </li>
   
@@ -420,9 +392,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The state of autosorting.</p>
-</div>
+        <div class='inline'><p>indicates if entries should be autosorted</p></div>
       
     </li>
   
@@ -435,8 +405,6 @@
       <pre class="lines">
 
 
-23
-24
 25
 26
 27
@@ -455,10 +423,12 @@
 40
 41
 42
-43</pre>
+43
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/manual_login_tab.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/manual_login_tab.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_parent'>parent</span><span class='comma'>,</span> <span class='id identifier rubyid_entry_data'>entry_data</span><span class='comma'>,</span> <span class='id identifier rubyid_theme_state'>theme_state</span><span class='comma'>,</span> <span class='id identifier rubyid_default_icon'>default_icon</span><span class='comma'>,</span> <span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_callbacks'>callbacks</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_autosort_state'>autosort_state</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='ivar'>@parent</span> <span class='op'>=</span> <span class='id identifier rubyid_parent'>parent</span>
@@ -496,67 +466,38 @@
       <div class="method_details first">
   <h3 class="signature first" id="refresh_entry_data-instance_method">
   
-    #<strong>refresh_entry_data</strong>  &#x21d2; <tt>void</tt> 
+    #<strong>refresh_entry_data</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Refreshes the entry data from the YAML file.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If there is an error refreshing the data.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
+68
+69
+70
 71
 72
 73
 74
 75
 76
-77
-78
-79
-80</pre>
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/manual_login_tab.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/manual_login_tab.rb', line 68</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_refresh_entry_data'>refresh_entry_data</span>
   <span class='kw'>begin</span>
     <span class='comment'># Reload data from YAML file using consistent autosort state
-</span>    <span class='ivar'>@entry_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_saved_entries'><span class='object_link'><a href="YamlState.html#load_saved_entries-class_method" title="Lich::Common::GUI::YamlState.load_saved_entries (method)">load_saved_entries</a></span></span><span class='lparen'>(</span><span class='ivar'>@data_dir</span><span class='comma'>,</span> <span class='ivar'>@autosort_state</span><span class='rparen'>)</span>
+</span>    <span class='ivar'>@entry_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_saved_entries'><span class='object_link'><a href="../Authentication/EntryStore.html#load_saved_entries-class_method" title="Lich::Common::Authentication::EntryStore.load_saved_entries (method)">load_saved_entries</a></span></span><span class='lparen'>(</span><span class='ivar'>@data_dir</span><span class='comma'>,</span> <span class='ivar'>@autosort_state</span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to refresh entry data in ManualLoginTab: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to refresh entry data in ManualLoginTab: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='comment'># Fallback to empty array to prevent crashes
 </span>    <span class='ivar'>@entry_data</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='kw'>end</span>
@@ -577,9 +518,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the tab widget for the manual login.</p>
-
+    <p>Returns the tab widget for this manual login.</p>
 
   </div>
 </div>
@@ -596,9 +535,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The tab widget.</p>
-</div>
+        <div class='inline'><p>the tab widget</p></div>
       
     </li>
   
@@ -610,12 +547,12 @@
       <pre class="lines">
 
 
-47
-48
-49</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/manual_login_tab.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/manual_login_tab.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tab_widget'>tab_widget</span>
   <span class='ivar'>@game_entry_tab</span>
@@ -628,42 +565,13 @@
       <div class="method_details ">
   <h3 class="signature " id="ui_elements-instance_method">
   
-    #<strong>ui_elements</strong>  &#x21d2; <tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt> 
+    #<strong>ui_elements</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the UI elements of the manual login tab.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>A hash containing the UI elements.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -701,9 +609,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Updates the entry data with new values.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Updates the entry data for the login tab.</p>
 
   </div>
 </div>
@@ -716,37 +622,17 @@
         <span class='name'>new_entry_data</span>
       
       
-        <span class='type'>(<tt>Array</tt>)</span>
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span>&gt;</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The new entry data to set.</p>
-</div>
+        <div class='inline'><p>the new entry data to set</p></div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If there is an error updating the data.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -754,6 +640,10 @@
       <pre class="lines">
 
 
+82
+83
+84
+85
 86
 87
 88
@@ -763,26 +653,22 @@
 92
 93
 94
-95
-96
-97
-98
-99</pre>
+95</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/manual_login_tab.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/manual_login_tab.rb', line 82</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_entry_data'>update_entry_data</span><span class='lparen'>(</span><span class='id identifier rubyid_new_entry_data'>new_entry_data</span><span class='rparen'>)</span>
   <span class='kw'>begin</span>
     <span class='comment'># Validate input parameter
 </span>    <span class='kw'>unless</span> <span class='id identifier rubyid_new_entry_data'>new_entry_data</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Invalid entry data type in ManualLoginTab.update_entry_data: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_new_entry_data'>new_entry_data</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Invalid entry data type in ManualLoginTab.update_entry_data: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_new_entry_data'>new_entry_data</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>return</span>
     <span class='kw'>end</span>
 
     <span class='ivar'>@entry_data</span> <span class='op'>=</span> <span class='id identifier rubyid_new_entry_data'>new_entry_data</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to update entry data in ManualLoginTab: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to update entry data in ManualLoginTab: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='comment'># Keep existing data on error
 </span>  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -802,9 +688,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Updates the theme state of the manual login tab.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Updates the theme state of the UI elements.</p>
 
   </div>
 </div>
@@ -822,9 +706,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The new theme state.</p>
-</div>
+        <div class='inline'><p>the new theme state</p></div>
       
     </li>
   
@@ -859,9 +741,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:19:01 2026 by
+  Generated on Sun May 10 17:26:33 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

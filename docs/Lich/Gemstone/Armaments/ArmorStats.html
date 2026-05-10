@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Armaments::ArmorStats";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,44 +80,29 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/armaments/armor_stats.rb</dd>
+    <dd>documented/gemstone/armaments/armor_stats.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Static array of armor stats indexed by armor identifiers. Each armor entry contains metadata such as category, alternative names, size and evade modifiers, and base weight.</p>
-
-<p>hindrances/Training Requirements Array:</p>
-<dl class="rdoc-list label-list"><dt>0
-<dd><ul><li>
-<p>nil (Act Pen)     [1] - Minor Spiritual         [2] - Major Spiritual        [3] - Cleric Base</p>
-</li></ul>
-</dd><dt>4
-<dd><ul><li>
-<p>Minor Elemental   [5] - Major Elemental         [6] - Ranger Base            [7] - Sorcerer Base</p>
-</li></ul>
-</dd><dt>8
-<dd><ul><li>
-<p>Old Empath Base   [9] - Wizard Base             [10] - Bard Base             [11] - Empath Base</p>
-</li></ul>
-</dd><dt>12
-<dd><ul><li>
-<p>Minor Mental     [13] - Major Mental           [14] - Savant Base           [15] - nil</p>
-</li></ul>
-</dd><dt>16
-<dd><ul><li>
-<p>Paladin Base     [17] - Arcane Spells          [18] - nil                   [19] - Lost Arts</p>
-</li></ul>
-</dd></dl>
-
+    <p>Provides armor statistics and related functionalities.</p>
+<p>This module contains a static array of armor stats indexed by armor identifiers.
+Each armor entry contains metadata such as category, alternative names, size and evade modifiers, and base weight.</p>
 
   </div>
 </div>
 <div class="tags">
   
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../Armaments.html" title="Lich::Gemstone::Armaments (module)">Lich::Gemstone::Armaments</a></span></li>
+    
+  </ul>
 
 </div>
   
@@ -129,32 +116,15 @@
         <dt id="armor_stats-classvariable" class="">@@armor_stats =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Static array of armor stats indexed by armor identifiers. Each armor entry contains metadata such as category, alternative names, size and evade modifiers, and base weight.</p>
-
-<p>hindrances/Training Requirements Array:</p>
-<dl class="rdoc-list label-list"><dt>0
-<dd><ul><li>
-<p>nil (Act Pen)     [1] - Minor Spiritual         [2] - Major Spiritual        [3] - Cleric Base</p>
-</li></ul>
-</dd><dt>4
-<dd><ul><li>
-<p>Minor Elemental   [5] - Major Elemental         [6] - Ranger Base            [7] - Sorcerer Base</p>
-</li></ul>
-</dd><dt>8
-<dd><ul><li>
-<p>Old Empath Base   [9] - Wizard Base             [10] - Bard Base             [11] - Empath Base</p>
-</li></ul>
-</dd><dt>12
-<dd><ul><li>
-<p>Minor Mental     [13] - Major Mental           [14] - Savant Base           [15] - nil</p>
-</li></ul>
-</dd><dt>16
-<dd><ul><li>
-<p>Paladin Base     [17] - Arcane Spells          [18] - nil                   [19] - Lost Arts</p>
-</li></ul>
-</dd></dl>
-
+    <p>Static array of armor stats indexed by armor identifiers. Each armor
+entry contains metadata such as category, alternative names, size and
+evade modifiers, and base weight.</p>
+<p>hindrances/Training Requirements Array:
+[0] - nil (Act Pen)     [1] - Minor Spiritual         [2] - Major Spiritual        [3] - Cleric Base
+[4] - Minor Elemental   [5] - Major Elemental         [6] - Ranger Base            [7] - Sorcerer Base
+[8] - Old Empath Base   [9] - Wizard Base             [10] - Bard Base             [11] - Empath Base
+[12] - Minor Mental     [13] - Major Mental           [14] - Savant Base           [15] - nil
+[16] - Paladin Base     [17] - Arcane Spells          [18] - nil                   [19] - Lost Arts</p>
 
   </div>
 </div>
@@ -518,9 +488,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns all aliases for a given armor name.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves all aliases for a given armor name.</p></div></span>
   
 </li>
 
@@ -542,9 +510,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns a list of unique base armor names.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves all unique base names of armor from the armor stats.</p></div></span>
   
 </li>
 
@@ -566,9 +532,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns a list of unique armor categories.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves all unique armor categories from the armor stats.</p></div></span>
   
 </li>
 
@@ -590,9 +554,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the category type for a given armor name.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the category type for a given armor name.</p></div></span>
   
 </li>
 
@@ -614,9 +576,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Compares two armors and returns their attributes.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Compares two armors and returns their attributes.</p></div></span>
   
 </li>
 
@@ -638,9 +598,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Finds armor data by name.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Finds armor data by name.</p></div></span>
   
 </li>
 
@@ -662,9 +620,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Finds all armor data matching the given name.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Finds all armor data matching the given name.</p></div></span>
   
 </li>
 
@@ -686,9 +642,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Finds armor data by armor sub-group number.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Finds armor data by armor sub-group number.</p></div></span>
   
 </li>
 
@@ -710,9 +664,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Finds the coverage type based on the armor sub-group number.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Finds the coverage type for a given armor sub-group number.</p></div></span>
   
 </li>
 
@@ -720,7 +672,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#find_crit_divisor-class_method" title="find_crit_divisor (class method)">.<strong>find_crit_divisor</strong>(type: nil, ag: nil, asg: nil)  &#x21d2; Integer </a>
+      <a href="#find_crit_divisor-class_method" title="find_crit_divisor (class method)">.<strong>find_crit_divisor</strong>(type: nil, ag: nil, asg: nil)  &#x21d2; Integer<sup>?</sup> </a>
     
 
     
@@ -734,9 +686,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Finds the critical divisor based on armor type, armor group, or armor sub-group.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Finds the critical divisor based on armor type, armor group, or armor sub-group.</p></div></span>
   
 </li>
 
@@ -758,9 +708,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Lists all armor data by type.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Lists all armor data of a specific type.</p></div></span>
   
 </li>
 
@@ -782,9 +730,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns a list of all armor names.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves all unique armor names from the armor stats.</p></div></span>
   
 </li>
 
@@ -806,9 +752,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns all names for a given armor sub-group.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves all names for a specific armor sub-group.</p></div></span>
   
 </li>
 
@@ -830,9 +774,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns a formatted string representation of the armor data.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Formats and returns a pretty string representation of the armor data.</p></div></span>
   
 </li>
 
@@ -854,9 +796,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns a detailed formatted string representation of the armor data.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Formats and returns a detailed string representation of the armor data.</p></div></span>
   
 </li>
 
@@ -878,9 +818,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Searches for armor based on provided filters.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Searches for armor based on provided filters.</p></div></span>
   
 </li>
 
@@ -902,14 +840,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the provided name is a valid armor name.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Validates if the provided name corresponds to an existing armor name.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -929,22 +866,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns all aliases for a given armor name.</p>
-
+    <p>Retrieves all aliases for a given armor name.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_aliases_for'>aliases_for</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>normal clothing</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; [&quot;normal clothing&quot;, &quot;clothing&quot;, ...]</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -957,9 +884,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the armor</p>
-</div>
+        <div class='inline'><p>the name of the armor</p></div>
       
     </li>
   
@@ -976,9 +901,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of aliases for the specified armor</p>
-</div>
+        <div class='inline'><p>an array of aliases for the specified armor</p></div>
       
     </li>
   
@@ -990,13 +913,13 @@
       <pre class="lines">
 
 
-630
-631
-632
-633</pre>
+612
+613
+614
+615</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 630</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 612</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_aliases_for'>aliases_for</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_armor'>armor</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1018,22 +941,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns a list of unique base armor names.</p>
-
+    <p>Retrieves all unique base names of armor from the armor stats.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_base_names'>base_names</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='comment'># =&gt; [:normal_clothing, :robes, ...]</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1045,9 +958,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of unique base armor names</p>
-</div>
+        <div class='inline'><p>an array of unique base names</p></div>
       
     </li>
   
@@ -1059,14 +970,14 @@
       <pre class="lines">
 
 
-433
-434
-435
-436
-437</pre>
+423
+424
+425
+426
+427</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 433</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 423</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_base_names'>base_names</span>
   <span class='cvar'>@@armor_stats</span><span class='period'>.</span><span class='id identifier rubyid_flat_map'>flat_map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid__'>_</span><span class='comma'>,</span> <span class='id identifier rubyid_subgroups'>subgroups</span><span class='op'>|</span>
@@ -1089,22 +1000,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns a list of unique armor categories.</p>
-
+    <p>Retrieves all unique armor categories from the armor stats.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_categories'>categories</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='comment'># =&gt; [:normal_clothing, :robes, ...]</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1116,9 +1017,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of unique armor categories</p>
-</div>
+        <div class='inline'><p>an array of unique armor categories</p></div>
       
     </li>
   
@@ -1130,12 +1029,12 @@
       <pre class="lines">
 
 
-424
-425
-426</pre>
+415
+416
+417</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 424</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 415</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_categories'>categories</span>
   <span class='cvar'>@@armor_stats</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_flat_map'>flat_map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:values</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='id identifier rubyid__1'>_1</span><span class='lbracket'>[</span><span class='symbol'>:base_name</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span>
@@ -1156,22 +1055,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the category type for a given armor name.</p>
-
+    <p>Retrieves the category type for a given armor name.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_category_for'>category_for</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>normal clothing</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; :cloth</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1184,9 +1073,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the armor</p>
-</div>
+        <div class='inline'><p>the name of the armor</p></div>
       
     </li>
   
@@ -1203,9 +1090,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The armor type or nil if not found</p>
-</div>
+        <div class='inline'><p>the armor type if found, otherwise nil</p></div>
       
     </li>
   
@@ -1217,15 +1102,15 @@
       <pre class="lines">
 
 
-516
-517
-518
-519
-520
-521</pre>
+501
+502
+503
+504
+505
+506</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 516</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 501</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_category_for'>category_for</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
@@ -1249,22 +1134,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Compares two armors and returns their attributes.</p>
-
+    <p>Compares two armors and returns their attributes.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_compare'>compare</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>normal clothing</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>robes</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; { ... }</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1277,9 +1152,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the first armor</p>
-</div>
+        <div class='inline'><p>the name of the first armor</p></div>
       
     </li>
   
@@ -1293,9 +1166,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the second armor</p>
-</div>
+        <div class='inline'><p>the name of the second armor</p></div>
       
     </li>
   
@@ -1312,9 +1183,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash with comparison data or nil if either armor is not found</p>
-</div>
+        <div class='inline'><p>a hash containing the comparison data or nil if either armor is not found</p></div>
       
     </li>
   
@@ -1326,27 +1195,27 @@
       <pre class="lines">
 
 
-642
-643
-644
-645
-646
-647
-648
-649
-650
-651
-652
-653
-654
-655
-656
-657
-658
-659</pre>
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 642</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 623</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_compare'>compare</span><span class='lparen'>(</span><span class='id identifier rubyid_name1'>name1</span><span class='comma'>,</span> <span class='id identifier rubyid_name2'>name2</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_a1'>a1</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_name1'>name1</span><span class='rparen'>)</span>
@@ -1382,22 +1251,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Finds armor data by name.</p>
-
+    <p>Finds armor data by name.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>normal clothing</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; { ... }</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1410,9 +1269,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the armor</p>
-</div>
+        <div class='inline'><p>the name of the armor to find</p></div>
       
     </li>
   
@@ -1429,9 +1286,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The armor data or nil if not found</p>
-</div>
+        <div class='inline'><p>the armor data if found, otherwise nil</p></div>
       
     </li>
   
@@ -1443,23 +1298,23 @@
       <pre class="lines">
 
 
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
 445
 446
-447
-448
-449
-450
-451
-452
-453
-454
-455
-456
-457
-458</pre>
+447</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 445</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 434</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
@@ -1491,22 +1346,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Finds all armor data matching the given name.</p>
-
+    <p>Finds all armor data matching the given name.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_find_all'>find_all</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>robe</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; [{ ... }, { ... }]</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1519,9 +1364,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the armor</p>
-</div>
+        <div class='inline'><p>the name of the armor to find</p></div>
       
     </li>
   
@@ -1538,9 +1381,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of armor data or nil if not found</p>
-</div>
+        <div class='inline'><p>an array of matching armor data or nil if none found</p></div>
       
     </li>
   
@@ -1552,22 +1393,22 @@
       <pre class="lines">
 
 
-466
-467
-468
-469
-470
-471
-472
-473
-474
-475
-476
-477
-478</pre>
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 466</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 454</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_all'>find_all</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
@@ -1598,22 +1439,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Finds armor data by armor sub-group number.</p>
-
+    <p>Finds armor data by armor sub-group number.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_find_by_asg'>find_by_asg</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span> <span class='comment'># =&gt; { ... }</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1626,9 +1457,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The armor sub-group number</p>
-</div>
+        <div class='inline'><p>the armor sub-group number</p></div>
       
     </li>
   
@@ -1645,9 +1474,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The armor data or nil if not found</p>
-</div>
+        <div class='inline'><p>the armor data if found, otherwise nil</p></div>
       
     </li>
   
@@ -1659,21 +1486,21 @@
       <pre class="lines">
 
 
+388
+389
+390
+391
+392
+393
+394
 395
 396
 397
 398
-399
-400
-401
-402
-403
-404
-405
-406</pre>
+399</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 395</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 388</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_by_asg'>find_by_asg</span><span class='lparen'>(</span><span class='id identifier rubyid_asg_number'>asg_number</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_asg_number'>asg_number</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Integer</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_asg_number'>asg_number</span><span class='period'>.</span><span class='id identifier rubyid_between?'>between?</span><span class='lparen'>(</span><span class='int'>1</span><span class='comma'>,</span> <span class='int'>20</span><span class='rparen'>)</span>
@@ -1703,23 +1530,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Finds the coverage type based on the armor sub-group number.</p>
-
+    <p>Finds the coverage type for a given armor sub-group number.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_find_coverage'>find_coverage</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span> <span class='comment'># =&gt; :torso
-</span><span class='id identifier rubyid_find_coverage'>find_coverage</span><span class='lparen'>(</span><span class='int'>6</span><span class='rparen'>)</span> <span class='comment'># =&gt; :torso_and_arms</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1732,9 +1548,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The armor sub-group number</p>
-</div>
+        <div class='inline'><p>the armor sub-group number</p></div>
       
     </li>
   
@@ -1751,9 +1565,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The coverage type or nil if not found</p>
-</div>
+        <div class='inline'><p>the coverage type (e.g., :torso, :torso_and_arms) or nil if not found</p></div>
       
     </li>
   
@@ -1765,6 +1577,12 @@
       <pre class="lines">
 
 
+367
+368
+369
+370
+371
+372
 373
 374
 375
@@ -1773,16 +1591,10 @@
 378
 379
 380
-381
-382
-383
-384
-385
-386
-387</pre>
+381</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 373</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 367</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_coverage'>find_coverage</span><span class='lparen'>(</span><span class='id identifier rubyid_asg'>asg</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_asg'>asg</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Integer</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_asg'>asg</span><span class='period'>.</span><span class='id identifier rubyid_between?'>between?</span><span class='lparen'>(</span><span class='int'>1</span><span class='comma'>,</span> <span class='int'>20</span><span class='rparen'>)</span>
@@ -1807,7 +1619,7 @@
       <div class="method_details ">
   <h3 class="signature " id="find_crit_divisor-class_method">
   
-    .<strong>find_crit_divisor</strong>(type: nil, ag: nil, asg: nil)  &#x21d2; <tt>Integer</tt> 
+    .<strong>find_crit_divisor</strong>(type: nil, ag: nil, asg: nil)  &#x21d2; <tt>Integer</tt><sup>?</sup> 
   
 
   
@@ -1815,24 +1627,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Finds the critical divisor based on armor type, armor group, or armor sub-group.</p>
-
+    <p>Finds the critical divisor based on armor type, armor group, or armor sub-group.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_find_crit_divisor'>find_crit_divisor</span><span class='lparen'>(</span><span class='label'>type:</span> <span class='symbol'>:cloth</span><span class='rparen'>)</span>
-<span class='id identifier rubyid_find_crit_divisor'>find_crit_divisor</span><span class='lparen'>(</span><span class='label'>ag:</span> <span class='int'>1</span><span class='rparen'>)</span>
-<span class='id identifier rubyid_find_crit_divisor'>find_crit_divisor</span><span class='lparen'>(</span><span class='label'>asg:</span> <span class='int'>5</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1847,9 +1647,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The type of armor (e.g., :cloth, :leather)</p>
-</div>
+        <div class='inline'><p>the type of armor (e.g., :cloth, :leather)</p></div>
       
     </li>
   
@@ -1865,9 +1663,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The armor group number</p>
-</div>
+        <div class='inline'><p>the armor group number</p></div>
       
     </li>
   
@@ -1883,9 +1679,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The armor sub-group number</p>
-</div>
+        <div class='inline'><p>the armor sub-group number</p></div>
       
     </li>
   
@@ -1897,14 +1691,12 @@
     <li>
       
       
-        <span class='type'>(<tt>Integer</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The critical divisor</p>
-</div>
+        <div class='inline'><p>the critical divisor for the specified parameters</p></div>
       
     </li>
   
@@ -1920,9 +1712,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If none of the parameters are provided</p>
-</div>
+        <div class='inline'><p>if none of the parameters are provided</p></div>
       
     </li>
   
@@ -1934,15 +1724,15 @@
       <pre class="lines">
 
 
+355
+356
+357
+358
 359
-360
-361
-362
-363
-364</pre>
+360</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 359</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 355</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_crit_divisor'>find_crit_divisor</span><span class='lparen'>(</span><span class='label'>type:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>ag:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>asg:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='lbrace'>{</span> <span class='label'>cloth:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>leather:</span> <span class='int'>6</span><span class='comma'>,</span> <span class='label'>scale:</span> <span class='int'>7</span><span class='comma'>,</span> <span class='label'>chain:</span> <span class='int'>9</span><span class='comma'>,</span> <span class='label'>plate:</span> <span class='int'>11</span> <span class='rbrace'>}</span><span class='lbracket'>[</span><span class='id identifier rubyid_type'>type</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1966,22 +1756,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Lists all armor data by type.</p>
-
+    <p>Lists all armor data of a specific type.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_list_by_type'>list_by_type</span><span class='lparen'>(</span><span class='symbol'>:cloth</span><span class='rparen'>)</span> <span class='comment'># =&gt; [{ ... }, { ... }]</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1994,9 +1774,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The type of armor (e.g., :cloth, :leather)</p>
-</div>
+        <div class='inline'><p>the type of armor to filter by</p></div>
       
     </li>
   
@@ -2013,9 +1791,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of armor data of the specified type</p>
-</div>
+        <div class='inline'><p>an array of armor data of the specified type</p></div>
       
     </li>
   
@@ -2027,14 +1803,14 @@
       <pre class="lines">
 
 
-486
-487
-488
-489
-490</pre>
+473
+474
+475
+476
+477</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 486</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 473</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_list_by_type'>list_by_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
   <span class='cvar'>@@armor_stats</span><span class='period'>.</span><span class='id identifier rubyid_flat_map'>flat_map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid__'>_</span><span class='comma'>,</span> <span class='id identifier rubyid_subgroups'>subgroups</span><span class='op'>|</span>
@@ -2057,22 +1833,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns a list of all armor names.</p>
-
+    <p>Retrieves all unique armor names from the armor stats.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_names'>names</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='comment'># =&gt; [&quot;normal clothing&quot;, &quot;robes&quot;, ...]</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2084,9 +1850,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of unique armor names</p>
-</div>
+        <div class='inline'><p>an array of unique armor names</p></div>
       
     </li>
   
@@ -2098,14 +1862,14 @@
       <pre class="lines">
 
 
-413
-414
-415
-416
-417</pre>
+405
+406
+407
+408
+409</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 413</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 405</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_names'>names</span>
   <span class='cvar'>@@armor_stats</span><span class='period'>.</span><span class='id identifier rubyid_flat_map'>flat_map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid__'>_</span><span class='comma'>,</span> <span class='id identifier rubyid_subgroups'>subgroups</span><span class='op'>|</span>
@@ -2128,22 +1892,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns all names for a given armor sub-group.</p>
-
+    <p>Retrieves all names for a specific armor sub-group.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_names_in_asg'>names_in_asg</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span> <span class='comment'># =&gt; [&quot;normal clothing&quot;, &quot;clothing&quot;, ...]</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2151,14 +1905,12 @@
         <span class='name'>asg</span>
       
       
-        <span class='type'>(<tt>Integer</tt>, <tt>Symbol</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The armor sub-group number or symbol</p>
-</div>
+        <div class='inline'><p>the armor sub-group number</p></div>
       
     </li>
   
@@ -2175,9 +1927,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of names for the specified armor sub-group</p>
-</div>
+        <div class='inline'><p>an array of names for the specified armor sub-group</p></div>
       
     </li>
   
@@ -2189,20 +1939,20 @@
       <pre class="lines">
 
 
-498
-499
-500
-501
-502
-503
-504
-505
-506
-507
-508</pre>
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 498</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 484</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_names_in_asg'>names_in_asg</span><span class='lparen'>(</span><span class='id identifier rubyid_asg'>asg</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_asg_sym'>asg_sym</span> <span class='op'>=</span> <span class='id identifier rubyid_asg'>asg</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Integer</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='symbol'>:&quot;asg_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_asg'>asg</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='id identifier rubyid_asg'>asg</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
@@ -2231,22 +1981,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns a formatted string representation of the armor data.</p>
-
+    <p>Formats and returns a pretty string representation of the armor data.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_pretty'>pretty</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>normal clothing</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; &quot;Armor: normal clothing (ASG 1, AG 1, Cloth) ...&quot;</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2259,9 +1999,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the armor</p>
-</div>
+        <div class='inline'><p>the name of the armor to format</p></div>
       
     </li>
   
@@ -2278,9 +2016,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A formatted string with armor details</p>
-</div>
+        <div class='inline'><p>a formatted string representation of the armor data</p></div>
       
     </li>
   
@@ -2292,6 +2028,22 @@
       <pre class="lines">
 
 
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
 529
 530
 531
@@ -2311,26 +2063,10 @@
 545
 546
 547
-548
-549
-550
-551
-552
-553
-554
-555
-556
-557
-558
-559
-560
-561
-562
-563
-564</pre>
+548</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 529</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 513</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pretty'>pretty</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_armor'>armor</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -2384,22 +2120,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns a detailed formatted string representation of the armor data.</p>
-
+    <p>Formats and returns a detailed string representation of the armor data.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_pretty_long'>pretty_long</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>normal clothing</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; &quot;Type: Cloth ...&quot;</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2412,9 +2138,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the armor</p>
-</div>
+        <div class='inline'><p>the name of the armor to format</p></div>
       
     </li>
   
@@ -2431,9 +2155,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A detailed formatted string with armor details</p>
-</div>
+        <div class='inline'><p>a detailed formatted string representation of the armor data</p></div>
       
     </li>
   
@@ -2445,6 +2167,23 @@
       <pre class="lines">
 
 
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
 572
 573
 574
@@ -2478,27 +2217,10 @@
 602
 603
 604
-605
-606
-607
-608
-609
-610
-611
-612
-613
-614
-615
-616
-617
-618
-619
-620
-621
-622</pre>
+605</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 572</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 555</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pretty_long'>pretty_long</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_armor'>armor</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -2567,22 +2289,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Searches for armor based on provided filters.</p>
-
+    <p>Searches for armor based on provided filters.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>robe</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>max_weight:</span> <span class='int'>10</span><span class='rparen'>)</span> <span class='comment'># =&gt; [{ ... }]</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2597,9 +2309,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash of filters to apply (e.g., name, type, max_weight)</p>
-</div>
+        <div class='inline'><p>a hash of filters to apply to the search</p></div>
       
     </li>
   
@@ -2616,9 +2326,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of armor data matching the filters</p>
-</div>
+        <div class='inline'><p>an array of armor data matching the filters</p></div>
       
     </li>
   
@@ -2630,22 +2338,22 @@
       <pre class="lines">
 
 
-667
-668
-669
-670
-671
-672
-673
-674
-675
-676
-677
-678
-679</pre>
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 667</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 647</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='id identifier rubyid_filters'>filters</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='cvar'>@@armor_stats</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_flat_map'>flat_map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:values</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_armor'>armor</span><span class='op'>|</span>
@@ -2676,22 +2384,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the provided name is a valid armor name.</p>
-
+    <p>Validates if the provided name corresponds to an existing armor name.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_valid_name?'>valid_name?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>normal clothing</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; true</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2704,9 +2402,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the armor</p>
-</div>
+        <div class='inline'><p>the name to validate</p></div>
       
     </li>
   
@@ -2723,9 +2419,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the name is valid, false otherwise</p>
-</div>
+        <div class='inline'><p>true if the name is valid, false otherwise</p></div>
       
     </li>
   
@@ -2737,13 +2431,13 @@
       <pre class="lines">
 
 
-687
-688
-689
-690</pre>
+666
+667
+668
+669</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 687</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments/armor_stats.rb', line 666</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_valid_name?'>valid_name?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
@@ -2759,9 +2453,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:54 2026 by
+  Generated on Sun May 10 17:26:26 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::CLI::CliOptionsRegistry";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,33 +96,29 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/cli/cli_options_registry.rb</dd>
+    <dd>documented/common/cli/cli_options_registry.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Manages command-line options and their configurations.</p>
-
+    <p>Manages command-line options and their configurations.</p>
+<p>This class provides methods to define, retrieve, and validate
+command-line options for the application.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Registering an option</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'>CliOptionsRegistry</span><span class='period'>.</span><span class='id identifier rubyid_option'><span class='object_link'><a href="#option-class_method" title="Lich::Common::CLI::CliOptionsRegistry.option (method)">option</a></span></span><span class='lparen'>(</span><span class='symbol'>:verbose</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='symbol'>:boolean</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='kw'>false</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../CLI.html" title="Lich::Common::CLI (module)">Lich::Common::CLI</a></span></li>
+    
+  </ul>
 
 </div>
 
@@ -154,9 +152,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns a duplicate of all registered options.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns a duplicate of all defined options.</p></div></span>
   
 </li>
 
@@ -178,9 +174,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the handler for a specified option.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the handler for a specified option.</p></div></span>
   
 </li>
 
@@ -202,9 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the configuration for a specified option.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the configuration for a specified option.</p></div></span>
   
 </li>
 
@@ -226,9 +218,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Registers a command-line option with its configuration.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Defines a command-line option with its configuration.</p></div></span>
   
 </li>
 
@@ -250,9 +240,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Converts the registered options into a schema format.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Converts the defined options into a schema format.</p></div></span>
   
 </li>
 
@@ -274,14 +262,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Validates the parsed options against the registered options.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Validates the parsed options against defined configurations.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -301,26 +288,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns a duplicate of all registered options.</p>
-
+    <p>Returns a duplicate of all defined options.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Retrieving all options</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::CLI::CliOptionsRegistry (class)">CliOptionsRegistry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_all_options'>all_options</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -332,9 +305,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash of all options and their configurations.</p>
-</div>
+        <div class='inline'><p>a hash of all options and their configurations</p></div>
       
     </li>
   
@@ -372,26 +343,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the handler for a specified option.</p>
-
+    <p>Retrieves the handler for a specified option.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Getting an option handler</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_handler'>handler</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::CLI::CliOptionsRegistry (class)">CliOptionsRegistry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_handler'>get_handler</span><span class='lparen'>(</span><span class='symbol'>:verbose</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -404,9 +361,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the option whose handler is to be retrieved.</p>
-</div>
+        <div class='inline'><p>the name of the option to retrieve the handler for</p></div>
       
     </li>
   
@@ -423,9 +378,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The handler for the option or nil if not found.</p>
-</div>
+        <div class='inline'><p>the handler for the option or nil if not found</p></div>
       
     </li>
   
@@ -437,12 +390,12 @@
       <pre class="lines">
 
 
+57
 58
-59
-60</pre>
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/cli/cli_options_registry.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'documented/common/cli/cli_options_registry.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_handler'>get_handler</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='ivar'>@handlers</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
@@ -463,26 +416,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the configuration for a specified option.</p>
-
+    <p>Retrieves the configuration for a specified option.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Getting an option configuration</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_config'>config</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::CLI::CliOptionsRegistry (class)">CliOptionsRegistry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_option'>get_option</span><span class='lparen'>(</span><span class='symbol'>:verbose</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -495,9 +434,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the option to retrieve.</p>
-</div>
+        <div class='inline'><p>the name of the option to retrieve</p></div>
       
     </li>
   
@@ -514,9 +451,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The option configuration or nil if not found.</p>
-</div>
+        <div class='inline'><p>the option configuration or nil if not found</p></div>
       
     </li>
   
@@ -528,12 +463,12 @@
       <pre class="lines">
 
 
-41
 42
-43</pre>
+43
+44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/cli/cli_options_registry.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'documented/common/cli/cli_options_registry.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_option'>get_option</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
@@ -554,26 +489,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Registers a command-line option with its configuration.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Defines a command-line option with its configuration.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Registering a string option</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::CLI::CliOptionsRegistry (class)">CliOptionsRegistry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_option'>option</span><span class='lparen'>(</span><span class='symbol'>:name</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='symbol'>:string</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>default_name</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -586,9 +507,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the option.</p>
-</div>
+        <div class='inline'><p>the name of the option</p></div>
       
     </li>
   
@@ -604,9 +523,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The type of the option (default: :string).</p>
-</div>
+        <div class='inline'><p>the type of the option (default: :string)</p></div>
       
     </li>
   
@@ -615,16 +532,14 @@
         <span class='name'>default</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Object</tt>, <tt>nil</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>nil</tt>)</em>
       
       
         &mdash;
-        <div class='inline'>
-<p>The default value for the option.</p>
-</div>
+        <div class='inline'><p>the default value for the option</p></div>
       
     </li>
   
@@ -640,9 +555,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Indicates if the option is deprecated (default: false).</p>
-</div>
+        <div class='inline'><p>indicates if the option is deprecated (default: false)</p></div>
       
     </li>
   
@@ -651,16 +564,14 @@
         <span class='name'>deprecation_message</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>nil</tt>)</em>
       
       
         &mdash;
-        <div class='inline'>
-<p>The message to show when the option is used if deprecated.</p>
-</div>
+        <div class='inline'><p>message to show when the option is used</p></div>
       
     </li>
   
@@ -676,9 +587,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of options that are mutually exclusive to this option.</p>
-</div>
+        <div class='inline'><p>options that cannot be used together</p></div>
       
     </li>
   
@@ -687,16 +596,14 @@
         <span class='name'>handler</span>
       
       
-        <span class='type'>(<tt>Proc</tt>)</span>
+        <span class='type'>(<tt>Proc</tt>, <tt>nil</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>nil</tt>)</em>
       
       
         &mdash;
-        <div class='inline'>
-<p>An optional handler for the option.</p>
-</div>
+        <div class='inline'><p>a handler for the option</p></div>
       
     </li>
   
@@ -709,8 +616,6 @@
       <pre class="lines">
 
 
-24
-25
 26
 27
 28
@@ -719,10 +624,12 @@
 31
 32
 33
-34</pre>
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/cli/cli_options_registry.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'documented/common/cli/cli_options_registry.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_option'>option</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='symbol'>:string</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>deprecated:</span> <span class='kw'>false</span><span class='comma'>,</span>
            <span class='label'>deprecation_message:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>mutually_exclusive:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>handler:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
@@ -751,26 +658,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Converts the registered options into a schema format.</p>
-
+    <p>Converts the defined options into a schema format.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Getting the options schema</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_schema'>schema</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::CLI::CliOptionsRegistry (class)">CliOptionsRegistry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_opts_schema'>to_opts_schema</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -782,9 +675,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A schema representation of the options.</p>
-</div>
+        <div class='inline'><p>a schema representation of the options</p></div>
       
     </li>
   
@@ -796,6 +687,7 @@
       <pre class="lines">
 
 
+97
 98
 99
 100
@@ -804,11 +696,10 @@
 103
 104
 105
-106
-107</pre>
+106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/cli/cli_options_registry.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'documented/common/cli/cli_options_registry.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_opts_schema'>to_opts_schema</span>
   <span class='id identifier rubyid_schema'>schema</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -836,26 +727,13 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Validates the parsed options against the registered options.</p>
-
+    <p>Validates the parsed options against defined configurations.</p>
+<p>This method checks for mutually exclusive options and deprecation warnings.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Validating options</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_errors'>errors</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Common::CLI::CliOptionsRegistry (class)">CliOptionsRegistry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='id identifier rubyid_parsed_options'>parsed_options</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -863,14 +741,12 @@
         <span class='name'>parsed_opts</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>OpenStruct</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The parsed options object to validate.</p>
-</div>
+        <div class='inline'><p>the parsed command-line options</p></div>
       
     </li>
   
@@ -887,9 +763,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of error messages for invalid options.</p>
-</div>
+        <div class='inline'><p>an array of error messages, if any</p></div>
       
     </li>
   
@@ -952,7 +826,7 @@
     <span class='kw'>next</span> <span class='kw'>unless</span> <span class='id identifier rubyid_parsed_opts'>parsed_opts</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_option_name'>option_name</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_parsed_opts'>parsed_opts</span><span class='period'>.</span><span class='id identifier rubyid_public_send'>public_send</span><span class='lparen'>(</span><span class='id identifier rubyid_option_name'>option_name</span><span class='rparen'>)</span>
 
     <span class='id identifier rubyid_message'>message</span> <span class='op'>=</span> <span class='id identifier rubyid_config'>config</span><span class='lbracket'>[</span><span class='symbol'>:deprecation_message</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Option --</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_option_name'>option_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> is deprecated and will be removed in a future version</span><span class='tstring_end'>&quot;</span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_errors'>errors</span>
@@ -967,9 +841,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:19:02 2026 by
+  Generated on Sun May 10 17:26:34 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

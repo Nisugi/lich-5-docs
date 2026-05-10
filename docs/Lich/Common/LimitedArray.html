@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::LimitedArray";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -96,33 +98,29 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/limitedarray.rb</dd>
+    <dd>documented/common/limitedarray.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents an array with a limited maximum size. This class extends the standard Array class to enforce a maximum size. When the limit is reached, the oldest elements are removed.</p>
-
+    <p>Represents an array with a maximum size limit.</p>
+<p>This class extends the standard Array to enforce a maximum size,
+automatically removing the oldest elements when the limit is reached.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Creating a LimitedArray</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_limited_array'>limited_array</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'>LimitedArray</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::LimitedArray#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='int'>5</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>Array</li>
+    
+  </ul>
 
 </div>
 
@@ -151,9 +149,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute max_size.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute max_size.</p></div></span>
   
 </li>
 
@@ -188,9 +184,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns an empty array representing the history.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns an empty array representing the history of elements.</p></div></span>
   
 </li>
 
@@ -214,9 +208,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Initializes a new LimitedArray with a specified size and an optional object.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Initializes a new LimitedArray instance.</p></div></span>
   
 </li>
 
@@ -238,9 +230,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Adds an element to the end of the array, removing the oldest elements if the maximum size is exceeded.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Adds an element to the LimitedArray, removing the oldest elements if the maximum size is exceeded.</p></div></span>
   
 </li>
 
@@ -259,17 +249,16 @@
   
   
   
-  
+  <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Adds an element to the end of the array, same as push.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Adds an element to the LimitedArray, similar to push.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -287,9 +276,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Initializes a new LimitedArray with a specified size and an optional object.</p>
-
+    <p>Initializes a new LimitedArray instance.</p>
 
   </div>
 </div>
@@ -309,9 +296,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The initial size of the array (default is 0).</p>
-</div>
+        <div class='inline'><p>the initial size of the array (default is 0)</p></div>
       
     </li>
   
@@ -320,16 +305,14 @@
         <span class='name'>obj</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Object</tt>, <tt>nil</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>nil</tt>)</em>
       
       
         &mdash;
-        <div class='inline'>
-<p>An optional object to initialize the array with.</p>
-</div>
+        <div class='inline'><p>the initial object to populate the array (default is nil)</p></div>
       
     </li>
   
@@ -342,13 +325,13 @@
       <pre class="lines">
 
 
+17
 18
 19
-20
-21</pre>
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/limitedarray.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'documented/common/limitedarray.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_size'>size</span> <span class='op'>=</span> <span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='ivar'>@max_size</span> <span class='op'>=</span> <span class='int'>200</span>
@@ -377,9 +360,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute max_size.</p>
-
+    <p>Returns the value of attribute max_size.</p>
 
   </div>
 </div>
@@ -392,12 +373,12 @@
       <pre class="lines">
 
 
+11
 12
-13
-14</pre>
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/limitedarray.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'documented/common/limitedarray.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_max_size'>max_size</span>
   <span class='ivar'>@max_size</span>
@@ -425,26 +406,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns an empty array representing the history.</p>
-
+    <p>Returns an empty array representing the history of elements.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Getting the history of the LimitedArray</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_history'>history</span> <span class='op'>=</span> <span class='id identifier rubyid_limited_array'>limited_array</span><span class='period'>.</span><span class='id identifier rubyid_history'>history</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -456,9 +423,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An empty array.</p>
-</div>
+        <div class='inline'><p>an empty array</p></div>
       
     </li>
   
@@ -470,12 +435,12 @@
       <pre class="lines">
 
 
-47
-48
-49</pre>
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/limitedarray.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'documented/common/limitedarray.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_history'>history</span>
   <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -496,34 +461,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method modifies the array in place.</p>
-</div>
-  </div>
-
-
-<p>Adds an element to the end of the array, removing the oldest elements if the maximum size is exceeded.</p>
-
+    <p>Adds an element to the LimitedArray, removing the oldest elements if the maximum size is exceeded.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Adding an element to the LimitedArray</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_limited_array'>limited_array</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>new element</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -536,9 +479,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The element to add to the array.</p>
-</div>
+        <div class='inline'><p>the element to add to the array</p></div>
       
     </li>
   
@@ -555,9 +496,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The element that was added to the array.</p>
-</div>
+        <div class='inline'><p>the element that was added</p></div>
       
     </li>
   
@@ -569,13 +508,13 @@
       <pre class="lines">
 
 
-29
-30
-31
-32</pre>
+25
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/limitedarray.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'documented/common/limitedarray.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span> <span class='kw'>while</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;=</span> <span class='ivar'>@max_size</span>
@@ -597,26 +536,16 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Adds an element to the end of the array, same as push.</p>
-
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Adds an element to the LimitedArray, similar to push.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Shoving an element into the LimitedArray</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_limited_array'>limited_array</span><span class='period'>.</span><span class='id identifier rubyid_shove'>shove</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>another element</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -629,9 +558,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The element to add to the array.</p>
-</div>
+        <div class='inline'><p>the element to add to the array</p></div>
       
     </li>
   
@@ -648,9 +575,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The element that was added to the array.</p>
-</div>
+        <div class='inline'><p>the element that was added</p></div>
       
     </li>
   
@@ -662,12 +587,12 @@
       <pre class="lines">
 
 
-39
-40
-41</pre>
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/limitedarray.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'documented/common/limitedarray.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_shove'>shove</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
@@ -682,9 +607,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:19:00 2026 by
+  Generated on Sun May 10 17:26:32 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

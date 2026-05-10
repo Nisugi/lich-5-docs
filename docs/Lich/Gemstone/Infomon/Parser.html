@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Infomon::Parser";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,23 +80,13 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/infomon/parser.rb</dd>
+    <dd>documented/gemstone/infomon/parser.rb
+</dd>
   </dl>
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-<p>this module handles all of the logic for parsing game lines that infomon depends on</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><h2>Defined Under Namespace</h2>
+<h2>Defined Under Namespace</h2>
 <p class="children">
   
     
@@ -122,7 +114,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#find_cat-class_method" title="find_cat (class method)">.<strong>find_cat</strong>(category)  &#x21d2; Object </a>
+      <a href="#find_cat-class_method" title="find_cat (class method)">.<strong>find_cat</strong>(category)  &#x21d2; String<sup>?</sup> </a>
     
 
     
@@ -136,7 +128,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Determines the category of a given string based on its content.</p></div></span>
   
 </li>
 
@@ -144,7 +136,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#parse-class_method" title="parse (class method)">.<strong>parse</strong>(line)  &#x21d2; Object </a>
+      <a href="#parse-class_method" title="parse (class method)">.<strong>parse</strong>(line)  &#x21d2; Symbol </a>
     
 
     
@@ -158,12 +150,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Parses a line of game output and updates the internal state accordingly.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -175,37 +168,89 @@
       <div class="method_details first">
   <h3 class="signature first" id="find_cat-class_method">
   
-    .<strong>find_cat</strong>(category)  &#x21d2; <tt>Object</tt> 
+    .<strong>find_cat</strong>(category)  &#x21d2; <tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt><sup>?</sup> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Determines the category of a given string based on its content.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_find_cat'>find_cat</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Armor</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; &quot;Armor&quot;
+</span><span class='id identifier rubyid_find_cat'>find_cat</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Combat</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; &quot;CMan&quot;</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>category</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the category string to analyze</p></div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the determined category or nil if not matched</p></div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-172
-173
-174
-175
-176
-177
-178
-179
-180
-181
-182
-183
-184
-185
-186
-187</pre>
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/parser.rb', line 172</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/parser.rb', line 214</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_cat'>find_cat</span><span class='lparen'>(</span><span class='id identifier rubyid_category'>category</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_category'>category</span>
@@ -231,68 +276,79 @@
       <div class="method_details ">
   <h3 class="signature " id="parse-class_method">
   
-    .<strong>parse</strong>(line)  &#x21d2; <tt>Object</tt> 
+    .<strong>parse</strong>(line)  &#x21d2; <tt>Symbol</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Parses a line of game output and updates the internal state accordingly.</p>
+<p>This method uses regex patterns to identify and extract relevant data from the input line,
+updating the Infomon database with the parsed information.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>line</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the line of game output to parse</p></div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>status of the parsing operation, e.g., :ok, :noop</p></div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if an error occurs during parsing</p></div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-189
-190
-191
-192
-193
-194
-195
-196
-197
-198
-199
-200
-201
-202
-203
-204
-205
-206
-207
-208
-209
-210
-211
-212
-213
-214
-215
-216
-217
-218
-219
-220
-221
-222
-223
-224
-225
-226
-227
-228
-229
-230
-231
-232
-233
-234
-235
-236
-237
-238
 239
 240
 241
@@ -767,10 +823,109 @@
 710
 711
 712
-713</pre>
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/parser.rb', line 189</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/parser.rb', line 239</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='comment'># O(1) vs O(N)
@@ -800,6 +955,11 @@
                       <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stat.%s_bonus</span><span class='tstring_end'>&#39;</span></span> <span class='op'>%</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:stat</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:bonus</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rbracket'>]</span><span class='comma'>,</span>
                       <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stat.%s.enhanced</span><span class='tstring_end'>&#39;</span></span> <span class='op'>%</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:stat</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:enhanced_value</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rbracket'>]</span><span class='comma'>,</span>
                       <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stat.%s.enhanced_bonus</span><span class='tstring_end'>&#39;</span></span> <span class='op'>%</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:stat</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:enhanced_bonus</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='comment'># Store base stats if present (from &#39;info full&#39; command)
+</span>      <span class='kw'>if</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:base_value</span><span class='rbracket'>]</span>
+        <span class='ivar'>@stat_hold</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stat.%s.base</span><span class='tstring_end'>&#39;</span></span> <span class='op'>%</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:stat</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:base_value</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                        <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stat.%s.base_bonus</span><span class='tstring_end'>&#39;</span></span> <span class='op'>%</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:stat</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:base_bonus</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
       <span class='symbol'>:ok</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#StatEnd-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::StatEnd (constant)">StatEnd</a></span></span>
       <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span>
@@ -882,6 +1042,15 @@
       <span class='kw'>else</span>
         <span class='symbol'>:noop</span>
       <span class='kw'>end</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#InnCheckedOut-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::InnCheckedOut (constant)">InnCheckedOut</a></span></span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span>
+      <span class='id identifier rubyid__respond'><span class='object_link'><a href="../../../top-level-namespace.html#_respond-instance_method" title="#_respond (method)">_respond</a></span></span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Messaging.html" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_monsterbold'><span class='object_link'><a href="../../Messaging.html#monsterbold-class_method" title="Lich::Messaging.monsterbold (method)">monsterbold</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You just left an Inn.  Lich will gather your updated Stats and skills.</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[infomon_sync]</span><span class='embexpr_beg'>#{</span><span class='gvar'>$SEND_CHARACTER</span><span class='embexpr_end'>}</span><span class='tstring_content'>skills</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../Game.html" title="Lich::Gemstone::Game (class)">Game</a></span></span><span class='period'>.</span><span class='id identifier rubyid__puts'><span class='object_link'><a href="../../GameBase/Game.html#_puts-class_method" title="Lich::GameBase::Game._puts (method)">_puts</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='gvar'>$cmd_prefix</span><span class='embexpr_end'>}</span><span class='tstring_content'>skills</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[infomon_sync]</span><span class='embexpr_beg'>#{</span><span class='gvar'>$SEND_CHARACTER</span><span class='embexpr_end'>}</span><span class='tstring_content'>info</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../Game.html" title="Lich::Gemstone::Game (class)">Game</a></span></span><span class='period'>.</span><span class='id identifier rubyid__puts'><span class='object_link'><a href="../../GameBase/Game.html#_puts-class_method" title="Lich::GameBase::Game._puts (method)">_puts</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='gvar'>$cmd_prefix</span><span class='embexpr_end'>}</span><span class='tstring_content'>info</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='symbol'>:ok</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#PSMStart-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::PSMStart (constant)">PSMStart</a></span></span>
       <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span>
       <span class='ivar'>@psm_hold</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -1086,22 +1255,18 @@
       <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="../Infomon.html#set-class_method" title="Lich::Gemstone::Infomon.set (method)">set</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>currency.silver_container</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:silver</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rparen'>)</span>
       <span class='symbol'>:ok</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#AccountName-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::AccountName (constant)">AccountName</a></span></span>
-      <span class='kw'>if</span> <span class='const'>Account</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common/Account.html" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'><span class='object_link'><a href="../../Common/Account.html#name-class_method" title="Lich::Common::Account.name (method)">name</a></span></span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
         <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span>
-        <span class='const'>Account</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span>
+        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common/Account.html" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'><span class='object_link'><a href="../../Common/Account.html#name-class_method" title="Lich::Common::Account.name (method)">name</a></span></span> <span class='op'>=</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span>
         <span class='symbol'>:ok</span>
       <span class='kw'>else</span>
         <span class='symbol'>:noop</span>
       <span class='kw'>end</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#AccountSubscription-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::AccountSubscription (constant)">AccountSubscription</a></span></span>
-      <span class='kw'>if</span> <span class='const'>Account</span><span class='period'>.</span><span class='id identifier rubyid_subscription'>subscription</span>
-        <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span>
-        <span class='const'>Account</span><span class='period'>.</span><span class='id identifier rubyid_subscription'>subscription</span> <span class='op'>=</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:subscription</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Standard</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Normal</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>F2P</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Free</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Platinum</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Premium</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span>
-        <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="../Infomon.html#set-class_method" title="Lich::Gemstone::Infomon.set (method)">set</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>account.type</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:subscription</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Standard</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Normal</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>F2P</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Free</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span><span class='rparen'>)</span>
-        <span class='symbol'>:ok</span>
-      <span class='kw'>else</span>
-        <span class='symbol'>:noop</span>
-      <span class='kw'>end</span>
+      <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common/Account.html" title="Lich::Common::Account (module)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_subscription'><span class='object_link'><a href="../../Common/Account.html#subscription-class_method" title="Lich::Common::Account.subscription (method)">subscription</a></span></span> <span class='op'>=</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:subscription</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Standard</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Normal</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>F2P</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Free</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Platinum</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Premium</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span>
+      <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="../Infomon.html#set-class_method" title="Lich::Gemstone::Infomon.set (method)">set</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>account.type</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:subscription</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Standard</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Normal</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>F2P</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Free</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span><span class='rparen'>)</span>
+      <span class='symbol'>:ok</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#ProfileStart-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ProfileStart (constant)">ProfileStart</a></span></span>
       <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="Parser/State.html#set-class_method" title="Lich::Gemstone::Infomon::Parser::State.set (method)">set</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#Profile-constant" title="Lich::Gemstone::Infomon::Parser::State::Profile (constant)">Profile</a></span></span><span class='rparen'>)</span>
       <span class='symbol'>:ok</span>
@@ -1185,24 +1350,31 @@
       <span class='const'><span class='object_link'><a href="../Spellsong.html" title="Lich::Gemstone::Spellsong (class)">Spellsong</a></span></span><span class='period'>.</span><span class='id identifier rubyid_renewed'><span class='object_link'><a href="../Spellsong.html#renewed-class_method" title="Lich::Gemstone::Spellsong.renewed (method)">renewed</a></span></span>
       <span class='symbol'>:ok</span>
     <span class='comment'># === ENHANCIVE PARSING ===
+</span>    <span class='comment'># Any section header can start enhancive parsing (output may not include all sections)
 </span>    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#EnhanciveStart-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveStart (constant)">EnhanciveStart</a></span></span>
-      <span class='ivar'>@enhancive_hold</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+      <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_enhancive_state?'><span class='object_link'><a href="Parser/State.html#enhancive_state%3F-class_method" title="Lich::Gemstone::Infomon::Parser::State.enhancive_state? (method)">enhancive_state?</a></span></span>
+        <span class='ivar'>@enhancive_hold</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mutex_lock'><span class='object_link'><a href="../Infomon.html#mutex_lock-class_method" title="Lich::Gemstone::Infomon.mutex_lock (method)">mutex_lock</a></span></span>
+        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Enhancive.html" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reset_all'><span class='object_link'><a href="../Enhancive.html#reset_all-class_method" title="Lich::Gemstone::Enhancive.reset_all (method)">reset_all</a></span></span>
+      <span class='kw'>end</span>
       <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="Parser/State.html#set-class_method" title="Lich::Gemstone::Infomon::Parser::State.set (method)">set</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveStats-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveStats (constant)">EnhanciveStats</a></span></span><span class='rparen'>)</span>
-      <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mutex_lock'><span class='object_link'><a href="../Infomon.html#mutex_lock-class_method" title="Lich::Gemstone::Infomon.mutex_lock (method)">mutex_lock</a></span></span>
-      <span class='comment'># Reset all values to 0 first since output only shows non-zero
-</span>      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Enhancive.html" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reset_all'><span class='object_link'><a href="../Enhancive.html#reset_all-class_method" title="Lich::Gemstone::Enhancive.reset_all (method)">reset_all</a></span></span>
       <span class='symbol'>:ok</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#EnhanciveStat-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveStat (constant)">EnhanciveStat</a></span></span>
       <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Parser/State.html#get-class_method" title="Lich::Gemstone::Infomon::Parser::State.get (method)">get</a></span></span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveStats-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveStats (constant)">EnhanciveStats</a></span></span>
         <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span>
         <span class='id identifier rubyid_stat_key'>stat_key</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Enhancive.html" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Enhancive.html#STAT_ABBREV-constant" title="Lich::Gemstone::Enhancive::STAT_ABBREV (constant)">STAT_ABBREV</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:abbr</span><span class='rbracket'>]</span><span class='rbracket'>]</span>
-        <span class='ivar'>@enhancive_hold</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.stat.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_stat_key'>stat_key</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:value</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='ivar'>@enhancive_hold</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.stat.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_stat_key'>stat_key</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:value</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_stat_key'>stat_key</span>
         <span class='symbol'>:ok</span>
       <span class='kw'>else</span>
         <span class='symbol'>:noop</span>
       <span class='kw'>end</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#EnhanciveSkillsSection-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveSkillsSection (constant)">EnhanciveSkillsSection</a></span></span>
-      <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="Parser/State.html#set-class_method" title="Lich::Gemstone::Infomon::Parser::State.set (method)">set</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveSkills-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveSkills (constant)">EnhanciveSkills</a></span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Parser/State.html#get-class_method" title="Lich::Gemstone::Infomon::Parser::State.get (method)">get</a></span></span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveStats-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveStats (constant)">EnhanciveStats</a></span></span>
+      <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_enhancive_state?'><span class='object_link'><a href="Parser/State.html#enhancive_state%3F-class_method" title="Lich::Gemstone::Infomon::Parser::State.enhancive_state? (method)">enhancive_state?</a></span></span>
+        <span class='ivar'>@enhancive_hold</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mutex_lock'><span class='object_link'><a href="../Infomon.html#mutex_lock-class_method" title="Lich::Gemstone::Infomon.mutex_lock (method)">mutex_lock</a></span></span>
+        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Enhancive.html" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reset_all'><span class='object_link'><a href="../Enhancive.html#reset_all-class_method" title="Lich::Gemstone::Enhancive.reset_all (method)">reset_all</a></span></span>
+      <span class='kw'>end</span>
+      <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="Parser/State.html#set-class_method" title="Lich::Gemstone::Infomon::Parser::State.set (method)">set</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveSkills-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveSkills (constant)">EnhanciveSkills</a></span></span><span class='rparen'>)</span>
       <span class='symbol'>:ok</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#EnhanciveSkillRanks-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveSkillRanks (constant)">EnhanciveSkillRanks</a></span></span>
       <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Parser/State.html#get-class_method" title="Lich::Gemstone::Infomon::Parser::State.get (method)">get</a></span></span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveSkills-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveSkills (constant)">EnhanciveSkills</a></span></span>
@@ -1223,7 +1395,12 @@
         <span class='symbol'>:noop</span>
       <span class='kw'>end</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#EnhanciveResourcesSection-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveResourcesSection (constant)">EnhanciveResourcesSection</a></span></span>
-      <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="Parser/State.html#set-class_method" title="Lich::Gemstone::Infomon::Parser::State.set (method)">set</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveResources-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveResources (constant)">EnhanciveResources</a></span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Parser/State.html#get-class_method" title="Lich::Gemstone::Infomon::Parser::State.get (method)">get</a></span></span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveSkills-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveSkills (constant)">EnhanciveSkills</a></span></span>
+      <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_enhancive_state?'><span class='object_link'><a href="Parser/State.html#enhancive_state%3F-class_method" title="Lich::Gemstone::Infomon::Parser::State.enhancive_state? (method)">enhancive_state?</a></span></span>
+        <span class='ivar'>@enhancive_hold</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mutex_lock'><span class='object_link'><a href="../Infomon.html#mutex_lock-class_method" title="Lich::Gemstone::Infomon.mutex_lock (method)">mutex_lock</a></span></span>
+        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Enhancive.html" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reset_all'><span class='object_link'><a href="../Enhancive.html#reset_all-class_method" title="Lich::Gemstone::Enhancive.reset_all (method)">reset_all</a></span></span>
+      <span class='kw'>end</span>
+      <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="Parser/State.html#set-class_method" title="Lich::Gemstone::Infomon::Parser::State.set (method)">set</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveResources-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveResources (constant)">EnhanciveResources</a></span></span><span class='rparen'>)</span>
       <span class='symbol'>:ok</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#EnhanciveResource-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveResource (constant)">EnhanciveResource</a></span></span>
       <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Parser/State.html#get-class_method" title="Lich::Gemstone::Infomon::Parser::State.get (method)">get</a></span></span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveResources-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveResources (constant)">EnhanciveResources</a></span></span>
@@ -1234,8 +1411,30 @@
       <span class='kw'>else</span>
         <span class='symbol'>:noop</span>
       <span class='kw'>end</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#EnhanciveMartialSection-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveMartialSection (constant)">EnhanciveMartialSection</a></span></span>
+      <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_enhancive_state?'><span class='object_link'><a href="Parser/State.html#enhancive_state%3F-class_method" title="Lich::Gemstone::Infomon::Parser::State.enhancive_state? (method)">enhancive_state?</a></span></span>
+        <span class='ivar'>@enhancive_hold</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mutex_lock'><span class='object_link'><a href="../Infomon.html#mutex_lock-class_method" title="Lich::Gemstone::Infomon.mutex_lock (method)">mutex_lock</a></span></span>
+        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Enhancive.html" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reset_all'><span class='object_link'><a href="../Enhancive.html#reset_all-class_method" title="Lich::Gemstone::Enhancive.reset_all (method)">reset_all</a></span></span>
+      <span class='kw'>end</span>
+      <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="Parser/State.html#set-class_method" title="Lich::Gemstone::Infomon::Parser::State.set (method)">set</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveMartial-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveMartial (constant)">EnhanciveMartial</a></span></span><span class='rparen'>)</span>
+      <span class='symbol'>:ok</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#EnhanciveMartialSkill-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveMartialSkill (constant)">EnhanciveMartialSkill</a></span></span>
+      <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Parser/State.html#get-class_method" title="Lich::Gemstone::Infomon::Parser::State.get (method)">get</a></span></span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveMartial-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveMartial (constant)">EnhanciveMartial</a></span></span>
+        <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span>
+        <span class='id identifier rubyid_martial_key'>martial_key</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Enhancive.html" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_martial_display_to_symbol'><span class='object_link'><a href="../Enhancive.html#martial_display_to_symbol-class_method" title="Lich::Gemstone::Enhancive.martial_display_to_symbol (method)">martial_display_to_symbol</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='rparen'>)</span>
+        <span class='ivar'>@enhancive_hold</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.martial.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_martial_key'>martial_key</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:value</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_martial_key'>martial_key</span>
+        <span class='symbol'>:ok</span>
+      <span class='kw'>else</span>
+        <span class='symbol'>:noop</span>
+      <span class='kw'>end</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#EnhanciveSpellsSection-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveSpellsSection (constant)">EnhanciveSpellsSection</a></span></span>
-      <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="Parser/State.html#set-class_method" title="Lich::Gemstone::Infomon::Parser::State.set (method)">set</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveSpells-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveSpells (constant)">EnhanciveSpells</a></span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Parser/State.html#get-class_method" title="Lich::Gemstone::Infomon::Parser::State.get (method)">get</a></span></span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveResources-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveResources (constant)">EnhanciveResources</a></span></span>
+      <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_enhancive_state?'><span class='object_link'><a href="Parser/State.html#enhancive_state%3F-class_method" title="Lich::Gemstone::Infomon::Parser::State.enhancive_state? (method)">enhancive_state?</a></span></span>
+        <span class='ivar'>@enhancive_hold</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mutex_lock'><span class='object_link'><a href="../Infomon.html#mutex_lock-class_method" title="Lich::Gemstone::Infomon.mutex_lock (method)">mutex_lock</a></span></span>
+        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Enhancive.html" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reset_all'><span class='object_link'><a href="../Enhancive.html#reset_all-class_method" title="Lich::Gemstone::Enhancive.reset_all (method)">reset_all</a></span></span>
+      <span class='kw'>end</span>
+      <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="Parser/State.html#set-class_method" title="Lich::Gemstone::Infomon::Parser::State.set (method)">set</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveSpells-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveSpells (constant)">EnhanciveSpells</a></span></span><span class='rparen'>)</span>
       <span class='symbol'>:ok</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#EnhanciveSpells-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveSpells (constant)">EnhanciveSpells</a></span></span>
       <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Parser/State.html#get-class_method" title="Lich::Gemstone::Infomon::Parser::State.get (method)">get</a></span></span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveSpells-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveSpells (constant)">EnhanciveSpells</a></span></span>
@@ -1247,7 +1446,12 @@
         <span class='symbol'>:noop</span>
       <span class='kw'>end</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#EnhanciveStatisticsSection-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveStatisticsSection (constant)">EnhanciveStatisticsSection</a></span></span>
-      <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="Parser/State.html#set-class_method" title="Lich::Gemstone::Infomon::Parser::State.set (method)">set</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveStatistics-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveStatistics (constant)">EnhanciveStatistics</a></span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Parser/State.html#get-class_method" title="Lich::Gemstone::Infomon::Parser::State.get (method)">get</a></span></span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveSpells-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveSpells (constant)">EnhanciveSpells</a></span></span>
+      <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_enhancive_state?'><span class='object_link'><a href="Parser/State.html#enhancive_state%3F-class_method" title="Lich::Gemstone::Infomon::Parser::State.enhancive_state? (method)">enhancive_state?</a></span></span>
+        <span class='ivar'>@enhancive_hold</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_mutex_lock'><span class='object_link'><a href="../Infomon.html#mutex_lock-class_method" title="Lich::Gemstone::Infomon.mutex_lock (method)">mutex_lock</a></span></span>
+        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Enhancive.html" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reset_all'><span class='object_link'><a href="../Enhancive.html#reset_all-class_method" title="Lich::Gemstone::Enhancive.reset_all (method)">reset_all</a></span></span>
+      <span class='kw'>end</span>
+      <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set'><span class='object_link'><a href="Parser/State.html#set-class_method" title="Lich::Gemstone::Infomon::Parser::State.set (method)">set</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveStatistics-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveStatistics (constant)">EnhanciveStatistics</a></span></span><span class='rparen'>)</span>
       <span class='symbol'>:ok</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="Parser/Pattern.html" title="Lich::Gemstone::Infomon::Parser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/Pattern.html#EnhanciveStatistic-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveStatistic (constant)">EnhanciveStatistic</a></span></span>
       <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Parser/State.html#get-class_method" title="Lich::Gemstone::Infomon::Parser::State.get (method)">get</a></span></span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Parser/State.html" title="Lich::Gemstone::Infomon::Parser::State (module)">State</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Parser/State.html#EnhanciveStatistics-constant" title="Lich::Gemstone::Infomon::Parser::State::EnhanciveStatistics (constant)">EnhanciveStatistics</a></span></span>
@@ -1293,8 +1497,8 @@
   <span class='kw'>rescue</span> <span class='const'>StandardError</span>
     <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- Lich: error: Infomon::Parser.parse: </span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- Lich: error: line: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line'>line</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Infomon::Parser.parse: </span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\t</span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n\t</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: line: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line'>line</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\t</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Infomon::Parser.parse: </span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\t</span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n\t</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: line: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line'>line</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\t</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1307,9 +1511,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:52 2026 by
+  Generated on Sun May 10 17:26:24 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

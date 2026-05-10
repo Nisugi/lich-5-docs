@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::CLI::CLILogin";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,7 +80,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/cli/cli_login.rb</dd>
+    <dd>documented/common/cli/cli_login.rb
+</dd>
   </dl>
   
 </div>
@@ -115,9 +118,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Decrypts the password for the character and authenticates with the game server.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Decrypts the password for the character and authenticates with the game server.</p></div></span>
   
 </li>
 
@@ -139,9 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Executes the CLI login process for a character.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Executes the CLI login process for a character.</p></div></span>
   
 </li>
 
@@ -163,14 +162,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Formats the launch data for the game based on the character entry and frontend.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Formats the launch data for the game based on the character entry and frontend.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -190,9 +188,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Decrypts the password for the character and authenticates with the game server.</p>
-
+    <p>Decrypts the password for the character and authenticates with the game server.</p>
 
   </div>
 </div>
@@ -218,9 +214,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The character entry containing login details.</p>
-</div>
+        <div class='inline'><p>The character entry containing login details.</p></div>
       
     </li>
   
@@ -234,9 +228,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The entry data loaded from the YAML file.</p>
-</div>
+        <div class='inline'><p>The entry data loaded from the YAML file.</p></div>
       
     </li>
   
@@ -253,9 +245,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns formatted launch data if authentication is successful, nil otherwise.</p>
-</div>
+        <div class='inline'><p>Returns formatted launch data if authentication is successful, nil otherwise.</p></div>
       
     </li>
   
@@ -271,9 +261,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Raises an error if decryption or authentication fails.</p>
-</div>
+        <div class='inline'><p>Raises an error if decryption or authentication fails.</p></div>
       
     </li>
   
@@ -338,12 +326,12 @@
       <span class='label'>account_name:</span> <span class='id identifier rubyid_char_entry'>char_entry</span><span class='lbracket'>[</span><span class='symbol'>:username</span><span class='rbracket'>]</span>
     <span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to decrypt password: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to decrypt password: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>nil</span>
   <span class='kw'>end</span>
 
   <span class='kw'>unless</span> <span class='id identifier rubyid_plaintext_password'>plaintext_password</span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: No password available for character</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: No password available for character</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>nil</span>
   <span class='kw'>end</span>
 
@@ -359,7 +347,7 @@
     <span class='comment'># Format and return launch data
 </span>    <span class='id identifier rubyid_format_launch_data'>format_launch_data</span><span class='lparen'>(</span><span class='id identifier rubyid_launch_data_hash'>launch_data_hash</span><span class='comma'>,</span> <span class='id identifier rubyid_char_entry'>char_entry</span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Authentication failed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Authentication failed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>nil</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -379,9 +367,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Executes the CLI login process for a character. This method validates inputs, loads YAML data, finds matching character entries, selects the best match, and authenticates the user.</p>
-
+    <p>Executes the CLI login process for a character.
+This method validates inputs, loads YAML data, finds matching character entries,
+selects the best match, and authenticates the user.</p>
 
   </div>
 </div>
@@ -407,9 +395,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the character to log in.</p>
-</div>
+        <div class='inline'><p>The name of the character to log in.</p></div>
       
     </li>
   
@@ -425,9 +411,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game code associated with the character (optional).</p>
-</div>
+        <div class='inline'><p>The game code associated with the character (optional).</p></div>
       
     </li>
   
@@ -443,9 +427,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The frontend to use for the login (optional).</p>
-</div>
+        <div class='inline'><p>The frontend to use for the login (optional).</p></div>
       
     </li>
   
@@ -461,9 +443,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where data files are stored (optional).</p>
-</div>
+        <div class='inline'><p>The directory where data files are stored (optional).</p></div>
       
     </li>
   
@@ -480,9 +460,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns launch data if successful, nil otherwise.</p>
-</div>
+        <div class='inline'><p>Returns launch data if successful, nil otherwise.</p></div>
       
     </li>
   
@@ -498,9 +476,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Raises an error if any step in the process fails.</p>
-</div>
+        <div class='inline'><p>Raises an error if any step in the process fails.</p></div>
       
     </li>
   
@@ -580,20 +556,20 @@
 
   <span class='comment'># Validate inputs
 </span>  <span class='kw'>unless</span> <span class='id identifier rubyid_character_name'>character_name</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_character_name'>character_name</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Character name is required</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Character name is required</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>nil</span>
   <span class='kw'>end</span>
 
   <span class='comment'># Validate master password availability before attempting login (required for Enhanced encryption mode)
 </span>  <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="PasswordManager.html" title="Lich::Common::CLI::PasswordManager (module)">PasswordManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_validate_master_password_available'><span class='object_link'><a href="PasswordManager.html#validate_master_password_available-class_method" title="Lich::Common::CLI::PasswordManager.validate_master_password_available (method)">validate_master_password_available</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Master password validation failed during CLI login</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Master password validation failed during CLI login</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>nil</span>
   <span class='kw'>end</span>
 
   <span class='comment'># Load raw YAML data (not decrypted yet)
 </span>  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI/YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="../GUI/YamlState.html#yaml_file_path-class_method" title="Lich::Common::GUI::YamlState.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: No saved entries YAML file found</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: No saved entries YAML file found</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>nil</span>
   <span class='kw'>end</span>
 
@@ -601,7 +577,7 @@
     <span class='id identifier rubyid_yaml_data'>yaml_data</span> <span class='op'>=</span> <span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_load_file'>load_file</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_entry_data'>entry_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Util/LoginHelpers.html" title="Lich::Util::LoginHelpers (module)">LoginHelpers</a></span></span><span class='period'>.</span><span class='id identifier rubyid_symbolize_keys'><span class='object_link'><a href="../../Util/LoginHelpers.html#symbolize_keys-class_method" title="Lich::Util::LoginHelpers.symbolize_keys (method)">symbolize_keys</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to load YAML data: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to load YAML data: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>nil</span>
   <span class='kw'>end</span>
 
@@ -614,7 +590,7 @@
   <span class='rparen'>)</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_matching_entries'>matching_entries</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_matching_entries'>matching_entries</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: No matching character found for: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_character_name'>character_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: No matching character found for: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_character_name'>character_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>nil</span>
   <span class='kw'>end</span>
 
@@ -627,7 +603,7 @@
   <span class='rparen'>)</span>
 
   <span class='kw'>unless</span> <span class='id identifier rubyid_char_entry'>char_entry</span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Could not select character entry from matches</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Could not select character entry from matches</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>nil</span>
   <span class='kw'>end</span>
 
@@ -650,9 +626,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Formats the launch data for the game based on the character entry and frontend.</p>
-
+    <p>Formats the launch data for the game based on the character entry and frontend.</p>
 
   </div>
 </div>
@@ -678,9 +652,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The raw launch data returned from authentication.</p>
-</div>
+        <div class='inline'><p>The raw launch data returned from authentication.</p></div>
       
     </li>
   
@@ -694,9 +666,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The character entry containing frontend information.</p>
-</div>
+        <div class='inline'><p>The character entry containing frontend information.</p></div>
       
     </li>
   
@@ -713,9 +683,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns an array of formatted launch data strings.</p>
-</div>
+        <div class='inline'><p>Returns an array of formatted launch data strings.</p></div>
       
     </li>
   
@@ -791,9 +759,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:50 2026 by
+  Generated on Sun May 10 17:26:23 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

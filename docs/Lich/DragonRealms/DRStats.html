@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::DragonRealms::DRStats";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,33 +80,21 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/dragonrealms/drinfomon/drstats.rb</dd>
+    <dd>documented/dragonrealms/drinfomon/drstats.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Module for managing DragonRealms character statistics This module provides methods to access and modify character stats.</p>
-
+    <p>Module for managing DragonRealms character statistics.</p>
+<p>This module handles various character attributes such as race, guild, and stats.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Accessing character race</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../DragonRealms.html" title="Lich::DragonRealms (module)">DragonRealms</a></span></span><span class='op'>::</span><span class='const'>DRStats</span><span class='period'>.</span><span class='id identifier rubyid_race'><span class='object_link'><a href="#race-class_method" title="Lich::DragonRealms::DRStats.race (method)">race</a></span></span></code></pre>
-    
-  </div>
-
 
 </div>
   
@@ -115,37 +105,44 @@
 
     <dl class="constants">
       
-        <dt id="race-classvariable" class="">@@race =
+        <dt id="GUILD_MANA_TYPES-constant" class="">GUILD_MANA_TYPES =
           <div class="docstring">
   <div class="discussion">
-    
-<p>The character’s race</p>
-
+    <p>Guilds and their native mana types, frozen for immutability.
+Guilds and their native mana types, frozen for immutability.</p>
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
       
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The race of the character or nil if not set.</p>
-</div>
-      
-    </li>
-  
-</ul>
+      <pre class="example code"><code><span class='const'>GUILD_MANA_TYPES</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Necromancer</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='comment'># =&gt; &#39;arcane&#39;
+</span><span class='const'>GUILD_MANA_TYPES</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Barbarian</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='comment'># =&gt; nil</span></code></pre>
+    
+  </div>
+
 
 </div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Necromancer</span><span class='tstring_end'>&#39;</span></span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>arcane</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Barbarian</span><span class='tstring_end'>&#39;</span></span>    <span class='op'>=&gt;</span> <span class='kw'>nil</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Thief</span><span class='tstring_end'>&#39;</span></span>        <span class='op'>=&gt;</span> <span class='kw'>nil</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Moon Mage</span><span class='tstring_end'>&#39;</span></span>    <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>lunar</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Trader</span><span class='tstring_end'>&#39;</span></span>       <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>lunar</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Warrior Mage</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>elemental</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Bard</span><span class='tstring_end'>&#39;</span></span>         <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>elemental</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cleric</span><span class='tstring_end'>&#39;</span></span>       <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holy</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Paladin</span><span class='tstring_end'>&#39;</span></span>      <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holy</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Empath</span><span class='tstring_end'>&#39;</span></span>       <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>life</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ranger</span><span class='tstring_end'>&#39;</span></span>       <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>life</span><span class='tstring_end'>&#39;</span></span>
+<span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="race-classvariable" class="">@@race =
+          
         </dt>
         <dd><pre class="code"><span class='kw'>nil</span></pre></dd>
       
@@ -155,70 +152,12 @@
         <dd><pre class="code"><span class='kw'>nil</span></pre></dd>
       
         <dt id="gender-classvariable" class="">@@gender =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>The character’s gender</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The gender of the character or nil if not set.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='kw'>nil</span></pre></dd>
       
         <dt id="encumbrance-classvariable" class="">@@encumbrance =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>The character’s encumbrance</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The encumbrance of the character or nil if not set.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='kw'>nil</span></pre></dd>
       
@@ -256,9 +195,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s age.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current age of the character.</p></div></span>
   
 </li>
 
@@ -280,9 +217,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s age.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the age of the character.</p></div></span>
   
 </li>
 
@@ -304,9 +239,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s agility.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current agility of the character.</p></div></span>
   
 </li>
 
@@ -328,9 +261,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s agility.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the agility of the character.</p></div></span>
   
 </li>
 
@@ -352,9 +283,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s balance.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current balance of the character.</p></div></span>
   
 </li>
 
@@ -376,9 +305,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s balance.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the balance of the character.</p></div></span>
   
 </li>
 
@@ -400,9 +327,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character’s guild is Barbarian.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character's guild is Barbarian.</p></div></span>
   
 </li>
 
@@ -424,9 +349,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character’s guild is Bard.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character's guild is Bard.</p></div></span>
   
 </li>
 
@@ -448,9 +371,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s charisma.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current charisma of the character.</p></div></span>
   
 </li>
 
@@ -472,9 +393,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s charisma.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the charisma of the character.</p></div></span>
   
 </li>
 
@@ -496,9 +415,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s circle.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current circle of the character.</p></div></span>
   
 </li>
 
@@ -520,9 +437,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s circle.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the circle of the character.</p></div></span>
   
 </li>
 
@@ -544,9 +459,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character’s guild is Cleric.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character's guild is Cleric.</p></div></span>
   
 </li>
 
@@ -568,9 +481,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character’s guild is Commoner.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character's guild is Commoner.</p></div></span>
   
 </li>
 
@@ -592,9 +503,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s concentration from XMLData.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the concentration of the character from XML data.</p></div></span>
   
 </li>
 
@@ -616,9 +525,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s discipline.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current discipline of the character.</p></div></span>
   
 </li>
 
@@ -640,9 +547,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s discipline.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the discipline of the character.</p></div></span>
   
 </li>
 
@@ -664,9 +569,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character’s guild is Empath.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character's guild is Empath.</p></div></span>
   
 </li>
 
@@ -688,9 +591,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s encumbrance.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current encumbrance of the character.</p></div></span>
   
 </li>
 
@@ -712,9 +613,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s encumbrance.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the encumbrance of the character.</p></div></span>
   
 </li>
 
@@ -736,9 +635,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s fatigue from XMLData.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the stamina of the character from XML data as fatigue.</p></div></span>
   
 </li>
 
@@ -760,9 +657,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s favors.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current favors of the character.</p></div></span>
   
 </li>
 
@@ -784,9 +679,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s favors.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the favors of the character.</p></div></span>
   
 </li>
 
@@ -808,9 +701,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s gender.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current gender of the character.</p></div></span>
   
 </li>
 
@@ -832,9 +723,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s gender.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the gender of the character.</p></div></span>
   
 </li>
 
@@ -856,9 +745,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s guild.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current guild of the character.</p></div></span>
   
 </li>
 
@@ -880,9 +767,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s guild.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the guild of the character.</p></div></span>
   
 </li>
 
@@ -904,9 +789,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s health from XMLData.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the health of the character from XML data.</p></div></span>
   
 </li>
 
@@ -928,9 +811,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s intelligence.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current intelligence of the character.</p></div></span>
   
 </li>
 
@@ -952,9 +833,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s intelligence.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the intelligence of the character.</p></div></span>
   
 </li>
 
@@ -976,9 +855,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Loads character stats from a serialized array.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Loads character stats from a serialized array.</p></div></span>
   
 </li>
 
@@ -1000,9 +877,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s luck.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current luck of the character.</p></div></span>
   
 </li>
 
@@ -1024,9 +899,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s luck.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the luck of the character.</p></div></span>
   
 </li>
 
@@ -1048,9 +921,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s mana from XMLData.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the mana of the character from XML data.</p></div></span>
   
 </li>
 
@@ -1072,9 +943,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character’s guild is Moon Mage.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character's guild is Moon Mage.</p></div></span>
   
 </li>
 
@@ -1096,9 +965,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s name from XMLData.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the name of the character from XML data.</p></div></span>
   
 </li>
 
@@ -1120,9 +987,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Determines the character’s native mana type based on their guild.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the native mana type for the current guild.</p></div></span>
   
 </li>
 
@@ -1144,9 +1009,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character’s guild is Necromancer.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character's guild is Necromancer.</p></div></span>
   
 </li>
 
@@ -1168,9 +1031,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character’s guild is Paladin.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character's guild is Paladin.</p></div></span>
   
 </li>
 
@@ -1192,9 +1053,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s race.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current race of the character.</p></div></span>
   
 </li>
 
@@ -1216,9 +1075,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s race.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the race of the character.</p></div></span>
   
 </li>
 
@@ -1240,9 +1097,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character’s guild is Ranger.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character's guild is Ranger.</p></div></span>
   
 </li>
 
@@ -1264,9 +1119,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s reflex.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current reflex of the character.</p></div></span>
   
 </li>
 
@@ -1288,9 +1141,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s reflex.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the reflex of the character.</p></div></span>
   
 </li>
 
@@ -1312,9 +1163,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Serializes the character’s stats into an array.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Serializes the character's stats into an array.</p></div></span>
   
 </li>
 
@@ -1336,9 +1185,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s spirit from XMLData.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the spirit of the character from XML data.</p></div></span>
   
 </li>
 
@@ -1360,9 +1207,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s stamina.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current stamina of the character.</p></div></span>
   
 </li>
 
@@ -1384,9 +1229,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s stamina.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the stamina of the character.</p></div></span>
   
 </li>
 
@@ -1408,9 +1251,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s strength.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current strength of the character.</p></div></span>
   
 </li>
 
@@ -1432,9 +1273,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s strength.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the strength of the character.</p></div></span>
   
 </li>
 
@@ -1456,9 +1295,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s TDPS.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current TDPS of the character.</p></div></span>
   
 </li>
 
@@ -1480,9 +1317,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s TDPS.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the TDPS of the character.</p></div></span>
   
 </li>
 
@@ -1504,9 +1339,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character’s guild is Thief.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character's guild is Thief.</p></div></span>
   
 </li>
 
@@ -1528,9 +1361,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character’s guild is Trader.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character's guild is Trader.</p></div></span>
   
 </li>
 
@@ -1552,9 +1383,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character’s guild is Warrior Mage.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character's guild is Warrior Mage.</p></div></span>
   
 </li>
 
@@ -1576,9 +1405,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the character’s wisdom.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the current wisdom of the character.</p></div></span>
   
 </li>
 
@@ -1600,14 +1427,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the character’s wisdom.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the wisdom of the character.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -1627,9 +1453,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s age</p>
-
+    <p>Returns the current age of the character.</p>
 
   </div>
 </div>
@@ -1646,9 +1470,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The age of the character.</p>
-</div>
+        <div class='inline'><p>the character's age.</p></div>
       
     </li>
   
@@ -1660,12 +1482,12 @@
       <pre class="lines">
 
 
-104
-105
-106</pre>
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_age'>age</span>
   <span class='cvar'>@@age</span>
@@ -1686,9 +1508,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s age</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the age of the character.</p>
 
   </div>
 </div>
@@ -1706,9 +1526,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The age to set for the character</p>
-</div>
+        <div class='inline'><p>the age to set for the character.</p></div>
       
     </li>
   
@@ -1721,12 +1539,12 @@
       <pre class="lines">
 
 
-111
-112
-113</pre>
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 78</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_age='>age=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@age</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -1747,9 +1565,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s agility</p>
-
+    <p>Returns the current agility of the character.</p>
 
   </div>
 </div>
@@ -1766,9 +1582,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The agility of the character.</p>
-</div>
+        <div class='inline'><p>the character's agility.</p></div>
       
     </li>
   
@@ -1780,12 +1594,12 @@
       <pre class="lines">
 
 
-169
-170
-171</pre>
+136
+137
+138</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 169</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 136</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_agility'>agility</span>
   <span class='cvar'>@@agility</span>
@@ -1806,9 +1620,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s agility</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the agility of the character.</p>
 
   </div>
 </div>
@@ -1826,9 +1638,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The agility to set for the character</p>
-</div>
+        <div class='inline'><p>the agility to set for the character.</p></div>
       
     </li>
   
@@ -1841,12 +1651,12 @@
       <pre class="lines">
 
 
-176
-177
-178</pre>
+143
+144
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 176</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_agility='>agility=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@agility</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -1867,9 +1677,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s balance</p>
-
+    <p>Returns the current balance of the character.</p>
 
   </div>
 </div>
@@ -1886,9 +1694,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The balance of the character.</p>
-</div>
+        <div class='inline'><p>the character's balance.</p></div>
       
     </li>
   
@@ -1900,12 +1706,12 @@
       <pre class="lines">
 
 
-273
-274
-275</pre>
+240
+241
+242</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 273</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 240</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_balance'>balance</span>
   <span class='cvar'>@@balance</span>
@@ -1926,9 +1732,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s balance</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the balance of the character.</p>
 
   </div>
 </div>
@@ -1946,9 +1750,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The balance to set for the character</p>
-</div>
+        <div class='inline'><p>the balance to set for the character.</p></div>
       
     </li>
   
@@ -1961,12 +1763,12 @@
       <pre class="lines">
 
 
-280
-281
-282</pre>
+247
+248
+249</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 280</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 247</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_balance='>balance=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@balance</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -1987,9 +1789,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character’s guild is Barbarian</p>
-
+    <p>Checks if the character's guild is Barbarian.</p>
 
   </div>
 </div>
@@ -2006,9 +1806,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the character is a Barbarian, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the character is a Barbarian, false otherwise.</p></div>
       
     </li>
   
@@ -2020,12 +1818,12 @@
       <pre class="lines">
 
 
-368
-369
-370</pre>
+344
+345
+346</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 368</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 344</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_barbarian?'>barbarian?</span>
   <span class='cvar'>@@guild</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Barbarian</span><span class='tstring_end'>&#39;</span></span>
@@ -2046,9 +1844,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character’s guild is Bard</p>
-
+    <p>Checks if the character's guild is Bard.</p>
 
   </div>
 </div>
@@ -2065,9 +1861,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the character is a Bard, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the character is a Bard, false otherwise.</p></div>
       
     </li>
   
@@ -2079,12 +1873,12 @@
       <pre class="lines">
 
 
-374
-375
-376</pre>
+350
+351
+352</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 374</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 350</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bard?'>bard?</span>
   <span class='cvar'>@@guild</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Bard</span><span class='tstring_end'>&#39;</span></span>
@@ -2105,9 +1899,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s charisma</p>
-
+    <p>Returns the current charisma of the character.</p>
 
   </div>
 </div>
@@ -2124,9 +1916,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The charisma of the character.</p>
-</div>
+        <div class='inline'><p>the character's charisma.</p></div>
       
     </li>
   
@@ -2138,12 +1928,12 @@
       <pre class="lines">
 
 
-221
-222
-223</pre>
+188
+189
+190</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 221</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 188</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_charisma'>charisma</span>
   <span class='cvar'>@@charisma</span>
@@ -2164,9 +1954,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s charisma</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the charisma of the character.</p>
 
   </div>
 </div>
@@ -2184,9 +1972,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The charisma to set for the character</p>
-</div>
+        <div class='inline'><p>the charisma to set for the character.</p></div>
       
     </li>
   
@@ -2199,12 +1985,12 @@
       <pre class="lines">
 
 
-228
-229
-230</pre>
+195
+196
+197</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 228</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 195</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_charisma='>charisma=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@charisma</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -2225,9 +2011,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s circle</p>
-
+    <p>Returns the current circle of the character.</p>
 
   </div>
 </div>
@@ -2244,9 +2028,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The circle of the character.</p>
-</div>
+        <div class='inline'><p>the character's circle.</p></div>
       
     </li>
   
@@ -2258,12 +2040,12 @@
       <pre class="lines">
 
 
-117
-118
-119</pre>
+84
+85
+86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 84</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_circle'>circle</span>
   <span class='cvar'>@@circle</span>
@@ -2284,9 +2066,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s circle</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the circle of the character.</p>
 
   </div>
 </div>
@@ -2304,9 +2084,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The circle to set for the character</p>
-</div>
+        <div class='inline'><p>the circle to set for the character.</p></div>
       
     </li>
   
@@ -2319,12 +2097,12 @@
       <pre class="lines">
 
 
-124
-125
-126</pre>
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 91</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_circle='>circle=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@circle</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -2345,9 +2123,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character’s guild is Cleric</p>
-
+    <p>Checks if the character's guild is Cleric.</p>
 
   </div>
 </div>
@@ -2364,9 +2140,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the character is a Cleric, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the character is a Cleric, false otherwise.</p></div>
       
     </li>
   
@@ -2378,12 +2152,12 @@
       <pre class="lines">
 
 
-380
-381
-382</pre>
+356
+357
+358</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 380</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 356</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_cleric?'>cleric?</span>
   <span class='cvar'>@@guild</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cleric</span><span class='tstring_end'>&#39;</span></span>
@@ -2404,9 +2178,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character’s guild is Commoner</p>
-
+    <p>Checks if the character's guild is Commoner.</p>
 
   </div>
 </div>
@@ -2423,9 +2195,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the character is a Commoner, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the character is a Commoner, false otherwise.</p></div>
       
     </li>
   
@@ -2437,12 +2207,12 @@
       <pre class="lines">
 
 
-386
-387
-388</pre>
+362
+363
+364</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 386</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 362</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_commoner?'>commoner?</span>
   <span class='cvar'>@@guild</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Commoner</span><span class='tstring_end'>&#39;</span></span>
@@ -2463,9 +2233,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s concentration from XMLData</p>
-
+    <p>Returns the concentration of the character from XML data.</p>
 
   </div>
 </div>
@@ -2482,9 +2250,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The concentration of the character.</p>
-</div>
+        <div class='inline'><p>the character's concentration.</p></div>
       
     </li>
   
@@ -2496,12 +2262,12 @@
       <pre class="lines">
 
 
-329
-330
-331</pre>
+296
+297
+298</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 329</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 296</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_concentration'>concentration</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_concentration'>concentration</span>
@@ -2522,9 +2288,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s discipline</p>
-
+    <p>Returns the current discipline of the character.</p>
 
   </div>
 </div>
@@ -2541,9 +2305,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The discipline of the character.</p>
-</div>
+        <div class='inline'><p>the character's discipline.</p></div>
       
     </li>
   
@@ -2555,12 +2317,12 @@
       <pre class="lines">
 
 
-208
-209
-210</pre>
+175
+176
+177</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 208</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 175</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_discipline'>discipline</span>
   <span class='cvar'>@@discipline</span>
@@ -2581,9 +2343,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s discipline</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the discipline of the character.</p>
 
   </div>
 </div>
@@ -2601,9 +2361,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The discipline to set for the character</p>
-</div>
+        <div class='inline'><p>the discipline to set for the character.</p></div>
       
     </li>
   
@@ -2616,12 +2374,12 @@
       <pre class="lines">
 
 
-215
-216
-217</pre>
+182
+183
+184</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 215</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 182</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_discipline='>discipline=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@discipline</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -2642,9 +2400,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character’s guild is Empath</p>
-
+    <p>Checks if the character's guild is Empath.</p>
 
   </div>
 </div>
@@ -2661,9 +2417,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the character is an Empath, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the character is an Empath, false otherwise.</p></div>
       
     </li>
   
@@ -2675,12 +2429,12 @@
       <pre class="lines">
 
 
-392
-393
-394</pre>
+368
+369
+370</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 392</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 368</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_empath?'>empath?</span>
   <span class='cvar'>@@guild</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Empath</span><span class='tstring_end'>&#39;</span></span>
@@ -2701,9 +2455,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s encumbrance</p>
-
+    <p>Returns the current encumbrance of the character.</p>
 
   </div>
 </div>
@@ -2720,9 +2472,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The encumbrance of the character or nil if not set.</p>
-</div>
+        <div class='inline'><p>the character's encumbrance or nil if not set.</p></div>
       
     </li>
   
@@ -2734,12 +2484,12 @@
       <pre class="lines">
 
 
-286
-287
-288</pre>
+253
+254
+255</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 286</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 253</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_encumbrance'>encumbrance</span>
   <span class='cvar'>@@encumbrance</span>
@@ -2760,9 +2510,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s encumbrance</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the encumbrance of the character.</p>
 
   </div>
 </div>
@@ -2775,14 +2523,12 @@
         <span class='name'>val</span>
       
       
-        <span class='type'>(<tt>Integer</tt>)</span>
+        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The encumbrance to set for the character</p>
-</div>
+        <div class='inline'><p>the encumbrance to set for the character.</p></div>
       
     </li>
   
@@ -2795,12 +2541,12 @@
       <pre class="lines">
 
 
-293
-294
-295</pre>
+260
+261
+262</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 293</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 260</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_encumbrance='>encumbrance=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@encumbrance</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -2821,9 +2567,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s fatigue from XMLData</p>
-
+    <p>Returns the stamina of the character from XML data as fatigue.</p>
 
   </div>
 </div>
@@ -2840,9 +2584,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The fatigue of the character.</p>
-</div>
+        <div class='inline'><p>the character's fatigue.</p></div>
       
     </li>
   
@@ -2854,12 +2596,12 @@
       <pre class="lines">
 
 
-317
-318
-319</pre>
+284
+285
+286</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 317</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 284</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_fatigue'>fatigue</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_stamina'>stamina</span>
@@ -2880,9 +2622,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s favors</p>
-
+    <p>Returns the current favors of the character.</p>
 
   </div>
 </div>
@@ -2899,9 +2639,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The favors of the character.</p>
-</div>
+        <div class='inline'><p>the character's favors.</p></div>
       
     </li>
   
@@ -2913,12 +2651,12 @@
       <pre class="lines">
 
 
-234
-235
-236</pre>
+201
+202
+203</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 234</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 201</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_favors'>favors</span>
   <span class='cvar'>@@favors</span>
@@ -2939,9 +2677,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s favors</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the favors of the character.</p>
 
   </div>
 </div>
@@ -2959,9 +2695,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The favors to set for the character</p>
-</div>
+        <div class='inline'><p>the favors to set for the character.</p></div>
       
     </li>
   
@@ -2974,12 +2708,12 @@
       <pre class="lines">
 
 
-241
-242
-243</pre>
+208
+209
+210</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 241</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 208</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_favors='>favors=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@favors</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -3000,9 +2734,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s gender</p>
-
+    <p>Returns the current gender of the character.</p>
 
   </div>
 </div>
@@ -3019,9 +2751,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The gender of the character or nil if not set.</p>
-</div>
+        <div class='inline'><p>the character's gender or nil if not set.</p></div>
       
     </li>
   
@@ -3033,12 +2763,12 @@
       <pre class="lines">
 
 
-91
-92
-93</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 91</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_gender'>gender</span>
   <span class='cvar'>@@gender</span>
@@ -3059,9 +2789,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s gender</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the gender of the character.</p>
 
   </div>
 </div>
@@ -3079,9 +2807,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The gender to set for the character</p>
-</div>
+        <div class='inline'><p>the gender to set for the character.</p></div>
       
     </li>
   
@@ -3094,12 +2820,12 @@
       <pre class="lines">
 
 
-98
-99
-100</pre>
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_gender='>gender=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@gender</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -3120,9 +2846,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s guild</p>
-
+    <p>Returns the current guild of the character.</p>
 
   </div>
 </div>
@@ -3139,9 +2863,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The guild of the character or nil if not set.</p>
-</div>
+        <div class='inline'><p>the character's guild or nil if not set.</p></div>
       
     </li>
   
@@ -3153,12 +2875,12 @@
       <pre class="lines">
 
 
-78
-79
-80</pre>
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_guild'>guild</span>
   <span class='cvar'>@@guild</span>
@@ -3179,9 +2901,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s guild</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the guild of the character.</p>
 
   </div>
 </div>
@@ -3199,9 +2919,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The guild to set for the character</p>
-</div>
+        <div class='inline'><p>the guild to set for the character.</p></div>
       
     </li>
   
@@ -3214,12 +2932,12 @@
       <pre class="lines">
 
 
-85
-86
-87</pre>
+52
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_guild='>guild=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@guild</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -3240,9 +2958,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s health from XMLData</p>
-
+    <p>Returns the health of the character from XML data.</p>
 
   </div>
 </div>
@@ -3259,9 +2975,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The health of the character.</p>
-</div>
+        <div class='inline'><p>the character's health.</p></div>
       
     </li>
   
@@ -3273,12 +2987,12 @@
       <pre class="lines">
 
 
-305
-306
-307</pre>
+272
+273
+274</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 305</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 272</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_health'>health</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_health'>health</span>
@@ -3299,9 +3013,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s intelligence</p>
-
+    <p>Returns the current intelligence of the character.</p>
 
   </div>
 </div>
@@ -3318,9 +3030,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The intelligence of the character.</p>
-</div>
+        <div class='inline'><p>the character's intelligence.</p></div>
       
     </li>
   
@@ -3332,12 +3042,12 @@
       <pre class="lines">
 
 
-182
-183
-184</pre>
+149
+150
+151</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 182</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 149</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_intelligence'>intelligence</span>
   <span class='cvar'>@@intelligence</span>
@@ -3358,9 +3068,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s intelligence</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the intelligence of the character.</p>
 
   </div>
 </div>
@@ -3378,9 +3086,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The intelligence to set for the character</p>
-</div>
+        <div class='inline'><p>the intelligence to set for the character.</p></div>
       
     </li>
   
@@ -3393,12 +3099,12 @@
       <pre class="lines">
 
 
-189
-190
-191</pre>
+156
+157
+158</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 189</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 156</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_intelligence='>intelligence=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@intelligence</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -3419,9 +3125,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Loads character stats from a serialized array</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Loads character stats from a serialized array.</p>
 
   </div>
 </div>
@@ -3439,9 +3143,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The array containing serialized stats</p>
-</div>
+        <div class='inline'><p>the array containing serialized stats.</p></div>
       
     </li>
   
@@ -3454,17 +3156,21 @@
       <pre class="lines">
 
 
-361
-362
-363
-364</pre>
+335
+336
+337
+338
+339
+340</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 361</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 335</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_load_serialized='>load_serialized=</span><span class='lparen'>(</span><span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_array'>array</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_array'>array</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+
   <span class='cvar'>@@race</span><span class='comma'>,</span> <span class='cvar'>@@guild</span><span class='comma'>,</span> <span class='cvar'>@@gender</span><span class='comma'>,</span> <span class='cvar'>@@age</span> <span class='op'>=</span> <span class='id identifier rubyid_array'>array</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>..</span><span class='int'>3</span><span class='rbracket'>]</span>
-  <span class='cvar'>@@circle</span><span class='comma'>,</span> <span class='cvar'>@@strength</span><span class='comma'>,</span> <span class='cvar'>@@stamina</span><span class='comma'>,</span> <span class='cvar'>@@reflex</span><span class='comma'>,</span> <span class='cvar'>@@agility</span><span class='comma'>,</span> <span class='cvar'>@@intelligence</span><span class='comma'>,</span> <span class='cvar'>@@wisdom</span><span class='comma'>,</span> <span class='cvar'>@@discipline</span><span class='comma'>,</span> <span class='cvar'>@@charisma</span><span class='comma'>,</span> <span class='cvar'>@@favors</span><span class='comma'>,</span> <span class='cvar'>@@tdps</span><span class='comma'>,</span> <span class='cvar'>@@luck</span><span class='comma'>,</span> <span class='cvar'>@@encumbrance</span> <span class='op'>=</span> <span class='id identifier rubyid_array'>array</span><span class='lbracket'>[</span><span class='int'>5</span><span class='op'>..</span><span class='int'>12</span><span class='rbracket'>]</span>
+  <span class='cvar'>@@circle</span><span class='comma'>,</span> <span class='cvar'>@@strength</span><span class='comma'>,</span> <span class='cvar'>@@stamina</span><span class='comma'>,</span> <span class='cvar'>@@reflex</span><span class='comma'>,</span> <span class='cvar'>@@agility</span><span class='comma'>,</span> <span class='cvar'>@@intelligence</span><span class='comma'>,</span> <span class='cvar'>@@wisdom</span><span class='comma'>,</span> <span class='cvar'>@@discipline</span><span class='comma'>,</span> <span class='cvar'>@@charisma</span><span class='comma'>,</span> <span class='cvar'>@@favors</span><span class='comma'>,</span> <span class='cvar'>@@tdps</span><span class='comma'>,</span> <span class='cvar'>@@luck</span><span class='comma'>,</span> <span class='cvar'>@@encumbrance</span> <span class='op'>=</span> <span class='id identifier rubyid_array'>array</span><span class='lbracket'>[</span><span class='int'>4</span><span class='op'>..</span><span class='int'>16</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -3482,9 +3188,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s luck</p>
-
+    <p>Returns the current luck of the character.</p>
 
   </div>
 </div>
@@ -3501,9 +3205,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The luck of the character.</p>
-</div>
+        <div class='inline'><p>the character's luck.</p></div>
       
     </li>
   
@@ -3515,12 +3217,12 @@
       <pre class="lines">
 
 
-260
-261
-262</pre>
+227
+228
+229</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 260</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 227</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_luck'>luck</span>
   <span class='cvar'>@@luck</span>
@@ -3541,9 +3243,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s luck</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the luck of the character.</p>
 
   </div>
 </div>
@@ -3561,9 +3261,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The luck to set for the character</p>
-</div>
+        <div class='inline'><p>the luck to set for the character.</p></div>
       
     </li>
   
@@ -3576,12 +3274,12 @@
       <pre class="lines">
 
 
-267
-268
-269</pre>
+234
+235
+236</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 267</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 234</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_luck='>luck=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@luck</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -3602,9 +3300,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s mana from XMLData</p>
-
+    <p>Returns the mana of the character from XML data.</p>
 
   </div>
 </div>
@@ -3621,9 +3317,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The mana of the character.</p>
-</div>
+        <div class='inline'><p>the character's mana.</p></div>
       
     </li>
   
@@ -3635,12 +3329,12 @@
       <pre class="lines">
 
 
-311
-312
-313</pre>
+278
+279
+280</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 311</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 278</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span>
@@ -3661,9 +3355,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character’s guild is Moon Mage</p>
-
+    <p>Checks if the character's guild is Moon Mage.</p>
 
   </div>
 </div>
@@ -3680,9 +3372,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the character is a Moon Mage, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the character is a Moon Mage, false otherwise.</p></div>
       
     </li>
   
@@ -3694,12 +3384,12 @@
       <pre class="lines">
 
 
-398
-399
-400</pre>
+374
+375
+376</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 398</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 374</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_moon_mage?'>moon_mage?</span>
   <span class='cvar'>@@guild</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Moon Mage</span><span class='tstring_end'>&#39;</span></span>
@@ -3720,9 +3410,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s name from XMLData</p>
-
+    <p>Returns the name of the character from XML data.</p>
 
   </div>
 </div>
@@ -3739,9 +3427,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the character.</p>
-</div>
+        <div class='inline'><p>the character's name.</p></div>
       
     </li>
   
@@ -3753,12 +3439,12 @@
       <pre class="lines">
 
 
-299
-300
-301</pre>
+266
+267
+268</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 299</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 266</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
@@ -3779,9 +3465,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Determines the character’s native mana type based on their guild</p>
-
+    <p>Returns the native mana type for the current guild.</p>
 
   </div>
 </div>
@@ -3798,9 +3482,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The native mana type or nil if not applicable.</p>
-</div>
+        <div class='inline'><p>the native mana type or nil if not applicable.</p></div>
       
     </li>
   
@@ -3812,41 +3494,15 @@
       <pre class="lines">
 
 
-335
-336
-337
-338
-339
-340
-341
-342
-343
-344
-345
-346
-347
-348
-349
-350</pre>
+322
+323
+324</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 335</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 322</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_native_mana'>native_mana</span>
-  <span class='kw'>case</span> <span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRStats (module)">DRStats</a></span></span><span class='period'>.</span><span class='id identifier rubyid_guild'><span class='object_link'><a href="#guild-class_method" title="Lich::DragonRealms::DRStats.guild (method)">guild</a></span></span>
-  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Necromancer</span><span class='tstring_end'>&#39;</span></span>
-    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>arcane</span><span class='tstring_end'>&#39;</span></span>
-  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Barbarian</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Thief</span><span class='tstring_end'>&#39;</span></span>
-    <span class='kw'>nil</span>
-  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Moon Mage</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Trader</span><span class='tstring_end'>&#39;</span></span>
-    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>lunar</span><span class='tstring_end'>&#39;</span></span>
-  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Warrior Mage</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Bard</span><span class='tstring_end'>&#39;</span></span>
-    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>elemental</span><span class='tstring_end'>&#39;</span></span>
-  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cleric</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Paladin</span><span class='tstring_end'>&#39;</span></span>
-    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>holy</span><span class='tstring_end'>&#39;</span></span>
-  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Empath</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ranger</span><span class='tstring_end'>&#39;</span></span>
-    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>life</span><span class='tstring_end'>&#39;</span></span>
-  <span class='kw'>end</span>
+  <span class='const'><span class='object_link'><a href="#GUILD_MANA_TYPES-constant" title="Lich::DragonRealms::DRStats::GUILD_MANA_TYPES (constant)">GUILD_MANA_TYPES</a></span></span><span class='lbracket'>[</span><span class='cvar'>@@guild</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -3864,9 +3520,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character’s guild is Necromancer</p>
-
+    <p>Checks if the character's guild is Necromancer.</p>
 
   </div>
 </div>
@@ -3883,9 +3537,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the character is a Necromancer, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the character is a Necromancer, false otherwise.</p></div>
       
     </li>
   
@@ -3897,12 +3549,12 @@
       <pre class="lines">
 
 
-404
-405
-406</pre>
+380
+381
+382</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 404</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 380</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_necromancer?'>necromancer?</span>
   <span class='cvar'>@@guild</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Necromancer</span><span class='tstring_end'>&#39;</span></span>
@@ -3923,9 +3575,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character’s guild is Paladin</p>
-
+    <p>Checks if the character's guild is Paladin.</p>
 
   </div>
 </div>
@@ -3942,9 +3592,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the character is a Paladin, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the character is a Paladin, false otherwise.</p></div>
       
     </li>
   
@@ -3956,12 +3604,12 @@
       <pre class="lines">
 
 
-410
-411
-412</pre>
+386
+387
+388</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 410</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 386</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_paladin?'>paladin?</span>
   <span class='cvar'>@@guild</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Paladin</span><span class='tstring_end'>&#39;</span></span>
@@ -3982,9 +3630,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s race</p>
-
+    <p>Returns the current race of the character.</p>
 
   </div>
 </div>
@@ -4001,9 +3647,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The race of the character or nil if not set.</p>
-</div>
+        <div class='inline'><p>the character's race or nil if not set.</p></div>
       
     </li>
   
@@ -4015,12 +3659,12 @@
       <pre class="lines">
 
 
-65
-66
-67</pre>
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_race'>race</span>
   <span class='cvar'>@@race</span>
@@ -4041,9 +3685,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s race</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the race of the character.</p>
 
   </div>
 </div>
@@ -4061,9 +3703,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The race to set for the character</p>
-</div>
+        <div class='inline'><p>the race to set for the character.</p></div>
       
     </li>
   
@@ -4076,12 +3716,12 @@
       <pre class="lines">
 
 
-72
-73
-74</pre>
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 72</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_race='>race=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@race</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -4102,9 +3742,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character’s guild is Ranger</p>
-
+    <p>Checks if the character's guild is Ranger.</p>
 
   </div>
 </div>
@@ -4121,9 +3759,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the character is a Ranger, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the character is a Ranger, false otherwise.</p></div>
       
     </li>
   
@@ -4135,12 +3771,12 @@
       <pre class="lines">
 
 
-416
-417
-418</pre>
+392
+393
+394</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 416</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 392</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ranger?'>ranger?</span>
   <span class='cvar'>@@guild</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ranger</span><span class='tstring_end'>&#39;</span></span>
@@ -4161,9 +3797,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s reflex</p>
-
+    <p>Returns the current reflex of the character.</p>
 
   </div>
 </div>
@@ -4180,9 +3814,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The reflex of the character.</p>
-</div>
+        <div class='inline'><p>the character's reflex.</p></div>
       
     </li>
   
@@ -4194,12 +3826,12 @@
       <pre class="lines">
 
 
-156
-157
-158</pre>
+123
+124
+125</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 156</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 123</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_reflex'>reflex</span>
   <span class='cvar'>@@reflex</span>
@@ -4220,9 +3852,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s reflex</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the reflex of the character.</p>
 
   </div>
 </div>
@@ -4240,9 +3870,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The reflex to set for the character</p>
-</div>
+        <div class='inline'><p>the reflex to set for the character.</p></div>
       
     </li>
   
@@ -4255,12 +3883,12 @@
       <pre class="lines">
 
 
-163
-164
-165</pre>
+130
+131
+132</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 163</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 130</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_reflex='>reflex=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@reflex</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -4281,9 +3909,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Serializes the character’s stats into an array</p>
-
+    <p>Serializes the character's stats into an array.</p>
 
   </div>
 </div>
@@ -4300,9 +3926,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array containing the serialized stats.</p>
-</div>
+        <div class='inline'><p>an array containing the serialized stats.</p></div>
       
     </li>
   
@@ -4314,12 +3938,12 @@
       <pre class="lines">
 
 
-354
-355
-356</pre>
+328
+329
+330</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 354</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 328</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_serialize'>serialize</span>
   <span class='lbracket'>[</span><span class='cvar'>@@race</span><span class='comma'>,</span> <span class='cvar'>@@guild</span><span class='comma'>,</span> <span class='cvar'>@@gender</span><span class='comma'>,</span> <span class='cvar'>@@age</span><span class='comma'>,</span> <span class='cvar'>@@circle</span><span class='comma'>,</span> <span class='cvar'>@@strength</span><span class='comma'>,</span> <span class='cvar'>@@stamina</span><span class='comma'>,</span> <span class='cvar'>@@reflex</span><span class='comma'>,</span> <span class='cvar'>@@agility</span><span class='comma'>,</span> <span class='cvar'>@@intelligence</span><span class='comma'>,</span> <span class='cvar'>@@wisdom</span><span class='comma'>,</span> <span class='cvar'>@@discipline</span><span class='comma'>,</span> <span class='cvar'>@@charisma</span><span class='comma'>,</span> <span class='cvar'>@@favors</span><span class='comma'>,</span> <span class='cvar'>@@tdps</span><span class='comma'>,</span> <span class='cvar'>@@luck</span><span class='comma'>,</span> <span class='cvar'>@@encumbrance</span><span class='rbracket'>]</span>
@@ -4340,9 +3964,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s spirit from XMLData</p>
-
+    <p>Returns the spirit of the character from XML data.</p>
 
   </div>
 </div>
@@ -4359,9 +3981,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The spirit of the character.</p>
-</div>
+        <div class='inline'><p>the character's spirit.</p></div>
       
     </li>
   
@@ -4373,12 +3993,12 @@
       <pre class="lines">
 
 
-323
-324
-325</pre>
+290
+291
+292</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 323</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 290</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_spirit'>spirit</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_spirit'>spirit</span>
@@ -4399,9 +4019,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s stamina</p>
-
+    <p>Returns the current stamina of the character.</p>
 
   </div>
 </div>
@@ -4418,9 +4036,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The stamina of the character.</p>
-</div>
+        <div class='inline'><p>the character's stamina.</p></div>
       
     </li>
   
@@ -4432,12 +4048,12 @@
       <pre class="lines">
 
 
-143
-144
-145</pre>
+110
+111
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 143</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 110</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_stamina'>stamina</span>
   <span class='cvar'>@@stamina</span>
@@ -4458,9 +4074,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s stamina</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the stamina of the character.</p>
 
   </div>
 </div>
@@ -4478,9 +4092,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The stamina to set for the character</p>
-</div>
+        <div class='inline'><p>the stamina to set for the character.</p></div>
       
     </li>
   
@@ -4493,12 +4105,12 @@
       <pre class="lines">
 
 
-150
-151
-152</pre>
+117
+118
+119</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 150</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 117</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_stamina='>stamina=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@stamina</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -4519,9 +4131,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s strength</p>
-
+    <p>Returns the current strength of the character.</p>
 
   </div>
 </div>
@@ -4538,9 +4148,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The strength of the character.</p>
-</div>
+        <div class='inline'><p>the character's strength.</p></div>
       
     </li>
   
@@ -4552,12 +4160,12 @@
       <pre class="lines">
 
 
-130
-131
-132</pre>
+97
+98
+99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 130</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_strength'>strength</span>
   <span class='cvar'>@@strength</span>
@@ -4578,9 +4186,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s strength</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the strength of the character.</p>
 
   </div>
 </div>
@@ -4598,9 +4204,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The strength to set for the character</p>
-</div>
+        <div class='inline'><p>the strength to set for the character.</p></div>
       
     </li>
   
@@ -4613,12 +4217,12 @@
       <pre class="lines">
 
 
-137
-138
-139</pre>
+104
+105
+106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 104</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_strength='>strength=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@strength</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -4639,9 +4243,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s TDPS</p>
-
+    <p>Returns the current TDPS of the character.</p>
 
   </div>
 </div>
@@ -4658,9 +4260,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The TDPS of the character.</p>
-</div>
+        <div class='inline'><p>the character's TDPS.</p></div>
       
     </li>
   
@@ -4672,12 +4272,12 @@
       <pre class="lines">
 
 
-247
-248
-249</pre>
+214
+215
+216</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 247</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 214</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_tdps'>tdps</span>
   <span class='cvar'>@@tdps</span>
@@ -4698,9 +4298,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s TDPS</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the TDPS of the character.</p>
 
   </div>
 </div>
@@ -4718,9 +4316,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The TDPS to set for the character</p>
-</div>
+        <div class='inline'><p>the TDPS to set for the character.</p></div>
       
     </li>
   
@@ -4733,12 +4329,12 @@
       <pre class="lines">
 
 
-254
-255
-256</pre>
+221
+222
+223</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 254</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 221</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_tdps='>tdps=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@tdps</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -4759,9 +4355,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character’s guild is Thief</p>
-
+    <p>Checks if the character's guild is Thief.</p>
 
   </div>
 </div>
@@ -4778,9 +4372,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the character is a Thief, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the character is a Thief, false otherwise.</p></div>
       
     </li>
   
@@ -4792,12 +4384,12 @@
       <pre class="lines">
 
 
-422
-423
-424</pre>
+398
+399
+400</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 422</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 398</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_thief?'>thief?</span>
   <span class='cvar'>@@guild</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Thief</span><span class='tstring_end'>&#39;</span></span>
@@ -4818,9 +4410,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character’s guild is Trader</p>
-
+    <p>Checks if the character's guild is Trader.</p>
 
   </div>
 </div>
@@ -4837,9 +4427,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the character is a Trader, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the character is a Trader, false otherwise.</p></div>
       
     </li>
   
@@ -4851,12 +4439,12 @@
       <pre class="lines">
 
 
-428
-429
-430</pre>
+404
+405
+406</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 428</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 404</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_trader?'>trader?</span>
   <span class='cvar'>@@guild</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Trader</span><span class='tstring_end'>&#39;</span></span>
@@ -4877,9 +4465,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character’s guild is Warrior Mage</p>
-
+    <p>Checks if the character's guild is Warrior Mage.</p>
 
   </div>
 </div>
@@ -4896,9 +4482,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the character is a Warrior Mage, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the character is a Warrior Mage, false otherwise.</p></div>
       
     </li>
   
@@ -4910,12 +4494,12 @@
       <pre class="lines">
 
 
-434
-435
-436</pre>
+410
+411
+412</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 434</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 410</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_warrior_mage?'>warrior_mage?</span>
   <span class='cvar'>@@guild</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Warrior Mage</span><span class='tstring_end'>&#39;</span></span>
@@ -4936,9 +4520,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the character’s wisdom</p>
-
+    <p>Returns the current wisdom of the character.</p>
 
   </div>
 </div>
@@ -4955,9 +4537,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The wisdom of the character.</p>
-</div>
+        <div class='inline'><p>the character's wisdom.</p></div>
       
     </li>
   
@@ -4969,12 +4549,12 @@
       <pre class="lines">
 
 
-195
-196
-197</pre>
+162
+163
+164</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 195</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 162</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_wisdom'>wisdom</span>
   <span class='cvar'>@@wisdom</span>
@@ -4995,9 +4575,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the character’s wisdom</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the wisdom of the character.</p>
 
   </div>
 </div>
@@ -5015,9 +4593,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The wisdom to set for the character</p>
-</div>
+        <div class='inline'><p>the wisdom to set for the character.</p></div>
       
     </li>
   
@@ -5030,12 +4606,12 @@
       <pre class="lines">
 
 
-202
-203
-204</pre>
+169
+170
+171</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 202</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drstats.rb', line 169</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_wisdom='>wisdom=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@wisdom</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -5050,9 +4626,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:53 2026 by
+  Generated on Sun May 10 17:26:26 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

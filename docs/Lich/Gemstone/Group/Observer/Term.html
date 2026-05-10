@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Group::Observer::Term";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,23 +80,13 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/group.rb</dd>
+    <dd>documented/gemstone/group.rb
+</dd>
   </dl>
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expressions and constants for matching group-related game output.</p>
 
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
   
     <h2>
       Constant Summary
@@ -104,420 +96,84 @@
     <dl class="constants">
       
         <dt id="JOIN-constant" class="">JOIN =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches when someone joins your group</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“&lt;a exist=&quot;-10467645&quot; noun=&quot;Oreh&quot;&gt;Oreh&lt;/a&gt; joins your group.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^&lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; joins your group.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="LEAVE-constant" class="">LEAVE =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches when someone leaves your group</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“&lt;a exist=&quot;-10467645&quot; noun=&quot;Oreh&quot;&gt;Oreh&lt;/a&gt; leaves your group”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^&lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; leaves your group.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="ADD-constant" class="">ADD =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches when you add someone to your group</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“You add &lt;a exist=&quot;-10467645&quot; noun=&quot;Oreh&quot;&gt;Oreh&lt;/a&gt; to your group.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^You add &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; to your group.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="REMOVE-constant" class="">REMOVE =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches when you remove someone from the group</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“You remove &lt;a exist=&quot;-10467645&quot; noun=&quot;Oreh&quot;&gt;Oreh&lt;/a&gt; from the group.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^You remove &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; from the group.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="NOOP-constant" class="">NOOP =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches when trying to add someone already in group</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“But &lt;a exist=&quot;-10467645&quot; noun=&quot;Oreh&quot;&gt;Oreh&lt;/a&gt; is already a member of your group!”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^But &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; is already a member of your group!\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="HAS_LEADER-constant" class="">HAS_LEADER =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches when you receive leadership</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“&lt;a exist=&quot;-10488845&quot; noun=&quot;Etanamir&quot;&gt;Etanamir&lt;/a&gt; designates you as the new leader of the group.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>&lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; designates you as the new leader of the group\.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="SWAP_LEADER-constant" class="">SWAP_LEADER =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches when leadership changes to another player</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“&lt;a exist=&quot;-10488845&quot; noun=&quot;Etanamir&quot;&gt;Etanamir&lt;/a&gt; designates &lt;a exist=&quot;-10488845&quot; noun=&quot;Ondreian&quot;&gt;Ondreian&lt;/a&gt; as the new leader of the group.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>&lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; designates &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; as the new leader of the group.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="GAVE_LEADER_AWAY-constant" class="">GAVE_LEADER_AWAY =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches when you give away leadership</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“You designate &lt;a exist=&quot;-10778599&quot; noun=&quot;Ondreian&quot;&gt;Ondreian&lt;/a&gt; as the new leader of the group.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>You designate &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; as the new leader of the group\.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="DISBAND-constant" class="">DISBAND =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches when you disband the group</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“You disband your group.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^You disband your group</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="ADDED_TO_NEW_GROUP-constant" class="">ADDED_TO_NEW_GROUP =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches when you’re added to someone’s group</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“&lt;a exist=&quot;-10488845&quot; noun=&quot;Etanamir&quot;&gt;Etanamir&lt;/a&gt; adds you to &lt;a exist=&quot;-10488845&quot; noun=&quot;Etanamir&quot;&gt;his&lt;/a&gt; group.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>&lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; adds you to &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; group.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="JOINED_NEW_GROUP-constant" class="">JOINED_NEW_GROUP =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches when you join someone’s group</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“You join &lt;a exist=&quot;-10488845&quot; noun=&quot;Etanamir&quot;&gt;Etanamir&lt;/a&gt;.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>You join &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt;\.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="LEADER_ADDED_MEMBER-constant" class="">LEADER_ADDED_MEMBER =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches when your leader adds another member</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“&lt;a exist=&quot;-10488845&quot; noun=&quot;Etanamir&quot;&gt;Etanamir&lt;/a&gt; adds &lt;a exist=&quot;-10974229&quot; noun=&quot;Szan&quot;&gt;Szan&lt;/a&gt; to &lt;a exist=&quot;-10488845&quot; noun=&quot;Etanamir&quot;&gt;his&lt;/a&gt; group.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>&lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; adds &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; to &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; group\.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="LEADER_REMOVED_MEMBER-constant" class="">LEADER_REMOVED_MEMBER =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches when your leader removes a member</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“&lt;a exist=&quot;-10488845&quot; noun=&quot;Etanamir&quot;&gt;Etanamir&lt;/a&gt; removes &lt;a exist=&quot;-10974229&quot; noun=&quot;Szan&quot;&gt;Szan&lt;/a&gt; from the group.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>&lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; removes &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; from the group\.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="HOLD_RESERVED_FIRST-constant" class="">HOLD_RESERVED_FIRST =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches when you grab someone’s hand (reserved demeanor)</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“You grab &lt;a exist=&quot;-10070682&quot; noun=&quot;Dicate&quot;&gt;Dicate’s&lt;/a&gt; hand.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^You grab &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;[\w&#39;]+?)&lt;/a&gt; hand.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="HOLD_NEUTRAL_FIRST-constant" class="">HOLD_NEUTRAL_FIRST =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Matches when you hold someone’s hand (neutral demeanor)</p>
-
+    <p>Matches when you hold someone's hand (neutral demeanor)</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“You reach out and hold &lt;a exist=&quot;-10070682&quot; noun=&quot;Dicate&quot;&gt;Dicate’s&lt;/a&gt; hand.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
 
 </div>
         </dt>
@@ -526,26 +182,12 @@
         <dt id="HOLD_FRIENDLY_FIRST-constant" class="">HOLD_FRIENDLY_FIRST =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Matches when you take someone’s hand (friendly demeanor)</p>
-
+    <p>Matches when you take someone's hand (friendly demeanor)</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“You gently take hold of &lt;a exist=&quot;-10070682&quot; noun=&quot;Dicate&quot;&gt;Dicate’s&lt;/a&gt; hand.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
 
 </div>
         </dt>
@@ -554,82 +196,31 @@
         <dt id="HOLD_WARM_FIRST-constant" class="">HOLD_WARM_FIRST =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Matches when you clasp someone’s hand (warm demeanor)</p>
-
+    <p>Matches when you clasp someone's hand (warm demeanor)</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“You clasp &lt;a exist=&quot;-10070682&quot; noun=&quot;Dicate&quot;&gt;Dicate’s&lt;/a&gt; hand tenderly.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
 
 </div>
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^You clasp &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;[\w&#39;]+?)&lt;/a&gt; hand tenderly.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="HOLD_RESERVED_SECOND-constant" class="">HOLD_RESERVED_SECOND =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches when someone grabs your hand (reserved demeanor)</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“&lt;indicator id=‘IconJOINED’ visible=‘y’/&gt;&lt;a exist=&quot;-10966483&quot; noun=&quot;Nisugi&quot;&gt;Nisugi&lt;/a&gt; grabs your hand.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>&lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; grabs your hand.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="HOLD_NEUTRAL_SECOND-constant" class="">HOLD_NEUTRAL_SECOND =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Matches when someone holds your hand (neutral demeanor)</p>
-
+    <p>Matches when someone holds your hand (neutral demeanor)</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“&lt;a exist=&quot;-10966483&quot; noun=&quot;Nisugi&quot;&gt;Nisugi&lt;/a&gt; reaches out and holds your hand.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
 
 </div>
         </dt>
@@ -638,26 +229,12 @@
         <dt id="HOLD_FRIENDLY_SECOND-constant" class="">HOLD_FRIENDLY_SECOND =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Matches when someone takes your hand (friendly demeanor)</p>
-
+    <p>Matches when someone takes your hand (friendly demeanor)</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“&lt;a exist=&quot;-10966483&quot; noun=&quot;Nisugi&quot;&gt;Nisugi&lt;/a&gt; gently takes hold of your hand.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
 
 </div>
         </dt>
@@ -666,82 +243,31 @@
         <dt id="HOLD_WARM_SECOND-constant" class="">HOLD_WARM_SECOND =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Matches when someone clasps your hand (warm demeanor)</p>
-
+    <p>Matches when someone clasps your hand (warm demeanor)</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“&lt;a exist=&quot;-10966483&quot; noun=&quot;Nisugi&quot;&gt;Nisugi&lt;/a&gt; clasps your hand tenderly.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
 
 </div>
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>&lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; clasps your hand tenderly.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="HOLD_RESERVED_THIRD-constant" class="">HOLD_RESERVED_THIRD =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches when you observe someone grabbing another’s hand (reserved demeanor)</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“&lt;a exist=&quot;-10966483&quot; noun=&quot;Nisugi&quot;&gt;Nisugi&lt;/a&gt; grabs &lt;a exist=&quot;-10070682&quot; noun=&quot;Dicate&quot;&gt;Dicate’s&lt;/a&gt; hand.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^&lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;[\w&#39;]+?)&lt;/a&gt; grabs &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;[\w&#39;]+?)&lt;/a&gt; hand.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="HOLD_NEUTRAL_THIRD-constant" class="">HOLD_NEUTRAL_THIRD =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Matches when you observe someone holding another’s hand (neutral demeanor)</p>
-
+    <p>Matches when you observe someone holding another's hand (neutral demeanor)</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“&lt;a exist=&quot;-10966483&quot; noun=&quot;Nisugi&quot;&gt;Nisugi&lt;/a&gt; reaches out and holds &lt;a exist=&quot;-10070682&quot; noun=&quot;Dicate&quot;&gt;Dicate’s&lt;/a&gt; hand.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
 
 </div>
         </dt>
@@ -750,26 +276,12 @@
         <dt id="HOLD_FRIENDLY_THIRD-constant" class="">HOLD_FRIENDLY_THIRD =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Matches when you observe someone taking another’s hand (friendly demeanor)</p>
-
+    <p>Matches when you observe someone taking another's hand (friendly demeanor)</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“&lt;a exist=&quot;-10966483&quot; noun=&quot;Nisugi&quot;&gt;Nisugi&lt;/a&gt; gently takes hold of &lt;a exist=&quot;-10070682&quot; noun=&quot;Dicate&quot;&gt;Dicate’s&lt;/a&gt; hand.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
 
 </div>
         </dt>
@@ -778,156 +290,50 @@
         <dt id="HOLD_WARM_THIRD-constant" class="">HOLD_WARM_THIRD =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Matches when you observe someone clasping another’s hand (warm demeanor)</p>
-
+    <p>Matches when you observe someone clasping another's hand (warm demeanor)</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“&lt;a exist=&quot;-10966483&quot; noun=&quot;Nisugi&quot;&gt;Nisugi&lt;/a&gt; clasps &lt;a exist=&quot;-10070682&quot; noun=&quot;Dicate&quot;&gt;Dicate’s&lt;/a&gt; hand tenderly.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
 
 </div>
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^&lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; clasps &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;[\w&#39;]+?)&lt;/a&gt; hand tenderly.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="OTHER_JOINED_GROUP-constant" class="">OTHER_JOINED_GROUP =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches when someone else joins another’s group</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“&lt;a exist=&quot;-10154507&quot; noun=&quot;Zoleta&quot;&gt;Zoleta&lt;/a&gt; joins &lt;a exist=&quot;-10966483&quot; noun=&quot;Nisugi&quot;&gt;Nisugi’s&lt;/a&gt; group.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^&lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;\w+?)&lt;/a&gt; joins &lt;a exist=&quot;(?&lt;id&gt;[\d-]+)&quot; noun=&quot;(?&lt;noun&gt;[A-Za-z]+)&quot;&gt;(?&lt;name&gt;[\w&#39;]+?)&lt;/a&gt; group.\r?\n?$</span><span class='regexp_end'>}</span></span></pre></dd>
       
         <dt id="NO_GROUP-constant" class="">NO_GROUP =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Matches when not in any group</p>
-
+    <p>Matches when not in any group</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>/^You are not currently in a group/</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
 
 </div>
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You are not currently in a group</span><span class='regexp_end'>/</span></span></pre></dd>
       
         <dt id="MEMBER-constant" class="">MEMBER =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches group member listing from GROUP command</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“You are leading PlayerName, PlayerName2.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“You are grouped with LeaderName, PlayerName.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You are (?:leading|grouped with) (.*)</span><span class='regexp_end'>/</span></span></pre></dd>
       
         <dt id="STATUS-constant" class="">STATUS =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Matches group status line</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>“Your group status is currently open.”</p>
-</div></h5>
-      
-      <pre class="example code"><code></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Your group status is currently (?&lt;status&gt;open|closed)\.</span><span class='regexp_end'>/</span></span></pre></dd>
       
         <dt id="GROUP_EMPTIED-constant" class="">GROUP_EMPTIED =
           <div class="docstring">
   <div class="discussion">
-    
-<p>UI indicator showing group is empty</p>
-
+    <p>UI indicator showing group is empty</p>
 
   </div>
 </div>
@@ -941,9 +347,7 @@
         <dt id="GROUP_EXISTS-constant" class="">GROUP_EXISTS =
           <div class="docstring">
   <div class="discussion">
-    
-<p>UI indicator showing group exists</p>
-
+    <p>UI indicator showing group exists</p>
 
   </div>
 </div>
@@ -957,9 +361,7 @@
         <dt id="GIVEN_LEADERSHIP-constant" class="">GIVEN_LEADERSHIP =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Text indicating leadership transfer</p>
-
+    <p>Text indicating leadership transfer</p>
 
   </div>
 </div>
@@ -973,9 +375,7 @@
         <dt id="ANY-constant" class="">ANY =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Combined regex matching any group-related message</p>
-
+    <p>Combined regex matching any group-related message</p>
 
   </div>
 </div>
@@ -1019,9 +419,7 @@
         <dt id="EXIST-constant" class="">EXIST =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Regex for extracting character data from XML tags</p>
-
+    <p>Regex for extracting character data from XML tags</p>
 
   </div>
 </div>
@@ -1046,9 +444,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:48 2026 by
+  Generated on Sun May 10 17:26:22 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

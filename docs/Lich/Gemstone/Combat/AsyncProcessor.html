@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Combat::AsyncProcessor";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,35 +96,29 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/combat/async_processor.rb</dd>
+    <dd>documented/gemstone/combat/async_processor.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Async Combat Processor - Thread-safe combat processing for performance</p>
-
-<p>This class manages asynchronous processing of combat actions using a thread pool. It ensures thread safety and efficient resource management.</p>
-
+    <p>AsyncProcessor handles combat processing asynchronously.</p>
+<p>This class is designed to manage multiple threads for combat processing,
+ensuring thread safety and performance.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Creating an AsyncProcessor instance</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_processor'>processor</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'>AsyncProcessor</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Gemstone::Combat::AsyncProcessor#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='int'>4</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Processor.html" title="Lich::Gemstone::Combat::Processor (module)">Processor</a></span></li>
+    
+  </ul>
 
 </div>
 
@@ -142,7 +138,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(max_threads = 2)  &#x21d2; AsyncProcessor </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(max_threads = 2)  &#x21d2; void </a>
     
 
     
@@ -158,9 +154,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Initializes a new AsyncProcessor instance.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Initializes a new AsyncProcessor instance.</p></div></span>
   
 </li>
 
@@ -182,9 +176,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Processes a chunk of combat actions asynchronously.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Processes a chunk of combat data asynchronously.</p></div></span>
   
 </li>
 
@@ -206,9 +198,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Shuts down the AsyncProcessor, waiting for all threads to finish.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Shuts down the AsyncProcessor, waiting for all threads to finish.</p></div></span>
   
 </li>
 
@@ -230,14 +220,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns statistics about the current state of the AsyncProcessor.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns statistics about the current state of the AsyncProcessor.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 <div id="constructor_details" class="method_details_list">
@@ -246,7 +235,7 @@
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    #<strong>initialize</strong>(max_threads = 2)  &#x21d2; <tt><span class='object_link'><a href="" title="Lich::Gemstone::Combat::AsyncProcessor (class)">AsyncProcessor</a></span></tt> 
+    #<strong>initialize</strong>(max_threads = 2)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -254,9 +243,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Initializes a new AsyncProcessor instance.</p>
-
+    <p>Initializes a new AsyncProcessor instance.</p>
 
   </div>
 </div>
@@ -276,9 +263,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The maximum number of threads to use for processing.</p>
-</div>
+        <div class='inline'><p>the maximum number of threads to use for processing</p></div>
       
     </li>
   
@@ -291,16 +276,16 @@
       <pre class="lines">
 
 
+22
 23
 24
 25
 26
 27
-28
-29</pre>
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/async_processor.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/async_processor.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_max_threads'>max_threads</span> <span class='op'>=</span> <span class='int'>2</span><span class='rparen'>)</span>
   <span class='ivar'>@max_threads</span> <span class='op'>=</span> <span class='id identifier rubyid_max_threads'>max_threads</span>
@@ -332,9 +317,10 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Processes a chunk of combat actions asynchronously.</p>
-
+    <p>Processes a chunk of combat data asynchronously.</p>
+<p>This method will create a new thread to handle the processing of the
+provided chunk of data, ensuring that the number of active threads
+does not exceed the specified maximum.</p>
 
   </div>
 </div>
@@ -344,11 +330,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Processing a chunk of actions</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_processor'>processor</span><span class='period'>.</span><span class='id identifier rubyid_process_async'>process_async</span><span class='lparen'>(</span><span class='id identifier rubyid_actions'>actions</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_processor'>processor</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::AsyncProcessor (class)">AsyncProcessor</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Gemstone::Combat::AsyncProcessor#initialize (method)">new</a></span></span>
+<span class='id identifier rubyid_processor'>processor</span><span class='period'>.</span><span class='id identifier rubyid_process_async'>process_async</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>line1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>line2</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -359,14 +342,12 @@
         <span class='name'>chunk</span>
       
       
-        <span class='type'>(<tt>Array</tt>)</span>
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of combat actions to process.</p>
-</div>
+        <div class='inline'><p>the chunk of combat data to process</p></div>
       
     </li>
   
@@ -383,27 +364,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The thread that is processing the chunk.</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If an error occurs during processing.</p>
-</div>
+        <div class='inline'><p>the thread that is processing the chunk</p></div>
       
     </li>
   
@@ -415,8 +376,6 @@
       <pre class="lines">
 
 
-38
-39
 40
 41
 42
@@ -452,10 +411,12 @@
 72
 73
 74
-75</pre>
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/async_processor.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/async_processor.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_async'>process_async</span><span class='lparen'>(</span><span class='id identifier rubyid_chunk'>chunk</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_chunk'>chunk</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -511,26 +472,15 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Shuts down the AsyncProcessor, waiting for all threads to finish.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Shuts down the AsyncProcessor, waiting for all threads to finish.</p>
+<p>This method will block until all active threads have completed their
+execution and will perform garbage collection to help with memory
+management.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Shutting down the processor</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_processor'>processor</span><span class='period'>.</span><span class='id identifier rubyid_shutdown'>shutdown</span></code></pre>
-    
-  </div>
-
 
 </div><table class="source_code">
   <tr>
@@ -538,18 +488,18 @@
       <pre class="lines">
 
 
-82
-83
-84
 85
 86
 87
 88
 89
-90</pre>
+90
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/async_processor.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/async_processor.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_shutdown'>shutdown</span>
   <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Combat] Waiting for </span><span class='embexpr_beg'>#{</span><span class='ivar'>@thread_pool</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:alive?</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> threads...</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Tracker.html" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'><span class='object_link'><a href="Tracker.html#debug%3F-class_method" title="Lich::Gemstone::Combat::Tracker.debug? (method)">debug?</a></span></span>
@@ -576,26 +526,14 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns statistics about the current state of the AsyncProcessor.</p>
-
+    <p>Returns statistics about the current state of the AsyncProcessor.</p>
+<p>This includes the number of active threads, total alive threads,
+and other relevant metrics.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Getting processor statistics</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_stats'>stats</span> <span class='op'>=</span> <span class='id identifier rubyid_processor'>processor</span><span class='period'>.</span><span class='id identifier rubyid_stats'>stats</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -607,9 +545,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash containing statistics such as active threads, total alive threads, and processing details.</p>
-</div>
+        <div class='inline'><p>a hash containing statistics about the processor's state</p></div>
       
     </li>
   
@@ -621,9 +557,6 @@
       <pre class="lines">
 
 
-97
-98
-99
 100
 101
 102
@@ -635,10 +568,13 @@
 108
 109
 110
-111</pre>
+111
+112
+113
+114</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/async_processor.rb', line 97</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/async_processor.rb', line 100</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stats'>stats</span>
   <span class='lbrace'>{</span>
@@ -665,9 +601,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:19:02 2026 by
+  Generated on Sun May 10 17:26:34 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

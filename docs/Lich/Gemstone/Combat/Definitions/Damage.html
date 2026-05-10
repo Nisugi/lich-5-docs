@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Combat::Definitions::Damage";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,7 +80,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/combat/defs/damage.rb</dd>
+    <dd>documented/gemstone/combat/defs/damage.rb
+</dd>
   </dl>
   
 </div>
@@ -95,14 +98,30 @@
         <dt id="BASIC_DAMAGE-constant" class="">BASIC_DAMAGE =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Core damage patterns - most common Core damage patterns - most common</p>
-
+    <p>Core damage patterns - most common
+Core damage patterns - most common.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'>BASIC_DAMAGE</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>... and hit for 50 points of damage!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; #&lt;MatchData&gt;</span></code></pre>
+    
+  </div>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#SPELL_DAMAGE-constant" title="Lich::Gemstone::Combat::Definitions::Damage::SPELL_DAMAGE (constant)">SPELL_DAMAGE</a></span></li>
+    
+      <li><span class='object_link'><a href="#ENVIRONMENTAL_DAMAGE-constant" title="Lich::Gemstone::Combat::Definitions::Damage::ENVIRONMENTAL_DAMAGE (constant)">ENVIRONMENTAL_DAMAGE</a></span></li>
+    
+  </ul>
 
 </div>
         </dt>
@@ -115,14 +134,30 @@
         <dt id="SPELL_DAMAGE-constant" class="">SPELL_DAMAGE =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Spell damage patterns Spell damage patterns</p>
-
+    <p>Spell damage patterns
+Spell damage patterns.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'>SPELL_DAMAGE</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Consumed by the hallowed flames, target is ravaged for 30 points of damage!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; #&lt;MatchData&gt;</span></code></pre>
+    
+  </div>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#BASIC_DAMAGE-constant" title="Lich::Gemstone::Combat::Definitions::Damage::BASIC_DAMAGE (constant)">BASIC_DAMAGE</a></span></li>
+    
+      <li><span class='object_link'><a href="#ENVIRONMENTAL_DAMAGE-constant" title="Lich::Gemstone::Combat::Definitions::Damage::ENVIRONMENTAL_DAMAGE (constant)">ENVIRONMENTAL_DAMAGE</a></span></li>
+    
+  </ul>
 
 </div>
         </dt>
@@ -134,14 +169,30 @@
         <dt id="ENVIRONMENTAL_DAMAGE-constant" class="">ENVIRONMENTAL_DAMAGE =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Environmental/cyclone damage patterns Environmental/cyclone damage patterns</p>
-
+    <p>Environmental/cyclone damage patterns
+Environmental/cyclone damage patterns.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'>ENVIRONMENTAL_DAMAGE</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The whirlwind quickly swirls around target, causing 20 points of damage!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; #&lt;MatchData&gt;</span></code></pre>
+    
+  </div>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#BASIC_DAMAGE-constant" title="Lich::Gemstone::Combat::Definitions::Damage::BASIC_DAMAGE (constant)">BASIC_DAMAGE</a></span></li>
+    
+      <li><span class='object_link'><a href="#SPELL_DAMAGE-constant" title="Lich::Gemstone::Combat::Definitions::Damage::SPELL_DAMAGE (constant)">SPELL_DAMAGE</a></span></li>
+    
+  </ul>
 
 </div>
         </dt>
@@ -154,14 +205,24 @@
         <dt id="ALL_DAMAGE-constant" class="">ALL_DAMAGE =
           <div class="docstring">
   <div class="discussion">
-    
-<p>All damage patterns combined All damage patterns combined</p>
-
+    <p>All damage patterns combined
+All damage patterns combined.</p>
 
   </div>
 </div>
 <div class="tags">
   
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#BASIC_DAMAGE-constant" title="Lich::Gemstone::Combat::Definitions::Damage::BASIC_DAMAGE (constant)">BASIC_DAMAGE</a></span></li>
+    
+      <li><span class='object_link'><a href="#SPELL_DAMAGE-constant" title="Lich::Gemstone::Combat::Definitions::Damage::SPELL_DAMAGE (constant)">SPELL_DAMAGE</a></span></li>
+    
+      <li><span class='object_link'><a href="#ENVIRONMENTAL_DAMAGE-constant" title="Lich::Gemstone::Combat::Definitions::Damage::ENVIRONMENTAL_DAMAGE (constant)">ENVIRONMENTAL_DAMAGE</a></span></li>
+    
+  </ul>
 
 </div>
         </dt>
@@ -170,14 +231,20 @@
         <dt id="DAMAGE_DETECTOR-constant" class="">DAMAGE_DETECTOR =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Compiled regex for fast detection Compiled regex for fast detection</p>
-
+    <p>Compiled regex for fast detection
+Compiled regex for fast detection of damage patterns.</p>
 
   </div>
 </div>
 <div class="tags">
   
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#ALL_DAMAGE-constant" title="Lich::Gemstone::Combat::Definitions::Damage::ALL_DAMAGE (constant)">ALL_DAMAGE</a></span></li>
+    
+  </ul>
 
 </div>
         </dt>
@@ -217,14 +284,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Parses a line to extract damage information.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Parses a line of text to extract damage information.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -247,14 +313,10 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>This method will return nil if no damage pattern matches.</p>
-</div>
+    <div class='inline'><p>This method uses the combined damage patterns from ALL_DAMAGE.</p></div>
   </div>
 
-
-<p>Parses a line to extract damage information</p>
-
+<p>Parses a line of text to extract damage information.</p>
 
   </div>
 </div>
@@ -264,8 +326,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Definitions.html" title="Lich::Gemstone::Combat::Definitions (module)">Definitions</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Definitions::Damage (module)">Damage</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>... and hit for 50 points of damage!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='comment'># =&gt; { damage: 50 }</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>... and hit for 50 points of damage!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; { damage: 50 }</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -281,9 +342,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The line to parse for damage information</p>
-</div>
+        <div class='inline'><p>the line of text to parse</p></div>
       
     </li>
   
@@ -300,9 +359,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash containing damage and optionally target, or nil if no match</p>
-</div>
+        <div class='inline'><p>a hash containing damage and optionally target, or nil if no match</p></div>
       
     </li>
   
@@ -314,19 +371,19 @@
       <pre class="lines">
 
 
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56</pre>
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/defs/damage.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/defs/damage.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="#ALL_DAMAGE-constant" title="Lich::Gemstone::Combat::Definitions::Damage::ALL_DAMAGE (constant)">ALL_DAMAGE</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_pattern'>pattern</span><span class='op'>|</span>
@@ -348,9 +405,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:53 2026 by
+  Generated on Sun May 10 17:26:26 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

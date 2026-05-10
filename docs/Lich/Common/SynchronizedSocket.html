@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::SynchronizedSocket";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,33 +96,30 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/class_exts/synchronizedsocket.rb</dd>
+    <dd>documented/common/class_exts/synchronizedsocket.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a thread-safe wrapper around a socket. This class ensures that socket operations are synchronized using a mutex.</p>
-
+    <p>A socket wrapper that synchronizes access to a delegate socket.</p>
+<p>This class ensures that all operations on the delegate socket are thread-safe.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Creating a synchronized socket</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_socket'>socket</span> <span class='op'>=</span> <span class='const'>SynchronizedSocket</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::SynchronizedSocket#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_original_socket'>original_socket</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#puts-instance_method" title="Lich::Common::SynchronizedSocket#puts (method)">#puts</a></span></li>
+    
+      <li><span class='object_link'><a href="#write-instance_method" title="Lich::Common::SynchronizedSocket#write (method)">#write</a></span></li>
+    
+  </ul>
 
 </div>
 
@@ -140,7 +139,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(o)  &#x21d2; SynchronizedSocket </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(o)  &#x21d2; void </a>
     
 
     
@@ -156,9 +155,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Initializes a new SynchronizedSocket instance.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Initializes a new SynchronizedSocket instance.</p></div></span>
   
 </li>
 
@@ -166,7 +163,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#method_missing-instance_method" title="#method_missing (instance method)">#<strong>method_missing</strong>(method, *args, &amp;block)  &#x21d2; Object </a>
+      <a href="#method_missing-instance_method" title="#method_missing (instance method)">#<strong>method_missing</strong>(method, *args) {|Proc| ... } &#x21d2; Object </a>
     
 
     
@@ -180,9 +177,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Handles calls to methods that are not defined in this class.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Handles calls to methods that are not defined in this class.</p></div></span>
   
 </li>
 
@@ -190,7 +185,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#puts-instance_method" title="#puts (instance method)">#<strong>puts</strong>(*args, &amp;block)  &#x21d2; nil </a>
+      <a href="#puts-instance_method" title="#puts (instance method)">#<strong>puts</strong>(*args) {|Proc| ... } &#x21d2; void </a>
     
 
     
@@ -204,9 +199,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Outputs a string to the socket.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Writes a line to the delegate socket.</p></div></span>
   
 </li>
 
@@ -214,7 +207,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#puts_if-instance_method" title="#puts_if (instance method)">#<strong>puts_if</strong>(*args)  &#x21d2; Boolean </a>
+      <a href="#puts_if-instance_method" title="#puts_if (instance method)">#<strong>puts_if</strong>(*args) {|Proc| ... } &#x21d2; Boolean </a>
     
 
     
@@ -228,9 +221,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Conditionally outputs a string to the socket based on a block’s return value.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Conditionally writes a line to the delegate socket based on the block's return value.</p></div></span>
   
 </li>
 
@@ -238,7 +229,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#write-instance_method" title="#write (instance method)">#<strong>write</strong>(*args, &amp;block)  &#x21d2; nil </a>
+      <a href="#write-instance_method" title="#write (instance method)">#<strong>write</strong>(*args) {|Proc| ... } &#x21d2; void </a>
     
 
     
@@ -252,14 +243,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Writes data to the socket.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Writes data to the delegate socket.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 <div id="constructor_details" class="method_details_list">
@@ -268,7 +258,7 @@
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    #<strong>initialize</strong>(o)  &#x21d2; <tt><span class='object_link'><a href="" title="Lich::Common::SynchronizedSocket (class)">SynchronizedSocket</a></span></tt> 
+    #<strong>initialize</strong>(o)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -276,9 +266,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Initializes a new SynchronizedSocket instance.</p>
-
+    <p>Initializes a new SynchronizedSocket instance.</p>
 
   </div>
 </div>
@@ -296,9 +284,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The socket object to be synchronized.</p>
-</div>
+        <div class='inline'><p>the delegate socket to synchronize access to</p></div>
       
     </li>
   
@@ -341,7 +327,7 @@
     <div class="method_details first">
   <h3 class="signature first" id="method_missing-instance_method">
   
-    #<strong>method_missing</strong>(method, *args, &amp;block)  &#x21d2; <tt>Object</tt> 
+    #<strong>method_missing</strong>(method, *args) {|Proc| ... } &#x21d2; <tt>Object</tt> 
   
 
   
@@ -349,17 +335,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method delegates calls to the underlying socket object.</p>
-</div>
-  </div>
-
-
-<p>Handles calls to methods that are not defined in this class.</p>
-
+    <p>Handles calls to methods that are not defined in this class.</p>
+<p>This method delegates the call to the underlying socket.</p>
 
   </div>
 </div>
@@ -377,9 +354,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the method being called.</p>
-</div>
+        <div class='inline'><p>the name of the method being called</p></div>
       
     </li>
   
@@ -388,20 +363,21 @@
         <span class='name'>args</span>
       
       
-        <span class='type'>(<tt>*Object</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The arguments passed to the method.</p>
-</div>
+        <div class='inline'><p>the arguments to be passed to the method</p></div>
       
     </li>
   
+</ul>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
     <li>
-      
-        <span class='name'>block</span>
       
       
         <span class='type'>(<tt>Proc</tt>)</span>
@@ -409,14 +385,11 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An optional block to be executed.</p>
-</div>
+        <div class='inline'><p>an optional block to be executed</p></div>
       
     </li>
   
 </ul>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -428,9 +401,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns the result of the method call on the delegate.</p>
-</div>
+        <div class='inline'><p>the result of the delegated method call</p></div>
       
     </li>
   
@@ -442,12 +413,12 @@
       <pre class="lines">
 
 
-66
-67
-68</pre>
+68
+69
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/class_exts/synchronizedsocket.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'documented/common/class_exts/synchronizedsocket.rb', line 68</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@delegate</span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span> <span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
@@ -467,7 +438,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="puts-instance_method">
   
-    #<strong>puts</strong>(*args, &amp;block)  &#x21d2; <tt>nil</tt> 
+    #<strong>puts</strong>(*args) {|Proc| ... } &#x21d2; <tt>void</tt> 
   
 
   
@@ -475,26 +446,13 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Outputs a string to the socket.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Writes a line to the delegate socket.</p>
+<p>This method is thread-safe and will synchronize access to the delegate.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Sending a message to the socket</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_socket'>socket</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hello, World!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -502,20 +460,21 @@
         <span class='name'>args</span>
       
       
-        <span class='type'>(<tt>*Object</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The arguments to be sent to the socket.</p>
-</div>
+        <div class='inline'><p>the arguments to be passed to the delegate's puts method</p></div>
       
     </li>
   
+</ul>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
     <li>
-      
-        <span class='name'>block</span>
       
       
         <span class='type'>(<tt>Proc</tt>)</span>
@@ -523,28 +482,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An optional block to be executed.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Returns nil after outputting.</p>
-</div>
+        <div class='inline'><p>an optional block to be executed</p></div>
       
     </li>
   
@@ -578,7 +516,7 @@
       <div class="method_details ">
   <h3 class="signature " id="puts_if-instance_method">
   
-    #<strong>puts_if</strong>(*args)  &#x21d2; <tt>Boolean</tt> 
+    #<strong>puts_if</strong>(*args) {|Proc| ... } &#x21d2; <tt>Boolean</tt> 
   
 
   
@@ -586,26 +524,13 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Conditionally outputs a string to the socket based on a block’s return value.</p>
-
+    <p>Conditionally writes a line to the delegate socket based on the block's return value.</p>
+<p>This method is thread-safe and will synchronize access to the delegate.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Conditionally sending a message</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_socket'>socket</span><span class='period'>.</span><span class='id identifier rubyid_puts_if'>puts_if</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hello, World!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='kw'>true</span> <span class='rbrace'>}</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -613,19 +538,33 @@
         <span class='name'>args</span>
       
       
-        <span class='type'>(<tt>*Object</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The arguments to be sent to the socket if the condition is true.</p>
-</div>
+        <div class='inline'><p>the arguments to be passed to the delegate's puts method</p></div>
       
     </li>
   
 </ul>
 
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a block that determines whether to write to the socket</p></div>
+      
+    </li>
+  
+</ul>
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -637,9 +576,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns true if the message was sent, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the line was written, false otherwise</p></div>
       
     </li>
   
@@ -651,7 +588,6 @@
       <pre class="lines">
 
 
-37
 38
 39
 40
@@ -660,10 +596,11 @@
 43
 44
 45
-46</pre>
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/class_exts/synchronizedsocket.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'documented/common/class_exts/synchronizedsocket.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_puts_if'>puts_if</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='ivar'>@mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span>
@@ -683,7 +620,7 @@
       <div class="method_details ">
   <h3 class="signature " id="write-instance_method">
   
-    #<strong>write</strong>(*args, &amp;block)  &#x21d2; <tt>nil</tt> 
+    #<strong>write</strong>(*args) {|Proc| ... } &#x21d2; <tt>void</tt> 
   
 
   
@@ -691,26 +628,13 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Writes data to the socket.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Writes data to the delegate socket.</p>
+<p>This method is thread-safe and will synchronize access to the delegate.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Writing data to the socket</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_socket'>socket</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Data to send</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -718,20 +642,21 @@
         <span class='name'>args</span>
       
       
-        <span class='type'>(<tt>*Object</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The arguments to be sent to the socket.</p>
-</div>
+        <div class='inline'><p>the arguments to be passed to the delegate's write method</p></div>
       
     </li>
   
+</ul>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
     <li>
-      
-        <span class='name'>block</span>
       
       
         <span class='type'>(<tt>Proc</tt>)</span>
@@ -739,28 +664,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An optional block to be executed.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Returns nil after writing.</p>
-</div>
+        <div class='inline'><p>an optional block to be executed</p></div>
       
     </li>
   
@@ -772,14 +676,14 @@
       <pre class="lines">
 
 
-54
 55
 56
 57
-58</pre>
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/class_exts/synchronizedsocket.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'documented/common/class_exts/synchronizedsocket.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span>
@@ -796,9 +700,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:19:03 2026 by
+  Generated on Sun May 10 17:26:35 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

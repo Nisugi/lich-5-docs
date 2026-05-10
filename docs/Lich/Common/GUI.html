@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::GUI";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,8 +80,9 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/gui/state.rb<span class="defines">,<br />
-  documented/common/gui/utilities.rb,<br /> documented/common/gui/components.rb,<br /> documented/common/gui/yaml_state.rb,<br /> documented/common/gui/theme_utils.rb,<br /> documented/common/gui/accessibility.rb,<br /> documented/common/gui/conversion_ui.rb,<br /> documented/common/gui/authentication.rb,<br /> documented/common/gui/game_selection.rb,<br /> documented/common/gui/account_manager.rb,<br /> documented/common/gui/login_tab_utils.rb,<br /> documented/common/gui/password_change.rb,<br /> documented/common/gui/password_cipher.rb,<br /> documented/common/gui/saved_login_tab.rb,<br /> documented/common/gui/manual_login_tab.rb,<br /> documented/common/gui/password_manager.rb,<br /> documented/common/gui/tab_communicator.rb,<br /> documented/common/gui/favorites_manager.rb,<br /> documented/common/gui/parameter_objects.rb,<br /> documented/common/gui/account_manager_ui.rb,<br /> documented/common/gui/encryption_mode_change.rb,<br /> documented/common/gui/master_password_change.rb,<br /> documented/common/gui/master_password_prompt.rb,<br /> documented/common/gui/master_password_manager.rb,<br /> documented/common/gui/master_password_prompt_ui.rb,<br /> documented/common/gui/windows_credential_manager.rb</span>
+    <dd>documented/common/gui/state.rb<span class="defines">,<br>
+  documented/common/gui/utilities.rb,<br> documented/common/gui/components.rb,<br> documented/common/gui/yaml_state.rb,<br> documented/common/gui/theme_utils.rb,<br> documented/common/gui/accessibility.rb,<br> documented/common/gui/conversion_ui.rb,<br> documented/common/gui/authentication.rb,<br> documented/common/gui/game_selection.rb,<br> documented/common/gui/account_manager.rb,<br> documented/common/gui/login_tab_utils.rb,<br> documented/common/gui/password_change.rb,<br> documented/common/gui/password_cipher.rb,<br> documented/common/gui/saved_login_tab.rb,<br> documented/common/gui/window_settings.rb,<br> documented/common/gui/manual_login_tab.rb,<br> documented/common/gui/password_manager.rb,<br> documented/common/gui/tab_communicator.rb,<br> documented/common/gui/favorites_manager.rb,<br> documented/common/gui/parameter_objects.rb,<br> documented/common/gui/account_manager_ui.rb,<br> documented/common/gui/encryption_mode_change.rb,<br> documented/common/gui/master_password_change.rb,<br> documented/common/gui/master_password_prompt.rb,<br> documented/common/gui/master_password_manager.rb,<br> documented/common/gui/master_password_prompt_ui.rb,<br> documented/common/gui/windows_credential_manager.rb</span>
+
 </dd>
   </dl>
   
@@ -89,7 +92,7 @@
 <p class="children">
   
     
-      <strong class="modules">Modules:</strong> <span class='object_link'><a href="GUI/Accessibility.html" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span>, <span class='object_link'><a href="GUI/AccountManager.html" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span>, <span class='object_link'><a href="GUI/Authentication.html" title="Lich::Common::GUI::Authentication (module)">Authentication</a></span>, <span class='object_link'><a href="GUI/Components.html" title="Lich::Common::GUI::Components (module)">Components</a></span>, <span class='object_link'><a href="GUI/ConversionUI.html" title="Lich::Common::GUI::ConversionUI (module)">ConversionUI</a></span>, <span class='object_link'><a href="GUI/EncryptionModeChange.html" title="Lich::Common::GUI::EncryptionModeChange (module)">EncryptionModeChange</a></span>, <span class='object_link'><a href="GUI/FavoritesManager.html" title="Lich::Common::GUI::FavoritesManager (module)">FavoritesManager</a></span>, <span class='object_link'><a href="GUI/GameSelection.html" title="Lich::Common::GUI::GameSelection (module)">GameSelection</a></span>, <span class='object_link'><a href="GUI/LoginTabUtils.html" title="Lich::Common::GUI::LoginTabUtils (module)">LoginTabUtils</a></span>, <span class='object_link'><a href="GUI/MasterPasswordChange.html" title="Lich::Common::GUI::MasterPasswordChange (module)">MasterPasswordChange</a></span>, <span class='object_link'><a href="GUI/MasterPasswordManager.html" title="Lich::Common::GUI::MasterPasswordManager (module)">MasterPasswordManager</a></span>, <span class='object_link'><a href="GUI/MasterPasswordPrompt.html" title="Lich::Common::GUI::MasterPasswordPrompt (module)">MasterPasswordPrompt</a></span>, <span class='object_link'><a href="GUI/PasswordChange.html" title="Lich::Common::GUI::PasswordChange (module)">PasswordChange</a></span>, <span class='object_link'><a href="GUI/PasswordCipher.html" title="Lich::Common::GUI::PasswordCipher (module)">PasswordCipher</a></span>, <span class='object_link'><a href="GUI/PasswordManager.html" title="Lich::Common::GUI::PasswordManager (module)">PasswordManager</a></span>, <span class='object_link'><a href="GUI/State.html" title="Lich::Common::GUI::State (module)">State</a></span>, <span class='object_link'><a href="GUI/ThemeUtils.html" title="Lich::Common::GUI::ThemeUtils (module)">ThemeUtils</a></span>, <span class='object_link'><a href="GUI/Utilities.html" title="Lich::Common::GUI::Utilities (module)">Utilities</a></span>, <span class='object_link'><a href="GUI/WindowsCredentialManager.html" title="Lich::Common::GUI::WindowsCredentialManager (module)">WindowsCredentialManager</a></span>, <span class='object_link'><a href="GUI/YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span>
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="GUI/Accessibility.html" title="Lich::Common::GUI::Accessibility (module)">Accessibility</a></span>, <span class='object_link'><a href="GUI/AccountManager.html" title="Lich::Common::GUI::AccountManager (module)">AccountManager</a></span>, <span class='object_link'><a href="GUI/Authentication.html" title="Lich::Common::GUI::Authentication (module)">Authentication</a></span>, <span class='object_link'><a href="GUI/Components.html" title="Lich::Common::GUI::Components (module)">Components</a></span>, <span class='object_link'><a href="GUI/ConversionUI.html" title="Lich::Common::GUI::ConversionUI (module)">ConversionUI</a></span>, <span class='object_link'><a href="GUI/EncryptionModeChange.html" title="Lich::Common::GUI::EncryptionModeChange (module)">EncryptionModeChange</a></span>, <span class='object_link'><a href="GUI/FavoritesManager.html" title="Lich::Common::GUI::FavoritesManager (module)">FavoritesManager</a></span>, <span class='object_link'><a href="GUI/GameSelection.html" title="Lich::Common::GUI::GameSelection (module)">GameSelection</a></span>, <span class='object_link'><a href="GUI/LoginTabUtils.html" title="Lich::Common::GUI::LoginTabUtils (module)">LoginTabUtils</a></span>, <span class='object_link'><a href="GUI/MasterPasswordChange.html" title="Lich::Common::GUI::MasterPasswordChange (module)">MasterPasswordChange</a></span>, <span class='object_link'><a href="GUI/MasterPasswordManager.html" title="Lich::Common::GUI::MasterPasswordManager (module)">MasterPasswordManager</a></span>, <span class='object_link'><a href="GUI/MasterPasswordPrompt.html" title="Lich::Common::GUI::MasterPasswordPrompt (module)">MasterPasswordPrompt</a></span>, <span class='object_link'><a href="GUI/PasswordChange.html" title="Lich::Common::GUI::PasswordChange (module)">PasswordChange</a></span>, <span class='object_link'><a href="GUI/PasswordCipher.html" title="Lich::Common::GUI::PasswordCipher (module)">PasswordCipher</a></span>, <span class='object_link'><a href="GUI/PasswordManager.html" title="Lich::Common::GUI::PasswordManager (module)">PasswordManager</a></span>, <span class='object_link'><a href="GUI/State.html" title="Lich::Common::GUI::State (module)">State</a></span>, <span class='object_link'><a href="GUI/ThemeUtils.html" title="Lich::Common::GUI::ThemeUtils (module)">ThemeUtils</a></span>, <span class='object_link'><a href="GUI/Utilities.html" title="Lich::Common::GUI::Utilities (module)">Utilities</a></span>, <span class='object_link'><a href="GUI/WindowSettings.html" title="Lich::Common::GUI::WindowSettings (module)">WindowSettings</a></span>, <span class='object_link'><a href="GUI/WindowsCredentialManager.html" title="Lich::Common::GUI::WindowsCredentialManager (module)">WindowsCredentialManager</a></span>, <span class='object_link'><a href="GUI/YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span>
     
   
     
@@ -109,9 +112,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:49 2026 by
+  Generated on Sun May 10 17:26:22 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

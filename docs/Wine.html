@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Wine";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,33 +80,30 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/wine.rb</dd>
+    <dd>documented/wine.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Module for interacting with WINE registry This module provides methods to get and set values in the WINE registry.</p>
-
+    <p>Module for interacting with Wine registry.</p>
+<p>This module provides methods to get and set values in the Wine registry.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Using the Wine module</p>
-</div></h5>
-      
-      <pre class="example code"><code>value = Wine.registry_gets(&quot;HKEY_CURRENT_USER\Software\MyApp\Setting&quot;)</code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>#registry_gets</li>
+    
+      <li>#registry_puts</li>
+    
+  </ul>
 
 </div>
   
@@ -116,34 +115,12 @@
     <dl class="constants">
       
         <dt id="BIN-constant" class="">BIN =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>The path to the WINE binary</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='gvar'>$wine_bin</span></pre></dd>
       
         <dt id="PREFIX-constant" class="">PREFIX =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>The path to the WINE prefix</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='gvar'>$wine_prefix</span></pre></dd>
       
@@ -156,407 +133,14 @@
 
 
 
-  
-    <h2>
-      Class Method Summary
-      <small><a href="#" class="summary_toggle">collapse</a></small>
-    </h2>
 
-    <ul class="summary">
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#registry_gets-class_method" title="registry_gets (class method)">.<strong>registry_gets</strong>(key)  &#x21d2; String, false </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves a value from the WINE registry.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#registry_puts-class_method" title="registry_puts (class method)">.<strong>registry_puts</strong>(key, value)  &#x21d2; Boolean </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Sets a value in the WINE registry.</p>
-</div></span>
-  
-</li>
-
-      
-    </ul>
-  
-
-
-
-  <div id="class_method_details" class="method_details_list">
-    <h2>Class Method Details</h2>
-
-    
-      <div class="method_details first">
-  <h3 class="signature first" id="registry_gets-class_method">
-  
-    .<strong>registry_gets</strong>(key)  &#x21d2; <tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>, <tt>false</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Retrieves a value from the WINE registry</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Getting a registry value</p>
-</div></h5>
-      
-      <pre class="example code"><code>value = Wine.registry_gets(&quot;HKEY_CURRENT_USER\Software\MyApp\Setting&quot;)</code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>key</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The registry key to retrieve the value from</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>, <tt>false</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The value associated with the key, or false if not found</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If there is an error reading the registry</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/wine.rb', line 42</span>
-
-<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Wine (module)">Wine</a></span></span><span class='period'>.</span><span class='id identifier rubyid_registry_gets'>registry_gets</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_hkey'>hkey</span><span class='comma'>,</span> <span class='id identifier rubyid_subkey'>subkey</span><span class='comma'>,</span> <span class='id identifier rubyid_thingie'>thingie</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER)\\(.+)\\([^\\]*)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_match'><span class='object_link'><a href="top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_captures'>captures</span> <span class='comment'># fixme: stupid highlights ]/
-</span>  <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#PREFIX-constant" title="Wine::PREFIX (constant)">PREFIX</a></span></span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/system.reg</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_hkey'>hkey</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HKEY_LOCAL_MACHINE</span><span class='tstring_end'>&#39;</span></span>
-      <span class='id identifier rubyid_subkey'>subkey</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_subkey'>subkey</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\\</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\\\\\\</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>]</span><span class='tstring_end'>&quot;</span></span>
-      <span class='kw'>if</span> <span class='id identifier rubyid_thingie'>thingie</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='id identifier rubyid_thingie'>thingie</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-        <span class='id identifier rubyid_thingie'>thingie</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>@</span><span class='tstring_end'>&#39;</span></span>
-      <span class='kw'>else</span>
-        <span class='id identifier rubyid_thingie'>thingie</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_thingie'>thingie</span><span class='embexpr_end'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span>
-      <span class='kw'>end</span>
-      <span class='id identifier rubyid_lookin'>lookin</span> <span class='op'>=</span> <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>false</span>
-      <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#PREFIX-constant" title="Wine::PREFIX (constant)">PREFIX</a></span></span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/system.reg</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_readlines'>readlines</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span>
-        <span class='kw'>if</span> <span class='id identifier rubyid_line'>line</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_subkey'>subkey</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_subkey'>subkey</span>
-          <span class='id identifier rubyid_lookin'>lookin</span> <span class='op'>=</span> <span class='kw'>true</span>
-        <span class='kw'>elsif</span> <span class='id identifier rubyid_line'>line</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\[</span><span class='regexp_end'>/</span></span>
-          <span class='id identifier rubyid_lookin'>lookin</span> <span class='op'>=</span> <span class='kw'>false</span>
-        <span class='kw'>elsif</span> <span class='id identifier rubyid_lookin'>lookin</span> <span class='kw'>and</span> <span class='id identifier rubyid_line'>line</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_thingie'>thingie</span><span class='embexpr_end'>}</span><span class='tstring_content'>=&quot;(.*)&quot;$</span><span class='regexp_end'>/i</span></span>
-          <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='backref'>$1</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\\&quot;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\\\\</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\\</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\\0$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-          <span class='kw'>break</span>
-        <span class='kw'>end</span>
-      <span class='rbrace'>}</span>
-      <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
-    <span class='kw'>else</span>
-      <span class='kw'>return</span> <span class='kw'>false</span>
-    <span class='kw'>end</span>
-  <span class='kw'>else</span>
-    <span class='kw'>return</span> <span class='kw'>false</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="registry_puts-class_method">
-  
-    .<strong>registry_puts</strong>(key, value)  &#x21d2; <tt>Boolean</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Sets a value in the WINE registry</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Setting a registry value</p>
-</div></h5>
-      
-      <pre class="example code"><code>success = Wine.registry_puts(&quot;HKEY_CURRENT_USER\Software\MyApp\Setting&quot;, &quot;NewValue&quot;)</code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>key</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The registry key to set the value for</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>value</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The value to set</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>true if the operation was successful, false otherwise</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If there is an error writing to the registry</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/wine.rb', line 79</span>
-
-<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Wine (module)">Wine</a></span></span><span class='period'>.</span><span class='id identifier rubyid_registry_puts'>registry_puts</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_hkey'>hkey</span><span class='comma'>,</span> <span class='id identifier rubyid_subkey'>subkey</span><span class='comma'>,</span> <span class='id identifier rubyid_thingie'>thingie</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER)\\(.+)\\([^\\]*)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_match'><span class='object_link'><a href="top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_captures'>captures</span> <span class='comment'># fixme ]/
-</span>  <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#PREFIX-constant" title="Wine::PREFIX (constant)">PREFIX</a></span></span><span class='rparen'>)</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_thingie'>thingie</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='id identifier rubyid_thingie'>thingie</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-      <span class='id identifier rubyid_thingie'>thingie</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>@</span><span class='tstring_end'>&#39;</span></span>
-    <span class='kw'>else</span>
-      <span class='id identifier rubyid_thingie'>thingie</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_thingie'>thingie</span><span class='embexpr_end'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span>
-    <span class='kw'>end</span>
-    <span class='comment'># gsub sucks for this..
-</span>    <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\\</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\\\\</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='kw'>begin</span>
-      <span class='id identifier rubyid_regedit_data'>regedit_data</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>REGEDIT4\n\n[</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_hkey'>hkey</span><span class='embexpr_end'>}</span><span class='tstring_content'>\\</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_subkey'>subkey</span><span class='embexpr_end'>}</span><span class='tstring_content'>]\n</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_thingie'>thingie</span><span class='embexpr_end'>}</span><span class='tstring_content'>=\&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='embexpr_end'>}</span><span class='tstring_content'>\&quot;\n\n</span><span class='tstring_end'>&quot;</span></span>
-      <span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>TEMP_DIR</span><span class='embexpr_end'>}</span><span class='tstring_content'>/wine-</span><span class='embexpr_beg'>#{</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='embexpr_end'>}</span><span class='tstring_content'>.reg</span><span class='tstring_end'>&quot;</span></span>
-      <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_regedit_data'>regedit_data</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-      <span class='id identifier rubyid_system'>system</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#BIN-constant" title="Wine::BIN (constant)">BIN</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'> regedit </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_filename'>filename</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_sleep'>sleep</span> <span class='float'>0.2</span>
-      <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
-    <span class='kw'>rescue</span>
-      <span class='kw'>return</span> <span class='kw'>false</span>
-    <span class='kw'>end</span>
-    <span class='kw'>return</span> <span class='kw'>true</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-  </div>
 
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:47 2026 by
+  Generated on Sun May 10 17:26:21 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

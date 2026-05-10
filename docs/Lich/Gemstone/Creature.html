@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Creature";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,23 +80,13 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/creature.rb</dd>
+    <dd>documented/gemstone/creature.rb
+</dd>
   </dl>
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-<p>Provides methods for managing creature instances. This module serves as a facade for interacting with creature instances.</p>
 
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
 
 
 
@@ -112,7 +104,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#[]-class_method" title="[] (class method)">.<strong>[]</strong>(id)  &#x21d2; CreatureInstance<sup>?</sup> </a>
+      <a href="#[]-class_method" title="[] (class method)">.<strong>[]</strong>(id)  &#x21d2; Object </a>
     
 
     
@@ -126,9 +118,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves a creature instance by ID.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -158,7 +148,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#cleanup_old-class_method" title="cleanup_old (class method)">.<strong>cleanup_old</strong>(**options)  &#x21d2; void </a>
+      <a href="#cleanup_old-class_method" title="cleanup_old (class method)">.<strong>cleanup_old</strong>(**options)  &#x21d2; Object </a>
     
 
     
@@ -172,9 +162,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Cleans up old creature instances based on specified options.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -182,7 +170,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#clear-class_method" title="clear (class method)">.<strong>clear</strong>  &#x21d2; void </a>
+      <a href="#clear-class_method" title="clear (class method)">.<strong>clear</strong>  &#x21d2; Object </a>
     
 
     
@@ -196,9 +184,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Clears all registered creature instances.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -206,7 +192,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#configure-class_method" title="configure (class method)">.<strong>configure</strong>(**options)  &#x21d2; void </a>
+      <a href="#configure-class_method" title="configure (class method)">.<strong>configure</strong>(**options)  &#x21d2; Object </a>
     
 
     
@@ -220,9 +206,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Configures the creature instance settings.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -274,7 +258,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#register-class_method" title="register (class method)">.<strong>register</strong>(name, id, noun = nil)  &#x21d2; CreatureInstance<sup>?</sup> </a>
+      <a href="#register-class_method" title="register (class method)">.<strong>register</strong>(name, id, noun = nil)  &#x21d2; Object </a>
     
 
     
@@ -288,9 +272,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Registers a new creature instance with the specified name and ID.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -298,7 +280,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#stats-class_method" title="stats (class method)">.<strong>stats</strong>  &#x21d2; Hash </a>
+      <a href="#stats-class_method" title="stats (class method)">.<strong>stats</strong>  &#x21d2; Object </a>
     
 
     
@@ -312,14 +294,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves statistics about the current state of creature instances.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -331,73 +312,24 @@
       <div class="method_details first">
   <h3 class="signature first" id="[]-class_method">
   
-    .<strong>[]</strong>(id)  &#x21d2; <tt><span class='object_link'><a href="CreatureInstance.html" title="Lich::Gemstone::CreatureInstance (class)">CreatureInstance</a></span></tt><sup>?</sup> 
+    .<strong>[]</strong>(id)  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Retrieves a creature instance by ID.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>id</span>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The ID of the creature instance to retrieve.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="CreatureInstance.html" title="Lich::Gemstone::CreatureInstance (class)">CreatureInstance</a></span></tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The creature instance if found, otherwise nil.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-591
-592
-593</pre>
+562
+563
+564</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 591</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 562</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="CreatureInstance.html" title="Lich::Gemstone::CreatureInstance (class)">CreatureInstance</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_id'>id</span><span class='rbracket'>]</span>
@@ -422,12 +354,12 @@
       <pre class="lines">
 
 
-643
-644
-645</pre>
+599
+600
+601</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 643</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 599</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
   <span class='const'><span class='object_link'><a href="CreatureInstance.html" title="Lich::Gemstone::CreatureInstance (class)">CreatureInstance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_all'><span class='object_link'><a href="CreatureInstance.html#all-class_method" title="Lich::Gemstone::CreatureInstance.all (method)">all</a></span></span>
@@ -440,55 +372,24 @@
       <div class="method_details ">
   <h3 class="signature " id="cleanup_old-class_method">
   
-    .<strong>cleanup_old</strong>(**options)  &#x21d2; <tt>void</tt> 
+    .<strong>cleanup_old</strong>(**options)  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Cleans up old creature instances based on specified options.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>options</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Options for cleanup criteria.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-631
-632
-633</pre>
+587
+588
+589</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 631</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 587</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_cleanup_old'>cleanup_old</span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="CreatureInstance.html" title="Lich::Gemstone::CreatureInstance (class)">CreatureInstance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_cleanup_old'><span class='object_link'><a href="CreatureInstance.html#cleanup_old-class_method" title="Lich::Gemstone::CreatureInstance.cleanup_old (method)">cleanup_old</a></span></span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -501,35 +402,24 @@
       <div class="method_details ">
   <h3 class="signature " id="clear-class_method">
   
-    .<strong>clear</strong>  &#x21d2; <tt>void</tt> 
+    .<strong>clear</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Clears all registered creature instances.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-624
-625
-626</pre>
+583
+584
+585</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 624</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 583</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_clear'><span class='object_link'><a href="../../top-level-namespace.html#clear-instance_method" title="#clear (method)">clear</a></span></span>
   <span class='const'><span class='object_link'><a href="CreatureInstance.html" title="Lich::Gemstone::CreatureInstance (class)">CreatureInstance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_clear'><span class='object_link'><a href="CreatureInstance.html#clear-class_method" title="Lich::Gemstone::CreatureInstance.clear (method)">clear</a></span></span>
@@ -542,55 +432,24 @@
       <div class="method_details ">
   <h3 class="signature " id="configure-class_method">
   
-    .<strong>configure</strong>(**options)  &#x21d2; <tt>void</tt> 
+    .<strong>configure</strong>(**options)  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Configures the creature instance settings.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>options</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Configuration options for the creature instances.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-607
-608
-609</pre>
+570
+571
+572</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 607</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 570</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_configure'>configure</span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="CreatureInstance.html" title="Lich::Gemstone::CreatureInstance (class)">CreatureInstance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configure'><span class='object_link'><a href="CreatureInstance.html#configure-class_method" title="Lich::Gemstone::CreatureInstance.configure (method)">configure</a></span></span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -615,12 +474,12 @@
       <pre class="lines">
 
 
-635
-636
-637</pre>
+591
+592
+593</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 635</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 591</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_damage_report'>damage_report</span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="CreatureInstance.html" title="Lich::Gemstone::CreatureInstance (class)">CreatureInstance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_damage_report'>damage_report</span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -645,12 +504,12 @@
       <pre class="lines">
 
 
-639
-640
-641</pre>
+595
+596
+597</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 639</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 595</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_print_damage_report'>print_damage_report</span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="CreatureInstance.html" title="Lich::Gemstone::CreatureInstance (class)">CreatureInstance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_print_damage_report'>print_damage_report</span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -663,107 +522,24 @@
       <div class="method_details ">
   <h3 class="signature " id="register-class_method">
   
-    .<strong>register</strong>(name, id, noun = nil)  &#x21d2; <tt><span class='object_link'><a href="CreatureInstance.html" title="Lich::Gemstone::CreatureInstance (class)">CreatureInstance</a></span></tt><sup>?</sup> 
+    .<strong>register</strong>(name, id, noun = nil)  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Registers a new creature instance with the specified name and ID.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>name</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The name of the creature.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>id</span>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The unique identifier for the creature instance.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>noun</span>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>nil</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The noun used to refer to the creature, defaults to nil.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="CreatureInstance.html" title="Lich::Gemstone::CreatureInstance (class)">CreatureInstance</a></span></tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The registered creature instance, or nil if registration failed.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-600
-601
-602</pre>
+566
+567
+568</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 600</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 566</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_noun'>noun</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="CreatureInstance.html" title="Lich::Gemstone::CreatureInstance (class)">CreatureInstance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_register'><span class='object_link'><a href="CreatureInstance.html#register-class_method" title="Lich::Gemstone::CreatureInstance.register (method)">register</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_noun'>noun</span><span class='rparen'>)</span>
@@ -776,64 +552,35 @@
       <div class="method_details ">
   <h3 class="signature " id="stats-class_method">
   
-    .<strong>stats</strong>  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt> 
+    .<strong>stats</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Retrieves statistics about the current state of creature instances.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>A hash containing instance and template statistics.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-613
-614
-615
-616
-617
-618
-619
-620</pre>
+574
+575
+576
+577
+578
+579
+580
+581</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 613</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 574</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_stats'>stats</span>
   <span class='lbrace'>{</span>
     <span class='label'>instances:</span> <span class='const'><span class='object_link'><a href="CreatureInstance.html" title="Lich::Gemstone::CreatureInstance (class)">CreatureInstance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_size'><span class='object_link'><a href="CreatureInstance.html#size-class_method" title="Lich::Gemstone::CreatureInstance.size (method)">size</a></span></span><span class='comma'>,</span>
     <span class='label'>templates:</span> <span class='const'><span class='object_link'><a href="CreatureTemplate.html" title="Lich::Gemstone::CreatureTemplate (class)">CreatureTemplate</a></span></span><span class='period'>.</span><span class='id identifier rubyid_all'><span class='object_link'><a href="CreatureTemplate.html#all-class_method" title="Lich::Gemstone::CreatureTemplate.all (method)">all</a></span></span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='comma'>,</span>
-    <span class='label'>max_size:</span> <span class='const'><span class='object_link'><a href="CreatureInstance.html" title="Lich::Gemstone::CreatureInstance (class)">CreatureInstance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class_variable_get'><span class='object_link'><a href="../../Lich.html#class_variable_get-class_method" title="Lich.class_variable_get (method)">class_variable_get</a></span></span><span class='lparen'>(</span><span class='symbol'>:@@max_size</span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='label'>max_size:</span> <span class='const'><span class='object_link'><a href="CreatureInstance.html" title="Lich::Gemstone::CreatureInstance (class)">CreatureInstance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class_variable_get'><span class='object_link'><a href="../Lich.html#class_variable_get-class_method" title="Lich.class_variable_get (method)">class_variable_get</a></span></span><span class='lparen'>(</span><span class='symbol'>:@@max_size</span><span class='rparen'>)</span><span class='comma'>,</span>
     <span class='label'>auto_register:</span> <span class='const'><span class='object_link'><a href="CreatureInstance.html" title="Lich::Gemstone::CreatureInstance (class)">CreatureInstance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_auto_register?'><span class='object_link'><a href="CreatureInstance.html#auto_register%3F-class_method" title="Lich::Gemstone::CreatureInstance.auto_register? (method)">auto_register?</a></span></span>
   <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
@@ -847,9 +594,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:49 2026 by
+  Generated on Sun May 10 17:26:22 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

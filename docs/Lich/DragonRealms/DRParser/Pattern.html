@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::DragonRealms::DRParser::Pattern";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,7 +80,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/dragonrealms/drinfomon/drparser.rb</dd>
+    <dd>documented/dragonrealms/drinfomon/drparser.rb
+</dd>
   </dl>
   
 </div>
@@ -93,491 +96,169 @@
     <dl class="constants">
       
         <dt id="ExpColumns-constant" class="">ExpColumns =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for experience columns. This pattern captures skill, rank, percent, and rate.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(?:\s*(?&lt;skill&gt;[a-zA-Z\s]+)\b:\s*(?&lt;rank&gt;\d+)\s+(?&lt;percent&gt;\d+)%\s+(?&lt;rate&gt;[a-zA-Z\s]+)\b)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="BriefExpOn-constant" class="">BriefExpOn =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for brief experience on. This pattern captures skill, rank, percent, and rate from the server output.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>&lt;component id=&#39;exp .*?&lt;d cmd=&#39;skill (?&lt;skill&gt;[a-zA-Z\s]+)&#39;.*:\s+(?&lt;rank&gt;\d+)\s+(?&lt;percent&gt;\d+)%\s*\[\s?(?&lt;rate&gt;\d+)\/34\].*?&lt;\/component&gt;</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="BriefExpOff-constant" class="">BriefExpOff =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for brief experience off. This pattern captures skill, rank, percent, and rate from the server output.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>&lt;component id=&#39;exp .*?\b(?&lt;skill&gt;[a-zA-Z\s]+)\b:\s+(?&lt;rank&gt;\d+)\s+(?&lt;percent&gt;\d+)%\s+\b(?&lt;rate&gt;[a-zA-Z\s]+)\b.*?&lt;\/component&gt;</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="NameRaceGuild-constant" class="">NameRaceGuild =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing name, race, and guild information.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Name:\s+\b(?&lt;name&gt;.+)\b\s+Race:\s+\b(?&lt;race&gt;.+)\b\s+Guild:\s+\b(?&lt;guild&gt;.+)\b\s+</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="GenderAgeCircle-constant" class="">GenderAgeCircle =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing gender, age, and circle information.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Gender:\s+\b(?&lt;gender&gt;.+)\b\s+Age:\s+\b(?&lt;age&gt;.+)\b\s+Circle:\s+\b(?&lt;circle&gt;.+)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="StatValue-constant" class="">StatValue =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing stat values.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(?&lt;stat&gt;Strength|Agility|Discipline|Intelligence|Reflex|Charisma|Wisdom|Stamina|Favors|TDPs)\s+:\s+(?&lt;value&gt;\d+)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="TDPValue-constant" class="">TDPValue =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing TDP values.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>You have (\d+) TDPs\.</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>You have (?&lt;tdp&gt;\d+) TDPs\.</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="EncumbranceValue-constant" class="">EncumbranceValue =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing encumbrance values.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*Encumbrance\s+:\s+(?&lt;encumbrance&gt;[\w\s&#39;?!]+)$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="LuckValue-constant" class="">LuckValue =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing luck values.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*Luck\s+:\s+.*\((?&lt;luck&gt;[-\d]+)\/3\)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="BalanceValue-constant" class="">BalanceValue =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing balance values.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:You are|\[You&#39;re) (?&lt;balance&gt;</span><span class='embexpr_beg'>#{</span><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_union'>union</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../DragonRealms.html#DR_BALANCE_VALUES-constant" title="Lich::DragonRealms::DR_BALANCE_VALUES (constant)">DR_BALANCE_VALUES</a></span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>) balanced?</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="ExpClearMindstate-constant" class="">ExpClearMindstate =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for clearing experience mindstate.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>&lt;component id=&#39;exp (?&lt;skill&gt;[a-zA-Z\s]+)&#39;&gt;&lt;\/component&gt;</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="RoomPlayers-constant" class="">RoomPlayers =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing room players.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>\&#39;room players\&#39;&gt;Also here: (.*)\.&lt;/component&gt;</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>\&#39;room players\&#39;&gt;Also here: (?&lt;players&gt;.*)\.&lt;/component&gt;</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="RoomPlayersEmpty-constant" class="">RoomPlayersEmpty =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for empty room players.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>\&#39;room players\&#39;&gt;&lt;/component&gt;</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="RoomObjs-constant" class="">RoomObjs =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing room objects.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>\&#39;room objs\&#39;&gt;(.*)&lt;/component&gt;</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>\&#39;room objs\&#39;&gt;(?&lt;objs&gt;.*)&lt;/component&gt;</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="RoomObjsEmpty-constant" class="">RoomObjsEmpty =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for empty room objects.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>\&#39;room objs\&#39;&gt;&lt;/component&gt;</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="GroupMembers-constant" class="">GroupMembers =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing group members.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>&lt;pushStream id=&quot;group&quot;/&gt;  (\w+):</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>&lt;pushStream id=&quot;group&quot;/&gt;  (?&lt;member&gt;\w+):</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="GroupMembersEmpty-constant" class="">GroupMembersEmpty =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for empty group members.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>&lt;pushStream id=&quot;group&quot;/&gt;Members of your group:</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="ExpModsStart-constant" class="">ExpModsStart =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for the start of experience modifiers.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(&lt;.*?\/&gt;)?The following skills are currently under the influence of a modifier</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
+        <dt id="ExpModLine-constant" class="">ExpModLine =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:&lt;preset id=&quot;(?:speech|thought)&quot;&gt;)?(?&lt;sign&gt;\+|--)(?&lt;value&gt;\d+)\s+(?&lt;skill&gt;[\w\s]+)(?:&lt;\/preset&gt;)?$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
         <dt id="KnownSpellsStart-constant" class="">KnownSpellsStart =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for the start of known spells.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You recall the spells you have learned</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="BarbarianAbilitiesStart-constant" class="">BarbarianAbilitiesStart =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for the start of barbarian abilities.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You know the (Berserks:)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="ThiefKhriStart-constant" class="">ThiefKhriStart =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for the start of thief khri.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^From the Subtlety tree, you know the following khri:</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="SpellBookFormat-constant" class="">SpellBookFormat =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing spellbook format.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You will .* (?&lt;format&gt;column-formatted|non-column) output for the SPELLS verb</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="PlayedAccount-constant" class="">PlayedAccount =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing played account information.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:&lt;.*?\/&gt;)?Account Info for (?&lt;account&gt;.+):</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="PlayedSubscription-constant" class="">PlayedSubscription =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing played subscription status.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Current Account Status: (?&lt;subscription&gt;F2P|Basic|Premium|Platinum)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="LastLogoff-constant" class="">LastLogoff =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing last logoff time.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+Logoff :  (?&lt;weekday&gt;[A-Z][a-z]{2}) (?&lt;month&gt;[A-Z][a-z]{2}) (?&lt;day&gt;[\s\d]{2}) (?&lt;hour&gt;\d{2}):(?&lt;minute&gt;\d{2}):(?&lt;second&gt;\d{2}) ET (?&lt;year&gt;\d{4})</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="RoomIDOff-constant" class="">RoomIDOff =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for disabling room IDs.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You will no longer see room IDs when LOOKing in the game and room windows\.</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="Rested_EXP-constant" class="">Rested_EXP =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing rested experience.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^&lt;component id=&#39;exp rexp&#39;&gt;Rested EXP Stored:\s*(?&lt;stored&gt;.*?)\s*Usable This Cycle:\s*(?&lt;usable&gt;.*?)\s*Cycle Refreshes:\s*(?&lt;refresh&gt;.*)&lt;/component&gt;</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="Rested_EXP_F2P-constant" class="">Rested_EXP_F2P =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing rested experience for free-to-play characters.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^&lt;component id=&#39;exp rexp&#39;&gt;\[Unlock Rested Experience</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="TDPValue_XPWindow-constant" class="">TDPValue_XPWindow =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing TDP values in the XP window.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^&lt;component id=&#39;exp tdp&#39;&gt;\s*TDPs:\s*(?&lt;tdp&gt;\d+)&lt;/component&gt;</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="FavorValue_XPWindow-constant" class="">FavorValue_XPWindow =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Regular expression pattern for capturing favor values in the XP window.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^&lt;component id=&#39;exp favor&#39;&gt;\s*Favors:\s*(?&lt;favor&gt;\d+)&lt;/component&gt;</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="InventoryGetStart-constant" class="">InventoryGetStart =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>You rummage about your person, looking for</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="OutputClassMono-constant" class="">OutputClassMono =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Regular expression pattern for the start of inventory get.</p>
-
+    <p>Spell parsing patterns (check_known_spells)</p>
 
   </div>
 </div>
@@ -586,7 +267,115 @@
 
 </div>
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>You rummage about your person, looking for</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^&lt;output class=&quot;mono&quot;/&gt;</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="OutputClassEmpty-constant" class="">OutputClassEmpty =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>^&lt;output class=&quot;&quot;/&gt;</span><span class='regexp_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SpellbookName-constant" class="">SpellbookName =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^[\w\s]+:</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SpellSlotInfo-constant" class="">SpellSlotInfo =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Slot\(s\): \d+ \s+ Min Prep: \d+ \s+ Max Prep: \d+</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SpellChapterStart-constant" class="">SpellChapterStart =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^In the chapter entitled|^You have temporarily memorized|^From your apprenticeship you remember practicing</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SpellFeatsStart-constant" class="">SpellFeatsStart =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You recall proficiency with the magic feats of</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SpellsEnd-constant" class="">SpellsEnd =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You can use SPELL STANCE|^You have (?:no|yet to receive any) training in the magical arts|You have no desire to soil yourself with magical trickery|^You really shouldn&#39;t be loitering here|\(Use SPELL|\(Use PREPARE</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ChapterEntitled-constant" class="">ChapterEntitled =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^In the chapter entitled &quot;[\w\s&#39;-]+&quot;, you have notes on the </span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="TemporarilyMemorized-constant" class="">TemporarilyMemorized =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have temporarily memorized the </span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ApprenticeshipPractice-constant" class="">ApprenticeshipPractice =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^From your apprenticeship you remember practicing with the </span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="SpellSuffix-constant" class="">SpellSuffix =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'> spells?\.</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="CommaAnd-constant" class="">CommaAnd =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>,? and </span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="PopBoldTag-constant" class="">PopBoldTag =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;popBold\/&gt;</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="BarbarianAbility-constant" class="">BarbarianAbility =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Barbarian ability parsing patterns (check_known_barbarian_abilities)</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:&lt;(?:push|pop)Bold\/&gt;)?You know the (?:Berserks|Forms|Roars|Meditations):(?:&lt;(?:push|pop)Bold\/&gt;)?</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="BarbarianMastery-constant" class="">BarbarianMastery =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:&lt;(?:push|pop)Bold\/&gt;)?You know the Masteries:(?:&lt;(?:push|pop)Bold\/&gt;)?</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="BarbarianTrainingRemaining-constant" class="">BarbarianTrainingRemaining =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You recall that you have \d+ training sessions? remaining with the Guild</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ThiefKhriTree-constant" class="">ThiefKhriTree =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Thief khri parsing patterns (check_known_thief_khri)</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^From the (?:Subtlety|Finesse|Potence) tree, you know the following khri:</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ThiefAvailableSlots-constant" class="">ThiefAvailableSlots =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You have \d+ available slots?</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="KhriType-constant" class="">KhriType =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\(.+?\)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
     </dl>
   
@@ -602,9 +391,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:54 2026 by
+  Generated on Sun May 10 17:26:27 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

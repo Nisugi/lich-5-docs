@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "character-stats";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="file_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -57,17 +59,11 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'>
-<h1 id="label-Character+Stats+Guide">Character Stats Guide</h1>
-
-<p>This guide covers accessing your character’s statistics, skills, and resources in Lich scripts.</p>
-
-<h2 id="label-The+Char+Class">The Char Class</h2>
-
-<p>The <code>Char</code> class provides quick access to your character’s vital information.</p>
-
-<h3 id="label-Basic+Information">Basic Information</h3>
-
+      <div id="content"><div id='filecontents'><h1 id="Character_Stats_Guide">Character Stats Guide</h1>
+<p>This guide covers accessing your character's statistics, skills, and resources in Lich scripts.</p>
+<h2 id="The_Char_Class">The Char Class</h2>
+<p>The <code>Char</code> class provides quick access to your character's vital information.</p>
+<h3 id="Basic_Information">Basic Information</h3>
 <pre class="code ruby"><code class="ruby"><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>           <span class='comment'># Your character&#39;s name
 </span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_stance'>stance</span>         <span class='comment'># Current stance (offensive, defensive, etc.)
 </span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_stance'>percent_stance</span> <span class='comment'># Stance percentage (0-100)
@@ -75,9 +71,7 @@
 </span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_encumbrance'>percent_encumbrance</span>  <span class='comment'># Encumbrance percentage
 </span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_citizenship'>citizenship</span>    <span class='comment'># Your citizenship (GemStone only)
 </span></code></pre>
-
-<h3 id="label-Resources">Resources</h3>
-
+<h3 id="Resources">Resources</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Current values
 </span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_health'>health</span>         <span class='comment'># Current health
 </span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span>           <span class='comment'># Current mana
@@ -96,9 +90,7 @@
 </span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_spirit'>percent_spirit</span>   <span class='comment'># Spirit percentage (0-100)
 </span><span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_stamina'>percent_stamina</span>  <span class='comment'># Stamina percentage (0-100)
 </span></code></pre>
-
-<h3 id="label-Resource+Checks">Resource Checks</h3>
-
+<h3 id="Resource_Checks">Resource Checks</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Wait for resources
 </span><span class='id identifier rubyid_wait_until'><span class='object_link'><a href="top-level-namespace.html#wait_until-instance_method" title="#wait_until (method)">wait_until</a></span></span> <span class='lbrace'>{</span> <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span> <span class='op'>&gt;=</span> <span class='int'>50</span> <span class='rbrace'>}</span>
 <span class='id identifier rubyid_wait_until'><span class='object_link'><a href="top-level-namespace.html#wait_until-instance_method" title="#wait_until (method)">wait_until</a></span></span> <span class='lbrace'>{</span> <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_health'>percent_health</span> <span class='op'>&gt;=</span> <span class='int'>80</span> <span class='rbrace'>}</span>
@@ -112,13 +104,9 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Mana below 25%</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-The+Stats+Module">The Stats Module</h2>
-
+<h2 id="The_Stats_Module">The Stats Module</h2>
 <p>The <code>Stats</code> module provides detailed character statistics.</p>
-
-<h3 id="label-Character+Info">Character Info</h3>
-
+<h3 id="Character_Info">Character Info</h3>
 <pre class="code ruby"><code class="ruby"><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_race'>race</span>          <span class='comment'># &quot;Human&quot;, &quot;Elf&quot;, &quot;Dwarf&quot;, etc.
 </span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_profession'>profession</span>    <span class='comment'># &quot;Wizard&quot;, &quot;Warrior&quot;, &quot;Cleric&quot;, etc.
 </span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_prof'>prof</span>          <span class='comment'># Alias for profession
@@ -127,11 +115,8 @@
 </span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span>         <span class='comment'># Current level
 </span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_exp'>exp</span>           <span class='comment'># Current experience points
 </span></code></pre>
-
-<h3 id="label-Primary+Statistics">Primary Statistics</h3>
-
+<h3 id="Primary_Statistics">Primary Statistics</h3>
 <p>Each stat returns an OpenStruct with <code>value</code> and <code>bonus</code>:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='comment'># Full stat access
 </span><span class='id identifier rubyid_str'>str</span> <span class='op'>=</span> <span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_strength'>strength</span>
 <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>           <span class='comment'># Base stat value (e.g., 85)
@@ -151,9 +136,7 @@
 </span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_wisdom'>wisdom</span>        <span class='comment'># WIS
 </span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_influence'>influence</span>     <span class='comment'># INF
 </span></code></pre>
-
-<h3 id="label-Shorthand+Access">Shorthand Access</h3>
-
+<h3 id="Shorthand_Access">Shorthand Access</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Returns [value, bonus] array
 </span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_str'>str</span>           <span class='comment'># [value, bonus]
 </span><span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_con'>con</span>
@@ -175,13 +158,9 @@
 </span><span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_bonus'>bonus</span> <span class='op'>=</span> <span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_str'>str</span>
 <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Strength: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='embexpr_end'>}</span><span class='tstring_content'> (bonus: +</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bonus'>bonus</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
 </code></pre>
-
-<h2 id="label-The+Skills+Module">The Skills Module</h2>
-
-<p>The <code>Skills</code> module provides access to your character’s trained skills.</p>
-
-<h3 id="label-Accessing+Skills">Accessing Skills</h3>
-
+<h2 id="The_Skills_Module">The Skills Module</h2>
+<p>The <code>Skills</code> module provides access to your character's trained skills.</p>
+<h3 id="Accessing_Skills">Accessing Skills</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Combat skills
 </span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_two_weapon_combat'>two_weapon_combat</span>
 <span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_armor_use'>armor_use</span>
@@ -238,9 +217,7 @@
 <span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_trading'>trading</span>
 <span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_pickpocketing'>pickpocketing</span>
 </code></pre>
-
-<h3 id="label-Shorthand+Skill+Names">Shorthand Skill Names</h3>
-
+<h3 id="Shorthand_Skill_Names">Shorthand Skill Names</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Common shorthand versions
 </span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_twoweaponcombat'>twoweaponcombat</span>
 <span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_armoruse'>armoruse</span>
@@ -268,9 +245,7 @@
 </span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_mmc'>mmc</span>           <span class='comment'># mental_mana_control
 </span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_smc'>smc</span>           <span class='comment'># spirit_mana_control
 </span></code></pre>
-
-<h3 id="label-Calculating+Skill+Bonus">Calculating Skill Bonus</h3>
-
+<h3 id="Calculating_Skill_Bonus">Calculating Skill Bonus</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Calculate bonus from ranks
 </span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_to_bonus'>to_bonus</span><span class='lparen'>(</span><span class='int'>30</span><span class='rparen'>)</span>  <span class='comment'># =&gt; 140
 </span>
@@ -284,11 +259,8 @@
 <span class='comment'># Get bonus for a specific skill
 </span><span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_to_bonus'>to_bonus</span><span class='lparen'>(</span><span class='symbol'>:combat_maneuvers</span><span class='rparen'>)</span>
 </code></pre>
-
-<h2 id="label-Common+Patterns">Common Patterns</h2>
-
-<h3 id="label-Health+Monitoring">Health Monitoring</h3>
-
+<h2 id="Common_Patterns">Common Patterns</h2>
+<h3 id="Health_Monitoring">Health Monitoring</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_low_health?'>low_health?</span>
   <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_percent_health'>percent_health</span> <span class='op'>&lt;</span> <span class='int'>50</span>
 <span class='kw'>end</span>
@@ -309,9 +281,7 @@
   <span class='id identifier rubyid_sleep'>sleep</span> <span class='int'>1</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Resource+Waiting">Resource Waiting</h3>
-
+<h3 id="Resource_Waiting">Resource Waiting</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_wait_for_mana'>wait_for_mana</span><span class='lparen'>(</span><span class='id identifier rubyid_amount'>amount</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_amount'>amount</span>
     <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Waiting for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_amount'>amount</span><span class='embexpr_end'>}</span><span class='tstring_content'> mana...</span><span class='tstring_end'>&quot;</span></span>
@@ -327,9 +297,7 @@
   <span class='rbrace'>}</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Skill+Checks">Skill Checks</h3>
-
+<h3 id="Skill_Checks">Skill Checks</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_can_pick_locks?'>can_pick_locks?</span>
   <span class='const'>Skills</span><span class='period'>.</span><span class='id identifier rubyid_picking_locks'>picking_locks</span> <span class='op'>&gt;=</span> <span class='int'>1</span>
 <span class='kw'>end</span>
@@ -351,9 +319,7 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Good climber!</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Stat-Based+Decisions">Stat-Based Decisions</h3>
-
+<h3 id="Stat_Based_Decisions">Stat-Based Decisions</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Choose approach based on stats
 </span><span class='kw'>if</span> <span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_strength'>strength</span><span class='period'>.</span><span class='id identifier rubyid_bonus'>bonus</span> <span class='op'>&gt;</span> <span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_dexterity'>dexterity</span><span class='period'>.</span><span class='id identifier rubyid_bonus'>bonus</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Favoring strength-based attacks</span><span class='tstring_end'>&quot;</span></span>
@@ -371,9 +337,7 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hybrid character</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Experience+Tracking">Experience Tracking</h2>
-
+<h2 id="Experience_Tracking">Experience Tracking</h2>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Current experience
 </span><span class='id identifier rubyid_exp'>exp</span> <span class='op'>=</span> <span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_exp'>exp</span>
 <span class='id identifier rubyid_level'>level</span> <span class='op'>=</span> <span class='const'>Stats</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span>
@@ -382,23 +346,18 @@
 
 <span class='comment'># Note: Stats.exp returns total XP earned, not XP to next level
 </span></code></pre>
-
-<h2 id="label-See+Also">See Also</h2>
-<ul><li>
-<p><span class='object_link'><a href="Lich/Common/Char.html" title="Lich::Common::Char (class)">Lich::Common::Char</a></span> - Char class reference</p>
-</li><li>
-<p><span class='object_link'><a href="Lich/Gemstone/Stats.html" title="Lich::Gemstone::Stats (module)">Lich::Gemstone::Stats</a></span> - Stats module reference</p>
-</li><li>
-<p><span class='object_link'><a href="Lich/Gemstone/Skills.html" title="Lich::Gemstone::Skills (module)">Lich::Gemstone::Skills</a></span> - Skills module reference</p>
-</li><li>
-<p><a href="file.scripting-basics.html" title="Scripting Basics">Scripting Basics</a> - Core scripting concepts</p>
-</li></ul>
-</div></div>
+<h2 id="See_Also">See Also</h2>
+<ul>
+<li><span class='object_link'><a href="Lich/Common/Char.html" title="Lich::Common::Char (class)">Lich::Common::Char</a></span> - Char class reference</li>
+<li><span class='object_link'><a href="Lich/Gemstone/Stats.html" title="Lich::Gemstone::Stats (module)">Lich::Gemstone::Stats</a></span> - Stats module reference</li>
+<li><span class='object_link'><a href="Lich/Gemstone/Skills.html" title="Lich::Gemstone::Skills (module)">Lich::Gemstone::Skills</a></span> - Skills module reference</li>
+<li><a href="file.scripting-basics.html" title="Scripting Basics">Scripting Basics</a> - Core scripting concepts</li>
+</ul></div></div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:45 2026 by
+  Generated on Sun May 10 17:26:20 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

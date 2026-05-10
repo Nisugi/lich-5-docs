@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::GUI::YamlState";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,16 +80,17 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/gui/yaml_state.rb</dd>
+    <dd>documented/common/gui/yaml_state.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Provides methods for managing YAML state files for Lich. This module includes functionality for loading, saving, and migrating entries in YAML format.</p>
-
+    <p>Provides methods for managing YAML state files for Lich.
+This module includes functionality for loading, saving, and migrating
+entries in YAML format.</p>
 
   </div>
 </div>
@@ -97,9 +100,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Loading saved entries</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Loading saved entries</p></div></h5>
       
       <pre class="example code"><code><span class='id identifier rubyid_entries'>entries</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'>YamlState</span><span class='period'>.</span><span class='id identifier rubyid_load_saved_entries'><span class='object_link'><a href="#load_saved_entries-class_method" title="Lich::Common::GUI::YamlState.load_saved_entries (method)">load_saved_entries</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_autosort_state'>autosort_state</span><span class='rparen'>)</span></code></pre>
     
@@ -138,9 +139,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Adds a character to the favorites list in the YAML data.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Adds a character to the favorites list in the YAML data.</p></div></span>
   
 </li>
 
@@ -162,9 +161,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Changes the encryption mode for the YAML data and updates the master password if necessary.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Changes the encryption mode for the YAML data and updates the master password if necessary.</p></div></span>
   
 </li>
 
@@ -186,9 +183,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Converts legacy entry data to the YAML format.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Converts legacy entry data to the YAML format.</p></div></span>
   
 </li>
 
@@ -210,9 +205,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Converts YAML data to the legacy format for entries.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Converts YAML data to the legacy format for entries.</p></div></span>
   
 </li>
 
@@ -234,9 +227,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Decrypts the given encrypted password using the specified mode and optional parameters.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Decrypts the given encrypted password using the specified mode and optional parameters.</p></div></span>
   
 </li>
 
@@ -258,9 +249,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Attempts to decrypt the given encrypted password, with recovery options for missing master password.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Attempts to decrypt the given encrypted password, with recovery options for missing master password.</p></div></span>
   
 </li>
 
@@ -282,9 +271,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Encrypts all passwords in the provided YAML data according to the specified mode.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Encrypts all passwords in the provided YAML data according to the specified mode.</p></div></span>
   
 </li>
 
@@ -306,9 +293,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Encrypts the given password using the specified mode and optional parameters.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Encrypts the given password using the specified mode and optional parameters.</p></div></span>
   
 </li>
 
@@ -330,9 +315,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Ensures that a master password exists, prompting the user to create one if necessary.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Ensures that a master password exists, prompting the user to create one if necessary.</p></div></span>
   
 </li>
 
@@ -354,9 +337,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Finds a character in the YAML data based on the provided criteria.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Finds a character in the YAML data based on the provided criteria.</p></div></span>
   
 </li>
 
@@ -378,9 +359,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Finds an entry in the legacy format based on the provided criteria.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Finds an entry in the legacy format based on the provided criteria.</p></div></span>
   
 </li>
 
@@ -402,9 +381,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Generates the YAML content from the provided data, including headers.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Generates the YAML content from the provided data, including headers.</p></div></span>
   
 </li>
 
@@ -426,9 +403,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the existing master password for migration purposes, creating a validation test.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the existing master password for migration purposes, creating a validation test.</p></div></span>
   
 </li>
 
@@ -450,9 +425,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves a list of favorite characters from the YAML data.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves a list of favorite characters from the YAML data.</p></div></span>
   
 </li>
 
@@ -474,9 +447,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the next available favorite order number based on existing favorites.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the next available favorite order number based on existing favorites.</p></div></span>
   
 </li>
 
@@ -498,9 +469,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if a character is marked as a favorite in the YAML data.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if a character is marked as a favorite in the YAML data.</p></div></span>
   
 </li>
 
@@ -522,9 +491,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Loads saved entries from a YAML file, falling back to legacy format if necessary.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Loads saved entries from a YAML file, falling back to legacy format if necessary.</p></div></span>
   
 </li>
 
@@ -546,9 +513,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Migrates entries from the legacy DAT format to the YAML format.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Migrates entries from the legacy DAT format to the YAML format.</p></div></span>
   
 </li>
 
@@ -570,9 +535,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Migrates the provided YAML data to include encryption format fields.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Migrates the provided YAML data to include encryption format fields.</p></div></span>
   
 </li>
 
@@ -594,9 +557,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Migrates the provided YAML data to include favorite fields.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Migrates the provided YAML data to include favorite fields.</p></div></span>
   
 </li>
 
@@ -618,9 +579,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Normalizes the account name by stripping whitespace and converting to uppercase.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Normalizes the account name by stripping whitespace and converting to uppercase.</p></div></span>
   
 </li>
 
@@ -642,9 +601,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Normalizes the character name by stripping whitespace and capitalizing.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Normalizes the character name by stripping whitespace and capitalizing.</p></div></span>
   
 </li>
 
@@ -666,9 +623,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Prepares YAML data for serialization, ensuring proper formatting and structure.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Prepares YAML data for serialization, ensuring proper formatting and structure.</p></div></span>
   
 </li>
 
@@ -690,9 +645,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Removes a character from the favorites list in the YAML data.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Removes a character from the favorites list in the YAML data.</p></div></span>
   
 </li>
 
@@ -714,9 +667,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Reorders all favorite characters in the YAML data based on their current order.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Reorders all favorite characters in the YAML data based on their current order.</p></div></span>
   
 </li>
 
@@ -738,9 +689,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Reorders the favorites list in the YAML data based on the provided order.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Reorders the favorites list in the YAML data based on the provided order.</p></div></span>
   
 </li>
 
@@ -762,9 +711,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Restores the backup file if it exists and returns false.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Restores the backup file if it exists and returns false.</p></div></span>
   
 </li>
 
@@ -786,9 +733,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Saves the provided entry data to a YAML file, preserving validation tests if they exist.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Saves the provided entry data to a YAML file, preserving validation tests if they exist.</p></div></span>
   
 </li>
 
@@ -810,9 +755,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sorts entries with favorites prioritized based on the autosort state.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sorts entries with favorites prioritized based on the autosort state.</p></div></span>
   
 </li>
 
@@ -834,9 +777,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Writes the provided YAML data to a file with secure permissions.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Writes the provided YAML data to a file with secure permissions.</p></div></span>
   
 </li>
 
@@ -858,14 +799,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the path to the YAML file in the specified data directory.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the path to the YAML file in the specified data directory.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -885,9 +825,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Adds a character to the favorites list in the YAML data.</p>
-
+    <p>Adds a character to the favorites list in the YAML data.</p>
 
   </div>
 </div>
@@ -913,9 +851,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where the YAML file is located.</p>
-</div>
+        <div class='inline'><p>The directory where the YAML file is located.</p></div>
       
     </li>
   
@@ -929,9 +865,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username associated with the character.</p>
-</div>
+        <div class='inline'><p>The username associated with the character.</p></div>
       
     </li>
   
@@ -945,9 +879,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the character to add as a favorite.</p>
-</div>
+        <div class='inline'><p>The name of the character to add as a favorite.</p></div>
       
     </li>
   
@@ -961,9 +893,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game code associated with the character.</p>
-</div>
+        <div class='inline'><p>The game code associated with the character.</p></div>
       
     </li>
   
@@ -979,9 +909,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The frontend associated with the character.</p>
-</div>
+        <div class='inline'><p>The frontend associated with the character.</p></div>
       
     </li>
   
@@ -998,9 +926,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the character was added to favorites, false otherwise.</p>
-</div>
+        <div class='inline'><p>True if the character was added to favorites, false otherwise.</p></div>
       
     </li>
   
@@ -1016,9 +942,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If there is an error adding the favorite.</p>
-</div>
+        <div class='inline'><p>If there is an error adding the favorite.</p></div>
       
     </li>
   
@@ -1092,7 +1016,7 @@
 
     <span class='id identifier rubyid_result'>result</span> <span class='op'>?</span> <span class='kw'>true</span> <span class='op'>:</span> <span class='kw'>false</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error adding favorite: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error adding favorite: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>false</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1112,9 +1036,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Changes the encryption mode for the YAML data and updates the master password if necessary.</p>
-
+    <p>Changes the encryption mode for the YAML data and updates the master password if necessary.</p>
 
   </div>
 </div>
@@ -1140,9 +1062,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where the YAML file is located.</p>
-</div>
+        <div class='inline'><p>The directory where the YAML file is located.</p></div>
       
     </li>
   
@@ -1156,9 +1076,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The new encryption mode to set.</p>
-</div>
+        <div class='inline'><p>The new encryption mode to set.</p></div>
       
     </li>
   
@@ -1174,9 +1092,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The new master password for enhanced mode.</p>
-</div>
+        <div class='inline'><p>The new master password for enhanced mode.</p></div>
       
     </li>
   
@@ -1193,9 +1109,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the change was successful, false otherwise.</p>
-</div>
+        <div class='inline'><p>True if the change was successful, false otherwise.</p></div>
       
     </li>
   
@@ -1211,9 +1125,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If there is an error changing the encryption mode.</p>
-</div>
+        <div class='inline'><p>If there is an error changing the encryption mode.</p></div>
       
     </li>
   
@@ -1348,7 +1260,7 @@
 </span>  <span class='kw'>begin</span>
     <span class='id identifier rubyid_yaml_data'>yaml_data</span> <span class='op'>=</span> <span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_load_file'>load_file</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to load YAML for encryption mode change: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to load YAML for encryption mode change: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>false</span>
   <span class='kw'>end</span>
 
@@ -1356,7 +1268,7 @@
 
   <span class='comment'># If already in target mode, return success
 </span>  <span class='kw'>if</span> <span class='id identifier rubyid_current_mode'>current_mode</span> <span class='op'>==</span> <span class='id identifier rubyid_new_mode'>new_mode</span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Already in </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_new_mode'>new_mode</span><span class='embexpr_end'>}</span><span class='tstring_content'> encryption mode</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Already in </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_new_mode'>new_mode</span><span class='embexpr_end'>}</span><span class='tstring_content'> encryption mode</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>true</span>
   <span class='kw'>end</span>
 
@@ -1366,14 +1278,14 @@
     <span class='comment'># Auto-retrieve from keychain when leaving Enhanced
 </span>    <span class='id identifier rubyid_old_master_password'>old_master_password</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="MasterPasswordManager.html" title="Lich::Common::GUI::MasterPasswordManager (module)">MasterPasswordManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_retrieve_master_password'><span class='object_link'><a href="MasterPasswordManager.html#retrieve_master_password-class_method" title="Lich::Common::GUI::MasterPasswordManager.retrieve_master_password (method)">retrieve_master_password</a></span></span>
     <span class='kw'>if</span> <span class='id identifier rubyid_old_master_password'>old_master_password</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Master password not found in keychain for encryption mode change</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Master password not found in keychain for encryption mode change</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>return</span> <span class='kw'>false</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
   <span class='comment'># Validate new_master_password if entering Enhanced mode
 </span>  <span class='kw'>if</span> <span class='id identifier rubyid_new_mode'>new_mode</span> <span class='op'>==</span> <span class='symbol'>:enhanced</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_new_master_password'>new_master_password</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: New master password required for Enhanced mode encryption</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: New master password required for Enhanced mode encryption</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>false</span>
   <span class='kw'>end</span>
 
@@ -1381,9 +1293,9 @@
 </span>  <span class='id identifier rubyid_backup_file'>backup_file</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='embexpr_end'>}</span><span class='tstring_content'>.bak</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>begin</span>
     <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cp'>cp</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='comma'>,</span> <span class='id identifier rubyid_backup_file'>backup_file</span><span class='rparen'>)</span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Backup created for encryption mode change: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_backup_file'>backup_file</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Backup created for encryption mode change: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_backup_file'>backup_file</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to create backup: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to create backup: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>false</span>
   <span class='kw'>end</span>
 
@@ -1400,7 +1312,7 @@
       <span class='rparen'>)</span>
 
       <span class='kw'>if</span> <span class='id identifier rubyid_plaintext'>plaintext</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to decrypt password for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_account_name'>account_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to decrypt password for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_account_name'>account_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
         <span class='kw'>return</span> <span class='id identifier rubyid_restore_backup_and_return_false'>restore_backup_and_return_false</span><span class='lparen'>(</span><span class='id identifier rubyid_backup_file'>backup_file</span><span class='comma'>,</span> <span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
       <span class='kw'>end</span>
 
@@ -1413,7 +1325,7 @@
       <span class='rparen'>)</span>
 
       <span class='kw'>if</span> <span class='id identifier rubyid_encrypted'>encrypted</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to encrypt password for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_account_name'>account_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to encrypt password for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_account_name'>account_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
         <span class='kw'>return</span> <span class='id identifier rubyid_restore_backup_and_return_false'>restore_backup_and_return_false</span><span class='lparen'>(</span><span class='id identifier rubyid_backup_file'>backup_file</span><span class='comma'>,</span> <span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
       <span class='kw'>end</span>
 
@@ -1431,7 +1343,7 @@
 
       <span class='comment'># Store in keychain
 </span>      <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="MasterPasswordManager.html" title="Lich::Common::GUI::MasterPasswordManager (module)">MasterPasswordManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_store_master_password'><span class='object_link'><a href="MasterPasswordManager.html#store_master_password-class_method" title="Lich::Common::GUI::MasterPasswordManager.store_master_password (method)">store_master_password</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_new_master_password'>new_master_password</span><span class='rparen'>)</span>
-        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to store master password in keychain</span><span class='tstring_end'>&quot;</span></span>
+        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to store master password in keychain</span><span class='tstring_end'>&quot;</span></span>
         <span class='kw'>return</span> <span class='id identifier rubyid_restore_backup_and_return_false'>restore_backup_and_return_false</span><span class='lparen'>(</span><span class='id identifier rubyid_backup_file'>backup_file</span><span class='comma'>,</span> <span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
       <span class='kw'>end</span>
     <span class='kw'>elsif</span> <span class='id identifier rubyid_current_mode'>current_mode</span> <span class='op'>==</span> <span class='symbol'>:enhanced</span>
@@ -1446,10 +1358,10 @@
     <span class='comment'># Clean up backup on success
 </span>    <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_rm'>rm</span><span class='lparen'>(</span><span class='id identifier rubyid_backup_file'>backup_file</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_backup_file'>backup_file</span><span class='rparen'>)</span>
 
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Encryption mode changed successfully: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_mode'>current_mode</span><span class='embexpr_end'>}</span><span class='tstring_content'> → </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_new_mode'>new_mode</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Encryption mode changed successfully: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_mode'>current_mode</span><span class='embexpr_end'>}</span><span class='tstring_content'> → </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_new_mode'>new_mode</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>true</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Encryption mode change failed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Encryption mode change failed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_restore_backup_and_return_false'>restore_backup_and_return_false</span><span class='lparen'>(</span><span class='id identifier rubyid_backup_file'>backup_file</span><span class='comma'>,</span> <span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1469,9 +1381,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Converts legacy entry data to the YAML format.</p>
-
+    <p>Converts legacy entry data to the YAML format.</p>
 
   </div>
 </div>
@@ -1489,9 +1399,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The legacy entry data to convert.</p>
-</div>
+        <div class='inline'><p>The legacy entry data to convert.</p></div>
       
     </li>
   
@@ -1507,9 +1415,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The validation test for the master password.</p>
-</div>
+        <div class='inline'><p>The validation test for the master password.</p></div>
       
     </li>
   
@@ -1526,9 +1432,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The converted YAML data.</p>
-</div>
+        <div class='inline'><p>The converted YAML data.</p></div>
       
     </li>
   
@@ -1662,9 +1566,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Converts YAML data to the legacy format for entries.</p>
-
+    <p>Converts YAML data to the legacy format for entries.</p>
 
   </div>
 </div>
@@ -1682,9 +1584,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The YAML data to convert.</p>
-</div>
+        <div class='inline'><p>The YAML data to convert.</p></div>
       
     </li>
   
@@ -1701,9 +1601,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The converted entries in legacy format.</p>
-</div>
+        <div class='inline'><p>The converted entries in legacy format.</p></div>
       
     </li>
   
@@ -1821,9 +1719,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Decrypts the given encrypted password using the specified mode and optional parameters.</p>
-
+    <p>Decrypts the given encrypted password using the specified mode and optional parameters.</p>
 
   </div>
 </div>
@@ -1849,9 +1745,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The encrypted password to decrypt.</p>
-</div>
+        <div class='inline'><p>The encrypted password to decrypt.</p></div>
       
     </li>
   
@@ -1865,9 +1759,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The decryption mode to use.</p>
-</div>
+        <div class='inline'><p>The decryption mode to use.</p></div>
       
     </li>
   
@@ -1883,9 +1775,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The account name associated with the password.</p>
-</div>
+        <div class='inline'><p>The account name associated with the password.</p></div>
       
     </li>
   
@@ -1901,9 +1791,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The master password for decryption.</p>
-</div>
+        <div class='inline'><p>The master password for decryption.</p></div>
       
     </li>
   
@@ -1920,9 +1808,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The decrypted password.</p>
-</div>
+        <div class='inline'><p>The decrypted password.</p></div>
       
     </li>
   
@@ -1938,9 +1824,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If decryption fails.</p>
-</div>
+        <div class='inline'><p>If decryption fails.</p></div>
       
     </li>
   
@@ -1981,7 +1865,7 @@
 
   <span class='const'><span class='object_link'><a href="PasswordCipher.html" title="Lich::Common::GUI::PasswordCipher (module)">PasswordCipher</a></span></span><span class='period'>.</span><span class='id identifier rubyid_decrypt'><span class='object_link'><a href="PasswordCipher.html#decrypt-class_method" title="Lich::Common::GUI::PasswordCipher.decrypt (method)">decrypt</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_encrypted_password'>encrypted_password</span><span class='comma'>,</span> <span class='label'>mode:</span> <span class='id identifier rubyid_mode'>mode</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='comma'>,</span> <span class='label'>account_name:</span> <span class='id identifier rubyid_account_name'>account_name</span><span class='comma'>,</span> <span class='label'>master_password:</span> <span class='id identifier rubyid_master_password'>master_password</span><span class='rparen'>)</span>
 <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-  <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: decrypt_password failed - </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: decrypt_password failed - </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_raise'>raise</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2000,9 +1884,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Attempts to decrypt the given encrypted password, with recovery options for missing master password.</p>
-
+    <p>Attempts to decrypt the given encrypted password, with recovery options for missing master password.</p>
 
   </div>
 </div>
@@ -2028,9 +1910,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The encrypted password to decrypt.</p>
-</div>
+        <div class='inline'><p>The encrypted password to decrypt.</p></div>
       
     </li>
   
@@ -2044,9 +1924,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The decryption mode to use.</p>
-</div>
+        <div class='inline'><p>The decryption mode to use.</p></div>
       
     </li>
   
@@ -2062,9 +1940,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The account name associated with the password.</p>
-</div>
+        <div class='inline'><p>The account name associated with the password.</p></div>
       
     </li>
   
@@ -2080,9 +1956,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The master password for decryption.</p>
-</div>
+        <div class='inline'><p>The master password for decryption.</p></div>
       
     </li>
   
@@ -2098,9 +1972,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The validation test for recovery.</p>
-</div>
+        <div class='inline'><p>The validation test for recovery.</p></div>
       
     </li>
   
@@ -2117,9 +1989,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The decrypted password or nil if recovery fails.</p>
-</div>
+        <div class='inline'><p>The decrypted password or nil if recovery fails.</p></div>
       
     </li>
   
@@ -2135,9 +2005,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If decryption fails and recovery is not possible.</p>
-</div>
+        <div class='inline'><p>If decryption fails and recovery is not possible.</p></div>
       
     </li>
   
@@ -2202,13 +2070,13 @@
 <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
   <span class='comment'># Only attempt recovery for enhanced mode with missing master password
 </span>  <span class='kw'>if</span> <span class='id identifier rubyid_mode'>mode</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span> <span class='op'>==</span> <span class='symbol'>:enhanced</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Master password not found</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_validation_test'>validation_test</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_validation_test'>validation_test</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Master password missing from Keychain, attempting recovery via user prompt</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Master password missing from Keychain, attempting recovery via user prompt</span><span class='tstring_end'>&quot;</span></span>
 
     <span class='comment'># Show appropriate dialog based on context - use data access for conversion, recovery for actual recovery
 </span>    <span class='id identifier rubyid_recovery_result'>recovery_result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="MasterPasswordPromptUI.html" title="Lich::Common::GUI::MasterPasswordPromptUI (class)">MasterPasswordPromptUI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_show_password_for_data_access'><span class='object_link'><a href="MasterPasswordPromptUI.html#show_password_for_data_access-class_method" title="Lich::Common::GUI::MasterPasswordPromptUI.show_password_for_data_access (method)">show_password_for_data_access</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_validation_test'>validation_test</span><span class='rparen'>)</span>
 
     <span class='kw'>if</span> <span class='id identifier rubyid_recovery_result'>recovery_result</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_recovery_result'>recovery_result</span><span class='lbracket'>[</span><span class='symbol'>:password</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: User cancelled master password recovery</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: User cancelled master password recovery</span><span class='tstring_end'>&quot;</span></span>
       <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_main_quit'>main_quit</span>
       <span class='kw'>return</span> <span class='kw'>nil</span>
     <span class='kw'>end</span>
@@ -2217,17 +2085,17 @@
     <span class='id identifier rubyid_continue_session'>continue_session</span> <span class='op'>=</span> <span class='id identifier rubyid_recovery_result'>recovery_result</span><span class='lbracket'>[</span><span class='symbol'>:continue_session</span><span class='rbracket'>]</span>
 
     <span class='comment'># Password was validated by the UI layer, proceed with recovery
-</span>    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Master password recovered and validated, storing to Keychain</span><span class='tstring_end'>&quot;</span></span>
+</span>    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Master password recovered and validated, storing to Keychain</span><span class='tstring_end'>&quot;</span></span>
 
     <span class='comment'># Save recovered password to Keychain for future use
 </span>    <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="MasterPasswordManager.html" title="Lich::Common::GUI::MasterPasswordManager (module)">MasterPasswordManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_store_master_password'><span class='object_link'><a href="MasterPasswordManager.html#store_master_password-class_method" title="Lich::Common::GUI::MasterPasswordManager.store_master_password (method)">store_master_password</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_recovered_password'>recovered_password</span><span class='rparen'>)</span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Failed to store recovered master password to Keychain</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Failed to store recovered master password to Keychain</span><span class='tstring_end'>&quot;</span></span>
       <span class='comment'># Continue anyway - decryption will still work with in-memory password
 </span>    <span class='kw'>end</span>
 
     <span class='comment'># Handle session continuation decision
 </span>    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_continue_session'>continue_session</span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: User chose to close application after password recovery</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: User chose to close application after password recovery</span><span class='tstring_end'>&quot;</span></span>
       <span class='comment'># Exit the application gracefully
 </span>      <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_main_quit'>main_quit</span>
     <span class='kw'>end</span>
@@ -2255,9 +2123,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Encrypts all passwords in the provided YAML data according to the specified mode.</p>
-
+    <p>Encrypts all passwords in the provided YAML data according to the specified mode.</p>
 
   </div>
 </div>
@@ -2283,9 +2149,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The YAML data containing accounts and passwords.</p>
-</div>
+        <div class='inline'><p>The YAML data containing accounts and passwords.</p></div>
       
     </li>
   
@@ -2299,9 +2163,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The encryption mode to use.</p>
-</div>
+        <div class='inline'><p>The encryption mode to use.</p></div>
       
     </li>
   
@@ -2317,9 +2179,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The master password for encryption.</p>
-</div>
+        <div class='inline'><p>The master password for encryption.</p></div>
       
     </li>
   
@@ -2336,9 +2196,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The YAML data with encrypted passwords.</p>
-</div>
+        <div class='inline'><p>The YAML data with encrypted passwords.</p></div>
       
     </li>
   
@@ -2404,9 +2262,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Encrypts the given password using the specified mode and optional parameters.</p>
-
+    <p>Encrypts the given password using the specified mode and optional parameters.</p>
 
   </div>
 </div>
@@ -2432,9 +2288,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The password to encrypt.</p>
-</div>
+        <div class='inline'><p>The password to encrypt.</p></div>
       
     </li>
   
@@ -2448,9 +2302,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The encryption mode to use.</p>
-</div>
+        <div class='inline'><p>The encryption mode to use.</p></div>
       
     </li>
   
@@ -2466,9 +2318,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The account name associated with the password.</p>
-</div>
+        <div class='inline'><p>The account name associated with the password.</p></div>
       
     </li>
   
@@ -2484,9 +2334,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The master password for encryption.</p>
-</div>
+        <div class='inline'><p>The master password for encryption.</p></div>
       
     </li>
   
@@ -2503,9 +2351,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The encrypted password.</p>
-</div>
+        <div class='inline'><p>The encrypted password.</p></div>
       
     </li>
   
@@ -2521,9 +2367,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If encryption fails.</p>
-</div>
+        <div class='inline'><p>If encryption fails.</p></div>
       
     </li>
   
@@ -2552,7 +2396,7 @@
 
   <span class='const'><span class='object_link'><a href="PasswordCipher.html" title="Lich::Common::GUI::PasswordCipher (module)">PasswordCipher</a></span></span><span class='period'>.</span><span class='id identifier rubyid_encrypt'><span class='object_link'><a href="PasswordCipher.html#encrypt-class_method" title="Lich::Common::GUI::PasswordCipher.encrypt (method)">encrypt</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='label'>mode:</span> <span class='id identifier rubyid_mode'>mode</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='comma'>,</span> <span class='label'>account_name:</span> <span class='id identifier rubyid_account_name'>account_name</span><span class='comma'>,</span> <span class='label'>master_password:</span> <span class='id identifier rubyid_master_password'>master_password</span><span class='rparen'>)</span>
 <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-  <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: encrypt_password failed - </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: encrypt_password failed - </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_raise'>raise</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2571,9 +2415,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Ensures that a master password exists, prompting the user to create one if necessary.</p>
-
+    <p>Ensures that a master password exists, prompting the user to create one if necessary.</p>
 
   </div>
 </div>
@@ -2590,9 +2432,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The master password and validation test if created, nil otherwise.</p>
-</div>
+        <div class='inline'><p>The master password and validation test if created, nil otherwise.</p></div>
       
     </li>
   
@@ -2650,7 +2490,7 @@
 </span>  <span class='id identifier rubyid_master_password'>master_password</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="MasterPasswordPrompt.html" title="Lich::Common::GUI::MasterPasswordPrompt (module)">MasterPasswordPrompt</a></span></span><span class='period'>.</span><span class='id identifier rubyid_show_create_master_password_dialog'><span class='object_link'><a href="MasterPasswordPrompt.html#show_create_master_password_dialog-class_method" title="Lich::Common::GUI::MasterPasswordPrompt.show_create_master_password_dialog (method)">show_create_master_password_dialog</a></span></span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_master_password'>master_password</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: User declined to create master password</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: User declined to create master password</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>nil</span>
   <span class='kw'>end</span>
 
@@ -2658,7 +2498,7 @@
 </span>  <span class='id identifier rubyid_validation_test'>validation_test</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="MasterPasswordManager.html" title="Lich::Common::GUI::MasterPasswordManager (module)">MasterPasswordManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_validation_test'><span class='object_link'><a href="MasterPasswordManager.html#create_validation_test-class_method" title="Lich::Common::GUI::MasterPasswordManager.create_validation_test (method)">create_validation_test</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_master_password'>master_password</span><span class='rparen'>)</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_validation_test'>validation_test</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to create validation test</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to create validation test</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>nil</span>
   <span class='kw'>end</span>
 
@@ -2666,11 +2506,11 @@
 </span>  <span class='id identifier rubyid_stored'>stored</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="MasterPasswordManager.html" title="Lich::Common::GUI::MasterPasswordManager (module)">MasterPasswordManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_store_master_password'><span class='object_link'><a href="MasterPasswordManager.html#store_master_password-class_method" title="Lich::Common::GUI::MasterPasswordManager.store_master_password (method)">store_master_password</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_master_password'>master_password</span><span class='rparen'>)</span>
 
   <span class='kw'>unless</span> <span class='id identifier rubyid_stored'>stored</span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to store master password in Keychain</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to store master password in Keychain</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>nil</span>
   <span class='kw'>end</span>
 
-  <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Master password created and stored in Keychain</span><span class='tstring_end'>&quot;</span></span>
+  <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Master password created and stored in Keychain</span><span class='tstring_end'>&quot;</span></span>
   <span class='comment'># Return both password and validation test for YAML storage
 </span>  <span class='lbrace'>{</span> <span class='label'>password:</span> <span class='id identifier rubyid_master_password'>master_password</span><span class='comma'>,</span> <span class='label'>validation_test:</span> <span class='id identifier rubyid_validation_test'>validation_test</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
@@ -2690,9 +2530,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Finds a character in the YAML data based on the provided criteria.</p>
-
+    <p>Finds a character in the YAML data based on the provided criteria.</p>
 
   </div>
 </div>
@@ -2710,9 +2548,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The YAML data containing accounts and characters.</p>
-</div>
+        <div class='inline'><p>The YAML data containing accounts and characters.</p></div>
       
     </li>
   
@@ -2726,9 +2562,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username associated with the character.</p>
-</div>
+        <div class='inline'><p>The username associated with the character.</p></div>
       
     </li>
   
@@ -2742,9 +2576,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the character to find.</p>
-</div>
+        <div class='inline'><p>The name of the character to find.</p></div>
       
     </li>
   
@@ -2758,9 +2590,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game code associated with the character.</p>
-</div>
+        <div class='inline'><p>The game code associated with the character.</p></div>
       
     </li>
   
@@ -2776,9 +2606,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The frontend associated with the character.</p>
-</div>
+        <div class='inline'><p>The frontend associated with the character.</p></div>
       
     </li>
   
@@ -2795,9 +2623,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The found character data or nil if not found.</p>
-</div>
+        <div class='inline'><p>The found character data or nil if not found.</p></div>
       
     </li>
   
@@ -2879,9 +2705,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Finds an entry in the legacy format based on the provided criteria.</p>
-
+    <p>Finds an entry in the legacy format based on the provided criteria.</p>
 
   </div>
 </div>
@@ -2899,9 +2723,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The legacy entry data to search.</p>
-</div>
+        <div class='inline'><p>The legacy entry data to search.</p></div>
       
     </li>
   
@@ -2915,9 +2737,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username associated with the entry.</p>
-</div>
+        <div class='inline'><p>The username associated with the entry.</p></div>
       
     </li>
   
@@ -2931,9 +2751,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the character to find.</p>
-</div>
+        <div class='inline'><p>The name of the character to find.</p></div>
       
     </li>
   
@@ -2947,9 +2765,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game code associated with the entry.</p>
-</div>
+        <div class='inline'><p>The game code associated with the entry.</p></div>
       
     </li>
   
@@ -2965,9 +2781,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The frontend associated with the entry.</p>
-</div>
+        <div class='inline'><p>The frontend associated with the entry.</p></div>
       
     </li>
   
@@ -2984,9 +2798,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The found entry data or nil if not found.</p>
-</div>
+        <div class='inline'><p>The found entry data or nil if not found.</p></div>
       
     </li>
   
@@ -3052,9 +2864,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Generates the YAML content from the provided data, including headers.</p>
-
+    <p>Generates the YAML content from the provided data, including headers.</p>
 
   </div>
 </div>
@@ -3072,9 +2882,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The YAML data to generate content from.</p>
-</div>
+        <div class='inline'><p>The YAML data to generate content from.</p></div>
       
     </li>
   
@@ -3091,9 +2899,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The generated YAML content.</p>
-</div>
+        <div class='inline'><p>The generated YAML content.</p></div>
       
     </li>
   
@@ -3143,9 +2949,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the existing master password for migration purposes, creating a validation test.</p>
-
+    <p>Retrieves the existing master password for migration purposes, creating a validation test.</p>
 
   </div>
 </div>
@@ -3162,9 +2966,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The existing master password and validation test if found, nil otherwise.</p>
-</div>
+        <div class='inline'><p>The existing master password and validation test if found, nil otherwise.</p></div>
       
     </li>
   
@@ -3208,22 +3010,22 @@
 </span>  <span class='id identifier rubyid_existing_password'>existing_password</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="MasterPasswordManager.html" title="Lich::Common::GUI::MasterPasswordManager (module)">MasterPasswordManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_retrieve_master_password'><span class='object_link'><a href="MasterPasswordManager.html#retrieve_master_password-class_method" title="Lich::Common::GUI::MasterPasswordManager.retrieve_master_password (method)">retrieve_master_password</a></span></span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_existing_password'>existing_password</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_existing_password'>existing_password</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: No existing master password found in keychain - user should create one</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: No existing master password found in keychain - user should create one</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>nil</span>
   <span class='kw'>end</span>
 
-  <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Found existing master password in keychain - creating validation test for migration</span><span class='tstring_end'>&quot;</span></span>
+  <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Found existing master password in keychain - creating validation test for migration</span><span class='tstring_end'>&quot;</span></span>
 
   <span class='comment'># Create a NEW validation test with the existing password
 </span>  <span class='comment'># This is needed because we don&#39;t have the old validation test in YAML yet
 </span>  <span class='id identifier rubyid_validation_test'>validation_test</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="MasterPasswordManager.html" title="Lich::Common::GUI::MasterPasswordManager (module)">MasterPasswordManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_validation_test'><span class='object_link'><a href="MasterPasswordManager.html#create_validation_test-class_method" title="Lich::Common::GUI::MasterPasswordManager.create_validation_test (method)">create_validation_test</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_existing_password'>existing_password</span><span class='rparen'>)</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_validation_test'>validation_test</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to create validation test for existing master password</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to create validation test for existing master password</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='kw'>nil</span>
   <span class='kw'>end</span>
 
-  <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Validation test created for existing master password</span><span class='tstring_end'>&quot;</span></span>
+  <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Validation test created for existing master password</span><span class='tstring_end'>&quot;</span></span>
   <span class='lbrace'>{</span> <span class='label'>password:</span> <span class='id identifier rubyid_existing_password'>existing_password</span><span class='comma'>,</span> <span class='label'>validation_test:</span> <span class='id identifier rubyid_validation_test'>validation_test</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -3242,9 +3044,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves a list of favorite characters from the YAML data.</p>
-
+    <p>Retrieves a list of favorite characters from the YAML data.</p>
 
   </div>
 </div>
@@ -3270,9 +3070,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where the YAML file is located.</p>
-</div>
+        <div class='inline'><p>The directory where the YAML file is located.</p></div>
       
     </li>
   
@@ -3289,9 +3087,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of favorite characters.</p>
-</div>
+        <div class='inline'><p>An array of favorite characters.</p></div>
       
     </li>
   
@@ -3307,9 +3103,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If there is an error retrieving favorites.</p>
-</div>
+        <div class='inline'><p>If there is an error retrieving favorites.</p></div>
       
     </li>
   
@@ -3391,7 +3185,7 @@
     <span class='comment'># Sort by favorite order
 </span>    <span class='id identifier rubyid_favorites'>favorites</span><span class='period'>.</span><span class='id identifier rubyid_sort_by'>sort_by</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_fav'>fav</span><span class='op'>|</span> <span class='id identifier rubyid_fav'>fav</span><span class='lbracket'>[</span><span class='symbol'>:favorite_order</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error getting favorites: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error getting favorites: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -3411,9 +3205,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the next available favorite order number based on existing favorites.</p>
-
+    <p>Retrieves the next available favorite order number based on existing favorites.</p>
 
   </div>
 </div>
@@ -3431,9 +3223,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The YAML data containing accounts and characters.</p>
-</div>
+        <div class='inline'><p>The YAML data containing accounts and characters.</p></div>
       
     </li>
   
@@ -3450,9 +3240,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The next favorite order number.</p>
-</div>
+        <div class='inline'><p>The next favorite order number.</p></div>
       
     </li>
   
@@ -3514,9 +3302,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if a character is marked as a favorite in the YAML data.</p>
-
+    <p>Checks if a character is marked as a favorite in the YAML data.</p>
 
   </div>
 </div>
@@ -3542,9 +3328,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where the YAML file is located.</p>
-</div>
+        <div class='inline'><p>The directory where the YAML file is located.</p></div>
       
     </li>
   
@@ -3558,9 +3342,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username associated with the character.</p>
-</div>
+        <div class='inline'><p>The username associated with the character.</p></div>
       
     </li>
   
@@ -3574,9 +3356,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the character to check.</p>
-</div>
+        <div class='inline'><p>The name of the character to check.</p></div>
       
     </li>
   
@@ -3590,9 +3370,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game code associated with the character.</p>
-</div>
+        <div class='inline'><p>The game code associated with the character.</p></div>
       
     </li>
   
@@ -3608,9 +3386,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The frontend associated with the character.</p>
-</div>
+        <div class='inline'><p>The frontend associated with the character.</p></div>
       
     </li>
   
@@ -3627,9 +3403,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the character is a favorite, false otherwise.</p>
-</div>
+        <div class='inline'><p>True if the character is a favorite, false otherwise.</p></div>
       
     </li>
   
@@ -3645,9 +3419,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If there is an error checking favorite status.</p>
-</div>
+        <div class='inline'><p>If there is an error checking favorite status.</p></div>
       
     </li>
   
@@ -3689,7 +3461,7 @@
     <span class='id identifier rubyid_character'>character</span> <span class='op'>=</span> <span class='id identifier rubyid_find_character'>find_character</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='comma'>,</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span> <span class='id identifier rubyid_frontend'>frontend</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_character'>character</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_character'>character</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>is_favorite</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='kw'>true</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error checking favorite status: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error checking favorite status: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>false</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -3709,9 +3481,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Loads saved entries from a YAML file, falling back to legacy format if necessary.</p>
-
+    <p>Loads saved entries from a YAML file, falling back to legacy format if necessary.</p>
 
   </div>
 </div>
@@ -3737,9 +3507,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where the entry files are located.</p>
-</div>
+        <div class='inline'><p>The directory where the entry files are located.</p></div>
       
     </li>
   
@@ -3753,9 +3521,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Indicates whether to sort entries by favorites.</p>
-</div>
+        <div class='inline'><p>Indicates whether to sort entries by favorites.</p></div>
       
     </li>
   
@@ -3772,9 +3538,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The loaded entries.</p>
-</div>
+        <div class='inline'><p>The loaded entries.</p></div>
       
     </li>
   
@@ -3790,9 +3554,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If there is an error loading the YAML file.</p>
-</div>
+        <div class='inline'><p>If there is an error loading the YAML file.</p></div>
       
     </li>
   
@@ -3866,12 +3628,12 @@
 
       <span class='id identifier rubyid_entries'>entries</span>
     <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error loading YAML entry file: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error loading YAML entry file: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
       <span class='lbracket'>[</span><span class='rbracket'>]</span>
     <span class='kw'>end</span>
   <span class='kw'>elsif</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_dat_file'>dat_file</span><span class='rparen'>)</span>
     <span class='comment'># Fall back to legacy format if YAML doesn&#39;t exist
-</span>    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: YAML entry file not found, falling back to legacy format</span><span class='tstring_end'>&quot;</span></span>
+</span>    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: YAML entry file not found, falling back to legacy format</span><span class='tstring_end'>&quot;</span></span>
     <span class='const'><span class='object_link'><a href="State.html" title="Lich::Common::GUI::State (module)">State</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_saved_entries'><span class='object_link'><a href="State.html#load_saved_entries-class_method" title="Lich::Common::GUI::State.load_saved_entries (method)">load_saved_entries</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_autosort_state'>autosort_state</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
     <span class='comment'># No entry file exists
@@ -3894,9 +3656,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Migrates entries from the legacy DAT format to the YAML format.</p>
-
+    <p>Migrates entries from the legacy DAT format to the YAML format.</p>
 
   </div>
 </div>
@@ -3922,9 +3682,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where the legacy entry files are located.</p>
-</div>
+        <div class='inline'><p>The directory where the legacy entry files are located.</p></div>
       
     </li>
   
@@ -3940,9 +3698,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The encryption mode to use for the migration.</p>
-</div>
+        <div class='inline'><p>The encryption mode to use for the migration.</p></div>
       
     </li>
   
@@ -3959,9 +3715,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the migration was successful, false otherwise.</p>
-</div>
+        <div class='inline'><p>True if the migration was successful, false otherwise.</p></div>
       
     </li>
   
@@ -3977,9 +3731,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If there is an error during migration.</p>
-</div>
+        <div class='inline'><p>If there is an error during migration.</p></div>
       
     </li>
   
@@ -4093,7 +3845,7 @@
     <span class='kw'>end</span>
 
     <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Master password not available for migration</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Master password not available for migration</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>return</span> <span class='kw'>false</span>
     <span class='kw'>end</span>
 
@@ -4141,7 +3893,7 @@
 
   <span class='comment'># Log conversion summary
 </span>  <span class='id identifier rubyid_account_names'>account_names</span> <span class='op'>=</span> <span class='id identifier rubyid_legacy_entries'>legacy_entries</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_entry'>entry</span><span class='op'>|</span> <span class='id identifier rubyid_entry'>entry</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Migration complete - Encryption mode: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_encryption_mode'>encryption_mode</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span><span class='embexpr_end'>}</span><span class='tstring_content'>, Converted accounts: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_account_names'>account_names</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Migration complete - Encryption mode: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_encryption_mode'>encryption_mode</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span><span class='embexpr_end'>}</span><span class='tstring_content'>, Converted accounts: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_account_names'>account_names</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 
   <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
@@ -4161,9 +3913,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Migrates the provided YAML data to include encryption format fields.</p>
-
+    <p>Migrates the provided YAML data to include encryption format fields.</p>
 
   </div>
 </div>
@@ -4181,9 +3931,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The YAML data to migrate.</p>
-</div>
+        <div class='inline'><p>The YAML data to migrate.</p></div>
       
     </li>
   
@@ -4200,9 +3948,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The migrated YAML data.</p>
-</div>
+        <div class='inline'><p>The migrated YAML data.</p></div>
       
     </li>
   
@@ -4254,9 +4000,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Migrates the provided YAML data to include favorite fields.</p>
-
+    <p>Migrates the provided YAML data to include favorite fields.</p>
 
   </div>
 </div>
@@ -4274,9 +4018,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The YAML data to migrate.</p>
-</div>
+        <div class='inline'><p>The YAML data to migrate.</p></div>
       
     </li>
   
@@ -4293,9 +4035,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The migrated YAML data.</p>
-</div>
+        <div class='inline'><p>The migrated YAML data.</p></div>
       
     </li>
   
@@ -4357,9 +4097,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Normalizes the account name by stripping whitespace and converting to uppercase.</p>
-
+    <p>Normalizes the account name by stripping whitespace and converting to uppercase.</p>
 
   </div>
 </div>
@@ -4377,9 +4115,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The account name to normalize.</p>
-</div>
+        <div class='inline'><p>The account name to normalize.</p></div>
       
     </li>
   
@@ -4396,9 +4132,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The normalized account name.</p>
-</div>
+        <div class='inline'><p>The normalized account name.</p></div>
       
     </li>
   
@@ -4438,9 +4172,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Normalizes the character name by stripping whitespace and capitalizing.</p>
-
+    <p>Normalizes the character name by stripping whitespace and capitalizing.</p>
 
   </div>
 </div>
@@ -4458,9 +4190,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The character name to normalize.</p>
-</div>
+        <div class='inline'><p>The character name to normalize.</p></div>
       
     </li>
   
@@ -4477,9 +4207,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The normalized character name.</p>
-</div>
+        <div class='inline'><p>The normalized character name.</p></div>
       
     </li>
   
@@ -4519,9 +4247,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Prepares YAML data for serialization, ensuring proper formatting and structure.</p>
-
+    <p>Prepares YAML data for serialization, ensuring proper formatting and structure.</p>
 
   </div>
 </div>
@@ -4539,9 +4265,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The YAML data to prepare.</p>
-</div>
+        <div class='inline'><p>The YAML data to prepare.</p></div>
       
     </li>
   
@@ -4558,9 +4282,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The prepared YAML data.</p>
-</div>
+        <div class='inline'><p>The prepared YAML data.</p></div>
       
     </li>
   
@@ -4634,9 +4356,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Removes a character from the favorites list in the YAML data.</p>
-
+    <p>Removes a character from the favorites list in the YAML data.</p>
 
   </div>
 </div>
@@ -4662,9 +4382,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where the YAML file is located.</p>
-</div>
+        <div class='inline'><p>The directory where the YAML file is located.</p></div>
       
     </li>
   
@@ -4678,9 +4396,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username associated with the character.</p>
-</div>
+        <div class='inline'><p>The username associated with the character.</p></div>
       
     </li>
   
@@ -4694,9 +4410,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the character to remove from favorites.</p>
-</div>
+        <div class='inline'><p>The name of the character to remove from favorites.</p></div>
       
     </li>
   
@@ -4710,9 +4424,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game code associated with the character.</p>
-</div>
+        <div class='inline'><p>The game code associated with the character.</p></div>
       
     </li>
   
@@ -4728,9 +4440,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The frontend associated with the character.</p>
-</div>
+        <div class='inline'><p>The frontend associated with the character.</p></div>
       
     </li>
   
@@ -4747,9 +4457,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the character was removed from favorites, false otherwise.</p>
-</div>
+        <div class='inline'><p>True if the character was removed from favorites, false otherwise.</p></div>
       
     </li>
   
@@ -4765,9 +4473,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If there is an error removing the favorite.</p>
-</div>
+        <div class='inline'><p>If there is an error removing the favorite.</p></div>
       
     </li>
   
@@ -4845,7 +4551,7 @@
 
     <span class='id identifier rubyid_result'>result</span> <span class='op'>?</span> <span class='kw'>true</span> <span class='op'>:</span> <span class='kw'>false</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error removing favorite: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error removing favorite: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>false</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -4865,9 +4571,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Reorders all favorite characters in the YAML data based on their current order.</p>
-
+    <p>Reorders all favorite characters in the YAML data based on their current order.</p>
 
   </div>
 </div>
@@ -4885,9 +4589,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The YAML data containing accounts and characters.</p>
-</div>
+        <div class='inline'><p>The YAML data containing accounts and characters.</p></div>
       
     </li>
   
@@ -4960,9 +4662,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Reorders the favorites list in the YAML data based on the provided order.</p>
-
+    <p>Reorders the favorites list in the YAML data based on the provided order.</p>
 
   </div>
 </div>
@@ -4988,9 +4688,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where the YAML file is located.</p>
-</div>
+        <div class='inline'><p>The directory where the YAML file is located.</p></div>
       
     </li>
   
@@ -5004,9 +4702,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of favorite characters in the desired order.</p>
-</div>
+        <div class='inline'><p>An array of favorite characters in the desired order.</p></div>
       
     </li>
   
@@ -5023,9 +4719,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the reordering was successful, false otherwise.</p>
-</div>
+        <div class='inline'><p>True if the reordering was successful, false otherwise.</p></div>
       
     </li>
   
@@ -5041,9 +4735,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If there is an error reordering favorites.</p>
-</div>
+        <div class='inline'><p>If there is an error reordering favorites.</p></div>
       
     </li>
   
@@ -5121,7 +4813,7 @@
 
     <span class='id identifier rubyid_result'>result</span> <span class='op'>?</span> <span class='kw'>true</span> <span class='op'>:</span> <span class='kw'>false</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error reordering favorites: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error reordering favorites: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>false</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -5141,9 +4833,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Restores the backup file if it exists and returns false.</p>
-
+    <p>Restores the backup file if it exists and returns false.</p>
 
   </div>
 </div>
@@ -5161,9 +4851,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The path to the backup file.</p>
-</div>
+        <div class='inline'><p>The path to the backup file.</p></div>
       
     </li>
   
@@ -5177,9 +4865,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The path to the original YAML file.</p>
-</div>
+        <div class='inline'><p>The path to the original YAML file.</p></div>
       
     </li>
   
@@ -5196,9 +4882,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Always returns false after restoring.</p>
-</div>
+        <div class='inline'><p>Always returns false after restoring.</p></div>
       
     </li>
   
@@ -5226,7 +4910,7 @@
   <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_backup_file'>backup_file</span><span class='rparen'>)</span>
     <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cp'>cp</span><span class='lparen'>(</span><span class='id identifier rubyid_backup_file'>backup_file</span><span class='comma'>,</span> <span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
     <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_rm'>rm</span><span class='lparen'>(</span><span class='id identifier rubyid_backup_file'>backup_file</span><span class='rparen'>)</span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Backup restored after encryption mode change failure</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Backup restored after encryption mode change failure</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
   <span class='kw'>false</span>
 <span class='kw'>end</span></pre>
@@ -5246,9 +4930,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Saves the provided entry data to a YAML file, preserving validation tests if they exist.</p>
-
+    <p>Saves the provided entry data to a YAML file, preserving validation tests if they exist.</p>
 
   </div>
 </div>
@@ -5274,9 +4956,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where the YAML file will be saved.</p>
-</div>
+        <div class='inline'><p>The directory where the YAML file will be saved.</p></div>
       
     </li>
   
@@ -5290,9 +4970,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The entry data to save.</p>
-</div>
+        <div class='inline'><p>The entry data to save.</p></div>
       
     </li>
   
@@ -5309,9 +4987,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the save was successful, false otherwise.</p>
-</div>
+        <div class='inline'><p>True if the save was successful, false otherwise.</p></div>
       
     </li>
   
@@ -5327,9 +5003,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If there is an error saving the YAML file.</p>
-</div>
+        <div class='inline'><p>If there is an error saving the YAML file.</p></div>
       
     </li>
   
@@ -5387,7 +5061,7 @@
       <span class='id identifier rubyid_original_data'>original_data</span> <span class='op'>=</span> <span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_load_file'>load_file</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_original_validation_test'>original_validation_test</span> <span class='op'>=</span> <span class='id identifier rubyid_original_data'>original_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>master_password_validation_test</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_original_data'>original_data</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></span><span class='rparen'>)</span>
     <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not load existing YAML to preserve validation test: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Could not load existing YAML to preserve validation test: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
@@ -5405,7 +5079,7 @@
     <span class='id identifier rubyid_write_yaml_file'>write_yaml_file</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='comma'>,</span> <span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='rparen'>)</span>
     <span class='kw'>true</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error saving YAML entry file: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error saving YAML entry file: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>false</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -5425,9 +5099,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Sorts entries with favorites prioritized based on the autosort state.</p>
-
+    <p>Sorts entries with favorites prioritized based on the autosort state.</p>
 
   </div>
 </div>
@@ -5445,9 +5117,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The entries to sort.</p>
-</div>
+        <div class='inline'><p>The entries to sort.</p></div>
       
     </li>
   
@@ -5461,9 +5131,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Indicates whether to sort by favorites.</p>
-</div>
+        <div class='inline'><p>Indicates whether to sort by favorites.</p></div>
       
     </li>
   
@@ -5480,9 +5148,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The sorted entries.</p>
-</div>
+        <div class='inline'><p>The sorted entries.</p></div>
       
     </li>
   
@@ -5554,9 +5220,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Writes the provided YAML data to a file with secure permissions.</p>
-
+    <p>Writes the provided YAML data to a file with secure permissions.</p>
 
   </div>
 </div>
@@ -5574,9 +5238,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The path to the YAML file.</p>
-</div>
+        <div class='inline'><p>The path to the YAML file.</p></div>
       
     </li>
   
@@ -5590,9 +5252,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The YAML data to write.</p>
-</div>
+        <div class='inline'><p>The YAML data to write.</p></div>
       
     </li>
   
@@ -5643,9 +5303,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the path to the YAML file in the specified data directory.</p>
-
+    <p>Returns the path to the YAML file in the specified data directory.</p>
 
   </div>
 </div>
@@ -5663,9 +5321,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where the YAML file is located.</p>
-</div>
+        <div class='inline'><p>The directory where the YAML file is located.</p></div>
       
     </li>
   
@@ -5682,9 +5338,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The full path to the YAML file.</p>
-</div>
+        <div class='inline'><p>The full path to the YAML file.</p></div>
       
     </li>
   
@@ -5716,9 +5370,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:51 2026 by
+  Generated on Sun May 10 17:26:24 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

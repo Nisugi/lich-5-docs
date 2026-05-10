@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Armaments";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,14 +80,31 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/armaments.rb<span class="defines">,<br />
-  documented/gemstone/armaments/armor_stats.rb,<br /> documented/gemstone/armaments/shield_stats.rb,<br /> documented/gemstone/armaments/weapon_stats.rb,<br /> documented/gemstone/armaments/weapon_stats_blunt.rb,<br /> documented/gemstone/armaments/weapon_stats_edged.rb,<br /> documented/gemstone/armaments/weapon_stats_hybrid.rb,<br /> documented/gemstone/armaments/weapon_stats_ranged.rb,<br /> documented/gemstone/armaments/weapon_stats_thrown.rb,<br /> documented/gemstone/armaments/weapon_stats_natural.rb,<br /> documented/gemstone/armaments/weapon_stats_polearm.rb,<br /> documented/gemstone/armaments/weapon_stats_unarmed.rb,<br /> documented/gemstone/armaments/weapon_stats_brawling.rb,<br /> documented/gemstone/armaments/weapon_stats_runestave.rb,<br /> documented/gemstone/armaments/weapon_stats_two_handed.rb</span>
+    <dd>documented/gemstone/armaments.rb<span class="defines">,<br>
+  documented/gemstone/armaments/armor_stats.rb,<br> documented/gemstone/armaments/shield_stats.rb,<br> documented/gemstone/armaments/weapon_stats.rb,<br> documented/gemstone/armaments/weapon_stats_blunt.rb,<br> documented/gemstone/armaments/weapon_stats_edged.rb,<br> documented/gemstone/armaments/weapon_stats_hybrid.rb,<br> documented/gemstone/armaments/weapon_stats_ranged.rb,<br> documented/gemstone/armaments/weapon_stats_thrown.rb,<br> documented/gemstone/armaments/weapon_stats_natural.rb,<br> documented/gemstone/armaments/weapon_stats_polearm.rb,<br> documented/gemstone/armaments/weapon_stats_unarmed.rb,<br> documented/gemstone/armaments/weapon_stats_brawling.rb,<br> documented/gemstone/armaments/weapon_stats_runestave.rb,<br> documented/gemstone/armaments/weapon_stats_two_handed.rb</span>
+
 </dd>
   </dl>
   
 </div>
 
-<h2>Defined Under Namespace</h2>
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>Contains constants and methods related to armaments in the game.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Lich::Gemstone</a></span></li>
+    
+  </ul>
+
+</div><h2>Defined Under Namespace</h2>
 <p class="children">
   
     
@@ -105,30 +124,7 @@
     <dl class="constants">
       
         <dt id="AG_INDEX_TO_NAME-constant" class="">AG_INDEX_TO_NAME =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>A mapping of armor group indices to their names.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Accessing armor group name</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='op'>::</span><span class='const'>AG_INDEX_TO_NAME</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='lbrace'>{</span>
   <span class='int'>1</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cloth</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
@@ -139,30 +135,7 @@
 <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="ASG_INDEX_TO_NAME-constant" class="">ASG_INDEX_TO_NAME =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>A mapping of armor subtype indices to their names.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Accessing armor subtype name</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='op'>::</span><span class='const'>ASG_INDEX_TO_NAME</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='lbrace'>{</span>
   <span class='int'>1</span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Robes</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
@@ -188,30 +161,7 @@
 <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="SPELL_CIRCLE_INDEX_TO_NAME-constant" class="">SPELL_CIRCLE_INDEX_TO_NAME =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>A mapping of spell circle indices to their names and abbreviations.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Accessing spell circle name</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_spell_circle'>spell_circle</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='op'>::</span><span class='const'>SPELL_CIRCLE_INDEX_TO_NAME</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span></code></pre>
-    
-  </div>
-
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='lbrace'>{</span>
   <span class='int'>0</span>  <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Action</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>                  <span class='label'>abbr:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Act</span><span class='tstring_end'>&quot;</span></span>    <span class='rbrace'>}</span><span class='comma'>,</span>
@@ -270,9 +220,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves a list of categories for armaments of a specified type.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves a list of armament categories, optionally filtered by type.</p></div></span>
   
 </li>
 
@@ -294,9 +242,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the category of an armament based on its name.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the category of an armament based on its name.</p></div></span>
   
 </li>
 
@@ -318,9 +264,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Finds an armament by name and returns its type and data.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Finds an armament by its name.</p></div></span>
   
 </li>
 
@@ -342,9 +286,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves a list of names for armaments of a specified type.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves a list of armament names, optionally filtered by type.</p></div></span>
   
 </li>
 
@@ -366,9 +308,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Determines the type of armament based on its name.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Determines the type of armament based on its name.</p></div></span>
   
 </li>
 
@@ -390,14 +330,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the given name is valid by attempting to find it.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the given name corresponds to a valid armament.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -417,9 +356,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves a list of categories for armaments of a specified type.</p>
-
+    <p>Retrieves a list of armament categories, optionally filtered by type.</p>
 
   </div>
 </div>
@@ -429,11 +366,14 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Getting all armament categories</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Get all armament categories</p></div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_all_categories'>all_categories</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_categories'>categories</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_categories'>categories</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Get only armor categories</p></div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_categories'>categories</span><span class='lparen'>(</span><span class='symbol'>:armor</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -451,9 +391,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The type of armament (:weapon, :armor, :shield) or nil for all.</p>
-</div>
+        <div class='inline'><p>the type of armament (:weapon, :armor, :shield) or nil for all</p></div>
       
     </li>
   
@@ -470,9 +408,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of unique armament categories.</p>
-</div>
+        <div class='inline'><p>an array of unique armament categories</p></div>
       
     </li>
   
@@ -484,18 +420,18 @@
       <pre class="lines">
 
 
-133
-134
-135
-136
-137
-138
-139
 140
-141</pre>
+141
+142
+143
+144
+145
+146
+147
+148</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments.rb', line 133</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments.rb', line 140</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_categories'>categories</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_type'>type</span>
@@ -522,9 +458,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the category of an armament based on its name.</p>
-
+    <p>Retrieves the category of an armament based on its name.</p>
 
   </div>
 </div>
@@ -534,11 +468,9 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Getting the category of an armament</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Get the category for a known armor</p></div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_armament_category'>armament_category</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_category_for'>category_for</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sword</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_category_for'>category_for</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>plate</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -554,9 +486,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the armament.</p>
-</div>
+        <div class='inline'><p>the name of the armament</p></div>
       
     </li>
   
@@ -573,9 +503,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The category of the armament or nil if not found.</p>
-</div>
+        <div class='inline'><p>the category of the armament or nil if not found</p></div>
       
     </li>
   
@@ -587,23 +515,23 @@
       <pre class="lines">
 
 
-165
-166
-167
-168
-169
-170
-171
-172
-173
 174
 175
 176
 177
-178</pre>
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments.rb', line 165</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments.rb', line 174</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_category_for'>category_for</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
@@ -635,9 +563,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Finds an armament by name and returns its type and data.</p>
-
+    <p>Finds an armament by its name.</p>
 
   </div>
 </div>
@@ -647,11 +573,14 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Finding an armament</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Find a weapon</p></div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sword</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sword</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Find an armor</p></div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>plate</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -667,9 +596,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the armament to find.</p>
-</div>
+        <div class='inline'><p>the name of the armament to find</p></div>
       
     </li>
   
@@ -686,9 +613,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash containing the type and data of the armament, or nil if not found.</p>
-</div>
+        <div class='inline'><p>a hash containing the type and data of the armament, or nil if not found</p></div>
       
     </li>
   
@@ -754,9 +679,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves a list of names for armaments of a specified type.</p>
-
+    <p>Retrieves a list of armament names, optionally filtered by type.</p>
 
   </div>
 </div>
@@ -766,11 +689,14 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Getting all armament names</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Get all armament names</p></div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_all_names'>all_names</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_names'>names</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_names'>names</span></code></pre>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Get only weapon names</p></div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_names'>names</span><span class='lparen'>(</span><span class='symbol'>:weapon</span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -788,9 +714,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The type of armament (:weapon, :armor, :shield) or nil for all.</p>
-</div>
+        <div class='inline'><p>the type of armament (:weapon, :armor, :shield) or nil for all</p></div>
       
     </li>
   
@@ -807,9 +731,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of unique armament names.</p>
-</div>
+        <div class='inline'><p>an array of unique armament names</p></div>
       
     </li>
   
@@ -821,18 +743,18 @@
       <pre class="lines">
 
 
-117
-118
-119
-120
 121
 122
 123
 124
-125</pre>
+125
+126
+127
+128
+129</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments.rb', line 121</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_names'>names</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_type'>type</span>
@@ -859,9 +781,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Determines the type of armament based on its name.</p>
-
+    <p>Determines the type of armament based on its name.</p>
 
   </div>
 </div>
@@ -871,11 +791,9 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Getting the type of an armament</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Get the type for a known weapon</p></div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_armament_type'>armament_type</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_type_for'>type_for</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sword</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_type_for'>type_for</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sword</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -891,9 +809,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the armament.</p>
-</div>
+        <div class='inline'><p>the name of the armament</p></div>
       
     </li>
   
@@ -910,9 +826,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The type of the armament (:weapon, :armor, :shield) or nil if not found.</p>
-</div>
+        <div class='inline'><p>the type of the armament (:weapon, :armor, :shield) or nil if not found</p></div>
       
     </li>
   
@@ -924,18 +838,18 @@
       <pre class="lines">
 
 
-149
-150
-151
-152
-153
-154
-155
-156
-157</pre>
+157
+158
+159
+160
+161
+162
+163
+164
+165</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments.rb', line 149</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments.rb', line 157</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_type_for'>type_for</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
@@ -962,9 +876,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the given name is valid by attempting to find it.</p>
-
+    <p>Checks if the given name corresponds to a valid armament.</p>
 
   </div>
 </div>
@@ -974,11 +886,9 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Validating an armament name</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Validate a weapon name</p></div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_is_valid'>is_valid</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_valid_name?'>valid_name?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shield</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Armaments (module)">Armaments</a></span></span><span class='period'>.</span><span class='id identifier rubyid_valid_name?'>valid_name?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sword</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -994,9 +904,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name to validate.</p>
-</div>
+        <div class='inline'><p>the name to validate</p></div>
       
     </li>
   
@@ -1013,9 +921,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the name is valid, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the name is valid, false otherwise</p></div>
       
     </li>
   
@@ -1027,15 +933,15 @@
       <pre class="lines">
 
 
-104
 105
 106
 107
 108
-109</pre>
+109
+110</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/armaments.rb', line 105</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_valid_name?'>valid_name?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
@@ -1053,9 +959,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:50 2026 by
+  Generated on Sun May 10 17:26:23 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

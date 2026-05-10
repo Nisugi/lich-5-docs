@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::GUI::AccountManagerUI";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,33 +96,29 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/gui/account_manager_ui.rb</dd>
+    <dd>documented/common/gui/account_manager_ui.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>User Interface for managing accounts in the Lich application. Provides functionality to create, add, and manage accounts and characters.</p>
-
+    <p>Provides a user interface for managing accounts.</p>
+<p>This class handles the creation and management of the account management window,
+including adding, removing, and modifying accounts and characters.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Creating the management window</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'>AccountManagerUI</span><span class='period'>.</span><span class='id identifier rubyid_create_management_window'><span class='object_link'><a href="#create_management_window-class_method" title="Lich::Common::GUI::AccountManagerUI.create_management_window (method)">create_management_window</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">for related GUI components.</a></span></li>
+    
+  </ul>
 
 </div>
 
@@ -154,14 +152,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Creates and displays the account management window.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Creates and displays the account management window.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
     <h2>
       Instance Method Summary
@@ -187,9 +184,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Creates the accounts tab in the management window.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Creates the accounts tab in the management window.</p></div></span>
   
 </li>
 
@@ -211,9 +206,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Creates the add account tab in the management window.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Creates the add account tab in the management window.</p></div></span>
   
 </li>
 
@@ -235,9 +228,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Creates the add character tab in the management window.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Creates the add character tab in the management window.</p></div></span>
   
 </li>
 
@@ -259,9 +250,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Creates the encryption management tab in the management window.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Creates the encryption management tab in the management window.</p></div></span>
   
 </li>
 
@@ -285,9 +274,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A new instance of AccountManagerUI.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>A new instance of AccountManagerUI.</p></div></span>
   
 </li>
 
@@ -309,9 +296,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Refreshes the display of accounts in the UI.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Refreshes the display of accounts in the UI.</p></div></span>
   
 </li>
 
@@ -333,9 +318,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Registers the UI to receive notifications about account changes.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Registers the instance for notifications from the tab communicator.</p></div></span>
   
 </li>
 
@@ -343,7 +326,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#register_notification_callback-instance_method" title="#register_notification_callback (instance method)">#<strong>register_notification_callback</strong>  &#x21d2; Object </a>
+      <a href="#register_notification_callback-instance_method" title="#register_notification_callback (instance method)">#<strong>register_notification_callback</strong>  &#x21d2; void </a>
     
 
     
@@ -357,7 +340,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Registers a callback to handle incoming notifications about account changes.</p></div></span>
   
 </li>
 
@@ -379,14 +362,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets a callback to be invoked when account data changes.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets a callback to be invoked when account data changes.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 <div id="constructor_details" class="method_details_list">
@@ -403,9 +385,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns a new instance of AccountManagerUI.</p>
-
+    <p>Returns a new instance of AccountManagerUI.</p>
 
   </div>
 </div>
@@ -418,16 +398,17 @@
       <pre class="lines">
 
 
-30
 31
 32
 33
 34
 35
-36</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
   <span class='ivar'>@data_dir</span> <span class='op'>=</span> <span class='id identifier rubyid_data_dir'>data_dir</span>
@@ -435,6 +416,7 @@
   <span class='ivar'>@data_change_callback</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='ivar'>@tab_communicator</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='ivar'>@notifications_registered</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@tab_indices</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -459,22 +441,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Creates and displays the account management window.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Creates and displays the account management window.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::AccountManagerUI (class)">AccountManagerUI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_management_window'>create_management_window</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -487,9 +459,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where account data is stored.</p>
-</div>
+        <div class='inline'><p>the directory where account data is stored</p></div>
       
     </li>
   
@@ -502,16 +472,16 @@
       <pre class="lines">
 
 
-22
 23
 24
 25
 26
 27
-28</pre>
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_management_window'>create_management_window</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
   <span class='comment'># Create instance with data directory
@@ -542,22 +512,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Creates the accounts tab in the management window.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Creates the accounts tab in the management window.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_create_accounts_tab'>create_accounts_tab</span><span class='lparen'>(</span><span class='id identifier rubyid_notebook'>notebook</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -570,9 +530,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The notebook to add the tab to.</p>
-</div>
+        <div class='inline'><p>the notebook to add the tab to</p></div>
       
     </li>
   
@@ -588,9 +546,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The position to insert the tab at, or nil to append.</p>
-</div>
+        <div class='inline'><p>optional position to insert the tab</p></div>
       
     </li>
   
@@ -926,12 +882,12 @@
 
   <span class='comment'># Create add account button
 </span>  <span class='id identifier rubyid_add_account_button'>add_account_button</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Button</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Add Account</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_button_box'>button_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_add_account_button'>add_account_button</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
-
+  <span class='comment'># button_box.pack_start(add_account_button, expand: false, fill: false, padding: 0)
+</span>
   <span class='comment'># Create add character button
 </span>  <span class='id identifier rubyid_add_character_button'>add_character_button</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Button</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Add Character</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_button_box'>button_box</span><span class='period'>.</span><span class='id identifier rubyid_pack_start'>pack_start</span><span class='lparen'>(</span><span class='id identifier rubyid_add_character_button'>add_character_button</span><span class='comma'>,</span> <span class='label'>expand:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>fill:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>padding:</span> <span class='int'>0</span><span class='rparen'>)</span>
-
+  <span class='comment'># button_box.pack_start(add_character_button, expand: false, fill: false, padding: 0)
+</span>
   <span class='comment'># Create change password button
 </span>  <span class='id identifier rubyid_change_password_button'>change_password_button</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Button</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>label:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Change Password</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_change_password_button'>change_password_button</span><span class='period'>.</span><span class='id identifier rubyid_sensitive'>sensitive</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -1099,22 +1055,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Creates the add account tab in the management window.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Creates the add account tab in the management window.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_create_add_account_tab'>create_add_account_tab</span><span class='lparen'>(</span><span class='id identifier rubyid_notebook'>notebook</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1127,9 +1073,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The notebook to add the tab to.</p>
-</div>
+        <div class='inline'><p>the notebook to add the tab to</p></div>
       
     </li>
   
@@ -1142,6 +1086,8 @@
       <pre class="lines">
 
 
+468
+469
 470
 471
 472
@@ -1302,12 +1248,10 @@
 627
 628
 629
-630
-631
-632</pre>
+630</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 470</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 468</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_add_account_tab'>create_add_account_tab</span><span class='lparen'>(</span><span class='id identifier rubyid_notebook'>notebook</span><span class='rparen'>)</span>
   <span class='comment'># Create tab content
@@ -1488,22 +1432,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Creates the add character tab in the management window.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Creates the add character tab in the management window.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_create_add_character_tab'>create_add_character_tab</span><span class='lparen'>(</span><span class='id identifier rubyid_notebook'>notebook</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1516,9 +1450,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The notebook to add the tab to.</p>
-</div>
+        <div class='inline'><p>the notebook to add the tab to</p></div>
       
     </li>
   
@@ -1531,6 +1463,7 @@
       <pre class="lines">
 
 
+356
 357
 358
 359
@@ -1636,11 +1569,10 @@
 459
 460
 461
-462
-463</pre>
+462</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 357</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 356</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_add_character_tab'>create_add_character_tab</span><span class='lparen'>(</span><span class='id identifier rubyid_notebook'>notebook</span><span class='rparen'>)</span>
   <span class='comment'># Create tab content
@@ -1765,22 +1697,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Creates the encryption management tab in the management window.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Creates the encryption management tab in the management window.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_create_encryption_management_tab'>create_encryption_management_tab</span><span class='lparen'>(</span><span class='id identifier rubyid_notebook'>notebook</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1793,9 +1715,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The notebook to add the tab to.</p>
-</div>
+        <div class='inline'><p>the notebook to add the tab to</p></div>
       
     </li>
   
@@ -1808,6 +1728,9 @@
       <pre class="lines">
 
 
+636
+637
+638
 639
 640
 641
@@ -1918,13 +1841,10 @@
 746
 747
 748
-749
-750
-751
-752</pre>
+749</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 639</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 636</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_encryption_management_tab'>create_encryption_management_tab</span><span class='lparen'>(</span><span class='id identifier rubyid_notebook'>notebook</span><span class='rparen'>)</span>
   <span class='comment'># Create encryption management content
@@ -1967,14 +1887,14 @@
   <span class='comment'># Check encryption mode and keychain availability
 </span>  <span class='id identifier rubyid_has_keychain'>has_keychain</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="MasterPasswordManager.html" title="Lich::Common::GUI::MasterPasswordManager (module)">MasterPasswordManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_keychain_available?'><span class='object_link'><a href="MasterPasswordManager.html#keychain_available%3F-class_method" title="Lich::Common::GUI::MasterPasswordManager.keychain_available? (method)">keychain_available?</a></span></span>
   <span class='id identifier rubyid_mode'>mode</span> <span class='op'>=</span> <span class='kw'>nil</span>
-  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="YamlState.html#yaml_file_path-class_method" title="Lich::Common::GUI::YamlState.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='ivar'>@data_dir</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="../Authentication/EntryStore.html#yaml_file_path-class_method" title="Lich::Common::Authentication::EntryStore.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='ivar'>@data_dir</span><span class='rparen'>)</span>
 
   <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
     <span class='kw'>begin</span>
       <span class='id identifier rubyid_yaml_data'>yaml_data</span> <span class='op'>=</span> <span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_load_file'>load_file</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_mode'>mode</span> <span class='op'>=</span> <span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>encryption_mode</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
     <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to load YAML for encryption management tab: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to load YAML for encryption management tab: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
@@ -2056,40 +1976,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Refreshes the display of accounts in the UI.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Refreshes the display of accounts in the UI.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_refresh_accounts_display'>refresh_accounts_display</span></code></pre>
-    
-  </div>
-
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If an error occurs while refreshing the display.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -2097,7 +1989,6 @@
       <pre class="lines">
 
 
-93
 94
 95
 96
@@ -2109,10 +2000,11 @@
 102
 103
 104
-105</pre>
+105
+106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 94</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_refresh_accounts_display'>refresh_accounts_display</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='ivar'>@accounts_store</span>
@@ -2124,7 +2016,7 @@
     <span class='comment'># Repopulate with current data
 </span>    <span class='id identifier rubyid_populate_accounts_view'>populate_accounts_view</span><span class='lparen'>(</span><span class='ivar'>@accounts_store</span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error refreshing accounts display: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error refreshing accounts display: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2143,22 +2035,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Registers the UI to receive notifications about account changes.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Registers the instance for notifications from the tab communicator.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_register_for_notifications'>register_for_notifications</span><span class='lparen'>(</span><span class='id identifier rubyid_tab_communicator'>tab_communicator</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2171,9 +2053,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The communicator for tab notifications.</p>
-</div>
+        <div class='inline'><p>the communicator for tab notifications</p></div>
       
     </li>
   
@@ -2206,21 +2086,27 @@
       <div class="method_details ">
   <h3 class="signature " id="register_notification_callback-instance_method">
   
-    #<strong>register_notification_callback</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>register_notification_callback</strong>  &#x21d2; <tt>void</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Registers a callback to handle incoming notifications about account changes.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-57
-58
-59
 60
 61
 62
@@ -2247,10 +2133,13 @@
 83
 84
 85
-86</pre>
+86
+87
+88
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_register_notification_callback'>register_notification_callback</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='ivar'>@notifications_registered</span> <span class='op'>||</span> <span class='op'>!</span><span class='ivar'>@tab_communicator</span>
@@ -2264,11 +2153,11 @@
     <span class='kw'>when</span> <span class='symbol'>:favorite_toggled</span>
       <span class='comment'># Refresh accounts view to reflect favorite changes
 </span>      <span class='id identifier rubyid_refresh_accounts_display'>refresh_accounts_display</span> <span class='kw'>if</span> <span class='ivar'>@accounts_store</span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Account manager refreshed for favorite change: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_data'>data</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Account manager refreshed for favorite change: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_data'>data</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>when</span> <span class='symbol'>:character_added</span><span class='comma'>,</span> <span class='symbol'>:character_removed</span><span class='comma'>,</span> <span class='symbol'>:account_added</span><span class='comma'>,</span> <span class='symbol'>:account_removed</span>
       <span class='comment'># Refresh accounts view for structural changes
 </span>      <span class='id identifier rubyid_refresh_accounts_display'>refresh_accounts_display</span> <span class='kw'>if</span> <span class='ivar'>@accounts_store</span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Account manager refreshed for data change: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_change_type'>change_type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Account manager refreshed for data change: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_change_type'>change_type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>when</span> <span class='symbol'>:encryption_mode_changed</span>
       <span class='comment'># Recreate encryption management tab to update button visibility/state
 </span>      <span class='kw'>if</span> <span class='ivar'>@notebook</span>
@@ -2277,7 +2166,7 @@
         <span class='ivar'>@notebook</span><span class='period'>.</span><span class='id identifier rubyid_show_all'>show_all</span>
         <span class='comment'># Return to encryption management tab after recreation
 </span>        <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span> <span class='lbrace'>{</span> <span class='ivar'>@notebook</span><span class='period'>.</span><span class='id identifier rubyid_set_current_page'>set_current_page</span><span class='lparen'>(</span><span class='ivar'>@tab_indices</span><span class='lbracket'>[</span><span class='symbol'>:encryption_management</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Encryption management tab recreated for mode change</span><span class='tstring_end'>&quot;</span></span>
+        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Encryption management tab recreated for mode change</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
   <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -2298,22 +2187,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets a callback to be invoked when account data changes.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets a callback to be invoked when account data changes.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_manager'>manager</span><span class='period'>.</span><span class='id identifier rubyid_set_data_change_callback'>set_data_change_callback</span><span class='lparen'>(</span><span class='tlambda'>-&gt;</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='tlambeg'>{</span> <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Data changed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2326,9 +2205,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The callback to be invoked on data changes.</p>
-</div>
+        <div class='inline'><p>the callback to invoke on data changes</p></div>
       
     </li>
   
@@ -2341,12 +2218,12 @@
       <pre class="lines">
 
 
-43
 44
-45</pre>
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/account_manager_ui.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_data_change_callback'>set_data_change_callback</span><span class='lparen'>(</span><span class='id identifier rubyid_callback'>callback</span><span class='rparen'>)</span>
   <span class='ivar'>@data_change_callback</span> <span class='op'>=</span> <span class='id identifier rubyid_callback'>callback</span>
@@ -2361,9 +2238,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:19:01 2026 by
+  Generated on Sun May 10 17:26:33 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

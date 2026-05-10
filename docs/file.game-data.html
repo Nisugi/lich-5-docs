@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "game-data";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="file_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -57,17 +59,11 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'>
-<h1 id="label-Game+Data+Guide">Game Data Guide</h1>
-
+      <div id="content"><div id='filecontents'><h1 id="Game_Data_Guide">Game Data Guide</h1>
 <p>This guide covers accessing game world data in Lich scripts: rooms, maps, and game objects (NPCs, items, players).</p>
-
-<h2 id="label-GameObj+-+Game+Objects">GameObj - Game Objects</h2>
-
+<h2 id="GameObj___Game_Objects">GameObj - Game Objects</h2>
 <p>The <code>GameObj</code> class represents everything in the game world: NPCs, items, loot, and other players.</p>
-
-<h3 id="label-Finding+Objects">Finding Objects</h3>
-
+<h3 id="Finding_Objects">Finding Objects</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Find by ID (string of numbers)
 </span><span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='const'>GameObj</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>12345</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
 
@@ -82,9 +78,7 @@
 <span class='comment'># Find by regex pattern
 </span><span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='const'>GameObj</span><span class='lbracket'>[</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>mithril</span><span class='regexp_end'>/</span></span><span class='rbracket'>]</span>
 </code></pre>
-
-<h3 id="label-Object+Properties">Object Properties</h3>
-
+<h3 id="Object_Properties">Object Properties</h3>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>              <span class='comment'># Unique object ID (string)
 </span><span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_noun'>noun</span>            <span class='comment'># Object noun (&quot;sword&quot;, &quot;kobold&quot;)
 </span><span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>            <span class='comment'># Full name (&quot;gleaming silver sword&quot;)
@@ -93,9 +87,7 @@
 </span><span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span>          <span class='comment'># Current status (for NPCs)
 </span><span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_contents'>contents</span>        <span class='comment'># Contents if it&#39;s a container
 </span></code></pre>
-
-<h3 id="label-Object+Types">Object Types</h3>
-
+<h3 id="Object_Types">Object Types</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Check object type
 </span><span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span>            <span class='comment'># Returns &quot;weapon,sword&quot; or similar
 </span><span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_type?'>type?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>weapon</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># Check specific type
@@ -105,11 +97,8 @@
 </span><span class='comment'># food, drink, box, clothing, jewelry
 </span><span class='comment'># creature, aggressive, undead
 </span></code></pre>
-
-<h3 id="label-Object+Status">Object Status</h3>
-
+<h3 id="Object_Status">Object Status</h3>
 <p>NPC statuses indicate their condition:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span>
 <span class='comment'># Returns: nil (healthy), &quot;stunned&quot;, &quot;dead&quot;, &quot;prone&quot;, &quot;kneeling&quot;, etc.
 </span>
@@ -118,11 +107,8 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> is dead</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Object+Collections">Object Collections</h2>
-
-<h3 id="label-NPCs+in+Room">NPCs in Room</h3>
-
+<h2 id="Object_Collections">Object Collections</h2>
+<h3 id="NPCs_in_Room">NPCs in Room</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get all NPCs
 </span><span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_npcs'>npcs</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_npc'>npc</span><span class='op'>|</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>NPC: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_npc'>npc</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_npc'>npc</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
@@ -134,9 +120,7 @@
 <span class='comment'># Count NPCs
 </span><span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_npcs'>npcs</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span><span class='embexpr_end'>}</span><span class='tstring_content'> NPCs in room</span><span class='tstring_end'>&quot;</span></span>
 </code></pre>
-
-<h3 id="label-Loot+on+Ground">Loot on Ground</h3>
-
+<h3 id="Loot_on_Ground">Loot on Ground</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get all loot
 </span><span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_loot'>loot</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Loot: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -151,9 +135,7 @@
 <span class='comment'># Find boxes
 </span><span class='id identifier rubyid_boxes'>boxes</span> <span class='op'>=</span> <span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_loot'>loot</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_type?'>type?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>box</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
 </code></pre>
-
-<h3 id="label-Other+Players">Other Players</h3>
-
+<h3 id="Other_Players">Other Players</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get all PCs in room
 </span><span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_pcs'>pcs</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_pc'>pc</span><span class='op'>|</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Player: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_pc'>pc</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -162,9 +144,7 @@
 <span class='comment'># Find specific player
 </span><span class='id identifier rubyid_healer'>healer</span> <span class='op'>=</span> <span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_pcs'>pcs</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pc'>pc</span><span class='op'>|</span> <span class='id identifier rubyid_pc'>pc</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Healer</span><span class='regexp_end'>/i</span></span> <span class='rbrace'>}</span>
 </code></pre>
-
-<h3 id="label-Your+Inventory">Your Inventory</h3>
-
+<h3 id="Your_Inventory">Your Inventory</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># All inventory items
 </span><span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_inv'>inv</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Carrying: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -177,17 +157,13 @@
 <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Right hand: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_right'>right</span><span class='op'>&amp;.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>empty</span><span class='tstring_end'>&#39;</span></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Left hand: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_left'>left</span><span class='op'>&amp;.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>empty</span><span class='tstring_end'>&#39;</span></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 </code></pre>
-
-<h3 id="label-Room+Description+Objects">Room Description Objects</h3>
-
+<h3 id="Room_Description_Objects">Room Description Objects</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Objects mentioned in room description (not interactable)
 </span><span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_room_desc'>room_desc</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_obj'>obj</span><span class='op'>|</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Room item: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Container+Contents">Container Contents</h3>
-
+<h3 id="Container_Contents">Container Contents</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get contents of a container
 </span><span class='id identifier rubyid_container'>container</span> <span class='op'>=</span> <span class='const'>GameObj</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>backpack</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
 <span class='kw'>if</span> <span class='id identifier rubyid_container'>container</span>
@@ -196,13 +172,9 @@
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-The+Map+Class">The Map Class</h2>
-
-<p>The <code>Map</code> class provides navigation and room information from Lich’s map database.</p>
-
-<h3 id="label-Current+Room">Current Room</h3>
-
+<h2 id="The_Map_Class">The Map Class</h2>
+<p>The <code>Map</code> class provides navigation and room information from Lich's map database.</p>
+<h3 id="Current_Room">Current Room</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get current room
 </span><span class='id identifier rubyid_room'>room</span> <span class='op'>=</span> <span class='const'>Room</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span>
 <span class='comment'># or
@@ -216,9 +188,7 @@
 </span><span class='id identifier rubyid_room'>room</span><span class='period'>.</span><span class='id identifier rubyid_tags'>tags</span>           <span class='comment'># Room tags (town, node, etc.)
 </span><span class='id identifier rubyid_room'>room</span><span class='period'>.</span><span class='id identifier rubyid_uid'>uid</span>            <span class='comment'># Unique identifier(s)
 </span></code></pre>
-
-<h3 id="label-Room+Navigation">Room Navigation</h3>
-
+<h3 id="Room_Navigation">Room Navigation</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Check exits
 </span><span class='id identifier rubyid_room'>room</span><span class='period'>.</span><span class='id identifier rubyid_wayto'>wayto</span>          <span class='comment'># Hash of destination_id =&gt; direction
 </span><span class='id identifier rubyid_room'>room</span><span class='period'>.</span><span class='id identifier rubyid_timeto'>timeto</span>         <span class='comment'># Hash of destination_id =&gt; travel_time
@@ -231,9 +201,7 @@
 <span class='comment'># Check if outside
 </span><span class='id identifier rubyid_room'>room</span><span class='period'>.</span><span class='id identifier rubyid_outside?'>outside?</span>       <span class='comment'># true if room is outdoors
 </span></code></pre>
-
-<h3 id="label-Finding+Rooms">Finding Rooms</h3>
-
+<h3 id="Finding_Rooms">Finding Rooms</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># By ID
 </span><span class='id identifier rubyid_room'>room</span> <span class='op'>=</span> <span class='const'>Map</span><span class='lbracket'>[</span><span class='int'>12345</span><span class='rbracket'>]</span>
 
@@ -243,9 +211,7 @@
 <span class='comment'># By title or description
 </span><span class='id identifier rubyid_room'>room</span> <span class='op'>=</span> <span class='const'>Map</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Town Square</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
 </code></pre>
-
-<h3 id="label-Map+Data">Map Data</h3>
-
+<h3 id="Map_Data">Map Data</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get list of all rooms
 </span><span class='const'>Map</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span>            <span class='comment'># Array of all Map objects
 </span>
@@ -256,9 +222,7 @@
 <span class='comment'># Current room ID
 </span><span class='const'>Map</span><span class='period'>.</span><span class='id identifier rubyid_current_room_id'>current_room_id</span>
 </code></pre>
-
-<h3 id="label-Pathfinding">Pathfinding</h3>
-
+<h3 id="Pathfinding">Pathfinding</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Find path between rooms
 </span><span class='id identifier rubyid_start_id'>start_id</span> <span class='op'>=</span> <span class='const'>Room</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
 <span class='id identifier rubyid_dest_id'>dest_id</span> <span class='op'>=</span> <span class='int'>228</span>  <span class='comment'># Target room
@@ -273,11 +237,8 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can go directly: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_direction'>direction</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Common+Patterns">Common Patterns</h2>
-
-<h3 id="label-Target+Selection">Target Selection</h3>
-
+<h2 id="Common_Patterns">Common Patterns</h2>
+<h3 id="Target_Selection">Target Selection</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_find_target'>find_target</span>
   <span class='comment'># Find first living, non-stunned NPC
 </span>  <span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_npcs'>npcs</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_npc'>npc</span><span class='op'>|</span>
@@ -292,9 +253,7 @@
   <span class='rbrace'>}</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Loot+Collection">Loot Collection</h3>
-
+<h3 id="Loot_Collection">Loot Collection</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_collect_loot'>collect_loot</span>
   <span class='comment'># Collect gems
 </span>  <span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_loot'>loot</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
@@ -314,9 +273,7 @@
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Hand+Management">Hand Management</h3>
-
+<h3 id="Hand_Management">Hand Management</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_empty_hands'><span class='object_link'><a href="top-level-namespace.html#empty_hands-instance_method" title="#empty_hands (method)">empty_hands</a></span></span>
   <span class='kw'>if</span> <span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_right_hand'>right_hand</span>
     <span class='id identifier rubyid_fput'><span class='object_link'><a href="top-level-namespace.html#fput-instance_method" title="#fput (method)">fput</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>stow right</span><span class='tstring_end'>&quot;</span></span>
@@ -333,9 +290,7 @@
   <span class='lparen'>(</span><span class='id identifier rubyid_left'>left</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_left'>left</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item_name'>item_name</span><span class='embexpr_end'>}</span><span class='regexp_end'>/i</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Room+Checks">Room Checks</h3>
-
+<h3 id="Room_Checks">Room Checks</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_in_town?'>in_town?</span>
   <span class='id identifier rubyid_room'>room</span> <span class='op'>=</span> <span class='const'>Room</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span>
   <span class='id identifier rubyid_room'>room</span><span class='op'>&amp;.</span><span class='id identifier rubyid_tags'>tags</span><span class='op'>&amp;.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>town</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -350,9 +305,7 @@
   <span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_npcs'>npcs</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_npc'>npc</span><span class='op'>|</span> <span class='id identifier rubyid_npc'>npc</span><span class='period'>.</span><span class='id identifier rubyid_noun'>noun</span> <span class='op'>==</span> <span class='id identifier rubyid_npc_noun'>npc_noun</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Safe+Movement">Safe Movement</h3>
-
+<h3 id="Safe_Movement">Safe Movement</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_safe_go'>safe_go</span><span class='lparen'>(</span><span class='id identifier rubyid_direction'>direction</span><span class='rparen'>)</span>
   <span class='comment'># Check NPCs before moving
 </span>  <span class='kw'>if</span> <span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_npcs'>npcs</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_npc'>npc</span><span class='op'>|</span> <span class='id identifier rubyid_npc'>npc</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='rbrace'>}</span>
@@ -364,33 +317,25 @@
   <span class='kw'>true</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Familiar+Objects">Familiar Objects</h2>
-
+<h2 id="Familiar_Objects">Familiar Objects</h2>
 <p>If you have a familiar, there are separate collections:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_fam_loot'>fam_loot</span>      <span class='comment'># Loot your familiar sees
 </span><span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_fam_npcs'>fam_npcs</span>      <span class='comment'># NPCs your familiar sees
 </span><span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_fam_pcs'>fam_pcs</span>       <span class='comment'># Players your familiar sees
 </span><span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_fam_room_desc'>fam_room_desc</span> <span class='comment'># Room objects your familiar sees
 </span></code></pre>
-
-<h2 id="label-See+Also">See Also</h2>
-<ul><li>
-<p><span class='object_link'><a href="Lich/Common/GameObj.html" title="Lich::Common::GameObj (class)">Lich::Common::GameObj</a></span> - GameObj class reference</p>
-</li><li>
-<p><span class='object_link'><a href="Lich/Common/Map.html" title="Lich::Common::Map (class)">Lich::Common::Map</a></span> - Map class reference</p>
-</li><li>
-<p><a href="file.scripting-basics.html" title="Scripting Basics">Scripting Basics</a> - Core scripting concepts</p>
-</li><li>
-<p><a href="file.spells-guide.html" title="Spells Guide">Spells Guide</a> - Working with spells</p>
-</li></ul>
-</div></div>
+<h2 id="See_Also">See Also</h2>
+<ul>
+<li><span class='object_link'><a href="Lich/Common/GameObj.html" title="Lich::Common::GameObj (class)">Lich::Common::GameObj</a></span> - GameObj class reference</li>
+<li><span class='object_link'><a href="Lich/Common/Map.html" title="Lich::Common::Map (class)">Lich::Common::Map</a></span> - Map class reference</li>
+<li><a href="file.scripting-basics.html" title="Scripting Basics">Scripting Basics</a> - Core scripting concepts</li>
+<li><a href="file.spells-guide.html" title="Spells Guide">Spells Guide</a> - Working with spells</li>
+</ul></div></div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:45 2026 by
+  Generated on Sun May 10 17:26:20 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

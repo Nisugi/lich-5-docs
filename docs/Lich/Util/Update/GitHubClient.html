@@ -4,18 +4,18 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Class: Lich::Common::Map::MinHeap
+  Class: Lich::Util::Update::GitHubClient
   
     &mdash; Lich 5 Documentation
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
-  pathId = "Lich::Common::Map::MinHeap";
+  pathId = "Lich::Util::Update::GitHubClient";
   relpath = '../../../';
 </script>
 
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -36,10 +38,10 @@
       <div id="header">
         <div id="menu">
   
-    <a href="../../../_index.html">Index (M)</a> &raquo;
-    <span class='title'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Map.html" title="Lich::Common::Map (class)">Map</a></span></span>
+    <a href="../../../_index.html">Index (G)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Util.html" title="Lich::Util (module)">Util</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Update.html" title="Lich::Util::Update (module)">Update</a></span></span>
      &raquo; 
-    <span class="title">MinHeap</span>
+    <span class="title">GitHubClient</span>
   
 </div>
 
@@ -59,7 +61,7 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><h1>Class: Lich::Common::Map::MinHeap
+      <div id="content"><h1>Class: Lich::Util::Update::GitHubClient
   
   
   
@@ -74,7 +76,7 @@
         <ul class="fullTree">
           <li>Object</li>
           
-            <li class="next">Lich::Common::Map::MinHeap</li>
+            <li class="next">Lich::Util::Update::GitHubClient</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -94,16 +96,58 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/map/map_dr.rb<span class="defines">,<br />
-  documented/common/map/map_gs.rb</span>
+    <dd>documented/common/update/github_client.rb
 </dd>
   </dl>
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>HTTP client for GitHub API with caching and token auth.</p>
+<p>Provides JSON and raw GET requests with optional Bearer token auth from
+DATA_DIR/githubtoken.txt. Includes in-memory cache with TTL for API responses.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#http_cache-instance_method" title="#http_cache (instance method)">#<strong>http_cache</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute http_cache.</p></div></span>
+  
+</li>
+
+    
+  </ul>
 
 
 
@@ -119,7 +163,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#empty%3F-instance_method" title="#empty? (instance method)">#<strong>empty?</strong>  &#x21d2; Boolean </a>
+      <a href="#fetch_github_json-instance_method" title="#fetch_github_json (instance method)">#<strong>fetch_github_json</strong>(url)  &#x21d2; Hash<sup>?</sup> </a>
     
 
     
@@ -133,7 +177,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Fetches JSON data from the specified GitHub URL with caching.</p></div></span>
   
 </li>
 
@@ -141,7 +185,51 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>  &#x21d2; MinHeap </a>
+      <a href="#github_token-instance_method" title="#github_token (instance method)">#<strong>github_token</strong>  &#x21d2; String<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Retrieves the GitHub authentication token from the specified file.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#http_get-instance_method" title="#http_get (instance method)">#<strong>http_get</strong>(url, auth: true)  &#x21d2; String<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Performs a GET request to the specified URL with optional authentication.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(cache_ttl: 60)  &#x21d2; void </a>
     
 
     
@@ -157,58 +245,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A new instance of MinHeap.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#pop-instance_method" title="#pop (instance method)">#<strong>pop</strong>  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#push-instance_method" title="#push (instance method)">#<strong>push</strong>(priority, value)  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Initializes a new GitHubClient instance.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 <div id="constructor_details" class="method_details_list">
@@ -217,7 +260,7 @@
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    #<strong>initialize</strong>  &#x21d2; <tt><span class='object_link'><a href="" title="Lich::Common::Map::MinHeap (class)">MinHeap</a></span></tt> 
+    #<strong>initialize</strong>(cache_ttl: 60)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -225,9 +268,79 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns a new instance of MinHeap.</p>
+    <p>Initializes a new GitHubClient instance.</p>
 
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>cache_ttl</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>60</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>time-to-live for cache in seconds</p></div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/common/update/github_client.rb', line 26</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>cache_ttl:</span> <span class='int'>60</span><span class='rparen'>)</span>
+  <span class='ivar'>@http_cache</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@cache_ttl</span> <span class='op'>=</span> <span class='id identifier rubyid_cache_ttl'>cache_ttl</span>
+  <span class='ivar'>@github_token</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@github_token_loaded</span> <span class='op'>=</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="http_cache-instance_method">
+  
+    #<strong>http_cache</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute http_cache.</p>
 
   </div>
 </div>
@@ -240,22 +353,22 @@
       <pre class="lines">
 
 
-810
-811
-812</pre>
+21
+22
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 810</span>
+      <pre class="code"><span class="info file"># File 'documented/common/update/github_client.rb', line 21</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
-  <span class='ivar'>@heap</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_http_cache'>http_cache</span>
+  <span class='ivar'>@http_cache</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
 </div>
-  
-</div>
+    
+  </div>
 
 
   <div id="instance_method_details" class="method_details_list">
@@ -263,9 +376,9 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="empty?-instance_method">
+  <h3 class="signature first" id="fetch_github_json-instance_method">
   
-    #<strong>empty?</strong>  &#x21d2; <tt>Boolean</tt> 
+    #<strong>fetch_github_json</strong>(url)  &#x21d2; <tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt><sup>?</sup> 
   
 
   
@@ -273,21 +386,53 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
+    <p>Fetches JSON data from the specified GitHub URL with caching.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Fetching repository data</p></div></h5>
+      
+      <pre class="example code"><code><span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Util::Update::GitHubClient (class)">GitHubClient</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Util::Update::GitHubClient#initialize (method)">new</a></span></span>
+<span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_fetch_github_json'>fetch_github_json</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://api.github.com/repos/user/repo</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>url</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the GitHub API URL to fetch data from</p></div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>, <tt>nil</tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'><p>parsed JSON data or nil if an error occurs</p></div>
       
     </li>
   
@@ -299,15 +444,45 @@
       <pre class="lines">
 
 
-827
-828
-829</pre>
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 827</span>
+      <pre class="code"><span class="info file"># File 'documented/common/update/github_client.rb', line 39</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_empty?'>empty?</span>
-  <span class='ivar'>@heap</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_fetch_github_json'>fetch_github_json</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_now'>now</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+  <span class='id identifier rubyid_entry'>entry</span> <span class='op'>=</span> <span class='ivar'>@http_cache</span><span class='lbracket'>[</span><span class='id identifier rubyid_url'>url</span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_entry'>entry</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_now'>now</span> <span class='op'>-</span> <span class='id identifier rubyid_entry'>entry</span><span class='lbracket'>[</span><span class='symbol'>:ts</span><span class='rbracket'>]</span> <span class='op'>&lt;</span> <span class='ivar'>@cache_ttl</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_entry'>entry</span><span class='lbracket'>[</span><span class='symbol'>:data</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_raw'>raw</span> <span class='op'>=</span> <span class='id identifier rubyid_http_get'>http_get</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_raw'>raw</span>
+
+    <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_raw'>raw</span><span class='rparen'>)</span>
+    <span class='ivar'>@http_cache</span><span class='lbracket'>[</span><span class='id identifier rubyid_url'>url</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>ts:</span> <span class='id identifier rubyid_now'>now</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='id identifier rubyid_data'>data</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_data'>data</span>
+  <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Update notice: network error fetching </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_url'>url</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/repos/</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span> <span class='op'>||</span> <span class='id identifier rubyid_url'>url</span><span class='embexpr_end'>}</span><span class='tstring_content'> (fetch_github_json): </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>nil</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -315,37 +490,84 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="pop-instance_method">
+  <h3 class="signature " id="github_token-instance_method">
   
-    #<strong>pop</strong>  &#x21d2; <tt>Object</tt> 
-  
-
+    #<strong>github_token</strong>  &#x21d2; <tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt><sup>?</sup> 
   
 
   
-</h3><table class="source_code">
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>The token is loaded from DATA_DIR/githubtoken.txt</p></div>
+  </div>
+
+<p>Retrieves the GitHub authentication token from the specified file.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the Bearer token or nil if not found or empty</p></div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-819
-820
-821
-822
-823
-824
-825</pre>
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 819</span>
+      <pre class="code"><span class="info file"># File 'documented/common/update/github_client.rb', line 89</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_pop'>pop</span>
-  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='ivar'>@heap</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-  <span class='id identifier rubyid_swap'>swap</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='ivar'>@heap</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_min'>min</span> <span class='op'>=</span> <span class='ivar'>@heap</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span>
-  <span class='id identifier rubyid_bubble_down'>bubble_down</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='ivar'>@heap</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-  <span class='id identifier rubyid_min'>min</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_github_token'>github_token</span>
+  <span class='kw'>return</span> <span class='ivar'>@github_token</span> <span class='kw'>if</span> <span class='ivar'>@github_token_loaded</span>
+
+  <span class='ivar'>@github_token_loaded</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_token_path'>token_path</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>DATA_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>githubtoken.txt</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_token_path'>token_path</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_token'>token</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_token_path'>token_path</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[lich5-update: GitHub token file is empty. Using unauthenticated access.]</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>return</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@github_token</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bearer </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_token'>token</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -353,31 +575,142 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="push-instance_method">
+  <h3 class="signature " id="http_get-instance_method">
   
-    #<strong>push</strong>(priority, value)  &#x21d2; <tt>Object</tt> 
-  
-
+    #<strong>http_get</strong>(url, auth: true)  &#x21d2; <tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt><sup>?</sup> 
   
 
   
-</h3><table class="source_code">
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Performs a GET request to the specified URL with optional authentication.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>url</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the URL to send the GET request to</p></div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>auth</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>whether to include authentication token (default: true)</p></div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>response body or nil if an error occurs</p></div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if a network error occurs</p></div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-814
-815
-816
-817</pre>
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/map/map_dr.rb', line 814</span>
+      <pre class="code"><span class="info file"># File 'documented/common/update/github_client.rb', line 63</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_priority'>priority</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-  <span class='ivar'>@heap</span> <span class='op'>&lt;&lt;</span> <span class='lbracket'>[</span><span class='id identifier rubyid_priority'>priority</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rbracket'>]</span>
-  <span class='id identifier rubyid_bubble_up'>bubble_up</span><span class='lparen'>(</span><span class='ivar'>@heap</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_http_get'>http_get</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='comma'>,</span> <span class='label'>auth:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_uri'>uri</span> <span class='op'>=</span> <span class='const'>URI</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_http'>http</span> <span class='op'>=</span> <span class='const'>Net</span><span class='op'>::</span><span class='const'>HTTP</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='period'>.</span><span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_uri'>uri</span><span class='period'>.</span><span class='id identifier rubyid_port'>port</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_http'>http</span><span class='period'>.</span><span class='id identifier rubyid_use_ssl'>use_ssl</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='period'>.</span><span class='id identifier rubyid_scheme'>scheme</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_http'>http</span><span class='period'>.</span><span class='id identifier rubyid_verify_mode'>verify_mode</span> <span class='op'>=</span> <span class='const'>OpenSSL</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>VERIFY_PEER</span>
+
+  <span class='id identifier rubyid_request'>request</span> <span class='op'>=</span> <span class='const'>Net</span><span class='op'>::</span><span class='const'>HTTP</span><span class='op'>::</span><span class='const'>Get</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='period'>.</span><span class='id identifier rubyid_request_uri'>request_uri</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_auth'>auth</span>
+    <span class='id identifier rubyid_token'>token</span> <span class='op'>=</span> <span class='id identifier rubyid_github_token'>github_token</span>
+    <span class='id identifier rubyid_request'>request</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Authorization</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_token'>token</span> <span class='kw'>if</span> <span class='id identifier rubyid_token'>token</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_http'>http</span><span class='period'>.</span><span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>200</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[lich5-update: HTTP </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_code'>code</span><span class='embexpr_end'>}</span><span class='tstring_content'> fetching </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_uri'>uri</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span><span class='embexpr_end'>}</span><span class='tstring_content'>]</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>return</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span>
+<span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[lich5-update: Network error: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_content'>]</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>nil</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -389,9 +722,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:59 2026 by
+  Generated on Sun May 10 17:26:33 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

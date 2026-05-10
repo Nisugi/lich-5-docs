@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::DragonRealms::DRRoom";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,58 +96,31 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/dragonrealms/drinfomon/drroom.rb</dd>
+    <dd>documented/dragonrealms/drinfomon/drroom.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a room in the DragonRealms game. This class manages the state of the room, including NPCs, PCs, and room properties.</p>
-
+    <p>Represents a room in the DragonRealms game.</p>
+<p>This class manages the state of the room, including NPCs, PCs,
+and various room attributes.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Accessing room properties</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_room'>room</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../DragonRealms.html" title="Lich::DragonRealms (module)">DragonRealms</a></span></span><span class='op'>::</span><span class='const'>DRRoom</span>
-<span class='id identifier rubyid_room'>room</span><span class='period'>.</span><span class='id identifier rubyid_title'>title</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>A Dark Cave</span><span class='tstring_end'>&quot;</span></span>
-<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_room'>room</span><span class='period'>.</span><span class='id identifier rubyid_description'>description</span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../DragonRealms.html" title="Lich::DragonRealms (module)">for related modules.</a></span></li>
+    
+  </ul>
 
 </div>
-  
-    <h2>
-      Constant Summary
-      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
-    </h2>
-
-    <dl class="constants">
-      
-        <dt id="title-classvariable" class="">@@title =
-          
-        </dt>
-        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span></pre></dd>
-      
-        <dt id="description-classvariable" class="">@@description =
-          
-        </dt>
-        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span></pre></dd>
-      
-    </dl>
-  
-
 
 
 
@@ -177,9 +152,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the list of dead NPCs in the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the list of dead non-player characters (NPCs) in the room.</p></div></span>
   
 </li>
 
@@ -187,7 +160,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#dead_npcs=-class_method" title="dead_npcs= (class method)">.<strong>dead_npcs=</strong>(val)  &#x21d2; Array </a>
+      <a href="#dead_npcs=-class_method" title="dead_npcs= (class method)">.<strong>dead_npcs=</strong>(val)  &#x21d2; void </a>
     
 
     
@@ -201,9 +174,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the list of dead NPCs in the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the list of dead non-player characters (NPCs) in the room.</p></div></span>
   
 </li>
 
@@ -225,9 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the description of the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the description of the room.</p></div></span>
   
 </li>
 
@@ -249,9 +218,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the exits available in the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the exits available from the room.</p></div></span>
   
 </li>
 
@@ -273,9 +240,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the list of group members in the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the list of group members in the room.</p></div></span>
   
 </li>
 
@@ -283,7 +248,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#group_members=-class_method" title="group_members= (class method)">.<strong>group_members=</strong>(val)  &#x21d2; Array </a>
+      <a href="#group_members=-class_method" title="group_members= (class method)">.<strong>group_members=</strong>(val)  &#x21d2; void </a>
     
 
     
@@ -297,9 +262,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the list of group members in the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the list of group members in the room.</p></div></span>
   
 </li>
 
@@ -321,9 +284,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the list of NPCs in the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the list of non-player characters (NPCs) in the room.</p></div></span>
   
 </li>
 
@@ -331,7 +292,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#npcs=-class_method" title="npcs= (class method)">.<strong>npcs=</strong>(val)  &#x21d2; Array </a>
+      <a href="#npcs=-class_method" title="npcs= (class method)">.<strong>npcs=</strong>(val)  &#x21d2; void </a>
     
 
     
@@ -345,9 +306,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the list of NPCs in the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the list of non-player characters (NPCs) in the room.</p></div></span>
   
 </li>
 
@@ -369,9 +328,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the list of player characters (PCs) in the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the list of player characters (PCs) in the room.</p></div></span>
   
 </li>
 
@@ -379,7 +336,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#pcs=-class_method" title="pcs= (class method)">.<strong>pcs=</strong>(val)  &#x21d2; Array </a>
+      <a href="#pcs=-class_method" title="pcs= (class method)">.<strong>pcs=</strong>(val)  &#x21d2; void </a>
     
 
     
@@ -393,9 +350,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the list of player characters (PCs) in the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the list of player characters (PCs) in the room.</p></div></span>
   
 </li>
 
@@ -417,9 +372,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the list of PCs that are prone in the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the list of player characters (PCs) that are prone in the room.</p></div></span>
   
 </li>
 
@@ -427,7 +380,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#pcs_prone=-class_method" title="pcs_prone= (class method)">.<strong>pcs_prone=</strong>(val)  &#x21d2; Array </a>
+      <a href="#pcs_prone=-class_method" title="pcs_prone= (class method)">.<strong>pcs_prone=</strong>(val)  &#x21d2; void </a>
     
 
     
@@ -441,9 +394,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the list of PCs that are prone in the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the list of player characters (PCs) that are prone in the room.</p></div></span>
   
 </li>
 
@@ -465,9 +416,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the list of PCs that are sitting in the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the list of player characters (PCs) that are sitting in the room.</p></div></span>
   
 </li>
 
@@ -475,7 +424,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#pcs_sitting=-class_method" title="pcs_sitting= (class method)">.<strong>pcs_sitting=</strong>(val)  &#x21d2; Array </a>
+      <a href="#pcs_sitting=-class_method" title="pcs_sitting= (class method)">.<strong>pcs_sitting=</strong>(val)  &#x21d2; void </a>
     
 
     
@@ -489,9 +438,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the list of PCs that are sitting in the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the list of player characters (PCs) that are sitting in the room.</p></div></span>
   
 </li>
 
@@ -513,9 +460,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the list of objects in the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the list of objects in the room.</p></div></span>
   
 </li>
 
@@ -523,7 +468,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#room_objs=-class_method" title="room_objs= (class method)">.<strong>room_objs=</strong>(val)  &#x21d2; Array </a>
+      <a href="#room_objs=-class_method" title="room_objs= (class method)">.<strong>room_objs=</strong>(val)  &#x21d2; void </a>
     
 
     
@@ -537,9 +482,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the list of objects in the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the list of objects in the room.</p></div></span>
   
 </li>
 
@@ -561,14 +504,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the title of the room.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the title of the room.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -588,9 +530,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the list of dead NPCs in the room.</p>
-
+    <p>Returns the list of dead non-player characters (NPCs) in the room.</p>
 
   </div>
 </div>
@@ -607,9 +547,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of dead NPCs.</p>
-</div>
+        <div class='inline'><p>an array of dead NPCs.</p></div>
       
     </li>
   
@@ -621,12 +559,12 @@
       <pre class="lines">
 
 
-112
-113
-114</pre>
+105
+106
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 112</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 105</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dead_npcs'>dead_npcs</span>
   <span class='cvar'>@@dead_npcs</span>
@@ -639,7 +577,7 @@
       <div class="method_details ">
   <h3 class="signature " id="dead_npcs=-class_method">
   
-    .<strong>dead_npcs=</strong>(val)  &#x21d2; <tt>Array</tt> 
+    .<strong>dead_npcs=</strong>(val)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -647,9 +585,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Sets the list of dead NPCs in the room.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the list of dead non-player characters (NPCs) in the room.</p>
 
   </div>
 </div>
@@ -667,32 +603,12 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of dead NPCs to set.</p>
-</div>
+        <div class='inline'><p>an array of dead NPCs to set for the room.</p></div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The updated list of dead NPCs.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -700,12 +616,12 @@
       <pre class="lines">
 
 
-119
-120
-121</pre>
+112
+113
+114</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dead_npcs='>dead_npcs=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@dead_npcs</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -726,9 +642,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the description of the room.</p>
-
+    <p>Returns the description of the room.</p>
 
   </div>
 </div>
@@ -745,9 +659,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The description of the room.</p>
-</div>
+        <div class='inline'><p>the description of the room.</p></div>
       
     </li>
   
@@ -759,12 +671,12 @@
       <pre class="lines">
 
 
-65
-66
-67</pre>
+60
+61
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_description'>description</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_room_description'>room_description</span>
@@ -785,9 +697,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the exits available in the room.</p>
-
+    <p>Returns the exits available from the room.</p>
 
   </div>
 </div>
@@ -804,9 +714,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of exits.</p>
-</div>
+        <div class='inline'><p>an array of exits defined in the room.</p></div>
       
     </li>
   
@@ -818,12 +726,12 @@
       <pre class="lines">
 
 
-53
-54
-55</pre>
+48
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_exits'>exits</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_room_exits'>room_exits</span>
@@ -844,9 +752,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the list of group members in the room.</p>
-
+    <p>Returns the list of group members in the room.</p>
 
   </div>
 </div>
@@ -863,9 +769,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of group members.</p>
-</div>
+        <div class='inline'><p>an array of group members.</p></div>
       
     </li>
   
@@ -877,12 +781,12 @@
       <pre class="lines">
 
 
-71
-72
-73</pre>
+66
+67
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_group_members'>group_members</span>
   <span class='cvar'>@@group_members</span>
@@ -895,7 +799,7 @@
       <div class="method_details ">
   <h3 class="signature " id="group_members=-class_method">
   
-    .<strong>group_members=</strong>(val)  &#x21d2; <tt>Array</tt> 
+    .<strong>group_members=</strong>(val)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -903,26 +807,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Sets the list of group members in the room.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the list of group members in the room.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Setting group members</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../DragonRealms.html" title="Lich::DragonRealms (module)">DragonRealms</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRRoom (class)">DRRoom</a></span></span><span class='period'>.</span><span class='id identifier rubyid_group_members'><span class='object_link'><a href="#group_members-class_method" title="Lich::DragonRealms::DRRoom.group_members (method)">group_members</a></span></span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_member1'>member1</span><span class='comma'>,</span> <span class='id identifier rubyid_member2'>member2</span><span class='rbracket'>]</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -935,32 +825,12 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of group members to set.</p>
-</div>
+        <div class='inline'><p>an array of group members to set for the room.</p></div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The updated list of group members.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -968,12 +838,12 @@
       <pre class="lines">
 
 
-80
-81
-82</pre>
+73
+74
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_group_members='>group_members=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@group_members</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -994,9 +864,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the list of NPCs in the room.</p>
-
+    <p>Returns the list of non-player characters (NPCs) in the room.</p>
 
   </div>
 </div>
@@ -1013,9 +881,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of NPCs.</p>
-</div>
+        <div class='inline'><p>an array of NPCs currently in the room.</p></div>
       
     </li>
   
@@ -1027,12 +893,12 @@
       <pre class="lines">
 
 
+22
 23
-24
-25</pre>
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_npcs'>npcs</span>
   <span class='cvar'>@@npcs</span>
@@ -1045,7 +911,7 @@
       <div class="method_details ">
   <h3 class="signature " id="npcs=-class_method">
   
-    .<strong>npcs=</strong>(val)  &#x21d2; <tt>Array</tt> 
+    .<strong>npcs=</strong>(val)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -1053,26 +919,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Sets the list of NPCs in the room.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the list of non-player characters (NPCs) in the room.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Setting NPCs</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../DragonRealms.html" title="Lich::DragonRealms (module)">DragonRealms</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRRoom (class)">DRRoom</a></span></span><span class='period'>.</span><span class='id identifier rubyid_npcs'><span class='object_link'><a href="#npcs-class_method" title="Lich::DragonRealms::DRRoom.npcs (method)">npcs</a></span></span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_npc1'>npc1</span><span class='comma'>,</span> <span class='id identifier rubyid_npc2'>npc2</span><span class='rbracket'>]</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1085,32 +937,12 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of NPCs to set.</p>
-</div>
+        <div class='inline'><p>an array of NPCs to set for the room.</p></div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The updated list of NPCs.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1118,12 +950,12 @@
       <pre class="lines">
 
 
-32
-33
-34</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_npcs='>npcs=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@npcs</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -1144,9 +976,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the list of player characters (PCs) in the room.</p>
-
+    <p>Returns the list of player characters (PCs) in the room.</p>
 
   </div>
 </div>
@@ -1163,9 +993,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of PCs.</p>
-</div>
+        <div class='inline'><p>an array of PCs currently in the room.</p></div>
       
     </li>
   
@@ -1177,12 +1005,12 @@
       <pre class="lines">
 
 
-38
-39
-40</pre>
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pcs'>pcs</span>
   <span class='cvar'>@@pcs</span>
@@ -1195,7 +1023,7 @@
       <div class="method_details ">
   <h3 class="signature " id="pcs=-class_method">
   
-    .<strong>pcs=</strong>(val)  &#x21d2; <tt>Array</tt> 
+    .<strong>pcs=</strong>(val)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -1203,26 +1031,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Sets the list of player characters (PCs) in the room.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the list of player characters (PCs) in the room.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Setting PCs</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../DragonRealms.html" title="Lich::DragonRealms (module)">DragonRealms</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::DragonRealms::DRRoom (class)">DRRoom</a></span></span><span class='period'>.</span><span class='id identifier rubyid_pcs'><span class='object_link'><a href="#pcs-class_method" title="Lich::DragonRealms::DRRoom.pcs (method)">pcs</a></span></span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_pc1'>pc1</span><span class='comma'>,</span> <span class='id identifier rubyid_pc2'>pc2</span><span class='rbracket'>]</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1235,32 +1049,12 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of PCs to set.</p>
-</div>
+        <div class='inline'><p>an array of PCs to set for the room.</p></div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The updated list of PCs.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1268,12 +1062,12 @@
       <pre class="lines">
 
 
-47
-48
-49</pre>
+42
+43
+44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pcs='>pcs=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@pcs</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -1294,9 +1088,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the list of PCs that are prone in the room.</p>
-
+    <p>Returns the list of player characters (PCs) that are prone in the room.</p>
 
   </div>
 </div>
@@ -1313,9 +1105,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of prone PCs.</p>
-</div>
+        <div class='inline'><p>an array of PCs that are currently prone.</p></div>
       
     </li>
   
@@ -1327,12 +1117,12 @@
       <pre class="lines">
 
 
-86
-87
-88</pre>
+79
+80
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pcs_prone'>pcs_prone</span>
   <span class='cvar'>@@pcs_prone</span>
@@ -1345,7 +1135,7 @@
       <div class="method_details ">
   <h3 class="signature " id="pcs_prone=-class_method">
   
-    .<strong>pcs_prone=</strong>(val)  &#x21d2; <tt>Array</tt> 
+    .<strong>pcs_prone=</strong>(val)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -1353,9 +1143,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Sets the list of PCs that are prone in the room.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the list of player characters (PCs) that are prone in the room.</p>
 
   </div>
 </div>
@@ -1373,32 +1161,12 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of prone PCs to set.</p>
-</div>
+        <div class='inline'><p>an array of PCs to set as prone.</p></div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The updated list of prone PCs.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1406,12 +1174,12 @@
       <pre class="lines">
 
 
-93
-94
-95</pre>
+86
+87
+88</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 86</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pcs_prone='>pcs_prone=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@pcs_prone</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -1432,9 +1200,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the list of PCs that are sitting in the room.</p>
-
+    <p>Returns the list of player characters (PCs) that are sitting in the room.</p>
 
   </div>
 </div>
@@ -1451,9 +1217,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of sitting PCs.</p>
-</div>
+        <div class='inline'><p>an array of PCs that are currently sitting.</p></div>
       
     </li>
   
@@ -1465,12 +1229,12 @@
       <pre class="lines">
 
 
-99
-100
-101</pre>
+92
+93
+94</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 99</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pcs_sitting'>pcs_sitting</span>
   <span class='cvar'>@@pcs_sitting</span>
@@ -1483,7 +1247,7 @@
       <div class="method_details ">
   <h3 class="signature " id="pcs_sitting=-class_method">
   
-    .<strong>pcs_sitting=</strong>(val)  &#x21d2; <tt>Array</tt> 
+    .<strong>pcs_sitting=</strong>(val)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -1491,9 +1255,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Sets the list of PCs that are sitting in the room.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the list of player characters (PCs) that are sitting in the room.</p>
 
   </div>
 </div>
@@ -1511,32 +1273,12 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of sitting PCs to set.</p>
-</div>
+        <div class='inline'><p>an array of PCs to set as sitting.</p></div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The updated list of sitting PCs.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1544,12 +1286,12 @@
       <pre class="lines">
 
 
-106
-107
-108</pre>
+99
+100
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 106</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 99</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pcs_sitting='>pcs_sitting=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@pcs_sitting</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -1570,9 +1312,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the list of objects in the room.</p>
-
+    <p>Returns the list of objects in the room.</p>
 
   </div>
 </div>
@@ -1589,9 +1329,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of room objects.</p>
-</div>
+        <div class='inline'><p>an array of objects present in the room.</p></div>
       
     </li>
   
@@ -1603,12 +1341,12 @@
       <pre class="lines">
 
 
-125
-126
-127</pre>
+118
+119
+120</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 125</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 118</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_room_objs'>room_objs</span>
   <span class='cvar'>@@room_objs</span>
@@ -1621,7 +1359,7 @@
       <div class="method_details ">
   <h3 class="signature " id="room_objs=-class_method">
   
-    .<strong>room_objs=</strong>(val)  &#x21d2; <tt>Array</tt> 
+    .<strong>room_objs=</strong>(val)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -1629,9 +1367,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Sets the list of objects in the room.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the list of objects in the room.</p>
 
   </div>
 </div>
@@ -1649,32 +1385,12 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of room objects to set.</p>
-</div>
+        <div class='inline'><p>an array of objects to set for the room.</p></div>
       
     </li>
   
 </ul>
 
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The updated list of room objects.</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1682,12 +1398,12 @@
       <pre class="lines">
 
 
-132
-133
-134</pre>
+125
+126
+127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 132</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 125</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_room_objs='>room_objs=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='cvar'>@@room_objs</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
@@ -1708,9 +1424,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the title of the room.</p>
-
+    <p>Returns the title of the room.</p>
 
   </div>
 </div>
@@ -1727,9 +1441,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The title of the room.</p>
-</div>
+        <div class='inline'><p>the title of the room.</p></div>
       
     </li>
   
@@ -1741,12 +1453,12 @@
       <pre class="lines">
 
 
-59
-60
-61</pre>
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/drroom.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_title'>title</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_room_title'>room_title</span>
@@ -1761,9 +1473,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:19:02 2026 by
+  Generated on Sun May 10 17:26:33 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

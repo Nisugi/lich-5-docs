@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Scars";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -69,12 +71,12 @@
   <dl>
     <dt>Inherits:</dt>
     <dd>
-      <span class="inheritName"><span class='object_link'><a href="CharacterStatus.html" title="Lich::Gemstone::CharacterStatus (class)">CharacterStatus</a></span></span>
+      <span class="inheritName">Gemstone::CharacterStatus</span>
       
         <ul class="fullTree">
           <li>Object</li>
           
-            <li class="next"><span class='object_link'><a href="CharacterStatus.html" title="Lich::Gemstone::CharacterStatus (class)">CharacterStatus</a></span></li>
+            <li class="next">Gemstone::CharacterStatus</li>
           
             <li class="next">Lich::Gemstone::Scars</li>
           
@@ -96,36 +98,29 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/scars.rb</dd>
+    <dd>documented/gemstone/scars.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Scars class for tracking character scars Scars class for tracking character scars</p>
-
-<p>This class provides methods to access and manage scars on various body parts of a character. It defines both primary and alias methods for body parts, as well as composite methods for groups of body parts.</p>
-
+    <p>Represents the scars of a character in the game.</p>
+<p>This class provides methods to access and manipulate the scar data
+for various body parts of a character.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Accessing a character’s left eye scar</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_scars'>scars</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>Scars</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-<span class='id identifier rubyid_scar_level'>scar_level</span> <span class='op'>=</span> <span class='id identifier rubyid_scars'>scars</span><span class='period'>.</span><span class='id identifier rubyid_leftEye'>leftEye</span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="CharacterStatus.html" title="Lich::Gemstone::CharacterStatus (class)">CharacterStatus</a></span></li>
+    
+  </ul>
 
 </div>
   
@@ -139,9 +134,9 @@
         <dt id="BODY_PARTS-constant" class="">BODY_PARTS =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Body part accessor methods XML from Simutronics drives the structure of the scar naming (eg. leftEye) The following is a hash of the body parts and shorthand aliases created for more idiomatic Ruby A hash of body parts and their shorthand aliases. This constant drives the structure of the scar naming convention.</p>
-
+    <p>Body part accessor methods
+XML from Simutronics drives the structure of the scar naming (eg. leftEye)
+The following is a hash of the body parts and shorthand aliases created for more idiomatic Ruby</p>
 
   </div>
 </div>
@@ -203,9 +198,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Helper method to get all scar levels Retrieves the scar levels for all body parts.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the scar levels for all body parts.</p></div></span>
   
 </li>
 
@@ -213,7 +206,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#arms-class_method" title="arms (class method)">.<strong>arms</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#arms-class_method" title="arms (class method)">.<strong>arms</strong>  &#x21d2; Object </a>
     
 
     
@@ -227,9 +220,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Composite scar methods Retrieves the maximum scar level for both arms and hands.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -259,7 +250,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#left_eye-class_method" title="left_eye (class method)">.<strong>left_eye</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#left_eye-class_method" title="left_eye (class method)">.<strong>left_eye</strong>  &#x21d2; Object </a>
     
 
     
@@ -273,9 +264,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Alias snake_case methods for overachievers Retrieves the scar level for the left eye using snake_case.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -349,7 +338,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#limbs-class_method" title="limbs (class method)">.<strong>limbs</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#limbs-class_method" title="limbs (class method)">.<strong>limbs</strong>  &#x21d2; Object </a>
     
 
     
@@ -363,9 +352,29 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the maximum scar level for all limbs (arms and legs).</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#part-class_method" title="part (class method)">.<strong>part</strong>  &#x21d2; String<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Define methods for each body part and its aliases Defines methods for each body part and its aliases.</p></div></span>
   
 </li>
 
@@ -483,7 +492,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#scar_level-class_method" title="scar_level (class method)">.<strong>scar_level</strong>(part)  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#scar_level-class_method" title="scar_level (class method)">.<strong>scar_level</strong>(part)  &#x21d2; String<sup>?</sup> </a>
     
 
     
@@ -497,9 +506,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Helper method to get scar level for any body part Retrieves the scar level for a specified body part.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the scar level for a specific body part.</p></div></span>
   
 </li>
 
@@ -507,7 +514,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#torso-class_method" title="torso (class method)">.<strong>torso</strong>  &#x21d2; Integer<sup>?</sup> </a>
+      <a href="#torso-class_method" title="torso (class method)">.<strong>torso</strong>  &#x21d2; Object </a>
     
 
     
@@ -521,28 +528,17 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the maximum scar level for the torso.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
   
-  
-  
-  
-  
-  
-  
-  
-  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="CharacterStatus.html" title="Lich::Gemstone::CharacterStatus (class)">CharacterStatus</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="CharacterStatus.html#fix_injury_mode-class_method" title="Lich::Gemstone::CharacterStatus.fix_injury_mode (method)">fix_injury_mode</a></span>, <span class='object_link'><a href="CharacterStatus.html#method_missing-class_method" title="Lich::Gemstone::CharacterStatus.method_missing (method)">method_missing</a></span></p>
-
 
   <div id="class_method_details" class="method_details_list">
     <h2>Class Method Details</h2>
@@ -559,30 +555,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method temporarily changes the injury mode to ‘scar’ to retrieve actual scar level data.</p>
-</div>
-  </div>
-
-
-<p>Helper method to get all scar levels Retrieves the scar levels for all body parts.</p>
-
+    <p>Retrieves the scar levels for all body parts.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_all_scar_levels'>all_scar_levels</span> <span class='op'>=</span> <span class='id identifier rubyid_scars'>scars</span><span class='period'>.</span><span class='id identifier rubyid_all_scars'>all_scars</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -594,9 +572,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash mapping body parts to their scar levels.</p>
-</div>
+        <div class='inline'><p>a hash containing the scar levels for all body parts.</p></div>
       
     </li>
   
@@ -608,18 +584,18 @@
       <pre class="lines">
 
 
-144
-145
-146
-147
-148
-149
-150
-151
-152</pre>
+109
+110
+111
+112
+113
+114
+115
+116
+117</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 144</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_all_scars'>all_scars</span>
   <span class='kw'>begin</span>
@@ -638,75 +614,30 @@
       <div class="method_details ">
   <h3 class="signature " id="arms-class_method">
   
-    .<strong>arms</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>arms</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method uses ‘both’ injury mode for consistency.</p>
-</div>
-  </div>
-
-
-<p>Composite scar methods Retrieves the maximum scar level for both arms and hands.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_max_scar'>max_scar</span> <span class='op'>=</span> <span class='id identifier rubyid_scars'>scars</span><span class='period'>.</span><span class='id identifier rubyid_arms'>arms</span></code></pre>
-    
-  </div>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The maximum scar level among the arms and hands or nil if not present.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-79
-80
-81
-82
-83
-84
-85
-86
-87</pre>
+64
+65
+66
+67
+68
+69
+70
+71
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 79</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_arms'>arms</span>
   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -737,10 +668,10 @@
       <pre class="lines">
 
 
-63</pre>
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_arm'>left_arm</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftArm'>leftArm</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -751,67 +682,22 @@
       <div class="method_details ">
   <h3 class="signature " id="left_eye-class_method">
   
-    .<strong>left_eye</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>left_eye</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method is an alias for leftEye.</p>
-</div>
-  </div>
-
-
-<p>Alias snake_case methods for overachievers Retrieves the scar level for the left eye using snake_case.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_scar_level'>scar_level</span> <span class='op'>=</span> <span class='id identifier rubyid_scars'>scars</span><span class='period'>.</span><span class='id identifier rubyid_left_eye'>left_eye</span></code></pre>
-    
-  </div>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The scar level for the left eye or nil if not present.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-61</pre>
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_eye'>left_eye</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftEye'>leftEye</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -834,10 +720,10 @@
       <pre class="lines">
 
 
-69</pre>
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_foot'>left_foot</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftFoot'>leftFoot</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -860,10 +746,10 @@
       <pre class="lines">
 
 
-65</pre>
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_hand'>left_hand</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftHand'>leftHand</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -886,10 +772,10 @@
       <pre class="lines">
 
 
-67</pre>
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_leg'>left_leg</span><span class='semicolon'>;</span> <span class='id identifier rubyid_leftLeg'>leftLeg</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -900,77 +786,32 @@
       <div class="method_details ">
   <h3 class="signature " id="limbs-class_method">
   
-    .<strong>limbs</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>limbs</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method uses ‘both’ injury mode for consistency.</p>
-</div>
-  </div>
-
-
-<p>Retrieves the maximum scar level for all limbs (arms and legs).</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_max_scar'>max_scar</span> <span class='op'>=</span> <span class='id identifier rubyid_scars'>scars</span><span class='period'>.</span><span class='id identifier rubyid_limbs'>limbs</span></code></pre>
-    
-  </div>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The maximum scar level among all limbs or nil if not present.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105</pre>
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_limbs'>limbs</span>
   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -982,6 +823,83 @@
     <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leftLeg</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
     <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rightLeg</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
   <span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="part-class_method">
+  
+    .<strong>part</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Define methods for each body part and its aliases
+Defines methods for each body part and its aliases.
+Each method retrieves the scar data for the corresponding body part.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the scar data for the specified body part, or nil if not found.</p></div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 39</span>
+
+<span class='const'><span class='object_link'><a href="#BODY_PARTS-constant" title="Lich::Gemstone::Scars::BODY_PARTS (constant)">BODY_PARTS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_part'>part</span><span class='comma'>,</span> <span class='id identifier rubyid_aliases'>aliases</span><span class='op'>|</span>
+  <span class='comment'># Define the primary method
+</span>  <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='id identifier rubyid_part'>part</span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># continue to use &#39;both&#39; (_injury2) for now
+</span>
+    <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='id identifier rubyid_part'>part</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_injuries'>injuries</span><span class='lbracket'>[</span><span class='id identifier rubyid_part'>part</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>scar</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Define shorthand alias methods
+</span>  <span class='id identifier rubyid_aliases'>aliases</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ali'>ali</span><span class='op'>|</span>
+    <span class='id identifier rubyid_alias_method'>alias_method</span> <span class='id identifier rubyid_ali'>ali</span><span class='comma'>,</span> <span class='id identifier rubyid_part'>part</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1003,10 +921,10 @@
       <pre class="lines">
 
 
-64</pre>
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_arm'>right_arm</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightArm'>rightArm</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1029,10 +947,10 @@
       <pre class="lines">
 
 
-62</pre>
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_eye'>right_eye</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightEye'>rightEye</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1055,10 +973,10 @@
       <pre class="lines">
 
 
-70</pre>
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_foot'>right_foot</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightFoot'>rightFoot</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1081,10 +999,10 @@
       <pre class="lines">
 
 
-66</pre>
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_hand'>right_hand</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightHand'>rightHand</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1107,10 +1025,10 @@
       <pre class="lines">
 
 
-68</pre>
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right_leg'>right_leg</span><span class='semicolon'>;</span> <span class='id identifier rubyid_rightLeg'>rightLeg</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1121,7 +1039,7 @@
       <div class="method_details ">
   <h3 class="signature " id="scar_level-class_method">
   
-    .<strong>scar_level</strong>(part)  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>scar_level</strong>(part)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt><sup>?</sup> 
   
 
   
@@ -1129,30 +1047,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method uses ‘both’ injury mode for consistency.</p>
-</div>
-  </div>
-
-
-<p>Helper method to get scar level for any body part Retrieves the scar level for a specified body part.</p>
-
+    <p>Retrieves the scar level for a specific body part.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_scar_level'>scar_level</span> <span class='op'>=</span> <span class='id identifier rubyid_scars'>scars</span><span class='period'>.</span><span class='id identifier rubyid_scar_level'>scar_level</span><span class='lparen'>(</span><span class='symbol'>:leftEye</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1165,9 +1065,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The body part to check (e.g., :leftEye).</p>
-</div>
+        <div class='inline'><p>the body part to retrieve the scar level for</p></div>
       
     </li>
   
@@ -1179,14 +1077,12 @@
     <li>
       
       
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The scar level for the specified body part or nil if not present.</p>
-</div>
+        <div class='inline'><p>the scar level for the specified body part, or nil if not found.</p></div>
       
     </li>
   
@@ -1198,13 +1094,13 @@
       <pre class="lines">
 
 
-132
-133
-134
-135</pre>
+101
+102
+103
+104</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 132</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_scar_level'>scar_level</span><span class='lparen'>(</span><span class='id identifier rubyid_part'>part</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1218,76 +1114,31 @@
       <div class="method_details ">
   <h3 class="signature " id="torso-class_method">
   
-    .<strong>torso</strong>  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+    .<strong>torso</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method uses ‘both’ injury mode for consistency.</p>
-</div>
-  </div>
-
-
-<p>Retrieves the maximum scar level for the torso.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_max_scar'>max_scar</span> <span class='op'>=</span> <span class='id identifier rubyid_scars'>scars</span><span class='period'>.</span><span class='id identifier rubyid_torso'>torso</span></code></pre>
-    
-  </div>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The maximum scar level for the torso or nil if not present.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122</pre>
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 113</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/scars.rb', line 86</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_torso'>torso</span>
   <span class='id identifier rubyid_fix_injury_mode'><span class='object_link'><a href="../../top-level-namespace.html#fix_injury_mode-instance_method" title="#fix_injury_mode (method)">fix_injury_mode</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1309,9 +1160,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:58 2026 by
+  Generated on Sun May 10 17:26:31 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

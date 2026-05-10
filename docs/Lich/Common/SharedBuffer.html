@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::SharedBuffer";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,33 +96,30 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/sharedbuffer.rb</dd>
+    <dd>documented/common/sharedbuffer.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>A thread-safe buffer that allows multiple threads to read and write data. This class manages a shared buffer with a maximum size and provides methods to read from and write to it.</p>
-
+    <p>Represents a thread-safe buffer that allows multiple threads to read and write data.</p>
+<p>This class manages a shared buffer with a maximum size and provides methods to read from and write to it.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Creating a shared buffer</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_buffer'>buffer</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'>SharedBuffer</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::SharedBuffer#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>max_size:</span> <span class='int'>1000</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#gets-instance_method" title="Lich::Common::SharedBuffer#gets (method)">#gets</a></span></li>
+    
+      <li><span class='object_link'><a href="#update-instance_method" title="Lich::Common::SharedBuffer#update (method)">#update</a></span></li>
+    
+  </ul>
 
 </div>
 
@@ -149,9 +148,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute max_size.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute max_size.</p></div></span>
   
 </li>
 
@@ -186,9 +183,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Cleans up the buffer index for threads that are no longer active.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Cleans up the buffer index for threads that are no longer active.</p></div></span>
   
 </li>
 
@@ -210,9 +205,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Clears the lines that have been read from the buffer.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Clears the lines that have been read from the buffer for the current thread.</p></div></span>
   
 </li>
 
@@ -234,9 +227,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the next line from the buffer, blocking if necessary.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the next line from the buffer, blocking if necessary until a line is available.</p></div></span>
   
 </li>
 
@@ -258,9 +249,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the next line from the buffer without blocking.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the next line from the buffer without blocking.</p></div></span>
   
 </li>
 
@@ -284,9 +273,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Initializes a new SharedBuffer instance.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Initializes a new SharedBuffer instance.</p></div></span>
   
 </li>
 
@@ -308,9 +295,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>rubocop:disable Lint/HashCompareByIdentity Resets the buffer index for the current thread to the beginning of the buffer.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>rubocop:disable Lint/HashCompareByIdentity Resets the buffer index for the current thread to the beginning of the buffer.</p></div></span>
   
 </li>
 
@@ -332,14 +317,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>rubocop:enable Lint/HashCompareByIdentity Adds a new line to the buffer, managing the size of the buffer.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>rubocop:enable Lint/HashCompareByIdentity Adds a new line to the buffer, ensuring the buffer does not exceed its maximum size.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 <div id="constructor_details" class="method_details_list">
@@ -356,9 +340,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Initializes a new SharedBuffer instance.</p>
-
+    <p>Initializes a new SharedBuffer instance.</p>
 
   </div>
 </div>
@@ -378,9 +360,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Options for initializing the buffer.</p>
-</div>
+        <div class='inline'><p>options for initialization</p></div>
       
     </li>
   
@@ -397,11 +377,12 @@
           <span class="type">(<tt>Integer</tt>)</span>
           <span class="default">
             
+              &mdash; default:
+              <tt>500</tt>
+            
           </span>
           
-            &mdash; <div class='inline'>
-<p>The maximum size of the buffer (default is 500).</p>
-</div>
+            &mdash; <div class='inline'><p>the maximum size of the buffer</p></div>
           
         </li>
       
@@ -415,17 +396,17 @@
       <pre class="lines">
 
 
+17
 18
 19
 20
 21
 22
 23
-24
-25</pre>
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/sharedbuffer.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'documented/common/sharedbuffer.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -458,9 +439,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute max_size.</p>
-
+    <p>Returns the value of attribute max_size.</p>
 
   </div>
 </div>
@@ -473,12 +452,12 @@
       <pre class="lines">
 
 
+11
 12
-13
-14</pre>
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/sharedbuffer.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'documented/common/sharedbuffer.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_max_size'>max_size</span>
   <span class='ivar'>@max_size</span>
@@ -506,9 +485,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Cleans up the buffer index for threads that are no longer active.</p>
-
+    <p>Cleans up the buffer index for threads that are no longer active.</p>
 
   </div>
 </div>
@@ -525,9 +502,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The current instance of SharedBuffer.</p>
-</div>
+        <div class='inline'><p>self</p></div>
       
     </li>
   
@@ -539,13 +514,13 @@
       <pre class="lines">
 
 
+119
+120
 121
-122
-123
-124</pre>
+122</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/sharedbuffer.rb', line 121</span>
+      <pre class="code"><span class="info file"># File 'documented/common/sharedbuffer.rb', line 119</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cleanup_threads'>cleanup_threads</span>
   <span class='ivar'>@buffer_index</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid__v'>_v</span><span class='op'>|</span> <span class='kw'>not</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span> <span class='op'>==</span> <span class='id identifier rubyid_k'>k</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span>
@@ -567,9 +542,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Clears the lines that have been read from the buffer.</p>
-
+    <p>Clears the lines that have been read from the buffer for the current thread.</p>
 
   </div>
 </div>
@@ -586,9 +559,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of lines that were cleared from the buffer.</p>
-</div>
+        <div class='inline'><p>an array of lines that were cleared from the buffer</p></div>
       
     </li>
   
@@ -600,6 +571,8 @@
       <pre class="lines">
 
 
+71
+72
 73
 74
 75
@@ -617,12 +590,10 @@
 87
 88
 89
-90
-91
-92</pre>
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/sharedbuffer.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'documented/common/sharedbuffer.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clear'><span class='object_link'><a href="../../top-level-namespace.html#clear-instance_method" title="#clear (method)">clear</a></span></span>
   <span class='id identifier rubyid_thread_id'>thread_id</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span>
@@ -660,17 +631,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method blocks until a line is available.</p>
-</div>
-  </div>
-
-
-<p>Retrieves the next line from the buffer, blocking if necessary.</p>
-
+    <p>Retrieves the next line from the buffer, blocking if necessary until a line is available.</p>
 
   </div>
 </div>
@@ -687,9 +648,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The next line from the buffer or nil if no line is available.</p>
-</div>
+        <div class='inline'><p>the next line from the buffer or nil if no line is available</p></div>
       
     </li>
   
@@ -701,6 +660,8 @@
       <pre class="lines">
 
 
+28
+29
 30
 31
 32
@@ -716,12 +677,10 @@
 42
 43
 44
-45
-46
-47</pre>
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/sharedbuffer.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'documented/common/sharedbuffer.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_gets'>gets</span>
   <span class='id identifier rubyid_thread_id'>thread_id</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span>
@@ -757,9 +716,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the next line from the buffer without blocking.</p>
-
+    <p>Retrieves the next line from the buffer without blocking.</p>
 
   </div>
 </div>
@@ -776,9 +733,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The next line from the buffer or nil if no line is available.</p>
-</div>
+        <div class='inline'><p>the next line from the buffer or nil if no line is available</p></div>
       
     </li>
   
@@ -790,6 +745,8 @@
       <pre class="lines">
 
 
+49
+50
 51
 52
 53
@@ -806,12 +763,10 @@
 64
 65
 66
-67
-68
-69</pre>
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/sharedbuffer.rb', line 51</span>
+      <pre class="code"><span class="info file"># File 'documented/common/sharedbuffer.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_gets?'>gets?</span>
   <span class='id identifier rubyid_thread_id'>thread_id</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span>
@@ -848,9 +803,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>rubocop:disable Lint/HashCompareByIdentity Resets the buffer index for the current thread to the beginning of the buffer.</p>
-
+    <p>rubocop:disable Lint/HashCompareByIdentity
+Resets the buffer index for the current thread to the beginning of the buffer.</p>
 
   </div>
 </div>
@@ -867,9 +821,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The current instance of SharedBuffer.</p>
-</div>
+        <div class='inline'><p>self</p></div>
       
     </li>
   
@@ -881,13 +833,13 @@
       <pre class="lines">
 
 
+95
+96
 97
-98
-99
-100</pre>
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/sharedbuffer.rb', line 97</span>
+      <pre class="code"><span class="info file"># File 'documented/common/sharedbuffer.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rewind'>rewind</span>
   <span class='ivar'>@buffer_index</span><span class='lbracket'>[</span><span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@buffer_offset</span>
@@ -909,9 +861,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>rubocop:enable Lint/HashCompareByIdentity Adds a new line to the buffer, managing the size of the buffer.</p>
-
+    <p>rubocop:enable Lint/HashCompareByIdentity
+Adds a new line to the buffer, ensuring the buffer does not exceed its maximum size.</p>
 
   </div>
 </div>
@@ -929,9 +880,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The line to be added to the buffer.</p>
-</div>
+        <div class='inline'><p>the line to add to the buffer</p></div>
       
     </li>
   
@@ -948,9 +897,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The current instance of SharedBuffer.</p>
-</div>
+        <div class='inline'><p>self</p></div>
       
     </li>
   
@@ -962,6 +909,8 @@
       <pre class="lines">
 
 
+104
+105
 106
 107
 108
@@ -971,12 +920,10 @@
 112
 113
 114
-115
-116
-117</pre>
+115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/sharedbuffer.rb', line 106</span>
+      <pre class="code"><span class="info file"># File 'documented/common/sharedbuffer.rb', line 104</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='ivar'>@buffer_mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='lbrace'>{</span>
@@ -1000,9 +947,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:19:00 2026 by
+  Generated on Sun May 10 17:26:32 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

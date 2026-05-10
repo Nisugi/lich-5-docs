@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::DragonRealms::Game";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -96,7 +98,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/games.rb</dd>
+    <dd>documented/games.rb
+</dd>
   </dl>
   
 </div>
@@ -139,9 +142,11 @@
 
       
     </ul>
+    
   
 
 
+  
   
   
   
@@ -151,7 +156,7 @@
   
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../GameBase/Game.html" title="Lich::GameBase::Game (class)">GameBase::Game</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../GameBase/Game.html#_gets-class_method" title="Lich::GameBase::Game._gets (method)">_gets</a></span>, <span class='object_link'><a href="../GameBase/Game.html#_puts-class_method" title="Lich::GameBase::Game._puts (method)">_puts</a></span>, <span class='object_link'><a href="../GameBase/Game.html#close-class_method" title="Lich::GameBase::Game.close (method)">close</a></span>, <span class='object_link'><a href="../GameBase/Game.html#closed%3F-class_method" title="Lich::GameBase::Game.closed? (method)">closed?</a></span>, <span class='object_link'><a href="../GameBase/Game.html#display_ruby_warning-class_method" title="Lich::GameBase::Game.display_ruby_warning (method)">display_ruby_warning</a></span>, <span class='object_link'><a href="../GameBase/Game.html#gets-class_method" title="Lich::GameBase::Game.gets (method)">gets</a></span>, <span class='object_link'><a href="../GameBase/Game.html#handle_autostart-class_method" title="Lich::GameBase::Game.handle_autostart (method)">handle_autostart</a></span>, <span class='object_link'><a href="../GameBase/Game.html#handle_thread_error-class_method" title="Lich::GameBase::Game.handle_thread_error (method)">handle_thread_error</a></span>, <span class='object_link'><a href="../GameBase/Game.html#handle_xml_error-class_method" title="Lich::GameBase::Game.handle_xml_error (method)">handle_xml_error</a></span>, <span class='object_link'><a href="../GameBase/Game.html#initialize_buffers-class_method" title="Lich::GameBase::Game.initialize_buffers (method)">initialize_buffers</a></span>, <span class='object_link'><a href="../GameBase/Game.html#log_error-class_method" title="Lich::GameBase::Game.log_error (method)">log_error</a></span>, <span class='object_link'><a href="../GameBase/Game.html#open-class_method" title="Lich::GameBase::Game.open (method)">open</a></span>, <span class='object_link'><a href="../GameBase/Game.html#process_downstream_hooks-class_method" title="Lich::GameBase::Game.process_downstream_hooks (method)">process_downstream_hooks</a></span>, <span class='object_link'><a href="../GameBase/Game.html#process_room_information-class_method" title="Lich::GameBase::Game.process_room_information (method)">process_room_information</a></span>, <span class='object_link'><a href="../GameBase/Game.html#process_server_string-class_method" title="Lich::GameBase::Game.process_server_string (method)">process_server_string</a></span>, <span class='object_link'><a href="../GameBase/Game.html#process_xml_data-class_method" title="Lich::GameBase::Game.process_xml_data (method)">process_xml_data</a></span>, <span class='object_link'><a href="../GameBase/Game.html#puts-class_method" title="Lich::GameBase::Game.puts (method)">puts</a></span>, <span class='object_link'><a href="../GameBase/Game.html#send_to_client-class_method" title="Lich::GameBase::Game.send_to_client (method)">send_to_client</a></span>, <span class='object_link'><a href="../GameBase/Game.html#set_game_instance-class_method" title="Lich::GameBase::Game.set_game_instance (method)">set_game_instance</a></span>, <span class='object_link'><a href="../GameBase/Game.html#start_cli_scripts-class_method" title="Lich::GameBase::Game.start_cli_scripts (method)">start_cli_scripts</a></span>, <span class='object_link'><a href="../GameBase/Game.html#start_main_thread-class_method" title="Lich::GameBase::Game.start_main_thread (method)">start_main_thread</a></span>, <span class='object_link'><a href="../GameBase/Game.html#start_wrap_thread-class_method" title="Lich::GameBase::Game.start_wrap_thread (method)">start_wrap_thread</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="../GameBase/Game.html#_gets-class_method" title="Lich::GameBase::Game._gets (method)">_gets</a></span>, <span class='object_link'><a href="../GameBase/Game.html#_puts-class_method" title="Lich::GameBase::Game._puts (method)">_puts</a></span>, <span class='object_link'><a href="../GameBase/Game.html#autostarted%3F-class_method" title="Lich::GameBase::Game.autostarted? (method)">autostarted?</a></span>, <span class='object_link'><a href="../GameBase/Game.html#close-class_method" title="Lich::GameBase::Game.close (method)">close</a></span>, <span class='object_link'><a href="../GameBase/Game.html#closed%3F-class_method" title="Lich::GameBase::Game.closed? (method)">closed?</a></span>, <span class='object_link'><a href="../GameBase/Game.html#display_ruby_warning-class_method" title="Lich::GameBase::Game.display_ruby_warning (method)">display_ruby_warning</a></span>, <span class='object_link'><a href="../GameBase/Game.html#gets-class_method" title="Lich::GameBase::Game.gets (method)">gets</a></span>, <span class='object_link'><a href="../GameBase/Game.html#handle_autostart-class_method" title="Lich::GameBase::Game.handle_autostart (method)">handle_autostart</a></span>, <span class='object_link'><a href="../GameBase/Game.html#handle_thread_error-class_method" title="Lich::GameBase::Game.handle_thread_error (method)">handle_thread_error</a></span>, <span class='object_link'><a href="../GameBase/Game.html#handle_xml_error-class_method" title="Lich::GameBase::Game.handle_xml_error (method)">handle_xml_error</a></span>, <span class='object_link'><a href="../GameBase/Game.html#initialize_buffers-class_method" title="Lich::GameBase::Game.initialize_buffers (method)">initialize_buffers</a></span>, <span class='object_link'><a href="../GameBase/Game.html#log_error-class_method" title="Lich::GameBase::Game.log_error (method)">log_error</a></span>, <span class='object_link'><a href="../GameBase/Game.html#open-class_method" title="Lich::GameBase::Game.open (method)">open</a></span>, <span class='object_link'><a href="../GameBase/Game.html#process_downstream_hooks-class_method" title="Lich::GameBase::Game.process_downstream_hooks (method)">process_downstream_hooks</a></span>, <span class='object_link'><a href="../GameBase/Game.html#process_room_information-class_method" title="Lich::GameBase::Game.process_room_information (method)">process_room_information</a></span>, <span class='object_link'><a href="../GameBase/Game.html#process_server_string-class_method" title="Lich::GameBase::Game.process_server_string (method)">process_server_string</a></span>, <span class='object_link'><a href="../GameBase/Game.html#process_xml_data-class_method" title="Lich::GameBase::Game.process_xml_data (method)">process_xml_data</a></span>, <span class='object_link'><a href="../GameBase/Game.html#puts-class_method" title="Lich::GameBase::Game.puts (method)">puts</a></span>, <span class='object_link'><a href="../GameBase/Game.html#send_to_client-class_method" title="Lich::GameBase::Game.send_to_client (method)">send_to_client</a></span>, <span class='object_link'><a href="../GameBase/Game.html#set_game_instance-class_method" title="Lich::GameBase::Game.set_game_instance (method)">set_game_instance</a></span>, <span class='object_link'><a href="../GameBase/Game.html#settings_init_needed%3F-class_method" title="Lich::GameBase::Game.settings_init_needed? (method)">settings_init_needed?</a></span>, <span class='object_link'><a href="../GameBase/Game.html#start_cli_scripts-class_method" title="Lich::GameBase::Game.start_cli_scripts (method)">start_cli_scripts</a></span>, <span class='object_link'><a href="../GameBase/Game.html#start_main_thread-class_method" title="Lich::GameBase::Game.start_main_thread (method)">start_main_thread</a></span>, <span class='object_link'><a href="../GameBase/Game.html#start_wrap_thread-class_method" title="Lich::GameBase::Game.start_wrap_thread (method)">start_wrap_thread</a></span></p>
 
 
   <div id="class_method_details" class="method_details_list">
@@ -173,13 +178,13 @@
       <pre class="lines">
 
 
-1030
-1031
-1032
-1033</pre>
+1027
+1028
+1029
+1030</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/games.rb', line 1030</span>
+      <pre class="code"><span class="info file"># File 'documented/games.rb', line 1027</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='id identifier rubyid_initialize_buffers'>initialize_buffers</span>
@@ -195,9 +200,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:57 2026 by
+  Generated on Sun May 10 17:26:30 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

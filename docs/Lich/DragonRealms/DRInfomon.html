@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::DragonRealms::DRInfomon";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -69,6 +71,11 @@
 
   
   
+  <dl>
+      <dt>Extended by:</dt>
+      <dd><span class='object_link'><a href="../Common/Watchable.html" title="Lich::Common::Watchable (module)">Common::Watchable</a></span></dd>
+  </dl>
+  
   
   
   
@@ -78,35 +85,15 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/dragonrealms/drinfomon.rb</dd>
+    <dd>documented/dragonrealms/drinfomon.rb<span class="defines">,<br>
+  documented/dragonrealms/drinfomon/startup.rb</span>
+
+</dd>
   </dl>
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-<p>Provides DRInfomon functionality for DragonRealms</p>
 
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Including the DRInfomon module</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../DragonRealms.html" title="Lich::DragonRealms (module)">DragonRealms</a></span></span><span class='op'>::</span><span class='const'>DRInfomon</span></code></pre>
-    
-  </div>
-
-
-</div>
   
     <h2>
       Constant Summary
@@ -118,9 +105,7 @@
         <dt id="DRINFOMON_CORE_LICH_DEFINES-constant" class="">DRINFOMON_CORE_LICH_DEFINES =
           <div class="docstring">
   <div class="discussion">
-    
-<p>An array of core Lich defines used in DRInfomon</p>
-
+    <p>An array of core Lich defines used in DRInfomon.</p>
 
   </div>
 </div>
@@ -137,9 +122,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>List of core Lich defines</p>
-</div>
+        <div class='inline'><p>the list of core defines</p></div>
       
     </li>
   
@@ -152,9 +135,7 @@
         <dt id="DRINFOMON_IN_CORE_LICH-constant" class="">DRINFOMON_IN_CORE_LICH =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Indicates if DRInfomon is included in the core Lich</p>
-
+    <p>Indicates whether DRInfomon is included in the core Lich.</p>
 
   </div>
 </div>
@@ -171,9 +152,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if DRInfomon is in core Lich</p>
-</div>
+        <div class='inline'><p>true if included, false otherwise</p></div>
       
     </li>
   
@@ -182,6 +161,82 @@
 </div>
         </dt>
         <dd><pre class="code"><span class='kw'>true</span></pre></dd>
+      
+        <dt id="DR_OBSOLETE_SCRIPTS-constant" class="">DR_OBSOLETE_SCRIPTS =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Script names that are obsolete and should be deleted.
+Checked on login to warn users about stale files.
+List of obsolete script names that should be deleted.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'>DR_OBSOLETE_SCRIPTS</span> <span class='comment'>#=&gt; [&quot;events&quot;, &quot;slackbot&quot;, ...]</span></code></pre>
+    
+  </div>
+
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='qwords_beg'>%w[</span><span class='words_sep'>
+  </span><span class='tstring_content'>events</span><span class='words_sep'> </span><span class='tstring_content'>slackbot</span><span class='words_sep'> </span><span class='tstring_content'>spellmonitor</span><span class='words_sep'> </span><span class='tstring_content'>exp-monitor</span><span class='words_sep'>
+  </span><span class='tstring_content'>common-travel</span><span class='words_sep'> </span><span class='tstring_content'>common-validation</span><span class='words_sep'> </span><span class='tstring_content'>common</span><span class='words_sep'> </span><span class='tstring_content'>drinfomon</span><span class='words_sep'> </span><span class='tstring_content'>equipmanager</span><span class='words_sep'>
+  </span><span class='tstring_content'>common-money</span><span class='words_sep'> </span><span class='tstring_content'>common-moonmage</span><span class='words_sep'> </span><span class='tstring_content'>common-summoning</span><span class='words_sep'> </span><span class='tstring_content'>common-theurgy</span><span class='words_sep'> </span><span class='tstring_content'>common-arcana</span><span class='words_sep'>
+  </span><span class='tstring_content'>bootstrap</span><span class='words_sep'> </span><span class='tstring_content'>common-crafting</span><span class='words_sep'> </span><span class='tstring_content'>common-healing-data</span><span class='words_sep'> </span><span class='tstring_content'>common-healing</span><span class='words_sep'> </span><span class='tstring_content'>common-items</span><span class='words_sep'>
+  </span><span class='tstring_content'>update-shops</span><span class='words_sep'>
+</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="DR_OBSOLETE_DATA_FILES-constant" class="">DR_OBSOLETE_DATA_FILES =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Data filenames that are obsolete and should be deleted.
+List of obsolete data filenames that should be deleted.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'>DR_OBSOLETE_DATA_FILES</span> <span class='comment'>#=&gt; []</span></code></pre>
+    
+  </div>
+
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='qwords_beg'>%w[</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="startup_complete-classvariable" class="">@@startup_complete =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Populates initial game state after login by issuing
+game commands whose output is parsed by DRParser.</p>
+<p>Uses ExecScript so that fput blocks until the game
+responds, guaranteeing DRParser.parse has processed
+every response line before the next command is sent.</p>
+<p>Called once from the game lifecycle hook in games.rb
+after the character name is known and the session is ready.</p>
+<p>Detection from scripts:</p>
+<pre class="code ruby"><code class="ruby">DRInfomon.startup_complete? - true after all startup commands have finished.
+Use this to avoid sending duplicate info/played/exp/ability commands.</code></pre>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='kw'>false</span></pre></dd>
       
     </dl>
   
@@ -192,14 +247,955 @@
 
 
 
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
 
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#post_startup_checks-class_method" title="post_startup_checks (class method)">.<strong>post_startup_checks</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Performs checks after the startup process to warn about obsolete scripts and data files.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#safe_log-class_method" title="safe_log (class method)">.<strong>safe_log</strong>(text)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Logs a message safely, either through the logging system or to standard error.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#safe_message-class_method" title="safe_message (class method)">.<strong>safe_message</strong>(type, text)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Sends a message safely, either through the messaging system or logs it directly.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#startup-class_method" title="startup (class method)">.<strong>startup</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Executes the startup script to initialize game state.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#startup_complete%3F-class_method" title="startup_complete? (class method)">.<strong>startup_complete?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks if the startup process is complete.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#startup_completed!-class_method" title="startup_completed! (class method)">.<strong>startup_completed!</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Marks the startup process as complete and triggers post-startup checks.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#startup_script-class_method" title="startup_script (class method)">.<strong>startup_script</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Provides the script to be executed during startup.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#warn_custom_scripts-class_method" title="warn_custom_scripts (class method)">.<strong>warn_custom_scripts</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Warns the user if custom scripts shadow curated scripts.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#warn_obsolete_data_files-class_method" title="warn_obsolete_data_files (class method)">.<strong>warn_obsolete_data_files</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Warns the user about obsolete data files that can be safely deleted.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#warn_obsolete_scripts-class_method" title="warn_obsolete_scripts (class method)">.<strong>warn_obsolete_scripts</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Warns the user about obsolete scripts that should be deleted.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#watch!-class_method" title="watch! (class method)">.<strong>watch!</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Starts a thread to monitor the game state and execute startup commands.</p></div></span>
+  
+</li>
+
+      
+    </ul>
+    
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Common/Watchable.html" title="Lich::Common::Watchable (module)">Common::Watchable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Common/Watchable.html#watch!-instance_method" title="Lich::Common::Watchable#watch! (method)">watch!</a></span></p>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="post_startup_checks-class_method">
+  
+    .<strong>post_startup_checks</strong>  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Performs checks after the startup process to warn about obsolete scripts and data files.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+103
+104
+105
+106
+107
+108
+109
+110
+111</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/startup.rb', line 103</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_post_startup_checks'>post_startup_checks</span>
+  <span class='id identifier rubyid_warn_obsolete_scripts'>warn_obsolete_scripts</span>
+  <span class='id identifier rubyid_warn_obsolete_data_files'>warn_obsolete_data_files</span>
+  <span class='id identifier rubyid_warn_custom_scripts'>warn_custom_scripts</span>
+  <span class='gvar'>$setupfiles</span><span class='period'>.</span><span class='id identifier rubyid_reload'>reload</span> <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='gvar'>$setupfiles</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='gvar'>$setupfiles</span>
+<span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
+  <span class='id identifier rubyid_safe_message'>safe_message</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DRInfomon: post_startup_checks failed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_safe_log'>safe_log</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DRInfomon: post_startup_checks error: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\t</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span><span class='op'>&amp;.</span><span class='id identifier rubyid_first'>first</span><span class='lparen'>(</span><span class='int'>5</span><span class='rparen'>)</span><span class='op'>&amp;.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n\t</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="safe_log-class_method">
+  
+    .<strong>safe_log</strong>(text)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Logs a message safely, either through the logging system or to standard error.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>text</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the message text to log.</p></div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+128
+129
+130
+131
+132
+133
+134</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/startup.rb', line 128</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_safe_log'>safe_log</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:log</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='gvar'>$stderr</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="safe_message-class_method">
+  
+    .<strong>safe_message</strong>(type, text)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sends a message safely, either through the messaging system or logs it directly.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>type</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the type of message (e.g., 'error', 'info')</p></div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>text</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the message text to send or log.</p></div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+117
+118
+119
+120
+121
+122
+123</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/startup.rb', line 117</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_safe_message'>safe_message</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Messaging.html" title="Lich::Messaging (module)">Messaging</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Messaging.html" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:msg</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Messaging.html" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_msg'><span class='object_link'><a href="../Messaging.html#msg-class_method" title="Lich::Messaging.msg (method)">msg</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_safe_log'>safe_log</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="startup-class_method">
+  
+    .<strong>startup</strong>  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Executes the startup script to initialize game state.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+53
+54
+55</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/startup.rb', line 53</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_startup'>startup</span>
+  <span class='const'>ExecScript</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span><span class='lparen'>(</span><span class='id identifier rubyid_startup_script'>startup_script</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>quiet:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>drinfomon_startup</span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="startup_complete?-class_method">
+  
+    .<strong>startup_complete?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Checks if the startup process is complete.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>true if startup commands have finished, false otherwise.</p></div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/startup.rb', line 29</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_startup_complete?'>startup_complete?</span>
+  <span class='cvar'>@@startup_complete</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="startup_completed!-class_method">
+  
+    .<strong>startup_completed!</strong>  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Marks the startup process as complete and triggers post-startup checks.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97
+98
+99</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/startup.rb', line 95</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_startup_completed!'>startup_completed!</span>
+  <span class='cvar'>@@startup_complete</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='const'>PostLoad</span><span class='period'>.</span><span class='id identifier rubyid_game_loaded!'>game_loaded!</span> <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'>PostLoad</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_post_startup_checks'>post_startup_checks</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="startup_script-class_method">
+  
+    .<strong>startup_script</strong>  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Provides the script to be executed during startup.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the startup script containing game commands.</p></div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/startup.rb', line 59</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_startup_script'>startup_script</span>
+  <span class='heredoc_beg'>&lt;&lt;~SCRIPT</span>
+<span class='tstring_content'>    # Populate stats, race, guild, circle, etc.
+</span><span class='tstring_content'>    Lich::Util.issue_command(&quot;info&quot;, /^Name/, /^&lt;output class=&quot;&quot;/, quiet: true, timeout: 1) unless dead?
+</span><span class='tstring_content'>
+</span><span class='tstring_content'>    # Populate account name and subscription level
+</span><span class='tstring_content'>    Lich::Util.issue_command(&quot;played&quot;, /^Account Info for/, quiet: true, timeout: 1)
+</span><span class='tstring_content'>
+</span><span class='tstring_content'>    # Populate all skill ranks and learning rates
+</span><span class='tstring_content'>    Lich::Util.issue_command(&quot;exp all 0&quot;, /^Circle: \\d+/, /^EXP HELP/, quiet: true, timeout: 1)
+</span><span class='tstring_content'>
+</span><span class='tstring_content'>    # Populate known spells/abilities/khri
+</span><span class='tstring_content'>    # The `ability` command works for all guilds:
+</span><span class='tstring_content'>    #   - Magic guilds: proxies to `spells`, parsed by check_known_spells
+</span><span class='tstring_content'>    #   - Barbarians: parsed by check_known_barbarian_abilities
+</span><span class='tstring_content'>    #   - Thieves: parsed by check_known_thief_khri
+</span><span class='tstring_content'>    Lich::Util.issue_command(&quot;ability&quot;, /^You (?:know the Berserks|recall the spells you have learned from your training)|^From (?:your apprenticeship you remember practicing|the \\w+ tree)/, /^You (?:recall that you have \\d+ training sessions|can use SPELL STANCE \\[HELP\\]|have \\d+ available slot)/, quiet: true, timeout: 1)
+</span><span class='tstring_content'>
+</span><span class='tstring_content'>    # Ensure ShowRoomID and MonsterBold flags are enabled (one-time per character)
+</span><span class='tstring_content'>    unless UserVars.dependency_setflags
+</span><span class='tstring_content'>      flags = Array(Lich::Util.issue_command(&quot;flag&quot;, /^Usage/, /^For other setting options, see AVOID, SET, and TOGGLE/, quiet: true, timeout: 1, usexml: false))
+</span><span class='tstring_content'>      required = [&quot;ShowRoomID&quot;, &quot;MonsterBold&quot;]
+</span><span class='tstring_content'>      required.each do |flag|
+</span><span class='tstring_content'>        fput(&quot;flag \#{flag} on&quot;) unless flags.any? { |f| f.match?(/\#{Regexp.escape(flag)}\\s+ON/) }
+</span><span class='tstring_content'>      end
+</span><span class='tstring_content'>      # Re-query to verify flags applied; only mark sentinel if all confirmed
+</span><span class='tstring_content'>      flags = Array(Lich::Util.issue_command(&quot;flag&quot;, /^Usage/, /^For other setting options, see AVOID, SET, and TOGGLE/, quiet: true, timeout: 1, usexml: false))
+</span><span class='tstring_content'>      UserVars.dependency_setflags = Time.now if required.all? { |flag| flags.any? { |f| f.match?(/\#{Regexp.escape(flag)}\\s+ON/) } }
+</span><span class='tstring_content'>    end
+</span><span class='tstring_content'>
+</span><span class='tstring_content'>    Lich::DragonRealms::DRInfomon.startup_completed!
+</span><span class='heredoc_end'>  SCRIPT
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="warn_custom_scripts-class_method">
+  
+    .<strong>warn_custom_scripts</strong>  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Warns the user if custom scripts shadow curated scripts.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/startup.rb', line 182</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_warn_custom_scripts'>warn_custom_scripts</span>
+  <span class='id identifier rubyid_custom_dir'>custom_dir</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>SCRIPT_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>custom</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_directory?'>directory?</span><span class='lparen'>(</span><span class='id identifier rubyid_custom_dir'>custom_dir</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_custom_scripts'>custom_scripts</span> <span class='op'>=</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_entries'>entries</span><span class='lparen'>(</span><span class='id identifier rubyid_custom_dir'>custom_dir</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_end_with?'>end_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.lic</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_curated_scripts'>curated_scripts</span> <span class='op'>=</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_entries'>entries</span><span class='lparen'>(</span><span class='const'>SCRIPT_DIR</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_end_with?'>end_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.lic</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_shadowed'>shadowed</span> <span class='op'>=</span> <span class='id identifier rubyid_custom_scripts'>custom_scripts</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_script'>script</span><span class='op'>|</span> <span class='id identifier rubyid_curated_scripts'>curated_scripts</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_script'>script</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+
+  <span class='kw'>unless</span> <span class='id identifier rubyid_shadowed'>shadowed</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Messaging.html" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_msg'><span class='object_link'><a href="../Messaging.html#msg-class_method" title="Lich::Messaging.msg (method)">msg</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>NOTE: The following curated scripts are in your custom folder and will not receive updates</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Messaging.html" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_msg'><span class='object_link'><a href="../Messaging.html#msg-class_method" title="Lich::Messaging.msg (method)">msg</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_shadowed'>shadowed</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="warn_obsolete_data_files-class_method">
+  
+    .<strong>warn_obsolete_data_files</strong>  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Warns the user about obsolete data files that can be safely deleted.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+170
+171
+172
+173
+174
+175
+176
+177
+178</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/startup.rb', line 170</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_warn_obsolete_data_files'>warn_obsolete_data_files</span>
+  <span class='id identifier rubyid_data_dir'>data_dir</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>SCRIPT_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>data</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="#DR_OBSOLETE_DATA_FILES-constant" title="Lich::DragonRealms::DRInfomon::DR_OBSOLETE_DATA_FILES (constant)">DR_OBSOLETE_DATA_FILES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_filename'>filename</span><span class='op'>|</span>
+    <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
+    <span class='kw'>next</span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid__respond'><span class='object_link'><a href="../../top-level-namespace.html#_respond-instance_method" title="#_respond (method)">_respond</a></span></span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Messaging.html" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_monsterbold'><span class='object_link'><a href="../Messaging.html#monsterbold-class_method" title="Lich::Messaging.monsterbold (method)">monsterbold</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- Lich: &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_filename'>filename</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; is obsolete and can be safely deleted from </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="warn_obsolete_scripts-class_method">
+  
+    .<strong>warn_obsolete_scripts</strong>  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Warns the user about obsolete scripts that should be deleted.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+159
+160
+161
+162
+163
+164
+165
+166</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/startup.rb', line 159</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_warn_obsolete_scripts'>warn_obsolete_scripts</span>
+  <span class='const'><span class='object_link'><a href="#DR_OBSOLETE_SCRIPTS-constant" title="Lich::DragonRealms::DRInfomon::DR_OBSOLETE_SCRIPTS (constant)">DR_OBSOLETE_SCRIPTS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_script_name'>script_name</span><span class='op'>|</span>
+    <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>SCRIPT_DIR</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_script_name'>script_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>.lic</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>next</span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid__respond'><span class='object_link'><a href="../../top-level-namespace.html#_respond-instance_method" title="#_respond (method)">_respond</a></span></span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Messaging.html" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_monsterbold'><span class='object_link'><a href="../Messaging.html#monsterbold-class_method" title="Lich::Messaging.monsterbold (method)">monsterbold</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- Lich: &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_script_name'>script_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>.lic&#39; is obsolete and should be deleted from </span><span class='embexpr_beg'>#{</span><span class='const'>SCRIPT_DIR</span><span class='embexpr_end'>}</span><span class='tstring_content'>. It is no longer needed and may cause problems.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="watch!-class_method">
+  
+    .<strong>watch!</strong>  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Starts a thread to monitor the game state and execute startup commands.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/dragonrealms/drinfomon/startup.rb', line 35</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_watch!'>watch!</span>
+  <span class='ivar'>@startup_thread</span> <span class='op'>||=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span>
+    <span class='kw'>begin</span>
+      <span class='comment'># Wait for character to be ready
+</span>      <span class='id identifier rubyid_sleep'>sleep</span> <span class='float'>0.1</span> <span class='kw'>until</span> <span class='const'><span class='object_link'><a href="../GameBase.html" title="Lich::GameBase (module)">GameBase</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GameBase/Game.html" title="Lich::GameBase::Game (class)">Game</a></span></span><span class='period'>.</span><span class='id identifier rubyid_autostarted?'><span class='object_link'><a href="../GameBase/Game.html#autostarted%3F-class_method" title="Lich::GameBase::Game.autostarted? (method)">autostarted?</a></span></span> <span class='op'>&amp;&amp;</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+
+      <span class='comment'># Run startup once
+</span>      <span class='id identifier rubyid_startup'>startup</span>
+    <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
+      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Messaging.html" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_msg'><span class='object_link'><a href="../Messaging.html#msg-class_method" title="Lich::Messaging.msg (method)">msg</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>DRInfomon: Error in startup thread</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Messaging.html" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_msg'><span class='object_link'><a href="../Messaging.html#msg-class_method" title="Lich::Messaging.msg (method)">msg</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DRInfomon: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Messaging.html" title="Lich::Messaging (module)">Messaging</a></span></span><span class='period'>.</span><span class='id identifier rubyid_msg'><span class='object_link'><a href="../Messaging.html#msg-class_method" title="Lich::Messaging.msg (method)">msg</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>error</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DRInfomon: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:51 2026 by
+  Generated on Sun May 10 17:26:24 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

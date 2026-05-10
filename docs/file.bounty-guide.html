@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "bounty-guide";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="file_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -57,17 +59,11 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'>
-<h1 id="label-Bounty+System+Guide">Bounty System Guide</h1>
-
-<p>This guide covers working with the Adventurer’s Guild bounty system in Lich scripts for GemStone IV.</p>
-
-<h2 id="label-Overview">Overview</h2>
-
+      <div id="content"><div id='filecontents'><h1 id="Bounty_System_Guide">Bounty System Guide</h1>
+<p>This guide covers working with the Adventurer's Guild bounty system in Lich scripts for GemStone IV.</p>
+<h2 id="Overview">Overview</h2>
 <p>The <code>Bounty</code> class parses your current bounty task and provides structured access to task requirements, allowing scripts to automate or assist with bounty completion.</p>
-
-<h2 id="label-Getting+Your+Current+Bounty">Getting Your Current Bounty</h2>
-
+<h2 id="Getting_Your_Current_Bounty">Getting Your Current Bounty</h2>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get current bounty task
 </span><span class='id identifier rubyid_bounty'>bounty</span> <span class='op'>=</span> <span class='const'>Bounty</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span>
 <span class='comment'># or
@@ -80,9 +76,7 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No current bounty</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Bounty+Properties">Bounty Properties</h2>
-
+<h2 id="Bounty_Properties">Bounty Properties</h2>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bounty'>bounty</span> <span class='op'>=</span> <span class='const'>Bounty</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span>
 
 <span class='id identifier rubyid_bounty'>bounty</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span>           <span class='comment'># Task type symbol (:cull, :gem, :herb, etc.)
@@ -92,12 +86,9 @@
 </span><span class='id identifier rubyid_bounty'>bounty</span><span class='period'>.</span><span class='id identifier rubyid_creature'>creature</span>       <span class='comment'># Creature to hunt (if applicable)
 </span><span class='id identifier rubyid_bounty'>bounty</span><span class='period'>.</span><span class='id identifier rubyid_location'>location</span>       <span class='comment'># Where to complete the task
 </span></code></pre>
-
-<h2 id="label-Bounty+Types">Bounty Types</h2>
-
+<h2 id="Bounty_Types">Bounty Types</h2>
 <p>The bounty system recognizes these task types:</p>
-
-<table role="table">
+<table>
 <thead>
 <tr>
 <th>Type</th>
@@ -106,88 +97,85 @@
 </thead>
 <tbody>
 <tr>
-<td>‘:cull`</td>
+<td><code>:cull</code></td>
 <td>Kill a number of creatures</td>
 </tr>
 <tr>
-<td>‘:dangerous`</td>
+<td><code>:dangerous</code></td>
 <td>Kill a dangerous creature</td>
 </tr>
 <tr>
-<td>‘:dangerous_spawned`</td>
+<td><code>:dangerous_spawned</code></td>
 <td>Dangerous creature has spawned</td>
 </tr>
 <tr>
-<td>‘:creature_assignment`</td>
+<td><code>:creature_assignment</code></td>
 <td>Go to taskmaster for creature task</td>
 </tr>
 <tr>
-<td>‘:gem`</td>
+<td><code>:gem</code></td>
 <td>Collect gems from creatures</td>
 </tr>
 <tr>
-<td>‘:herb`</td>
+<td><code>:herb</code></td>
 <td>Forage specific herbs</td>
 </tr>
 <tr>
-<td>‘:skin`</td>
+<td><code>:skin</code></td>
 <td>Skin specific creatures</td>
 </tr>
 <tr>
-<td>‘:heirloom`</td>
+<td><code>:heirloom</code></td>
 <td>Find a lost heirloom</td>
 </tr>
 <tr>
-<td>‘:heirloom_found`</td>
+<td><code>:heirloom_found</code></td>
 <td>Heirloom has been found</td>
 </tr>
 <tr>
-<td>‘:rescue`</td>
+<td><code>:rescue</code></td>
 <td>Rescue a kidnapped child</td>
 </tr>
 <tr>
-<td>‘:rescue_spawned`</td>
+<td><code>:rescue_spawned</code></td>
 <td>Rescue target has spawned</td>
 </tr>
 <tr>
-<td>‘:escort`</td>
+<td><code>:escort</code></td>
 <td>Escort a traveler</td>
 </tr>
 <tr>
-<td>‘:escort_assignment`</td>
+<td><code>:escort_assignment</code></td>
 <td>Go get escort assignment</td>
 </tr>
 <tr>
-<td>‘:bandit`</td>
+<td><code>:bandit</code></td>
 <td>Kill bandits</td>
 </tr>
 <tr>
-<td>‘:bandit_assignment`</td>
+<td><code>:bandit_assignment</code></td>
 <td>Go to taskmaster for bandit task</td>
 </tr>
 <tr>
-<td>‘:guard`</td>
+<td><code>:guard</code></td>
 <td>Return to taskmaster</td>
 </tr>
 <tr>
-<td>‘:taskmaster`</td>
+<td><code>:taskmaster</code></td>
 <td>Need to visit taskmaster</td>
 </tr>
 <tr>
-<td>‘:failed`</td>
+<td><code>:failed</code></td>
 <td>Task has failed</td>
 </tr>
 <tr>
-<td>‘:none`</td>
+<td><code>:none</code></td>
 <td>No current task</td>
 </tr>
 </tbody>
 </table>
-
-<h2 id="label-Checking+Bounty+Status">Checking Bounty Status</h2>
-
-<h3 id="label-Basic+Checks">Basic Checks</h3>
-
+<h2 id="Checking_Bounty_Status">Checking Bounty Status</h2>
+<h3 id="Basic_Checks">Basic Checks</h3>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bounty'>bounty</span> <span class='op'>=</span> <span class='const'>Bounty</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span>
 
 <span class='comment'># Do you have a bounty?
@@ -208,9 +196,7 @@
 </span><span class='id identifier rubyid_bounty'>bounty</span><span class='period'>.</span><span class='id identifier rubyid_escort?'>escort?</span>        <span class='comment'># Is it an escort task?
 </span><span class='id identifier rubyid_bounty'>bounty</span><span class='period'>.</span><span class='id identifier rubyid_bandit?'>bandit?</span>        <span class='comment'># Is it a bandit task?
 </span></code></pre>
-
-<h3 id="label-Status+Checks">Status Checks</h3>
-
+<h3 id="Status_Checks">Status Checks</h3>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bounty'>bounty</span> <span class='op'>=</span> <span class='const'>Bounty</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span>
 
 <span class='comment'># Has the creature/target spawned?
@@ -229,9 +215,7 @@
 </span><span class='id identifier rubyid_bounty'>bounty</span><span class='period'>.</span><span class='id identifier rubyid_assist?'>assist?</span>        <span class='comment'># alias for help?
 </span><span class='id identifier rubyid_bounty'>bounty</span><span class='period'>.</span><span class='id identifier rubyid_group?'>group?</span>         <span class='comment'># alias for help?
 </span></code></pre>
-
-<h3 id="label-Creature+Tasks">Creature Tasks</h3>
-
+<h3 id="Creature_Tasks">Creature Tasks</h3>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bounty'>bounty</span> <span class='op'>=</span> <span class='const'>Bounty</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span>
 
 <span class='comment'># Does the task involve creatures?
@@ -243,9 +227,7 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Location: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bounty'>bounty</span><span class='period'>.</span><span class='id identifier rubyid_location'>location</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Heirloom+Tasks">Heirloom Tasks</h3>
-
+<h3 id="Heirloom_Tasks">Heirloom Tasks</h3>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bounty'>bounty</span> <span class='op'>=</span> <span class='const'>Bounty</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span>
 
 <span class='kw'>if</span> <span class='id identifier rubyid_bounty'>bounty</span><span class='period'>.</span><span class='id identifier rubyid_heirloom?'>heirloom?</span>
@@ -260,11 +242,8 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Heirloom found! Return to taskmaster</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Task+Requirements">Task Requirements</h2>
-
+<h2 id="Task_Requirements">Task Requirements</h2>
 <p>The <code>requirements</code> hash contains task-specific details:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bounty'>bounty</span> <span class='op'>=</span> <span class='const'>Bounty</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span>
 <span class='id identifier rubyid_reqs'>reqs</span> <span class='op'>=</span> <span class='id identifier rubyid_bounty'>bounty</span><span class='period'>.</span><span class='id identifier rubyid_requirements'>requirements</span>
 
@@ -279,11 +258,8 @@
 </span><span class='id identifier rubyid_bounty'>bounty</span><span class='period'>.</span><span class='id identifier rubyid_creature'>creature</span>       <span class='comment'># Same as bounty.requirements[:creature]
 </span><span class='id identifier rubyid_bounty'>bounty</span><span class='period'>.</span><span class='id identifier rubyid_number'>number</span>         <span class='comment'># Same as bounty.requirements[:number]
 </span></code></pre>
-
-<h2 id="label-Common+Patterns">Common Patterns</h2>
-
-<h3 id="label-Bounty+Dispatcher">Bounty Dispatcher</h3>
-
+<h2 id="Common_Patterns">Common Patterns</h2>
+<h3 id="Bounty_Dispatcher">Bounty Dispatcher</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_handle_bounty'>handle_bounty</span>
   <span class='id identifier rubyid_bounty'>bounty</span> <span class='op'>=</span> <span class='const'>Bounty</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span>
 
@@ -323,9 +299,7 @@
 </span>  <span class='kw'>end</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Checking+If+Hunting+Is+Needed">Checking If Hunting Is Needed</h3>
-
+<h3 id="Checking_If_Hunting_Is_Needed">Checking If Hunting Is Needed</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_needs_hunting?'>needs_hunting?</span>
   <span class='id identifier rubyid_bounty'>bounty</span> <span class='op'>=</span> <span class='const'>Bounty</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span>
   <span class='id identifier rubyid_bounty'>bounty</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span>
@@ -338,9 +312,7 @@
   <span class='rparen'>)</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Waiting+for+Dangerous+Spawn">Waiting for Dangerous Spawn</h3>
-
+<h3 id="Waiting_for_Dangerous_Spawn">Waiting for Dangerous Spawn</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_wait_for_spawn'>wait_for_spawn</span>
   <span class='id identifier rubyid_bounty'>bounty</span> <span class='op'>=</span> <span class='const'>Bounty</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span>
 
@@ -354,9 +326,7 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Target spawned!</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_bounty'>bounty</span><span class='period'>.</span><span class='id identifier rubyid_spawned?'>spawned?</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Task+Type+Summary">Task Type Summary</h3>
-
+<h3 id="Task_Type_Summary">Task Type Summary</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_bounty_summary'>bounty_summary</span>
   <span class='id identifier rubyid_bounty'>bounty</span> <span class='op'>=</span> <span class='const'>Bounty</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span>
 
@@ -381,11 +351,8 @@
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-LNet+Integration">LNet Integration</h2>
-
-<p>You can check other players’ bounties via LNet:</p>
-
+<h2 id="LNet_Integration">LNet Integration</h2>
+<p>You can check other players' bounties via LNet:</p>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get another player&#39;s bounty
 </span><span class='id identifier rubyid_other_bounty'>other_bounty</span> <span class='op'>=</span> <span class='const'>Bounty</span><span class='period'>.</span><span class='id identifier rubyid_lnet'>lnet</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PlayerName</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
@@ -395,31 +362,23 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not get bounty info</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Known+Task+Types">Known Task Types</h2>
-
+<h2 id="Known_Task_Types">Known Task Types</h2>
 <p>For reference, all recognized task types:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='const'>Bounty</span><span class='op'>::</span><span class='const'>KNOWN_TASKS</span>
 <span class='comment'># Returns array of all known task type symbols
 </span></code></pre>
-
-<h2 id="label-See+Also">See Also</h2>
-<ul><li>
-<p><span class='object_link'><a href="Lich/Gemstone/Bounty.html" title="Lich::Gemstone::Bounty (class)">Lich::Gemstone::Bounty</a></span> - Bounty class reference</p>
-</li><li>
-<p><span class='object_link'><a href="Lich/Gemstone/Bounty/Task.html" title="Lich::Gemstone::Bounty::Task (class)">Lich::Gemstone::Bounty::Task</a></span> - Task class reference</p>
-</li><li>
-<p><a href="file.scripting-basics.html" title="Scripting Basics">Scripting Basics</a> - Core scripting concepts</p>
-</li><li>
-<p><a href="file.game-data.html" title="Game Data Guide">Game Data Guide</a> - GameObj and Map information</p>
-</li></ul>
-</div></div>
+<h2 id="See_Also">See Also</h2>
+<ul>
+<li><span class='object_link'><a href="Lich/Gemstone/Bounty.html" title="Lich::Gemstone::Bounty (class)">Lich::Gemstone::Bounty</a></span> - Bounty class reference</li>
+<li><span class='object_link'><a href="Lich/Gemstone/Bounty/Task.html" title="Lich::Gemstone::Bounty::Task (class)">Lich::Gemstone::Bounty::Task</a></span> - Task class reference</li>
+<li><a href="file.scripting-basics.html" title="Scripting Basics">Scripting Basics</a> - Core scripting concepts</li>
+<li><a href="file.game-data.html" title="Game Data Guide">Game Data Guide</a> - GameObj and Map information</li>
+</ul></div></div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:45 2026 by
+  Generated on Sun May 10 17:26:20 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

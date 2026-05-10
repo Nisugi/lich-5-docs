@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Bounty::Task";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,7 +96,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/bounty/task.rb</dd>
+    <dd>documented/gemstone/bounty/task.rb
+</dd>
   </dl>
   
 </div>
@@ -126,9 +129,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute description.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute description.</p></div></span>
   
 </li>
 
@@ -153,9 +154,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute requirements.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute requirements.</p></div></span>
   
 </li>
 
@@ -180,9 +179,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute town.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute town.</p></div></span>
   
 </li>
 
@@ -207,9 +204,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute type.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute type.</p></div></span>
   
 </li>
 
@@ -244,9 +239,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if there are any tasks.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if there are any tasks.</p></div></span>
   
 </li>
 
@@ -268,9 +261,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task is assigned.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task is assigned.</p></div></span>
   
 </li>
 
@@ -292,9 +283,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task requires assistance (alias for help?).</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task is an assist task.</p></div></span>
   
 </li>
 
@@ -316,9 +305,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task type is a bandit task.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task type is a bandit type.</p></div></span>
   
 </li>
 
@@ -340,9 +327,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the number associated with the task.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the number associated with the task.</p></div></span>
   
 </li>
 
@@ -350,7 +335,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#creature-instance_method" title="#creature (instance method)">#<strong>creature</strong>  &#x21d2; Symbol<sup>?</sup> </a>
+      <a href="#creature-instance_method" title="#creature (instance method)">#<strong>creature</strong>  &#x21d2; String<sup>?</sup> </a>
     
 
     
@@ -364,9 +349,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the creature requirement for the task.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the creature requirement for the task.</p></div></span>
   
 </li>
 
@@ -388,9 +371,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task type is one of the creature types.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task type is one of the creature types.</p></div></span>
   
 </li>
 
@@ -398,7 +379,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#critter-instance_method" title="#critter (instance method)">#<strong>critter</strong>  &#x21d2; Symbol<sup>?</sup> </a>
+      <a href="#critter-instance_method" title="#critter (instance method)">#<strong>critter</strong>  &#x21d2; String<sup>?</sup> </a>
     
 
     
@@ -412,9 +393,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the creature requirement for the task (alias for creature).</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the creature requirement for the task.</p></div></span>
   
 </li>
 
@@ -436,9 +415,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task has a creature requirement.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if there is a creature requirement for the task.</p></div></span>
   
 </li>
 
@@ -460,9 +437,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task type is a cull task.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task type is a cull type.</p></div></span>
   
 </li>
 
@@ -484,9 +459,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task type is a dangerous task.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task type is a dangerous type.</p></div></span>
   
 </li>
 
@@ -508,9 +481,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task is done.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task is marked as done.</p></div></span>
   
 </li>
 
@@ -532,9 +503,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task type is an escort task.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task type is an escort type.</p></div></span>
   
 </li>
 
@@ -556,9 +525,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task type is a gem task.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task type is a gem type.</p></div></span>
   
 </li>
 
@@ -580,9 +547,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task is a group task (alias for help?).</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task is a group task.</p></div></span>
   
 </li>
 
@@ -604,9 +569,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task type is a guard task.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task type is a guard type.</p></div></span>
   
 </li>
 
@@ -628,9 +591,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task type is a heirloom task.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task type is an heirloom type.</p></div></span>
   
 </li>
 
@@ -652,9 +613,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task type is a found heirloom task.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task type indicates that an heirloom has been found.</p></div></span>
   
 </li>
 
@@ -676,9 +635,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task description indicates help is needed.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task description indicates a help task.</p></div></span>
   
 </li>
 
@@ -700,9 +657,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task type is a herb task.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task type is an herb type.</p></div></span>
   
 </li>
 
@@ -726,9 +681,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Initializes a new task with the given options.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Initializes a new Task instance.</p></div></span>
   
 </li>
 
@@ -736,7 +689,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#kind-instance_method" title="#kind (instance method)">#<strong>kind</strong>  &#x21d2; Symbol </a>
+      <a href="#kind-instance_method" title="#kind (instance method)">#<strong>kind</strong>  &#x21d2; String </a>
     
 
     
@@ -750,9 +703,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the type of the task (alias for task).</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the type of the task.</p></div></span>
   
 </li>
 
@@ -774,9 +725,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the location requirement for the task.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the location requirement for the task.</p></div></span>
   
 </li>
 
@@ -798,9 +747,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task is a loot heirloom task.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task is to loot an heirloom.</p></div></span>
   
 </li>
 
@@ -822,9 +769,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Handles calls to methods that are not defined.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Handles calls to methods that are not defined.</p></div></span>
   
 </li>
 
@@ -846,9 +791,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if there are no tasks.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if there are no tasks.</p></div></span>
   
 </li>
 
@@ -870,9 +813,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task is ready to be executed.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task is ready to be executed.</p></div></span>
   
 </li>
 
@@ -894,9 +835,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task type is a rescue task.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task type is a rescue type.</p></div></span>
   
 </li>
 
@@ -918,9 +857,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the object responds to a missing method.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the object responds to a missing method.</p></div></span>
   
 </li>
 
@@ -942,9 +879,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task is a search heirloom task.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task is to search for an heirloom.</p></div></span>
   
 </li>
 
@@ -966,9 +901,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task type is a skin task.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task type is a skin type.</p></div></span>
   
 </li>
 
@@ -990,9 +923,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task has spawned.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task has spawned.</p></div></span>
   
 </li>
 
@@ -1000,7 +931,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#task-instance_method" title="#task (instance method)">#<strong>task</strong>  &#x21d2; Symbol </a>
+      <a href="#task-instance_method" title="#task (instance method)">#<strong>task</strong>  &#x21d2; String </a>
     
 
     
@@ -1014,9 +945,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the type of the task.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the type of the task.</p></div></span>
   
 </li>
 
@@ -1038,14 +967,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the task has been triggered (spawned).</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the task has been triggered.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 <div id="constructor_details" class="method_details_list">
@@ -1062,9 +990,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Initializes a new task with the given options.</p>
-
+    <p>Initializes a new Task instance.</p>
 
   </div>
 </div>
@@ -1084,9 +1010,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash of options for the task.</p>
-</div>
+        <div class='inline'><p>options for the task</p></div>
       
     </li>
   
@@ -1103,24 +1027,26 @@
           <span class="type">(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
           <span class="default">
             
+              &mdash; default:
+              <tt>nil</tt>
+            
           </span>
           
-            &mdash; <div class='inline'>
-<p>The description of the task.</p>
-</div>
+            &mdash; <div class='inline'><p>the description of the task</p></div>
           
         </li>
       
         <li>
           <span class="name">:type</span>
-          <span class="type">(<tt>Symbol</tt>)</span>
+          <span class="type">(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
           <span class="default">
+            
+              &mdash; default:
+              <tt>nil</tt>
             
           </span>
           
-            &mdash; <div class='inline'>
-<p>The type of the task.</p>
-</div>
+            &mdash; <div class='inline'><p>the type of the task</p></div>
           
         </li>
       
@@ -1129,11 +1055,12 @@
           <span class="type">(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
           <span class="default">
             
+              &mdash; default:
+              <tt>nil</tt>
+            
           </span>
           
-            &mdash; <div class='inline'>
-<p>The requirements for the task.</p>
-</div>
+            &mdash; <div class='inline'><p>the requirements for the task</p></div>
           
         </li>
       
@@ -1142,11 +1069,12 @@
           <span class="type">(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
           <span class="default">
             
+              &mdash; default:
+              <tt>nil</tt>
+            
           </span>
           
-            &mdash; <div class='inline'>
-<p>The town associated with the task.</p>
-</div>
+            &mdash; <div class='inline'><p>the town associated with the task</p></div>
           
         </li>
       
@@ -1160,15 +1088,15 @@
       <pre class="lines">
 
 
+15
 16
 17
 18
 19
-20
-21</pre>
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@description</span>    <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:description</span><span class='rbracket'>]</span>
@@ -1200,22 +1128,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Handles calls to methods that are not defined.</p>
-
+    <p>Handles calls to methods that are not defined.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_some_dynamic_method'>some_dynamic_method</span> <span class='comment'># =&gt; value or raises NoMethodError</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1228,9 +1146,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The method name that was called.</p>
-</div>
+        <div class='inline'><p>the method name being called</p></div>
       
     </li>
   
@@ -1244,25 +1160,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The arguments passed to the method.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>blk</span>
-      
-      
-        <span class='type'>(<tt>Proc</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>An optional block.</p>
-</div>
+        <div class='inline'><p>arguments passed to the method</p></div>
       
     </li>
   
@@ -1279,9 +1177,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The value of the requirement if it exists, otherwise calls super.</p>
-</div>
+        <div class='inline'><p>the value of the requirement if it exists, otherwise calls super</p></div>
       
     </li>
   
@@ -1293,16 +1189,16 @@
       <pre class="lines">
 
 
-286
-287
-288
-289
-290
-291
-292</pre>
+219
+220
+221
+222
+223
+224
+225</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 286</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 219</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_symbol'>symbol</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_blk'>blk</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_requirements'>requirements</span><span class='op'>&amp;.</span><span class='id identifier rubyid_keys'>keys</span><span class='op'>&amp;.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_symbol'>symbol</span><span class='rparen'>)</span>
@@ -1334,9 +1230,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute description.</p>
-
+    <p>Returns the value of attribute description.</p>
 
   </div>
 </div>
@@ -1349,12 +1243,12 @@
       <pre class="lines">
 
 
+21
 22
-23
-24</pre>
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_description'>description</span>
   <span class='ivar'>@description</span>
@@ -1377,9 +1271,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute requirements.</p>
-
+    <p>Returns the value of attribute requirements.</p>
 
   </div>
 </div>
@@ -1392,12 +1284,12 @@
       <pre class="lines">
 
 
+21
 22
-23
-24</pre>
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_requirements'>requirements</span>
   <span class='ivar'>@requirements</span>
@@ -1420,9 +1312,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute town.</p>
-
+    <p>Returns the value of attribute town.</p>
 
   </div>
 </div>
@@ -1435,12 +1325,12 @@
       <pre class="lines">
 
 
+21
 22
-23
-24</pre>
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_town'>town</span>
   <span class='ivar'>@town</span>
@@ -1463,9 +1353,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute type.</p>
-
+    <p>Returns the value of attribute type.</p>
 
   </div>
 </div>
@@ -1478,12 +1366,12 @@
       <pre class="lines">
 
 
+21
 22
-23
-24</pre>
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_type'>type</span>
   <span class='ivar'>@type</span>
@@ -1511,22 +1399,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if there are any tasks.</p>
-
+    <p>Checks if there are any tasks.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='comment'># =&gt; true</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1538,9 +1416,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if there are tasks, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if there are tasks, false otherwise</p></div>
       
     </li>
   
@@ -1552,12 +1428,12 @@
       <pre class="lines">
 
 
-213
-214
-215</pre>
+163
+164
+165</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 213</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 163</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_any?'>any?</span>
   <span class='op'>!</span><span class='id identifier rubyid_none?'>none?</span>
@@ -1578,22 +1454,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task is assigned.</p>
-
+    <p>Checks if the task is assigned.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_assigned?'>assigned?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1605,9 +1471,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type ends with “assignment”, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type ends with &quot;assignment&quot;, false otherwise</p></div>
       
     </li>
   
@@ -1619,12 +1483,12 @@
       <pre class="lines">
 
 
-240
-241
-242</pre>
+184
+185
+186</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 240</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 184</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assigned?'>assigned?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_end_with?'>end_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>assignment</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -1645,22 +1509,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task requires assistance (alias for help?).</p>
-
+    <p>Checks if the task is an assist task.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_assist?'>assist?</span> <span class='comment'># =&gt; true</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1672,9 +1526,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if help is needed, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task is a help task, false otherwise</p></div>
       
     </li>
   
@@ -1686,12 +1538,12 @@
       <pre class="lines">
 
 
-267
-268
-269</pre>
+205
+206
+207</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 267</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 205</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assist?'>assist?</span>
   <span class='id identifier rubyid_help?'>help?</span>
@@ -1712,22 +1564,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task type is a bandit task.</p>
-
+    <p>Checks if the task type is a bandit type.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_bandit?'>bandit?</span> <span class='comment'># =&gt; true</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1739,9 +1581,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type starts with “bandit”, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type starts with &quot;bandit&quot;, false otherwise</p></div>
       
     </li>
   
@@ -1753,12 +1593,12 @@
       <pre class="lines">
 
 
-77
-78
-79</pre>
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_bandit?'>bandit?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bandit</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -1779,22 +1619,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the number associated with the task.</p>
-
+    <p>Returns the number associated with the task.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='comment'># =&gt; 5</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1806,9 +1636,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The number associated with the task.</p>
-</div>
+        <div class='inline'><p>the number associated with the task</p></div>
       
     </li>
   
@@ -1820,10 +1648,10 @@
       <pre class="lines">
 
 
-39</pre>
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_count'>count</span><span class='semicolon'>;</span> <span class='id identifier rubyid_number'>number</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1834,7 +1662,7 @@
       <div class="method_details ">
   <h3 class="signature " id="creature-instance_method">
   
-    #<strong>creature</strong>  &#x21d2; <tt>Symbol</tt><sup>?</sup> 
+    #<strong>creature</strong>  &#x21d2; <tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt><sup>?</sup> 
   
 
   
@@ -1842,36 +1670,24 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the creature requirement for the task.</p>
-
+    <p>Returns the creature requirement for the task.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_creature'>creature</span> <span class='comment'># =&gt; :goblin</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>Symbol</tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The creature required for the task, or nil if not specified.</p>
-</div>
+        <div class='inline'><p>the creature required for the task, or nil if not specified</p></div>
       
     </li>
   
@@ -1883,12 +1699,12 @@
       <pre class="lines">
 
 
-45
-46
-47</pre>
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_creature'>creature</span>
   <span class='id identifier rubyid_requirements'>requirements</span><span class='lbracket'>[</span><span class='symbol'>:creature</span><span class='rbracket'>]</span>
@@ -1909,22 +1725,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task type is one of the creature types.</p>
-
+    <p>Checks if the task type is one of the creature types.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_creature?'>creature?</span> <span class='comment'># =&gt; true</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1936,9 +1742,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type is a creature type, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type is a creature type, false otherwise</p></div>
       
     </li>
   
@@ -1950,14 +1754,14 @@
       <pre class="lines">
 
 
-85
-86
-87
-88
-89</pre>
+65
+66
+67
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_creature?'>creature?</span>
   <span class='lbracket'>[</span>
@@ -1972,7 +1776,7 @@
       <div class="method_details ">
   <h3 class="signature " id="critter-instance_method">
   
-    #<strong>critter</strong>  &#x21d2; <tt>Symbol</tt><sup>?</sup> 
+    #<strong>critter</strong>  &#x21d2; <tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt><sup>?</sup> 
   
 
   
@@ -1980,36 +1784,24 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the creature requirement for the task (alias for creature).</p>
-
+    <p>Returns the creature requirement for the task.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_critter'>critter</span> <span class='comment'># =&gt; :goblin</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>Symbol</tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The creature required for the task, or nil if not specified.</p>
-</div>
+        <div class='inline'><p>the creature required for the task, or nil if not specified</p></div>
       
     </li>
   
@@ -2021,12 +1813,12 @@
       <pre class="lines">
 
 
-53
-54
-55</pre>
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_critter'>critter</span>
   <span class='id identifier rubyid_requirements'>requirements</span><span class='lbracket'>[</span><span class='symbol'>:creature</span><span class='rbracket'>]</span>
@@ -2047,22 +1839,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task has a creature requirement.</p>
-
+    <p>Checks if there is a creature requirement for the task.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_critter?'>critter?</span> <span class='comment'># =&gt; true</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2074,9 +1856,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if a creature is required, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if a creature is required, false otherwise</p></div>
       
     </li>
   
@@ -2088,12 +1868,12 @@
       <pre class="lines">
 
 
-61
-62
-63</pre>
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_critter?'>critter?</span>
   <span class='op'>!</span><span class='op'>!</span><span class='id identifier rubyid_requirements'>requirements</span><span class='lbracket'>[</span><span class='symbol'>:creature</span><span class='rbracket'>]</span>
@@ -2114,22 +1894,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task type is a cull task.</p>
-
+    <p>Checks if the task type is a cull type.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_cull?'>cull?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2141,9 +1911,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type starts with “cull”, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type starts with &quot;cull&quot;, false otherwise</p></div>
       
     </li>
   
@@ -2155,12 +1923,12 @@
       <pre class="lines">
 
 
-95
-96
-97</pre>
+73
+74
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cull?'>cull?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cull</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2181,22 +1949,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task type is a dangerous task.</p>
-
+    <p>Checks if the task type is a dangerous type.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_dangerous?'>dangerous?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2208,9 +1966,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type starts with “dangerous”, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type starts with &quot;dangerous&quot;, false otherwise</p></div>
       
     </li>
   
@@ -2222,12 +1978,12 @@
       <pre class="lines">
 
 
-103
-104
-105</pre>
+79
+80
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dangerous?'>dangerous?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>dangerous</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2248,22 +2004,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task is done.</p>
-
+    <p>Checks if the task is marked as done.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_done?'>done?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2275,9 +2021,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type is one of the done types, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type is one of the done types, false otherwise</p></div>
       
     </li>
   
@@ -2289,14 +2033,14 @@
       <pre class="lines">
 
 
-187
-188
-189
-190
-191</pre>
+143
+144
+145
+146
+147</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 187</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_done?'>done?</span>
   <span class='lbracket'>[</span>
@@ -2319,22 +2063,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task type is an escort task.</p>
-
+    <p>Checks if the task type is an escort type.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_escort?'>escort?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2346,9 +2080,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type starts with “escort”, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type starts with &quot;escort&quot;, false otherwise</p></div>
       
     </li>
   
@@ -2360,12 +2092,12 @@
       <pre class="lines">
 
 
-111
-112
-113</pre>
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_escort?'>escort?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>escort</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2386,22 +2118,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task type is a gem task.</p>
-
+    <p>Checks if the task type is a gem type.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_gem?'>gem?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2413,9 +2135,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type starts with “gem”, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type starts with &quot;gem&quot;, false otherwise</p></div>
       
     </li>
   
@@ -2427,12 +2147,12 @@
       <pre class="lines">
 
 
-119
-120
-121</pre>
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 91</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_gem?'>gem?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>gem</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2453,22 +2173,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task is a group task (alias for help?).</p>
-
+    <p>Checks if the task is a group task.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_group?'>group?</span> <span class='comment'># =&gt; true</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2480,9 +2190,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if help is needed, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task is a help task, false otherwise</p></div>
       
     </li>
   
@@ -2494,12 +2202,12 @@
       <pre class="lines">
 
 
-275
-276
-277</pre>
+211
+212
+213</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 275</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 211</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_group?'>group?</span>
   <span class='id identifier rubyid_help?'>help?</span>
@@ -2520,22 +2228,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task type is a guard task.</p>
-
+    <p>Checks if the task type is a guard type.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_guard?'>guard?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2547,9 +2245,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type is one of the guard types, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type is one of the guard types, false otherwise</p></div>
       
     </li>
   
@@ -2561,15 +2257,15 @@
       <pre class="lines">
 
 
-229
-230
-231
-232
-233
-234</pre>
+175
+176
+177
+178
+179
+180</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 229</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 175</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_guard?'>guard?</span>
   <span class='lbracket'>[</span>
@@ -2593,22 +2289,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task type is a heirloom task.</p>
-
+    <p>Checks if the task type is an heirloom type.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_heirloom?'>heirloom?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2620,9 +2306,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type starts with “heirloom”, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type starts with &quot;heirloom&quot;, false otherwise</p></div>
       
     </li>
   
@@ -2634,12 +2318,12 @@
       <pre class="lines">
 
 
-127
-128
-129</pre>
+97
+98
+99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 127</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_heirloom?'>heirloom?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>heirloom</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2660,22 +2344,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task type is a found heirloom task.</p>
-
+    <p>Checks if the task type indicates that an heirloom has been found.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_heirloom_found?'>heirloom_found?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2687,9 +2361,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type is heirloom_found, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type is heirloom_found, false otherwise</p></div>
       
     </li>
   
@@ -2701,14 +2373,14 @@
       <pre class="lines">
 
 
-177
-178
-179
-180
-181</pre>
+135
+136
+137
+138
+139</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 177</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 135</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_heirloom_found?'>heirloom_found?</span>
   <span class='lbracket'>[</span>
@@ -2731,22 +2403,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task description indicates help is needed.</p>
-
+    <p>Checks if the task description indicates a help task.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_help?'>help?</span> <span class='comment'># =&gt; true</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2758,9 +2420,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the description starts with “You have been tasked to help”, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the description starts with &quot;You have been tasked to help&quot;, false otherwise</p></div>
       
     </li>
   
@@ -2772,12 +2432,12 @@
       <pre class="lines">
 
 
-259
-260
-261</pre>
+199
+200
+201</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 259</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 199</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_help?'>help?</span>
   <span class='id identifier rubyid_description'>description</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You have been tasked to help</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2798,22 +2458,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task type is a herb task.</p>
-
+    <p>Checks if the task type is an herb type.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_herb?'>herb?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2825,9 +2475,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type starts with “herb”, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type starts with &quot;herb&quot;, false otherwise</p></div>
       
     </li>
   
@@ -2839,12 +2487,12 @@
       <pre class="lines">
 
 
-135
-136
-137</pre>
+103
+104
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 103</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_herb?'>herb?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>herb</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2857,7 +2505,7 @@
       <div class="method_details ">
   <h3 class="signature " id="kind-instance_method">
   
-    #<strong>kind</strong>  &#x21d2; <tt>Symbol</tt> 
+    #<strong>kind</strong>  &#x21d2; <tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt> 
   
 
   
@@ -2865,36 +2513,24 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the type of the task (alias for task).</p>
-
+    <p>Returns the type of the task.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_kind'>kind</span> <span class='comment'># =&gt; :bandit</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>Symbol</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The type of the task.</p>
-</div>
+        <div class='inline'><p>the type of the task</p></div>
       
     </li>
   
@@ -2906,10 +2542,10 @@
       <pre class="lines">
 
 
-34</pre>
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_kind'>kind</span><span class='semicolon'>;</span> <span class='id identifier rubyid_type'>type</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2928,22 +2564,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the location requirement for the task.</p>
-
+    <p>Returns the location requirement for the task.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_location'>location</span> <span class='comment'># =&gt; &quot;Forest&quot;</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2955,9 +2581,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The area required for the task, or the town if not specified.</p>
-</div>
+        <div class='inline'><p>the area required for the task, or the town if not specified</p></div>
       
     </li>
   
@@ -2969,12 +2593,12 @@
       <pre class="lines">
 
 
-69
-70
-71</pre>
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_location'>location</span>
   <span class='id identifier rubyid_requirements'>requirements</span><span class='lbracket'>[</span><span class='symbol'>:area</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_town'>town</span>
@@ -2995,22 +2619,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task is a loot heirloom task.</p>
-
+    <p>Checks if the task is to loot an heirloom.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_loot_heirloom?'>loot_heirloom?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -3022,9 +2636,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type is heirloom and action is “loot”, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type is heirloom and action is &quot;loot&quot;, false otherwise</p></div>
       
     </li>
   
@@ -3036,13 +2648,13 @@
       <pre class="lines">
 
 
-168
-169
-170
-171</pre>
+128
+129
+130
+131</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 128</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_loot_heirloom?'>loot_heirloom?</span>
   <span class='lbracket'>[</span><span class='symbol'>:heirloom</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>
@@ -3064,22 +2676,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if there are no tasks.</p>
-
+    <p>Checks if there are no tasks.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_none?'>none?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -3091,9 +2693,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if there are no tasks, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type is none or nil, false otherwise</p></div>
       
     </li>
   
@@ -3105,12 +2705,12 @@
       <pre class="lines">
 
 
-221
-222
-223</pre>
+169
+170
+171</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 221</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 169</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_none?'>none?</span>
   <span class='lbracket'>[</span><span class='symbol'>:none</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
@@ -3131,22 +2731,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task is ready to be executed.</p>
-
+    <p>Checks if the task is ready to be executed.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_ready?'>ready?</span> <span class='comment'># =&gt; true</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -3158,9 +2748,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type is one of the ready types, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type is one of the ready types, false otherwise</p></div>
       
     </li>
   
@@ -3172,15 +2760,15 @@
       <pre class="lines">
 
 
-248
-249
-250
-251
-252
-253</pre>
+190
+191
+192
+193
+194
+195</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 248</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 190</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ready?'>ready?</span>
   <span class='lbracket'>[</span>
@@ -3204,22 +2792,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task type is a rescue task.</p>
-
+    <p>Checks if the task type is a rescue type.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_rescue?'>rescue?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -3231,9 +2809,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type starts with “rescue”, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type starts with &quot;rescue&quot;, false otherwise</p></div>
       
     </li>
   
@@ -3245,12 +2821,12 @@
       <pre class="lines">
 
 
-143
-144
-145</pre>
+109
+110
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 143</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rescue?'>rescue?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rescue</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -3271,22 +2847,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the object responds to a missing method.</p>
-
+    <p>Checks if the object responds to a missing method.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_respond_to_missing?'>respond_to_missing?</span><span class='lparen'>(</span><span class='symbol'>:some_dynamic_method</span><span class='rparen'>)</span> <span class='comment'># =&gt; true or false</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -3299,9 +2865,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The method name that was checked.</p>
-</div>
+        <div class='inline'><p>the method name being checked</p></div>
       
     </li>
   
@@ -3317,9 +2881,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Whether to include private methods.</p>
-</div>
+        <div class='inline'><p>whether to include private methods in the check</p></div>
       
     </li>
   
@@ -3336,9 +2898,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the method exists in requirements, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the method exists in requirements, false otherwise</p></div>
       
     </li>
   
@@ -3350,12 +2910,12 @@
       <pre class="lines">
 
 
-300
-301
-302</pre>
+231
+232
+233</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 300</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 231</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_respond_to_missing?'>respond_to_missing?</span><span class='lparen'>(</span><span class='id identifier rubyid_symbol'>symbol</span><span class='comma'>,</span> <span class='id identifier rubyid_include_private'>include_private</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_requirements'>requirements</span><span class='op'>&amp;.</span><span class='id identifier rubyid_keys'>keys</span><span class='op'>&amp;.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_symbol'>symbol</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='kw'>super</span>
@@ -3376,22 +2936,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task is a search heirloom task.</p>
-
+    <p>Checks if the task is to search for an heirloom.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_search_heirloom?'>search_heirloom?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -3403,9 +2953,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type is heirloom and action is “search”, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type is heirloom and action is &quot;search&quot;, false otherwise</p></div>
       
     </li>
   
@@ -3417,13 +2965,13 @@
       <pre class="lines">
 
 
-159
-160
-161
-162</pre>
+121
+122
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 159</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 121</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_search_heirloom?'>search_heirloom?</span>
   <span class='lbracket'>[</span><span class='symbol'>:heirloom</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>
@@ -3445,22 +2993,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task type is a skin task.</p>
-
+    <p>Checks if the task type is a skin type.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_skin?'>skin?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -3472,9 +3010,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type starts with “skin”, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type starts with &quot;skin&quot;, false otherwise</p></div>
       
     </li>
   
@@ -3486,12 +3022,12 @@
       <pre class="lines">
 
 
-151
-152
-153</pre>
+115
+116
+117</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 151</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 115</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_skin?'>skin?</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>skin</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -3512,22 +3048,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task has spawned.</p>
-
+    <p>Checks if the task has spawned.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_spawned?'>spawned?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -3539,9 +3065,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task type is one of the spawned types, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task type is one of the spawned types, false otherwise</p></div>
       
     </li>
   
@@ -3553,14 +3077,14 @@
       <pre class="lines">
 
 
-197
-198
-199
-200
-201</pre>
+151
+152
+153
+154
+155</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 197</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 151</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_spawned?'>spawned?</span>
   <span class='lbracket'>[</span>
@@ -3575,7 +3099,7 @@
       <div class="method_details ">
   <h3 class="signature " id="task-instance_method">
   
-    #<strong>task</strong>  &#x21d2; <tt>Symbol</tt> 
+    #<strong>task</strong>  &#x21d2; <tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt> 
   
 
   
@@ -3583,37 +3107,24 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the type of the task.</p>
-
+    <p>Returns the type of the task.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Bounty.html" title="Lich::Gemstone::Bounty (class)">Bounty</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Bounty::Task (class)">Task</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Gemstone::Bounty::Task#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>type:</span> <span class='symbol'>:bandit</span><span class='rparen'>)</span>
-<span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_task'>task</span> <span class='comment'># =&gt; :bandit</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>Symbol</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The type of the task.</p>
-</div>
+        <div class='inline'><p>the type of the task</p></div>
       
     </li>
   
@@ -3625,10 +3136,10 @@
       <pre class="lines">
 
 
-29</pre>
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_task'>task</span><span class='semicolon'>;</span> <span class='id identifier rubyid_type'>type</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -3647,22 +3158,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the task has been triggered (spawned).</p>
-
+    <p>Checks if the task has been triggered.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_triggered?'>triggered?</span> <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -3674,9 +3175,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the task has spawned, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the task has spawned, false otherwise</p></div>
       
     </li>
   
@@ -3688,10 +3187,10 @@
       <pre class="lines">
 
 
-207</pre>
+159</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 207</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/bounty/task.rb', line 159</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_triggered?'>triggered?</span><span class='semicolon'>;</span> <span class='id identifier rubyid_spawned?'>spawned?</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -3704,9 +3203,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:19:01 2026 by
+  Generated on Sun May 10 17:26:32 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

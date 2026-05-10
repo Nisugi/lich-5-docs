@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::GUI::SavedLoginTab";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,33 +96,29 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/gui/saved_login_tab.rb</dd>
+    <dd>documented/common/gui/saved_login_tab.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a tab for saved logins in the GUI. This class manages the display and interaction with saved login entries.</p>
-
+    <p>Represents a tab for managing saved login entries.</p>
+<p>This class handles the display and management of saved login information,
+including favorites and UI state persistence.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Creating a saved login tab</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_tab'>tab</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'>SavedLoginTab</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::GUI::SavedLoginTab#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_parent'>parent</span><span class='comma'>,</span> <span class='id identifier rubyid_entry_data'>entry_data</span><span class='comma'>,</span> <span class='id identifier rubyid_theme_state'>theme_state</span><span class='comma'>,</span> <span class='id identifier rubyid_tab_layout_state'>tab_layout_state</span><span class='comma'>,</span> <span class='id identifier rubyid_autosort_state'>autosort_state</span><span class='comma'>,</span> <span class='id identifier rubyid_default_icon'>default_icon</span><span class='comma'>,</span> <span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">for related GUI components.</a></span></li>
+    
+  </ul>
 
 </div>
 
@@ -149,9 +147,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute favorites_enabled.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute favorites_enabled.</p></div></span>
   
 </li>
 
@@ -188,9 +184,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Initializes a new SavedLoginTab instance.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Initializes a new SavedLoginTab instance.</p></div></span>
   
 </li>
 
@@ -212,9 +206,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Refreshes the data displayed in the saved login tab.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Refreshes the saved login data and updates the UI.</p></div></span>
   
 </li>
 
@@ -222,7 +214,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#tab_widget-instance_method" title="#tab_widget (instance method)">#<strong>tab_widget</strong>  &#x21d2; Object </a>
+      <a href="#tab_widget-instance_method" title="#tab_widget (instance method)">#<strong>tab_widget</strong>  &#x21d2; Gtk::Widget </a>
     
 
     
@@ -236,9 +228,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the tab widget for the saved login entries.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the tab widget for quick game entries.</p></div></span>
   
 </li>
 
@@ -246,7 +236,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#ui_elements-instance_method" title="#ui_elements (instance method)">#<strong>ui_elements</strong>  &#x21d2; Hash </a>
+      <a href="#ui_elements-instance_method" title="#ui_elements (instance method)">#<strong>ui_elements</strong>  &#x21d2; Object </a>
     
 
     
@@ -260,9 +250,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns a hash of UI elements associated with the saved login tab.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -284,14 +272,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Updates the theme state of the saved login tab.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Updates the theme state of the UI elements.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 <div id="constructor_details" class="method_details_list">
@@ -308,9 +295,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Initializes a new SavedLoginTab instance.</p>
-
+    <p>Initializes a new SavedLoginTab instance.</p>
 
   </div>
 </div>
@@ -323,14 +308,12 @@
         <span class='name'>parent</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Gtk::Widget</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The parent widget for this tab.</p>
-</div>
+        <div class='inline'><p>the parent widget for this tab</p></div>
       
     </li>
   
@@ -344,9 +327,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The data for saved login entries.</p>
-</div>
+        <div class='inline'><p>the saved login entries data</p></div>
       
     </li>
   
@@ -355,14 +336,12 @@
         <span class='name'>theme_state</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The current theme state.</p>
-</div>
+        <div class='inline'><p>the current theme state</p></div>
       
     </li>
   
@@ -371,14 +350,12 @@
         <span class='name'>tab_layout_state</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The layout state of the tab.</p>
-</div>
+        <div class='inline'><p>the layout state of the tab</p></div>
       
     </li>
   
@@ -392,9 +369,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The autosort state for entries.</p>
-</div>
+        <div class='inline'><p>the autosort state for entries</p></div>
       
     </li>
   
@@ -403,14 +378,12 @@
         <span class='name'>default_icon</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+        <span class='type'>(<tt>Gtk::Icon</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The default icon for the tab.</p>
-</div>
+        <div class='inline'><p>the default icon for the tab</p></div>
       
     </li>
   
@@ -424,9 +397,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where data is stored.</p>
-</div>
+        <div class='inline'><p>the directory where data is stored</p></div>
       
     </li>
   
@@ -442,9 +413,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Optional callbacks for various events.</p>
-</div>
+        <div class='inline'><p>optional callbacks for various actions</p></div>
       
     </li>
   
@@ -457,8 +426,6 @@
       <pre class="lines">
 
 
-28
-29
 30
 31
 32
@@ -486,10 +453,12 @@
 54
 55
 56
-57</pre>
+57
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/saved_login_tab.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/saved_login_tab.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_parent'>parent</span><span class='comma'>,</span> <span class='id identifier rubyid_entry_data'>entry_data</span><span class='comma'>,</span> <span class='id identifier rubyid_theme_state'>theme_state</span><span class='comma'>,</span> <span class='id identifier rubyid_tab_layout_state'>tab_layout_state</span><span class='comma'>,</span> <span class='id identifier rubyid_autosort_state'>autosort_state</span><span class='comma'>,</span> <span class='id identifier rubyid_default_icon'>default_icon</span><span class='comma'>,</span> <span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_callbacks'>callbacks</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@parent</span> <span class='op'>=</span> <span class='id identifier rubyid_parent'>parent</span>
@@ -544,9 +513,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute favorites_enabled.</p>
-
+    <p>Returns the value of attribute favorites_enabled.</p>
 
   </div>
 </div>
@@ -559,12 +526,12 @@
       <pre class="lines">
 
 
-16
-17
-18</pre>
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/saved_login_tab.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/saved_login_tab.rb', line 18</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_favorites_enabled'>favorites_enabled</span>
   <span class='ivar'>@favorites_enabled</span>
@@ -592,26 +559,13 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Refreshes the data displayed in the saved login tab. This method reloads the saved entries from the data directory and updates the UI.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Refreshes the saved login data and updates the UI.
+This method reloads the data from the YAML file and rebuilds the tab content.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Refreshing the saved login data</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_tab'>tab</span><span class='period'>.</span><span class='id identifier rubyid_refresh_data'>refresh_data</span></code></pre>
-    
-  </div>
-
 
 </div><table class="source_code">
   <tr>
@@ -647,7 +601,7 @@
 </span>  <span class='id identifier rubyid_saved_state'>saved_state</span> <span class='op'>=</span> <span class='id identifier rubyid_save_current_ui_state'>save_current_ui_state</span>
 
   <span class='comment'># Reload data from YAML
-</span>  <span class='ivar'>@entry_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_saved_entries'><span class='object_link'><a href="YamlState.html#load_saved_entries-class_method" title="Lich::Common::GUI::YamlState.load_saved_entries (method)">load_saved_entries</a></span></span><span class='lparen'>(</span><span class='ivar'>@data_dir</span><span class='comma'>,</span> <span class='ivar'>@ui_config</span><span class='period'>.</span><span class='id identifier rubyid_autosort_state'>autosort_state</span><span class='rparen'>)</span>
+</span>  <span class='ivar'>@entry_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_saved_entries'><span class='object_link'><a href="../Authentication/EntryStore.html#load_saved_entries-class_method" title="Lich::Common::Authentication::EntryStore.load_saved_entries (method)">load_saved_entries</a></span></span><span class='lparen'>(</span><span class='ivar'>@data_dir</span><span class='comma'>,</span> <span class='ivar'>@ui_config</span><span class='period'>.</span><span class='id identifier rubyid_autosort_state'>autosort_state</span><span class='rparen'>)</span>
 
   <span class='comment'># Rebuild the tab content with new data
 </span>  <span class='id identifier rubyid_rebuild_tab_content'>rebuild_tab_content</span>
@@ -669,7 +623,7 @@
       <div class="method_details ">
   <h3 class="signature " id="tab_widget-instance_method">
   
-    #<strong>tab_widget</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>tab_widget</strong>  &#x21d2; <tt>Gtk::Widget</tt> 
   
 
   
@@ -677,9 +631,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the tab widget for the saved login entries.</p>
-
+    <p>Returns the tab widget for quick game entries.</p>
 
   </div>
 </div>
@@ -691,14 +643,12 @@
     <li>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Gtk::Widget</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The tab widget containing the saved logins.</p>
-</div>
+        <div class='inline'><p>the quick game entry tab widget</p></div>
       
     </li>
   
@@ -728,47 +678,20 @@
       <div class="method_details ">
   <h3 class="signature " id="ui_elements-instance_method">
   
-    #<strong>ui_elements</strong>  &#x21d2; <tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt> 
+    #<strong>ui_elements</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns a hash of UI elements associated with the saved login tab.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>A hash containing UI elements like custom launch entry, slider box, etc.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
+90
+91
 92
 93
 94
@@ -777,12 +700,10 @@
 97
 98
 99
-100
-101
-102</pre>
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/saved_login_tab.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/saved_login_tab.rb', line 90</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ui_elements'>ui_elements</span>
   <span class='lbrace'>{</span>
@@ -811,26 +732,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Updates the theme state of the saved login tab.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Updates the theme state of the UI elements.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Updating the theme state</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_tab'>tab</span><span class='period'>.</span><span class='id identifier rubyid_update_theme_state'>update_theme_state</span><span class='lparen'>(</span><span class='id identifier rubyid_new_theme_state'>new_theme_state</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -838,14 +745,12 @@
         <span class='name'>theme_state</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The new theme state to apply.</p>
-</div>
+        <div class='inline'><p>the new theme state to apply</p></div>
       
     </li>
   
@@ -858,13 +763,13 @@
       <pre class="lines">
 
 
-109
-110
-111
-112</pre>
+105
+106
+107
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/saved_login_tab.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/saved_login_tab.rb', line 105</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_theme_state'>update_theme_state</span><span class='lparen'>(</span><span class='id identifier rubyid_theme_state'>theme_state</span><span class='rparen'>)</span>
   <span class='ivar'>@ui_config</span><span class='period'>.</span><span class='id identifier rubyid_theme_state'>theme_state</span> <span class='op'>=</span> <span class='id identifier rubyid_theme_state'>theme_state</span>
@@ -880,9 +785,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:19:01 2026 by
+  Generated on Sun May 10 17:26:33 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

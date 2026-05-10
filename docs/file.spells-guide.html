@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "spells-guide";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="file_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -57,19 +59,12 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'>
-<h1 id="label-Spells+Guide">Spells Guide</h1>
-
+      <div id="content"><div id='filecontents'><h1 id="Spells_Guide">Spells Guide</h1>
 <p>This guide covers working with spells in Lich scripts for GemStone IV.</p>
-
-<h2 id="label-The+Spell+Class">The Spell Class</h2>
-
+<h2 id="The_Spell_Class">The Spell Class</h2>
 <p>The <code>Spell</code> class is your primary interface for working with magic in Lich. Each spell has a number, name, and various properties.</p>
-
-<h2 id="label-Accessing+Spells">Accessing Spells</h2>
-
-<h3 id="label-By+Number">By Number</h3>
-
+<h2 id="Accessing_Spells">Accessing Spells</h2>
+<h3 id="By_Number">By Number</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get a spell by its number
 </span><span class='id identifier rubyid_bless'>bless</span> <span class='op'>=</span> <span class='const'>Spell</span><span class='lbracket'>[</span><span class='int'>304</span><span class='rbracket'>]</span>
 <span class='id identifier rubyid_fire_spirit'>fire_spirit</span> <span class='op'>=</span> <span class='const'>Spell</span><span class='lbracket'>[</span><span class='int'>111</span><span class='rbracket'>]</span>
@@ -84,18 +79,13 @@
 </span><span class='comment'># 506 - Haste
 </span><span class='comment'># 911 - Mass Blur
 </span></code></pre>
-
-<h3 id="label-By+Name">By Name</h3>
-
+<h3 id="By_Name">By Name</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get a spell by name
 </span><span class='id identifier rubyid_spell'>spell</span> <span class='op'>=</span> <span class='const'>Spell</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Haste</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
 <span class='id identifier rubyid_spell'>spell</span> <span class='op'>=</span> <span class='const'>Spell</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Spirit Warding I</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
 </code></pre>
-
-<h2 id="label-Checking+Spell+Status">Checking Spell Status</h2>
-
-<h3 id="label-Is+a+Spell+Active-3F">Is a Spell Active?</h3>
-
+<h2 id="Checking_Spell_Status">Checking Spell Status</h2>
+<h3 id="Is_a_Spell_Active_">Is a Spell Active?</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Check if a specific spell is active on you
 </span><span class='kw'>if</span> <span class='const'>Spell</span><span class='lbracket'>[</span><span class='int'>506</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Haste is active</span><span class='tstring_end'>&quot;</span></span>
@@ -110,9 +100,7 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>I know Haste</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-List+Active+Spells">List Active Spells</h3>
-
+<h3 id="List_Active_Spells">List Active Spells</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get all active spells
 </span><span class='const'>Spell</span><span class='period'>.</span><span class='id identifier rubyid_active'>active</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_spell'>spell</span><span class='op'>|</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_spell'>spell</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_spell'>spell</span><span class='period'>.</span><span class='id identifier rubyid_num'>num</span><span class='embexpr_end'>}</span><span class='tstring_content'>) - </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_spell'>spell</span><span class='period'>.</span><span class='id identifier rubyid_timeleft'>timeleft</span><span class='embexpr_end'>}</span><span class='tstring_content'>s remaining</span><span class='tstring_end'>&quot;</span></span>
@@ -122,11 +110,8 @@
 </span><span class='id identifier rubyid_known'>known</span> <span class='op'>=</span> <span class='const'>Spells</span><span class='period'>.</span><span class='id identifier rubyid_known'>known</span>
 <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You know </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_known'>known</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span><span class='embexpr_end'>}</span><span class='tstring_content'> spells</span><span class='tstring_end'>&quot;</span></span>
 </code></pre>
-
-<h2 id="label-Casting+Spells">Casting Spells</h2>
-
-<h3 id="label-Basic+Casting">Basic Casting</h3>
-
+<h2 id="Casting_Spells">Casting Spells</h2>
+<h3 id="Basic_Casting">Basic Casting</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Cast on yourself
 </span><span class='const'>Spell</span><span class='lbracket'>[</span><span class='int'>506</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_cast'><span class='object_link'><a href="top-level-namespace.html#cast-instance_method" title="#cast (method)">cast</a></span></span>
 
@@ -139,9 +124,7 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cast successful</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Safe+Casting+Pattern">Safe Casting Pattern</h3>
-
+<h3 id="Safe_Casting_Pattern">Safe Casting Pattern</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_safe_cast'>safe_cast</span><span class='lparen'>(</span><span class='id identifier rubyid_spell_num'>spell_num</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_spell'>spell</span> <span class='op'>=</span> <span class='const'>Spell</span><span class='lbracket'>[</span><span class='id identifier rubyid_spell_num'>spell_num</span><span class='rbracket'>]</span>
 
@@ -166,9 +149,7 @@
   <span class='id identifier rubyid_result'>result</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Spell+Properties">Spell Properties</h2>
-
+<h2 id="Spell_Properties">Spell Properties</h2>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_spell'>spell</span> <span class='op'>=</span> <span class='const'>Spell</span><span class='lbracket'>[</span><span class='int'>506</span><span class='rbracket'>]</span>
 
 <span class='id identifier rubyid_spell'>spell</span><span class='period'>.</span><span class='id identifier rubyid_num'>num</span>           <span class='comment'># Spell number (506)
@@ -182,12 +163,9 @@
 </span><span class='id identifier rubyid_spell'>spell</span><span class='period'>.</span><span class='id identifier rubyid_timeleft'>timeleft</span>      <span class='comment'># Seconds remaining if active
 </span><span class='id identifier rubyid_spell'>spell</span><span class='period'>.</span><span class='id identifier rubyid_affordable?'>affordable?</span>   <span class='comment'># Do you have enough mana?
 </span></code></pre>
-
-<h2 id="label-Spell+Circles">Spell Circles</h2>
-
+<h2 id="Spell_Circles">Spell Circles</h2>
 <p>Each spell belongs to a circle based on its number:</p>
-
-<table role="table">
+<table>
 <thead>
 <tr>
 <th>Circle</th>
@@ -263,9 +241,7 @@
 </tr>
 </tbody>
 </table>
-
-<h3 id="label-Accessing+Spell+Circle+Ranks">Accessing Spell Circle Ranks</h3>
-
+<h3 id="Accessing_Spell_Circle_Ranks">Accessing Spell Circle Ranks</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get your ranks in each spell circle
 </span><span class='const'>Spells</span><span class='period'>.</span><span class='id identifier rubyid_minor_spirit'>minor_spirit</span>      <span class='comment'># Minor Spirit ranks
 </span><span class='const'>Spells</span><span class='period'>.</span><span class='id identifier rubyid_major_spirit'>major_spirit</span>      <span class='comment'># Major Spirit ranks
@@ -283,11 +259,8 @@
 <span class='comment'># Get circle name from number
 </span><span class='const'>Spells</span><span class='period'>.</span><span class='id identifier rubyid_get_circle_name'>get_circle_name</span><span class='lparen'>(</span><span class='int'>5</span><span class='rparen'>)</span>  <span class='comment'># =&gt; &quot;Major Elemental&quot;
 </span></code></pre>
-
-<h2 id="label-Buff+Management">Buff Management</h2>
-
-<h3 id="label-Check+and+Refresh+Buffs">Check and Refresh Buffs</h3>
-
+<h2 id="Buff_Management">Buff Management</h2>
+<h3 id="Check_and_Refresh_Buffs">Check and Refresh Buffs</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Define your buff list
 </span><span class='const'>BUFFS</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>401</span><span class='comma'>,</span> <span class='int'>406</span><span class='comma'>,</span> <span class='int'>414</span><span class='comma'>,</span> <span class='int'>506</span><span class='comma'>,</span> <span class='int'>911</span><span class='rbracket'>]</span>
 
@@ -314,9 +287,7 @@
   <span class='id identifier rubyid_sleep'>sleep</span> <span class='int'>30</span>  <span class='comment'># Check every 30 seconds
 </span><span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Minimum+Buff+Times">Minimum Buff Times</h3>
-
+<h3 id="Minimum_Buff_Times">Minimum Buff Times</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_needs_refresh?'>needs_refresh?</span><span class='lparen'>(</span><span class='id identifier rubyid_spell'>spell</span><span class='comma'>,</span> <span class='id identifier rubyid_min_time'>min_time</span> <span class='op'>=</span> <span class='int'>120</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>unless</span> <span class='id identifier rubyid_spell'>spell</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span>
   <span class='id identifier rubyid_spell'>spell</span><span class='period'>.</span><span class='id identifier rubyid_timeleft'>timeleft</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_min_time'>min_time</span>
@@ -327,9 +298,7 @@
   <span class='const'>Spell</span><span class='lbracket'>[</span><span class='int'>506</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_cast'><span class='object_link'><a href="top-level-namespace.html#cast-instance_method" title="#cast (method)">cast</a></span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Waiting+for+Spells">Waiting for Spells</h2>
-
+<h2 id="Waiting_for_Spells">Waiting for Spells</h2>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Wait until a spell wears off
 </span><span class='id identifier rubyid_wait_until'><span class='object_link'><a href="top-level-namespace.html#wait_until-instance_method" title="#wait_until (method)">wait_until</a></span></span> <span class='lbrace'>{</span> <span class='op'>!</span><span class='const'>Spell</span><span class='lbracket'>[</span><span class='int'>506</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span> <span class='rbrace'>}</span>
 
@@ -346,11 +315,8 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Haste is now active</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Common+Spell+Patterns">Common Spell Patterns</h2>
-
-<h3 id="label-Combat+Buffing">Combat Buffing</h3>
-
+<h2 id="Common_Spell_Patterns">Common Spell Patterns</h2>
+<h3 id="Combat_Buffing">Combat Buffing</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_buff_for_combat'>buff_for_combat</span>
   <span class='id identifier rubyid_combat_buffs'>combat_buffs</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>401</span><span class='comma'>,</span> <span class='int'>406</span><span class='comma'>,</span> <span class='int'>414</span><span class='comma'>,</span> <span class='int'>506</span><span class='rbracket'>]</span>
 
@@ -366,9 +332,7 @@
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Defensive+Casting">Defensive Casting</h3>
-
+<h3 id="Defensive_Casting">Defensive Casting</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_cast_defensive'>cast_defensive</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
   <span class='comment'># Spirit Warding I
 </span>  <span class='kw'>unless</span> <span class='const'>Spell</span><span class='lbracket'>[</span><span class='int'>101</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span>
@@ -379,9 +343,7 @@
 </span>  <span class='const'>Spell</span><span class='lbracket'>[</span><span class='int'>101</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_cast'><span class='object_link'><a href="top-level-namespace.html#cast-instance_method" title="#cast (method)">cast</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_target'>target</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Checking+Spell+Effects">Checking Spell Effects</h3>
-
+<h3 id="Checking_Spell_Effects">Checking Spell Effects</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Check if you&#39;re hasted
 </span><span class='kw'>def</span> <span class='id identifier rubyid_hasted?'>hasted?</span>
   <span class='const'>Spell</span><span class='lbracket'>[</span><span class='int'>506</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span> <span class='op'>||</span> <span class='const'>Spell</span><span class='lbracket'>[</span><span class='int'>535</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span>
@@ -394,11 +356,8 @@
   <span class='rbrace'>}</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Death+and+Spells">Death and Spells</h2>
-
-<p>Some spells persist through death, others don’t:</p>
-
+<h2 id="Death_and_Spells">Death and Spells</h2>
+<p>Some spells persist through death, others don't:</p>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_spell'>spell</span> <span class='op'>=</span> <span class='const'>Spell</span><span class='lbracket'>[</span><span class='int'>506</span><span class='rbracket'>]</span>
 <span class='id identifier rubyid_spell'>spell</span><span class='period'>.</span><span class='id identifier rubyid_persist_on_death'>persist_on_death</span>  <span class='comment'># true/false
 </span>
@@ -409,21 +368,17 @@
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-See+Also">See Also</h2>
-<ul><li>
-<p><span class='object_link'><a href="Lich/Common/Spell.html" title="Lich::Common::Spell (class)">Lich::Common::Spell</a></span> - Spell class reference</p>
-</li><li>
-<p><span class='object_link'><a href="Lich/Gemstone/Spells.html" title="Lich::Gemstone::Spells (module)">Lich::Gemstone::Spells</a></span> - Spell utilities module</p>
-</li><li>
-<p><a href="file.scripting-basics.html" title="Scripting Basics">Scripting Basics</a> - Core scripting concepts</p>
-</li></ul>
-</div></div>
+<h2 id="See_Also">See Also</h2>
+<ul>
+<li><span class='object_link'><a href="Lich/Common/Spell.html" title="Lich::Common::Spell (class)">Lich::Common::Spell</a></span> - Spell class reference</li>
+<li><span class='object_link'><a href="Lich/Gemstone/Spells.html" title="Lich::Gemstone::Spells (module)">Lich::Gemstone::Spells</a></span> - Spell utilities module</li>
+<li><a href="file.scripting-basics.html" title="Scripting Basics">Scripting Basics</a> - Core scripting concepts</li>
+</ul></div></div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:46 2026 by
+  Generated on Sun May 10 17:26:20 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

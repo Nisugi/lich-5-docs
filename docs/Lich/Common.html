@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,8 +80,9 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/gtk.rb<span class="defines">,<br />
-  documented/vars.rb,<br /> documented/games.rb,<br /> documented/common/hmr.rb,<br /> documented/common/log.rb,<br /> documented/common/vars.rb,<br /> documented/common/spell.rb,<br /> documented/common/buffer.rb,<br /> documented/common/script.rb,<br /> documented/common/account.rb,<br /> documented/common/eaccess.rb,<br /> documented/common/gameobj.rb,<br /> documented/attributes/char.rb,<br /> documented/common/db_store.rb,<br /> documented/common/settings.rb,<br /> documented/common/uservars.rb,<br /> documented/common/watchfor.rb,<br /> documented/common/front-end.rb,<br /> documented/common/gui-login.rb,<br /> documented/common/gui/state.rb,<br /> documented/common/xmlparser.rb,<br /> documented/common/map/map_dr.rb,<br /> documented/common/map/map_gs.rb,<br /> documented/common/game-loader.rb,<br /> documented/common/limitedarray.rb,<br /> documented/common/sharedbuffer.rb,<br /> documented/common/upstreamhook.rb,<br /> documented/common/cli/cli_login.rb,<br /> documented/common/gui/utilities.rb,<br /> documented/common/downstreamhook.rb,<br /> documented/common/gui/components.rb,<br /> documented/common/gui/yaml_state.rb,<br /> documented/common/gui/theme_utils.rb,<br /> documented/common/gui/accessibility.rb,<br /> documented/common/gui/conversion_ui.rb,<br /> documented/common/cli/cli_conversion.rb,<br /> documented/common/gui/authentication.rb,<br /> documented/common/gui/game_selection.rb,<br /> documented/common/socketconfigurator.rb,<br /> documented/common/gui/account_manager.rb,<br /> documented/common/gui/login_tab_utils.rb,<br /> documented/common/gui/password_change.rb,<br /> documented/common/gui/password_cipher.rb,<br /> documented/common/gui/saved_login_tab.rb,<br /> documented/common/gui/manual_login_tab.rb,<br /> documented/common/gui/password_manager.rb,<br /> documented/common/gui/tab_communicator.rb,<br /> documented/common/class_exts/stringproc.rb,<br /> documented/common/cli/cli_orchestration.rb,<br /> documented/common/gui/favorites_manager.rb,<br /> documented/common/gui/parameter_objects.rb,<br /> documented/common/settings/charsettings.rb,<br /> documented/common/settings/gamesettings.rb,<br /> documented/common/gui/account_manager_ui.rb,<br /> documented/common/settings/path_navigator.rb,<br /> documented/common/settings/settings_proxy.rb,<br /> documented/common/cli/cli_options_registry.rb,<br /> documented/common/cli/cli_password_manager.rb,<br /> documented/common/settings/database_adapter.rb,<br /> documented/common/gui/encryption_mode_change.rb,<br /> documented/common/gui/master_password_change.rb,<br /> documented/common/gui/master_password_prompt.rb,<br /> documented/common/gui/master_password_manager.rb,<br /> documented/common/class_exts/synchronizedsocket.rb,<br /> documented/common/gui/master_password_prompt_ui.rb,<br /> documented/common/cli/cli_encryption_mode_change.rb,<br /> documented/common/gui/windows_credential_manager.rb</span>
+    <dd>documented/games.rb<span class="defines">,<br>
+  documented/vars.rb,<br> documented/common/gtk.rb,<br> documented/common/hmr.rb,<br> documented/common/log.rb,<br> documented/common/vars.rb,<br> documented/global_defs.rb,<br> documented/common/spell.rb,<br> documented/common/buffer.rb,<br> documented/common/script.rb,<br> documented/common/account.rb,<br> documented/common/eaccess.rb,<br> documented/common/gameobj.rb,<br> documented/attributes/char.rb,<br> documented/common/db_store.rb,<br> documented/common/postload.rb,<br> documented/common/settings.rb,<br> documented/common/uservars.rb,<br> documented/common/watchfor.rb,<br> documented/common/front-end.rb,<br> documented/common/gui-login.rb,<br> documented/common/gui/state.rb,<br> documented/common/gui_login.rb,<br> documented/common/watchable.rb,<br> documented/common/xmlparser.rb,<br> documented/common/arg_parser.rb,<br> documented/common/gameloader.rb,<br> documented/common/map/map_dr.rb,<br> documented/common/map/map_gs.rb,<br> documented/common/game-loader.rb,<br> documented/common/setup_files.rb,<br> documented/common/limitedarray.rb,<br> documented/common/map/map_base.rb,<br> documented/common/sharedbuffer.rb,<br> documented/common/upstreamhook.rb,<br> documented/common/cli/cli_login.rb,<br> documented/common/feature_flags.rb,<br> documented/common/gui/utilities.rb,<br> documented/common/downstreamhook.rb,<br> documented/common/gui/components.rb,<br> documented/common/gui/yaml_state.rb,<br> documented/common/gui/theme_utils.rb,<br> documented/common/session_launcher.rb,<br> documented/common/gui/accessibility.rb,<br> documented/common/gui/conversion_ui.rb,<br> documented/common/session_lifecycle.rb,<br> documented/common/authentication/cli.rb,<br> documented/common/authentication/gui.rb,<br> documented/common/cli/cli_conversion.rb,<br> documented/common/gui/authentication.rb,<br> documented/common/gui/game_selection.rb,<br> documented/common/socketconfigurator.rb,<br> documented/common/gui/account_manager.rb,<br> documented/common/gui/login_tab_utils.rb,<br> documented/common/gui/password_change.rb,<br> documented/common/gui/password_cipher.rb,<br> documented/common/gui/saved_login_tab.rb,<br> documented/common/gui/window_settings.rb,<br> documented/common/reusable_tcp_server.rb,<br> documented/common/gui/manual_login_tab.rb,<br> documented/common/gui/password_manager.rb,<br> documented/common/gui/tab_communicator.rb,<br> documented/common/settings_transformer.rb,<br> documented/common/class_exts/stringproc.rb,<br> documented/common/cli/cli_orchestration.rb,<br> documented/common/gui/favorites_manager.rb,<br> documented/common/gui/parameter_objects.rb,<br> documented/common/settings/charsettings.rb,<br> documented/common/settings/gamesettings.rb,<br> documented/common/authentication/eaccess.rb,<br> documented/common/gui/account_manager_ui.rb,<br> documented/common/settings/path_navigator.rb,<br> documented/common/settings/settings_proxy.rb,<br> documented/dragonrealms/drinfomon/startup.rb,<br> documented/common/cli/cli_options_registry.rb,<br> documented/common/cli/cli_password_manager.rb,<br> documented/common/cli/active_sessions_query.rb,<br> documented/common/settings/database_adapter.rb,<br> documented/common/authentication/entry_store.rb,<br> documented/common/authentication/launch_data.rb,<br> documented/common/gui/encryption_mode_change.rb,<br> documented/common/gui/master_password_change.rb,<br> documented/common/gui/master_password_prompt.rb,<br> documented/common/settings/instance_settings.rb,<br> documented/common/settings/sessions_settings.rb,<br> documented/common/authentication/cli_password.rb,<br> documented/common/gui/master_password_manager.rb,<br> documented/common/authentication/authenticator.rb,<br> documented/common/authentication/login_helpers.rb,<br> documented/common/class_exts/synchronizedsocket.rb,<br> documented/common/gui/master_password_prompt_ui.rb,<br> documented/common/cli/cli_encryption_mode_change.rb,<br> documented/common/gui/windows_credential_manager.rb,<br> documented/common/settings/session_database_adapter.rb</span>
+
 </dd>
   </dl>
   
@@ -87,36 +90,29 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Common utilities for the Lich project This module contains socket configuration utilities.</p>
-
+    <p>Provides common utilities for the Lich framework.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Using the SocketConfigurator</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'>Common</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Common/SocketConfigurator.html" title="Lich::Common::SocketConfigurator (module)">SocketConfigurator</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configure'><span class='object_link'><a href="Common/SocketConfigurator.html#configure-class_method" title="Lich::Common::SocketConfigurator.configure (method)">configure</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_socket'>socket</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Util.html" title="Lich::Util (module)">Util</a></span></li>
+    
+  </ul>
 
 </div><h2>Defined Under Namespace</h2>
 <p class="children">
   
     
-      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Common/Account.html" title="Lich::Common::Account (module)">Account</a></span>, <span class='object_link'><a href="Common/Buffer.html" title="Lich::Common::Buffer (module)">Buffer</a></span>, <span class='object_link'><a href="Common/CLI.html" title="Lich::Common::CLI (module)">CLI</a></span>, <span class='object_link'><a href="Common/CharSettings.html" title="Lich::Common::CharSettings (module)">CharSettings</a></span>, <span class='object_link'><a href="Common/DB_Store.html" title="Lich::Common::DB_Store (module)">DB_Store</a></span>, <span class='object_link'><a href="Common/EAccess.html" title="Lich::Common::EAccess (module)">EAccess</a></span>, <span class='object_link'><a href="Common/Frontend.html" title="Lich::Common::Frontend (module)">Frontend</a></span>, <span class='object_link'><a href="Common/GUI.html" title="Lich::Common::GUI (module)">GUI</a></span>, <span class='object_link'><a href="Common/GameLoader.html" title="Lich::Common::GameLoader (module)">GameLoader</a></span>, <span class='object_link'><a href="Common/GameSettings.html" title="Lich::Common::GameSettings (module)">GameSettings</a></span>, <span class='object_link'><a href="Common/HMR.html" title="Lich::Common::HMR (module)">HMR</a></span>, <span class='object_link'><a href="Common/Log.html" title="Lich::Common::Log (module)">Log</a></span>, <span class='object_link'><a href="Common/Settings.html" title="Lich::Common::Settings (module)">Settings</a></span>, <span class='object_link'><a href="Common/SocketConfigurator.html" title="Lich::Common::SocketConfigurator (module)">SocketConfigurator</a></span>, <span class='object_link'><a href="Common/UserVars.html" title="Lich::Common::UserVars (module)">UserVars</a></span>, <span class='object_link'><a href="Common/Vars.html" title="Lich::Common::Vars (module)">Vars</a></span>
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Common/Account.html" title="Lich::Common::Account (module)">Account</a></span>, <span class='object_link'><a href="Common/Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span>, <span class='object_link'><a href="Common/Buffer.html" title="Lich::Common::Buffer (module)">Buffer</a></span>, <span class='object_link'><a href="Common/CLI.html" title="Lich::Common::CLI (module)">CLI</a></span>, <span class='object_link'><a href="Common/CharSettings.html" title="Lich::Common::CharSettings (module)">CharSettings</a></span>, <span class='object_link'><a href="Common/DB_Store.html" title="Lich::Common::DB_Store (module)">DB_Store</a></span>, <span class='object_link'><a href="Common/EAccess.html" title="Lich::Common::EAccess (module)">EAccess</a></span>, <span class='object_link'><a href="Common/FeatureFlags.html" title="Lich::Common::FeatureFlags (module)">FeatureFlags</a></span>, <span class='object_link'><a href="Common/Frontend.html" title="Lich::Common::Frontend (module)">Frontend</a></span>, <span class='object_link'><a href="Common/GUI.html" title="Lich::Common::GUI (module)">GUI</a></span>, <span class='object_link'><a href="Common/GameLoader.html" title="Lich::Common::GameLoader (module)">GameLoader</a></span>, <span class='object_link'><a href="Common/GameSettings.html" title="Lich::Common::GameSettings (module)">GameSettings</a></span>, <span class='object_link'><a href="Common/HMR.html" title="Lich::Common::HMR (module)">HMR</a></span>, <span class='object_link'><a href="Common/InstanceSettings.html" title="Lich::Common::InstanceSettings (module)">InstanceSettings</a></span>, <span class='object_link'><a href="Common/Log.html" title="Lich::Common::Log (module)">Log</a></span>, <span class='object_link'><a href="Common/MapBase.html" title="Lich::Common::MapBase (module)">MapBase</a></span>, <span class='object_link'><a href="Common/PostLoad.html" title="Lich::Common::PostLoad (module)">PostLoad</a></span>, <span class='object_link'><a href="Common/ReusableTCPServer.html" title="Lich::Common::ReusableTCPServer (module)">ReusableTCPServer</a></span>, <span class='object_link'><a href="Common/SessionLauncher.html" title="Lich::Common::SessionLauncher (module)">SessionLauncher</a></span>, <span class='object_link'><a href="Common/SessionLifecycle.html" title="Lich::Common::SessionLifecycle (module)">SessionLifecycle</a></span>, <span class='object_link'><a href="Common/SessionsSettings.html" title="Lich::Common::SessionsSettings (module)">SessionsSettings</a></span>, <span class='object_link'><a href="Common/Settings.html" title="Lich::Common::Settings (module)">Settings</a></span>, <span class='object_link'><a href="Common/SettingsTransformer.html" title="Lich::Common::SettingsTransformer (module)">SettingsTransformer</a></span>, <span class='object_link'><a href="Common/SocketConfigurator.html" title="Lich::Common::SocketConfigurator (module)">SocketConfigurator</a></span>, <span class='object_link'><a href="Common/UserVars.html" title="Lich::Common::UserVars (module)">UserVars</a></span>, <span class='object_link'><a href="Common/Vars.html" title="Lich::Common::Vars (module)">Vars</a></span>, <span class='object_link'><a href="Common/Watchable.html" title="Lich::Common::Watchable (module)">Watchable</a></span>
     
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Common/Char.html" title="Lich::Common::Char (class)">Char</a></span>, <span class='object_link'><a href="Common/DatabaseAdapter.html" title="Lich::Common::DatabaseAdapter (class)">DatabaseAdapter</a></span>, <span class='object_link'><a href="Common/DownstreamHook.html" title="Lich::Common::DownstreamHook (class)">DownstreamHook</a></span>, <span class='object_link'><a href="Common/ExecScript.html" title="Lich::Common::ExecScript (class)">ExecScript</a></span>, <span class='object_link'><a href="Common/GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span>, <span class='object_link'><a href="Common/LimitedArray.html" title="Lich::Common::LimitedArray (class)">LimitedArray</a></span>, <span class='object_link'><a href="Common/Map.html" title="Lich::Common::Map (class)">Map</a></span>, <span class='object_link'><a href="Common/PathNavigator.html" title="Lich::Common::PathNavigator (class)">PathNavigator</a></span>, <span class='object_link'><a href="Common/Room.html" title="Lich::Common::Room (class)">Room</a></span>, <span class='object_link'><a href="Common/RoomObj.html" title="Lich::Common::RoomObj (class)">RoomObj</a></span>, <span class='object_link'><a href="Common/Script.html" title="Lich::Common::Script (class)">Script</a></span>, <span class='object_link'><a href="Common/Scripting.html" title="Lich::Common::Scripting (class)">Scripting</a></span>, <span class='object_link'><a href="Common/SettingsProxy.html" title="Lich::Common::SettingsProxy (class)">SettingsProxy</a></span>, <span class='object_link'><a href="Common/SharedBuffer.html" title="Lich::Common::SharedBuffer (class)">SharedBuffer</a></span>, <span class='object_link'><a href="Common/Spell.html" title="Lich::Common::Spell (class)">Spell</a></span>, <span class='object_link'><a href="Common/StringProc.html" title="Lich::Common::StringProc (class)">StringProc</a></span>, <span class='object_link'><a href="Common/SynchronizedSocket.html" title="Lich::Common::SynchronizedSocket (class)">SynchronizedSocket</a></span>, <span class='object_link'><a href="Common/UpstreamHook.html" title="Lich::Common::UpstreamHook (class)">UpstreamHook</a></span>, <span class='object_link'><a href="Common/Watchfor.html" title="Lich::Common::Watchfor (class)">Watchfor</a></span>, <span class='object_link'><a href="Common/WizardScript.html" title="Lich::Common::WizardScript (class)">WizardScript</a></span>, <span class='object_link'><a href="Common/XMLParser.html" title="Lich::Common::XMLParser (class)">XMLParser</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Common/ArgParser.html" title="Lich::Common::ArgParser (class)">ArgParser</a></span>, <span class='object_link'><a href="Common/Char.html" title="Lich::Common::Char (class)">Char</a></span>, <span class='object_link'><a href="Common/DatabaseAdapter.html" title="Lich::Common::DatabaseAdapter (class)">DatabaseAdapter</a></span>, <span class='object_link'><a href="Common/DownstreamHook.html" title="Lich::Common::DownstreamHook (class)">DownstreamHook</a></span>, <span class='object_link'><a href="Common/ExecScript.html" title="Lich::Common::ExecScript (class)">ExecScript</a></span>, <span class='object_link'><a href="Common/GameObj.html" title="Lich::Common::GameObj (class)">GameObj</a></span>, <span class='object_link'><a href="Common/LimitedArray.html" title="Lich::Common::LimitedArray (class)">LimitedArray</a></span>, <span class='object_link'><a href="Common/LruIndex.html" title="Lich::Common::LruIndex (class)">LruIndex</a></span>, <span class='object_link'><a href="Common/Map.html" title="Lich::Common::Map (class)">Map</a></span>, <span class='object_link'><a href="Common/MinHeap.html" title="Lich::Common::MinHeap (class)">MinHeap</a></span>, <span class='object_link'><a href="Common/PathNavigator.html" title="Lich::Common::PathNavigator (class)">PathNavigator</a></span>, <span class='object_link'><a href="Common/Room.html" title="Lich::Common::Room (class)">Room</a></span>, <span class='object_link'><a href="Common/RoomObj.html" title="Lich::Common::RoomObj (class)">RoomObj</a></span>, <span class='object_link'><a href="Common/Script.html" title="Lich::Common::Script (class)">Script</a></span>, <span class='object_link'><a href="Common/Scripting.html" title="Lich::Common::Scripting (class)">Scripting</a></span>, <span class='object_link'><a href="Common/SessionDatabaseAdapter.html" title="Lich::Common::SessionDatabaseAdapter (class)">SessionDatabaseAdapter</a></span>, <span class='object_link'><a href="Common/SettingsProxy.html" title="Lich::Common::SettingsProxy (class)">SettingsProxy</a></span>, <span class='object_link'><a href="Common/SetupFiles.html" title="Lich::Common::SetupFiles (class)">SetupFiles</a></span>, <span class='object_link'><a href="Common/SharedBuffer.html" title="Lich::Common::SharedBuffer (class)">SharedBuffer</a></span>, <span class='object_link'><a href="Common/Spell.html" title="Lich::Common::Spell (class)">Spell</a></span>, <span class='object_link'><a href="Common/StringProc.html" title="Lich::Common::StringProc (class)">StringProc</a></span>, <span class='object_link'><a href="Common/SynchronizedSocket.html" title="Lich::Common::SynchronizedSocket (class)">SynchronizedSocket</a></span>, <span class='object_link'><a href="Common/UpstreamHook.html" title="Lich::Common::UpstreamHook (class)">UpstreamHook</a></span>, <span class='object_link'><a href="Common/Watchfor.html" title="Lich::Common::Watchfor (class)">Watchfor</a></span>, <span class='object_link'><a href="Common/WizardScript.html" title="Lich::Common::WizardScript (class)">WizardScript</a></span>, <span class='object_link'><a href="Common/XMLParser.html" title="Lich::Common::XMLParser (class)">XMLParser</a></span>
     
   
 </p>
@@ -129,21 +125,66 @@
 
     <dl class="constants">
       
+        <dt id="CORE_GET_SETTINGS-constant" class="">CORE_GET_SETTINGS =
+          
+        </dt>
+        <dd><pre class="code"><span class='kw'>true</span></pre></dd>
+      
+        <dt id="CORE_SCRIPT_LOADER-constant" class="">CORE_SCRIPT_LOADER =
+          
+        </dt>
+        <dd><pre class="code"><span class='kw'>true</span></pre></dd>
+      
+        <dt id="CORE_PARSE_ARGS-constant" class="">CORE_PARSE_ARGS =
+          
+        </dt>
+        <dd><pre class="code"><span class='kw'>true</span></pre></dd>
+      
+        <dt id="CORE_AUTOSTART-constant" class="">CORE_AUTOSTART =
+          
+        </dt>
+        <dd><pre class="code"><span class='kw'>true</span></pre></dd>
+      
         <dt id="TRUSTED_SCRIPT_BINDING-constant" class="">TRUSTED_SCRIPT_BINDING =
           <div class="docstring">
   <div class="discussion">
-    
-<p>A proc that returns a trusted script binding</p>
-
+    <p>A proc that returns a trusted script binding context.</p>
 
   </div>
 </div>
 <div class="tags">
   
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#_script-instance_method" title="Lich::Common#_script (method)">for creating script bindings.</a></span></li>
+    
+  </ul>
+
 </div>
         </dt>
         <dd><pre class="code"><span class='id identifier rubyid_proc'>proc</span> <span class='lbrace'>{</span> <span class='id identifier rubyid__script'>_script</span> <span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="CORE_ARGPARSER-constant" class="">CORE_ARGPARSER =
+          
+        </dt>
+        <dd><pre class="code"><span class='kw'>true</span></pre></dd>
+      
+        <dt id="CORE_SETUPFILES-constant" class="">CORE_SETUPFILES =
+          
+        </dt>
+        <dd><pre class="code"><span class='kw'>true</span></pre></dd>
+      
+        <dt id="CORE_MAP_OVERRIDES-constant" class="">CORE_MAP_OVERRIDES =
+          
+        </dt>
+        <dd><pre class="code"><span class='kw'>true</span></pre></dd>
+      
+        <dt id="CORE_DR_STARTUP-constant" class="">CORE_DR_STARTUP =
+          
+        </dt>
+        <dd><pre class="code"><span class='kw'>true</span></pre></dd>
       
     </dl>
   
@@ -165,7 +206,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#_script-instance_method" title="#_script (instance method)">#<strong>_script</strong>  &#x21d2; Object </a>
+      <a href="#_script-instance_method" title="#_script (instance method)">#<strong>_script</strong>  &#x21d2; Binding </a>
     
 
     
@@ -179,7 +220,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Creates a new script binding context.</p></div></span>
   
 </li>
 
@@ -187,7 +228,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#gui_login-instance_method" title="#gui_login (instance method)">#<strong>gui_login</strong>  &#x21d2; Object </a>
+      <a href="#gui_login-instance_method" title="#gui_login (instance method)">#<strong>gui_login</strong>  &#x21d2; Hash<sup>?</sup> </a>
     
 
     
@@ -201,14 +242,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Initializes the GUI login process, setting up the window and handling user input.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Initializes the GUI login process.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -220,24 +260,49 @@
       <div class="method_details first">
   <h3 class="signature first" id="_script-instance_method">
   
-    #<strong>_script</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>_script</strong>  &#x21d2; <tt>Binding</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Creates a new script binding context.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Binding</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the binding context for the script.</p></div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-29
-30
-31</pre>
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/script.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'documented/common/script.rb', line 18</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__script'>_script</span>
   <span class='const'>Proc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_binding'>binding</span>
@@ -250,7 +315,7 @@
       <div class="method_details ">
   <h3 class="signature " id="gui_login-instance_method">
   
-    #<strong>gui_login</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>gui_login</strong>  &#x21d2; <tt><span class='object_link'><a href="../Hash.html" title="Hash (class)">Hash</a></span></tt><sup>?</sup> 
   
 
   
@@ -258,9 +323,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Initializes the GUI login process, setting up the window and handling user input.</p>
-
+    <p>Initializes the GUI login process.</p>
 
   </div>
 </div>
@@ -270,9 +333,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Executing the GUI login</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Start the GUI login process</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common (module)">Common</a></span></span><span class='period'>.</span><span class='id identifier rubyid_gui_login'>gui_login</span></code></pre>
     
@@ -284,14 +345,12 @@
     <li>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../Hash.html" title="Hash (class)">Hash</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>Launch data or exits the application if not available.</p>
-</div>
+        <div class='inline'><p>launch data if successful, otherwise nil</p></div>
       
     </li>
   
@@ -337,9 +396,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:47 2026 by
+  Generated on Sun May 10 17:26:21 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

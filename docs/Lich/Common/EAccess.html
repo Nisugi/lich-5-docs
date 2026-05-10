@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::EAccess";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,16 +80,15 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/eaccess.rb</dd>
+    <dd>documented/common/eaccess.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Module for handling EAccess related operations</p>
-
+    <p>Module for handling EAccess related operations</p>
 
   </div>
 </div>
@@ -97,9 +98,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Usage</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Usage</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'>EAccess</span><span class='period'>.</span><span class='id identifier rubyid_download_pem'><span class='object_link'><a href="#download_pem-class_method" title="Lich::Common::EAccess.download_pem (method)">download_pem</a></span></span></code></pre>
     
@@ -118,9 +117,7 @@
         <dt id="PACKET_SIZE-constant" class="">PACKET_SIZE =
           <div class="docstring">
   <div class="discussion">
-    
-<p>The size of the packet for reading data</p>
-
+    <p>The size of the packet for reading data</p>
 
   </div>
 </div>
@@ -165,9 +162,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Authenticates a user with the given credentials.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Authenticates a user with the given credentials.</p></div></span>
   
 </li>
 
@@ -189,9 +184,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Downloads the PEM file from the specified hostname and port.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Downloads the PEM file from the specified hostname and port.</p></div></span>
   
 </li>
 
@@ -213,9 +206,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the path to the PEM file.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the path to the PEM file.</p></div></span>
   
 </li>
 
@@ -237,9 +228,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the PEM file exists.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the PEM file exists.</p></div></span>
   
 </li>
 
@@ -261,9 +250,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Reads data from the connection.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Reads data from the connection.</p></div></span>
   
 </li>
 
@@ -285,9 +272,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Establishes a secure socket connection to the specified hostname and port.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Establishes a secure socket connection to the specified hostname and port.</p></div></span>
   
 </li>
 
@@ -309,14 +294,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Verifies the PEM certificate against the connection’s peer certificate.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Verifies the PEM certificate against the connection's peer certificate.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -336,9 +320,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Authenticates a user with the given credentials</p>
-
+    <p>Authenticates a user with the given credentials</p>
 
   </div>
 </div>
@@ -356,9 +338,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The user’s password</p>
-</div>
+        <div class='inline'><p>The user's password</p></div>
       
     </li>
   
@@ -372,9 +352,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The user’s account name</p>
-</div>
+        <div class='inline'><p>The user's account name</p></div>
       
     </li>
   
@@ -390,9 +368,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The character name (optional)</p>
-</div>
+        <div class='inline'><p>The character name (optional)</p></div>
       
     </li>
   
@@ -408,9 +384,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game code (optional)</p>
-</div>
+        <div class='inline'><p>The game code (optional)</p></div>
       
     </li>
   
@@ -426,9 +400,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Whether to use legacy authentication (default: false)</p>
-</div>
+        <div class='inline'><p>Whether to use legacy authentication (default: false)</p></div>
       
     </li>
   
@@ -445,9 +417,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The authentication result or error message</p>
-</div>
+        <div class='inline'><p>The authentication result or error message</p></div>
       
     </li>
   
@@ -659,9 +629,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Downloads the PEM file from the specified hostname and port</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Downloads the PEM file from the specified hostname and port</p>
 
   </div>
 </div>
@@ -681,9 +649,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The hostname to connect to (default: “eaccess.play.net”)</p>
-</div>
+        <div class='inline'><p>The hostname to connect to (default: &quot;eaccess.play.net&quot;)</p></div>
       
     </li>
   
@@ -699,9 +665,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The port to connect to (default: 7910)</p>
-</div>
+        <div class='inline'><p>The port to connect to (default: 7910)</p></div>
       
     </li>
   
@@ -758,9 +722,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the path to the PEM file</p>
-
+    <p>Returns the path to the PEM file</p>
 
   </div>
 </div>
@@ -777,9 +739,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The path to the PEM file</p>
-</div>
+        <div class='inline'><p>The path to the PEM file</p></div>
       
     </li>
   
@@ -817,9 +777,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the PEM file exists</p>
-
+    <p>Checks if the PEM file exists</p>
 
   </div>
 </div>
@@ -836,9 +794,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the PEM file exists, false otherwise</p>
-</div>
+        <div class='inline'><p>True if the PEM file exists, false otherwise</p></div>
       
     </li>
   
@@ -876,9 +832,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Reads data from the connection</p>
-
+    <p>Reads data from the connection</p>
 
   </div>
 </div>
@@ -896,9 +850,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The connection to read from</p>
-</div>
+        <div class='inline'><p>The connection to read from</p></div>
       
     </li>
   
@@ -915,9 +867,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The data read from the connection</p>
-</div>
+        <div class='inline'><p>The data read from the connection</p></div>
       
     </li>
   
@@ -955,9 +905,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Establishes a secure socket connection to the specified hostname and port</p>
-
+    <p>Establishes a secure socket connection to the specified hostname and port</p>
 
   </div>
 </div>
@@ -977,9 +925,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The hostname to connect to (default: “eaccess.play.net”)</p>
-</div>
+        <div class='inline'><p>The hostname to connect to (default: &quot;eaccess.play.net&quot;)</p></div>
       
     </li>
   
@@ -995,9 +941,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The port to connect to (default: 7910)</p>
-</div>
+        <div class='inline'><p>The port to connect to (default: 7910)</p></div>
       
     </li>
   
@@ -1014,9 +958,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The established SSL socket</p>
-</div>
+        <div class='inline'><p>The established SSL socket</p></div>
       
     </li>
   
@@ -1074,9 +1016,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Verifies the PEM certificate against the connection’s peer certificate</p>
-
+    <p>Verifies the PEM certificate against the connection's peer certificate</p>
 
   </div>
 </div>
@@ -1094,9 +1034,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The SSL connection to verify</p>
-</div>
+        <div class='inline'><p>The SSL connection to verify</p></div>
       
     </li>
   
@@ -1113,9 +1051,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the certificates match, false otherwise</p>
-</div>
+        <div class='inline'><p>True if the certificates match, false otherwise</p></div>
       
     </li>
   
@@ -1131,9 +1067,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If the certificates do not match and downloading fails</p>
-</div>
+        <div class='inline'><p>If the certificates do not match and downloading fails</p></div>
       
     </li>
   
@@ -1162,7 +1096,7 @@
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_verify_pem'>verify_pem</span><span class='lparen'>(</span><span class='id identifier rubyid_conn'>conn</span><span class='rparen'>)</span>
   <span class='comment'># return if conn.peer_cert.to_s = File.read(pem)
 </span>  <span class='kw'>if</span> <span class='op'>!</span><span class='lparen'>(</span><span class='id identifier rubyid_conn'>conn</span><span class='period'>.</span><span class='id identifier rubyid_peer_cert'>peer_cert</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>==</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_pem'>pem</span><span class='rparen'>)</span><span class='rparen'>)</span>
-    <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Exception, \nssl peer certificate did not match </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_pem'>pem</span><span class='embexpr_end'>}</span><span class='tstring_content'>\nwas:\n</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_conn'>conn</span><span class='period'>.</span><span class='id identifier rubyid_peer_cert'>peer_cert</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Exception, \nssl peer certificate did not match </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_pem'>pem</span><span class='embexpr_end'>}</span><span class='tstring_content'>\nwas:\n</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_conn'>conn</span><span class='period'>.</span><span class='id identifier rubyid_peer_cert'>peer_cert</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_download_pem'>download_pem</span>
   <span class='kw'>else</span>
     <span class='kw'>return</span> <span class='kw'>true</span>
@@ -1179,9 +1113,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:48 2026 by
+  Generated on Sun May 10 17:26:22 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

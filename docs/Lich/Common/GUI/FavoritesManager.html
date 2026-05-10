@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::GUI::FavoritesManager";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,7 +80,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/gui/favorites_manager.rb</dd>
+    <dd>documented/common/gui/favorites_manager.rb
+</dd>
   </dl>
   
 </div>
@@ -115,9 +118,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Adds a character to the favorites list.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Adds a character to the favorites list.</p></div></span>
   
 </li>
 
@@ -139,9 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Creates a character ID hash from the provided parameters.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Creates a character ID hash from the provided parameters.</p></div></span>
   
 </li>
 
@@ -163,9 +162,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Extracts character ID information from the provided entry data.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Extracts character ID information from the provided entry data.</p></div></span>
   
 </li>
 
@@ -187,9 +184,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if favorites are available in the specified data directory.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if favorites are available in the specified data directory.</p></div></span>
   
 </li>
 
@@ -211,9 +206,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Counts the number of favorites in the specified data directory.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the count of favorites for the specified data directory.</p></div></span>
   
 </li>
 
@@ -235,9 +228,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves all favorites for a specific account.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves all favorites for a specific account.</p></div></span>
   
 </li>
 
@@ -259,9 +250,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves all favorites for a given data directory.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves all favorites for the specified data directory.</p></div></span>
   
 </li>
 
@@ -283,9 +272,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves all favorites for a specific game.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves all favorites for a specific game.</p></div></span>
   
 </li>
 
@@ -307,9 +294,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if a character is in the favorites list.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if a character is in the favorites list.</p></div></span>
   
 </li>
 
@@ -331,9 +316,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Removes a character from the favorites list.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Removes a character from the favorites list.</p></div></span>
   
 </li>
 
@@ -355,9 +338,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Reorders the favorites list based on the provided order.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Reorders the favorites list based on the provided order.</p></div></span>
   
 </li>
 
@@ -379,9 +360,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Toggles a character’s favorite status.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Toggles a character's favorite status.</p></div></span>
   
 </li>
 
@@ -403,14 +382,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Validates and cleans up orphaned favorites in the specified data directory.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Validates the favorites list and removes any orphaned entries.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -430,22 +408,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Adds a character to the favorites list.</p>
-
+    <p>Adds a character to the favorites list.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::FavoritesManager (module)">FavoritesManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add_favorite'>add_favorite</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user123</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hero</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>game_001</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -458,9 +426,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where data is stored.</p>
-</div>
+        <div class='inline'><p>the directory containing data files</p></div>
       
     </li>
   
@@ -474,9 +440,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username associated with the character.</p>
-</div>
+        <div class='inline'><p>the user's account name</p></div>
       
     </li>
   
@@ -490,9 +454,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the character to add.</p>
-</div>
+        <div class='inline'><p>the name of the character to add</p></div>
       
     </li>
   
@@ -506,9 +468,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game code of the character.</p>
-</div>
+        <div class='inline'><p>the game code associated with the character</p></div>
       
     </li>
   
@@ -524,9 +484,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The frontend associated with the character (optional).</p>
-</div>
+        <div class='inline'><p>optional frontend identifier</p></div>
       
     </li>
   
@@ -543,9 +501,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns true if the character was added successfully, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the character was added successfully, false otherwise</p></div>
       
     </li>
   
@@ -561,9 +517,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If an error occurs during the operation.</p>
-</div>
+        <div class='inline'><p>if an error occurs during the operation</p></div>
       
     </li>
   
@@ -575,6 +529,7 @@
       <pre class="lines">
 
 
+15
 16
 17
 18
@@ -593,29 +548,28 @@
 31
 32
 33
-34
-35</pre>
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_add_favorite'>add_favorite</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='comma'>,</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span> <span class='id identifier rubyid_frontend'>frontend</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_data_dir'>data_dir</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_username'>username</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
 
   <span class='kw'>begin</span>
-    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add_favorite'><span class='object_link'><a href="YamlState.html#add_favorite-class_method" title="Lich::Common::GUI::YamlState.add_favorite (method)">add_favorite</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='comma'>,</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span> <span class='id identifier rubyid_frontend'>frontend</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add_favorite'><span class='object_link'><a href="../Authentication/EntryStore.html#add_favorite-class_method" title="Lich::Common::Authentication::EntryStore.add_favorite (method)">add_favorite</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='comma'>,</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span> <span class='id identifier rubyid_frontend'>frontend</span><span class='rparen'>)</span>
 
     <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span>
       <span class='id identifier rubyid_frontend_info'>frontend_info</span> <span class='op'>=</span> <span class='id identifier rubyid_frontend'>frontend</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_frontend'>frontend</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Added character &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_char_name'>char_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_game_code'>game_code</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_frontend_info'>frontend_info</span><span class='embexpr_end'>}</span><span class='tstring_content'> from account &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_username'>username</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; to favorites</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Added character &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_char_name'>char_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_game_code'>game_code</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_frontend_info'>frontend_info</span><span class='embexpr_end'>}</span><span class='tstring_content'> from account &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_username'>username</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; to favorites</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>else</span>
       <span class='id identifier rubyid_frontend_info'>frontend_info</span> <span class='op'>=</span> <span class='id identifier rubyid_frontend'>frontend</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_frontend'>frontend</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Failed to add character &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_char_name'>char_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_game_code'>game_code</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_frontend_info'>frontend_info</span><span class='embexpr_end'>}</span><span class='tstring_content'> from account &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_username'>username</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; to favorites</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Failed to add character &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_char_name'>char_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_game_code'>game_code</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_frontend_info'>frontend_info</span><span class='embexpr_end'>}</span><span class='tstring_content'> from account &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_username'>username</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; to favorites</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
 
     <span class='id identifier rubyid_result'>result</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.add_favorite: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.add_favorite: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>false</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -635,22 +589,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Creates a character ID hash from the provided parameters.</p>
-
+    <p>Creates a character ID hash from the provided parameters.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::FavoritesManager (module)">FavoritesManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_character_id'>create_character_id</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user123</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hero</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>game_001</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -663,9 +607,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username associated with the character.</p>
-</div>
+        <div class='inline'><p>the user's account name</p></div>
       
     </li>
   
@@ -679,9 +621,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the character.</p>
-</div>
+        <div class='inline'><p>the name of the character</p></div>
       
     </li>
   
@@ -695,9 +635,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game code of the character.</p>
-</div>
+        <div class='inline'><p>the game code associated with the character</p></div>
       
     </li>
   
@@ -713,9 +651,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The frontend associated with the character (optional).</p>
-</div>
+        <div class='inline'><p>optional frontend identifier</p></div>
       
     </li>
   
@@ -732,9 +668,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash representing the character ID.</p>
-</div>
+        <div class='inline'><p>a hash representing the character ID</p></div>
       
     </li>
   
@@ -746,17 +680,17 @@
       <pre class="lines">
 
 
-274
-275
-276
-277
-278
-279
-280
-281</pre>
+266
+267
+268
+269
+270
+271
+272
+273</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 274</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 266</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_character_id'>create_character_id</span><span class='lparen'>(</span><span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='comma'>,</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span> <span class='id identifier rubyid_frontend'>frontend</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='lbrace'>{</span>
@@ -782,22 +716,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Extracts character ID information from the provided entry data.</p>
-
+    <p>Extracts character ID information from the provided entry data.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::FavoritesManager (module)">FavoritesManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_extract_character_id'>extract_character_id</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:user_id</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user123</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:char_name</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hero</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:game_code</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>game_001</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -810,9 +734,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The entry data containing character information.</p>
-</div>
+        <div class='inline'><p>the entry data containing character information</p></div>
       
     </li>
   
@@ -829,9 +751,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash representing the extracted character ID.</p>
-</div>
+        <div class='inline'><p>a hash containing the extracted character ID information, or an empty hash if input is invalid</p></div>
       
     </li>
   
@@ -843,19 +763,19 @@
       <pre class="lines">
 
 
-288
-289
-290
-291
-292
-293
-294
-295
-296
-297</pre>
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 288</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 279</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_extract_character_id'>extract_character_id</span><span class='lparen'>(</span><span class='id identifier rubyid_entry_data'>entry_data</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='id identifier rubyid_entry_data'>entry_data</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></span><span class='rparen'>)</span>
@@ -883,22 +803,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if favorites are available in the specified data directory.</p>
-
+    <p>Checks if favorites are available in the specified data directory.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::FavoritesManager (module)">FavoritesManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_favorites_available?'>favorites_available?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -911,9 +821,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where data is stored.</p>
-</div>
+        <div class='inline'><p>the directory containing data files</p></div>
       
     </li>
   
@@ -930,9 +838,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns true if favorites are available, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if favorites are available, false otherwise</p></div>
       
     </li>
   
@@ -944,20 +850,20 @@
       <pre class="lines">
 
 
-304
-305
-306
-307
-308
-309</pre>
+294
+295
+296
+297
+298
+299</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 304</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 294</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_favorites_available?'>favorites_available?</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_data_dir'>data_dir</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
 
-  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="YamlState.html#yaml_file_path-class_method" title="Lich::Common::GUI::YamlState.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="../Authentication/EntryStore.html#yaml_file_path-class_method" title="Lich::Common::Authentication::EntryStore.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
   <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -976,22 +882,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Counts the number of favorites in the specified data directory.</p>
-
+    <p>Returns the count of favorites for the specified data directory.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::FavoritesManager (module)">FavoritesManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_favorites_count'>favorites_count</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1004,9 +900,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where data is stored.</p>
-</div>
+        <div class='inline'><p>the directory containing data files</p></div>
       
     </li>
   
@@ -1023,9 +917,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The count of favorites.</p>
-</div>
+        <div class='inline'><p>the number of favorites</p></div>
       
     </li>
   
@@ -1041,9 +933,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If an error occurs during the operation.</p>
-</div>
+        <div class='inline'><p>if an error occurs during the operation</p></div>
       
     </li>
   
@@ -1055,19 +945,19 @@
       <pre class="lines">
 
 
+158
+159
+160
+161
+162
+163
+164
 165
 166
-167
-168
-169
-170
-171
-172
-173
-174</pre>
+167</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 165</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 158</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_favorites_count'>favorites_count</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='int'>0</span> <span class='kw'>if</span> <span class='id identifier rubyid_data_dir'>data_dir</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1075,7 +965,7 @@
   <span class='kw'>begin</span>
     <span class='id identifier rubyid_get_all_favorites'>get_all_favorites</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.favorites_count: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.favorites_count: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='int'>0</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1095,22 +985,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves all favorites for a specific account.</p>
-
+    <p>Retrieves all favorites for a specific account.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::FavoritesManager (module)">FavoritesManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_account_favorites'>get_account_favorites</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user123</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1123,9 +1003,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where data is stored.</p>
-</div>
+        <div class='inline'><p>the directory containing data files</p></div>
       
     </li>
   
@@ -1139,9 +1017,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username associated with the account.</p>
-</div>
+        <div class='inline'><p>the user's account name</p></div>
       
     </li>
   
@@ -1158,9 +1034,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of favorite characters for the account.</p>
-</div>
+        <div class='inline'><p>an array of favorites associated with the account</p></div>
       
     </li>
   
@@ -1176,9 +1050,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If an error occurs during the operation.</p>
-</div>
+        <div class='inline'><p>if an error occurs during the operation</p></div>
       
     </li>
   
@@ -1190,20 +1062,20 @@
       <pre class="lines">
 
 
+175
+176
+177
+178
+179
+180
+181
+182
 183
 184
-185
-186
-187
-188
-189
-190
-191
-192
-193</pre>
+185</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 183</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 175</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_account_favorites'>get_account_favorites</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_data_dir'>data_dir</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_username'>username</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1212,7 +1084,7 @@
     <span class='id identifier rubyid_all_favorites'>all_favorites</span> <span class='op'>=</span> <span class='id identifier rubyid_get_all_favorites'>get_all_favorites</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_all_favorites'>all_favorites</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_fav'>fav</span><span class='op'>|</span> <span class='id identifier rubyid_fav'>fav</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_username'>username</span> <span class='rbrace'>}</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.get_account_favorites: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.get_account_favorites: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1232,22 +1104,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves all favorites for a given data directory.</p>
-
+    <p>Retrieves all favorites for the specified data directory.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::FavoritesManager (module)">FavoritesManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_all_favorites'>get_all_favorites</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1260,9 +1122,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where data is stored.</p>
-</div>
+        <div class='inline'><p>the directory containing data files</p></div>
       
     </li>
   
@@ -1279,9 +1139,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of favorite characters.</p>
-</div>
+        <div class='inline'><p>an array of favorite characters, each represented as a hash</p></div>
       
     </li>
   
@@ -1297,9 +1155,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If an error occurs during the operation.</p>
-</div>
+        <div class='inline'><p>if an error occurs during the operation</p></div>
       
     </li>
   
@@ -1311,27 +1167,27 @@
       <pre class="lines">
 
 
+117
+118
+119
+120
+121
 122
 123
 124
 125
-126
-127
-128
-129
-130
-131</pre>
+126</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 117</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_all_favorites'>get_all_favorites</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_data_dir'>data_dir</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
 
   <span class='kw'>begin</span>
-    <span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_favorites'><span class='object_link'><a href="YamlState.html#get_favorites-class_method" title="Lich::Common::GUI::YamlState.get_favorites (method)">get_favorites</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_favorites'><span class='object_link'><a href="../Authentication/EntryStore.html#get_favorites-class_method" title="Lich::Common::Authentication::EntryStore.get_favorites (method)">get_favorites</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.get_all_favorites: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.get_all_favorites: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1351,22 +1207,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves all favorites for a specific game.</p>
-
+    <p>Retrieves all favorites for a specific game.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::FavoritesManager (module)">FavoritesManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_game_favorites'>get_game_favorites</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>game_001</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1379,9 +1225,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where data is stored.</p>
-</div>
+        <div class='inline'><p>the directory containing data files</p></div>
       
     </li>
   
@@ -1395,9 +1239,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game code to filter favorites.</p>
-</div>
+        <div class='inline'><p>the game code to filter favorites</p></div>
       
     </li>
   
@@ -1414,9 +1256,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array of favorite characters for the game.</p>
-</div>
+        <div class='inline'><p>an array of favorites associated with the game</p></div>
       
     </li>
   
@@ -1432,9 +1272,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If an error occurs during the operation.</p>
-</div>
+        <div class='inline'><p>if an error occurs during the operation</p></div>
       
     </li>
   
@@ -1446,20 +1284,20 @@
       <pre class="lines">
 
 
+193
+194
+195
+196
+197
+198
+199
+200
+201
 202
-203
-204
-205
-206
-207
-208
-209
-210
-211
-212</pre>
+203</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 202</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 193</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_game_favorites'>get_game_favorites</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_data_dir'>data_dir</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1468,7 +1306,7 @@
     <span class='id identifier rubyid_all_favorites'>all_favorites</span> <span class='op'>=</span> <span class='id identifier rubyid_get_all_favorites'>get_all_favorites</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_all_favorites'>all_favorites</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_fav'>fav</span><span class='op'>|</span> <span class='id identifier rubyid_fav'>fav</span><span class='lbracket'>[</span><span class='symbol'>:game_code</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_game_code'>game_code</span> <span class='rbrace'>}</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.get_game_favorites: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.get_game_favorites: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1488,22 +1326,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if a character is in the favorites list.</p>
-
+    <p>Checks if a character is in the favorites list.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::FavoritesManager (module)">FavoritesManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_is_favorite?'>is_favorite?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user123</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hero</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>game_001</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1516,9 +1344,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where data is stored.</p>
-</div>
+        <div class='inline'><p>the directory containing data files</p></div>
       
     </li>
   
@@ -1532,9 +1358,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username associated with the character.</p>
-</div>
+        <div class='inline'><p>the user's account name</p></div>
       
     </li>
   
@@ -1548,9 +1372,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the character to check.</p>
-</div>
+        <div class='inline'><p>the name of the character to check</p></div>
       
     </li>
   
@@ -1564,9 +1386,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game code of the character.</p>
-</div>
+        <div class='inline'><p>the game code associated with the character</p></div>
       
     </li>
   
@@ -1582,9 +1402,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The frontend associated with the character (optional).</p>
-</div>
+        <div class='inline'><p>optional frontend identifier</p></div>
       
     </li>
   
@@ -1601,9 +1419,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns true if the character is a favorite, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the character is a favorite, false otherwise</p></div>
       
     </li>
   
@@ -1619,9 +1435,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If an error occurs during the operation.</p>
-</div>
+        <div class='inline'><p>if an error occurs during the operation</p></div>
       
     </li>
   
@@ -1633,27 +1447,27 @@
       <pre class="lines">
 
 
+101
+102
+103
+104
 105
 106
 107
 108
 109
-110
-111
-112
-113
-114</pre>
+110</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 105</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_is_favorite?'>is_favorite?</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='comma'>,</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span> <span class='id identifier rubyid_frontend'>frontend</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_data_dir'>data_dir</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_username'>username</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
 
   <span class='kw'>begin</span>
-    <span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_is_favorite?'><span class='object_link'><a href="YamlState.html#is_favorite%3F-class_method" title="Lich::Common::GUI::YamlState.is_favorite? (method)">is_favorite?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='comma'>,</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span> <span class='id identifier rubyid_frontend'>frontend</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_is_favorite?'><span class='object_link'><a href="../Authentication/EntryStore.html#is_favorite%3F-class_method" title="Lich::Common::Authentication::EntryStore.is_favorite? (method)">is_favorite?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='comma'>,</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span> <span class='id identifier rubyid_frontend'>frontend</span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.is_favorite?: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.is_favorite?: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>false</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1673,22 +1487,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Removes a character from the favorites list.</p>
-
+    <p>Removes a character from the favorites list.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::FavoritesManager (module)">FavoritesManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_remove_favorite'>remove_favorite</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user123</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hero</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>game_001</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1701,9 +1505,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where data is stored.</p>
-</div>
+        <div class='inline'><p>the directory containing data files</p></div>
       
     </li>
   
@@ -1717,9 +1519,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username associated with the character.</p>
-</div>
+        <div class='inline'><p>the user's account name</p></div>
       
     </li>
   
@@ -1733,9 +1533,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the character to remove.</p>
-</div>
+        <div class='inline'><p>the name of the character to remove</p></div>
       
     </li>
   
@@ -1749,9 +1547,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game code of the character.</p>
-</div>
+        <div class='inline'><p>the game code associated with the character</p></div>
       
     </li>
   
@@ -1767,9 +1563,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The frontend associated with the character (optional).</p>
-</div>
+        <div class='inline'><p>optional frontend identifier</p></div>
       
     </li>
   
@@ -1786,9 +1580,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns true if the character was removed successfully, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the character was removed successfully, false otherwise</p></div>
       
     </li>
   
@@ -1804,9 +1596,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If an error occurs during the operation.</p>
-</div>
+        <div class='inline'><p>if an error occurs during the operation</p></div>
       
     </li>
   
@@ -1818,6 +1608,8 @@
       <pre class="lines">
 
 
+45
+46
 47
 48
 49
@@ -1835,30 +1627,28 @@
 61
 62
 63
-64
-65
-66</pre>
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_remove_favorite'>remove_favorite</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='comma'>,</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span> <span class='id identifier rubyid_frontend'>frontend</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_data_dir'>data_dir</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_username'>username</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
 
   <span class='kw'>begin</span>
-    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_remove_favorite'><span class='object_link'><a href="YamlState.html#remove_favorite-class_method" title="Lich::Common::GUI::YamlState.remove_favorite (method)">remove_favorite</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='comma'>,</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span> <span class='id identifier rubyid_frontend'>frontend</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_remove_favorite'><span class='object_link'><a href="../Authentication/EntryStore.html#remove_favorite-class_method" title="Lich::Common::Authentication::EntryStore.remove_favorite (method)">remove_favorite</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='comma'>,</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span> <span class='id identifier rubyid_frontend'>frontend</span><span class='rparen'>)</span>
 
     <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span>
       <span class='id identifier rubyid_frontend_info'>frontend_info</span> <span class='op'>=</span> <span class='id identifier rubyid_frontend'>frontend</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_frontend'>frontend</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Removed character &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_char_name'>char_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_game_code'>game_code</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_frontend_info'>frontend_info</span><span class='embexpr_end'>}</span><span class='tstring_content'> from account &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_username'>username</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; from favorites</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Removed character &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_char_name'>char_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_game_code'>game_code</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_frontend_info'>frontend_info</span><span class='embexpr_end'>}</span><span class='tstring_content'> from account &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_username'>username</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; from favorites</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>else</span>
       <span class='id identifier rubyid_frontend_info'>frontend_info</span> <span class='op'>=</span> <span class='id identifier rubyid_frontend'>frontend</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_frontend'>frontend</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Failed to remove character &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_char_name'>char_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_game_code'>game_code</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_frontend_info'>frontend_info</span><span class='embexpr_end'>}</span><span class='tstring_content'> from account &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_username'>username</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; from favorites</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Failed to remove character &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_char_name'>char_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_game_code'>game_code</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_frontend_info'>frontend_info</span><span class='embexpr_end'>}</span><span class='tstring_content'> from account &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_username'>username</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; from favorites</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
 
     <span class='id identifier rubyid_result'>result</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.remove_favorite: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.remove_favorite: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>false</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1878,22 +1668,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Reorders the favorites list based on the provided order.</p>
-
+    <p>Reorders the favorites list based on the provided order.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::FavoritesManager (module)">FavoritesManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reorder_favorites'>reorder_favorites</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='lbrace'>{</span><span class='symbol'>:user_id</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user123</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:char_name</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hero</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:game_code</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>game_001</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span><span class='rbracket'>]</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1906,9 +1686,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where data is stored.</p>
-</div>
+        <div class='inline'><p>the directory containing data files</p></div>
       
     </li>
   
@@ -1922,9 +1700,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The ordered list of favorites.</p>
-</div>
+        <div class='inline'><p>the new order of favorites</p></div>
       
     </li>
   
@@ -1941,9 +1717,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns true if the reordering was successful, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if the reorder was successful, false otherwise</p></div>
       
     </li>
   
@@ -1959,9 +1733,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If an error occurs during the operation.</p>
-</div>
+        <div class='inline'><p>if an error occurs during the operation</p></div>
       
     </li>
   
@@ -1973,6 +1745,12 @@
       <pre class="lines">
 
 
+134
+135
+136
+137
+138
+139
 140
 141
 142
@@ -1984,32 +1762,26 @@
 148
 149
 150
-151
-152
-153
-154
-155
-156
-157</pre>
+151</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 140</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 134</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_reorder_favorites'>reorder_favorites</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_ordered_favorites'>ordered_favorites</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_data_dir'>data_dir</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_ordered_favorites'>ordered_favorites</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
 
   <span class='kw'>begin</span>
-    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reorder_favorites'><span class='object_link'><a href="YamlState.html#reorder_favorites-class_method" title="Lich::Common::GUI::YamlState.reorder_favorites (method)">reorder_favorites</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_ordered_favorites'>ordered_favorites</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reorder_favorites'><span class='object_link'><a href="../Authentication/EntryStore.html#reorder_favorites-class_method" title="Lich::Common::Authentication::EntryStore.reorder_favorites (method)">reorder_favorites</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_ordered_favorites'>ordered_favorites</span><span class='rparen'>)</span>
 
     <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Successfully reordered </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ordered_favorites'>ordered_favorites</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='embexpr_end'>}</span><span class='tstring_content'> favorites</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Successfully reordered </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ordered_favorites'>ordered_favorites</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='embexpr_end'>}</span><span class='tstring_content'> favorites</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>else</span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Failed to reorder favorites</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>warning: Failed to reorder favorites</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
 
     <span class='id identifier rubyid_result'>result</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.reorder_favorites: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.reorder_favorites: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>false</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -2029,22 +1801,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Toggles a character’s favorite status.</p>
-
+    <p>Toggles a character's favorite status.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::FavoritesManager (module)">FavoritesManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_toggle_favorite'>toggle_favorite</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user123</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hero</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>game_001</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2057,9 +1819,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where data is stored.</p>
-</div>
+        <div class='inline'><p>the directory containing data files</p></div>
       
     </li>
   
@@ -2073,9 +1833,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The username associated with the character.</p>
-</div>
+        <div class='inline'><p>the user's account name</p></div>
       
     </li>
   
@@ -2089,9 +1847,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The name of the character to toggle.</p>
-</div>
+        <div class='inline'><p>the name of the character to toggle</p></div>
       
     </li>
   
@@ -2105,9 +1861,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game code of the character.</p>
-</div>
+        <div class='inline'><p>the game code associated with the character</p></div>
       
     </li>
   
@@ -2123,9 +1877,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The frontend associated with the character (optional).</p>
-</div>
+        <div class='inline'><p>optional frontend identifier</p></div>
       
     </li>
   
@@ -2142,9 +1894,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns true if the character is now a favorite, false if it was removed.</p>
-</div>
+        <div class='inline'><p>true if the character is now a favorite, false if it was removed</p></div>
       
     </li>
   
@@ -2160,9 +1910,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If an error occurs during the operation.</p>
-</div>
+        <div class='inline'><p>if an error occurs during the operation</p></div>
       
     </li>
   
@@ -2174,6 +1922,9 @@
       <pre class="lines">
 
 
+75
+76
+77
 78
 79
 80
@@ -2186,13 +1937,10 @@
 87
 88
 89
-90
-91
-92
-93</pre>
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_toggle_favorite'>toggle_favorite</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='comma'>,</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='comma'>,</span> <span class='id identifier rubyid_frontend'>frontend</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_data_dir'>data_dir</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_username'>username</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_char_name'>char_name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_game_code'>game_code</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -2206,7 +1954,7 @@
       <span class='kw'>true</span>
     <span class='kw'>end</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.toggle_favorite: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.toggle_favorite: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>false</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -2226,22 +1974,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Validates and cleans up orphaned favorites in the specified data directory.</p>
-
+    <p>Validates the favorites list and removes any orphaned entries.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::FavoritesManager (module)">FavoritesManager</a></span></span><span class='period'>.</span><span class='id identifier rubyid_validate_and_cleanup_favorites'>validate_and_cleanup_favorites</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -2254,9 +1992,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory where data is stored.</p>
-</div>
+        <div class='inline'><p>the directory containing data files</p></div>
       
     </li>
   
@@ -2273,9 +2009,12 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash containing validation results and cleanup statistics.</p>
-</div>
+        <div class='inline'><p>a hash containing validation results, including:</p>
+<ul>
+<li>valid [Boolean] indicates if the validation was successful</li>
+<li>cleaned [Integer] number of cleaned favorites</li>
+<li>errors [Array<String>] list of errors encountered during cleanup</li>
+</ul></div>
       
     </li>
   
@@ -2291,9 +2030,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If an error occurs during the operation.</p>
-</div>
+        <div class='inline'><p>if an error occurs during the operation</p></div>
       
     </li>
   
@@ -2305,6 +2042,13 @@
       <pre class="lines">
 
 
+213
+214
+215
+216
+217
+218
+219
 220
 221
 222
@@ -2342,24 +2086,17 @@
 254
 255
 256
-257
-258
-259
-260
-261
-262
-263
-264</pre>
+257</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 220</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/favorites_manager.rb', line 213</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_validate_and_cleanup_favorites'>validate_and_cleanup_favorites</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='lbrace'>{</span> <span class='label'>valid:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>cleaned:</span> <span class='int'>0</span><span class='comma'>,</span> <span class='label'>errors:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Invalid data directory</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='rbrace'>}</span> <span class='kw'>if</span> <span class='id identifier rubyid_data_dir'>data_dir</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
 
   <span class='kw'>begin</span>
     <span class='comment'># Load all entry data to validate against
-</span>    <span class='id identifier rubyid_entry_data'>entry_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_saved_entries'><span class='object_link'><a href="YamlState.html#load_saved_entries-class_method" title="Lich::Common::GUI::YamlState.load_saved_entries (method)">load_saved_entries</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
+</span>    <span class='id identifier rubyid_entry_data'>entry_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_saved_entries'><span class='object_link'><a href="../Authentication/EntryStore.html#load_saved_entries-class_method" title="Lich::Common::Authentication::EntryStore.load_saved_entries (method)">load_saved_entries</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_favorites'>favorites</span> <span class='op'>=</span> <span class='id identifier rubyid_get_all_favorites'>get_all_favorites</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
 
     <span class='id identifier rubyid_cleaned_count'>cleaned_count</span> <span class='op'>=</span> <span class='int'>0</span>
@@ -2379,7 +2116,7 @@
 </span>        <span class='kw'>if</span> <span class='id identifier rubyid_remove_favorite'>remove_favorite</span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_favorite'>favorite</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_favorite'>favorite</span><span class='lbracket'>[</span><span class='symbol'>:char_name</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_favorite'>favorite</span><span class='lbracket'>[</span><span class='symbol'>:game_code</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_favorite'>favorite</span><span class='lbracket'>[</span><span class='symbol'>:frontend</span><span class='rbracket'>]</span><span class='rparen'>)</span>
           <span class='id identifier rubyid_cleaned_count'>cleaned_count</span> <span class='op'>+=</span> <span class='int'>1</span>
           <span class='id identifier rubyid_frontend_info'>frontend_info</span> <span class='op'>=</span> <span class='id identifier rubyid_favorite'>favorite</span><span class='lbracket'>[</span><span class='symbol'>:frontend</span><span class='rbracket'>]</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_favorite'>favorite</span><span class='lbracket'>[</span><span class='symbol'>:frontend</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
-          <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Removed orphaned favorite: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_favorite'>favorite</span><span class='lbracket'>[</span><span class='symbol'>:char_name</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_favorite'>favorite</span><span class='lbracket'>[</span><span class='symbol'>:game_code</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_frontend_info'>frontend_info</span><span class='embexpr_end'>}</span><span class='tstring_content'> from </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_favorite'>favorite</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+          <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>info: Removed orphaned favorite: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_favorite'>favorite</span><span class='lbracket'>[</span><span class='symbol'>:char_name</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_favorite'>favorite</span><span class='lbracket'>[</span><span class='symbol'>:game_code</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_frontend_info'>frontend_info</span><span class='embexpr_end'>}</span><span class='tstring_content'> from </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_favorite'>favorite</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
         <span class='kw'>else</span>
           <span class='id identifier rubyid_frontend_info'>frontend_info</span> <span class='op'>=</span> <span class='id identifier rubyid_favorite'>favorite</span><span class='lbracket'>[</span><span class='symbol'>:frontend</span><span class='rbracket'>]</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_favorite'>favorite</span><span class='lbracket'>[</span><span class='symbol'>:frontend</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
           <span class='id identifier rubyid_errors'>errors</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to remove orphaned favorite: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_favorite'>favorite</span><span class='lbracket'>[</span><span class='symbol'>:char_name</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_favorite'>favorite</span><span class='lbracket'>[</span><span class='symbol'>:game_code</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_frontend_info'>frontend_info</span><span class='embexpr_end'>}</span><span class='tstring_content'> from </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_favorite'>favorite</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -2395,7 +2132,7 @@
       <span class='label'>errors:</span> <span class='id identifier rubyid_errors'>errors</span>
     <span class='rbrace'>}</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.validate_and_cleanup_favorites: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Error in FavoritesManager.validate_and_cleanup_favorites: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='lbrace'>{</span> <span class='label'>valid:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>cleaned:</span> <span class='int'>0</span><span class='comma'>,</span> <span class='label'>errors:</span> <span class='lbracket'>[</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -2409,9 +2146,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:53 2026 by
+  Generated on Sun May 10 17:26:26 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

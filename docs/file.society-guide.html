@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "society-guide";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="file_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -57,17 +59,11 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'>
-<h1 id="label-Society+Guide">Society Guide</h1>
-
+      <div id="content"><div id='filecontents'><h1 id="Society_Guide">Society Guide</h1>
 <p>This guide covers working with the three societies (Order of Voln, Council of Light, Guardians of Sunfist) in Lich scripts for GemStone IV.</p>
-
-<h2 id="label-Overview">Overview</h2>
-
-<p>The <code>Society</code> class and its subclasses provide access to your character’s society membership, rank, tasks, and abilities.</p>
-
-<h2 id="label-Basic+Society+Information">Basic Society Information</h2>
-
+<h2 id="Overview">Overview</h2>
+<p>The <code>Society</code> class and its subclasses provide access to your character's society membership, rank, tasks, and abilities.</p>
+<h2 id="Basic_Society_Information">Basic Society Information</h2>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get your society membership
 </span><span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_membership'>membership</span>    <span class='comment'># &quot;Order of Voln&quot;, &quot;Council of Light&quot;, &quot;Guardians of Sunfist&quot;, or nil
 </span><span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span>        <span class='comment'># Alias for membership
@@ -78,9 +74,7 @@
 <span class='comment'># Get current society task
 </span><span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_task'>task</span>          <span class='comment'># Task description or status message
 </span></code></pre>
-
-<h3 id="label-Checking+Membership">Checking Membership</h3>
-
+<h3 id="Checking_Membership">Checking Membership</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Check if member of specific society
 </span><span class='kw'>def</span> <span class='id identifier rubyid_voln_member?'>voln_member?</span>
   <span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_membership'>membership</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Order of Voln</span><span class='tstring_end'>&quot;</span></span>
@@ -99,22 +93,16 @@
   <span class='op'>!</span><span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_membership'>membership</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_membership'>membership</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>None</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Order+of+Voln">Order of Voln</h2>
-
+<h2 id="Order_of_Voln">Order of Voln</h2>
 <p>The Order of Voln is dedicated to releasing undead from their suffering.</p>
-
-<h3 id="label-Accessing+Voln+Data">Accessing Voln Data</h3>
-
+<h3 id="Accessing_Voln_Data">Accessing Voln Data</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Quick access
 </span><span class='const'>Societies</span><span class='period'>.</span><span class='id identifier rubyid_voln'>voln</span>              <span class='comment'># Returns OrderOfVoln class
 </span>
 <span class='comment'># Or full path
 </span><span class='const'><span class='object_link'><a href="Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Lich/Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Lich/Gemstone/Societies.html" title="Lich::Gemstone::Societies (module)">Societies</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Lich/Gemstone/Societies/OrderOfVoln.html" title="Lich::Gemstone::Societies::OrderOfVoln (class)">OrderOfVoln</a></span></span>
 </code></pre>
-
-<h3 id="label-Voln+Favor">Voln Favor</h3>
-
+<h3 id="Voln_Favor">Voln Favor</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get current favor
 </span><span class='const'>Societies</span><span class='op'>::</span><span class='const'>OrderOfVoln</span><span class='period'>.</span><span class='id identifier rubyid_favor'>favor</span>
 
@@ -126,12 +114,9 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Low on favor!</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Voln+Symbols+-28Abilities-29">Voln Symbols (Abilities)</h3>
-
+<h3 id="Voln_Symbols__Abilities_">Voln Symbols (Abilities)</h3>
 <p>Voln members gain Symbols as they progress through ranks:</p>
-
-<table role="table">
+<table>
 <thead>
 <tr>
 <th>Rank</th>
@@ -225,19 +210,19 @@
 </tr>
 <tr>
 <td>22</td>
-<td>Kai’s Smite</td>
+<td>Kai's Smite</td>
 </tr>
 <tr>
 <td>23</td>
-<td>V’tull’s Fury</td>
+<td>V'tull's Fury</td>
 </tr>
 <tr>
 <td>24</td>
-<td>Phoen’s Illumination</td>
+<td>Phoen's Illumination</td>
 </tr>
 <tr>
 <td>25</td>
-<td>Lorminstra’s Blessing</td>
+<td>Lorminstra's Blessing</td>
 </tr>
 <tr>
 <td>26</td>
@@ -245,9 +230,7 @@
 </tr>
 </tbody>
 </table>
-
-<h3 id="label-Using+Voln+Symbols">Using Voln Symbols</h3>
-
+<h3 id="Using_Voln_Symbols">Using Voln Symbols</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Check if you know a symbol
 </span><span class='kw'>if</span> <span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_rank'>rank</span> <span class='op'>&gt;=</span> <span class='int'>14</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You know Symbol of Turning</span><span class='tstring_end'>&quot;</span></span>
@@ -258,25 +241,18 @@
   <span class='id identifier rubyid_fput'><span class='object_link'><a href="top-level-namespace.html#fput-instance_method" title="#fput (method)">fput</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>symbol of turning</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Council+of+Light">Council of Light</h2>
-
+<h2 id="Council_of_Light">Council of Light</h2>
 <p>The Council of Light combats the forces of darkness through magical means.</p>
-
-<h3 id="label-Accessing+CoL+Data">Accessing CoL Data</h3>
-
+<h3 id="Accessing_CoL_Data">Accessing CoL Data</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Quick access
 </span><span class='const'>Societies</span><span class='period'>.</span><span class='id identifier rubyid_col'>col</span>               <span class='comment'># Returns CouncilOfLight class
 </span>
 <span class='comment'># Or full path
 </span><span class='const'><span class='object_link'><a href="Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Lich/Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Lich/Gemstone/Societies.html" title="Lich::Gemstone::Societies (module)">Societies</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Lich/Gemstone/Societies/CouncilOfLight.html" title="Lich::Gemstone::Societies::CouncilOfLight (class)">CouncilOfLight</a></span></span>
 </code></pre>
-
-<h3 id="label-CoL+Abilities">CoL Abilities</h3>
-
+<h3 id="CoL_Abilities">CoL Abilities</h3>
 <p>Council of Light abilities are gained through ranks:</p>
-
-<table role="table">
+<table>
 <thead>
 <tr>
 <th>Rank Range</th>
@@ -302,25 +278,18 @@
 </tr>
 </tbody>
 </table>
-
-<h2 id="label-Guardians+of+Sunfist">Guardians of Sunfist</h2>
-
+<h2 id="Guardians_of_Sunfist">Guardians of Sunfist</h2>
 <p>The Guardians of Sunfist are warriors dedicated to protecting Elanthia.</p>
-
-<h3 id="label-Accessing+Sunfist+Data">Accessing Sunfist Data</h3>
-
+<h3 id="Accessing_Sunfist_Data">Accessing Sunfist Data</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Quick access
 </span><span class='const'>Societies</span><span class='period'>.</span><span class='id identifier rubyid_sunfist'>sunfist</span>           <span class='comment'># Returns GuardiansOfSunfist class
 </span>
 <span class='comment'># Or full path
 </span><span class='const'><span class='object_link'><a href="Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Lich/Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Lich/Gemstone/Societies.html" title="Lich::Gemstone::Societies (module)">Societies</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Lich/Gemstone/Societies/GuardiansOfSunfist.html" title="Lich::Gemstone::Societies::GuardiansOfSunfist (class)">GuardiansOfSunfist</a></span></span>
 </code></pre>
-
-<h3 id="label-Sigil+Abilities">Sigil Abilities</h3>
-
+<h3 id="Sigil_Abilities">Sigil Abilities</h3>
 <p>Sunfist members use Sigils for their abilities:</p>
-
-<table role="table">
+<table>
 <thead>
 <tr>
 <th>Rank Range</th>
@@ -346,11 +315,8 @@
 </tr>
 </tbody>
 </table>
-
-<h2 id="label-Common+Patterns">Common Patterns</h2>
-
-<h3 id="label-Society-Based+Script+Behavior">Society-Based Script Behavior</h3>
-
+<h2 id="Common_Patterns">Common Patterns</h2>
+<h3 id="Society_Based_Script_Behavior">Society-Based Script Behavior</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_use_society_ability'>use_society_ability</span>
   <span class='kw'>case</span> <span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_membership'>membership</span>
   <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Order of Voln</span><span class='tstring_end'>&quot;</span></span>
@@ -366,9 +332,7 @@
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Checking+for+Undead+-28Voln-29">Checking for Undead (Voln)</h3>
-
+<h3 id="Checking_for_Undead__Voln_">Checking for Undead (Voln)</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_should_use_symbol?'>should_use_symbol?</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_voln_member?'>voln_member?</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='const'>Societies</span><span class='op'>::</span><span class='const'>OrderOfVoln</span><span class='period'>.</span><span class='id identifier rubyid_favor'>favor</span> <span class='op'>&lt;</span> <span class='int'>50</span>
@@ -377,9 +341,7 @@
 </span>  <span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_npcs'>npcs</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_npc'>npc</span><span class='op'>|</span> <span class='id identifier rubyid_npc'>npc</span><span class='period'>.</span><span class='id identifier rubyid_type?'>type?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>undead</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Society+Task+Handling">Society Task Handling</h3>
-
+<h3 id="Society_Task_Handling">Society Task Handling</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_check_society_task'>check_society_task</span>
   <span class='id identifier rubyid_task'>task</span> <span class='op'>=</span> <span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_task'>task</span>
 
@@ -392,9 +354,7 @@
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Rank-Based+Features">Rank-Based Features</h3>
-
+<h3 id="Rank_Based_Features">Rank-Based Features</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_available_abilities'>available_abilities</span>
   <span class='id identifier rubyid_rank'>rank</span> <span class='op'>=</span> <span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_rank'>rank</span>
   <span class='id identifier rubyid_abilities'>abilities</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -415,9 +375,7 @@
   <span class='id identifier rubyid_voln_member?'>voln_member?</span> <span class='op'>&amp;&amp;</span> <span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_rank'>rank</span> <span class='op'>&gt;=</span> <span class='int'>14</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Resource+Management">Resource Management</h3>
-
+<h3 id="Resource_Management">Resource Management</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Voln favor management
 </span><span class='kw'>def</span> <span class='id identifier rubyid_conserve_favor?'>conserve_favor?</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_voln_member?'>voln_member?</span>
@@ -429,45 +387,33 @@
   <span class='const'>Societies</span><span class='op'>::</span><span class='const'>OrderOfVoln</span><span class='period'>.</span><span class='id identifier rubyid_favor'>favor</span> <span class='op'>&gt;=</span> <span class='int'>500</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Society+Serialization">Society Serialization</h2>
-
+<h2 id="Society_Serialization">Society Serialization</h2>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get society status as array
 </span><span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_serialize'>serialize</span>
 <span class='comment'># Returns: [membership, rank]
 </span><span class='comment'># Example: [&quot;Order of Voln&quot;, 15]
 </span></code></pre>
-
-<h2 id="label-Deprecated+Methods">Deprecated Methods</h2>
-
+<h2 id="Deprecated_Methods">Deprecated Methods</h2>
 <p>These methods still work but are deprecated:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='comment'># Old                    # New
 </span><span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_member'>member</span>           <span class='comment'># Use Society.membership
 </span><span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_step'>step</span>             <span class='comment'># Use Society.rank
 </span><span class='const'>Society</span><span class='period'>.</span><span class='id identifier rubyid_favor'>favor</span>            <span class='comment'># Use Societies::OrderOfVoln.favor
 </span></code></pre>
-
-<h2 id="label-See+Also">See Also</h2>
-<ul><li>
-<p><span class='object_link'><a href="Lich/Gemstone/Society.html" title="Lich::Gemstone::Society (class)">Lich::Gemstone::Society</a></span> - Society class reference</p>
-</li><li>
-<p><span class='object_link'><a href="Lich/Gemstone/Societies/OrderOfVoln.html" title="Lich::Gemstone::Societies::OrderOfVoln (class)">Lich::Gemstone::Societies::OrderOfVoln</a></span> - Voln reference</p>
-</li><li>
-<p><span class='object_link'><a href="Lich/Gemstone/Societies/CouncilOfLight.html" title="Lich::Gemstone::Societies::CouncilOfLight (class)">Lich::Gemstone::Societies::CouncilOfLight</a></span> - CoL reference</p>
-</li><li>
-<p><span class='object_link'><a href="Lich/Gemstone/Societies/GuardiansOfSunfist.html" title="Lich::Gemstone::Societies::GuardiansOfSunfist (class)">Lich::Gemstone::Societies::GuardiansOfSunfist</a></span> - Sunfist reference</p>
-</li><li>
-<p><a href="file.scripting-basics.html" title="Scripting Basics">Scripting Basics</a> - Core scripting concepts</p>
-</li><li>
-<p><a href="file.spells-guide.html" title="Spells Guide">Spells Guide</a> - Working with spells</p>
-</li></ul>
-</div></div>
+<h2 id="See_Also">See Also</h2>
+<ul>
+<li><span class='object_link'><a href="Lich/Gemstone/Society.html" title="Lich::Gemstone::Society (class)">Lich::Gemstone::Society</a></span> - Society class reference</li>
+<li><span class='object_link'><a href="Lich/Gemstone/Societies/OrderOfVoln.html" title="Lich::Gemstone::Societies::OrderOfVoln (class)">Lich::Gemstone::Societies::OrderOfVoln</a></span> - Voln reference</li>
+<li><span class='object_link'><a href="Lich/Gemstone/Societies/CouncilOfLight.html" title="Lich::Gemstone::Societies::CouncilOfLight (class)">Lich::Gemstone::Societies::CouncilOfLight</a></span> - CoL reference</li>
+<li><span class='object_link'><a href="Lich/Gemstone/Societies/GuardiansOfSunfist.html" title="Lich::Gemstone::Societies::GuardiansOfSunfist (class)">Lich::Gemstone::Societies::GuardiansOfSunfist</a></span> - Sunfist reference</li>
+<li><a href="file.scripting-basics.html" title="Scripting Basics">Scripting Basics</a> - Core scripting concepts</li>
+<li><a href="file.spells-guide.html" title="Spells Guide">Spells Guide</a> - Working with spells</li>
+</ul></div></div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:46 2026 by
+  Generated on Sun May 10 17:26:20 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

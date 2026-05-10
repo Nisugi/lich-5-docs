@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Infomon::Cache";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,34 +96,28 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/infomon/cache.rb</dd>
+    <dd>documented/gemstone/infomon/cache.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>in-memory cache with db read fallbacks In-memory cache with database read fallbacks This class provides a simple in-memory cache that can store key-value pairs. If a key is not found in the cache, a block can be provided to fetch the value from a database or other source.</p>
-
+    <p>Represents a cache for storing key-value pairs.</p>
+<p>This class provides methods to put, get, delete, and check for keys in the cache.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Creating a cache and using it</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_cache'>cache</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='op'>::</span><span class='const'>Cache</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Gemstone::Infomon::Cache#initialize (method)">new</a></span></span>
-<span class='id identifier rubyid_cache'>cache</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='symbol'>:key</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>value</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">Lich::Gemstone::Infomon</a></span></li>
+    
+  </ul>
 
 </div>
 
@@ -152,9 +148,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute records.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute records.</p></div></span>
   
 </li>
 
@@ -189,9 +183,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Deletes a value from the cache by its key.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Deletes the value associated with the given key from the cache.</p></div></span>
   
 </li>
 
@@ -215,9 +207,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Clears all records from the cache.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Clears all records from the cache.</p></div></span>
   
 </li>
 
@@ -225,7 +215,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get-instance_method" title="#get (instance method)">#<strong>get</strong>(key)  &#x21d2; Object<sup>?</sup> </a>
+      <a href="#get-instance_method" title="#get (instance method)">#<strong>get</strong>(key) {|key| ... } &#x21d2; Object<sup>?</sup> </a>
     
 
     
@@ -239,9 +229,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves a value from the cache by its key If the key is not found, it can yield to a block to fetch the value.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the value associated with the given key from the cache.</p></div></span>
   
 </li>
 
@@ -265,9 +253,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the cache includes the given key.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the cache includes the given key.</p></div></span>
   
 </li>
 
@@ -291,9 +277,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Initializes a new Cache instance.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Initializes a new Cache instance.</p></div></span>
   
 </li>
 
@@ -315,9 +299,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Merges another hash into the cache.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Merges the given hash into the cache.</p></div></span>
   
 </li>
 
@@ -339,9 +321,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Stores a value in the cache with the given key.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Stores a value in the cache associated with the given key.</p></div></span>
   
 </li>
 
@@ -349,7 +329,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#to_a-instance_method" title="#to_a (instance method)">#<strong>to_a</strong>  &#x21d2; Array </a>
+      <a href="#to_a-instance_method" title="#to_a (instance method)">#<strong>to_a</strong>  &#x21d2; Array&lt;Array&gt; </a>
     
 
     
@@ -363,9 +343,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Converts the cache records to an array of key-value pairs.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Converts the cache records to an array of key-value pairs.</p></div></span>
   
 </li>
 
@@ -387,14 +365,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the cache records as a hash.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the cache records as a hash.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 <div id="constructor_details" class="method_details_list">
@@ -411,9 +388,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Initializes a new Cache instance</p>
-
+    <p>Initializes a new Cache instance.</p>
 
   </div>
 </div>
@@ -426,12 +401,12 @@
       <pre class="lines">
 
 
-16
-17
-18</pre>
+14
+15
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='ivar'>@records</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -459,9 +434,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute records.</p>
-
+    <p>Returns the value of attribute records.</p>
 
   </div>
 </div>
@@ -474,12 +447,12 @@
       <pre class="lines">
 
 
-12
-13
-14</pre>
+10
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_records'>records</span>
   <span class='ivar'>@records</span>
@@ -507,26 +480,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Deletes a value from the cache by its key</p>
-
+    <p>Deletes the value associated with the given key from the cache.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Deleting a key from the cache</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_cache'>cache</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='symbol'>:key</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -534,14 +493,12 @@
         <span class='name'>key</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The key of the value to delete</p>
-</div>
+        <div class='inline'><p>the key to delete</p></div>
       
     </li>
   
@@ -558,9 +515,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The deleted value, or nil if the key was not found</p>
-</div>
+        <div class='inline'><p>the deleted value, or nil if the key was not found</p></div>
       
     </li>
   
@@ -572,12 +527,12 @@
       <pre class="lines">
 
 
-53
-54
-55</pre>
+43
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='ivar'>@records</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
@@ -602,26 +557,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Clears all records from the cache</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Clears all records from the cache.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Flushing the cache</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_cache'>cache</span><span class='period'>.</span><span class='id identifier rubyid_flush!'>flush!</span></code></pre>
-    
-  </div>
-
 
 </div><table class="source_code">
   <tr>
@@ -629,12 +570,12 @@
       <pre class="lines">
 
 
-44
-45
-46</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_flush!'>flush!</span>
   <span class='ivar'>@records</span><span class='period'>.</span><span class='id identifier rubyid_clear'><span class='object_link'><a href="../../../top-level-namespace.html#clear-instance_method" title="#clear (method)">clear</a></span></span>
@@ -647,7 +588,7 @@
       <div class="method_details ">
   <h3 class="signature " id="get-instance_method">
   
-    #<strong>get</strong>(key)  &#x21d2; <tt>Object</tt><sup>?</sup> 
+    #<strong>get</strong>(key) {|key| ... } &#x21d2; <tt>Object</tt><sup>?</sup> 
   
 
   
@@ -655,26 +596,13 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves a value from the cache by its key If the key is not found, it can yield to a block to fetch the value.</p>
-
+    <p>Retrieves the value associated with the given key from the cache.
+If the key does not exist, it yields to a block if given.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Getting a value from the cache</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_cache'>cache</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='symbol'>:key</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_fetch_from_db'>fetch_from_db</span><span class='lparen'>(</span><span class='symbol'>:key</span><span class='rparen'>)</span> <span class='rbrace'>}</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -682,19 +610,35 @@
         <span class='name'>key</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The key of the value to retrieve</p>
-</div>
+        <div class='inline'><p>the key to retrieve the value for</p></div>
       
     </li>
   
 </ul>
 
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the key that was not found in the cache</p></div>
+      
+    </li>
+  
+</ul>
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -706,9 +650,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The value associated with the key, or nil if not found</p>
-</div>
+        <div class='inline'><p>the value associated with the key, or nil if not found and no block is given</p></div>
       
     </li>
   
@@ -720,17 +662,17 @@
       <pre class="lines">
 
 
-63
-64
-65
-66
-67
-68
-69
-70</pre>
+52
+53
+54
+55
+56
+57
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get'><span class='object_link'><a href="../../../top-level-namespace.html#get-instance_method" title="#get (method)">get</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='ivar'>@records</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
@@ -760,26 +702,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the cache includes the given key</p>
-
+    <p>Checks if the cache includes the given key.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Checking for a key in the cache</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_cache'>cache</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='symbol'>:key</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -787,14 +715,12 @@
         <span class='name'>key</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The key to check for</p>
-</div>
+        <div class='inline'><p>the key to check</p></div>
       
     </li>
   
@@ -811,9 +737,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the key exists in the cache, false otherwise</p>
-</div>
+        <div class='inline'><p>true if the key exists in the cache, false otherwise</p></div>
       
     </li>
   
@@ -825,12 +749,12 @@
       <pre class="lines">
 
 
-36
-37
-38</pre>
+30
+31
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='ivar'>@records</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
@@ -851,26 +775,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Merges another hash into the cache</p>
-
+    <p>Merges the given hash into the cache.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Merging a hash into the cache</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_cache'>cache</span><span class='period'>.</span><span class='id identifier rubyid_merge!'>merge!</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:key1</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>value1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:key2</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>value2</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -883,9 +793,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The hash to merge into the cache</p>
-</div>
+        <div class='inline'><p>a hash of key-value pairs to merge into the cache</p></div>
       
     </li>
   
@@ -902,9 +810,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The updated records in the cache</p>
-</div>
+        <div class='inline'><p>the updated records in the cache</p></div>
       
     </li>
   
@@ -916,12 +822,12 @@
       <pre class="lines">
 
 
-77
-78
-79</pre>
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_merge!'>merge!</span><span class='lparen'>(</span><span class='id identifier rubyid_h'>h</span><span class='rparen'>)</span>
   <span class='ivar'>@records</span><span class='period'>.</span><span class='id identifier rubyid_merge!'>merge!</span><span class='lparen'>(</span><span class='id identifier rubyid_h'>h</span><span class='rparen'>)</span>
@@ -942,26 +848,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Stores a value in the cache with the given key</p>
-
+    <p>Stores a value in the cache associated with the given key.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Putting a value in the cache</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_cache'>cache</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='symbol'>:key</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>value</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -969,14 +861,12 @@
         <span class='name'>key</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../../../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>The key to store the value under</p>
-</div>
+        <div class='inline'><p>the key to store the value under</p></div>
       
     </li>
   
@@ -990,9 +880,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The value to store</p>
-</div>
+        <div class='inline'><p>the value to store</p></div>
       
     </li>
   
@@ -1009,9 +897,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The current instance of Cache</p>
-</div>
+        <div class='inline'><p>the Cache instance for method chaining</p></div>
       
     </li>
   
@@ -1023,13 +909,13 @@
       <pre class="lines">
 
 
-26
-27
-28
-29</pre>
+22
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_put'><span class='object_link'><a href="../../../top-level-namespace.html#put-instance_method" title="#put (method)">put</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='ivar'>@records</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -1043,7 +929,7 @@
       <div class="method_details ">
   <h3 class="signature " id="to_a-instance_method">
   
-    #<strong>to_a</strong>  &#x21d2; <tt>Array</tt> 
+    #<strong>to_a</strong>  &#x21d2; <tt>Array&lt;Array&gt;</tt> 
   
 
   
@@ -1051,40 +937,24 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Converts the cache records to an array of key-value pairs</p>
-
+    <p>Converts the cache records to an array of key-value pairs.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Converting cache records to an array</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_array'>array</span> <span class='op'>=</span> <span class='id identifier rubyid_cache'>cache</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>Array</tt>)</span>
+        <span class='type'>(<tt>Array&lt;Array&gt;</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>An array representation of the cache records</p>
-</div>
+        <div class='inline'><p>an array of key-value pairs</p></div>
       
     </li>
   
@@ -1096,12 +966,12 @@
       <pre class="lines">
 
 
-85
-86
-87</pre>
+70
+71
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_a'>to_a</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='ivar'>@records</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
@@ -1122,26 +992,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the cache records as a hash</p>
-
+    <p>Returns the cache records as a hash.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Getting the cache records as a hash</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> <span class='id identifier rubyid_cache'>cache</span><span class='period'>.</span><span class='id identifier rubyid_to_h'>to_h</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1153,9 +1009,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The hash representation of the cache records</p>
-</div>
+        <div class='inline'><p>the records in the cache</p></div>
       
     </li>
   
@@ -1167,12 +1021,12 @@
       <pre class="lines">
 
 
-93
-94
-95</pre>
+76
+77
+78</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/cache.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_h'>to_h</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='ivar'>@records</span>
@@ -1187,9 +1041,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:19:01 2026 by
+  Generated on Sun May 10 17:26:33 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

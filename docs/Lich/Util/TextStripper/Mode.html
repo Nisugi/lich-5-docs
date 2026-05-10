@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Util::TextStripper::Mode";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,7 +80,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/util/textstripper.rb</dd>
+    <dd>documented/util/textstripper.rb
+</dd>
   </dl>
   
 </div>
@@ -95,9 +98,7 @@
         <dt id="HTML-constant" class="">HTML =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Strip HTML tags Constant representing the HTML stripping mode</p>
-
+    <p>Strip HTML tags</p>
 
   </div>
 </div>
@@ -111,9 +112,7 @@
         <dt id="XML-constant" class="">XML =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Strip XML tags Constant representing the XML stripping mode</p>
-
+    <p>Strip XML tags</p>
 
   </div>
 </div>
@@ -127,9 +126,7 @@
         <dt id="MARKUP-constant" class="">MARKUP =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Strip Markdown/markup formatting Constant representing the MARKUP stripping mode</p>
-
+    <p>Strip Markdown/markup formatting</p>
 
   </div>
 </div>
@@ -143,9 +140,7 @@
         <dt id="MARKDOWN-constant" class="">MARKDOWN =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Alias for MARKUP (both :markup and :markdown are accepted) Alias for MARKUP, representing the MARKDOWN stripping mode</p>
-
+    <p>Alias for MARKUP (both :markup and :markdown are accepted)</p>
 
   </div>
 </div>
@@ -157,18 +152,7 @@
         <dd><pre class="code"><span class='symbol'>:markdown</span></pre></dd>
       
         <dt id="ALL-constant" class="">ALL =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Array of all available stripping modes</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#HTML-constant" title="Lich::Util::TextStripper::Mode::HTML (constant)">HTML</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#XML-constant" title="Lich::Util::TextStripper::Mode::XML (constant)">XML</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#MARKUP-constant" title="Lich::Util::TextStripper::Mode::MARKUP (constant)">MARKUP</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#MARKDOWN-constant" title="Lich::Util::TextStripper::Mode::MARKDOWN (constant)">MARKDOWN</a></span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
@@ -206,9 +190,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns a comma-separated list of all valid modes.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns a comma-separated list of valid modes.</p></div></span>
   
 </li>
 
@@ -230,14 +212,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the given mode is valid.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the given mode is valid.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -257,26 +238,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns a comma-separated list of all valid modes</p>
-
+    <p>Returns a comma-separated list of valid modes.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Listing modes</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../TextStripper.html" title="Lich::Util::TextStripper (module)">TextStripper</a></span></span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span> <span class='comment'># =&gt; &quot;html, xml, markup, markdown&quot;</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -288,9 +255,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A string listing all valid modes</p>
-</div>
+        <div class='inline'><p>a list of valid modes</p></div>
       
     </li>
   
@@ -302,12 +267,12 @@
       <pre class="lines">
 
 
-63
-64
-65</pre>
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/util/textstripper.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'documented/util/textstripper.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span>
   <span class='const'><span class='object_link'><a href="#ALL-constant" title="Lich::Util::TextStripper::Mode::ALL (constant)">ALL</a></span></span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -328,26 +293,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the given mode is valid</p>
-
+    <p>Checks if the given mode is valid.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Validating a mode</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../TextStripper.html" title="Lich::Util::TextStripper (module)">TextStripper</a></span></span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='symbol'>:html</span><span class='rparen'>)</span> <span class='comment'># =&gt; true</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -360,9 +311,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The mode to validate</p>
-</div>
+        <div class='inline'><p>the mode to validate</p></div>
       
     </li>
   
@@ -379,9 +328,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if the mode is valid, false otherwise</p>
-</div>
+        <div class='inline'><p>true if the mode is valid, false otherwise</p></div>
       
     </li>
   
@@ -393,12 +340,12 @@
       <pre class="lines">
 
 
-55
-56
-57</pre>
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/util/textstripper.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'documented/util/textstripper.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='id identifier rubyid_mode'>mode</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="#ALL-constant" title="Lich::Util::TextStripper::Mode::ALL (constant)">ALL</a></span></span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_mode'>mode</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rparen'>)</span>
@@ -413,9 +360,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:50 2026 by
+  Generated on Sun May 10 17:26:23 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

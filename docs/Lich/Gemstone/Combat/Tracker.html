@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Combat::Tracker";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,35 +80,33 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/combat/tracker.rb</dd>
+    <dd>documented/gemstone/combat/tracker.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Combat tracking system</p>
-
-<p>Main interface for the combat tracking system. Integrates with Lich’s Combat Tracker - Main interface for combat event processing Integrates with Lich’s game processing to track damage, wounds, and status effects</p>
-
+    <p>Combat tracking system</p>
+<p>Main interface for the combat tracking system. Integrates with Lich's
+Combat tracking system</p>
+<p>Main interface for the combat tracking system. Integrates with Lich's
+game processing to track various combat-related events.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Using the Tracker module</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'>Tracker</span><span class='period'>.</span><span class='id identifier rubyid_enable!'><span class='object_link'><a href="#enable!-class_method" title="Lich::Gemstone::Combat::Tracker.enable! (method)">enable!</a></span></span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Processor.html" title="Lich::Gemstone::Combat::Processor (module)">Processor</a></span></li>
+    
+      <li><span class='object_link'><a href="AsyncProcessor.html" title="Lich::Gemstone::Combat::AsyncProcessor (class)">AsyncProcessor</a></span></li>
+    
+  </ul>
 
 </div>
   
@@ -120,14 +120,24 @@
         <dt id="DEFAULT_SETTINGS-constant" class="">DEFAULT_SETTINGS =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Default settings for combat tracking Default settings for combat tracking</p>
-
+    <p>Default settings for combat tracking
+Default settings for combat tracking</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Default settings</p></div></h5>
+      
+      <pre class="example code"><code><span class='const'>DEFAULT_SETTINGS</span><span class='lbracket'>[</span><span class='symbol'>:enabled</span><span class='rbracket'>]</span> <span class='comment'># =&gt; false
+</span><span class='const'>DEFAULT_SETTINGS</span><span class='lbracket'>[</span><span class='symbol'>:track_damage</span><span class='rbracket'>]</span> <span class='comment'># =&gt; true</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -176,9 +186,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute buffer.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute buffer.</p></div></span>
   
 </li>
 
@@ -205,9 +213,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute settings.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute settings.</p></div></span>
   
 </li>
 
@@ -242,9 +248,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if a line of text is relevant to combat.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Determines if a line of text is relevant to combat.</p></div></span>
   
 </li>
 
@@ -266,9 +270,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Configures the combat tracker with new settings.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Configures the combat tracker with new settings.</p></div></span>
   
 </li>
 
@@ -290,9 +292,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if debug mode is enabled.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if debug mode is enabled.</p></div></span>
   
 </li>
 
@@ -314,9 +314,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Disables combat tracking.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Disables combat tracking.</p></div></span>
   
 </li>
 
@@ -338,9 +336,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Disables debug mode for combat tracking.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Disables debug mode for combat tracking.</p></div></span>
   
 </li>
 
@@ -362,9 +358,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Enables combat tracking.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Enables combat tracking.</p></div></span>
   
 </li>
 
@@ -386,9 +380,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Enables debug mode for combat tracking.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Enables debug mode for combat tracking.</p></div></span>
   
 </li>
 
@@ -410,9 +402,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if combat tracking is enabled.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if combat tracking is enabled.</p></div></span>
   
 </li>
 
@@ -434,9 +424,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the fallback maximum HP value.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the fallback maximum HP value.</p></div></span>
   
 </li>
 
@@ -458,9 +446,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Processes a chunk of combat data.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Processes a chunk of combat data.</p></div></span>
   
 </li>
 
@@ -482,9 +468,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the fallback maximum HP value.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Sets the fallback maximum HP value.</p></div></span>
   
 </li>
 
@@ -506,14 +490,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Retrieves the current stats of the combat tracker.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Retrieves the current statistics of the combat tracker.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -533,9 +516,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute buffer.</p>
-
+    <p>Returns the value of attribute buffer.</p>
 
   </div>
 </div>
@@ -548,12 +529,12 @@
       <pre class="lines">
 
 
-48
-49
-50</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_buffer'>buffer</span>
   <span class='ivar'>@buffer</span>
@@ -576,9 +557,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute settings.</p>
-
+    <p>Returns the value of attribute settings.</p>
 
   </div>
 </div>
@@ -591,12 +570,12 @@
       <pre class="lines">
 
 
-48
-49
-50</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_settings'>settings</span>
   <span class='ivar'>@settings</span>
@@ -624,24 +603,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if a line of text is relevant to combat</p>
-
+    <p>Determines if a line of text is relevant to combat.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_combat_relevant?'>combat_relevant?</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This line is combat relevant</span><span class='tstring_end'>&quot;</span></span>
-<span class='kw'>end</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -654,9 +621,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The line of text to check</p>
-</div>
+        <div class='inline'><p>the line of text to check</p></div>
       
     </li>
   
@@ -673,9 +638,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>true if the line is combat relevant, false otherwise</p>
-</div>
+        <div class='inline'><p>true if the line is combat relevant, false otherwise</p></div>
       
     </li>
   
@@ -687,6 +650,12 @@
       <pre class="lines">
 
 
+169
+170
+171
+172
+173
+174
 175
 176
 177
@@ -694,16 +663,10 @@
 179
 180
 181
-182
-183
-184
-185
-186
-187
-188</pre>
+182</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 175</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 169</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_combat_relevant?'>combat_relevant?</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>swing</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>||</span>
@@ -735,22 +698,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Configures the combat tracker with new settings</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Configures the combat tracker with new settings.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configure'>configure</span><span class='lparen'>(</span><span class='label'>enabled:</span> <span class='kw'>true</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -765,9 +718,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash of settings to update</p>
-</div>
+        <div class='inline'><p>the new settings to apply</p></div>
       
     </li>
   
@@ -780,6 +731,13 @@
       <pre class="lines">
 
 
+188
+189
+190
+191
+192
+193
+194
 195
 196
 197
@@ -787,17 +745,10 @@
 199
 200
 201
-202
-203
-204
-205
-206
-207
-208
-209</pre>
+202</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 195</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 188</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_configure'>configure</span><span class='lparen'>(</span><span class='id identifier rubyid_new_settings'>new_settings</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_initialize!'>initialize!</span> <span class='kw'>unless</span> <span class='ivar'>@initialized</span>
@@ -830,24 +781,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if debug mode is enabled</p>
-
+    <p>Checks if debug mode is enabled.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug?'>debug?</span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Debugging is enabled</span><span class='tstring_end'>&quot;</span></span>
-<span class='kw'>end</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -859,9 +798,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>true if debug mode is enabled, false otherwise</p>
-</div>
+        <div class='inline'><p>true if debug mode is enabled, false otherwise</p></div>
       
     </li>
   
@@ -873,12 +810,12 @@
       <pre class="lines">
 
 
-101
-102
-103</pre>
+103
+104
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 103</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_debug?'>debug?</span>
   <span class='ivar'>@settings</span><span class='lbracket'>[</span><span class='symbol'>:debug</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='gvar'>$combat_debug</span>
@@ -899,22 +836,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Disables combat tracking</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Disables combat tracking.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_disable!'>disable!</span></code></pre>
-    
-  </div>
-
 
 </div><table class="source_code">
   <tr>
@@ -922,21 +849,21 @@
       <pre class="lines">
 
 
-82
-83
-84
-85
-86
 87
 88
 89
 90
 91
 92
-93</pre>
+93
+94
+95
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_disable!'>disable!</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='ivar'>@enabled</span>
@@ -966,22 +893,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Disables debug mode for combat tracking</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Disables debug mode for combat tracking.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_disable_debug!'>disable_debug!</span></code></pre>
-    
-  </div>
-
 
 </div><table class="source_code">
   <tr>
@@ -1017,22 +934,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Enables combat tracking</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Enables combat tracking.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_enable!'>enable!</span></code></pre>
-    
-  </div>
-
 
 </div><table class="source_code">
   <tr>
@@ -1040,21 +947,21 @@
       <pre class="lines">
 
 
-65
-66
-67
-68
-69
-70
 71
 72
 73
 74
 75
-76</pre>
+76
+77
+78
+79
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enable!'>enable!</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='ivar'>@enabled</span>
@@ -1084,22 +991,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Enables debug mode for combat tracking</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Enables debug mode for combat tracking.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_enable_debug!'>enable_debug!</span></code></pre>
-    
-  </div>
-
 
 </div><table class="source_code">
   <tr>
@@ -1107,13 +1004,13 @@
       <pre class="lines">
 
 
-109
 110
 111
-112</pre>
+112
+113</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 110</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enable_debug!'>enable_debug!</span>
   <span class='id identifier rubyid_configure'>configure</span><span class='lparen'>(</span><span class='label'>debug:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>enabled:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1135,24 +1032,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if combat tracking is enabled</p>
-
+    <p>Checks if combat tracking is enabled.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_enabled?'>enabled?</span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Tracking is enabled</span><span class='tstring_end'>&quot;</span></span>
-<span class='kw'>end</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1164,9 +1049,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>true if combat tracking is enabled, false otherwise</p>
-</div>
+        <div class='inline'><p>true if combat tracking is enabled, false otherwise</p></div>
       
     </li>
   
@@ -1178,13 +1061,13 @@
       <pre class="lines">
 
 
-56
-57
-58
-59</pre>
+63
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enabled?'>enabled?</span>
   <span class='id identifier rubyid_initialize!'>initialize!</span> <span class='kw'>unless</span> <span class='ivar'>@initialized</span>
@@ -1206,22 +1089,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the fallback maximum HP value</p>
-
+    <p>Retrieves the fallback maximum HP value.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_hp'>hp</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_fallback_hp'>fallback_hp</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1233,9 +1106,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The fallback maximum HP value</p>
-</div>
+        <div class='inline'><p>the fallback maximum HP value</p></div>
       
     </li>
   
@@ -1247,13 +1118,13 @@
       <pre class="lines">
 
 
+135
+136
 137
-138
-139
-140</pre>
+138</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 135</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fallback_hp'>fallback_hp</span>
   <span class='id identifier rubyid_initialize!'>initialize!</span> <span class='kw'>unless</span> <span class='ivar'>@initialized</span>
@@ -1275,22 +1146,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Processes a chunk of combat data</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Processes a chunk of combat data.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_process'>process</span><span class='lparen'>(</span><span class='id identifier rubyid_chunk'>chunk</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1303,9 +1164,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The chunk of combat data to process</p>
-</div>
+        <div class='inline'><p>the chunk of combat data to process</p></div>
       
     </li>
   
@@ -1318,6 +1177,9 @@
       <pre class="lines">
 
 
+144
+145
+146
 147
 148
 149
@@ -1334,13 +1196,10 @@
 160
 161
 162
-163
-164
-165
-166</pre>
+163</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 147</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 144</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process'>process</span><span class='lparen'>(</span><span class='id identifier rubyid_chunk'>chunk</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_enabled?'>enabled?</span>
@@ -1378,22 +1237,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Sets the fallback maximum HP value</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Sets the fallback maximum HP value.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_fallback_hp'>set_fallback_hp</span><span class='lparen'>(</span><span class='int'>400</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -1406,9 +1255,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The fallback maximum HP value</p>
-</div>
+        <div class='inline'><p>the fallback maximum HP value</p></div>
       
     </li>
   
@@ -1421,13 +1268,13 @@
       <pre class="lines">
 
 
+127
 128
 129
-130
-131</pre>
+130</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 128</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 127</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_fallback_hp'>set_fallback_hp</span><span class='lparen'>(</span><span class='id identifier rubyid_hp_value'>hp_value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_configure'>configure</span><span class='lparen'>(</span><span class='label'>fallback_max_hp:</span> <span class='id identifier rubyid_hp_value'>hp_value</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rparen'>)</span>
@@ -1449,22 +1296,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Retrieves the current stats of the combat tracker</p>
-
+    <p>Retrieves the current statistics of the combat tracker.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_stats'>stats</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Combat.html" title="Lich::Gemstone::Combat (module)">Combat</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Tracker (module)">Tracker</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stats'>stats</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1476,9 +1313,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash containing the current stats</p>
-</div>
+        <div class='inline'><p>a hash containing the current stats</p></div>
       
     </li>
   
@@ -1490,24 +1325,24 @@
       <pre class="lines">
 
 
+207
+208
+209
+210
+211
+212
+213
+214
 215
 216
 217
 218
 219
 220
-221
-222
-223
-224
-225
-226
-227
-228
-229</pre>
+221</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 215</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/tracker.rb', line 207</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stats'>stats</span>
   <span class='kw'>return</span> <span class='lbrace'>{</span> <span class='label'>enabled:</span> <span class='kw'>false</span> <span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='id identifier rubyid_enabled?'>enabled?</span>
@@ -1534,9 +1369,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:51 2026 by
+  Generated on Sun May 10 17:26:24 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Combat::Definitions::Attacks";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,7 +80,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/combat/defs/attacks.rb</dd>
+    <dd>documented/gemstone/combat/defs/attacks.rb
+</dd>
   </dl>
   
 </div>
@@ -105,14 +108,25 @@
         <dt id="BASIC_ATTACKS-constant" class="">BASIC_ATTACKS =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Core attack patterns - most common combat actions Core attack patterns - most common combat actions</p>
-
+    <p>Core attack patterns - most common combat actions
+Core attack patterns - most common combat actions.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Basic attack patterns</p></div></h5>
+      
+      <pre class="example code"><code><span class='const'>BASIC_ATTACKS</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_attack'>attack</span><span class='op'>|</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_attack'>attack</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -129,14 +143,25 @@
         <dt id="SPELL_ATTACKS-constant" class="">SPELL_ATTACKS =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Spell-based attacks Spell-based attacks</p>
-
+    <p>Spell-based attacks
+Spell-based attacks.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Spell attack patterns</p></div></h5>
+      
+      <pre class="example code"><code><span class='const'>SPELL_ATTACKS</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_attack'>attack</span><span class='op'>|</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_attack'>attack</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -168,14 +193,25 @@
         <dt id="WEAPON_ATTACKS-constant" class="">WEAPON_ATTACKS =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Weapon maneuvers Weapon maneuvers</p>
-
+    <p>Weapon maneuvers
+Weapon maneuvers.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Weapon attack patterns</p></div></h5>
+      
+      <pre class="example code"><code><span class='const'>WEAPON_ATTACKS</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_attack'>attack</span><span class='op'>|</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_attack'>attack</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -197,14 +233,25 @@
         <dt id="MANEUVER_ATTACKS-constant" class="">MANEUVER_ATTACKS =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Combat maneuvers Combat maneuvers</p>
-
+    <p>Combat maneuvers
+Combat maneuvers.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Maneuver attack patterns</p></div></h5>
+      
+      <pre class="example code"><code><span class='const'>MANEUVER_ATTACKS</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_attack'>attack</span><span class='op'>|</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_attack'>attack</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -220,14 +267,25 @@
         <dt id="COMPANION_ATTACKS-constant" class="">COMPANION_ATTACKS =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Companion/pet attacks Companion/pet attacks</p>
-
+    <p>Companion/pet attacks
+Companion/pet attacks.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Companion attack patterns</p></div></h5>
+      
+      <pre class="example code"><code><span class='const'>COMPANION_ATTACKS</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_attack'>attack</span><span class='op'>|</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_attack'>attack</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -242,14 +300,25 @@
         <dt id="ENVIRONMENTAL_ATTACKS-constant" class="">ENVIRONMENTAL_ATTACKS =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Environmental attacks Environmental attacks</p>
-
+    <p>Environmental attacks
+Environmental attacks.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Environmental attack patterns</p></div></h5>
+      
+      <pre class="example code"><code><span class='const'>ENVIRONMENTAL_ATTACKS</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_attack'>attack</span><span class='op'>|</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_attack'>attack</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -258,14 +327,25 @@
         <dt id="ALL_ATTACKS-constant" class="">ALL_ATTACKS =
           <div class="docstring">
   <div class="discussion">
-    
-<p>All attack definitions combined All attack definitions combined</p>
-
+    <p>All attack definitions combined
+All attack definitions combined.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>All attack patterns</p></div></h5>
+      
+      <pre class="example code"><code><span class='const'>ALL_ATTACKS</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_attack'>attack</span><span class='op'>|</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_attack'>attack</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -275,14 +355,25 @@
         <dt id="ATTACK_LOOKUP-constant" class="">ATTACK_LOOKUP =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Create lookup table for fast pattern matching Create lookup table for fast pattern matching</p>
-
+    <p>Create lookup table for fast pattern matching
+Create lookup table for fast pattern matching.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Lookup table usage</p></div></h5>
+      
+      <pre class="example code"><code><span class='const'>ATTACK_LOOKUP</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_pattern'>pattern</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='op'>|</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pattern: \\</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_pattern'>pattern</span><span class='embexpr_end'>}</span><span class='tstring_content'>, Attack: \\</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -293,14 +384,25 @@
         <dt id="ATTACK_DETECTOR-constant" class="">ATTACK_DETECTOR =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Compiled regex for fast detection Compiled regex for fast detection</p>
-
+    <p>Compiled regex for fast detection
+Compiled regex for fast detection of attacks.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Using the attack detector</p></div></h5>
+      
+      <pre class="example code"><code><span class='kw'>if</span> <span class='id identifier rubyid_input'>input</span><span class='period'>.</span><span class='id identifier rubyid_match?'>match?</span><span class='lparen'>(</span><span class='const'>ATTACK_DETECTOR</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Attack detected!</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -320,9 +422,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:53 2026 by
+  Generated on Sun May 10 17:26:26 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

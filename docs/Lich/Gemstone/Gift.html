@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Gift";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,35 +96,28 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/gift.rb</dd>
+    <dd>documented/gemstone/gift.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Gift class for tracking gift box status Gift class for tracking gift box status</p>
-
-<p>This class manages the state of a gift box, including tracking the start time, pulse count, and calculating remaining time.</p>
-
+    <p>Represents a gift in the Lich game.</p>
+<p>This class manages the timing and pulse count of a gift.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Initializing a gift</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>Gift</span><span class='period'>.</span><span class='id identifier rubyid_init_gift'><span class='object_link'><a href="#init_gift-class_method" title="Lich::Gemstone::Gift.init_gift (method)">init_gift</a></span></span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Lich::Gemstone</a></span></li>
+    
+  </ul>
 
 </div>
 
@@ -153,9 +148,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute gift_start.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute gift_start.</p></div></span>
   
 </li>
 
@@ -182,9 +175,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute pulse_count.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute pulse_count.</p></div></span>
   
 </li>
 
@@ -219,9 +210,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Marks the gift as ended by setting the pulse count to 360.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Marks the gift as ended by setting the pulse count to 360.</p></div></span>
   
 </li>
 
@@ -243,9 +232,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Initializes the gift tracking system.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Initializes the gift's starting time and pulse count.</p></div></span>
   
 </li>
 
@@ -267,9 +254,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Loads the serialized state of the gift from an array.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Loads the gift's state from a serialized array.</p></div></span>
   
 </li>
 
@@ -291,9 +276,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Increments the pulse count by one.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Increments the pulse count by one.</p></div></span>
   
 </li>
 
@@ -315,9 +298,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Calculates the remaining time in seconds based on the pulse count.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Calculates the remaining time for the gift in seconds.</p></div></span>
   
 </li>
 
@@ -339,9 +320,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Calculates the time when the gift will restart.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Calculates the time when the gift will restart.</p></div></span>
   
 </li>
 
@@ -363,9 +342,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Serializes the current state of the gift.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Serializes the gift's state into an array.</p></div></span>
   
 </li>
 
@@ -387,9 +364,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Starts the gift tracking by resetting the start time and pulse count.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Marks the start of the gift, resetting the pulse count.</p></div></span>
   
 </li>
 
@@ -411,14 +386,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Placeholder method for stopwatch functionality.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Placeholder method for a stopwatch functionality.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -438,9 +412,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute gift_start.</p>
-
+    <p>Returns the value of attribute gift_start.</p>
 
   </div>
 </div>
@@ -453,12 +425,12 @@
       <pre class="lines">
 
 
-14
-15
-16</pre>
+11
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_gift_start'>gift_start</span>
   <span class='ivar'>@gift_start</span>
@@ -481,9 +453,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute pulse_count.</p>
-
+    <p>Returns the value of attribute pulse_count.</p>
 
   </div>
 </div>
@@ -496,12 +466,12 @@
       <pre class="lines">
 
 
-14
-15
-16</pre>
+11
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pulse_count'>pulse_count</span>
   <span class='ivar'>@pulse_count</span>
@@ -529,26 +499,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Marks the gift as ended by setting the pulse count to 360.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Marks the gift as ended by setting the pulse count to 360.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Ending the gift tracking</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Gift (class)">Gift</a></span></span><span class='period'>.</span><span class='id identifier rubyid_ended'>ended</span></code></pre>
-    
-  </div>
-
 
 </div><table class="source_code">
   <tr>
@@ -556,12 +512,12 @@
       <pre class="lines">
 
 
-80
-81
-82</pre>
+61
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ended'>ended</span>
   <span class='ivar'>@pulse_count</span> <span class='op'>=</span> <span class='int'>360</span>
@@ -582,26 +538,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Initializes the gift tracking system.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Initializes the gift's starting time and pulse count.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Initializing the gift system</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Gift (class)">Gift</a></span></span><span class='period'>.</span><span class='id identifier rubyid_init_gift'>init_gift</span></code></pre>
-    
-  </div>
-
 
 </div><table class="source_code">
   <tr>
@@ -609,13 +551,13 @@
       <pre class="lines">
 
 
-20
-21
-22
-23</pre>
+15
+16
+17
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 20</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_init_gift'>init_gift</span>
   <span class='ivar'>@gift_start</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span>
@@ -637,26 +579,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Loads the serialized state of the gift from an array.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Loads the gift's state from a serialized array.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Loading serialized data</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Gift (class)">Gift</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_serialized'>load_serialized</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='comma'>,</span> <span class='int'>5</span><span class='rbracket'>]</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -669,9 +597,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array containing the gift start time and pulse count.</p>
-</div>
+        <div class='inline'><p>an array containing the gift start time and pulse count</p></div>
       
     </li>
   
@@ -684,13 +610,13 @@
       <pre class="lines">
 
 
-71
-72
-73
-74</pre>
+54
+55
+56
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load_serialized='>load_serialized=</span><span class='lparen'>(</span><span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
   <span class='ivar'>@gift_start</span> <span class='op'>=</span> <span class='id identifier rubyid_array'>array</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
@@ -712,26 +638,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Increments the pulse count by one.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Increments the pulse count by one.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Incrementing the pulse count</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Gift (class)">Gift</a></span></span><span class='period'>.</span><span class='id identifier rubyid_pulse'>pulse</span></code></pre>
-    
-  </div>
-
 
 </div><table class="source_code">
   <tr>
@@ -739,12 +651,12 @@
       <pre class="lines">
 
 
-38
-39
-40</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pulse'>pulse</span>
   <span class='ivar'>@pulse_count</span> <span class='op'>+=</span> <span class='int'>1</span>
@@ -765,26 +677,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Calculates the remaining time in seconds based on the pulse count.</p>
-
+    <p>Calculates the remaining time for the gift in seconds.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Getting remaining time</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_remaining_time'>remaining_time</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Gift (class)">Gift</a></span></span><span class='period'>.</span><span class='id identifier rubyid_remaining'>remaining</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -796,9 +694,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The remaining time in seconds.</p>
-</div>
+        <div class='inline'><p>remaining time in seconds</p></div>
       
     </li>
   
@@ -810,12 +706,12 @@
       <pre class="lines">
 
 
-46
-47
-48</pre>
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remaining'>remaining</span>
   <span class='lparen'>(</span><span class='lbracket'>[</span><span class='int'>360</span> <span class='op'>-</span> <span class='ivar'>@pulse_count</span><span class='comma'>,</span> <span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span> <span class='op'>*</span> <span class='int'>60</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
@@ -836,26 +732,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Calculates the time when the gift will restart.</p>
-
+    <p>Calculates the time when the gift will restart.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Getting restart time</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_restart_time'>restart_time</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Gift (class)">Gift</a></span></span><span class='period'>.</span><span class='id identifier rubyid_restarts_on'>restarts_on</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -867,9 +749,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The time when the gift restarts.</p>
-</div>
+        <div class='inline'><p>the restart time</p></div>
       
     </li>
   
@@ -881,12 +761,12 @@
       <pre class="lines">
 
 
-54
-55
-56</pre>
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_restarts_on'>restarts_on</span>
   <span class='ivar'>@gift_start</span> <span class='op'>+</span> <span class='int'>594000</span>
@@ -907,26 +787,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Serializes the current state of the gift.</p>
-
+    <p>Serializes the gift's state into an array.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Serializing the gift state</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_serialized_data'>serialized_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Gift (class)">Gift</a></span></span><span class='period'>.</span><span class='id identifier rubyid_serialize'>serialize</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -938,9 +804,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>An array containing the gift start time and pulse count.</p>
-</div>
+        <div class='inline'><p>an array containing the gift start time and pulse count</p></div>
       
     </li>
   
@@ -952,12 +816,12 @@
       <pre class="lines">
 
 
-62
-63
-64</pre>
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_serialize'>serialize</span>
   <span class='lbracket'>[</span><span class='ivar'>@gift_start</span><span class='comma'>,</span> <span class='ivar'>@pulse_count</span><span class='rbracket'>]</span>
@@ -978,26 +842,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Starts the gift tracking by resetting the start time and pulse count.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Marks the start of the gift, resetting the pulse count.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Starting the gift tracking</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Gift (class)">Gift</a></span></span><span class='period'>.</span><span class='id identifier rubyid_started'>started</span></code></pre>
-    
-  </div>
-
 
 </div><table class="source_code">
   <tr>
@@ -1005,13 +855,13 @@
       <pre class="lines">
 
 
-29
-30
-31
-32</pre>
+22
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_started'>started</span>
   <span class='ivar'>@gift_start</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span>
@@ -1033,26 +883,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Placeholder method for stopwatch functionality.</p>
-
+    <p>Placeholder method for a stopwatch functionality.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Using the stopwatch method</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Gift (class)">Gift</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stopwatch'>stopwatch</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1062,11 +898,6 @@
         <span class='type'>(<tt>nil</tt>)</span>
       
       
-      
-        &mdash;
-        <div class='inline'>
-<p>This method currently does nothing.</p>
-</div>
       
     </li>
   
@@ -1078,12 +909,12 @@
       <pre class="lines">
 
 
-88
-89
-90</pre>
+67
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/gift.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stopwatch'>stopwatch</span>
   <span class='kw'>nil</span>
@@ -1098,9 +929,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:58 2026 by
+  Generated on Sun May 10 17:26:30 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

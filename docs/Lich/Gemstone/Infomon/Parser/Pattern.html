@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Infomon::Parser::Pattern";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,7 +80,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/infomon/parser.rb</dd>
+    <dd>documented/gemstone/infomon/parser.rb
+</dd>
   </dl>
   
 </div>
@@ -95,14 +98,22 @@
         <dt id="CharRaceProf-constant" class="">CharRaceProf =
           <div class="docstring">
   <div class="discussion">
-    
+    <p>Regex patterns for parsing various character attributes and statistics.</p>
+<p>These patterns are used to extract information from game output related to character stats,
+skills, experience, and other gameplay elements.</p>
 <p>Regex patterns grouped for Info, Exp, Skill and PSM parsing - calls upsert_batch to reduce db impact</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../../Infomon.html" title="Lich::Gemstone::Infomon (module)">Lich::Gemstone::Infomon</a></span></li>
+    
+  </ul>
 
 </div>
         </dt>
@@ -114,9 +125,19 @@
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Gender:\s+(?&lt;gender&gt;[A-z]+)\s+Age:\s+(?&lt;age&gt;[,0-9]+)\s+Expr:\s+(?&lt;experience&gt;[0-9,]+)\s+Level:\s+(?&lt;level&gt;[0-9]+)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="Stat-constant" class="">Stat =
-          
+          <div class="docstring">
+  <div class="discussion">
+    <p>Matches both 'info' (2 columns) and 'info full' (3 columns with base stats)
+Base stats are optional - only present in 'info full' output</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*(?&lt;stat&gt;[A-z]+)\s\((?:STR|CON|DEX|AGI|DIS|AUR|LOG|INT|WIS|INF)\):\s+(?&lt;value&gt;[0-9]+)\s\((?&lt;bonus&gt;-?[0-9]+)\)\s+[.]{3}\s+(?&lt;enhanced_value&gt;\d+)\s+\((?&lt;enhanced_bonus&gt;-?\d+)\)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*(?&lt;stat&gt;[A-z]+)\s\((?:STR|CON|DEX|AGI|DIS|AUR|LOG|INT|WIS|INF)\):(?:\s+(?&lt;base_value&gt;\d+)\s+\((?&lt;base_bonus&gt;-?\d+)\)\s+[.]{3})?\s+(?&lt;value&gt;[0-9]+)\s\((?&lt;bonus&gt;-?[0-9]+)\)\s+[.]{3}\s+(?&lt;enhanced_value&gt;\d+)\s+\((?&lt;enhanced_bonus&gt;-?\d+)\)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="StatEnd-constant" class="">StatEnd =
           
@@ -126,9 +147,7 @@
         <dt id="Fame-constant" class="">Fame =
           <div class="docstring">
   <div class="discussion">
-    
-<p>serves as ExprStart</p>
-
+    <p>serves as ExprStart</p>
 
   </div>
 </div>
@@ -194,6 +213,11 @@
         </dt>
         <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Further information can be found in the FAQs\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
+        <dt id="InnCheckedOut-constant" class="">InnCheckedOut =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Leaving your room, you check back out of .*, wander over to the front desk and hand the room key back to the innkeeper\.</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
         <dt id="PSMStart-constant" class="">PSMStart =
           
         </dt>
@@ -212,9 +236,7 @@
         <dt id="Levelup-constant" class="">Levelup =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Single / low impact - single db write</p>
-
+    <p>Single / low impact - single db write</p>
 
   </div>
 </div>
@@ -228,9 +250,7 @@
         <dt id="SpellsSolo-constant" class="">SpellsSolo =
           <div class="docstring">
   <div class="discussion">
-    
-<p>from SPELL command</p>
-
+    <p>from SPELL command</p>
 
   </div>
 </div>
@@ -294,9 +314,7 @@
         <dt id="LearnTechnique-constant" class="">LearnTechnique =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Technique covers Specialization (Armor and Shield), Technique (Weapon), and Feat</p>
-
+    <p>Technique covers Specialization (Armor and Shield), Technique (Weapon), and Feat</p>
 
   </div>
 </div>
@@ -480,9 +498,7 @@
         <dt id="SleepActive-constant" class="">SleepActive =
           <div class="docstring">
   <div class="discussion">
-    
-<p>TODO: refactor / streamline?</p>
-
+    <p>TODO: refactor / streamline?</p>
 
   </div>
 </div>
@@ -561,9 +577,7 @@
         <dt id="SpellUpMsgs-constant" class="">SpellUpMsgs =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Adding spell regexes.  Does not save to infomon.db.  Used by Spell and by ActiveSpells</p>
-
+    <p>Adding spell regexes.  Does not save to infomon.db.  Used by Spell and by ActiveSpells</p>
 
   </div>
 </div>
@@ -572,12 +586,12 @@
 
 </div>
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Common/Spell.html" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_upmsgs'><span class='object_link'><a href="../../../Common/Spell.html#upmsgs-class_method" title="Lich::Common::Spell.upmsgs (method)">upmsgs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>$|^</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>$</span><span class='regexp_end'>/o</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Common/Spell.html" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_upmsgs'>upmsgs</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>$|^</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>$</span><span class='regexp_end'>/o</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="SpellDnMsgs-constant" class="">SpellDnMsgs =
           
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Common/Spell.html" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dnmsgs'><span class='object_link'><a href="../../../Common/Spell.html#dnmsgs-class_method" title="Lich::Common::Spell.dnmsgs (method)">dnmsgs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>$|^</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>$</span><span class='regexp_end'>/o</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Common/Spell.html" title="Lich::Common::Spell (class)">Spell</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dnmsgs'>dnmsgs</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>$|^</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>$</span><span class='regexp_end'>/o</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="SpellsongRenewed-constant" class="">SpellsongRenewed =
           
@@ -587,9 +601,7 @@
         <dt id="EnhanciveStart-constant" class="">EnhanciveStart =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Enhancive parsing patterns - from INVENTORY ENHANCIVE TOTALS command</p>
-
+    <p>Enhancive parsing patterns - from INVENTORY ENHANCIVE TOTALS command</p>
 
   </div>
 </div>
@@ -603,7 +615,7 @@
         <dt id="EnhanciveStat-constant" class="">EnhanciveStat =
           
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+(?&lt;stat&gt;Strength|Constitution|Dexterity|Agility|Discipline|Aura|Logic|Intuition|Wisdom)\s+\((?&lt;abbr&gt;\w{3})\):\s*(?&lt;value&gt;\d+)\/(?&lt;cap&gt;\d+)$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+(?&lt;stat&gt;Strength|Constitution|Dexterity|Agility|Discipline|Aura|Logic|Intuition|Wisdom|Influence)\s+\((?&lt;abbr&gt;\w{3})\):\s*(?&lt;value&gt;\d+)\/(?&lt;cap&gt;\d+)$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="EnhanciveSkillsSection-constant" class="">EnhanciveSkillsSection =
           
@@ -628,7 +640,17 @@
         <dt id="EnhanciveResource-constant" class="">EnhanciveResource =
           
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+(?&lt;name&gt;Max Mana|Max Health|Max Stamina|Mana Recovery|Stamina Recovery):\s*(?&lt;value&gt;\d+)\/(?&lt;cap&gt;\d+)$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+(?&lt;name&gt;[\w\s]+?):\s+(?&lt;value&gt;\d+)\/(?&lt;cap&gt;\d+)$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="EnhanciveMartialSection-constant" class="">EnhanciveMartialSection =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Martial Knowledge Skills:$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="EnhanciveMartialSkill-constant" class="">EnhanciveMartialSkill =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+(?&lt;name&gt;[\w\s&#39;]+?):\s+\+(?&lt;value&gt;\d+)\s+ranks?$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="EnhanciveSpellsSection-constant" class="">EnhanciveSpellsSection =
           
@@ -653,7 +675,7 @@
         <dt id="EnhanciveEnd-constant" class="">EnhanciveEnd =
           
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^For more details, see INVENTORY ENHANCIVE TOTALS DETAILS\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^For (?:more|fewer) details, see INVENTORY ENHANCIVE TOTALS(?: DETAILS)?\.$</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="EnhanciveNone-constant" class="">EnhanciveNone =
           
@@ -663,9 +685,7 @@
         <dt id="EnhanciveOn-constant" class="">EnhanciveOn =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Enhancive active state tracking (on/off)</p>
-
+    <p>Enhancive active state tracking (on/off)</p>
 
   </div>
 </div>
@@ -697,14 +717,15 @@
 <span class='const'><span class='object_link'><a href="#SocietyResign-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SocietyResign (constant)">SocietyResign</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#LearnPSM-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::LearnPSM (constant)">LearnPSM</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#UnlearnPSM-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::UnlearnPSM (constant)">UnlearnPSM</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#LostTechnique-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::LostTechnique (constant)">LostTechnique</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#LearnTechnique-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::LearnTechnique (constant)">LearnTechnique</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#UnlearnTechnique-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::UnlearnTechnique (constant)">UnlearnTechnique</a></span></span><span class='comma'>,</span>
 <span class='const'><span class='object_link'><a href="#Resource-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Resource (constant)">Resource</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#Suffused-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::Suffused (constant)">Suffused</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#VolnFavor-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::VolnFavor (constant)">VolnFavor</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#GigasArtifactFragments-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::GigasArtifactFragments (constant)">GigasArtifactFragments</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#RedsteelMarks-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::RedsteelMarks (constant)">RedsteelMarks</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketGeneral-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketGeneral (constant)">TicketGeneral</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketGold-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketGold (constant)">TicketGold</a></span></span><span class='comma'>,</span>
 <span class='const'><span class='object_link'><a href="#TicketBlackscrip-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketBlackscrip (constant)">TicketBlackscrip</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketBloodscrip-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketBloodscrip (constant)">TicketBloodscrip</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketEtherealScrip-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketEtherealScrip (constant)">TicketEtherealScrip</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketSoulShards-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketSoulShards (constant)">TicketSoulShards</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#TicketRaikhen-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::TicketRaikhen (constant)">TicketRaikhen</a></span></span><span class='comma'>,</span>
-<span class='const'><span class='object_link'><a href="#WealthSilver-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::WealthSilver (constant)">WealthSilver</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#WealthSilverContainer-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::WealthSilverContainer (constant)">WealthSilverContainer</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#GoalsDetected-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::GoalsDetected (constant)">GoalsDetected</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#GoalsEnded-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::GoalsEnded (constant)">GoalsEnded</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SpellsongRenewed-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SpellsongRenewed (constant)">SpellsongRenewed</a></span></span><span class='comma'>,</span>
+<span class='const'><span class='object_link'><a href="#WealthSilver-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::WealthSilver (constant)">WealthSilver</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#WealthSilverContainer-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::WealthSilverContainer (constant)">WealthSilverContainer</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#GoalsDetected-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::GoalsDetected (constant)">GoalsDetected</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#GoalsEnded-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::GoalsEnded (constant)">GoalsEnded</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#InnCheckedOut-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::InnCheckedOut (constant)">InnCheckedOut</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SpellsongRenewed-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SpellsongRenewed (constant)">SpellsongRenewed</a></span></span><span class='comma'>,</span>
 <span class='const'><span class='object_link'><a href="#ThornPoisonStart-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ThornPoisonStart (constant)">ThornPoisonStart</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ThornPoisonProgression-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ThornPoisonProgression (constant)">ThornPoisonProgression</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ThornPoisonDeprogression-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ThornPoisonDeprogression (constant)">ThornPoisonDeprogression</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ThornPoisonEnd-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ThornPoisonEnd (constant)">ThornPoisonEnd</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#CovertArtsCharges-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::CovertArtsCharges (constant)">CovertArtsCharges</a></span></span><span class='comma'>,</span>
 <span class='const'><span class='object_link'><a href="#AccountName-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::AccountName (constant)">AccountName</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#AccountSubscription-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::AccountSubscription (constant)">AccountSubscription</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ProfileStart-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ProfileStart (constant)">ProfileStart</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ProfileName-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ProfileName (constant)">ProfileName</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ProfileHouseCHE-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ProfileHouseCHE (constant)">ProfileHouseCHE</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ResignCHE-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ResignCHE (constant)">ResignCHE</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ResignConfirmCHE-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ResignConfirmCHE (constant)">ResignConfirmCHE</a></span></span><span class='comma'>,</span>
 <span class='const'><span class='object_link'><a href="#ShadowEssence-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ShadowEssence (constant)">ShadowEssence</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ShadowEssenceGain-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ShadowEssenceGain (constant)">ShadowEssenceGain</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#ShadowEssenceCap-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::ShadowEssenceCap (constant)">ShadowEssenceCap</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SacrificeMana-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SacrificeMana (constant)">SacrificeMana</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SacrificeChannel-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SacrificeChannel (constant)">SacrificeChannel</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SacrificeInfest-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SacrificeInfest (constant)">SacrificeInfest</a></span></span><span class='comma'>,</span>
 <span class='const'><span class='object_link'><a href="#SacrificeFate-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SacrificeFate (constant)">SacrificeFate</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#SacrificeShift-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::SacrificeShift (constant)">SacrificeShift</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#GemstoneDust-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::GemstoneDust (constant)">GemstoneDust</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveStart-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveStart (constant)">EnhanciveStart</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveStat-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveStat (constant)">EnhanciveStat</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveSkillsSection-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveSkillsSection (constant)">EnhanciveSkillsSection</a></span></span><span class='comma'>,</span>
 <span class='const'><span class='object_link'><a href="#EnhanciveSkillRanks-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveSkillRanks (constant)">EnhanciveSkillRanks</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveSkillBonus-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveSkillBonus (constant)">EnhanciveSkillBonus</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveResourcesSection-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveResourcesSection (constant)">EnhanciveResourcesSection</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveResource-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveResource (constant)">EnhanciveResource</a></span></span><span class='comma'>,</span>
-<span class='const'><span class='object_link'><a href="#EnhanciveSpellsSection-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveSpellsSection (constant)">EnhanciveSpellsSection</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveSpells-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveSpells (constant)">EnhanciveSpells</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveStatisticsSection-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveStatisticsSection (constant)">EnhanciveStatisticsSection</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveStatistic-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveStatistic (constant)">EnhanciveStatistic</a></span></span><span class='comma'>,</span>
-<span class='const'><span class='object_link'><a href="#EnhanciveEnd-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveEnd (constant)">EnhanciveEnd</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveNone-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveNone (constant)">EnhanciveNone</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveOn-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveOn (constant)">EnhanciveOn</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveOff-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveOff (constant)">EnhanciveOff</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhancivePauses-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhancivePauses (constant)">EnhancivePauses</a></span></span><span class='rparen'>)</span></pre></dd>
+<span class='const'><span class='object_link'><a href="#EnhanciveMartialSection-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveMartialSection (constant)">EnhanciveMartialSection</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveMartialSkill-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveMartialSkill (constant)">EnhanciveMartialSkill</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveSpellsSection-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveSpellsSection (constant)">EnhanciveSpellsSection</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveSpells-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveSpells (constant)">EnhanciveSpells</a></span></span><span class='comma'>,</span>
+<span class='const'><span class='object_link'><a href="#EnhanciveStatisticsSection-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveStatisticsSection (constant)">EnhanciveStatisticsSection</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveStatistic-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveStatistic (constant)">EnhanciveStatistic</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveEnd-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveEnd (constant)">EnhanciveEnd</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveNone-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveNone (constant)">EnhanciveNone</a></span></span><span class='comma'>,</span>
+<span class='const'><span class='object_link'><a href="#EnhanciveOn-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveOn (constant)">EnhanciveOn</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhanciveOff-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhanciveOff (constant)">EnhanciveOff</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#EnhancivePauses-constant" title="Lich::Gemstone::Infomon::Parser::Pattern::EnhancivePauses (constant)">EnhancivePauses</a></span></span><span class='rparen'>)</span></pre></dd>
       
     </dl>
   
@@ -720,9 +741,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:52 2026 by
+  Generated on Sun May 10 17:26:24 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

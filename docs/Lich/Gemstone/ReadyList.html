@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::ReadyList";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,33 +96,32 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/readylist.rb</dd>
+    <dd>documented/gemstone/readylist.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a ready list for managing equipped items in the Lich game. This class provides methods to check, reset, and validate the items in the ready list.</p>
-
+    <p>Represents a list of ready items and their storage in the game.</p>
+<p>This class manages the items that a player can have ready for use,
+including weapons and shields, and provides methods to check their
+validity and reset the lists.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Creating a ready list</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_ready_list'>ready_list</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>ReadyList</span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>#ready_list</li>
+    
+      <li>#store_list</li>
+    
+  </ul>
 
 </div>
   
@@ -132,34 +133,12 @@
     <dl class="constants">
       
         <dt id="ORIGINAL_READY_LIST-constant" class="">ORIGINAL_READY_LIST =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>The original list of ready items. This constant defines the default items that can be included in the ready list.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='lbracket'>[</span><span class='symbol'>:shield</span><span class='comma'>,</span> <span class='symbol'>:weapon</span><span class='comma'>,</span> <span class='symbol'>:secondary_weapon</span><span class='comma'>,</span> <span class='symbol'>:ranged_weapon</span><span class='comma'>,</span> <span class='symbol'>:ammo_bundle</span><span class='comma'>,</span> <span class='symbol'>:ammo2_bundle</span><span class='comma'>,</span> <span class='symbol'>:sheath</span><span class='comma'>,</span> <span class='symbol'>:secondary_sheath</span><span class='comma'>,</span> <span class='symbol'>:wand</span><span class='rbracket'>]</span></pre></dd>
       
         <dt id="ORIGINAL_STORE_LIST-constant" class="">ORIGINAL_STORE_LIST =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>The original list of store items. This constant defines the default items that can be included in the store list.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='lbracket'>[</span><span class='symbol'>:shield</span><span class='comma'>,</span> <span class='symbol'>:weapon</span><span class='comma'>,</span> <span class='symbol'>:secondary_weapon</span><span class='comma'>,</span> <span class='symbol'>:ranged_weapon</span><span class='comma'>,</span> <span class='symbol'>:ammo_bundle</span><span class='comma'>,</span> <span class='symbol'>:wand</span><span class='rbracket'>]</span></pre></dd>
       
@@ -197,9 +176,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks the current settings of the ready list.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks the current settings of the ready list in the game.</p></div></span>
   
 </li>
 
@@ -207,7 +184,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#checked=-class_method" title="checked= (class method)">.<strong>checked=</strong>(value)  &#x21d2; Boolean </a>
+      <a href="#checked=-class_method" title="checked= (class method)">.<strong>checked=</strong>(value)  &#x21d2; Object </a>
     
 
     
@@ -221,9 +198,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the checked status of the ready list.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -245,9 +220,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the ready list has been validated.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -255,7 +228,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#ready_list-class_method" title="ready_list (class method)">.<strong>ready_list</strong>  &#x21d2; Hash </a>
+      <a href="#ready_list-class_method" title="ready_list (class method)">.<strong>ready_list</strong>  &#x21d2; Object </a>
     
 
     
@@ -269,9 +242,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the current ready list.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -293,9 +264,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Resets the ready and store lists.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Resets the ready and store lists to nil.</p></div></span>
   
 </li>
 
@@ -303,7 +272,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#store_list-class_method" title="store_list (class method)">.<strong>store_list</strong>  &#x21d2; Hash </a>
+      <a href="#store_list-class_method" title="store_list (class method)">.<strong>store_list</strong>  &#x21d2; Object </a>
     
 
     
@@ -317,9 +286,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the current store list.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -341,14 +308,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Validates the items in the ready list.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the current ready items are valid.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -368,26 +334,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Checks the current settings of the ready list.</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This method updates the checked state based on the results.</p></div>
+  </div>
 
+<p class="note returns_void">This method returns an undefined value.</p><p>Checks the current settings of the ready list in the game.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Checking the ready list</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_ready_list'>ready_list</span><span class='period'>.</span><span class='id identifier rubyid_check'>check</span><span class='lparen'>(</span><span class='label'>silent:</span> <span class='kw'>true</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -402,9 +360,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If true, suppresses output.</p>
-</div>
+        <div class='inline'><p>if true, suppresses output</p></div>
       
     </li>
   
@@ -420,9 +376,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If true, uses a quiet output pattern.</p>
-</div>
+        <div class='inline'><p>if true, uses a quieter output pattern</p></div>
       
     </li>
   
@@ -435,29 +389,29 @@
       <pre class="lines">
 
 
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126</pre>
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/readylist.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/readylist.rb', line 108</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check'>check</span><span class='lparen'>(</span><span class='label'>silent:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_quiet'>quiet</span>
-    <span class='id identifier rubyid_start_pattern'>start_pattern</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;output class=&quot;mono&quot;\/&gt;</span><span class='regexp_end'>/</span></span>
+    <span class='id identifier rubyid_start_pattern'>start_pattern</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;output class=&quot;mono&quot;\/&gt;|^You are a ghost!</span><span class='regexp_end'>/</span></span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_start_pattern'>start_pattern</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Your current settings are:</span><span class='regexp_end'>/</span></span>
+    <span class='id identifier rubyid_start_pattern'>start_pattern</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Your current settings are:|^You are a ghost!</span><span class='regexp_end'>/</span></span>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_waitrt?'><span class='object_link'><a href="../../top-level-namespace.html#waitrt%3F-instance_method" title="#waitrt? (method)">waitrt?</a></span></span>
-  <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_issue_command'><span class='object_link'><a href="../Util.html#issue_command-class_method" title="Lich::Util.issue_command (method)">issue_command</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ready list</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_start_pattern'>start_pattern</span><span class='comma'>,</span> <span class='label'>silent:</span> <span class='id identifier rubyid_silent'>silent</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='id identifier rubyid_quiet'>quiet</span><span class='rparen'>)</span>
-  <span class='ivar'>@checked</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_results'>results</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_issue_command'><span class='object_link'><a href="../Util.html#issue_command-class_method" title="Lich::Util.issue_command (method)">issue_command</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ready list</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_start_pattern'>start_pattern</span><span class='comma'>,</span> <span class='label'>silent:</span> <span class='id identifier rubyid_silent'>silent</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='id identifier rubyid_quiet'>quiet</span><span class='rparen'>)</span>
+  <span class='ivar'>@checked</span> <span class='op'>=</span> <span class='id identifier rubyid_results'>results</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_match?'>match?</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Your current settings are:</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -467,73 +421,24 @@
       <div class="method_details ">
   <h3 class="signature " id="checked=-class_method">
   
-    .<strong>checked=</strong>(value)  &#x21d2; <tt>Boolean</tt> 
+    .<strong>checked=</strong>(value)  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Sets the checked status of the ready list.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>value</span>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The new checked status.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The updated checked status.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-71
-72
-73</pre>
+62
+63
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/readylist.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/readylist.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_checked='>checked=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='ivar'>@checked</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -555,8 +460,6 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if the ready list has been validated.</p>
-
 
   </div>
 </div>
@@ -572,11 +475,6 @@
       
       
       
-        &mdash;
-        <div class='inline'>
-<p>True if the ready list has been checked, false otherwise.</p>
-</div>
-      
     </li>
   
 </ul>
@@ -587,12 +485,12 @@
       <pre class="lines">
 
 
-64
-65
-66</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/readylist.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/readylist.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_checked?'>checked?</span>
   <span class='ivar'>@checked</span>
@@ -605,53 +503,24 @@
       <div class="method_details ">
   <h3 class="signature " id="ready_list-class_method">
   
-    .<strong>ready_list</strong>  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt> 
+    .<strong>ready_list</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the current ready list.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The hash representing the ready list with item types as keys and their values.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-52
-53
-54</pre>
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/readylist.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/readylist.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ready_list'>ready_list</span>
   <span class='ivar'>@ready_list</span>
@@ -672,26 +541,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Resets the ready and store lists.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Resets the ready and store lists to nil.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Resetting the ready list</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_ready_list'>ready_list</span><span class='period'>.</span><span class='id identifier rubyid_reset'>reset</span><span class='lparen'>(</span><span class='label'>all:</span> <span class='kw'>true</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -706,9 +561,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If true, resets all items, otherwise only resets original items.</p>
-</div>
+        <div class='inline'><p>if true, resets all items regardless of original list</p></div>
       
     </li>
   
@@ -721,20 +574,20 @@
       <pre class="lines">
 
 
+90
+91
+92
+93
+94
+95
+96
+97
+98
 99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109</pre>
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/readylist.rb', line 99</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/readylist.rb', line 90</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reset'>reset</span><span class='lparen'>(</span><span class='label'>all:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='ivar'>@checked</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -755,53 +608,24 @@
       <div class="method_details ">
   <h3 class="signature " id="store_list-class_method">
   
-    .<strong>store_list</strong>  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt> 
+    .<strong>store_list</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the current store list.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The hash representing the store list with item types as keys and their values.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-58
-59
-60</pre>
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/readylist.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/readylist.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_store_list'>store_list</span>
   <span class='ivar'>@store_list</span>
@@ -825,14 +649,10 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>This method requires that the ready list has been checked before validation.</p>
-</div>
+    <div class='inline'><p>This method relies on the checked state being true.</p></div>
   </div>
 
-
-<p>Validates the items in the ready list.</p>
-
+<p>Checks if the current ready items are valid.</p>
 
   </div>
 </div>
@@ -842,11 +662,9 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Validating the ready list</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Check validity of ready items</p></div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_is_valid'>is_valid</span> <span class='op'>=</span> <span class='id identifier rubyid_ready_list'>ready_list</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='label'>all:</span> <span class='kw'>true</span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_ready_list'>ready_list</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -864,9 +682,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If true, validates all items, otherwise only validates original ready items.</p>
-</div>
+        <div class='inline'><p>if true, checks all items regardless of original list</p></div>
       
     </li>
   
@@ -883,9 +699,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if all relevant items are valid, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if all checked items are valid, false otherwise</p></div>
       
     </li>
   
@@ -897,21 +711,21 @@
       <pre class="lines">
 
 
+73
+74
+75
+76
+77
+78
+79
+80
 81
 82
 83
-84
-85
-86
-87
-88
-89
-90
-91
-92</pre>
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/readylist.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/readylist.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='label'>all:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='comment'># check if existing ready items are valid or not
@@ -935,9 +749,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:19:00 2026 by
+  Generated on Sun May 10 17:26:32 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

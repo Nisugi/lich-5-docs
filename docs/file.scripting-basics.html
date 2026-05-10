@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "scripting-basics";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="file_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -57,19 +59,12 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'>
-<h1 id="label-Scripting+Basics+Guide">Scripting Basics Guide</h1>
-
+      <div id="content"><div id='filecontents'><h1 id="Scripting_Basics_Guide">Scripting Basics Guide</h1>
 <p>This guide covers the fundamentals of writing Lich scripts for GemStone IV and DragonRealms.</p>
-
-<h2 id="label-What+is+a+Lich+Script-3F">What is a Lich Script?</h2>
-
-<p>Lich scripts are Ruby programs that interact with the game through Lich’s API. They can automate tasks, enhance gameplay, and provide information about your character and the game world.</p>
-
-<h2 id="label-Script+Structure">Script Structure</h2>
-
+<h2 id="What_is_a_Lich_Script_">What is a Lich Script?</h2>
+<p>Lich scripts are Ruby programs that interact with the game through Lich's API. They can automate tasks, enhance gameplay, and provide information about your character and the game world.</p>
+<h2 id="Script_Structure">Script Structure</h2>
 <p>A basic Lich script looks like this:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='comment'># my_script.rb
 </span><span class='comment'># A simple example script
 </span>
@@ -78,11 +73,8 @@
 <span class='comment'># Do something useful
 </span><span class='id identifier rubyid_fput'><span class='object_link'><a href="top-level-namespace.html#fput-instance_method" title="#fput (method)">fput</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>look</span><span class='tstring_end'>&quot;</span></span>
 </code></pre>
-
-<h2 id="label-Essential+Functions">Essential Functions</h2>
-
-<h3 id="label-Output+Functions">Output Functions</h3>
-
+<h2 id="Essential_Functions">Essential Functions</h2>
+<h3 id="Output_Functions">Output Functions</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Display message to the user (script output)
 </span><span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This appears in your game window</span><span class='tstring_end'>&quot;</span></span>
 
@@ -95,9 +87,7 @@
 <span class='comment'># Send and wait for a specific response
 </span><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_dothistimeout'><span class='object_link'><a href="top-level-namespace.html#dothistimeout-instance_method" title="#dothistimeout (method)">dothistimeout</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>look</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>5</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Obvious exits</span><span class='regexp_end'>/</span></span>
 </code></pre>
-
-<h3 id="label-Waiting+and+Timing">Waiting and Timing</h3>
-
+<h3 id="Waiting_and_Timing">Waiting and Timing</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Wait for specific text from the game
 </span><span class='id identifier rubyid_waitfor'><span class='object_link'><a href="top-level-namespace.html#waitfor-instance_method" title="#waitfor (method)">waitfor</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You are no longer stunned</span><span class='tstring_end'>&quot;</span></span>
 
@@ -114,9 +104,7 @@
 </span><span class='id identifier rubyid_sleep'>sleep</span> <span class='int'>2</span>          <span class='comment'># Wait 2 seconds
 </span><span class='id identifier rubyid_pause'><span class='object_link'><a href="top-level-namespace.html#pause-instance_method" title="#pause (method)">pause</a></span></span> <span class='float'>0.5</span>        <span class='comment'># Same as sleep
 </span></code></pre>
-
-<h3 id="label-Game+State+Checks">Game State Checks</h3>
-
+<h3 id="Game_State_Checks">Game State Checks</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Check if you&#39;re stunned, dead, etc.
 </span><span class='kw'>if</span> <span class='id identifier rubyid_stunned?'>stunned?</span>
   <span class='id identifier rubyid_waitrt?'><span class='object_link'><a href="top-level-namespace.html#waitrt%3F-instance_method" title="#waitrt? (method)">waitrt?</a></span></span>
@@ -130,9 +118,7 @@
 </span><span class='id identifier rubyid_bound?'><span class='object_link'><a href="top-level-namespace.html#bound%3F-instance_method" title="#bound? (method)">bound?</a></span></span>          <span class='comment'># Are you bound?
 </span><span class='id identifier rubyid_silenced?'><span class='object_link'><a href="top-level-namespace.html#silenced%3F-instance_method" title="#silenced? (method)">silenced?</a></span></span>       <span class='comment'># Are you silenced?
 </span></code></pre>
-
-<h2 id="label-Working+with+Game+Lines">Working with Game Lines</h2>
-
+<h2 id="Working_with_Game_Lines">Working with Game Lines</h2>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get lines from the game
 </span><span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='id identifier rubyid_get'><span class='object_link'><a href="top-level-namespace.html#get-instance_method" title="#get (method)">get</a></span></span>              <span class='comment'># Get next line (blocks)
 </span><span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='id identifier rubyid_get?'><span class='object_link'><a href="top-level-namespace.html#get%3F-instance_method" title="#get? (method)">get?</a></span></span>             <span class='comment'># Get next line (non-blocking, returns nil if none)
@@ -151,11 +137,8 @@
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Script+Management">Script Management</h2>
-
-<h3 id="label-Starting+and+Stopping+Scripts">Starting and Stopping Scripts</h3>
-
+<h2 id="Script_Management">Script Management</h2>
+<h3 id="Starting_and_Stopping_Scripts">Starting and Stopping Scripts</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Start another script (returns immediately)
 </span><span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scriptname</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scriptname</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>arg1 arg2</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -181,9 +164,7 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Running: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_s'><span class='object_link'><a href="top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Script+Lifecycle">Script Lifecycle</h3>
-
+<h3 id="Script_Lifecycle">Script Lifecycle</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Run code when script exits
 </span><span class='id identifier rubyid_before_dying'><span class='object_link'><a href="top-level-namespace.html#before_dying-instance_method" title="#before_dying (method)">before_dying</a></span></span> <span class='lbrace'>{</span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Script is ending!</span><span class='tstring_end'>&quot;</span></span>
@@ -202,9 +183,7 @@
 <span class='comment'># Prevent script from being paused by ;pause all
 </span><span class='id identifier rubyid_no_pause_all'><span class='object_link'><a href="top-level-namespace.html#no_pause_all-instance_method" title="#no_pause_all (method)">no_pause_all</a></span></span>
 </code></pre>
-
-<h2 id="label-Script+Variables">Script Variables</h2>
-
+<h2 id="Script_Variables">Script Variables</h2>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Access script arguments (note: capital S!)
 </span><span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_vars'>vars</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>    <span class='comment'># All arguments as single string
 </span><span class='const'>Script</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_vars'>vars</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>    <span class='comment'># First argument
@@ -227,11 +206,8 @@
   <span class='id identifier rubyid_exit'>exit</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Pattern+Matching">Pattern Matching</h2>
-
-<h3 id="label-Using+Regex">Using Regex</h3>
-
+<h2 id="Pattern_Matching">Pattern Matching</h2>
+<h3 id="Using_Regex">Using Regex</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Simple match
 </span><span class='kw'>if</span> <span class='id identifier rubyid_line'>line</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>gold coins</span><span class='regexp_end'>/</span></span>
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Found gold!</span><span class='tstring_end'>&quot;</span></span>
@@ -249,9 +225,7 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Incoming attack!</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-dothistimeout">dothistimeout</h3>
-
+<h3 id="dothistimeout">dothistimeout</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Send command and wait for specific response
 </span><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_dothistimeout'><span class='object_link'><a href="top-level-namespace.html#dothistimeout-instance_method" title="#dothistimeout (method)">dothistimeout</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>open backpack</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>5</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>You open|already open|can&#39;t open</span><span class='regexp_end'>/</span></span>
 
@@ -266,11 +240,8 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Timed out</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Common+Patterns">Common Patterns</h2>
-
-<h3 id="label-Safe+Command+Execution">Safe Command Execution</h3>
-
+<h2 id="Common_Patterns">Common Patterns</h2>
+<h3 id="Safe_Command_Execution">Safe Command Execution</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_safe_move'>safe_move</span><span class='lparen'>(</span><span class='id identifier rubyid_direction'>direction</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_dothistimeout'><span class='object_link'><a href="top-level-namespace.html#dothistimeout-instance_method" title="#dothistimeout (method)">dothistimeout</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>go </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_direction'>direction</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>3</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Obvious|^You can&#39;t go</span><span class='regexp_end'>/</span></span>
   <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>can&#39;t go</span><span class='regexp_end'>/</span></span>
@@ -280,9 +251,7 @@
   <span class='kw'>true</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Retry+Logic">Retry Logic</h3>
-
+<h3 id="Retry_Logic">Retry Logic</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_try_action'>try_action</span><span class='lparen'>(</span><span class='id identifier rubyid_max_attempts'>max_attempts</span> <span class='op'>=</span> <span class='int'>3</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_attempts'>attempts</span> <span class='op'>=</span> <span class='int'>0</span>
   <span class='id identifier rubyid_loop'>loop</span> <span class='kw'>do</span>
@@ -300,35 +269,24 @@
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Waiting+for+Conditions">Waiting for Conditions</h3>
-
+<h3 id="Waiting_for_Conditions">Waiting for Conditions</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Wait until a condition is true
 </span><span class='id identifier rubyid_wait_until'><span class='object_link'><a href="top-level-namespace.html#wait_until-instance_method" title="#wait_until (method)">wait_until</a></span></span> <span class='lbrace'>{</span> <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span> <span class='op'>&gt;=</span> <span class='int'>50</span> <span class='rbrace'>}</span>
 
 <span class='comment'># Wait until with timeout
 </span><span class='id identifier rubyid_wait_until'><span class='object_link'><a href="top-level-namespace.html#wait_until-instance_method" title="#wait_until (method)">wait_until</a></span></span><span class='lparen'>(</span><span class='label'>timeout:</span> <span class='int'>30</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_health'>health</span> <span class='op'>&gt;=</span> <span class='const'>Char</span><span class='period'>.</span><span class='id identifier rubyid_max_health'>max_health</span> <span class='rbrace'>}</span>
 </code></pre>
-
-<h2 id="label-Best+Practices">Best Practices</h2>
-<ol><li>
-<p><strong>Use waitrt?</strong> - Always wait for roundtime before actions</p>
-</li><li>
-<p><strong>Handle failures</strong> - Check return values and handle errors</p>
-</li><li>
-<p><strong>Use timeouts</strong> - Never wait forever; use <code>dothistimeout</code></p>
-</li><li>
-<p><strong>Clean up</strong> - Use <code>before_dying</code> to clean up on exit</p>
-</li><li>
-<p><strong>Be resource-friendly</strong> - Add small sleeps in tight loops</p>
-</li><li>
-<p><strong>Log important events</strong> - Use <code>echo</code> to help with debugging</p>
-</li><li>
-<p><strong>Case matters</strong> - Ruby is case-sensitive: <code>Script</code> not <code>script</code></p>
-</li></ol>
-
-<h2 id="label-Debugging">Debugging</h2>
-
+<h2 id="Best_Practices">Best Practices</h2>
+<ol>
+<li><strong>Use waitrt?</strong> - Always wait for roundtime before actions</li>
+<li><strong>Handle failures</strong> - Check return values and handle errors</li>
+<li><strong>Use timeouts</strong> - Never wait forever; use <code>dothistimeout</code></li>
+<li><strong>Clean up</strong> - Use <code>before_dying</code> to clean up on exit</li>
+<li><strong>Be resource-friendly</strong> - Add small sleeps in tight loops</li>
+<li><strong>Log important events</strong> - Use <code>echo</code> to help with debugging</li>
+<li><strong>Case matters</strong> - Ruby is case-sensitive: <code>Script</code> not <code>script</code></li>
+</ol>
+<h2 id="Debugging">Debugging</h2>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Toggle echo to see script output
 </span><span class='id identifier rubyid_toggle_echo'><span class='object_link'><a href="top-level-namespace.html#toggle_echo-instance_method" title="#toggle_echo (method)">toggle_echo</a></span></span>   <span class='comment'># Toggles between on/off
 </span><span class='id identifier rubyid_echo_on'><span class='object_link'><a href="top-level-namespace.html#echo_on-instance_method" title="#echo_on (method)">echo_on</a></span></span>       <span class='comment'># Turn echo on
@@ -341,25 +299,19 @@
 <span class='comment'># Silence script output
 </span><span class='id identifier rubyid_silence_me'><span class='object_link'><a href="top-level-namespace.html#silence_me-instance_method" title="#silence_me (method)">silence_me</a></span></span>
 </code></pre>
-
-<h2 id="label-See+Also">See Also</h2>
-<ul><li>
-<p><span class='object_link'><a href="Lich/Common/Char.html" title="Lich::Common::Char (class)">Lich::Common::Char</a></span> - Character information</p>
-</li><li>
-<p><span class='object_link'><a href="Lich/Gemstone/Stats.html" title="Lich::Gemstone::Stats (module)">Lich::Gemstone::Stats</a></span> - Character statistics</p>
-</li><li>
-<p><span class='object_link'><a href="Lich/Gemstone/Skills.html" title="Lich::Gemstone::Skills (module)">Lich::Gemstone::Skills</a></span> - Character skills</p>
-</li><li>
-<p><span class='object_link'><a href="Lich/Common/Spell.html" title="Lich::Common::Spell (class)">Lich::Common::Spell</a></span> - Spell management</p>
-</li><li>
-<p><span class='object_link'><a href="Lich/Common/Map.html" title="Lich::Common::Map (class)">Lich::Common::Map</a></span> - Map and navigation</p>
-</li></ul>
-</div></div>
+<h2 id="See_Also">See Also</h2>
+<ul>
+<li><span class='object_link'><a href="Lich/Common/Char.html" title="Lich::Common::Char (class)">Lich::Common::Char</a></span> - Character information</li>
+<li><span class='object_link'><a href="Lich/Gemstone/Stats.html" title="Lich::Gemstone::Stats (module)">Lich::Gemstone::Stats</a></span> - Character statistics</li>
+<li><span class='object_link'><a href="Lich/Gemstone/Skills.html" title="Lich::Gemstone::Skills (module)">Lich::Gemstone::Skills</a></span> - Character skills</li>
+<li><span class='object_link'><a href="Lich/Common/Spell.html" title="Lich::Common::Spell (class)">Lich::Common::Spell</a></span> - Spell management</li>
+<li><span class='object_link'><a href="Lich/Common/Map.html" title="Lich::Common::Map (class)">Lich::Common::Map</a></span> - Map and navigation</li>
+</ul></div></div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:46 2026 by
+  Generated on Sun May 10 17:26:20 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

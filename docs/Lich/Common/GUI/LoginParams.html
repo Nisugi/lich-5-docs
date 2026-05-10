@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::GUI::LoginParams";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,33 +96,29 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/gui/parameter_objects.rb</dd>
+    <dd>documented/common/gui/parameter_objects.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents the parameters required for user login.</p>
-
+    <p>Represents the parameters required for user login.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Creating login parameters</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='const'>LoginParams</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Common::GUI::LoginParams#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>user_id:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user123</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>password:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pass</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="UIConfig.html" title="Lich::Common::GUI::UIConfig (class)">UIConfig</a></span></li>
+    
+      <li><span class='object_link'><a href="CallbackParams.html" title="Lich::Common::GUI::CallbackParams (class)">CallbackParams</a></span></li>
+    
+  </ul>
 
 </div>
 
@@ -149,9 +147,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute char_name.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute char_name.</p></div></span>
   
 </li>
 
@@ -176,9 +172,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute custom_launch.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute custom_launch.</p></div></span>
   
 </li>
 
@@ -203,9 +197,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute custom_launch_dir.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute custom_launch_dir.</p></div></span>
   
 </li>
 
@@ -230,9 +222,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute favorite_added.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute favorite_added.</p></div></span>
   
 </li>
 
@@ -257,9 +247,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute favorite_order.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute favorite_order.</p></div></span>
   
 </li>
 
@@ -284,9 +272,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute frontend.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute frontend.</p></div></span>
   
 </li>
 
@@ -311,9 +297,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute game_code.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute game_code.</p></div></span>
   
 </li>
 
@@ -338,9 +322,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute game_name.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute game_name.</p></div></span>
   
 </li>
 
@@ -365,9 +347,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute is_favorite.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute is_favorite.</p></div></span>
   
 </li>
 
@@ -392,9 +372,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute password.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute password.</p></div></span>
   
 </li>
 
@@ -419,9 +397,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute user_id.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute user_id.</p></div></span>
   
 </li>
 
@@ -442,7 +418,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#character_id-instance_method" title="#character_id (instance method)">#<strong>character_id</strong>  &#x21d2; Hash </a>
+      <a href="#character_id-instance_method" title="#character_id (instance method)">#<strong>character_id</strong>  &#x21d2; Object </a>
     
 
     
@@ -456,9 +432,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns a hash representing the character ID information.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -480,9 +454,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the login parameters are marked as favorite.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -506,9 +478,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A new instance of LoginParams.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>A new instance of LoginParams.</p></div></span>
   
 </li>
 
@@ -536,6 +506,7 @@
 
       
     </ul>
+    
   
 
 <div id="constructor_details" class="method_details_list">
@@ -552,9 +523,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns a new instance of LoginParams.</p>
-
+    <p>Returns a new instance of LoginParams.</p>
 
   </div>
 </div>
@@ -574,9 +543,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>a customizable set of options</p>
-</div>
+        <div class='inline'><p>a customizable set of options</p></div>
       
     </li>
   
@@ -595,9 +562,7 @@
             
           </span>
           
-            &mdash; <div class='inline'>
-<p>User ID/account name</p>
-</div>
+            &mdash; <div class='inline'><p>User ID/account name</p></div>
           
         </li>
       
@@ -611,7 +576,6 @@
       <pre class="lines">
 
 
-14
 15
 16
 17
@@ -623,10 +587,11 @@
 23
 24
 25
-26</pre>
+26
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@user_id</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span>
@@ -664,9 +629,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute char_name.</p>
-
+    <p>Returns the value of attribute char_name.</p>
 
   </div>
 </div>
@@ -679,12 +642,12 @@
       <pre class="lines">
 
 
-9
 10
-11</pre>
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_char_name'>char_name</span>
   <span class='ivar'>@char_name</span>
@@ -707,9 +670,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute custom_launch.</p>
-
+    <p>Returns the value of attribute custom_launch.</p>
 
   </div>
 </div>
@@ -722,12 +683,12 @@
       <pre class="lines">
 
 
-9
 10
-11</pre>
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_custom_launch'>custom_launch</span>
   <span class='ivar'>@custom_launch</span>
@@ -750,9 +711,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute custom_launch_dir.</p>
-
+    <p>Returns the value of attribute custom_launch_dir.</p>
 
   </div>
 </div>
@@ -765,12 +724,12 @@
       <pre class="lines">
 
 
-9
 10
-11</pre>
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_custom_launch_dir'>custom_launch_dir</span>
   <span class='ivar'>@custom_launch_dir</span>
@@ -793,9 +752,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute favorite_added.</p>
-
+    <p>Returns the value of attribute favorite_added.</p>
 
   </div>
 </div>
@@ -808,12 +765,12 @@
       <pre class="lines">
 
 
-9
 10
-11</pre>
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_favorite_added'>favorite_added</span>
   <span class='ivar'>@favorite_added</span>
@@ -836,9 +793,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute favorite_order.</p>
-
+    <p>Returns the value of attribute favorite_order.</p>
 
   </div>
 </div>
@@ -851,12 +806,12 @@
       <pre class="lines">
 
 
-9
 10
-11</pre>
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_favorite_order'>favorite_order</span>
   <span class='ivar'>@favorite_order</span>
@@ -879,9 +834,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute frontend.</p>
-
+    <p>Returns the value of attribute frontend.</p>
 
   </div>
 </div>
@@ -894,12 +847,12 @@
       <pre class="lines">
 
 
-9
 10
-11</pre>
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_frontend'>frontend</span>
   <span class='ivar'>@frontend</span>
@@ -922,9 +875,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute game_code.</p>
-
+    <p>Returns the value of attribute game_code.</p>
 
   </div>
 </div>
@@ -937,12 +888,12 @@
       <pre class="lines">
 
 
-9
 10
-11</pre>
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_game_code'>game_code</span>
   <span class='ivar'>@game_code</span>
@@ -965,9 +916,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute game_name.</p>
-
+    <p>Returns the value of attribute game_name.</p>
 
   </div>
 </div>
@@ -980,12 +929,12 @@
       <pre class="lines">
 
 
-9
 10
-11</pre>
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_game_name'>game_name</span>
   <span class='ivar'>@game_name</span>
@@ -1008,9 +957,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute is_favorite.</p>
-
+    <p>Returns the value of attribute is_favorite.</p>
 
   </div>
 </div>
@@ -1023,12 +970,12 @@
       <pre class="lines">
 
 
-9
 10
-11</pre>
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_favorite'>is_favorite</span>
   <span class='ivar'>@is_favorite</span>
@@ -1051,9 +998,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute password.</p>
-
+    <p>Returns the value of attribute password.</p>
 
   </div>
 </div>
@@ -1066,12 +1011,12 @@
       <pre class="lines">
 
 
-9
 10
-11</pre>
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_password'>password</span>
   <span class='ivar'>@password</span>
@@ -1094,9 +1039,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute user_id.</p>
-
+    <p>Returns the value of attribute user_id.</p>
 
   </div>
 </div>
@@ -1109,12 +1052,12 @@
       <pre class="lines">
 
 
-9
 10
-11</pre>
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_user_id'>user_id</span>
   <span class='ivar'>@user_id</span>
@@ -1134,69 +1077,28 @@
       <div class="method_details first">
   <h3 class="signature first" id="character_id-instance_method">
   
-    #<strong>character_id</strong>  &#x21d2; <tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt> 
+    #<strong>character_id</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns a hash representing the character ID information.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Getting character ID</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_character_id'>character_id</span> <span class='comment'>#=&gt; { username: &quot;user123&quot;, char_name: &quot;char1&quot;, game_code: &quot;game1&quot; }</span></code></pre>
-    
-  </div>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>A hash containing username, character name, and game code.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
+49
+50
+51
+52
+53
 54
-55
-56
-57
-58
-59
-60</pre>
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_character_id'>character_id</span>
   <span class='lbrace'>{</span>
@@ -1222,8 +1124,6 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if the login parameters are marked as favorite.</p>
-
 
   </div>
 </div>
@@ -1239,11 +1139,6 @@
       
       
       
-        &mdash;
-        <div class='inline'>
-<p>True if the parameters are a favorite, false otherwise.</p>
-</div>
-      
     </li>
   
 </ul>
@@ -1254,12 +1149,12 @@
       <pre class="lines">
 
 
+45
 46
-47
-48</pre>
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_favorite?'>favorite?</span>
   <span class='ivar'>@is_favorite</span> <span class='op'>==</span> <span class='kw'>true</span>
@@ -1284,7 +1179,6 @@
       <pre class="lines">
 
 
-28
 29
 30
 31
@@ -1298,10 +1192,11 @@
 39
 40
 41
-42</pre>
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/parameter_objects.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_h'>to_h</span>
   <span class='lbrace'>{</span>
@@ -1328,9 +1223,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:19:01 2026 by
+  Generated on Sun May 10 17:26:33 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

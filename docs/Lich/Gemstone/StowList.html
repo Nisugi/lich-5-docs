@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::StowList";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,30 +96,28 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/stowlist.rb</dd>
+    <dd>documented/gemstone/stowlist.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a list of items to stow in the Lich game. This class manages the stow list and provides methods to check, reset, and validate the stow targets.</p>
-
+    <p>Represents a list of items that can be stowed.</p>
+<p>This class manages the stow list entries and their states.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>StowList</span><span class='period'>.</span><span class='id identifier rubyid_checked'>checked</span> <span class='op'>=</span> <span class='kw'>true</span>
-<span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>StowList</span><span class='period'>.</span><span class='id identifier rubyid_check'><span class='object_link'><a href="#check-class_method" title="Lich::Gemstone::StowList.check (method)">check</a></span></span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">for related functionality</a></span></li>
+    
+  </ul>
 
 </div>
   
@@ -129,18 +129,7 @@
     <dl class="constants">
       
         <dt id="ORIGINAL_STOW_LIST-constant" class="">ORIGINAL_STOW_LIST =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>The original list of stowable item types.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='lbracket'>[</span><span class='symbol'>:box</span><span class='comma'>,</span> <span class='symbol'>:gem</span><span class='comma'>,</span> <span class='symbol'>:herb</span><span class='comma'>,</span> <span class='symbol'>:skin</span><span class='comma'>,</span> <span class='symbol'>:wand</span><span class='comma'>,</span> <span class='symbol'>:scroll</span><span class='comma'>,</span> <span class='symbol'>:potion</span><span class='comma'>,</span> <span class='symbol'>:trinket</span><span class='comma'>,</span> <span class='symbol'>:reagent</span><span class='comma'>,</span> <span class='symbol'>:lockpick</span><span class='comma'>,</span> <span class='symbol'>:treasure</span><span class='comma'>,</span> <span class='symbol'>:forageable</span><span class='comma'>,</span> <span class='symbol'>:collectible</span><span class='comma'>,</span> <span class='symbol'>:default</span><span class='rbracket'>]</span></pre></dd>
       
@@ -178,9 +167,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks the stow list and updates the checked status.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks the current stow list status and updates the checked state.</p></div></span>
   
 </li>
 
@@ -188,7 +175,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#checked=-class_method" title="checked= (class method)">.<strong>checked=</strong>(value)  &#x21d2; Boolean </a>
+      <a href="#checked=-class_method" title="checked= (class method)">.<strong>checked=</strong>(value)  &#x21d2; Object </a>
     
 
     
@@ -202,9 +189,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Sets the checked status of the stow list.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -226,9 +211,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the stow list has been validated.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -236,7 +219,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#reset-class_method" title="reset (class method)">.<strong>reset</strong>(all: false)  &#x21d2; Object </a>
+      <a href="#reset-class_method" title="reset (class method)">.<strong>reset</strong>(all: false)  &#x21d2; void </a>
     
 
     
@@ -250,9 +233,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Resets the stow list entries to nil.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Resets the stow list entries to nil.</p></div></span>
   
 </li>
 
@@ -260,7 +241,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#stow_list-class_method" title="stow_list (class method)">.<strong>stow_list</strong>  &#x21d2; Hash </a>
+      <a href="#stow_list-class_method" title="stow_list (class method)">.<strong>stow_list</strong>  &#x21d2; Object </a>
     
 
     
@@ -274,9 +255,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the current stow list.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -298,14 +277,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Validates the stow list entries.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the stow list entries are valid.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -325,30 +303,12 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method will set the checked status to true after execution.</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Checks the stow list and updates the checked status.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Checks the current stow list status and updates the checked state.</p>
 
   </div>
 </div>
 <div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::StowList (class)">StowList</a></span></span><span class='period'>.</span><span class='id identifier rubyid_check'>check</span><span class='lparen'>(</span><span class='label'>silent:</span> <span class='kw'>true</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
+  <p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -363,9 +323,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If true, suppresses output.</p>
-</div>
+        <div class='inline'><p>if true, suppresses output messages.</p></div>
       
     </li>
   
@@ -381,9 +339,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If true, uses a quiet output pattern.</p>
-</div>
+        <div class='inline'><p>if true, uses a quiet output pattern.</p></div>
       
     </li>
   
@@ -396,29 +352,29 @@
       <pre class="lines">
 
 
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101</pre>
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/stowlist.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/stowlist.rb', line 82</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check'>check</span><span class='lparen'>(</span><span class='label'>silent:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_quiet'>quiet</span>
-    <span class='id identifier rubyid_start_pattern'>start_pattern</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;output class=&quot;mono&quot;\/&gt;</span><span class='regexp_end'>/</span></span>
+    <span class='id identifier rubyid_start_pattern'>start_pattern</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;output class=&quot;mono&quot;\/&gt;|^You are a ghost!</span><span class='regexp_end'>/</span></span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_start_pattern'>start_pattern</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>You have the following containers set as stow targets:</span><span class='regexp_end'>/</span></span>
+    <span class='id identifier rubyid_start_pattern'>start_pattern</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>You have the following containers set as stow targets:|^You are a ghost!</span><span class='regexp_end'>/</span></span>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_waitrt?'><span class='object_link'><a href="../../top-level-namespace.html#waitrt%3F-instance_method" title="#waitrt? (method)">waitrt?</a></span></span>
-  <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_issue_command'><span class='object_link'><a href="../Util.html#issue_command-class_method" title="Lich::Util.issue_command (method)">issue_command</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>stow list</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_start_pattern'>start_pattern</span><span class='comma'>,</span> <span class='label'>silent:</span> <span class='id identifier rubyid_silent'>silent</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='id identifier rubyid_quiet'>quiet</span><span class='rparen'>)</span>
-  <span class='ivar'>@checked</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_results'>results</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_issue_command'><span class='object_link'><a href="../Util.html#issue_command-class_method" title="Lich::Util.issue_command (method)">issue_command</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>stow list</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_start_pattern'>start_pattern</span><span class='comma'>,</span> <span class='label'>silent:</span> <span class='id identifier rubyid_silent'>silent</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='id identifier rubyid_quiet'>quiet</span><span class='rparen'>)</span>
+  <span class='ivar'>@checked</span> <span class='op'>=</span> <span class='id identifier rubyid_results'>results</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_match?'>match?</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>You have the following containers set as stow targets</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -428,73 +384,24 @@
       <div class="method_details ">
   <h3 class="signature " id="checked=-class_method">
   
-    .<strong>checked=</strong>(value)  &#x21d2; <tt>Boolean</tt> 
+    .<strong>checked=</strong>(value)  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Sets the checked status of the stow list.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>value</span>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The new checked status.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The updated checked status.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-54
-55
-56</pre>
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/stowlist.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/stowlist.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_checked='>checked=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='ivar'>@checked</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -516,8 +423,6 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Checks if the stow list has been validated.</p>
-
 
   </div>
 </div>
@@ -533,11 +438,6 @@
       
       
       
-        &mdash;
-        <div class='inline'>
-<p>True if the stow list has been checked, false otherwise.</p>
-</div>
-      
     </li>
   
 </ul>
@@ -548,12 +448,12 @@
       <pre class="lines">
 
 
-47
-48
-49</pre>
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/stowlist.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/stowlist.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_checked?'>checked?</span>
   <span class='ivar'>@checked</span>
@@ -566,7 +466,7 @@
       <div class="method_details ">
   <h3 class="signature " id="reset-class_method">
   
-    .<strong>reset</strong>(all: false)  &#x21d2; <tt>Object</tt> 
+    .<strong>reset</strong>(all: false)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -574,9 +474,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Resets the stow list entries to nil.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Resets the stow list entries to nil.</p>
 
   </div>
 </div>
@@ -596,9 +494,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If true, resets all entries; otherwise, only resets original stow list.</p>
-</div>
+        <div class='inline'><p>if true, resets all entries; otherwise, only resets original stow list entries.</p></div>
       
     </li>
   
@@ -611,16 +507,16 @@
       <pre class="lines">
 
 
-77
-78
-79
-80
-81
-82
-83</pre>
+69
+70
+71
+72
+73
+74
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/stowlist.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/stowlist.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reset'>reset</span><span class='lparen'>(</span><span class='label'>all:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='ivar'>@checked</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -637,53 +533,24 @@
       <div class="method_details ">
   <h3 class="signature " id="stow_list-class_method">
   
-    .<strong>stow_list</strong>  &#x21d2; <tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt> 
+    .<strong>stow_list</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the current stow list.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>The stow list with item types as keys and their values.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-41
-42
-43</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/stowlist.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/stowlist.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stow_list'>stow_list</span>
   <span class='ivar'>@stow_list</span>
@@ -704,17 +571,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>This method requires that the stow list has been checked.</p>
-</div>
-  </div>
-
-
-<p>Validates the stow list entries.</p>
-
+    <p>Checks if the stow list entries are valid.</p>
 
   </div>
 </div>
@@ -734,9 +591,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>If true, checks all entries; otherwise, only checks original stow list.</p>
-</div>
+        <div class='inline'><p>if true, checks all entries; otherwise, only checks original stow list entries.</p></div>
       
     </li>
   
@@ -753,9 +608,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>True if all checked entries are valid, false otherwise.</p>
-</div>
+        <div class='inline'><p>true if all checked entries are valid, false otherwise.</p></div>
       
     </li>
   
@@ -767,21 +620,21 @@
       <pre class="lines">
 
 
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
 62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73</pre>
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/stowlist.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/stowlist.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='label'>all:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='comment'># check if existing containers are valid or not
@@ -805,9 +658,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:19:00 2026 by
+  Generated on Sun May 10 17:26:32 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

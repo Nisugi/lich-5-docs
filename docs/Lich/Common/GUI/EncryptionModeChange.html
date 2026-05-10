@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::GUI::EncryptionModeChange";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,7 +80,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/gui/encryption_mode_change.rb</dd>
+    <dd>documented/common/gui/encryption_mode_change.rb
+</dd>
   </dl>
   
 </div>
@@ -115,14 +118,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Displays a dialog for changing the encryption mode.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Displays a dialog for changing the encryption mode.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -142,9 +144,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Displays a dialog for changing the encryption mode.</p>
-
+    <p>Displays a dialog for changing the encryption mode.</p>
 
   </div>
 </div>
@@ -154,7 +154,9 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::EncryptionModeChange (module)">EncryptionModeChange</a></span></span><span class='period'>.</span><span class='id identifier rubyid_show_change_mode_dialog'>show_change_mode_dialog</span><span class='lparen'>(</span><span class='id identifier rubyid_parent_window'>parent_window</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+        <h5 class="example_title"><div class='inline'><p>Show the change mode dialog</p></div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::EncryptionModeChange (module)">EncryptionModeChange</a></span></span><span class='period'>.</span><span class='id identifier rubyid_show_change_mode_dialog'>show_change_mode_dialog</span><span class='lparen'>(</span><span class='id identifier rubyid_parent'>parent</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/path/to/data</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -170,9 +172,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The parent window for the dialog.</p>
-</div>
+        <div class='inline'><p>the parent window for the dialog</p></div>
       
     </li>
   
@@ -186,9 +186,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The directory containing the YAML data.</p>
-</div>
+        <div class='inline'><p>the directory containing the data</p></div>
       
     </li>
   
@@ -204,9 +202,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Optional callback to be called upon completion.</p>
-</div>
+        <div class='inline'><p>optional callback to execute on completion</p></div>
       
     </li>
   
@@ -223,27 +219,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns true if the dialog was shown successfully.</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Raises an error if the YAML file cannot be loaded.</p>
-</div>
+        <div class='inline'><p>true if the dialog was shown, false otherwise</p></div>
       
     </li>
   
@@ -255,9 +231,6 @@
       <pre class="lines">
 
 
-20
-21
-22
 23
 24
 25
@@ -535,20 +508,23 @@
 297
 298
 299
-300</pre>
+300
+301
+302
+303</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/gui/encryption_mode_change.rb', line 20</span>
+      <pre class="code"><span class="info file"># File 'documented/common/gui/encryption_mode_change.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_show_change_mode_dialog'>show_change_mode_dialog</span><span class='lparen'>(</span><span class='id identifier rubyid_parent'>parent</span><span class='comma'>,</span> <span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span> <span class='id identifier rubyid_on_completion'>on_completion</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="YamlState.html#yaml_file_path-class_method" title="Lich::Common::GUI::YamlState.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_yaml_file'>yaml_file</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_yaml_file_path'><span class='object_link'><a href="../Authentication/EntryStore.html#yaml_file_path-class_method" title="Lich::Common::Authentication::EntryStore.yaml_file_path (method)">yaml_file_path</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_data_dir'>data_dir</span><span class='rparen'>)</span>
 
   <span class='comment'># Load current mode
 </span>  <span class='kw'>begin</span>
     <span class='id identifier rubyid_yaml_data'>yaml_data</span> <span class='op'>=</span> <span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_load_file'>load_file</span><span class='lparen'>(</span><span class='id identifier rubyid_yaml_file'>yaml_file</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_current_mode'>current_mode</span> <span class='op'>=</span> <span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>encryption_mode</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='op'>&amp;.</span><span class='id identifier rubyid_to_sym'>to_sym</span> <span class='op'>||</span> <span class='symbol'>:plaintext</span>
   <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to load YAML for mode change dialog: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Failed to load YAML for mode change dialog: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_show_error_dialog'>show_error_dialog</span><span class='lparen'>(</span><span class='id identifier rubyid_parent'>parent</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to load account data: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'><span class='object_link'><a href="../../../top-level-namespace.html#e-instance_method" title="#e (method)">e</a></span></span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>return</span> <span class='kw'>false</span>
   <span class='kw'>end</span>
@@ -690,7 +666,7 @@
 
   <span class='comment'># Set up response handler
 </span>  <span class='id identifier rubyid_dialog'>dialog</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>response</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_dlg'>dlg</span><span class='comma'>,</span> <span class='id identifier rubyid_response'>response</span><span class='op'>|</span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: change_encryption_mode response handler, response=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_response'>response</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: change_encryption_mode response handler, response=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_response'>response</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span> <span class='op'>==</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ResponseType</span><span class='op'>::</span><span class='const'>APPLY</span>
       <span class='comment'># Determine selected mode
 </span>      <span class='id identifier rubyid_selected_mode'>selected_mode</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='id identifier rubyid_plaintext_radio'>plaintext_radio</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span>
@@ -701,35 +677,35 @@
                         <span class='symbol'>:enhanced</span>
                       <span class='kw'>end</span>
 
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: selected_mode=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_selected_mode'>selected_mode</span><span class='embexpr_end'>}</span><span class='tstring_content'>, current_mode=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_mode'>current_mode</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: selected_mode=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_selected_mode'>selected_mode</span><span class='embexpr_end'>}</span><span class='tstring_content'>, current_mode=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_mode'>current_mode</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 
       <span class='comment'># If mode didn&#39;t change, just close dialog
 </span>      <span class='kw'>if</span> <span class='id identifier rubyid_selected_mode'>selected_mode</span> <span class='op'>==</span> <span class='id identifier rubyid_current_mode'>current_mode</span>
-        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: mode unchanged, closing</span><span class='tstring_end'>&quot;</span></span>
+        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: mode unchanged, closing</span><span class='tstring_end'>&quot;</span></span>
         <span class='id identifier rubyid_dlg'>dlg</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
         <span class='kw'>next</span>
       <span class='kw'>end</span>
 
       <span class='id identifier rubyid_dlg'>dlg</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: spawning thread for dialogs and mode change</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: spawning thread for dialogs and mode change</span><span class='tstring_end'>&quot;</span></span>
 
       <span class='comment'># Spawn thread to run dialogs and mode change
 </span>      <span class='comment'># Dialogs use Gtk.queue internally, so they need a non-GTK thread
 </span>      <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span>
-        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: thread starting</span><span class='tstring_end'>&quot;</span></span>
+        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: thread starting</span><span class='tstring_end'>&quot;</span></span>
         <span class='id identifier rubyid_new_master_password'>new_master_password</span> <span class='op'>=</span> <span class='kw'>nil</span>
         <span class='id identifier rubyid_validation_passed'>validation_passed</span> <span class='op'>=</span> <span class='kw'>true</span>
 
         <span class='comment'># Validate leaving current mode
 </span>        <span class='kw'>if</span> <span class='id identifier rubyid_current_mode'>current_mode</span> <span class='op'>==</span> <span class='symbol'>:enhanced</span>
-          <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: showing password confirmation dialog for leaving enhanced mode</span><span class='tstring_end'>&quot;</span></span>
+          <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: showing password confirmation dialog for leaving enhanced mode</span><span class='tstring_end'>&quot;</span></span>
           <span class='id identifier rubyid_validation_result'>validation_result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="MasterPasswordPromptUI.html" title="Lich::Common::GUI::MasterPasswordPromptUI (class)">MasterPasswordPromptUI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_show_password_confirmation_for_mode_change'><span class='object_link'><a href="MasterPasswordPromptUI.html#show_password_confirmation_for_mode_change-class_method" title="Lich::Common::GUI::MasterPasswordPromptUI.show_password_confirmation_for_mode_change (method)">show_password_confirmation_for_mode_change</a></span></span><span class='lparen'>(</span>
             <span class='id identifier rubyid_yaml_data'>yaml_data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>master_password_validation_test</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
             <span class='label'>leaving_enhanced:</span> <span class='kw'>true</span>
           <span class='rparen'>)</span>
-          <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: validation_result=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_validation_result'>validation_result</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+          <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: validation_result=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_validation_result'>validation_result</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
           <span class='kw'>unless</span> <span class='id identifier rubyid_validation_result'>validation_result</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_validation_result'>validation_result</span><span class='lbracket'>[</span><span class='symbol'>:password</span><span class='rbracket'>]</span>
-            <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: password confirmation cancelled</span><span class='tstring_end'>&quot;</span></span>
+            <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: password confirmation cancelled</span><span class='tstring_end'>&quot;</span></span>
             <span class='id identifier rubyid_validation_passed'>validation_passed</span> <span class='op'>=</span> <span class='kw'>false</span>
           <span class='kw'>end</span>
         <span class='kw'>end</span>
@@ -737,17 +713,17 @@
         <span class='kw'>if</span> <span class='id identifier rubyid_validation_passed'>validation_passed</span>
           <span class='comment'># Validate entering new mode
 </span>          <span class='kw'>if</span> <span class='id identifier rubyid_selected_mode'>selected_mode</span> <span class='op'>==</span> <span class='symbol'>:enhanced</span>
-            <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: showing password dialog</span><span class='tstring_end'>&quot;</span></span>
+            <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: showing password dialog</span><span class='tstring_end'>&quot;</span></span>
             <span class='id identifier rubyid_new_master_password'>new_master_password</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="MasterPasswordPromptUI.html" title="Lich::Common::GUI::MasterPasswordPromptUI (class)">MasterPasswordPromptUI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_show_dialog'><span class='object_link'><a href="MasterPasswordPromptUI.html#show_dialog-class_method" title="Lich::Common::GUI::MasterPasswordPromptUI.show_dialog (method)">show_dialog</a></span></span>
-            <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: password_nil?=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_new_master_password'>new_master_password</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+            <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: password_nil?=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_new_master_password'>new_master_password</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
             <span class='kw'>unless</span> <span class='id identifier rubyid_new_master_password'>new_master_password</span>
-              <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: password entry cancelled</span><span class='tstring_end'>&quot;</span></span>
+              <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: password entry cancelled</span><span class='tstring_end'>&quot;</span></span>
               <span class='id identifier rubyid_validation_passed'>validation_passed</span> <span class='op'>=</span> <span class='kw'>false</span>
             <span class='kw'>end</span>
           <span class='kw'>elsif</span> <span class='id identifier rubyid_selected_mode'>selected_mode</span> <span class='op'>==</span> <span class='symbol'>:plaintext</span>
-            <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: showing plaintext confirmation</span><span class='tstring_end'>&quot;</span></span>
+            <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: showing plaintext confirmation</span><span class='tstring_end'>&quot;</span></span>
             <span class='kw'>unless</span> <span class='id identifier rubyid_confirm_plaintext_mode_dialog'>confirm_plaintext_mode_dialog</span><span class='lparen'>(</span><span class='id identifier rubyid_parent'>parent</span><span class='rparen'>)</span>
-              <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: plaintext confirmation cancelled</span><span class='tstring_end'>&quot;</span></span>
+              <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: plaintext confirmation cancelled</span><span class='tstring_end'>&quot;</span></span>
               <span class='id identifier rubyid_validation_passed'>validation_passed</span> <span class='op'>=</span> <span class='kw'>false</span>
             <span class='kw'>end</span>
           <span class='kw'>end</span>
@@ -756,15 +732,15 @@
 
         <span class='comment'># All validations passed, queue the actual mode change
 </span>        <span class='kw'>if</span> <span class='id identifier rubyid_validation_passed'>validation_passed</span>
-          <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: all validations passed, queuing mode change</span><span class='tstring_end'>&quot;</span></span>
+          <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: all validations passed, queuing mode change</span><span class='tstring_end'>&quot;</span></span>
           <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span> <span class='kw'>do</span>
-            <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: in Gtk.queue, calling YamlState.change_encryption_mode</span><span class='tstring_end'>&quot;</span></span>
-            <span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="YamlState.html" title="Lich::Common::GUI::YamlState (module)">YamlState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_change_encryption_mode'><span class='object_link'><a href="YamlState.html#change_encryption_mode-class_method" title="Lich::Common::GUI::YamlState.change_encryption_mode (method)">change_encryption_mode</a></span></span><span class='lparen'>(</span>
+            <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: in Gtk.queue, calling Lich::Common::Authentication::EntryStore.change_encryption_mode</span><span class='tstring_end'>&quot;</span></span>
+            <span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication.html" title="Lich::Common::Authentication (module)">Authentication</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Authentication/EntryStore.html" title="Lich::Common::Authentication::EntryStore (module)">EntryStore</a></span></span><span class='period'>.</span><span class='id identifier rubyid_change_encryption_mode'><span class='object_link'><a href="../Authentication/EntryStore.html#change_encryption_mode-class_method" title="Lich::Common::Authentication::EntryStore.change_encryption_mode (method)">change_encryption_mode</a></span></span><span class='lparen'>(</span>
               <span class='id identifier rubyid_data_dir'>data_dir</span><span class='comma'>,</span>
               <span class='id identifier rubyid_selected_mode'>selected_mode</span><span class='comma'>,</span>
               <span class='id identifier rubyid_new_master_password'>new_master_password</span>
             <span class='rparen'>)</span>
-            <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: change_encryption_mode returned </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_success'>success</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+            <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: change_encryption_mode returned </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_success'>success</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 
             <span class='kw'>if</span> <span class='id identifier rubyid_success'>success</span>
               <span class='id identifier rubyid_mode_changed'>mode_changed</span> <span class='op'>=</span> <span class='kw'>true</span>
@@ -806,11 +782,11 @@
             <span class='kw'>end</span>
           <span class='kw'>end</span>
         <span class='kw'>end</span>
-        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: thread complete</span><span class='tstring_end'>&quot;</span></span>
+        <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: thread complete</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>end</span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: thread spawned, signal handler returning</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: thread spawned, signal handler returning</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>elsif</span> <span class='id identifier rubyid_response'>response</span> <span class='op'>==</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>ResponseType</span><span class='op'>::</span><span class='const'>CANCEL</span>
-      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: mode change cancelled</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>debug: mode change cancelled</span><span class='tstring_end'>&quot;</span></span>
       <span class='id identifier rubyid_dlg'>dlg</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -831,9 +807,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:54 2026 by
+  Generated on Sun May 10 17:26:27 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

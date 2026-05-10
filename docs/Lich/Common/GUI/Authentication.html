@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::GUI::Authentication";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,7 +80,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/gui/authentication.rb</dd>
+    <dd>documented/common/gui/authentication.rb
+</dd>
   </dl>
   
 </div>
@@ -115,9 +118,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Authenticates a user account with the provided credentials.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Authenticates a user account with the provided credentials.</p></div></span>
   
 </li>
 
@@ -139,9 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Creates a hash of entry data for a character.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Creates a hash of entry data for a character.</p></div></span>
   
 </li>
 
@@ -163,14 +162,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Prepares launch data for the specified frontend based on authentication data.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Prepares launch data for the specified frontend based on authentication data.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -190,9 +188,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Authenticates a user account with the provided credentials.</p>
-
+    <p>Authenticates a user account with the provided credentials.</p>
 
   </div>
 </div>
@@ -202,9 +198,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Authenticating a user</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Authenticating a user</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::Authentication (module)">Authentication</a></span></span><span class='period'>.</span><span class='id identifier rubyid_authenticate'>authenticate</span><span class='lparen'>(</span><span class='label'>account:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>password:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pass</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
@@ -222,9 +216,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The user account name.</p>
-</div>
+        <div class='inline'><p>The user account name.</p></div>
       
     </li>
   
@@ -238,9 +230,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The user password.</p>
-</div>
+        <div class='inline'><p>The user password.</p></div>
       
     </li>
   
@@ -256,9 +246,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The character name (optional).</p>
-</div>
+        <div class='inline'><p>The character name (optional).</p></div>
       
     </li>
   
@@ -274,9 +262,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game code (optional).</p>
-</div>
+        <div class='inline'><p>The game code (optional).</p></div>
       
     </li>
   
@@ -292,9 +278,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Indicates if legacy authentication should be used.</p>
-</div>
+        <div class='inline'><p>Indicates if legacy authentication should be used.</p></div>
       
     </li>
   
@@ -311,9 +295,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns true if authentication is successful, false otherwise.</p>
-</div>
+        <div class='inline'><p>Returns true if authentication is successful, false otherwise.</p></div>
       
     </li>
   
@@ -329,9 +311,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Raises an error if authentication fails.</p>
-</div>
+        <div class='inline'><p>Raises an error if authentication fails.</p></div>
       
     </li>
   
@@ -405,9 +385,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Creates a hash of entry data for a character.</p>
-
+    <p>Creates a hash of entry data for a character.</p>
 
   </div>
 </div>
@@ -417,9 +395,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Creating entry data</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Creating entry data</p></div></h5>
       
       <pre class="example code"><code><span class='id identifier rubyid_entry_data'>entry_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::Authentication (module)">Authentication</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_entry_data'>create_entry_data</span><span class='lparen'>(</span><span class='label'>char_name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hero</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>game_code:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>123</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>game_name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Adventure</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>user_id:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>password:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pass</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>frontend:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>wizard</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
     
@@ -437,9 +413,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The character name.</p>
-</div>
+        <div class='inline'><p>The character name.</p></div>
       
     </li>
   
@@ -453,9 +427,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game code.</p>
-</div>
+        <div class='inline'><p>The game code.</p></div>
       
     </li>
   
@@ -469,9 +441,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game name.</p>
-</div>
+        <div class='inline'><p>The game name.</p></div>
       
     </li>
   
@@ -485,9 +455,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The user ID.</p>
-</div>
+        <div class='inline'><p>The user ID.</p></div>
       
     </li>
   
@@ -501,9 +469,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The user password.</p>
-</div>
+        <div class='inline'><p>The user password.</p></div>
       
     </li>
   
@@ -517,9 +483,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The frontend type.</p>
-</div>
+        <div class='inline'><p>The frontend type.</p></div>
       
     </li>
   
@@ -535,9 +499,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Custom launch command (optional).</p>
-</div>
+        <div class='inline'><p>Custom launch command (optional).</p></div>
       
     </li>
   
@@ -553,9 +515,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Custom launch directory (optional).</p>
-</div>
+        <div class='inline'><p>Custom launch directory (optional).</p></div>
       
     </li>
   
@@ -572,9 +532,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns a hash containing the entry data.</p>
-</div>
+        <div class='inline'><p>Returns a hash containing the entry data.</p></div>
       
     </li>
   
@@ -630,9 +588,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Prepares launch data for the specified frontend based on authentication data.</p>
-
+    <p>Prepares launch data for the specified frontend based on authentication data.</p>
 
   </div>
 </div>
@@ -642,9 +598,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Preparing launch data</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Preparing launch data</p></div></h5>
       
       <pre class="example code"><code><span class='id identifier rubyid_launch_data'>launch_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Common.html" title="Lich::Common (module)">Common</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../GUI.html" title="Lich::Common::GUI (module)">GUI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Common::GUI::Authentication (module)">Authentication</a></span></span><span class='period'>.</span><span class='id identifier rubyid_prepare_launch_data'>prepare_launch_data</span><span class='lparen'>(</span><span class='id identifier rubyid_auth_data'>auth_data</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wizard</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
     
@@ -662,9 +616,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The authentication data to prepare.</p>
-</div>
+        <div class='inline'><p>The authentication data to prepare.</p></div>
       
     </li>
   
@@ -678,9 +630,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The frontend type (e.g., ‘wizard’, ‘avalon’).</p>
-</div>
+        <div class='inline'><p>The frontend type (e.g., 'wizard', 'avalon').</p></div>
       
     </li>
   
@@ -696,9 +646,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Custom launch command (optional).</p>
-</div>
+        <div class='inline'><p>Custom launch command (optional).</p></div>
       
     </li>
   
@@ -714,9 +662,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Custom launch directory (optional).</p>
-</div>
+        <div class='inline'><p>Custom launch directory (optional).</p></div>
       
     </li>
   
@@ -733,9 +679,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns an array of launch data strings.</p>
-</div>
+        <div class='inline'><p>Returns an array of launch data strings.</p></div>
       
     </li>
   
@@ -817,9 +761,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:52 2026 by
+  Generated on Sun May 10 17:26:25 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

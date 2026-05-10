@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "effects-guide";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="file_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -57,16 +59,11 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'>
-<h1 id="label-Effects+Guide">Effects Guide</h1>
-
+      <div id="content"><div id='filecontents'><h1 id="Effects_Guide">Effects Guide</h1>
 <p>This guide covers working with Effects in Lich scripts for GemStone IV.</p>
-
-<h2 id="label-Effects+vs+Spells">Effects vs Spells</h2>
-
-<p>While the <code>Spell</code> class represents individual spells you can cast, the <code>Effects</code> module tracks what’s <strong>currently active</strong> on your character - including spells, buffs, debuffs, and cooldowns.</p>
-
-<table role="table">
+<h2 id="Effects_vs_Spells">Effects vs Spells</h2>
+<p>While the <code>Spell</code> class represents individual spells you can cast, the <code>Effects</code> module tracks what's <strong>currently active</strong> on your character - including spells, buffs, debuffs, and cooldowns.</p>
+<table>
 <thead>
 <tr>
 <th>Feature</th>
@@ -92,26 +89,20 @@
 </tr>
 <tr>
 <td>Use case</td>
-<td>“Cast Haste”</td>
-<td>“Is Haste active?”</td>
+<td>&quot;Cast Haste&quot;</td>
+<td>&quot;Is Haste active?&quot;</td>
 </tr>
 </tbody>
 </table>
-
-<h2 id="label-The+Effects+Module">The Effects Module</h2>
-
+<h2 id="The_Effects_Module">The Effects Module</h2>
 <p>The Effects module provides four pre-defined registries for different types of effects:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='const'>Effects</span><span class='op'>::</span><span class='const'>Spells</span>    <span class='comment'># Active spells on your character
 </span><span class='const'>Effects</span><span class='op'>::</span><span class='const'>Buffs</span>     <span class='comment'># Active buffs (non-spell enhancements)
 </span><span class='const'>Effects</span><span class='op'>::</span><span class='const'>Cooldowns</span> <span class='comment'># Abilities on cooldown
 </span><span class='const'>Effects</span><span class='op'>::</span><span class='const'>Debuffs</span>   <span class='comment'># Active debuffs/negative effects
 </span></code></pre>
-
-<h2 id="label-Basic+Usage">Basic Usage</h2>
-
-<h3 id="label-Checking+if+an+Effect+is+Active">Checking if an Effect is Active</h3>
-
+<h2 id="Basic_Usage">Basic Usage</h2>
+<h3 id="Checking_if_an_Effect_is_Active">Checking if an Effect is Active</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Check if a specific spell effect is active
 </span><span class='kw'>if</span> <span class='const'>Effects</span><span class='op'>::</span><span class='const'>Spells</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='int'>506</span><span class='rparen'>)</span>  <span class='comment'># Haste
 </span>  <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Haste is active</span><span class='tstring_end'>&quot;</span></span>
@@ -132,9 +123,7 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You&#39;re stunned!</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Getting+Time+Remaining">Getting Time Remaining</h3>
-
+<h3 id="Getting_Time_Remaining">Getting Time Remaining</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get time left in minutes
 </span><span class='id identifier rubyid_time_left'>time_left</span> <span class='op'>=</span> <span class='const'>Effects</span><span class='op'>::</span><span class='const'>Spells</span><span class='period'>.</span><span class='id identifier rubyid_time_left'>time_left</span><span class='lparen'>(</span><span class='int'>506</span><span class='rparen'>)</span>
 <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Haste has </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_time_left'>time_left</span><span class='period'>.</span><span class='id identifier rubyid_round'>round</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> minutes remaining</span><span class='tstring_end'>&quot;</span></span>
@@ -143,9 +132,7 @@
 </span><span class='id identifier rubyid_expires_at'>expires_at</span> <span class='op'>=</span> <span class='const'>Effects</span><span class='op'>::</span><span class='const'>Spells</span><span class='period'>.</span><span class='id identifier rubyid_expiration'>expiration</span><span class='lparen'>(</span><span class='int'>506</span><span class='rparen'>)</span>
 <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Haste expires at </span><span class='embexpr_beg'>#{</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_at'>at</span><span class='lparen'>(</span><span class='id identifier rubyid_expires_at'>expires_at</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 </code></pre>
-
-<h3 id="label-Iterating+Over+Effects">Iterating Over Effects</h3>
-
+<h3 id="Iterating_Over_Effects">Iterating Over Effects</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># List all active spells
 </span><span class='const'>Effects</span><span class='op'>::</span><span class='const'>Spells</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_expiration'>expiration</span><span class='op'>|</span>
   <span class='id identifier rubyid_time_left'>time_left</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_expiration'>expiration</span> <span class='op'>-</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='float'>60.0</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_round'>round</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span>
@@ -158,9 +145,7 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ability'>ability</span><span class='embexpr_end'>}</span><span class='tstring_content'> on cooldown: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_time_left'>time_left</span><span class='embexpr_end'>}</span><span class='tstring_content'> minutes</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Converting+to+Hash">Converting to Hash</h3>
-
+<h3 id="Converting_to_Hash">Converting to Hash</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Get all active spells as a hash
 </span><span class='id identifier rubyid_active'>active</span> <span class='op'>=</span> <span class='const'>Effects</span><span class='op'>::</span><span class='const'>Spells</span><span class='period'>.</span><span class='id identifier rubyid_to_h'>to_h</span>
 <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You have </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_active'>active</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> active spell effects</span><span class='tstring_end'>&quot;</span></span>
@@ -171,21 +156,20 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Buff: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Displaying+Effects">Displaying Effects</h2>
-
+<h2 id="Displaying_Effects">Displaying Effects</h2>
 <p>The Effects module includes a built-in display method:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='comment'># Show all effects in a formatted table
 </span><span class='const'>Effects</span><span class='period'>.</span><span class='id identifier rubyid_display'>display</span>
 </code></pre>
-
-<p>This outputs a nicely formatted table showing: - Spell ID - Effect type (Spells, Cooldowns, Buffs, Debuffs) - Effect name - Time remaining</p>
-
-<h2 id="label-Common+Patterns">Common Patterns</h2>
-
-<h3 id="label-Wait+for+Cooldown">Wait for Cooldown</h3>
-
+<p>This outputs a nicely formatted table showing:</p>
+<ul>
+<li>Spell ID</li>
+<li>Effect type (Spells, Cooldowns, Buffs, Debuffs)</li>
+<li>Effect name</li>
+<li>Time remaining</li>
+</ul>
+<h2 id="Common_Patterns">Common Patterns</h2>
+<h3 id="Wait_for_Cooldown">Wait for Cooldown</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_wait_for_cooldown'>wait_for_cooldown</span><span class='lparen'>(</span><span class='id identifier rubyid_ability'>ability</span><span class='rparen'>)</span>
   <span class='kw'>while</span> <span class='const'>Effects</span><span class='op'>::</span><span class='const'>Cooldowns</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='id identifier rubyid_ability'>ability</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_time_left'>time_left</span> <span class='op'>=</span> <span class='const'>Effects</span><span class='op'>::</span><span class='const'>Cooldowns</span><span class='period'>.</span><span class='id identifier rubyid_time_left'>time_left</span><span class='lparen'>(</span><span class='id identifier rubyid_ability'>ability</span><span class='rparen'>)</span>
@@ -195,9 +179,7 @@
   <span class='id identifier rubyid_echo'><span class='object_link'><a href="top-level-namespace.html#echo-instance_method" title="#echo (method)">echo</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ability'>ability</span><span class='embexpr_end'>}</span><span class='tstring_content'> ready!</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Buff+Monitoring">Buff Monitoring</h3>
-
+<h3 id="Buff_Monitoring">Buff Monitoring</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Check if any defensive buff is active
 </span><span class='kw'>def</span> <span class='id identifier rubyid_has_defensive_buff?'>has_defensive_buff?</span>
   <span class='const'>Effects</span><span class='op'>::</span><span class='const'>Buffs</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Defense</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='op'>||</span>
@@ -220,9 +202,7 @@
 <span class='comment'># Usage
 </span><span class='id identifier rubyid_monitor_buffs'>monitor_buffs</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='int'>401</span><span class='comma'>,</span> <span class='int'>406</span><span class='comma'>,</span> <span class='int'>414</span><span class='comma'>,</span> <span class='int'>506</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 </code></pre>
-
-<h3 id="label-Combining+with+Spell+Class">Combining with Spell Class</h3>
-
+<h3 id="Combining_with_Spell_Class">Combining with Spell Class</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Refresh spell if effect is expiring
 </span><span class='kw'>def</span> <span class='id identifier rubyid_refresh_if_needed'>refresh_if_needed</span><span class='lparen'>(</span><span class='id identifier rubyid_spell_num'>spell_num</span><span class='comma'>,</span> <span class='id identifier rubyid_min_minutes'>min_minutes</span> <span class='op'>=</span> <span class='int'>5</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_spell'>spell</span> <span class='op'>=</span> <span class='const'>Spell</span><span class='lbracket'>[</span><span class='id identifier rubyid_spell_num'>spell_num</span><span class='rbracket'>]</span>
@@ -237,9 +217,7 @@
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Debuff+Detection">Debuff Detection</h3>
-
+<h3 id="Debuff_Detection">Debuff Detection</h3>
 <pre class="code ruby"><code class="ruby"><span class='comment'># Check for harmful effects
 </span><span class='kw'>def</span> <span class='id identifier rubyid_check_debuffs'>check_debuffs</span>
   <span class='id identifier rubyid_dangerous'>dangerous</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -260,9 +238,7 @@
   <span class='comment'># Take action - cure, flee, etc.
 </span><span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Cooldown-Aware+Ability+Use">Cooldown-Aware Ability Use</h3>
-
+<h3 id="Cooldown_Aware_Ability_Use">Cooldown-Aware Ability Use</h3>
 <pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_use_ability_when_ready'>use_ability_when_ready</span><span class='lparen'>(</span><span class='id identifier rubyid_ability_name'>ability_name</span><span class='rparen'>)</span>
   <span class='comment'># Wait for cooldown
 </span>  <span class='kw'>if</span> <span class='const'>Effects</span><span class='op'>::</span><span class='const'>Cooldowns</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='id identifier rubyid_ability_name'>ability_name</span><span class='rparen'>)</span>
@@ -276,12 +252,9 @@
   <span class='kw'>true</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Registry+Methods+Reference">Registry Methods Reference</h2>
-
+<h2 id="Registry_Methods_Reference">Registry Methods Reference</h2>
 <p>Each Effects registry (<code>Spells</code>, <code>Buffs</code>, <code>Debuffs</code>, <code>Cooldowns</code>) provides:</p>
-
-<table role="table">
+<table>
 <thead>
 <tr>
 <th>Method</th>
@@ -291,39 +264,40 @@
 </thead>
 <tbody>
 <tr>
-<td>‘active?(effect)`</td>
+<td><code>active?(effect)</code></td>
 <td>Boolean</td>
 <td>Is the effect currently active?</td>
 </tr>
 <tr>
-<td>‘time_left(effect)`</td>
+<td><code>time_left(effect)</code></td>
 <td>Float</td>
 <td>Minutes remaining (0 if not active)</td>
 </tr>
 <tr>
-<td>‘expiration(effect)`</td>
+<td><code>expiration(effect)</code></td>
 <td>Integer</td>
 <td>Expiration time (seconds since epoch)</td>
 </tr>
 <tr>
-<td>‘to_h`</td>
+<td><code>to_h</code></td>
 <td>Hash</td>
-<td>All effects as =&gt; expiration</td>
+<td>All effects as => expiration</td>
 </tr>
 <tr>
-<td>‘each`</td>
+<td><code>each</code></td>
 <td>Enumerator</td>
 <td>Iterate over all effects</td>
 </tr>
 </tbody>
 </table>
-
-<p>The <code>effect</code> parameter can be: - An Integer (spell number) - A String (effect name) - A Regexp (pattern to match)</p>
-
-<h2 id="label-Effects+vs+Spell.active">Effects vs Spell.active</h2>
-
+<p>The <code>effect</code> parameter can be:</p>
+<ul>
+<li>An Integer (spell number)</li>
+<li>A String (effect name)</li>
+<li>A Regexp (pattern to match)</li>
+</ul>
+<h2 id="Effects_vs_Spell_active">Effects vs Spell.active</h2>
 <p>Both can check if a spell is active, but they work differently:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='comment'># Using Spell class
 </span><span class='const'>Spell</span><span class='lbracket'>[</span><span class='int'>506</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span>      <span class='comment'># Checks Spell&#39;s internal tracking
 </span><span class='const'>Spell</span><span class='lbracket'>[</span><span class='int'>506</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_timeleft'>timeleft</span>     <span class='comment'># Time in seconds
@@ -332,27 +306,30 @@
 </span><span class='const'>Effects</span><span class='op'>::</span><span class='const'>Spells</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='int'>506</span><span class='rparen'>)</span>   <span class='comment'># Checks XML data from game
 </span><span class='const'>Effects</span><span class='op'>::</span><span class='const'>Spells</span><span class='period'>.</span><span class='id identifier rubyid_time_left'>time_left</span><span class='lparen'>(</span><span class='int'>506</span><span class='rparen'>)</span> <span class='comment'># Time in minutes
 </span></code></pre>
-
-<p>Use <code>Effects</code> when you need: - Access to buffs, debuffs, and cooldowns (not just spells) - Real-time data from the game’s XML feed - To iterate over all active effects</p>
-
-<p>Use <code>Spell</code> when you need: - To cast spells - Spell metadata (circle, mana cost, etc.) - The spell’s known/affordable status</p>
-
-<h2 id="label-See+Also">See Also</h2>
-<ul><li>
-<p><span class='object_link'><a href="Lich/Gemstone/Effects.html" title="Lich::Gemstone::Effects (module)">Lich::Gemstone::Effects</a></span> - Effects module reference</p>
-</li><li>
-<p><span class='object_link'><a href="Lich/Gemstone/Effects/Registry.html" title="Lich::Gemstone::Effects::Registry (class)">Lich::Gemstone::Effects::Registry</a></span> - Registry class reference</p>
-</li><li>
-<p><a href="file.spells-guide.html" title="Spells Guide">Spells Guide</a> - Working with the Spell class</p>
-</li><li>
-<p><a href="file.scripting-basics.html" title="Scripting Basics">Scripting Basics</a> - Core scripting concepts</p>
-</li></ul>
-</div></div>
+<p>Use <code>Effects</code> when you need:</p>
+<ul>
+<li>Access to buffs, debuffs, and cooldowns (not just spells)</li>
+<li>Real-time data from the game's XML feed</li>
+<li>To iterate over all active effects</li>
+</ul>
+<p>Use <code>Spell</code> when you need:</p>
+<ul>
+<li>To cast spells</li>
+<li>Spell metadata (circle, mana cost, etc.)</li>
+<li>The spell's known/affordable status</li>
+</ul>
+<h2 id="See_Also">See Also</h2>
+<ul>
+<li><span class='object_link'><a href="Lich/Gemstone/Effects.html" title="Lich::Gemstone::Effects (module)">Lich::Gemstone::Effects</a></span> - Effects module reference</li>
+<li><span class='object_link'><a href="Lich/Gemstone/Effects/Registry.html" title="Lich::Gemstone::Effects::Registry (class)">Lich::Gemstone::Effects::Registry</a></span> - Registry class reference</li>
+<li><a href="file.spells-guide.html" title="Spells Guide">Spells Guide</a> - Working with the Spell class</li>
+<li><a href="file.scripting-basics.html" title="Scripting Basics">Scripting Basics</a> - Core scripting concepts</li>
+</ul></div></div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:45 2026 by
+  Generated on Sun May 10 17:26:20 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

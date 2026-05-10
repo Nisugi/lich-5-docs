@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Enhancive";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,25 +80,26 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/attributes/enhancive.rb</dd>
+    <dd>documented/attributes/enhancive.rb
+</dd>
   </dl>
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="STATS-constant" class="">STATS =
+          <div class="docstring">
   <div class="discussion">
-    
-<p>Provides access to enhancive item bonuses tracked via the INVENTORY ENHANCIVE TOTALS command.</p>
-
-<p>Enhancive items in GemStone IV provide temporary stat, skill, resource, and spell bonuses. This module parses and exposes those bonuses through a clean API, allowing scripts to query current enhancive values, detect over-cap situations, and manage enhancive state.</p>
-
-<p>Data is populated by the <span class='object_link'><a href="Infomon/Parser.html" title="Lich::Gemstone::Infomon::Parser (module)">Infomon::Parser</a></span> when processing game output from:</p>
-<ul><li>
-<p>‘INVENTORY ENHANCIVE TOTALS` - Full enhancive breakdown</p>
-</li><li>
-<p>‘INVENTORY ENHANCIVE` - Active state and pause count</p>
-</li></ul>
-
+    <p>Stats - all 10 stats including influence
+Stats - all 10 stats including influence.</p>
 
   </div>
 </div>
@@ -106,229 +109,40 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Check enhancive strength bonus</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'>Enhancive</span><span class='period'>.</span><span class='id identifier rubyid_strength'><span class='object_link'><a href="#strength-instance_method" title="Lich::Gemstone::Enhancive#strength (method)">strength</a></span></span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>  <span class='comment'># =&gt; 41
-</span><span class='const'>Enhancive</span><span class='period'>.</span><span class='id identifier rubyid_strength'><span class='object_link'><a href="#strength-instance_method" title="Lich::Gemstone::Enhancive#strength (method)">strength</a></span></span><span class='period'>.</span><span class='id identifier rubyid_cap'>cap</span>    <span class='comment'># =&gt; 40
-</span><span class='const'>Enhancive</span><span class='period'>.</span><span class='id identifier rubyid_str'><span class='object_link'><a href="#str-instance_method" title="Lich::Gemstone::Enhancive#str (method)">str</a></span></span>             <span class='comment'># =&gt; 41 (shorthand)</span></code></pre>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Check skill bonuses</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'>Enhancive</span><span class='period'>.</span><span class='id identifier rubyid_edged_weapons'>edged_weapons</span><span class='period'>.</span><span class='id identifier rubyid_bonus'>bonus</span>  <span class='comment'># =&gt; 50
-</span><span class='const'>Enhancive</span><span class='period'>.</span><span class='id identifier rubyid_edged_weapons'>edged_weapons</span><span class='period'>.</span><span class='id identifier rubyid_ranks'>ranks</span>  <span class='comment'># =&gt; 10
-</span><span class='const'>Enhancive</span><span class='period'>.</span><span class='id identifier rubyid_ambush'>ambush</span><span class='period'>.</span><span class='id identifier rubyid_bonus'>bonus</span>         <span class='comment'># =&gt; 52</span></code></pre>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Check resource bonuses</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'>Enhancive</span><span class='period'>.</span><span class='id identifier rubyid_max_mana'><span class='object_link'><a href="#max_mana-instance_method" title="Lich::Gemstone::Enhancive#max_mana (method)">max_mana</a></span></span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>       <span class='comment'># =&gt; 18
-</span><span class='const'>Enhancive</span><span class='period'>.</span><span class='id identifier rubyid_mana_recovery'><span class='object_link'><a href="#mana_recovery-instance_method" title="Lich::Gemstone::Enhancive#mana_recovery (method)">mana_recovery</a></span></span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>  <span class='comment'># =&gt; 30</span></code></pre>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Check for over-cap stats</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'>Enhancive</span><span class='period'>.</span><span class='id identifier rubyid_stat_over_cap?'><span class='object_link'><a href="#stat_over_cap%3F-class_method" title="Lich::Gemstone::Enhancive.stat_over_cap? (method)">stat_over_cap?</a></span></span><span class='lparen'>(</span><span class='symbol'>:strength</span><span class='rparen'>)</span>  <span class='comment'># =&gt; true (if &gt; 40)
-</span><span class='const'>Enhancive</span><span class='period'>.</span><span class='id identifier rubyid_over_cap_stats'><span class='object_link'><a href="#over_cap_stats-class_method" title="Lich::Gemstone::Enhancive.over_cap_stats (method)">over_cap_stats</a></span></span>             <span class='comment'># =&gt; [:strength, :agility]</span></code></pre>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Check enhancive-granted spells</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'>Enhancive</span><span class='period'>.</span><span class='id identifier rubyid_spells'><span class='object_link'><a href="#spells-class_method" title="Lich::Gemstone::Enhancive.spells (method)">spells</a></span></span>              <span class='comment'># =&gt; [215, 506, 1109]
-</span><span class='const'>Enhancive</span><span class='period'>.</span><span class='id identifier rubyid_knows_spell?'><span class='object_link'><a href="#knows_spell%3F-class_method" title="Lich::Gemstone::Enhancive.knows_spell? (method)">knows_spell?</a></span></span><span class='lparen'>(</span><span class='int'>215</span><span class='rparen'>)</span>   <span class='comment'># =&gt; true</span></code></pre>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Check active state</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'>Enhancive</span><span class='period'>.</span><span class='id identifier rubyid_active?'><span class='object_link'><a href="#active%3F-class_method" title="Lich::Gemstone::Enhancive.active? (method)">active?</a></span></span>   <span class='comment'># =&gt; true/false
-</span><span class='const'>Enhancive</span><span class='period'>.</span><span class='id identifier rubyid_pauses'><span class='object_link'><a href="#pauses-class_method" title="Lich::Gemstone::Enhancive.pauses (method)">pauses</a></span></span>    <span class='comment'># =&gt; 1233</span></code></pre>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Refresh data from game</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'>Enhancive</span><span class='period'>.</span><span class='id identifier rubyid_refresh'><span class='object_link'><a href="#refresh-class_method" title="Lich::Gemstone::Enhancive.refresh (method)">refresh</a></span></span>         <span class='comment'># Full refresh (status + totals)
-</span><span class='const'>Enhancive</span><span class='period'>.</span><span class='id identifier rubyid_refresh_status'><span class='object_link'><a href="#refresh_status-class_method" title="Lich::Gemstone::Enhancive.refresh_status (method)">refresh_status</a></span></span>  <span class='comment'># Lightweight (just active state + pauses)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='op'>::</span><span class='const'>STATS</span>
+<span class='comment'># =&gt; [:strength, :constitution, :dexterity, :agility, :discipline, :aura, :logic, :intuition, :wisdom, :influence]</span></code></pre>
     
   </div>
 
-
-  <p class="tag_title">See Also:</p>
-  <ul class="see">
-    
-      <li><span class='object_link'><a href="Infomon/Parser.html" title="Lich::Gemstone::Infomon::Parser (module)">Parses INVENTORY ENHANCIVE output</a></span></li>
-    
-      <li><span class='object_link'><a href="Stats.html" title="Lich::Gemstone::Stats (module)">Base character stats module</a></span></li>
-    
-      <li><span class='object_link'><a href="Skills.html" title="Lich::Gemstone::Skills (module)">Base character skills module</a></span></li>
-    
-  </ul>
-
-</div>
-  
-    <h2>
-      Constants
-      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
-    </h2>
-
-    <dl class="constants">
-      
-        <dt id="STATS-constant" class="">STATS =
-          <div class="docstring">
-  <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Influence is not included as enhancives don’t provide influence bonuses.</p>
-</div>
-  </div>
-
-
-<p>List of stat symbols tracked by enhancives.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Stat symbols</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
         </dt>
-        <dd><pre class="code"><span class='qsymbols_beg'>%i[</span><span class='tstring_content'>strength</span><span class='words_sep'> </span><span class='tstring_content'>constitution</span><span class='words_sep'> </span><span class='tstring_content'>dexterity</span><span class='words_sep'> </span><span class='tstring_content'>agility</span><span class='words_sep'> </span><span class='tstring_content'>discipline</span><span class='words_sep'> </span><span class='tstring_content'>aura</span><span class='words_sep'> </span><span class='tstring_content'>logic</span><span class='words_sep'> </span><span class='tstring_content'>intuition</span><span class='words_sep'> </span><span class='tstring_content'>wisdom</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+        <dd><pre class="code"><span class='qsymbols_beg'>%i[</span><span class='tstring_content'>strength</span><span class='words_sep'> </span><span class='tstring_content'>constitution</span><span class='words_sep'> </span><span class='tstring_content'>dexterity</span><span class='words_sep'> </span><span class='tstring_content'>agility</span><span class='words_sep'> </span><span class='tstring_content'>discipline</span><span class='words_sep'> </span><span class='tstring_content'>aura</span><span class='words_sep'> </span><span class='tstring_content'>logic</span><span class='words_sep'> </span><span class='tstring_content'>intuition</span><span class='words_sep'> </span><span class='tstring_content'>wisdom</span><span class='words_sep'> </span><span class='tstring_content'>influence</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="STAT_ABBREV-constant" class="">STAT_ABBREV =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Maps 3-letter stat abbreviations to full stat symbols. Used by the parser to convert game output.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>, Symbol&gt;</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Abbreviation to symbol mapping</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='lbrace'>{</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>STR</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:strength</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CON</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:constitution</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>DEX</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:dexterity</span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AGI</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:agility</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>DIS</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:discipline</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AUR</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:aura</span><span class='comma'>,</span>
-  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>LOG</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:logic</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>INT</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:intuition</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>WIS</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:wisdom</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>LOG</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:logic</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>INT</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:intuition</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>WIS</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:wisdom</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>INF</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:influence</span>
 <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="STAT_CAP-constant" class="">STAT_CAP =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Maximum enhancive bonus for any single stat.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Cap value (40)</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='int'>40</span></pre></dd>
       
         <dt id="BONUS_SKILLS-constant" class="">BONUS_SKILLS =
           <div class="docstring">
   <div class="discussion">
-    
-<p>List of skill symbols that can receive enhancive bonuses. Skills can have both rank bonuses and skill bonus bonuses.</p>
-
+    <p>Skills that appear as &quot;Bonus&quot; in output (same as Skills module list)</p>
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Skill symbols</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
         </dt>
@@ -347,104 +161,36 @@
 </span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="SKILL_CAP-constant" class="">SKILL_CAP =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Maximum enhancive bonus for any single skill.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Cap value (50)</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='int'>50</span></pre></dd>
       
         <dt id="RESOURCES-constant" class="">RESOURCES =
           <div class="docstring">
   <div class="discussion">
-    
-<p>List of resource symbols that can receive enhancive bonuses.</p>
-
+    <p>Resources
+Resources available in the game.</p>
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
       
-      
-        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Resource symbols</p>
-</div>
-      
-    </li>
-  
-</ul>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='op'>::</span><span class='const'>RESOURCES</span>
+<span class='comment'># =&gt; [:max_mana, :max_health, :max_stamina, :mana_recovery, :stamina_recovery]</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
         <dd><pre class="code"><span class='qsymbols_beg'>%i[</span><span class='tstring_content'>max_mana</span><span class='words_sep'> </span><span class='tstring_content'>max_health</span><span class='words_sep'> </span><span class='tstring_content'>max_stamina</span><span class='words_sep'> </span><span class='tstring_content'>mana_recovery</span><span class='words_sep'> </span><span class='tstring_content'>stamina_recovery</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
         <dt id="RESOURCE_CAPS-constant" class="">RESOURCE_CAPS =
-          <div class="docstring">
-  <div class="discussion">
-    
-<p>Maximum enhancive bonus for each resource type. Different resources have different caps.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&lt;Symbol, Integer&gt;</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Resource to cap mapping</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+          
         </dt>
         <dd><pre class="code"><span class='lbrace'>{</span>
   <span class='label'>max_mana:</span> <span class='int'>600</span><span class='comma'>,</span> <span class='label'>max_health:</span> <span class='int'>300</span><span class='comma'>,</span> <span class='label'>max_stamina:</span> <span class='int'>300</span><span class='comma'>,</span>
@@ -454,32 +200,22 @@
         <dt id="SKILL_NAME_MAP-constant" class="">SKILL_NAME_MAP =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Maps game output skill names to internal symbol names. Used by the parser to normalize skill names from INVENTORY ENHANCIVE TOTALS.</p>
-
+    <p>Mapping from game output names to internal names
+Mapping from game output names to internal names.</p>
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
       
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>, Symbol&gt;</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Display name to symbol mapping</p>
-</div>
-      
-    </li>
-  
-</ul>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='op'>::</span><span class='const'>SKILL_NAME_MAP</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Two Weapon Combat</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+<span class='comment'># =&gt; :two_weapon_combat</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -535,32 +271,21 @@
         <dt id="RESOURCE_NAME_MAP-constant" class="">RESOURCE_NAME_MAP =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Maps game output resource names to internal symbol names. Used by the parser to normalize resource names from INVENTORY ENHANCIVE TOTALS.</p>
-
+    <p>Mapping from game output resource names to internal names.</p>
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
       
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../../Hash.html" title="Hash (class)">Hash</a></span>&lt;<span class='object_link'><a href="../../String.html" title="String (class)">String</a></span>, Symbol&gt;</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Display name to symbol mapping</p>
-</div>
-      
-    </li>
-  
-</ul>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='op'>::</span><span class='const'>RESOURCE_NAME_MAP</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Max Mana</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+<span class='comment'># =&gt; :max_mana</span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -570,6 +295,42 @@
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Max Stamina</span><span class='tstring_end'>&#39;</span></span>      <span class='op'>=&gt;</span> <span class='symbol'>:max_stamina</span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Mana Recovery</span><span class='tstring_end'>&#39;</span></span>    <span class='op'>=&gt;</span> <span class='symbol'>:mana_recovery</span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Stamina Recovery</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:stamina_recovery</span>
+<span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="MARTIAL_SKILL_CAP-constant" class="">MARTIAL_SKILL_CAP =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Martial Knowledge Skills (CMan-based enhancives)
+These appear as &quot;+X ranks&quot; in the output rather than bonus format
+Derived dynamically from CMan module at runtime to stay DRY</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>5</span></pre></dd>
+      
+        <dt id="MARTIAL_SPECIAL_NAMES-constant" class="">MARTIAL_SPECIAL_NAMES =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Special display name mappings for CMan skills with apostrophes
+These can't be auto-generated from the symbol name</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+  <span class='symbol'>:acrobats_leap</span>       <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Acrobat&#39;s Leap</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='symbol'>:executioners_stance</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Executioner&#39;s Stance</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='symbol'>:griffins_voice</span>      <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Griffin&#39;s Voice</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='symbol'>:predators_eye</span>       <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Predator&#39;s Eye</span><span class='tstring_end'>&quot;</span></span>
 <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
       
     </dl>
@@ -583,787 +344,7 @@
 
   
     <h2>
-      Stat Accessors
-      <small><a href="#" class="summary_toggle">collapse</a></small>
-    </h2>
-
-    <ul class="summary">
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#agi-instance_method" title="#agi (instance method)">#<strong>agi</strong>  &#x21d2; Integer </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Enhancive agility bonus value.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#agility-instance_method" title="#agility (instance method)">#<strong>agility</strong>  &#x21d2; OpenStruct </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer).</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#aur-instance_method" title="#aur (instance method)">#<strong>aur</strong>  &#x21d2; Integer </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Enhancive aura bonus value.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#aura-instance_method" title="#aura (instance method)">#<strong>aura</strong>  &#x21d2; OpenStruct </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer).</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#con-instance_method" title="#con (instance method)">#<strong>con</strong>  &#x21d2; Integer </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Enhancive constitution bonus value.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#constitution-instance_method" title="#constitution (instance method)">#<strong>constitution</strong>  &#x21d2; OpenStruct </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer).</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#dex-instance_method" title="#dex (instance method)">#<strong>dex</strong>  &#x21d2; Integer </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Enhancive dexterity bonus value.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#dexterity-instance_method" title="#dexterity (instance method)">#<strong>dexterity</strong>  &#x21d2; OpenStruct </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer).</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#dis-instance_method" title="#dis (instance method)">#<strong>dis</strong>  &#x21d2; Integer </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Enhancive discipline bonus value.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#discipline-instance_method" title="#discipline (instance method)">#<strong>discipline</strong>  &#x21d2; OpenStruct </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer).</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#int-instance_method" title="#int (instance method)">#<strong>int</strong>  &#x21d2; Integer </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Enhancive intuition bonus value.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#intuition-instance_method" title="#intuition (instance method)">#<strong>intuition</strong>  &#x21d2; OpenStruct </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer).</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#log-instance_method" title="#log (instance method)">#<strong>log</strong>  &#x21d2; Integer </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Enhancive logic bonus value.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#logic-instance_method" title="#logic (instance method)">#<strong>logic</strong>  &#x21d2; OpenStruct </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer).</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#str-instance_method" title="#str (instance method)">#<strong>str</strong>  &#x21d2; Integer </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Enhancive strength bonus value.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#strength-instance_method" title="#strength (instance method)">#<strong>strength</strong>  &#x21d2; OpenStruct </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer).</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#wis-instance_method" title="#wis (instance method)">#<strong>wis</strong>  &#x21d2; Integer </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Enhancive wisdom bonus value.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#wisdom-instance_method" title="#wisdom (instance method)">#<strong>wisdom</strong>  &#x21d2; OpenStruct </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer).</p>
-</div></span>
-  
-</li>
-
-      
-    </ul>
-  
-    <h2>
-      Resource Accessors
-      <small><a href="#" class="summary_toggle">collapse</a></small>
-    </h2>
-
-    <ul class="summary">
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#health-class_method" title="health (class method)">.<strong>health</strong>  &#x21d2; OpenStruct </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Convenience alias for <span class='object_link'><a href="#max_health-instance_method" title="Lich::Gemstone::Enhancive#max_health (method)">#max_health</a></span>.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#mana-class_method" title="mana (class method)">.<strong>mana</strong>  &#x21d2; OpenStruct </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Convenience alias for <span class='object_link'><a href="#max_mana-instance_method" title="Lich::Gemstone::Enhancive#max_mana (method)">#max_mana</a></span>.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#stamina-class_method" title="stamina (class method)">.<strong>stamina</strong>  &#x21d2; OpenStruct </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Convenience alias for <span class='object_link'><a href="#max_stamina-instance_method" title="Lich::Gemstone::Enhancive#max_stamina (method)">#max_stamina</a></span>.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#mana_recovery-instance_method" title="#mana_recovery (instance method)">#<strong>mana_recovery</strong>  &#x21d2; OpenStruct </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Struct with :value (Integer) and :cap (50).</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#max_health-instance_method" title="#max_health (instance method)">#<strong>max_health</strong>  &#x21d2; OpenStruct </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Struct with :value (Integer) and :cap (300).</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#max_mana-instance_method" title="#max_mana (instance method)">#<strong>max_mana</strong>  &#x21d2; OpenStruct </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Struct with :value (Integer) and :cap (600).</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#max_stamina-instance_method" title="#max_stamina (instance method)">#<strong>max_stamina</strong>  &#x21d2; OpenStruct </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Struct with :value (Integer) and :cap (300).</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#stamina_recovery-instance_method" title="#stamina_recovery (instance method)">#<strong>stamina_recovery</strong>  &#x21d2; OpenStruct </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Struct with :value (Integer) and :cap (50).</p>
-</div></span>
-  
-</li>
-
-      
-    </ul>
-  
-    <h2>
-      Spell Accessors
-      <small><a href="#" class="summary_toggle">collapse</a></small>
-    </h2>
-
-    <ul class="summary">
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#knows_spell%3F-class_method" title="knows_spell? (class method)">.<strong>knows_spell?</strong>(spell_num)  &#x21d2; Boolean </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Check if enhancives grant knowledge of a specific spell.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#spells-class_method" title="spells (class method)">.<strong>spells</strong>  &#x21d2; Array&lt;Integer&gt; </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Returns array of spell numbers that enhancives grant self-knowledge of.</p>
-</div></span>
-  
-</li>
-
-      
-    </ul>
-  
-    <h2>
-      Statistics Accessors
-      <small><a href="#" class="summary_toggle">collapse</a></small>
-    </h2>
-
-    <ul class="summary">
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#item_count-class_method" title="item_count (class method)">.<strong>item_count</strong>  &#x21d2; Integer </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the total number of enhancive items contributing bonuses.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#property_count-class_method" title="property_count (class method)">.<strong>property_count</strong>  &#x21d2; Integer </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the total number of enhancive properties across all items.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#total_amount-class_method" title="total_amount (class method)">.<strong>total_amount</strong>  &#x21d2; Integer </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the sum of all enhancive bonus amounts.</p>
-</div></span>
-  
-</li>
-
-      
-    </ul>
-  
-    <h2>
-      Active State
+      Class Method Summary
       <small><a href="#" class="summary_toggle">collapse</a></small>
     </h2>
 
@@ -1386,9 +367,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns whether enhancives are currently active (toggled on).</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1396,7 +375,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#active_last_updated-class_method" title="active_last_updated (class method)">.<strong>active_last_updated</strong>  &#x21d2; Time<sup>?</sup> </a>
+      <a href="#active_last_updated-class_method" title="active_last_updated (class method)">.<strong>active_last_updated</strong>  &#x21d2; Object </a>
     
 
     
@@ -1410,9 +389,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the Time when active state was last updated.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1420,7 +397,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#pauses-class_method" title="pauses (class method)">.<strong>pauses</strong>  &#x21d2; Integer </a>
+      <a href="#health-class_method" title="health (class method)">.<strong>health</strong>  &#x21d2; Object </a>
     
 
     
@@ -1434,26 +411,15 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the number of enhancive pauses available.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
       
-    </ul>
-  
-    <h2>
-      Metadata
-      <small><a href="#" class="summary_toggle">collapse</a></small>
-    </h2>
-
-    <ul class="summary">
-      
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#last_updated-class_method" title="last_updated (class method)">.<strong>last_updated</strong>  &#x21d2; Time<sup>?</sup> </a>
+      <a href="#item_count-class_method" title="item_count (class method)">.<strong>item_count</strong>  &#x21d2; Object </a>
     
 
     
@@ -1467,26 +433,15 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the Time when enhancive data was last refreshed.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
       
-    </ul>
-  
-    <h2>
-      Utility Methods
-      <small><a href="#" class="summary_toggle">collapse</a></small>
-    </h2>
-
-    <ul class="summary">
-      
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#over_cap_skills-class_method" title="over_cap_skills (class method)">.<strong>over_cap_skills</strong>  &#x21d2; Array&lt;Symbol&gt; </a>
+      <a href="#knows_spell%3F-class_method" title="knows_spell? (class method)">.<strong>knows_spell?</strong>(spell_num)  &#x21d2; Boolean </a>
     
 
     
@@ -1500,9 +455,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns all skills that are currently over their enhancive cap.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1510,7 +463,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#over_cap_stats-class_method" title="over_cap_stats (class method)">.<strong>over_cap_stats</strong>  &#x21d2; Array&lt;Symbol&gt; </a>
+      <a href="#last_updated-class_method" title="last_updated (class method)">.<strong>last_updated</strong>  &#x21d2; Object </a>
     
 
     
@@ -1524,9 +477,293 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns all stats that are currently over their enhancive cap.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#mana-class_method" title="mana (class method)">.<strong>mana</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#martial_display_to_symbol-class_method" title="martial_display_to_symbol (class method)">.<strong>martial_display_to_symbol</strong>(display_name)  &#x21d2; Symbol </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Converts a martial skill display name to its symbol.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#martial_skill-class_method" title="martial_skill (class method)">.<strong>martial_skill</strong>(skill_symbol)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#martial_skills-class_method" title="martial_skills (class method)">.<strong>martial_skills</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#martial_skills_list-class_method" title="martial_skills_list (class method)">.<strong>martial_skills_list</strong>  &#x21d2; Array&lt;Symbol&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns a list of martial skills defined in the CMan module.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#martial_symbol_to_display-class_method" title="martial_symbol_to_display (class method)">.<strong>martial_symbol_to_display</strong>(symbol)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Converts a martial skill symbol to its display name.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#over_cap_skills-class_method" title="over_cap_skills (class method)">.<strong>over_cap_skills</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#over_cap_stats-class_method" title="over_cap_stats (class method)">.<strong>over_cap_stats</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pauses-class_method" title="pauses (class method)">.<strong>pauses</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#property_count-class_method" title="property_count (class method)">.<strong>property_count</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#refresh-class_method" title="refresh (class method)">.<strong>refresh</strong>(silent: false, quiet: true)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Refreshes the enhancive data from the game.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#refresh_status-class_method" title="refresh_status (class method)">.<strong>refresh_status</strong>(silent: false, quiet: true)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Refreshes the current status of enhancive data.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#reset_all-class_method" title="reset_all (class method)">.<strong>reset_all</strong>  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Resets all stats, skills, resources, and spells to their initial values.</p></div></span>
   
 </li>
 
@@ -1548,9 +785,51 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Check if a specific skill’s enhancive bonus exceeds the cap.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if a given skill is over its cap.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#spells-class_method" title="spells (class method)">.<strong>spells</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#stamina-class_method" title="stamina (class method)">.<strong>stamina</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1572,26 +851,15 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Check if a specific stat’s enhancive bonus exceeds the cap.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if a given stat is over its cap.</p></div></span>
   
 </li>
 
       
-    </ul>
-  
-    <h2>
-      Refresh Methods
-      <small><a href="#" class="summary_toggle">collapse</a></small>
-    </h2>
-
-    <ul class="summary">
-      
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#refresh-class_method" title="refresh (class method)">.<strong>refresh</strong>  &#x21d2; void </a>
+      <a href="#total_amount-class_method" title="total_amount (class method)">.<strong>total_amount</strong>  &#x21d2; Object </a>
     
 
     
@@ -1605,71 +873,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Triggers a full refresh of enhancive data from the game.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#refresh_status-class_method" title="refresh_status (class method)">.<strong>refresh_status</strong>  &#x21d2; void </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Triggers a lightweight refresh of just the active state and pause count.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
       
     </ul>
-  
-    <h2>
-      Internal Methods
-      <small><a href="#" class="summary_toggle">collapse</a></small>
-    </h2>
-
-    <ul class="summary">
-      
-        <li class="public ">
-  <span class="summary_signature">
     
-      <a href="#reset_all-class_method" title="reset_all (class method)">.<strong>reset_all</strong>  &#x21d2; void </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  <span class="private note title">private</span>
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Resets all enhancive values to 0/empty.</p>
-</div></span>
-  
-</li>
-
-      
-    </ul>
   
 
 
@@ -1690,8 +900,6 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns whether enhancives are currently active (toggled on). Players can toggle enhancives on/off with INVENTORY ENHANCIVE ON/OFF.</p>
-
 
   </div>
 </div>
@@ -1707,11 +915,6 @@
       
       
       
-        &mdash;
-        <div class='inline'>
-<p>true if enhancives are active</p>
-</div>
-      
     </li>
   
 </ul>
@@ -1722,12 +925,12 @@
       <pre class="lines">
 
 
-407
-408
-409</pre>
+310
+311
+312</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 407</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 310</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.active</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='kw'>true</span>
@@ -1740,54 +943,25 @@
       <div class="method_details ">
   <h3 class="signature " id="active_last_updated-class_method">
   
-    .<strong>active_last_updated</strong>  &#x21d2; <tt>Time</tt><sup>?</sup> 
+    .<strong>active_last_updated</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the Time when active state was last updated.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Time</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Time of last update, or nil if never updated</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-414
-415
-416
-417</pre>
+314
+315
+316
+317</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 414</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 314</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_active_last_updated'>active_last_updated</span>
   <span class='id identifier rubyid_timestamp'>timestamp</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_updated_at'><span class='object_link'><a href="Infomon.html#get_updated_at-class_method" title="Lich::Gemstone::Infomon.get_updated_at (method)">get_updated_at</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.active</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -1801,53 +975,24 @@
       <div class="method_details ">
   <h3 class="signature " id="health-class_method">
   
-    .<strong>health</strong>  &#x21d2; <tt>OpenStruct</tt> 
+    .<strong>health</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Convenience alias for <span class='object_link'><a href="#max_health-instance_method" title="Lich::Gemstone::Enhancive#max_health (method)">#max_health</a></span>.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Same as max_health</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-335
-336
-337</pre>
+279
+280
+281</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 335</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 279</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_health'>health</span>
   <span class='id identifier rubyid_max_health'>max_health</span>
@@ -1860,53 +1005,24 @@
       <div class="method_details ">
   <h3 class="signature " id="item_count-class_method">
   
-    .<strong>item_count</strong>  &#x21d2; <tt>Integer</tt> 
+    .<strong>item_count</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the total number of enhancive items contributing bonuses.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Number of enhancive items</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-380
-381
-382</pre>
+298
+299
+300</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 380</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 298</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_item_count'>item_count</span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.stats.item_count</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -1928,42 +1044,11 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Check if enhancives grant knowledge of a specific spell.</p>
-
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_knows_spell?'>knows_spell?</span><span class='lparen'>(</span><span class='int'>215</span><span class='rparen'>)</span>   <span class='comment'># =&gt; true
-</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_knows_spell?'>knows_spell?</span><span class='lparen'>(</span><span class='int'>101</span><span class='rparen'>)</span>   <span class='comment'># =&gt; false</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>spell_num</span>
-      
-      
-        <span class='type'>(<tt>Integer</tt>, <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Spell number to check</p>
-</div>
-      
-    </li>
-  
-</ul>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1973,11 +1058,6 @@
         <span class='type'>(<tt>Boolean</tt>)</span>
       
       
-      
-        &mdash;
-        <div class='inline'>
-<p>true if enhancives grant this spell</p>
-</div>
       
     </li>
   
@@ -1989,12 +1069,12 @@
       <pre class="lines">
 
 
-369
-370
-371</pre>
+294
+295
+296</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 369</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 294</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_knows_spell?'>knows_spell?</span><span class='lparen'>(</span><span class='id identifier rubyid_spell_num'>spell_num</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_spells'>spells</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_spell_num'>spell_num</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rparen'>)</span>
@@ -2007,54 +1087,25 @@
       <div class="method_details ">
   <h3 class="signature " id="last_updated-class_method">
   
-    .<strong>last_updated</strong>  &#x21d2; <tt>Time</tt><sup>?</sup> 
+    .<strong>last_updated</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the Time when enhancive data was last refreshed. Based on when item_count was last updated.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Time</tt>, <tt>nil</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Time of last refresh, or nil if never refreshed</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-435
-436
-437
-438</pre>
+323
+324
+325
+326</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 435</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 323</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_last_updated'>last_updated</span>
   <span class='id identifier rubyid_timestamp'>timestamp</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_updated_at'><span class='object_link'><a href="Infomon.html#get_updated_at-class_method" title="Lich::Gemstone::Infomon.get_updated_at (method)">get_updated_at</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.stats.item_count</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2068,7 +1119,37 @@
       <div class="method_details ">
   <h3 class="signature " id="mana-class_method">
   
-    .<strong>mana</strong>  &#x21d2; <tt>OpenStruct</tt> 
+    .<strong>mana</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+275
+276
+277</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 275</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span>
+  <span class='id identifier rubyid_max_mana'>max_mana</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="martial_display_to_symbol-class_method">
+  
+    .<strong>martial_display_to_symbol</strong>(display_name)  &#x21d2; <tt>Symbol</tt> 
   
 
   
@@ -2076,28 +1157,51 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Convenience alias for <span class='object_link'><a href="#max_mana-instance_method" title="Lich::Gemstone::Enhancive#max_mana (method)">#max_mana</a></span>.</p>
-
+    <p>Converts a martial skill display name to its symbol.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_martial_display_to_symbol'>martial_display_to_symbol</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Acrobat&#39;s Leap</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; :acrobats_leap</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>display_name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the display name of the martial skill.</p></div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
+        <span class='type'>(<tt>Symbol</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>Same as max_mana</p>
-</div>
+        <div class='inline'><p>the corresponding martial skill symbol.</p></div>
       
     </li>
   
@@ -2109,15 +1213,25 @@
       <pre class="lines">
 
 
-329
-330
-331</pre>
+153
+154
+155
+156
+157
+158
+159
+160</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 329</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 153</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mana'>mana</span>
-  <span class='id identifier rubyid_max_mana'>max_mana</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_martial_display_to_symbol'>martial_display_to_symbol</span><span class='lparen'>(</span><span class='id identifier rubyid_display_name'>display_name</span><span class='rparen'>)</span>
+  <span class='comment'># Check special names first (reverse lookup)
+</span>  <span class='id identifier rubyid_special'>special</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#MARTIAL_SPECIAL_NAMES-constant" title="Lich::Gemstone::Enhancive::MARTIAL_SPECIAL_NAMES (constant)">MARTIAL_SPECIAL_NAMES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_key'>key</span><span class='lparen'>(</span><span class='id identifier rubyid_display_name'>display_name</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_special'>special</span> <span class='kw'>if</span> <span class='id identifier rubyid_special'>special</span>
+
+  <span class='comment'># Standard conversion: lowercase, replace spaces with underscores
+</span>  <span class='id identifier rubyid_display_name'>display_name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2125,9 +1239,77 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="over_cap_skills-class_method">
+  <h3 class="signature " id="martial_skill-class_method">
   
-    .<strong>over_cap_skills</strong>  &#x21d2; <tt>Array&lt;Symbol&gt;</tt> 
+    .<strong>martial_skill</strong>(skill_symbol)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+263
+264
+265
+266
+267
+268</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 263</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_martial_skill'>martial_skill</span><span class='lparen'>(</span><span class='id identifier rubyid_skill_symbol'>skill_symbol</span><span class='rparen'>)</span>
+  <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+    <span class='label'>ranks:</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.martial.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_skill_symbol'>skill_symbol</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
+    <span class='label'>cap:</span> <span class='const'><span class='object_link'><a href="#MARTIAL_SKILL_CAP-constant" title="Lich::Gemstone::Enhancive::MARTIAL_SKILL_CAP (constant)">MARTIAL_SKILL_CAP</a></span></span>
+  <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="martial_skills-class_method">
+  
+    .<strong>martial_skills</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+270
+271
+272
+273</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 270</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_martial_skills'>martial_skills</span>
+  <span class='id identifier rubyid_martial_skills_list'>martial_skills_list</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span> <span class='id identifier rubyid_martial_skill'>martial_skill</span><span class='lparen'>(</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_ranks'>ranks</span> <span class='op'>&gt;</span> <span class='int'>0</span> <span class='rbrace'>}</span>
+                     <span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='comma'>,</span> <span class='label'>ranks:</span> <span class='id identifier rubyid_martial_skill'>martial_skill</span><span class='lparen'>(</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_ranks'>ranks</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="martial_skills_list-class_method">
+  
+    .<strong>martial_skills_list</strong>  &#x21d2; <tt>Array&lt;Symbol&gt;</tt> 
   
 
   
@@ -2135,9 +1317,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns all skills that are currently over their enhancive cap.</p>
-
+    <p>Returns a list of martial skills defined in the CMan module.</p>
 
   </div>
 </div>
@@ -2147,7 +1327,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_over_cap_skills'>over_cap_skills</span>  <span class='comment'># =&gt; [:ambush, :stalking_and_hiding]</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_martial_skills_list'>martial_skills_list</span>
+<span class='comment'># =&gt; [:two_weapon_combat, :armor_use, ...]</span></code></pre>
     
   </div>
 
@@ -2162,9 +1343,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Array of skill symbols that are over cap</p>
-</div>
+        <div class='inline'><p>an array of martial skill symbols.</p></div>
       
     </li>
   
@@ -2176,12 +1355,132 @@
       <pre class="lines">
 
 
-479
-480
-481</pre>
+168
+169
+170
+171
+172</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 479</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 168</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_martial_skills_list'>martial_skills_list</span>
+  <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CMan.html" title="Lich::Gemstone::CMan (module)">CMan</a></span></span><span class='rparen'>)</span>
+
+  <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CMan.html" title="Lich::Gemstone::CMan (module)">CMan</a></span></span><span class='period'>.</span><span class='id identifier rubyid_cman_lookups'><span class='object_link'><a href="CMan.html#cman_lookups-class_method" title="Lich::Gemstone::CMan.cman_lookups (method)">cman_lookups</a></span></span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_cman'>cman</span><span class='op'>|</span> <span class='id identifier rubyid_cman'>cman</span><span class='lbracket'>[</span><span class='symbol'>:long_name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="martial_symbol_to_display-class_method">
+  
+    .<strong>martial_symbol_to_display</strong>(symbol)  &#x21d2; <tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Converts a martial skill symbol to its display name.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_martial_symbol_to_display'>martial_symbol_to_display</span><span class='lparen'>(</span><span class='symbol'>:acrobats_leap</span><span class='rparen'>)</span>
+<span class='comment'># =&gt; &quot;Acrobat&#39;s Leap&quot;</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>symbol</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the martial skill symbol to convert.</p></div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the display name of the martial skill.</p></div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+140
+141
+142
+143
+144</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 140</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_martial_symbol_to_display'>martial_symbol_to_display</span><span class='lparen'>(</span><span class='id identifier rubyid_symbol'>symbol</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="#MARTIAL_SPECIAL_NAMES-constant" title="Lich::Gemstone::Enhancive::MARTIAL_SPECIAL_NAMES (constant)">MARTIAL_SPECIAL_NAMES</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_symbol'>symbol</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="#MARTIAL_SPECIAL_NAMES-constant" title="Lich::Gemstone::Enhancive::MARTIAL_SPECIAL_NAMES (constant)">MARTIAL_SPECIAL_NAMES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_symbol'>symbol</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_symbol'>symbol</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:capitalize</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="over_cap_skills-class_method">
+  
+    .<strong>over_cap_skills</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+355
+356
+357</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 355</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_over_cap_skills'>over_cap_skills</span>
   <span class='const'><span class='object_link'><a href="#BONUS_SKILLS-constant" title="Lich::Gemstone::Enhancive::BONUS_SKILLS (constant)">BONUS_SKILLS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span> <span class='id identifier rubyid_skill_over_cap?'>skill_over_cap?</span><span class='lparen'>(</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='rparen'>)</span> <span class='kw'>rescue</span> <span class='kw'>false</span> <span class='rbrace'>}</span>
@@ -2194,61 +1493,24 @@
       <div class="method_details ">
   <h3 class="signature " id="over_cap_stats-class_method">
   
-    .<strong>over_cap_stats</strong>  &#x21d2; <tt>Array&lt;Symbol&gt;</tt> 
+    .<strong>over_cap_stats</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns all stats that are currently over their enhancive cap.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_over_cap_stats'>over_cap_stats</span>  <span class='comment'># =&gt; [:strength, :agility]</span></code></pre>
-    
-  </div>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Array of stat symbols that are over cap</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-470
-471
-472</pre>
+351
+352
+353</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 470</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 351</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_over_cap_stats'>over_cap_stats</span>
   <span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span> <span class='id identifier rubyid_stat_over_cap?'>stat_over_cap?</span><span class='lparen'>(</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -2261,53 +1523,24 @@
       <div class="method_details ">
   <h3 class="signature " id="pauses-class_method">
   
-    .<strong>pauses</strong>  &#x21d2; <tt>Integer</tt> 
+    .<strong>pauses</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the number of enhancive pauses available. Pauses allow temporarily disabling enhancive drain.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Number of pauses available</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-423
-424
-425</pre>
+319
+320
+321</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 423</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 319</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pauses'>pauses</span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.pauses</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -2320,53 +1553,24 @@
       <div class="method_details ">
   <h3 class="signature " id="property_count-class_method">
   
-    .<strong>property_count</strong>  &#x21d2; <tt>Integer</tt> 
+    .<strong>property_count</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the total number of enhancive properties across all items. A single item can have multiple enhancive properties.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Number of enhancive properties</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-388
-389
-390</pre>
+302
+303
+304</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 388</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 302</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_property_count'>property_count</span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.stats.property_count</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -2379,7 +1583,7 @@
       <div class="method_details ">
   <h3 class="signature " id="refresh-class_method">
   
-    .<strong>refresh</strong>  &#x21d2; <tt>void</tt> 
+    .<strong>refresh</strong>(silent: false, quiet: true)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -2387,22 +1591,57 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Output is hidden from the user via quiet mode</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Triggers a full refresh of enhancive data from the game. Issues INVENTORY ENHANCIVE and INVENTORY ENHANCIVE TOTALS commands. Blocks until complete.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Refreshes the enhancive data from the game.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_refresh'>refresh</span>
+<span class='comment'># =&gt; Refreshes the data without output.</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>silent</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>whether to suppress output messages (default: false).</p></div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>quiet</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>whether to suppress all output (default: true).</p></div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -2410,38 +1649,38 @@
       <pre class="lines">
 
 
-493
-494
-495
-496
-497
-498
-499
-500
-501
-502
-503
-504
-505
-506
-507
-508
-509
-510
-511
-512</pre>
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 493</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 367</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_refresh'>refresh</span>
-  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Refreshing enhancive data...</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_refresh'>refresh</span><span class='lparen'>(</span><span class='label'>silent:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Refreshing enhancive data...</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_quiet'>quiet</span>
   <span class='comment'># First get status (active state + pauses)
 </span>  <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_issue_command'><span class='object_link'><a href="../Util.html#issue_command-class_method" title="Lich::Util.issue_command (method)">issue_command</a></span></span><span class='lparen'>(</span>
     <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>invento enh</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
     <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You are (?:currently|not currently|now|already|no longer)</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
     <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;prompt</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
-    <span class='label'>include_end:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>timeout:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>silent:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>usexml:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='kw'>true</span>
+    <span class='label'>include_end:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>timeout:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>silent:</span> <span class='id identifier rubyid_silent'>silent</span><span class='comma'>,</span> <span class='label'>usexml:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='id identifier rubyid_quiet'>quiet</span>
   <span class='rparen'>)</span>
   <span class='comment'># Then get full totals
 </span>  <span class='comment'># TODO: Update start pattern once GM adds proper start message to invento enhancive totals
@@ -2450,9 +1689,9 @@
     <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>invento enhancive totals</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
     <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^&lt;pushBold\/&gt;(?:Stats:|Skills:|Resources:)|^No enhancive item bonuses found\.</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
     <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;prompt</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
-    <span class='label'>include_end:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>timeout:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>silent:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>usexml:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='kw'>true</span>
+    <span class='label'>include_end:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>timeout:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>silent:</span> <span class='id identifier rubyid_silent'>silent</span><span class='comma'>,</span> <span class='label'>usexml:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='id identifier rubyid_quiet'>quiet</span>
   <span class='rparen'>)</span>
-  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Enhancive data refreshed.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Enhancive data refreshed.</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_quiet'>quiet</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2462,7 +1701,7 @@
       <div class="method_details ">
   <h3 class="signature " id="refresh_status-class_method">
   
-    .<strong>refresh_status</strong>  &#x21d2; <tt>void</tt> 
+    .<strong>refresh_status</strong>(silent: false, quiet: true)  &#x21d2; <tt>void</tt> 
   
 
   
@@ -2470,22 +1709,57 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'>
-<p>Faster than <span class='object_link'><a href="#refresh-class_method" title="Lich::Gemstone::Enhancive.refresh (method)">refresh</a></span> when you only need active state</p>
-</div>
-  </div>
-
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Triggers a lightweight refresh of just the active state and pause count. Issues only INVENTORY ENHANCIVE command. Blocks until complete.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Refreshes the current status of enhancive data.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_refresh_status'>refresh_status</span>
+<span class='comment'># =&gt; Refreshes the status without output.</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>silent</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>whether to suppress output messages (default: false).</p></div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>quiet</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>whether to suppress all output (default: true).</p></div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -2493,24 +1767,24 @@
       <pre class="lines">
 
 
-520
-521
-522
-523
-524
-525
-526
-527</pre>
+396
+397
+398
+399
+400
+401
+402
+403</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 520</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 396</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_refresh_status'>refresh_status</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_refresh_status'>refresh_status</span><span class='lparen'>(</span><span class='label'>silent:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_issue_command'><span class='object_link'><a href="../Util.html#issue_command-class_method" title="Lich::Util.issue_command (method)">issue_command</a></span></span><span class='lparen'>(</span>
     <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>invento enh</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
     <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^You are (?:currently|not currently|now|already|no longer)</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
     <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;prompt</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
-    <span class='label'>include_end:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>timeout:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>silent:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>usexml:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='kw'>true</span>
+    <span class='label'>include_end:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>timeout:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>silent:</span> <span class='id identifier rubyid_silent'>silent</span><span class='comma'>,</span> <span class='label'>usexml:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>quiet:</span> <span class='id identifier rubyid_quiet'>quiet</span>
   <span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2529,18 +1803,21 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note private">
-  <strong>This method is part of a private API.</strong>
-  You should avoid using this method if possible, as it may be removed or be changed in the future.
-</p>
-<p class="note returns_void">This method returns an undefined value.</p>
-<p>Resets all enhancive values to 0/empty. Called by the parser before populating new data to ensure stale values are cleared. This is critical because game output only shows non-zero values.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Resets all stats, skills, resources, and spells to their initial values.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reset_all'>reset_all</span>
+<span class='comment'># =&gt; Resets all enhancive data.</span></code></pre>
+    
+  </div>
+
 
 </div><table class="source_code">
   <tr>
@@ -2548,38 +1825,44 @@
       <pre class="lines">
 
 
-539
-540
-541
-542
-543
-544
-545
-546
-547
-548
-549
-550
-551
-552
-553
-554
-555
-556
-557
-558
-559
-560
-561
-562
-563
-564
-565
-566
-567</pre>
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 539</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 411</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_reset_all'>reset_all</span>
   <span class='id identifier rubyid_batch'>batch</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -2598,6 +1881,12 @@
   <span class='comment'># Reset all resources to 0
 </span>  <span class='const'><span class='object_link'><a href="#RESOURCES-constant" title="Lich::Gemstone::Enhancive::RESOURCES (constant)">RESOURCES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_resource'>resource</span><span class='op'>|</span>
     <span class='id identifier rubyid_batch'>batch</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.resource.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_resource'>resource</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Reset all martial knowledge skills to 0
+</span>  <span class='comment'># Uses CMan module to get full list of possible martial skills
+</span>  <span class='id identifier rubyid_martial_skills_list'>martial_skills_list</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_skill'>skill</span><span class='op'>|</span>
+    <span class='id identifier rubyid_batch'>batch</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.martial.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_skill'>skill</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
   <span class='comment'># Reset spells to empty array
@@ -2626,9 +1915,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Check if a specific skill’s enhancive bonus exceeds the cap.</p>
-
+    <p>Checks if a given skill is over its cap.</p>
 
   </div>
 </div>
@@ -2638,7 +1925,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_skill_over_cap?'>skill_over_cap?</span><span class='lparen'>(</span><span class='symbol'>:ambush</span><span class='rparen'>)</span>  <span class='comment'># =&gt; true (if bonus &gt; 50)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_skill_over_cap?'>skill_over_cap?</span><span class='lparen'>(</span><span class='symbol'>:two_weapon_combat</span><span class='rparen'>)</span>
+<span class='comment'># =&gt; true or false</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2654,9 +1942,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Skill symbol (e.g., :ambush, :edged_weapons)</p>
-</div>
+        <div class='inline'><p>the skill to check.</p></div>
       
     </li>
   
@@ -2673,9 +1959,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>true if the skill bonus exceeds <span class='object_link'><a href="#SKILL_CAP-constant" title="Lich::Gemstone::Enhancive::SKILL_CAP (constant)">SKILL_CAP</a></span></p>
-</div>
+        <div class='inline'><p>true if the skill is over cap, false otherwise.</p></div>
       
     </li>
   
@@ -2687,13 +1971,13 @@
       <pre class="lines">
 
 
-460
-461
-462
-463</pre>
+346
+347
+348
+349</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 460</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 346</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_skill_over_cap?'>skill_over_cap?</span><span class='lparen'>(</span><span class='id identifier rubyid_skill'>skill</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span> <span class='op'>=</span> <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_skill'>skill</span><span class='rparen'>)</span>
@@ -2707,64 +1991,27 @@
       <div class="method_details ">
   <h3 class="signature " id="spells-class_method">
   
-    .<strong>spells</strong>  &#x21d2; <tt>Array&lt;Integer&gt;</tt> 
+    .<strong>spells</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns array of spell numbers that enhancives grant self-knowledge of. These are spells the character can cast due to enhancive items, not trained spells.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_spells'>spells</span>  <span class='comment'># =&gt; [215, 506, 1109]</span></code></pre>
-    
-  </div>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array&lt;Integer&gt;</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Array of spell numbers, or empty array if none</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-355
-356
-357
-358
-359
-360</pre>
+287
+288
+289
+290
+291
+292</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 355</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 287</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_spells'>spells</span>
   <span class='id identifier rubyid_raw'>raw</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.spells</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2780,53 +2027,24 @@
       <div class="method_details ">
   <h3 class="signature " id="stamina-class_method">
   
-    .<strong>stamina</strong>  &#x21d2; <tt>OpenStruct</tt> 
+    .<strong>stamina</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Convenience alias for <span class='object_link'><a href="#max_stamina-instance_method" title="Lich::Gemstone::Enhancive#max_stamina (method)">#max_stamina</a></span>.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Same as max_stamina</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-341
-342
-343</pre>
+283
+284
+285</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 341</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 283</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_stamina'>stamina</span>
   <span class='id identifier rubyid_max_stamina'>max_stamina</span>
@@ -2847,9 +2065,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Check if a specific stat’s enhancive bonus exceeds the cap.</p>
-
+    <p>Checks if a given stat is over its cap.</p>
 
   </div>
 </div>
@@ -2859,7 +2075,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stat_over_cap?'>stat_over_cap?</span><span class='lparen'>(</span><span class='symbol'>:strength</span><span class='rparen'>)</span>  <span class='comment'># =&gt; true (if &gt; 40)</span></code></pre>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Enhancive (module)">Enhancive</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stat_over_cap?'>stat_over_cap?</span><span class='lparen'>(</span><span class='symbol'>:strength</span><span class='rparen'>)</span>
+<span class='comment'># =&gt; true or false</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2875,9 +2092,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Stat symbol (e.g., :strength, :agility)</p>
-</div>
+        <div class='inline'><p>the stat to check.</p></div>
       
     </li>
   
@@ -2894,9 +2109,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>true if the stat bonus exceeds <span class='object_link'><a href="#STAT_CAP-constant" title="Lich::Gemstone::Enhancive::STAT_CAP (constant)">STAT_CAP</a></span></p>
-</div>
+        <div class='inline'><p>true if the stat is over cap, false otherwise.</p></div>
       
     </li>
   
@@ -2908,12 +2121,12 @@
       <pre class="lines">
 
 
-450
-451
-452</pre>
+335
+336
+337</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 450</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 335</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_stat_over_cap?'>stat_over_cap?</span><span class='lparen'>(</span><span class='id identifier rubyid_stat'>stat</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_stat'>stat</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='op'>&gt;</span> <span class='const'><span class='object_link'><a href="#STAT_CAP-constant" title="Lich::Gemstone::Enhancive::STAT_CAP (constant)">STAT_CAP</a></span></span>
@@ -2926,53 +2139,24 @@
       <div class="method_details ">
   <h3 class="signature " id="total_amount-class_method">
   
-    .<strong>total_amount</strong>  &#x21d2; <tt>Integer</tt> 
+    .<strong>total_amount</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the sum of all enhancive bonus amounts.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Total enhancive amount</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-395
-396
-397</pre>
+306
+307
+308</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 395</span>
+      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 306</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_total_amount'>total_amount</span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.stats.total_amount</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -2984,1569 +2168,12 @@
     
   </div>
 
-  <div id="instance_method_details" class="method_details_list">
-    <h2>Instance Method Details</h2>
-
-    
-      <div class="method_details first">
-  <h3 class="signature first" id="agi-instance_method">
-  
-    #<strong>agi</strong>  &#x21d2; <tt>Integer</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Enhancive agility bonus value.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Enhancive agility bonus value</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-221
-222
-223
-224
-225
-226</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 221</span>
-
-<span class='qsymbols_beg'>%i[</span><span class='tstring_content'>str</span><span class='words_sep'> </span><span class='tstring_content'>con</span><span class='words_sep'> </span><span class='tstring_content'>dex</span><span class='words_sep'> </span><span class='tstring_content'>agi</span><span class='words_sep'> </span><span class='tstring_content'>dis</span><span class='words_sep'> </span><span class='tstring_content'>aur</span><span class='words_sep'> </span><span class='tstring_content'>log</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>wis</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='op'>|</span>
-  <span class='id identifier rubyid_long_hand'>long_hand</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span> <span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_long_hand'>long_hand</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="agility-instance_method">
-  
-    #<strong>agility</strong>  &#x21d2; <tt>OpenStruct</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Struct with :value (Integer) and :cap (Integer).</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer)</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-193
-194
-195
-196
-197
-198
-199
-200</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 193</span>
-
-<span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_stat'>stat</span><span class='op'>|</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_stat'>stat</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
-      <span class='label'>value:</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.stat.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_stat'>stat</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
-      <span class='label'>cap:</span> <span class='const'><span class='object_link'><a href="#STAT_CAP-constant" title="Lich::Gemstone::Enhancive::STAT_CAP (constant)">STAT_CAP</a></span></span>
-    <span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="aur-instance_method">
-  
-    #<strong>aur</strong>  &#x21d2; <tt>Integer</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Enhancive aura bonus value.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Enhancive aura bonus value</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-221
-222
-223
-224
-225
-226</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 221</span>
-
-<span class='qsymbols_beg'>%i[</span><span class='tstring_content'>str</span><span class='words_sep'> </span><span class='tstring_content'>con</span><span class='words_sep'> </span><span class='tstring_content'>dex</span><span class='words_sep'> </span><span class='tstring_content'>agi</span><span class='words_sep'> </span><span class='tstring_content'>dis</span><span class='words_sep'> </span><span class='tstring_content'>aur</span><span class='words_sep'> </span><span class='tstring_content'>log</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>wis</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='op'>|</span>
-  <span class='id identifier rubyid_long_hand'>long_hand</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span> <span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_long_hand'>long_hand</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="aura-instance_method">
-  
-    #<strong>aura</strong>  &#x21d2; <tt>OpenStruct</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Struct with :value (Integer) and :cap (Integer).</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer)</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-193
-194
-195
-196
-197
-198
-199
-200</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 193</span>
-
-<span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_stat'>stat</span><span class='op'>|</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_stat'>stat</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
-      <span class='label'>value:</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.stat.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_stat'>stat</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
-      <span class='label'>cap:</span> <span class='const'><span class='object_link'><a href="#STAT_CAP-constant" title="Lich::Gemstone::Enhancive::STAT_CAP (constant)">STAT_CAP</a></span></span>
-    <span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="con-instance_method">
-  
-    #<strong>con</strong>  &#x21d2; <tt>Integer</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Enhancive constitution bonus value.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Enhancive constitution bonus value</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-221
-222
-223
-224
-225
-226</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 221</span>
-
-<span class='qsymbols_beg'>%i[</span><span class='tstring_content'>str</span><span class='words_sep'> </span><span class='tstring_content'>con</span><span class='words_sep'> </span><span class='tstring_content'>dex</span><span class='words_sep'> </span><span class='tstring_content'>agi</span><span class='words_sep'> </span><span class='tstring_content'>dis</span><span class='words_sep'> </span><span class='tstring_content'>aur</span><span class='words_sep'> </span><span class='tstring_content'>log</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>wis</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='op'>|</span>
-  <span class='id identifier rubyid_long_hand'>long_hand</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span> <span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_long_hand'>long_hand</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="constitution-instance_method">
-  
-    #<strong>constitution</strong>  &#x21d2; <tt>OpenStruct</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Struct with :value (Integer) and :cap (Integer).</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer)</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-193
-194
-195
-196
-197
-198
-199
-200</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 193</span>
-
-<span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_stat'>stat</span><span class='op'>|</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_stat'>stat</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
-      <span class='label'>value:</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.stat.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_stat'>stat</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
-      <span class='label'>cap:</span> <span class='const'><span class='object_link'><a href="#STAT_CAP-constant" title="Lich::Gemstone::Enhancive::STAT_CAP (constant)">STAT_CAP</a></span></span>
-    <span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="dex-instance_method">
-  
-    #<strong>dex</strong>  &#x21d2; <tt>Integer</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Enhancive dexterity bonus value.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Enhancive dexterity bonus value</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-221
-222
-223
-224
-225
-226</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 221</span>
-
-<span class='qsymbols_beg'>%i[</span><span class='tstring_content'>str</span><span class='words_sep'> </span><span class='tstring_content'>con</span><span class='words_sep'> </span><span class='tstring_content'>dex</span><span class='words_sep'> </span><span class='tstring_content'>agi</span><span class='words_sep'> </span><span class='tstring_content'>dis</span><span class='words_sep'> </span><span class='tstring_content'>aur</span><span class='words_sep'> </span><span class='tstring_content'>log</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>wis</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='op'>|</span>
-  <span class='id identifier rubyid_long_hand'>long_hand</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span> <span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_long_hand'>long_hand</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="dexterity-instance_method">
-  
-    #<strong>dexterity</strong>  &#x21d2; <tt>OpenStruct</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Struct with :value (Integer) and :cap (Integer).</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer)</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-193
-194
-195
-196
-197
-198
-199
-200</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 193</span>
-
-<span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_stat'>stat</span><span class='op'>|</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_stat'>stat</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
-      <span class='label'>value:</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.stat.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_stat'>stat</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
-      <span class='label'>cap:</span> <span class='const'><span class='object_link'><a href="#STAT_CAP-constant" title="Lich::Gemstone::Enhancive::STAT_CAP (constant)">STAT_CAP</a></span></span>
-    <span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="dis-instance_method">
-  
-    #<strong>dis</strong>  &#x21d2; <tt>Integer</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Enhancive discipline bonus value.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Enhancive discipline bonus value</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-221
-222
-223
-224
-225
-226</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 221</span>
-
-<span class='qsymbols_beg'>%i[</span><span class='tstring_content'>str</span><span class='words_sep'> </span><span class='tstring_content'>con</span><span class='words_sep'> </span><span class='tstring_content'>dex</span><span class='words_sep'> </span><span class='tstring_content'>agi</span><span class='words_sep'> </span><span class='tstring_content'>dis</span><span class='words_sep'> </span><span class='tstring_content'>aur</span><span class='words_sep'> </span><span class='tstring_content'>log</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>wis</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='op'>|</span>
-  <span class='id identifier rubyid_long_hand'>long_hand</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span> <span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_long_hand'>long_hand</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="discipline-instance_method">
-  
-    #<strong>discipline</strong>  &#x21d2; <tt>OpenStruct</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Struct with :value (Integer) and :cap (Integer).</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer)</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-193
-194
-195
-196
-197
-198
-199
-200</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 193</span>
-
-<span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_stat'>stat</span><span class='op'>|</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_stat'>stat</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
-      <span class='label'>value:</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.stat.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_stat'>stat</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
-      <span class='label'>cap:</span> <span class='const'><span class='object_link'><a href="#STAT_CAP-constant" title="Lich::Gemstone::Enhancive::STAT_CAP (constant)">STAT_CAP</a></span></span>
-    <span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="int-instance_method">
-  
-    #<strong>int</strong>  &#x21d2; <tt>Integer</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Enhancive intuition bonus value.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Enhancive intuition bonus value</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-221
-222
-223
-224
-225
-226</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 221</span>
-
-<span class='qsymbols_beg'>%i[</span><span class='tstring_content'>str</span><span class='words_sep'> </span><span class='tstring_content'>con</span><span class='words_sep'> </span><span class='tstring_content'>dex</span><span class='words_sep'> </span><span class='tstring_content'>agi</span><span class='words_sep'> </span><span class='tstring_content'>dis</span><span class='words_sep'> </span><span class='tstring_content'>aur</span><span class='words_sep'> </span><span class='tstring_content'>log</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>wis</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='op'>|</span>
-  <span class='id identifier rubyid_long_hand'>long_hand</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span> <span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_long_hand'>long_hand</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="intuition-instance_method">
-  
-    #<strong>intuition</strong>  &#x21d2; <tt>OpenStruct</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Struct with :value (Integer) and :cap (Integer).</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer)</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-193
-194
-195
-196
-197
-198
-199
-200</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 193</span>
-
-<span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_stat'>stat</span><span class='op'>|</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_stat'>stat</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
-      <span class='label'>value:</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.stat.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_stat'>stat</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
-      <span class='label'>cap:</span> <span class='const'><span class='object_link'><a href="#STAT_CAP-constant" title="Lich::Gemstone::Enhancive::STAT_CAP (constant)">STAT_CAP</a></span></span>
-    <span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="log-instance_method">
-  
-    #<strong>log</strong>  &#x21d2; <tt>Integer</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Enhancive logic bonus value.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Enhancive logic bonus value</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-221
-222
-223
-224
-225
-226</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 221</span>
-
-<span class='qsymbols_beg'>%i[</span><span class='tstring_content'>str</span><span class='words_sep'> </span><span class='tstring_content'>con</span><span class='words_sep'> </span><span class='tstring_content'>dex</span><span class='words_sep'> </span><span class='tstring_content'>agi</span><span class='words_sep'> </span><span class='tstring_content'>dis</span><span class='words_sep'> </span><span class='tstring_content'>aur</span><span class='words_sep'> </span><span class='tstring_content'>log</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>wis</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='op'>|</span>
-  <span class='id identifier rubyid_long_hand'>long_hand</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span> <span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_long_hand'>long_hand</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="logic-instance_method">
-  
-    #<strong>logic</strong>  &#x21d2; <tt>OpenStruct</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Struct with :value (Integer) and :cap (Integer).</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer)</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-193
-194
-195
-196
-197
-198
-199
-200</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 193</span>
-
-<span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_stat'>stat</span><span class='op'>|</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_stat'>stat</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
-      <span class='label'>value:</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.stat.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_stat'>stat</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
-      <span class='label'>cap:</span> <span class='const'><span class='object_link'><a href="#STAT_CAP-constant" title="Lich::Gemstone::Enhancive::STAT_CAP (constant)">STAT_CAP</a></span></span>
-    <span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="mana_recovery-instance_method">
-  
-    #<strong>mana_recovery</strong>  &#x21d2; <tt>OpenStruct</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Struct with :value (Integer) and :cap (50).</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Struct with :value (Integer) and :cap (50)</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-318
-319
-320
-321
-322
-323
-324
-325</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 318</span>
-
-<span class='const'><span class='object_link'><a href="#RESOURCES-constant" title="Lich::Gemstone::Enhancive::RESOURCES (constant)">RESOURCES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_resource'>resource</span><span class='op'>|</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
-      <span class='label'>value:</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.resource.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_resource'>resource</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
-      <span class='label'>cap:</span> <span class='const'><span class='object_link'><a href="#RESOURCE_CAPS-constant" title="Lich::Gemstone::Enhancive::RESOURCE_CAPS (constant)">RESOURCE_CAPS</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_resource'>resource</span><span class='rbracket'>]</span>
-    <span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="max_health-instance_method">
-  
-    #<strong>max_health</strong>  &#x21d2; <tt>OpenStruct</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Struct with :value (Integer) and :cap (300).</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Struct with :value (Integer) and :cap (300)</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-318
-319
-320
-321
-322
-323
-324
-325</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 318</span>
-
-<span class='const'><span class='object_link'><a href="#RESOURCES-constant" title="Lich::Gemstone::Enhancive::RESOURCES (constant)">RESOURCES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_resource'>resource</span><span class='op'>|</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
-      <span class='label'>value:</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.resource.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_resource'>resource</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
-      <span class='label'>cap:</span> <span class='const'><span class='object_link'><a href="#RESOURCE_CAPS-constant" title="Lich::Gemstone::Enhancive::RESOURCE_CAPS (constant)">RESOURCE_CAPS</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_resource'>resource</span><span class='rbracket'>]</span>
-    <span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="max_mana-instance_method">
-  
-    #<strong>max_mana</strong>  &#x21d2; <tt>OpenStruct</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Struct with :value (Integer) and :cap (600).</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Struct with :value (Integer) and :cap (600)</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-318
-319
-320
-321
-322
-323
-324
-325</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 318</span>
-
-<span class='const'><span class='object_link'><a href="#RESOURCES-constant" title="Lich::Gemstone::Enhancive::RESOURCES (constant)">RESOURCES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_resource'>resource</span><span class='op'>|</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
-      <span class='label'>value:</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.resource.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_resource'>resource</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
-      <span class='label'>cap:</span> <span class='const'><span class='object_link'><a href="#RESOURCE_CAPS-constant" title="Lich::Gemstone::Enhancive::RESOURCE_CAPS (constant)">RESOURCE_CAPS</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_resource'>resource</span><span class='rbracket'>]</span>
-    <span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="max_stamina-instance_method">
-  
-    #<strong>max_stamina</strong>  &#x21d2; <tt>OpenStruct</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Struct with :value (Integer) and :cap (300).</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Struct with :value (Integer) and :cap (300)</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-318
-319
-320
-321
-322
-323
-324
-325</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 318</span>
-
-<span class='const'><span class='object_link'><a href="#RESOURCES-constant" title="Lich::Gemstone::Enhancive::RESOURCES (constant)">RESOURCES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_resource'>resource</span><span class='op'>|</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
-      <span class='label'>value:</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.resource.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_resource'>resource</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
-      <span class='label'>cap:</span> <span class='const'><span class='object_link'><a href="#RESOURCE_CAPS-constant" title="Lich::Gemstone::Enhancive::RESOURCE_CAPS (constant)">RESOURCE_CAPS</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_resource'>resource</span><span class='rbracket'>]</span>
-    <span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="stamina_recovery-instance_method">
-  
-    #<strong>stamina_recovery</strong>  &#x21d2; <tt>OpenStruct</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Struct with :value (Integer) and :cap (50).</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Struct with :value (Integer) and :cap (50)</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-318
-319
-320
-321
-322
-323
-324
-325</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 318</span>
-
-<span class='const'><span class='object_link'><a href="#RESOURCES-constant" title="Lich::Gemstone::Enhancive::RESOURCES (constant)">RESOURCES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_resource'>resource</span><span class='op'>|</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
-      <span class='label'>value:</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.resource.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_resource'>resource</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
-      <span class='label'>cap:</span> <span class='const'><span class='object_link'><a href="#RESOURCE_CAPS-constant" title="Lich::Gemstone::Enhancive::RESOURCE_CAPS (constant)">RESOURCE_CAPS</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_resource'>resource</span><span class='rbracket'>]</span>
-    <span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="str-instance_method">
-  
-    #<strong>str</strong>  &#x21d2; <tt>Integer</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Enhancive strength bonus value.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Enhancive strength bonus value</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-221
-222
-223
-224
-225
-226</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 221</span>
-
-<span class='qsymbols_beg'>%i[</span><span class='tstring_content'>str</span><span class='words_sep'> </span><span class='tstring_content'>con</span><span class='words_sep'> </span><span class='tstring_content'>dex</span><span class='words_sep'> </span><span class='tstring_content'>agi</span><span class='words_sep'> </span><span class='tstring_content'>dis</span><span class='words_sep'> </span><span class='tstring_content'>aur</span><span class='words_sep'> </span><span class='tstring_content'>log</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>wis</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='op'>|</span>
-  <span class='id identifier rubyid_long_hand'>long_hand</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span> <span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_long_hand'>long_hand</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="strength-instance_method">
-  
-    #<strong>strength</strong>  &#x21d2; <tt>OpenStruct</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Struct with :value (Integer) and :cap (Integer).</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer)</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-193
-194
-195
-196
-197
-198
-199
-200</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 193</span>
-
-<span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_stat'>stat</span><span class='op'>|</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_stat'>stat</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
-      <span class='label'>value:</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.stat.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_stat'>stat</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
-      <span class='label'>cap:</span> <span class='const'><span class='object_link'><a href="#STAT_CAP-constant" title="Lich::Gemstone::Enhancive::STAT_CAP (constant)">STAT_CAP</a></span></span>
-    <span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="wis-instance_method">
-  
-    #<strong>wis</strong>  &#x21d2; <tt>Integer</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Enhancive wisdom bonus value.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Enhancive wisdom bonus value</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-221
-222
-223
-224
-225
-226</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 221</span>
-
-<span class='qsymbols_beg'>%i[</span><span class='tstring_content'>str</span><span class='words_sep'> </span><span class='tstring_content'>con</span><span class='words_sep'> </span><span class='tstring_content'>dex</span><span class='words_sep'> </span><span class='tstring_content'>agi</span><span class='words_sep'> </span><span class='tstring_content'>dis</span><span class='words_sep'> </span><span class='tstring_content'>aur</span><span class='words_sep'> </span><span class='tstring_content'>log</span><span class='words_sep'> </span><span class='tstring_content'>int</span><span class='words_sep'> </span><span class='tstring_content'>wis</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='op'>|</span>
-  <span class='id identifier rubyid_long_hand'>long_hand</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='op'>|</span> <span class='id identifier rubyid_s'><span class='object_link'><a href="../../top-level-namespace.html#s-instance_method" title="#s (method)">s</a></span></span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_shorthand'>shorthand</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_long_hand'>long_hand</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="wisdom-instance_method">
-  
-    #<strong>wisdom</strong>  &#x21d2; <tt>OpenStruct</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns Struct with :value (Integer) and :cap (Integer).</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>OpenStruct</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Struct with :value (Integer) and :cap (Integer)</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-193
-194
-195
-196
-197
-198
-199
-200</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'documented/attributes/enhancive.rb', line 193</span>
-
-<span class='const'><span class='object_link'><a href="#STATS-constant" title="Lich::Gemstone::Enhancive::STATS (constant)">STATS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_stat'>stat</span><span class='op'>|</span>
-  <span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='id identifier rubyid_stat'>stat</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
-      <span class='label'>value:</span> <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get'><span class='object_link'><a href="Infomon.html#get-class_method" title="Lich::Gemstone::Infomon.get (method)">get</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enhancive.stat.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_stat'>stat</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
-      <span class='label'>cap:</span> <span class='const'><span class='object_link'><a href="#STAT_CAP-constant" title="Lich::Gemstone::Enhancive::STAT_CAP (constant)">STAT_CAP</a></span></span>
-    <span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-  </div>
-
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:50 2026 by
+  Generated on Sun May 10 17:26:23 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

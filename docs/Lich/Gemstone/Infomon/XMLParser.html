@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Infomon::XMLParser";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,33 +80,27 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/infomon/xmlparser.rb</dd>
+    <dd>documented/gemstone/infomon/xmlparser.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>this module handles all of the logic for parsing game lines that infomon depends on This module handles all of the logic for parsing game lines that infomon depends on</p>
-
+    <p>The XMLParser module handles parsing of XML data related to game events.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Parsing a game line</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>XMLParser</span><span class='period'>.</span><span class='id identifier rubyid_parse'><span class='object_link'><a href="#parse-class_method" title="Lich::Gemstone::Infomon::XMLParser.parse (method)">parse</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../Infomon.html" title="Lich::Gemstone::Infomon (module)">for more information on the Infomon system.</a></span></li>
+    
+  </ul>
 
 </div><h2>Defined Under Namespace</h2>
 <p class="children">
@@ -148,14 +144,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Parses a game line and returns the appropriate status.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Parses a line of XML data to extract relevant game information.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -175,9 +170,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Parses a game line and returns the appropriate status</p>
-
+    <p>Parses a line of XML data to extract relevant game information.</p>
 
   </div>
 </div>
@@ -187,11 +180,9 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Parsing a line</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Parsing a death message</p></div></h5>
       
-      <pre class="example code"><code><span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Infomon::XMLParser (module)">XMLParser</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Some game line</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The fire in the goblin&#39;s body as it rises, disappearing into the heavens.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; :ok</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -207,9 +198,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The game line to parse</p>
-</div>
+        <div class='inline'><p>the line of XML data to parse</p></div>
       
     </li>
   
@@ -226,27 +215,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Returns :ok, :noop, or raises an error</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Raises:</p>
-<ul class="raise">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>StandardError</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>If an error occurs during parsing</p>
-</div>
+        <div class='inline'><p>the result of the parsing operation, either :ok, :noop, or :error</p></div>
       
     </li>
   
@@ -258,66 +227,6 @@
       <pre class="lines">
 
 
-134
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164
-165
-166
-167
-168
-169
-170
-171
-172
-173
-174
-175
-176
-177
-178
-179
-180
-181
-182
-183
-184
-185
-186
-187
-188
-189
-190
-191
-192
-193
 194
 195
 196
@@ -330,10 +239,71 @@
 203
 204
 205
-206</pre>
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/xmlparser.rb', line 134</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/xmlparser.rb', line 194</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='comment'># O(1) vs O(N)
@@ -352,20 +322,25 @@
       <span class='kw'>return</span> <span class='symbol'>:noop</span> <span class='kw'>unless</span> <span class='lparen'>(</span><span class='id identifier rubyid_match_data'>match_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Group.html" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Group/Observer.html" title="Lich::Gemstone::Group::Observer (module)">Observer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_wants?'><span class='object_link'><a href="../Group/Observer.html#wants%3F-class_method" title="Lich::Gemstone::Group::Observer.wants? (method)">wants?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span><span class='rparen'>)</span>
       <span class='const'><span class='object_link'><a href="../Group.html" title="Lich::Gemstone::Group (class)">Group</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Group/Observer.html" title="Lich::Gemstone::Group::Observer (module)">Observer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_consume'><span class='object_link'><a href="../Group/Observer.html#consume-class_method" title="Lich::Gemstone::Group::Observer.consume (method)">consume</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='comma'>,</span> <span class='id identifier rubyid_match_data'>match_data</span><span class='rparen'>)</span>
       <span class='symbol'>:ok</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="XMLParser/Pattern.html" title="Lich::Gemstone::Infomon::XMLParser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XMLParser/Pattern.html#Overwatch_Short-constant" title="Lich::Gemstone::Infomon::XMLParser::Pattern::Overwatch_Short (constant)">Overwatch_Short</a></span></span>
+      <span class='kw'>return</span> <span class='symbol'>:noop</span> <span class='kw'>unless</span> <span class='lparen'>(</span><span class='id identifier rubyid_match_data'>match_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Overwatch.html" title="Lich::Gemstone::Overwatch (class)">Overwatch</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Overwatch/Observer.html" title="Lich::Gemstone::Overwatch::Observer (module)">Observer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_wants?'><span class='object_link'><a href="../Overwatch/Observer.html#wants%3F-class_method" title="Lich::Gemstone::Overwatch::Observer.wants? (method)">wants?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="../Overwatch.html" title="Lich::Gemstone::Overwatch (class)">Overwatch</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Overwatch/Observer.html" title="Lich::Gemstone::Overwatch::Observer (module)">Observer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_consume'><span class='object_link'><a href="../Overwatch/Observer.html#consume-class_method" title="Lich::Gemstone::Overwatch::Observer.consume (method)">consume</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='comma'>,</span> <span class='id identifier rubyid_match_data'>match_data</span><span class='rparen'>)</span>
+      <span class='symbol'>:ok</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="XMLParser/Pattern.html" title="Lich::Gemstone::Infomon::XMLParser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XMLParser/Pattern.html#Also_Here_Arrival-constant" title="Lich::Gemstone::Infomon::XMLParser::Pattern::Also_Here_Arrival (constant)">Also_Here_Arrival</a></span></span>
       <span class='kw'>return</span> <span class='symbol'>:noop</span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Claim.html" title="Lich::Claim (module)">Claim</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Claim.html#Lock-constant" title="Lich::Claim::Lock (constant)">Lock</a></span></span><span class='period'>.</span><span class='id identifier rubyid_locked?'>locked?</span>
-      <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>&lt;a exist=(?:&#39;|&quot;)(?&lt;id&gt;.*?)(?:&#39;|&quot;) noun=(?:&#39;|&quot;)(?&lt;noun&gt;.*?)(?:&#39;|&quot;)&gt;(?&lt;name&gt;.*?)&lt;/a&gt;</span><span class='regexp_end'>}</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_player_found'>player_found</span><span class='op'>|</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_arrival_pcs'>arrival_pcs</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_player_found'>player_found</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_arrival_pcs'>arrival_pcs</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_player_found'>player_found</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>&lt;a exist=(?:&#39;|&quot;)(?&lt;id&gt;.*?)(?:&#39;|&quot;) noun=(?:&#39;|&quot;)(?&lt;noun&gt;.*?)(?:&#39;|&quot;)&gt;(?&lt;name&gt;.*?)&lt;/a&gt;</span><span class='regexp_end'>}</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_player_found'>player_found</span><span class='op'>|</span>
+        <span class='kw'>next</span> <span class='kw'>unless</span> <span class='id identifier rubyid_player_found'>player_found</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+        <span class='kw'>next</span> <span class='kw'>if</span> <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_arrival_pcs'>arrival_pcs</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_player_found'>player_found</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+        <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_arrival_pcs'>arrival_pcs</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_player_found'>player_found</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='rbrace'>}</span>
       <span class='symbol'>:ok</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="XMLParser/Pattern.html" title="Lich::Gemstone::Infomon::XMLParser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XMLParser/Pattern.html#StowListOutputStart-constant" title="Lich::Gemstone::Infomon::XMLParser::Pattern::StowListOutputStart (constant)">StowListOutputStart</a></span></span>
       <span class='const'><span class='object_link'><a href="../StowList.html" title="Lich::Gemstone::StowList (class)">StowList</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reset'><span class='object_link'><a href="../StowList.html#reset-class_method" title="Lich::Gemstone::StowList.reset (method)">reset</a></span></span>
       <span class='symbol'>:ok</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="XMLParser/Pattern.html" title="Lich::Gemstone::Infomon::XMLParser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XMLParser/Pattern.html#StowListContainer-constant" title="Lich::Gemstone::Infomon::XMLParser::Pattern::StowListContainer (constant)">StowListContainer</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="XMLParser/Pattern.html" title="Lich::Gemstone::Infomon::XMLParser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XMLParser/Pattern.html#StowSetContainer1-constant" title="Lich::Gemstone::Infomon::XMLParser::Pattern::StowSetContainer1 (constant)">StowSetContainer1</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="XMLParser/Pattern.html" title="Lich::Gemstone::Infomon::XMLParser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XMLParser/Pattern.html#StowSetContainer2-constant" title="Lich::Gemstone::Infomon::XMLParser::Pattern::StowSetContainer2 (constant)">StowSetContainer2</a></span></span>
       <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span>
-      <span class='kw'>if</span> <span class='const'>GameObj</span><span class='lbracket'>[</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rbracket'>]</span>
-        <span class='const'><span class='object_link'><a href="../StowList.html" title="Lich::Gemstone::StowList (class)">StowList</a></span></span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='embexpr_end'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>GameObj</span><span class='lbracket'>[</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-      <span class='kw'>else</span>
-        <span class='const'><span class='object_link'><a href="../StowList.html" title="Lich::Gemstone::StowList (class)">StowList</a></span></span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='embexpr_end'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:noun</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:before</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:before</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:after</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:after</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
-      <span class='kw'>end</span>
+      <span class='const'><span class='object_link'><a href="../StowList.html" title="Lich::Gemstone::StowList (class)">StowList</a></span></span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='embexpr_end'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_index_or_create'>index_or_create</span><span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:noun</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:before</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:before</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:after</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:after</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
       <span class='const'><span class='object_link'><a href="../StowList.html" title="Lich::Gemstone::StowList (class)">StowList</a></span></span><span class='period'>.</span><span class='id identifier rubyid_checked'>checked</span> <span class='op'>=</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_line'>line</span> <span class='op'>=~</span> <span class='const'><span class='object_link'><a href="XMLParser/Pattern.html" title="Lich::Gemstone::Infomon::XMLParser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XMLParser/Pattern.html#StowListContainer-constant" title="Lich::Gemstone::Infomon::XMLParser::Pattern::StowListContainer (constant)">StowListContainer</a></span></span>
       <span class='symbol'>:ok</span>
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="XMLParser/Pattern.html" title="Lich::Gemstone::Infomon::XMLParser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XMLParser/Pattern.html#ReadyListOutputStart-constant" title="Lich::Gemstone::Infomon::XMLParser::Pattern::ReadyListOutputStart (constant)">ReadyListOutputStart</a></span></span>
@@ -374,11 +349,7 @@
     <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="XMLParser/Pattern.html" title="Lich::Gemstone::Infomon::XMLParser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XMLParser/Pattern.html#ReadyListNormal-constant" title="Lich::Gemstone::Infomon::XMLParser::Pattern::ReadyListNormal (constant)">ReadyListNormal</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="XMLParser/Pattern.html" title="Lich::Gemstone::Infomon::XMLParser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XMLParser/Pattern.html#ReadyListAmmo2-constant" title="Lich::Gemstone::Infomon::XMLParser::Pattern::ReadyListAmmo2 (constant)">ReadyListAmmo2</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="XMLParser/Pattern.html" title="Lich::Gemstone::Infomon::XMLParser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XMLParser/Pattern.html#ReadyListSheathsSet-constant" title="Lich::Gemstone::Infomon::XMLParser::Pattern::ReadyListSheathsSet (constant)">ReadyListSheathsSet</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="XMLParser/Pattern.html" title="Lich::Gemstone::Infomon::XMLParser::Pattern (module)">Pattern</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XMLParser/Pattern.html#ReadyItemSet-constant" title="Lich::Gemstone::Infomon::XMLParser::Pattern::ReadyItemSet (constant)">ReadyItemSet</a></span></span>
       <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span> <span class='op'>=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span>
       <span class='kw'>unless</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-        <span class='kw'>if</span> <span class='const'>GameObj</span><span class='lbracket'>[</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rbracket'>]</span>
-          <span class='const'><span class='object_link'><a href="../ReadyList.html" title="Lich::Gemstone::ReadyList (class)">ReadyList</a></span></span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_normalize_name'><span class='object_link'><a href="../../Util.html#normalize_name-class_method" title="Lich::Util.normalize_name (method)">normalize_name</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>GameObj</span><span class='lbracket'>[</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-        <span class='kw'>else</span>
-          <span class='const'><span class='object_link'><a href="../ReadyList.html" title="Lich::Gemstone::ReadyList (class)">ReadyList</a></span></span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_normalize_name'><span class='object_link'><a href="../../Util.html#normalize_name-class_method" title="Lich::Util.normalize_name (method)">normalize_name</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:noun</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:before</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:before</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:after</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:after</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
-        <span class='kw'>end</span>
+        <span class='const'><span class='object_link'><a href="../ReadyList.html" title="Lich::Gemstone::ReadyList (class)">ReadyList</a></span></span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_normalize_name'><span class='object_link'><a href="../../Util.html#normalize_name-class_method" title="Lich::Util.normalize_name (method)">normalize_name</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>GameObj</span><span class='period'>.</span><span class='id identifier rubyid_index_or_create'>index_or_create</span><span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:noun</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:before</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:before</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:after</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:after</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
       <span class='kw'>end</span>
       <span class='kw'>if</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='period'>.</span><span class='id identifier rubyid_named_captures'>named_captures</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>store</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
         <span class='const'><span class='object_link'><a href="../ReadyList.html" title="Lich::Gemstone::ReadyList (class)">ReadyList</a></span></span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>store_</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Util.html" title="Lich::Util (module)">Util</a></span></span><span class='period'>.</span><span class='id identifier rubyid_normalize_name'><span class='object_link'><a href="../../Util.html#normalize_name-class_method" title="Lich::Util.normalize_name (method)">normalize_name</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_match'><span class='object_link'><a href="../../../top-level-namespace.html#match-instance_method" title="#match (method)">match</a></span></span><span class='lbracket'>[</span><span class='symbol'>:store</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -404,8 +375,8 @@
   <span class='kw'>rescue</span> <span class='const'>StandardError</span>
     <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- Lich: error: Infomon::XMLParser.parse: </span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_respond'><span class='object_link'><a href="../../../top-level-namespace.html#respond-instance_method" title="#respond (method)">respond</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--- Lich: error: line: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line'>line</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Infomon::XMLParser.parse: </span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\t</span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n\t</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: line: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line'>line</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\t</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: Infomon::XMLParser.parse: </span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\t</span><span class='embexpr_beg'>#{</span><span class='gvar'>$!</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n\t</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'><span class='object_link'><a href="../../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="../../Lich.html#log-class_method" title="Lich.log (method)">log</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error: line: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_line'>line</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\t</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -418,9 +389,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:52 2026 by
+  Generated on Sun May 10 17:26:25 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

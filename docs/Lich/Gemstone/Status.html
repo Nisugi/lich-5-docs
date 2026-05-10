@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Status";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,33 +80,27 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/infomon/status.rb</dd>
+    <dd>documented/gemstone/infomon/status.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Provides methods to check character status in the game This module includes various methods to determine the current status of a character.</p>
-
+    <p>Provides methods to check various character status effects.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Checking character status</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>Status</span><span class='period'>.</span><span class='id identifier rubyid_thorned?'><span class='object_link'><a href="#thorned%3F-class_method" title="Lich::Gemstone::Status.thorned? (method)">thorned?</a></span></span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Lich::Gemstone</a></span></li>
+    
+  </ul>
 
 </div>
 
@@ -138,9 +134,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character is bound.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character is bound.</p></div></span>
   
 </li>
 
@@ -162,9 +156,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character is calmed.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character is calmed.</p></div></span>
   
 </li>
 
@@ -186,9 +178,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character is in a cutthroat state.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character is in a cutthroat state.</p></div></span>
   
 </li>
 
@@ -210,9 +200,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character is dead.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character is dead.</p></div></span>
   
 </li>
 
@@ -234,9 +222,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character is muckled (webbed, dead, stunned, bound, or sleeping).</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character is muckled (webbed, dead, stunned, bound, or sleeping).</p></div></span>
   
 </li>
 
@@ -258,9 +244,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>todo: does this serve a purpose? Serializes the status of the character.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Serializes the current status of the character.</p></div></span>
   
 </li>
 
@@ -282,9 +266,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character is silenced.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character is silenced.</p></div></span>
   
 </li>
 
@@ -306,9 +288,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character is sleeping.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character is sleeping.</p></div></span>
   
 </li>
 
@@ -330,9 +310,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character is stunned.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character is stunned.</p></div></span>
   
 </li>
 
@@ -354,9 +332,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if the character is thorned.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character is thorned.</p></div></span>
   
 </li>
 
@@ -378,14 +354,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>deprecate these in global_defs after warning, consider bringing other status maps over Checks if the character is webbed.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Checks if the character is webbed.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -405,9 +380,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character is bound</p>
-
+    <p>Checks if the character is bound.</p>
 
   </div>
 </div>
@@ -417,9 +390,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Checking if a character is bound</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Check bound status</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bound?'>bound?</span></code></pre>
     
@@ -436,9 +407,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>true if the character is bound, false otherwise</p>
-</div>
+        <div class='inline'><p>true if the character is bound, false otherwise</p></div>
       
     </li>
   
@@ -450,12 +419,12 @@
       <pre class="lines">
 
 
-33
-34
-35</pre>
+24
+25
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bound?'><span class='object_link'><a href="../../top-level-namespace.html#bound%3F-instance_method" title="#bound? (method)">bound?</a></span></span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_bool'><span class='object_link'><a href="Infomon.html#get_bool-class_method" title="Lich::Gemstone::Infomon.get_bool (method)">get_bool</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status.bound</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Bind</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='int'>214</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -476,9 +445,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character is calmed</p>
-
+    <p>Checks if the character is calmed.</p>
 
   </div>
 </div>
@@ -488,9 +455,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Checking if a character is calmed</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Check calmed status</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_calmed?'>calmed?</span></code></pre>
     
@@ -507,9 +472,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>true if the character is calmed, false otherwise</p>
-</div>
+        <div class='inline'><p>true if the character is calmed, false otherwise</p></div>
       
     </li>
   
@@ -521,12 +484,12 @@
       <pre class="lines">
 
 
-41
-42
-43</pre>
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_calmed?'><span class='object_link'><a href="../../top-level-namespace.html#calmed%3F-instance_method" title="#calmed? (method)">calmed?</a></span></span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_bool'><span class='object_link'><a href="Infomon.html#get_bool-class_method" title="Lich::Gemstone::Infomon.get_bool (method)">get_bool</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status.calmed</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Calm</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='int'>201</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -547,9 +510,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character is in a cutthroat state</p>
-
+    <p>Checks if the character is in a cutthroat state.</p>
 
   </div>
 </div>
@@ -559,9 +520,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Checking if a character is cutthroat</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Check cutthroat status</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_cutthroat?'>cutthroat?</span></code></pre>
     
@@ -578,9 +537,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>true if the character is cutthroat, false otherwise</p>
-</div>
+        <div class='inline'><p>true if the character is cutthroat, false otherwise</p></div>
       
     </li>
   
@@ -592,15 +549,15 @@
       <pre class="lines">
 
 
-49
-50
-51</pre>
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_cutthroat?'><span class='object_link'><a href="../../top-level-namespace.html#cutthroat%3F-instance_method" title="#cutthroat? (method)">cutthroat?</a></span></span>
-  <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_bool'><span class='object_link'><a href="Infomon.html#get_bool-class_method" title="Lich::Gemstone::Infomon.get_bool (method)">get_bool</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status.cutthroat</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Major Bleed</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_bool'><span class='object_link'><a href="Infomon.html#get_bool-class_method" title="Lich::Gemstone::Infomon.get_bool (method)">get_bool</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status.cutthroat</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Major Bleed</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Silenced</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -618,9 +575,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character is dead</p>
-
+    <p>Checks if the character is dead.</p>
 
   </div>
 </div>
@@ -630,9 +585,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Checking if a character is dead</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Check dead status</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dead?'>dead?</span></code></pre>
     
@@ -649,9 +602,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>true if the character is dead, false otherwise</p>
-</div>
+        <div class='inline'><p>true if the character is dead, false otherwise</p></div>
       
     </li>
   
@@ -663,12 +614,12 @@
       <pre class="lines">
 
 
-82
-83
-84</pre>
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dead?'>dead?</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_indicator'>indicator</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>IconDEAD</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>y</span><span class='tstring_end'>&#39;</span></span>
@@ -689,9 +640,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character is muckled (webbed, dead, stunned, bound, or sleeping)</p>
-
+    <p>Checks if the character is muckled (webbed, dead, stunned, bound, or sleeping).</p>
 
   </div>
 </div>
@@ -701,9 +650,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Checking if a character is muckled</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Check muckled status</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_muckled?'>muckled?</span></code></pre>
     
@@ -720,9 +667,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>true if the character is muckled, false otherwise</p>
-</div>
+        <div class='inline'><p>true if the character is muckled, false otherwise</p></div>
       
     </li>
   
@@ -734,12 +679,12 @@
       <pre class="lines">
 
 
-98
-99
-100</pre>
+88
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 88</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_muckled?'><span class='object_link'><a href="../../top-level-namespace.html#muckled%3F-instance_method" title="#muckled? (method)">muckled?</a></span></span>
   <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_webbed?'><span class='object_link'><a href="#webbed%3F-class_method" title="Lich::Gemstone::Status.webbed? (method)">webbed?</a></span></span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dead?'><span class='object_link'><a href="#dead%3F-class_method" title="Lich::Gemstone::Status.dead? (method)">dead?</a></span></span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stunned?'><span class='object_link'><a href="#stunned%3F-class_method" title="Lich::Gemstone::Status.stunned? (method)">stunned?</a></span></span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bound?'><span class='object_link'><a href="#bound%3F-class_method" title="Lich::Gemstone::Status.bound? (method)">bound?</a></span></span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_sleeping?'><span class='object_link'><a href="#sleeping%3F-class_method" title="Lich::Gemstone::Status.sleeping? (method)">sleeping?</a></span></span>
@@ -760,9 +705,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>todo: does this serve a purpose? Serializes the status of the character</p>
-
+    <p>Serializes the current status of the character.</p>
 
   </div>
 </div>
@@ -772,9 +715,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Serializing character status</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Serialize character status</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_serialize'>serialize</span></code></pre>
     
@@ -791,9 +732,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>an array of booleans representing various status checks</p>
-</div>
+        <div class='inline'><p>an array of boolean values representing the character's status</p></div>
       
     </li>
   
@@ -805,12 +744,12 @@
       <pre class="lines">
 
 
-107
-108
-109</pre>
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 107</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_serialize'>serialize</span>
   <span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bound?'><span class='object_link'><a href="../../top-level-namespace.html#bound%3F-instance_method" title="#bound? (method)">bound?</a></span></span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_calmed?'><span class='object_link'><a href="../../top-level-namespace.html#calmed%3F-instance_method" title="#calmed? (method)">calmed?</a></span></span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_cutthroat?'><span class='object_link'><a href="../../top-level-namespace.html#cutthroat%3F-instance_method" title="#cutthroat? (method)">cutthroat?</a></span></span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_silenced?'><span class='object_link'><a href="../../top-level-namespace.html#silenced%3F-instance_method" title="#silenced? (method)">silenced?</a></span></span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sleeping?'><span class='object_link'><a href="../../top-level-namespace.html#sleeping%3F-instance_method" title="#sleeping? (method)">sleeping?</a></span></span><span class='rbracket'>]</span>
@@ -831,9 +770,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character is silenced</p>
-
+    <p>Checks if the character is silenced.</p>
 
   </div>
 </div>
@@ -843,9 +780,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Checking if a character is silenced</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Check silenced status</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_silenced?'>silenced?</span></code></pre>
     
@@ -862,9 +797,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>true if the character is silenced, false otherwise</p>
-</div>
+        <div class='inline'><p>true if the character is silenced, false otherwise</p></div>
       
     </li>
   
@@ -876,12 +809,12 @@
       <pre class="lines">
 
 
-57
-58
-59</pre>
+48
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_silenced?'><span class='object_link'><a href="../../top-level-namespace.html#silenced%3F-instance_method" title="#silenced? (method)">silenced?</a></span></span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_bool'><span class='object_link'><a href="Infomon.html#get_bool-class_method" title="Lich::Gemstone::Infomon.get_bool (method)">get_bool</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status.silenced</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Silenced</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -902,9 +835,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character is sleeping</p>
-
+    <p>Checks if the character is sleeping.</p>
 
   </div>
 </div>
@@ -914,9 +845,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Checking if a character is sleeping</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Check sleeping status</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_sleeping?'>sleeping?</span></code></pre>
     
@@ -933,9 +862,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>true if the character is sleeping, false otherwise</p>
-</div>
+        <div class='inline'><p>true if the character is sleeping, false otherwise</p></div>
       
     </li>
   
@@ -947,12 +874,12 @@
       <pre class="lines">
 
 
-65
-66
-67</pre>
+56
+57
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_sleeping?'><span class='object_link'><a href="../../top-level-namespace.html#sleeping%3F-instance_method" title="#sleeping? (method)">sleeping?</a></span></span>
   <span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_bool'><span class='object_link'><a href="Infomon.html#get_bool-class_method" title="Lich::Gemstone::Infomon.get_bool (method)">get_bool</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status.sleeping</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Sleep</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='int'>501</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -973,9 +900,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character is stunned</p>
-
+    <p>Checks if the character is stunned.</p>
 
   </div>
 </div>
@@ -985,9 +910,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Checking if a character is stunned</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Check stunned status</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_stunned?'>stunned?</span></code></pre>
     
@@ -1004,9 +927,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>true if the character is stunned, false otherwise</p>
-</div>
+        <div class='inline'><p>true if the character is stunned, false otherwise</p></div>
       
     </li>
   
@@ -1018,12 +939,12 @@
       <pre class="lines">
 
 
-90
-91
-92</pre>
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 90</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 80</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_stunned?'>stunned?</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_indicator'>indicator</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>IconSTUNNED</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>y</span><span class='tstring_end'>&#39;</span></span>
@@ -1044,9 +965,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Checks if the character is thorned</p>
-
+    <p>Checks if the character is thorned.</p>
 
   </div>
 </div>
@@ -1056,9 +975,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Checking if a character is thorned</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Check thorned status</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_thorned?'>thorned?</span></code></pre>
     
@@ -1075,9 +992,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>true if the character is thorned, false otherwise</p>
-</div>
+        <div class='inline'><p>true if the character is thorned, false otherwise</p></div>
       
     </li>
   
@@ -1089,12 +1004,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+16
+17
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_thorned?'>thorned?</span> <span class='comment'># added 2024-09-08
 </span>  <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Infomon.html" title="Lich::Gemstone::Infomon (module)">Infomon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_bool'><span class='object_link'><a href="Infomon.html#get_bool-class_method" title="Lich::Gemstone::Infomon.get_bool (method)">get_bool</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status.thorned</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="Effects.html" title="Lich::Gemstone::Effects (module)">Effects</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Effects.html#Debuffs-constant" title="Lich::Gemstone::Effects::Debuffs (constant)">Debuffs</a></span></span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Wall of Thorns Poison [1-5]</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -1115,9 +1030,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>deprecate these in global_defs after warning, consider bringing other status maps over Checks if the character is webbed</p>
-
+    <p>Checks if the character is webbed.</p>
 
   </div>
 </div>
@@ -1127,9 +1040,7 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Checking if a character is webbed</p>
-</div></h5>
+        <h5 class="example_title"><div class='inline'><p>Check webbed status</p></div></h5>
       
       <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Status (module)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_webbed?'>webbed?</span></code></pre>
     
@@ -1146,9 +1057,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>true if the character is webbed, false otherwise</p>
-</div>
+        <div class='inline'><p>true if the character is webbed, false otherwise</p></div>
       
     </li>
   
@@ -1160,12 +1069,12 @@
       <pre class="lines">
 
 
-74
-75
-76</pre>
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/infomon/status.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_webbed?'>webbed?</span>
   <span class='const'>XMLData</span><span class='period'>.</span><span class='id identifier rubyid_indicator'>indicator</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>IconWEBBED</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>y</span><span class='tstring_end'>&#39;</span></span>
@@ -1180,9 +1089,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:52 2026 by
+  Generated on Sun May 10 17:26:24 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

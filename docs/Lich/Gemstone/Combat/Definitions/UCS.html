@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::Combat::Definitions::UCS";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -78,7 +80,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/combat/defs/ucs.rb</dd>
+    <dd>documented/gemstone/combat/defs/ucs.rb
+</dd>
   </dl>
   
 </div>
@@ -95,14 +98,32 @@
         <dt id="POSITION_PATTERN-constant" class="">POSITION_PATTERN =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Pattern for position updates - use .+ not .* Example: “You have good positioning against a kobold.” Pattern for position updates - use .+ not .*  Example: “You have good positioning against a kobold.”</p>
-
+    <p>Pattern for position updates - use .+ not .*
+Example: &quot;You have good positioning against a kobold.&quot;
+Pattern for position updates.</p>
+<p>Matches strings indicating the positioning against a target.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You have good positioning against a kobold.</span><span class='tstring_end'>&quot;</span></span></code></pre>
+    
+  </div>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#TIERUP_PATTERN-constant" title="Lich::Gemstone::Combat::Definitions::UCS::TIERUP_PATTERN (constant)">TIERUP_PATTERN</a></span></li>
+    
+      <li><span class='object_link'><a href="#SMITE_APPLIED_PATTERN-constant" title="Lich::Gemstone::Combat::Definitions::UCS::SMITE_APPLIED_PATTERN (constant)">SMITE_APPLIED_PATTERN</a></span></li>
+    
+  </ul>
 
 </div>
         </dt>
@@ -111,14 +132,23 @@
         <dt id="TIERUP_PATTERN-constant" class="">TIERUP_PATTERN =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Pattern for tierup vulnerability Example: “Strike leaves foe vulnerable to a followup jab attack!” Pattern for tierup vulnerability Example: “Strike leaves foe vulnerable to a followup jab attack!”</p>
-
+    <p>Pattern for tierup vulnerability
+Example: &quot;Strike leaves foe vulnerable to a followup jab attack!&quot;
+Pattern for tierup vulnerability.</p>
+<p>Matches strings indicating a foe is vulnerable to a followup attack.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Strike leaves foe vulnerable to a followup jab attack!</span><span class='tstring_end'>&quot;</span></span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -127,14 +157,23 @@
         <dt id="SMITE_APPLIED_PATTERN-constant" class="">SMITE_APPLIED_PATTERN =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Pattern for smite applied (crimson mist) Use .+ not .* Pattern for smite applied (crimson mist) Use .+ not .*</p>
-
+    <p>Pattern for smite applied (crimson mist)
+Use .+ not .*
+Pattern for smite applied (crimson mist).</p>
+<p>Matches strings indicating a target is surrounded by a crimson mist.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>A crimson mist suddenly surrounds the target.</span><span class='tstring_end'>&quot;</span></span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -143,14 +182,22 @@
         <dt id="SMITE_HELD_PATTERN-constant" class="">SMITE_HELD_PATTERN =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Pattern for smite held in corporeal plane Pattern for smite held in corporeal plane</p>
-
+    <p>Pattern for smite held in corporeal plane
+Pattern for smite held in corporeal plane.</p>
+<p>Matches strings indicating a target's crimson mist is held in the corporeal plane.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The crimson mist surrounding the target is held in the corporeal plane.</span><span class='tstring_end'>&quot;</span></span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -159,14 +206,22 @@
         <dt id="SMITE_REMOVED_PATTERN-constant" class="">SMITE_REMOVED_PATTERN =
           <div class="docstring">
   <div class="discussion">
-    
-<p>Pattern for smite removed Pattern for smite removed</p>
-
+    <p>Pattern for smite removed
+Pattern for smite removed.</p>
+<p>Matches strings indicating a target's crimson mist returns to an ethereal state.</p>
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+      <pre class="example code"><code><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The crimson mist surrounding the target returns to an ethereal state.</span><span class='tstring_end'>&quot;</span></span></code></pre>
+    
+  </div>
+
 
 </div>
         </dt>
@@ -203,17 +258,16 @@
   
   
   
-  
+  <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Parses a line of text to extract combat information.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Parses a line of text to extract combat-related information.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -233,11 +287,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Parses a line of text to extract combat information.</p>
-
-<p>This method matches the line against various patterns to determine the type of combat event and returns relevant data.</p>
-
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Parses a line of text to extract combat-related information.</p>
 
   </div>
 </div>
@@ -247,12 +301,8 @@
     <h4 class="tag_title">Examples:</h4>
     
       
-        <h5 class="example_title"><div class='inline'>
-<p>Parsing a position update</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Lich::Gemstone::Combat::Definitions::UCS (module)">UCS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You have good positioning against a kobold.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='comment'># =&gt; {:type=&gt;:position, :target_id=&gt;1, :value=&gt;&quot;good&quot;}</span></code></pre>
+      <pre class="example code"><code><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You have good positioning against a kobold.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># =&gt; { type: :position, target_id: 123, value: &quot;good&quot; }</span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -268,9 +318,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>The line of text to parse.</p>
-</div>
+        <div class='inline'><p>the line of text to parse.</p></div>
       
     </li>
   
@@ -287,9 +335,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>A hash containing the parsed data or nil if no match is found.</p>
-</div>
+        <div class='inline'><p>a hash containing parsed information or nil if no match is found.</p></div>
       
     </li>
   
@@ -301,28 +347,6 @@
       <pre class="lines">
 
 
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
 67
 68
 69
@@ -350,10 +374,32 @@
 91
 92
 93
-94</pre>
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/defs/ucs.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/combat/defs/ucs.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
   <span class='comment'># Position update
@@ -415,9 +461,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:52 2026 by
+  Generated on Sun May 10 17:26:25 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

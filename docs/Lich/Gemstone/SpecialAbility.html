@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Gemstone::SpecialAbility";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,33 +96,20 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/gemstone/creature.rb</dd>
+    <dd>documented/gemstone/creature.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a special ability of a creature. This class holds the name and note of the ability.</p>
-
+    <p>Represents a special ability for a creature.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Creating a special ability</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_ability'>ability</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Lich.html" title="Lich (module)">Lich</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Gemstone.html" title="Lich::Gemstone (module)">Gemstone</a></span></span><span class='op'>::</span><span class='const'>SpecialAbility</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Lich::Gemstone::SpecialAbility#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Fireball</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>note:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>A powerful fire spell.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
-    
-  </div>
-
 
 </div>
 
@@ -149,9 +138,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute name.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute name.</p></div></span>
   
 </li>
 
@@ -176,9 +163,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute note.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute note.</p></div></span>
   
 </li>
 
@@ -215,14 +200,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A new instance of SpecialAbility.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>A new instance of SpecialAbility.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 <div id="constructor_details" class="method_details_list">
@@ -239,9 +223,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns a new instance of SpecialAbility.</p>
-
+    <p>Returns a new instance of SpecialAbility.</p>
 
   </div>
 </div>
@@ -254,13 +236,13 @@
       <pre class="lines">
 
 
-655
-656
-657
-658</pre>
+608
+609
+610
+611</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 655</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 608</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span>
@@ -289,9 +271,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute name.</p>
-
+    <p>Returns the value of attribute name.</p>
 
   </div>
 </div>
@@ -304,12 +284,12 @@
       <pre class="lines">
 
 
-653
-654
-655</pre>
+606
+607
+608</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 653</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 606</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -332,9 +312,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the value of attribute note.</p>
-
+    <p>Returns the value of attribute note.</p>
 
   </div>
 </div>
@@ -347,12 +325,12 @@
       <pre class="lines">
 
 
-653
-654
-655</pre>
+606
+607
+608</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 653</span>
+      <pre class="code"><span class="info file"># File 'documented/gemstone/creature.rb', line 606</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_note'>note</span>
   <span class='ivar'>@note</span>
@@ -368,9 +346,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:19:00 2026 by
+  Generated on Sun May 10 17:26:32 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>

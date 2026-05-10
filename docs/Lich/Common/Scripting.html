@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "Lich::Common::Scripting";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,33 +96,27 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>documented/common/script.rb</dd>
+    <dd>documented/common/script.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>module Gemstone Class for handling script bindings This class provides methods to create script bindings.</p>
-
+    <p>Handles script execution and context binding.</p>
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <h4 class="tag_title">Examples:</h4>
-    
-      
-        <h5 class="example_title"><div class='inline'>
-<p>Creating a script binding</p>
-</div></h5>
-      
-      <pre class="example code"><code><span class='id identifier rubyid_binding'>binding</span> <span class='op'>=</span> <span class='const'>Scripting</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_script'><span class='object_link'><a href="#script-instance_method" title="Lich::Common::Scripting#script (method)">script</a></span></span></code></pre>
-    
-  </div>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>for script management.</li>
+    
+  </ul>
 
 </div>
 
@@ -140,7 +136,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#script-instance_method" title="#script (instance method)">#<strong>script</strong>  &#x21d2; Binding </a>
+      <a href="#script-instance_method" title="#script (instance method)">#<strong>script</strong>  &#x21d2; Object </a>
     
 
     
@@ -154,14 +150,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Creates a new script binding.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -173,53 +168,24 @@
       <div class="method_details first">
   <h3 class="signature first" id="script-instance_method">
   
-    #<strong>script</strong>  &#x21d2; <tt>Binding</tt> 
+    #<strong>script</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Creates a new script binding</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Binding</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>A new binding for a script</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-24
-25
-26</pre>
+11
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'documented/common/script.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'documented/common/script.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_script'>script</span>
   <span class='const'>Proc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_binding'>binding</span>
@@ -234,9 +200,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 13 05:18:57 2026 by
+  Generated on Sun May 10 17:26:30 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-3.2.9).
+  0.9.43 (ruby-3.2.11).
 </div>
 
     </div>
