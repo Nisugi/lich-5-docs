@@ -451,17 +451,43 @@ You will return JSON with documentation comments and their anchor points."""
 {numbered_content}
 ```
 
-Generate **YARD-compatible** documentation for every public class, module, method, and constant.
+Generate **YARD-compatible** documentation following the lich-5 documentation style guide.
 The line numbers are shown at the start of each line (e.g., "  15: def method_name").
 
 **CRITICAL RULES - READ CAREFULLY:**
 
-1. **DOCUMENT ALL PUBLIC CODE**
-   - Generate documentation for all public classes, modules, methods, and constants
-   - Skip private/internal code (marked with # :nodoc: or # @!visibility private)
+1. **WHAT TO DOCUMENT**
+   - Document all public classes, modules, methods, and non-trivial constants
+   - Add `@api private` to methods that are public but internal (not called from .lic scripts)
+   - Skip already-documented code (existing YARD tags present)
    - If there's nothing to document, return an empty JSON array: []
 
-2. **PARAMETER NAME RULES**
+2. **WHAT TO SKIP (no documentation needed)**
+   - Trivial one-line delegation methods
+   - `attr_reader` / `attr_accessor` / `attr_writer` declarations
+   - Aliases where the target method is already documented
+   - Constants with self-evident names and values (e.g., `MAX_RETRIES = 3`)
+   - Private methods marked with `private` keyword, `# :nodoc:`, or `# @!visibility private`
+     (unless they need `@api private` as they are public-but-internal)
+
+3. **TAG ORDER** — always use this order when multiple tags appear:
+   1. `@param` (one per parameter, in parameter order)
+   2. `@return`
+   3. `@example`
+   4. `@note`
+   5. `@raise`
+   6. `@see`
+   7. `@since`
+   8. `@deprecated`
+   9. `@api`
+
+4. **TYPES ARE REQUIRED**
+   - Every `@param` and `@return` MUST include a type annotation in [brackets]
+   - Use `[void]` when a method has no meaningful return value
+   - Common types: [String], [Integer], [Boolean], [Array<String>], [Hash], [nil], [String, nil]
+   - Game-specific types: [String] for item/container nouns, [Regexp] for patterns, [OpenStruct] for settings
+
+5. **PARAMETER NAME RULES**
    - @param tags MUST exactly match the method's parameter names
    - For block parameters: Use "block" NOT "&block" (no ampersand symbol!)
      WRONG: @param &block [Proc]
@@ -469,29 +495,37 @@ The line numbers are shown at the start of each line (e.g., "  15: def method_na
    - For splat parameters (*args): Use "args" NOT "*args" (no asterisk!)
      WRONG: @param *messages [Array]
      RIGHT: @param messages [Array]
-   - Parameter names must match what's in the def statement exactly
 
-3. **VALIDATION BEFORE RETURNING**
+6. **METHOD REFERENCE SYNTAX**
+   - Class/module methods (def self.method): use `.method_name` in @see and {{.method_name}} inline
+   - Instance methods (def method): use `#method_name` in @see and {{#method_name}} inline
+
+7. **DO NOT USE THESE TAGS**
+   - `@author` — use git blame instead
+   - `@version` — use `@since` instead
+   - `@todo` — use GitHub issues instead
+   - `@abstract` — Ruby has no abstract methods
+
+8. **VALIDATION BEFORE RETURNING**
    - Double-check each @param name matches the actual method parameter
    - Remove the & and * symbols from @param names
-   - Ensure you're not documenting already-documented code
+   - Confirm tag order matches rule 3 above
+   - Ensure types are present on every @param and @return
 
 Documentation structure:
 1. For classes/modules:
    - Brief description on first line
-   - Longer description if needed
-   - @example tag with usage
+   - Longer description if needed (document the contract, not implementation details)
+   - `@see` cross-references to related classes/modules if relevant
 
 2. For methods:
-   - Brief description
-   - @param tags for ALL parameters with [Type] and description
-   - @return tag with [Type] and what it returns
-   - @raise tags for exceptions
-   - @example tag with actual usage
-   - @note for important caveats
+   - Brief description (what it does, not how)
+   - Tags in order: @param, @return, @example (encouraged for consumer-facing), @note, @raise, @see
 
-3. For constants:
-   - Brief description comment above
+3. For constants (pattern arrays, non-trivial values):
+   - Brief description
+   - `@example` showing what strings the pattern matches (for Regexp arrays)
+   - `@see` to cross-reference paired constants and methods that use them
 
 Return a JSON array where each entry contains:
 - "line_number": The line number to insert before (1-indexed, counting from line 1)
@@ -506,13 +540,13 @@ Example output format:
     "line_number": 15,
     "anchor": "class GameObj",
     "indent": 0,
-    "comment": "# Represents a game object\\n# @example Creating a game object\\n#   obj = GameObj.new"
+    "comment": "# Represents a game object in the world.\\n#\\n# @see #noun The object's primary identifier"
   }},
   {{
     "line_number": 23,
     "anchor": "def initialize",
     "indent": 2,
-    "comment": "# Initializes a new game object\\n# @param id [String] The object ID\\n# @param noun [String] The object noun\\n# @return [GameObj]"
+    "comment": "# Initializes a new game object.\\n# @param id [String] unique object ID\\n# @param noun [String] object noun (e.g., \\"sword\\", \\"backpack\\")\\n# @return [GameObj]"
   }}
 ]
 ```
