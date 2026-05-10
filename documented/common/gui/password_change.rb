@@ -248,7 +248,7 @@ module Lich
             end
           end
 
-          # Changes the password for the specified username.
+          # Changes the password for the given username.
           #
           # @param data_dir [String] the directory where user data is stored
           # @param username [String] the username of the account

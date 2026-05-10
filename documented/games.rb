@@ -1,8 +1,8 @@
 
 
-# Main module for the Lich5 project.
+# Main module for the Lich project.
 #
-# This module serves as a namespace for all Lich5 related classes and modules.
+# This module serves as the root namespace for all Lich-related classes and modules.
 module Lich
   module Unknown
     module Game
@@ -22,11 +22,6 @@ module Lich
   # This module provides the foundational classes and methods for creating game instances.
   module GameBase
     module GameInstanceFactory
-      # Creates a new game instance based on the specified game type.
-      #
-      # @param game_type [String] the type of game to create an instance for (e.g., "GS", "DR")
-      # @return [GameInstance] a new instance of the specified game type
-      # @raise [NotImplementedError] if the game type is unknown
       def self.create(game_type)
         case game_type
         when /^GS/
@@ -40,10 +35,15 @@ module Lich
       end
     end
 
+    # Module for game instance management.
+    #
+    # This module contains classes and methods related to managing individual game instances.
     module GameInstance
       # Base class for game instances.
       #
-      # This class defines the core attributes and methods that all game instances will inherit.
+      # This class provides the core functionality for all game instances.
+      #
+      # @note This class is intended to be subclassed for specific game types.
       class Base
         def initialize
           @atmospherics = false
@@ -52,10 +52,6 @@ module Lich
           @pending_room_objs = nil
         end
 
-        # Cleans the server string for DragonRealms-specific processing.
-        #
-        # @param server_string [String] the raw server string to clean
-        # @return [String] the cleaned server string
         def clean_serverstring(server_string)
           raise NotImplementedError, "#{self.class} must implement #clean_serverstring"
         end
@@ -64,11 +60,6 @@ module Lich
           raise NotImplementedError, "#{self.class} must implement #handle_combat_tags"
         end
 
-        # Handles atmospheric effects in the game.
-        #
-        # @param server_string [String] the server string containing atmospheric data
-        # @return [String] the processed server string
-        # @raise [NotImplementedError] if not implemented in a subclass
         def handle_atmospherics(server_string)
           raise NotImplementedError, "#{self.class} must implement #handle_atmospherics"
         end
@@ -210,22 +201,23 @@ module Lich
 
     # Class representing the game.
     #
-    # This class manages the game state and interactions with the server.
+    # This class manages the overall game state and interactions.
     class Game
       class << self
         attr_reader :thread, :buffer, :_buffer, :game_instance
 
+        # Checks if the game has been autostarted.
+        # @return [Boolean] true if the game is autostarted, false otherwise.
         def autostarted?
           @@autostarted
         end
 
+        # Checks if settings initialization is needed.
+        # @return [Boolean] true if settings initialization is required, false otherwise.
         def settings_init_needed?
           @@settings_init_needed
         end
 
-        # Initializes the buffers for the game instance.
-        #
-        # @return [void]
         def initialize_buffers
           @socket = nil
           @mutex = Mutex.new
@@ -242,20 +234,17 @@ module Lich
           @game_instance = nil
         end
 
-        # Sets the game instance based on the specified game type.
-        #
-        # @param game_type [String] the type of game to set the instance for
+        # Sets the game instance based on the provided game type.
+        # @param game_type [String] the type of game to instantiate.
         # @return [void]
         def set_game_instance(game_type)
           @game_instance = GameInstanceFactory.create(game_type)
         end
 
-        # Opens a connection to the game server.
-        #
-        # @param host [String] the hostname of the game server
-        # @param port [Integer] the port number of the game server
-        # @return [TCPSocket] the socket connection to the server
-        # @raise [StandardError] if there is an error opening the socket
+        # Opens a connection to the specified host and port.
+        # @param host [String] the hostname or IP address of the server.
+        # @param port [Integer] the port number to connect to.
+        # @return [TCPSocket] the opened socket.
         def open(host, port)
           @socket = TCPSocket.open(host, port)
 
@@ -298,8 +287,7 @@ module Lich
           @socket
         end
 
-        # Starts a thread to manage wrapping of game data.
-        #
+        # Starts a thread to manage wrapping operations.
         # @return [void]
         def start_wrap_thread
           begin
@@ -319,13 +307,14 @@ module Lich
           end
         end
 
-        # Checks if the game connection is closed.
-        #
-        # @return [Boolean] true if the connection is closed, false otherwise
+        # Checks if the socket is closed.
+        # @return [Boolean] true if the socket is closed, false otherwise.
         def closed?
           @socket.nil? || @socket.closed?
         end
 
+        # Closes the socket and any associated threads.
+        # @return [void]
         def close
           if @socket
             @socket.close rescue nil
@@ -333,11 +322,9 @@ module Lich
           end
         end
 
-        # Sends a string to the game server.
-        #
-        # @param str [String] the string to send
+        # Sends a string to the socket.
+        # @param str [String] the string to send.
         # @return [void]
-        # @api private
         def _puts(str)
           @mutex.synchronize do
             @socket.puts(str)
@@ -347,9 +334,8 @@ module Lich
           nil
         end
 
-        # Sends a formatted string to the game server.
-        #
-        # @param str [String] the string to send
+        # Sends a formatted string to the client.
+        # @param str [String] the string to send.
         # @return [void]
         def puts(str)
           if Script.current&.file_name
@@ -368,9 +354,8 @@ module Lich
           $_LASTUPSTREAM_ = "[#{script_name}]#{$SEND_CHARACTER}#{str}"
         end
 
-        # Retrieves a line from the game server buffer.
-        #
-        # @return [String] the line retrieved from the buffer
+        # Retrieves a line from the buffer.
+        # @return [String] the retrieved line.
         def gets
           @buffer.gets
         end
@@ -379,8 +364,7 @@ module Lich
           @_buffer.gets
         end
 
-        # Starts the main thread for processing server data.
-        #
+        # Starts the main thread for handling server communication.
         # @return [void]
         def start_main_thread
           @thread = Thread.new do
@@ -451,9 +435,8 @@ module Lich
           @thread.priority = 4
         end
 
-        # Processes the server string received from the game.
-        #
-        # @param server_string [String] the raw server string to process
+        # Processes the server string received from the socket.
+        # @param server_string [String] the string received from the server.
         # @return [void]
         def process_server_string(server_string)
           $cmd_prefix = String.new if server_string =~ /^\034GSw/
@@ -499,7 +482,6 @@ module Lich
         end
 
         # Handles the autostart process for the game.
-        #
         # @return [void]
         def handle_autostart
           if defined?(LICH_VERSION) && defined?(Lich.core_updated_with_lich_version) &&
@@ -535,8 +517,7 @@ module Lich
           display_ruby_warning if defined?(RECOMMENDED_RUBY) && Gem::Version.new(RUBY_VERSION) < Gem::Version.new(RECOMMENDED_RUBY)
         end
 
-        # Displays a warning if the Ruby version is outdated.
-        #
+        # Displays a warning if the Ruby version is below the recommended version.
         # @return [void]
         def display_ruby_warning
           ruby_warning = Terminal::Table.new
@@ -561,8 +542,7 @@ module Lich
           end
         end
 
-        # Starts CLI scripts if specified in the arguments.
-        #
+        # Starts CLI scripts based on command line arguments.
         # @return [void]
         def start_cli_scripts
           if (arg = ARGV.find { |a| a =~ /^\-\-start\-scripts=/ })
@@ -575,8 +555,7 @@ module Lich
         end
 
         # Processes XML data received from the server.
-        #
-        # @param server_string [String] the XML data to process
+        # @param server_string [String] the XML data to process.
         # @return [void]
         def process_xml_data(server_string)
           begin
@@ -643,8 +622,7 @@ module Lich
         end
 
         # Processes downstream hooks for the server string.
-        #
-        # @param server_string [String] the server string to process
+        # @param server_string [String] the server string to process.
         # @return [void]
         def process_downstream_hooks(server_string)
           if (alt_string = DownstreamHook.run(server_string))
@@ -744,15 +722,9 @@ module Lich
     end
   end
 
-  # Module for Gemstone-specific functionality.
-  #
-  # This module contains classes and methods specific to the Gemstone game.
   module Gemstone
     include Lich
 
-    # Class for managing character status in the Gemstone game.
-    #
-    # This class provides methods for fixing injury modes.
     class CharacterStatus
       class << self
         def fix_injury_mode(mode = 'both') # Default mode 'both' handles wounds (precedence) then scars
@@ -799,10 +771,6 @@ module Lich
         server_string
       end
 
-      # Handles combat tags in the server string.
-      #
-      # @param server_string [String] the server string containing combat data
-      # @return [String] the processed server string
       def handle_combat_tags(server_string)
         if @combat_count > 0
           @end_combat_tags.each do |tag|
@@ -922,9 +890,6 @@ module Lich
   module DragonRealms
     include Lich
 
-    # Class representing a game instance in DragonRealms.
-    #
-    # This class extends the base game instance with DragonRealms-specific functionality.
     class GameInstance < GameBase::GameInstance::Base
       def clean_serverstring(server_string)
         # Buffer split room objs components (server sends "...wait N seconds." separately)
@@ -990,9 +955,6 @@ module Lich
         server_string
       end
 
-      # Retrieves the documentation URL for the DragonRealms game instance.
-      #
-      # @return [String] the URL for the DragonRealms game instance documentation
       def get_documentation_url
         "https://github.com/elanthia-online/lich-5/wiki/Documentation-for-Installing-and-Upgrading-Lich"
       end

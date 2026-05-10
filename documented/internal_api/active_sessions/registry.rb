@@ -7,7 +7,7 @@ module Lich
     module ActiveSessions
       # Manages active sessions for the Lich application.
       #
-      # This class provides methods to upsert, remove, and retrieve session data.
+      # This class is responsible for tracking and managing the state of active sessions.
       #
       # @see Lich::InternalAPI::ActiveSessions
       class Registry
@@ -23,11 +23,9 @@ module Lich
           @mutex = Mutex.new
         end
 
-        # Upserts a session with the given payload.
+        # Inserts or updates a session with the given payload.
         #
-        # This method updates an existing session or creates a new one if it doesn't exist.
-        #
-        # @param payload [Hash] the session data to upsert, including :pid and :started_at.
+        # @param payload [Hash] the session data to be upserted, including :pid and :started_at.
         # @return [Hash] the session data after upserting.
         def upsert(payload)
           data = symbolize_keys(payload)
@@ -70,9 +68,7 @@ module Lich
 
         # Takes a snapshot of all active sessions.
         #
-        # This method returns a summary of all sessions, including their uptime and connection status.
-        #
-        # @return [Hash] a summary of active sessions.
+        # @return [Hash] a hash containing the total number of sessions, connected sessions, and the session details.
         def snapshot
           sweep_dead_sessions!
           now = @time_source.call
@@ -93,9 +89,7 @@ module Lich
           }
         end
 
-        # Cleans up sessions that are no longer associated with alive processes.
-        #
-        # This method checks for dead sessions and removes them from the registry.
+        # Cleans up sessions that are no longer associated with active processes.
         #
         # @return [void]
         # @api private
@@ -108,10 +102,10 @@ module Lich
           end
         end
 
-        # Returns an empty snapshot of sessions with optional error information.
+        # Returns an empty snapshot of sessions, optionally including an error message.
         #
         # @param error [String, nil] an optional error message to include in the snapshot.
-        # @return [Hash] an empty session summary.
+        # @return [Hash] an empty snapshot structure.
         def empty_snapshot(error: nil)
           {
             source: 'ActiveSessionsAPI',
@@ -123,7 +117,7 @@ module Lich
           }.compact
         end
 
-        # Checks if a process is alive based on its process ID.
+        # Checks if a process with the given ID is alive.
         #
         # @param pid [Integer] the process ID to check.
         # @return [Boolean] true if the process is alive, false otherwise.

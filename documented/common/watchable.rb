@@ -14,7 +14,8 @@
 # @see Lich::Common
 module Lich
   module Common
-    # Watchable module provides a common interface for self-watching modules.
+    # Watchable module provides a common interface for self-watching modules
+    # that manage their own lifecycle through background threads.
     #
     # Modules that include Watchable must implement a .watch! class method
     # that spawns a background thread to monitor conditions and trigger
@@ -22,9 +23,10 @@ module Lich
     #
     # @see Lich::Common
     module Watchable
-      # Raises a NotImplementedError indicating that the including class must implement .watch!.
+      # Raises a NotImplementedError if the .watch! method is not implemented.
       #
-      # @raise [NotImplementedError] if the including class does not implement .watch!
+      # @raise [NotImplementedError] if the method is not implemented by the including module
+      # @api private
       def watch!
         raise NotImplementedError, "#{self.name} must implement .watch! to use Watchable"
       end

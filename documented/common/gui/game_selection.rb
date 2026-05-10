@@ -5,9 +5,9 @@ module Lich
       module GameSelection
         # Game code to display name mapping
         # Maps internal game codes to user-friendly display names
-        # Game code to display name mapping
+        # Game code to display name mapping.
         #
-        # Maps internal game codes to user-friendly display names
+        # Maps internal game codes to user-friendly display names.
         # @see REVERSE_GAME_MAPPING
         GAME_MAPPING = {
           'GS3' => 'GemStone IV',
@@ -24,12 +24,12 @@ module Lich
         # Used for converting user-selected display names back to game codes
         REVERSE_GAME_MAPPING = GAME_MAPPING.invert.freeze
 
-        # Creates a combo box for game selection.
+        # Creates a game selection combo box.
         #
-        # @param current_selection [String, nil] the currently selected game code
+        # @param current_selection [String, nil] the currently selected game code, if any
         # @return [Gtk::ComboBoxText] the combo box with game options
-        # @example
-        #   combo = create_game_selection_combo("GS3")
+        # @example Create a game selection combo
+        #   combo = Lich::Common::GUI::GameSelection.create_game_selection_combo("GS3")
         def self.create_game_selection_combo(current_selection = nil)
           combo = Gtk::ComboBoxText.new
 
@@ -60,10 +60,10 @@ module Lich
 
         # Retrieves the selected game code from the combo box.
         #
-        # @param combo [Gtk::ComboBoxText] the combo box containing game options
-        # @return [String, nil] the selected game code or nil if no selection
-        # @example
-        #   code = get_selected_game_code(combo)
+        # @param combo [Gtk::ComboBoxText] the combo box to retrieve the selection from
+        # @return [String] the selected game code or 'GS3' if not found
+        # @example Get the selected game code
+        #   code = Lich::Common::GUI::GameSelection.get_selected_game_code(combo)
         def self.get_selected_game_code(combo)
           return nil unless combo
 
@@ -71,12 +71,12 @@ module Lich
           REVERSE_GAME_MAPPING[selected_text] || 'GS3' # Default to GS3 if not found
         end
 
-        # Gets the display name for a given game code.
+        # Retrieves the display name for a given game code.
         #
         # @param game_code [String] the internal game code
-        # @return [String] the user-friendly display name or "Unknown" if not found
-        # @example
-        #   name = get_game_name("GS3")
+        # @return [String] the user-friendly display name or 'Unknown' if not found
+        # @example Get the game name
+        #   name = Lich::Common::GUI::GameSelection.get_game_name("GS3")
         def self.get_game_name(game_code)
           GAME_MAPPING[game_code] || 'Unknown'
         end
@@ -84,8 +84,10 @@ module Lich
         # Updates the game selection combo box with new options.
         #
         # @param combo [Gtk::ComboBoxText] the combo box to update
-        # @param current_selection [String, nil] the currently selected game code
+        # @param current_selection [String, nil] the currently selected game code, if any
         # @return [void]
+        # @example Update the game selection combo
+        #   Lich::Common::GUI::GameSelection.update_game_selection_combo(combo, "GSX")
         def self.update_game_selection_combo(combo, current_selection = nil)
           return unless combo
 

@@ -18,7 +18,7 @@ module Lich
           exit run
         end
 
-        # Runs the active sessions query logic.
+        # Runs the active sessions query and prints the results.
         # @return [Integer] exit status code
         def self.run
           if ARGV.include?('--active-sessions')
@@ -54,15 +54,15 @@ module Lich
         end
 
         # Retrieves the current snapshot of active sessions.
-        # @return [Hash] a snapshot of active sessions or an unavailable snapshot
+        # @return [Hash] the snapshot of active sessions or an unavailable snapshot
         def self.query_snapshot
           return unavailable_snapshot unless defined?(Lich::InternalAPI::ActiveSessions)
 
           Lich::InternalAPI::ActiveSessions.query_snapshot
         end
 
-        # Prints the snapshot of active sessions to standard output.
-        # @param snapshot [Hash] the snapshot data to print
+        # Prints the snapshot of active sessions in a table format.
+        # @param snapshot [Hash] the snapshot of active sessions
         # @return [void]
         def self.print_snapshot(snapshot)
           if snapshot[:error]
@@ -97,7 +97,7 @@ module Lich
         end
 
         # Prints detailed information about a specific active session.
-        # @param snapshot [Hash] the snapshot data containing session information
+        # @param snapshot [Hash] the snapshot of active sessions
         # @param session_name [String] the name of the session to display
         # @return [Integer] exit status code
         def self.print_session_info(snapshot, session_name)
@@ -134,9 +134,6 @@ module Lich
           $stdout.puts "   or: ruby #{lich_script} --session-info=NAME"
         end
 
-        # Provides a snapshot indicating that the active sessions service is unavailable.
-        # @return [Hash] a hash representing an unavailable snapshot
-        # @api private
         def self.unavailable_snapshot
           {
             source: 'ActiveSessionsAPI',
@@ -150,8 +147,8 @@ module Lich
         private_class_method :unavailable_snapshot
 
         # Formats the listener information for display.
-        # @param listener [Hash, nil] the listener data to format
-        # @return [String] formatted listener information or 'none'
+        # @param listener [Hash, nil] the listener information
+        # @return [String] formatted listener information or 'none' if not present
         # @api private
         def self.listener_display(listener)
           return 'none' unless listener
@@ -160,7 +157,7 @@ module Lich
         end
         private_class_method :listener_display
 
-        # Formats uptime in seconds into a human-readable string.
+        # Formats uptime in a human-readable string.
         # @param uptime_seconds [Integer] uptime in seconds
         # @return [String] formatted uptime string
         # @api private

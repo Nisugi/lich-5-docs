@@ -3,16 +3,16 @@ messaging.rb: Core lich file for collection of various messaging Lich capabiliti
 Entries added here should always be accessible from Lich::Messaging.feature namespace.
 =end
 
-# Provides various messaging capabilities for the Lich framework.
+# Provides messaging capabilities for the Lich framework.
 #
-# @see Lich::Messaging#xml_encode
-# @see Lich::Messaging#msg_format
+# This module contains methods for encoding messages, formatting them,
+# and handling different types of message streams.
 module Lich
   module Messaging
     # Encodes a message into XML format.
     #
     # @param msg [String] the message to encode
-    # @return [String] the encoded message
+    # @return [String] the encoded message in XML format
     def self.xml_encode(msg)
       if Frontend.supports_gsl?
         sf_to_wiz(msg.encode(:xml => :text), bypass_multiline: true) || "" # sf_to_wiz returns nil when blank/new line only, which causes issue for messaging, always return string if nil
@@ -31,12 +31,12 @@ module Lich
       return msg_format("monster", msg, encode: encode)
     end
 
-    # Wraps a message in a stream window format.
+    # Prepares a message for display in a specific stream window.
     #
-    # @param msg [String] the message to wrap
+    # @param msg [String] the message to display
     # @param window [String] the type of stream window (e.g., "familiar")
     # @param encode [Boolean] whether to encode the message
-    # @return [String] the wrapped message
+    # @return [void]
     def self.stream_window(msg, window = "familiar", encode: true)
       msg = xml_encode(msg) if encode
       if XMLData.game =~ /^GS/
@@ -66,7 +66,7 @@ module Lich
       _respond stream_window_before_txt + msg + stream_window_after_txt
     end
 
-    # Formats a message with specific styling based on the type.
+    # Formats a message with specific styling based on its type.
     #
     # @param type [String] the type of message (e.g., "info", "error")
     # @param msg [String] the message to format

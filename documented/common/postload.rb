@@ -5,7 +5,7 @@ require_relative 'watchable'
 module Lich
   # Provides common functionality for the Lich project.
   #
-  # This module includes methods for managing post-load callbacks and game state.
+  # @see Lich::Common::Watchable for watchable behavior.
   module Common
     module PostLoad
       extend Lich::Common::Watchable
@@ -15,11 +15,10 @@ module Lich
       @callbacks = {}
       @mutex = Mutex.new
 
-      # Registers a callback for post-load processing.
+      # Registers a callback with the given name.
       #
       # @param name [String] the name of the callback
-      # @param block [Proc] the callback to be executed
-      # @return [void]
+      # @yield the callback to be executed when conditions are met
       # @raise [ArgumentError] if no block is given
       def self.register(name, &block)
         raise ArgumentError, "PostLoad.register requires a block" unless block_given?
@@ -30,28 +29,24 @@ module Lich
       end
 
       # Marks the game as loaded.
-      #
       # @return [void]
       def self.game_loaded!
         @@game_loaded = true
       end
 
       # Checks if the game has been loaded.
-      #
       # @return [Boolean] true if the game is loaded, false otherwise
       def self.game_loaded?
         @@game_loaded
       end
 
-      # Checks if all post-load callbacks have been completed.
-      #
-      # @return [Boolean] true if all callbacks are complete, false otherwise
+      # Checks if the post-load process is complete.
+      # @return [Boolean] true if complete, false otherwise
       def self.complete?
         @@complete
       end
 
-      # Starts a thread to monitor the game loading process and execute callbacks.
-      #
+      # Starts watching for game readiness and executes callbacks when ready.
       # @return [void]
       def self.watch!
         @thread ||= Thread.new do
@@ -72,8 +67,7 @@ module Lich
         end
       end
 
-      # Executes all registered post-load callbacks.
-      #
+      # Executes all registered callbacks.
       # @return [void]
       # @api private
       def self.run_callbacks

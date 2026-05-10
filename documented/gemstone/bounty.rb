@@ -18,17 +18,16 @@ module Lich
         Task.new(Parser.parse(checkbounty))
       end
 
-      # Alias for retrieving the current bounty task.
-      # @return [Task] the current bounty task instance
       def self.task
         current
       end
 
       # Retrieves bounty information for a specified person from LNet.
       #
+      # If the person is found, a new Task is created with the bounty data.
       # @param person [String] the name of the person to retrieve bounty information for
       # @return [Task, nil] the bounty task instance if found, otherwise nil
-      # @note If no bounty is found, a warning message is sent.
+      # @note Returns nil if no bounty information is available.
       def self.lnet(person)
         if (target_info = LNet.get_data(person.dup, 'bounty'))
           Task.new(Parser.parse(target_info))

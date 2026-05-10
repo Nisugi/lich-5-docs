@@ -5,11 +5,10 @@ require_relative 'master_password_manager'
 require_relative 'master_password_prompt_ui'
 require_relative 'accessibility'
 
-# Provides common functionality for the Lich application.
-#
-# @see Lich::Common
-# @see Lich::GUI
 module Lich
+  # Provides common functionality for the Lich GUI.
+  #
+  # @see Lich::Common::Authentication for authentication-related methods.
   module Common
     module GUI
       module EncryptionModeChange
@@ -19,10 +18,8 @@ module Lich
         # @param data_dir [String] the directory containing the data
         # @param on_completion [Proc, nil] optional callback to execute on completion
         # @return [Boolean] true if the dialog was shown, false otherwise
-        # @example
-        #   Lich::Common::GUI::EncryptionModeChange.show_change_mode_dialog(parent, data_dir) do
-        #     puts "Mode change completed"
-        #   end
+        # @example Show the change mode dialog
+        #   Lich::Common::GUI::EncryptionModeChange.show_change_mode_dialog(parent, "/path/to/data")
         def self.show_change_mode_dialog(parent, data_dir, on_completion = nil)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -310,10 +307,8 @@ module Lich
 
           # Returns a user-friendly display text for the given encryption mode.
           #
-          # @param mode [Symbol] the encryption mode to display
+          # @param mode [Symbol] the encryption mode (:plaintext, :standard, or :enhanced)
           # @return [String] the display text for the mode
-          # @example
-          #   mode_display_text(:standard) #=> "Standard Encryption (Account Name)"
           def mode_display_text(mode)
             case mode
             when :plaintext
@@ -371,7 +366,7 @@ module Lich
             result
           end
 
-          # Displays an error dialog with a specified message.
+          # Displays an error dialog with the specified message.
           #
           # @param parent [Gtk::Window] the parent window for the dialog
           # @param message [String] the error message to display

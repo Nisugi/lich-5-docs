@@ -1,15 +1,15 @@
 
 module Lich
   module Common
-    # Represents a watcher that triggers a block of code when a specified string or regular expression is matched.
+    # Represents a watcher that triggers a block of code when a specified line matches a pattern.
     #
-    # @see Script#watchfor
+    # @see Lich::Common::Script
     class Watchfor
       # rubocop:disable Lint/ReturnInVoidContext
       # Initializes a new Watchfor instance.
-      # @param line [String, Regexp] the string or regular expression to watch for
+      # @param line [String, Regexp] the line to watch for
       # @param theproc [Proc, nil] an optional proc to use if no block is given
-      # @param block [Proc] the block to execute when the line is matched
+      # @yield the block to execute when the line matches
       # @return [void]
       def initialize(line, theproc = nil, &block)
         return nil unless (script = Script.current)
@@ -32,7 +32,7 @@ module Lich
       end
 
       # rubocop:enable Lint/ReturnInVoidContext
-      # Clears all watchfor entries.
+      # Clears all watchfor patterns.
       # @return [void]
       # @api private
       def Watchfor.clear

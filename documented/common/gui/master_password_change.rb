@@ -21,7 +21,7 @@ module Lich
         # @param parent [Gtk::Window] the parent window for the dialog
         # @param data_dir [String] the directory where account data is stored
         # @return [Boolean] true if the password was changed successfully, false otherwise
-        # @example
+        # @example Show the change password dialog
         #   Lich::Common::GUI::MasterPasswordChange.show_change_master_password_dialog(parent_window, "/path/to/data")
         def self.show_change_master_password_dialog(parent, data_dir)
           # Create dialog
@@ -255,7 +255,7 @@ module Lich
 
           # Re-encrypts all accounts with the new master password.
           #
-          # @param yaml_data [Hash] the parsed YAML data containing account information
+          # @param yaml_data [Hash] the YAML data containing account information
           # @param data_dir [String] the directory where account data is stored
           # @param old_password [String] the current master password
           # @param new_password [String] the new master password
@@ -335,7 +335,7 @@ module Lich
           # Restores the YAML file from a backup if it exists.
           #
           # @param yaml_file [String] the path to the original YAML file
-          # @param backup_file [String] the path to the backup file
+          # @param backup_file [String] the path to the backup YAML file
           # @api private
           def restore_from_backup(yaml_file, backup_file)
             return unless File.exist?(backup_file)

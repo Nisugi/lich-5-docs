@@ -6,19 +6,18 @@ require 'socket'
 module Lich
   module InternalAPI
     module ActiveSessions
-      # Client for interacting with the Lich internal API.
+      # Client for managing active sessions with the Lich internal API.
       #
-      # This class manages the connection to the API and handles requests.
+      # This class handles communication with the server, including sending requests and receiving responses.
       #
-      # @see Lich::InternalAPI
+      # @see Lich::InternalAPI::ActiveSessions
       class Client
         READ_TIMEOUT = 1
 
         # Initializes a new Client instance.
-        #
-        # @param host [String] the hostname of the API server
-        # @param port [Integer] the port number of the API server
-        # @param auth_token [String] the authentication token for API access
+        # @param host [String] the hostname of the server
+        # @param port [Integer] the port number of the server
+        # @param auth_token [String] the authentication token for the session
         # @param socket_factory [Proc, nil] a factory for creating sockets (defaults to TCPSocket)
         # @return [void]
         def initialize(host:, port:, auth_token:, socket_factory: nil)
@@ -28,11 +27,10 @@ module Lich
           @socket_factory = socket_factory || ->(connect_host, connect_port) { TCPSocket.new(connect_host, connect_port) }
         end
 
-        # Sends a request to the API with the specified command and payload.
-        #
-        # @param command [String] the command to send to the API
-        # @param payload [Hash] the payload data to include with the request
-        # @return [Hash] the response from the API, including success status and data
+        # Sends a request to the server with the specified command and payload.
+        # @param command [String] the command to send to the server
+        # @param payload [Hash] the data to include with the command
+        # @return [Hash] the server's response, including success status and any data or error messages
         # @raise [StandardError] if an error occurs during the request
         def request(command, payload = {})
           socket = @socket_factory.call(@host, @port)
@@ -50,43 +48,41 @@ module Lich
           socket&.close rescue nil
         end
 
-        # Sends a ping request to the API to check connectivity.
-        #
-        # @return [Boolean] true if the API is reachable, false otherwise
+        # Sends a ping request to the server to check connectivity.
+        # @return [Boolean] true if the server responds positively, false otherwise
+        # @example Check server connectivity
+        #   client = Lich::InternalAPI::ActiveSessions::Client.new(host: "localhost", port: 1234, auth_token: "token")
+        #   client.ping
         def ping
           request('ping').fetch(:ok, false)
         end
 
-        # Sends an upsert request to the API with the given payload.
-        #
+        # Sends an upsert request to the server with the provided payload.
         # @param payload [Hash] the data to upsert
-        # @return [Hash] the response from the API
+        # @return [Hash] the server's response to the upsert request
         def upsert(payload)
           request('upsert', payload)
         end
 
-        # Sends a remove request to the API for the specified process ID.
-        #
+        # Sends a remove request to the server for the specified process ID.
         # @param pid [String] the process ID to remove
-        # @return [Hash] the response from the API
+        # @return [Hash] the server's response to the remove request
         def remove(pid)
           request('remove', pid: pid)
         end
 
-        # Requests a snapshot from the API.
-        #
-        # @return [Hash] the snapshot data from the API
+        # Sends a snapshot request to the server.
+        # @return [Hash] the server's response containing the snapshot data
         def snapshot
           request('snapshot')
         end
 
         private
 
-        # Reads the response from the socket with a timeout.
-        #
+        # Reads the response from the server socket with a timeout.
         # @param socket [TCPSocket] the socket to read from
         # @return [String, nil] the response data or nil if a timeout occurs
-        # @api private
+        # @raise [IO::WaitReadable] if the socket is not ready for reading
         def read_response(socket)
           deadline = Time.now + READ_TIMEOUT
           buffer = +''

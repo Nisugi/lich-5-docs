@@ -25,13 +25,13 @@ require_relative 'gui/window_settings'
 module Lich
   # Provides common GUI functionality for the Lich application.
   #
-  # @see Lich::Common::GUI for GUI-related utilities.
+  # @see Lich::Common::GUI
   module Common
     # Initializes the GUI login process.
     #
-    # This method sets up the login state, configures the GUI window,
-    # and handles the entry data as needed.
-    # @return [Hash, nil] launch data if successful, otherwise nil.
+    # @return [Hash, nil] launch data if successful, otherwise nil
+    # @example Start the GUI login process
+    #   Lich::Common.gui_login
     def gui_login
       initialize_login_state
       setup_gui_window
@@ -45,11 +45,8 @@ module Lich
 
     private
 
-    # Initializes the state required for the login GUI.
+    # Initializes the state for the login GUI.
     #
-    # This method sets up various states including autosort, theme,
-    # and initializes the accessibility support.
-    # @api private
     # @return [void]
     def initialize_login_state
       @autosort_state = Lich.track_autosort_state
@@ -75,9 +72,8 @@ module Lich
 
     # Refreshes the GUI window after a conversion process.
     #
-    # This method reloads entry data, updates UI elements,
-    # and ensures the window is displayed correctly.
     # @return [void]
+    # @note This method handles errors and logs them appropriately.
     def refresh_window_after_conversion
       begin
         # Reload entry data from newly created YAML file
@@ -146,8 +142,6 @@ module Lich
 
     # Triggers a refresh of the account management tab.
     #
-    # This method programmatically clicks the refresh button in the
-    # account management tab to update its data.
     # @return [void]
     def trigger_account_management_refresh
       return unless @account_mgmt_tab
@@ -170,10 +164,8 @@ module Lich
 
     # Finds the refresh button within a given container.
     #
-    # This method searches through the container's children to locate
-    # a button labeled "Refresh".
-    # @param container [Gtk::Container] the container to search within
-    # @return [Gtk::Button, nil] the refresh button if found, otherwise nil.
+    # @param container [Object] the container to search within
+    # @return [Gtk::Button, nil] the refresh button if found, otherwise nil
     def find_refresh_button_in_container(container)
       return nil unless container.respond_to?(:each)
 
@@ -195,8 +187,6 @@ module Lich
 
     # Updates the visibility of UI elements after conversion.
     #
-    # This method shows or hides optional elements based on the
-    # availability of entry data.
     # @return [void]
     def update_ui_elements_after_conversion
       return unless @entry_data
@@ -214,8 +204,6 @@ module Lich
 
     # Sets up the main GUI window for the application.
     #
-    # This method creates the window, initializes tabs, and configures
-    # properties such as theme and accessibility.
     # @return [void]
     def setup_gui_window
       Gtk.queue {
@@ -243,8 +231,6 @@ module Lich
 
     # Sets up communication between different tabs in the GUI.
     #
-    # This method registers callbacks for data changes and ensures
-    # synchronization between tabs.
     # @return [void]
     def setup_cross_tab_communication
       # Register saved login tab for data change notifications
@@ -278,10 +264,8 @@ module Lich
       @account_manager_ui.register_for_notifications(@tab_communicator)
     end
 
-    # Creates instances of the various tabs used in the GUI.
+    # Creates instances of the various tabs in the GUI.
     #
-    # This method initializes the saved login and manual login tabs,
-    # along with their respective callbacks.
     # @return [void]
     def create_tab_instances
       # Create callbacks for saved login tab
@@ -412,10 +396,8 @@ module Lich
       @slider_box = @saved_login_ui[:slider_box]
     end
 
-    # Configures the notebook widget that holds the tabs.
+    # Sets up the notebook widget containing the tabs.
     #
-    # This method sets up the initial theme, adds tabs for saved
-    # and manual entries, and configures the account management tab.
     # @return [void]
     def setup_notebook
       @notebook = Gtk::Notebook.new
@@ -461,10 +443,8 @@ module Lich
       end
     end
 
-    # Configures the main application window properties.
+    # Configures the main window properties and settings.
     #
-    # This method sets the window title, icon, and applies saved
-    # settings. It also handles the window's close event.
     # @return [void]
     def configure_window
       @window = Gtk::Window.new(:toplevel)
@@ -519,8 +499,6 @@ module Lich
 
     # Saves the current geometry of the window.
     #
-    # This method captures the window's size and position and
-    # stores it for future use.
     # @return [void]
     def save_window_geometry
       geometry = Lich::Common::GUI::WindowSettings.capture_geometry(@window)
@@ -534,8 +512,6 @@ module Lich
 
     # Applies a light mode style to buttons in the GUI.
     #
-    # This method modifies the background color of buttons to
-    # suit the light theme.
     # @return [void]
     def apply_button_style_for_light_mode
       # Use a slightly whiter shade for buttons in light mode
@@ -548,6 +524,11 @@ module Lich
       apply_style_to_buttons(@manual_login_ui, whitergrey)
     end
 
+    # Applies a specified style to buttons in the given UI elements.
+    #
+    # @param ui_elements [Hash] the UI elements containing buttons
+    # @param color [Gdk::RGBA] the color to apply to the buttons
+    # @return [void]
     def apply_style_to_buttons(ui_elements, color)
       ui_elements.each do |_key, element|
         if element.is_a?(Gtk::Button)
@@ -556,10 +537,8 @@ module Lich
       end
     end
 
-    # Hides optional UI elements based on the current state.
+    # Hides optional elements in the GUI based on the current state.
     #
-    # This method ensures that elements are only shown when
-    # necessary, particularly when there is no entry data.
     # @return [void]
     def hide_optional_elements
       @custom_launch_entry.visible = false
@@ -571,12 +550,10 @@ module Lich
       @notebook.set_page(1) if @entry_data.empty?
     end
 
-    # Handles the action of playing a game based on login data.
+    # Handles the action of playing a game based on the provided launch data.
     #
-    # This method launches a session using the provided launch data
-    # and manages the window state accordingly.
     # @param launch_data [Hash] data required to launch the game
-    # @param login_context [Hash, nil] context for the login session
+    # @param login_context [Hash, nil] context for the login, if applicable
     # @return [void]
     def handle_play_action(launch_data, login_context = nil)
       if use_persistent_launcher?(login_context)
@@ -605,12 +582,10 @@ module Lich
       end
     end
 
-    # Determines if the persistent launcher mode should be used.
+    # Determines if the persistent launcher should be used based on the context.
     #
-    # This method checks the current state and context to decide
-    # whether to use the persistent launcher for the session.
-    # @param login_context [Hash] context for the login session
-    # @return [Boolean] true if persistent launcher mode is active, otherwise false.
+    # @param login_context [Hash, nil] context for the login
+    # @return [Boolean] true if persistent launcher should be used, false otherwise
     def use_persistent_launcher?(login_context)
       return false unless @persistent_launcher_mode
       return true unless login_context.is_a?(Hash)
@@ -618,20 +593,16 @@ module Lich
       saved_entry_context?(login_context)
     end
 
-    # Checks if the provided context is for a saved entry.
+    # Checks if the provided login context corresponds to a saved entry.
     #
-    # This method verifies if the login context contains the necessary
-    # keys to identify it as a saved entry.
-    # @param login_context [Hash] context for the login session
-    # @return [Boolean] true if the context is for a saved entry, otherwise false.
+    # @param login_context [Hash] the context to check
+    # @return [Boolean] true if it is a saved entry context, false otherwise
     def saved_entry_context?(login_context)
       login_context.key?(:user_id) && login_context.key?(:password)
     end
 
-    # Saves entry data if the flag is set.
+    # Saves entry data if the flag is set to do so.
     #
-    # This method performs the save operation to persist entry data
-    # when required, avoiding redundant operations.
     # @return [void]
     def save_entry_data_if_needed
       if @save_entry_data
@@ -641,11 +612,9 @@ module Lich
       end
     end
 
-    # Returns the launch data or exits the application.
+    # Returns the launch data or exits the application if no data is available.
     #
-    # This method checks if launch data is available and either
-    # returns it or quits the application if not.
-    # @return [Hash, nil] launch data if available, otherwise nil.
+    # @return [Hash, nil] launch data if available, otherwise nil
     def return_launch_data_or_exit
       if @launch_data.nil?
         Gtk.queue { Gtk.main_quit }

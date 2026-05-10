@@ -3,7 +3,7 @@ module Lich
   module Common
     # Manages navigation through a path structure in a database.
     #
-    # This class provides methods to set, reset, and navigate paths stored in a database.
+    # This class provides methods to set, reset, and navigate through paths.
     #
     # @see Lich::Common
     class PathNavigator
@@ -15,9 +15,8 @@ module Lich
       attr_reader :path
 
       # Sets the current path to the specified value.
-      #
       # @param new_path [Array<String>, String] the new path to set
-      # @return [Array<String>] the newly set path
+      # @return [Array<String>] the updated path
       def set_path(new_path)
         @path = Array(new_path).dup
       end
@@ -29,7 +28,6 @@ module Lich
       end
 
       # Resets the current path and returns the specified value.
-      #
       # @param value [Object] the value to return after resetting the path
       # @return [Object] the provided value
       def reset_path_and_return(value)
@@ -38,12 +36,11 @@ module Lich
       end
 
       # Navigates to a specified path within the database structure.
-      #
       # @param script_name [String] the name of the script to navigate
       # @param create_missing [Boolean] whether to create missing path elements (default: true)
       # @param scope [String] the scope for the navigation (default: ":")
       # @param path [Array<String>, nil] the path to navigate to (default: current path)
-      # @return [Array<Object>] the target value at the path and the root object
+      # @return [Array<Object>] the target object at the end of the path and the root object
       def navigate_to_path(script_name, create_missing = true, scope = ":", path = nil)
         work_path = path ? Array(path) : @path
         root = @db_adapter.get_settings(script_name, scope)

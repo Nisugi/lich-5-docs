@@ -1,12 +1,11 @@
 
 module Lich
   module Gemstone
-    # Represents the spell ranks for different classes in the Lich project.
+    # Represents the spell ranks for various classes in the Lich project.
     #
     # This class manages loading and saving spell rank data.
     #
-    # @see Lich::Gemstone::SpellRanks#load
-    # @see Lich::Gemstone::SpellRanks#save
+    # @see Lich::Gemstone
     class SpellRanks
       @@list      ||= Array.new
       @@timestamp ||= 0
@@ -71,7 +70,7 @@ module Lich
 
       # Finds a spell rank by name.
       # @param name [String] the name of the spell rank to find
-      # @return [Object, nil] the spell rank object if found, otherwise nil
+      # @return [Object, nil] the spell rank object or nil if not found
       def SpellRanks.[](name)
         SpellRanks.load unless @@loaded
         @@list.find { |n| n.name == name }

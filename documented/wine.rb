@@ -40,9 +40,9 @@ unless $wine_bin.nil?
   end
 
   if $wine_bin and File.exist?($wine_bin) and File.file?($wine_bin) and $wine_prefix and File.exist?($wine_prefix) and File.directory?($wine_prefix)
-    # Module for interacting with the Wine environment.
+    # Module for interacting with Wine registry.
     #
-    # This module provides methods to read from and write to the Wine registry.
+    # This module provides methods to get and set values in the Wine registry.
     #
     # @see #registry_gets
     # @see #registry_puts
@@ -55,9 +55,8 @@ unless $wine_bin.nil?
       # @param key [String] the registry key in the format "HKEY_LOCAL_MACHINE\subkey\value"
       # @return [String, nil] the value associated with the key, or nil if not found
       # @raise [ArgumentError] if the key format is invalid
-      # @example
+      # @example Get a registry value
       #   value = Wine.registry_gets("HKEY_LOCAL_MACHINE\Software\MyApp\Setting")
-      #   puts value
       def Wine.registry_gets(key)
         match_data = /(HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER)\\(.+)\\([^\\]*)/.match(key)
         raise ArgumentError, "Invalid registry key format: #{key.inspect}" unless match_data
@@ -94,15 +93,14 @@ unless $wine_bin.nil?
         end
       end
 
-      # Writes a value to the Wine registry.
+      # Sets a value in the Wine registry.
       #
       # @param key [String] the registry key in the format "HKEY_LOCAL_MACHINE\subkey\value"
-      # @param value [String] the value to write to the registry
+      # @param value [String] the value to set for the key
       # @return [Boolean] true if the operation succeeded, false otherwise
       # @raise [ArgumentError] if the key format is invalid
-      # @example
+      # @example Set a registry value
       #   success = Wine.registry_puts("HKEY_LOCAL_MACHINE\Software\MyApp\Setting", "new_value")
-      #   puts success
       def Wine.registry_puts(key, value)
         match_data = /(HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER)\\(.+)\\([^\\]*)/.match(key)
         raise ArgumentError, "Invalid registry key format: #{key.inspect}" unless match_data

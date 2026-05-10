@@ -1,20 +1,25 @@
 
+# The Lich module serves as a namespace for the Lich5 project.
+#
+# @see Lich::Gemstone for gemstone-related functionality.
 module Lich
   module Gemstone
     module Infomon
+      # The XMLParser module handles parsing of XML data related to game events.
+      #
+      # @see Lich::Gemstone::Infomon for more information on the Infomon system.
       module XMLParser
         module Pattern
-          # Regular expression pattern for matching group-related messages.
+          # A regular expression pattern that matches various group-related messages.
           #
-          # @example
-          #   "You are leading" matches Group_Short
-          #   "following you" matches Group_Short
-          #   "IconJOINED" matches Group_Short
+          # @example Matching group messages
+          #   Group_Short.match("You are leading") # => #<MatchData ...>
+          #   Group_Short.match("following you") # => #<MatchData ...>
           Group_Short = /(?:group|following you|IconJOINED)|^You are leading|(?:'s<\/a>|your) hand(?: tenderly)?\.\r?\n?$/
-          # Regular expression pattern for matching arrival messages.
+          # A regular expression pattern that matches arrival messages indicating other players are present.
           #
-          # @example
-          #   "Also here: " matches Also_Here_Arrival
+          # @example Matching arrival messages
+          #   Also_Here_Arrival.match("Also here: John") # => #<MatchData ...>
           Also_Here_Arrival = /^Also here: /
           NpcDeathPrefix = Regexp.union(
             /The fire in the/,
@@ -148,11 +153,10 @@ module Lich
             /emits a hollow scream as ribbons of essence begin to wend away from <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> and into nothingness/,
             /screams with rage as <pushBold\/><a exist="[^"]+" noun="[^"]+">(?:hi[ms]|her|s?he|its?)<\/a><popBold\/> falls to the ground and dies/,
           )
-          # Regular expression pattern for matching NPC death messages.
+          # A regular expression pattern that matches NPC death messages in XML format.
           #
-          # @example
-          #   "The fire in the body as it rises, disappearing into the heavens." matches NpcDeathMessage
-          #   "With a surprised grunt, the body goes rigid and collapses to the ground, dead." matches NpcDeathMessage
+          # @example Matching NPC death messages
+          #   NpcDeathMessage.match("The fire in the goblin's body as it rises, disappearing into the heavens.") # => #<MatchData ...>
           NpcDeathMessage = /^(?:<pushBold\/>)?#{NpcDeathPrefix} (?:<pushBold\/>)?(?:(?:an?|some) )?<a.*?exist=["'](?<npc_id>\-?[0-9]+)["'].*?>.*?<\/a>(?:<popBold\/>)?(?:'s)? #{NpcDeathPostfix}[\.!]\r?\n?$/
 
           # the following are for parsing STOW LIST and setting of STOW containers
@@ -181,15 +185,12 @@ module Lich
                              ReadyStoreSet, StatusPrompt, Overwatch_Short)
         end
 
-        # Parses a line of input and processes it according to defined patterns.
+        # Parses a line of XML data to extract relevant game information.
         #
-        # @param line [String] the input line to parse
-        # @return [Symbol] the result of the parsing, either :ok, :noop, or an error symbol
-        # @example
-        #   parse("The fire in the body as it rises, disappearing into the heavens.")
-        #   # => :ok
-        # @note This method handles various patterns for NPC death, stow lists, and ready items.
-        # @raise [StandardError] raises an error if parsing fails.
+        # @param line [String] the line of XML data to parse
+        # @return [Symbol] the result of the parsing operation, either :ok, :noop, or :error
+        # @example Parsing a death message
+        #   parse("The fire in the goblin's body as it rises, disappearing into the heavens.") # => :ok
         def self.parse(line)
           # O(1) vs O(N)
           return :noop unless line =~ Pattern::All

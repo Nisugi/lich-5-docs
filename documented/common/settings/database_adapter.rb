@@ -1,6 +1,6 @@
 module Lich
   module Common
-    # Handles database interactions for the Lich project.
+    # Handles database interactions for Lich.
     #
     # This class is responsible for setting up the database and managing
     # settings related to scripts and their scopes.
@@ -9,7 +9,7 @@ module Lich
     class DatabaseAdapter
       # Initializes a new DatabaseAdapter instance.
       # @param data_dir [String] the directory where the database file is located
-      # @param table_name [String] the name of the table to interact with
+      # @param table_name [String] the name of the table to use
       # @return [void]
       def initialize(data_dir, table_name)
         @file = File.join(data_dir, "lich.db3")
@@ -18,7 +18,7 @@ module Lich
         setup!
       end
 
-      # Sets up the database table if it does not already exist.
+      # Sets up the database table if it does not exist.
       # @return [void]
       def setup!
         @db.create_table?(@table_name) do
@@ -49,7 +49,8 @@ module Lich
       # @param settings [Hash] the settings to save
       # @param scope [String] the scope of the settings (default is ":")
       # @return [Boolean] true if settings were saved successfully, false otherwise
-      # @note This method logs errors if the settings are not a Hash or if serialization fails.
+      # @example Save settings for a script
+      #   adapter.save_settings("my_script", { key: "value" })
       def save_settings(script_name, settings, scope = ":")
         unless settings.is_a?(Hash)
           Lich::Messaging.msg("error", "--- Error: Report this - settings must be a Hash, got #{settings.class} ---")

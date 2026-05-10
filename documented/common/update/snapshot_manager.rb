@@ -12,8 +12,8 @@ module Lich
     module Update
       # Manages snapshot and rollback functionality for Lich core files.
       #
-      # This class provides methods to create timestamped backups of Lich core files
-      # and to revert to the most recent snapshot.
+      # This class creates timestamped backups of lib/, lich.rbw, and core scripts before
+      # updates and supports rollback to the most recent snapshot.
       #
       # @see Lich::Util::Update
       class SnapshotManager
@@ -25,8 +25,9 @@ module Lich
 
         # Creates a snapshot of the current Lich core files.
         #
-        # This method creates a timestamped backup of the core files and scripts.
-        #
+        # This method creates a backup of the current Lich core files in a timestamped
+        # directory. It is recommended to also copy the entire Lich5 folder for additional
+        # safety after updates.
         # @return [void]
         def snapshot
           respond
@@ -56,10 +57,11 @@ module Lich
           respond "    #{snapshot_subdir}"
         end
 
-        # Reverts Lich5 to the most recently installed version.
+        # Reverts Lich5 to the previously installed version.
         #
-        # This method restores the Lich core files from the latest snapshot.
-        #
+        # This method restores the Lich5 environment from the most recent snapshot,
+        # including core files and scripts. If no snapshot is found, an error message
+        # is displayed.
         # @return [void]
         # @api private
         def revert

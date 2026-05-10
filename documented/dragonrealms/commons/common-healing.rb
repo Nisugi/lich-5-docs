@@ -19,9 +19,9 @@ module Lich
         check_health.has_tendable_bleeders?
       end
 
-      # Checks the health status of the character.
+      # Checks the health status and returns a HealthResult object.
       #
-      # @return [HealthResult] an object containing health information
+      # @return [HealthResult] the result of the health check
       def check_health
         health_lines = Lich::Util.issue_command(
           'health',
@@ -42,7 +42,7 @@ module Lich
       # Parses the health lines to extract health information.
       #
       # @param health_lines [Array<String>] the lines containing health information
-      # @return [HealthResult] an object containing parsed health data
+      # @return [HealthResult] the parsed health result
       def parse_health_lines(health_lines)
         parasites_regex = Regexp.union(PARASITES_REGEX)
         wounds_line = nil
@@ -87,7 +87,7 @@ module Lich
 
       # Allows an empath to perceive their own health status.
       #
-      # @return [HealthResult, nil] an object containing health information or nil if the empath cannot perceive health
+      # @return [HealthResult, nil] the perceived health result or nil if not an empath
       def perceive_health
         unless DRStats.empath?
           Lich::Messaging.msg("bold", "DRCH: Only empaths can perceive health.")
@@ -133,10 +133,10 @@ module Lich
         )
       end
 
-      # Allows an empath to perceive the health status of another character.
+      # Allows an empath to perceive the health status of another target.
       #
-      # @param target [String] the name of the target character
-      # @return [HealthResult, nil] an object containing health information or nil if the empath cannot perceive health
+      # @param target [String] the name of the target to perceive
+      # @return [HealthResult, nil] the perceived health result or nil if not an empath
       def perceive_health_other(target)
         unless DRStats.empath?
           Lich::Messaging.msg("bold", "DRCH: Only empaths can perceive health of others.")
@@ -180,7 +180,7 @@ module Lich
       # Parses the lines perceived from another character's health.
       #
       # @param lines [Array<String>] the lines containing perceived health information
-      # @return [HealthResult] an object containing parsed health data
+      # @return [HealthResult] the parsed perceived health result
       def parse_perceived_health_lines(lines)
         parasites_regex = Regexp.union(PARASITES_REGEX)
         poisons_regex = Regexp.union([
@@ -257,7 +257,7 @@ module Lich
       # Parses the health lines to extract information about bleeders.
       #
       # @param health_lines [Array<String>] the lines containing health information
-      # @return [Hash] a hash containing bleeders categorized by severity
+      # @return [Hash] a hash of bleeders categorized by severity
       def parse_bleeders(health_lines)
         bleeders = Hash.new { |h, k| h[k] = [] }
         return bleeders unless health_lines.grep(/^Bleeding|^\s*\bArea\s+Rate\b/).any?
@@ -291,10 +291,10 @@ module Lich
         bleeders
       end
 
-      # Parses a line describing wounds to extract detailed information.
+      # Parses a line containing wounds information.
       #
-      # @param wounds_line [String] the line containing wound information
-      # @return [Hash] a hash containing wounds categorized by severity
+      # @param wounds_line [String] the line containing wounds information
+      # @return [Hash] a hash of wounds categorized by severity
       def parse_wounds(wounds_line)
         wounds = Hash.new { |h, k| h[k] = [] }
         return wounds unless wounds_line
@@ -321,10 +321,10 @@ module Lich
         wounds
       end
 
-      # Parses a line describing parasites to extract detailed information.
+      # Parses a line containing parasites information.
       #
-      # @param parasites_line [String] the line containing parasite information
-      # @return [Hash] a hash containing parasites categorized by severity
+      # @param parasites_line [String] the line containing parasites information
+      # @return [Hash] a hash of parasites categorized by severity
       def parse_parasites(parasites_line)
         parasites = Hash.new { |h, k| h[k] = [] }
         return parasites unless parasites_line
@@ -344,10 +344,10 @@ module Lich
         parasites
       end
 
-      # Parses a line describing lodged items to extract detailed information.
+      # Parses a line containing lodged items information.
       #
-      # @param lodged_line [String] the line containing lodged item information
-      # @return [Hash] a hash containing lodged items categorized by severity
+      # @param lodged_line [String] the line containing lodged items information
+      # @return [Hash] a hash of lodged items categorized by severity
       def parse_lodged_items(lodged_line)
         lodged_items = Hash.new { |h, k| h[k] = [] }
         return lodged_items unless lodged_line
@@ -375,11 +375,11 @@ module Lich
         lodged_items
       end
 
-      # Binds a wound on the specified body part of a character.
+      # Binds a wound on the specified body part of a person.
       #
       # @param body_part [String] the body part to bind
-      # @param person [String] the person to bind (default is 'my')
-      # @return [Boolean] true if the binding was successful, false otherwise
+      # @param person [String] the person to bind the wound on (default is 'my')
+      # @return [Boolean] true if successful, false otherwise
       def bind_wound(body_part, person = 'my')
         result = DRC.bput("tend #{person} #{body_part}", *TEND_SUCCESS_PATTERNS, *TEND_FAILURE_PATTERNS, *TEND_DISLODGE_PATTERNS)
         waitrt?
@@ -395,11 +395,11 @@ module Lich
         end
       end
 
-      # Unwraps a wound on the specified body part of a character.
+      # Unwraps a wound on the specified body part of a person.
       #
       # @param body_part [String] the body part to unwrap
-      # @param person [String] the person to unwrap (default is 'my')
-      # @return [Boolean] true if the unwrapping was successful, false otherwise
+      # @param person [String] the person to unwrap the wound on (default is 'my')
+      # @return [void]
       def unwrap_wound(body_part, person = 'my')
         DRC.bput("unwrap #{person} #{body_part}", 'You unwrap .* bandages', 'That area is not tended', 'You may undo the affects of TENDing')
         waitrt?
@@ -407,9 +407,9 @@ module Lich
 
       # Checks if the character has the skill to tend to a wound based on its bleed rate.
       #
-      # @param bleed_rate [String] the bleed rate of the wound
+      # @param bleed_rate [String] the rate of bleeding
       # @param internal [Boolean] whether the wound is internal (default is false)
-      # @return [Boolean] true if the character is skilled enough, false otherwise
+      # @return [Boolean] true if skilled enough, false otherwise
       def skilled_to_tend_wound?(bleed_rate, internal = false)
         bleed_info = BLEED_RATE_TO_SEVERITY[bleed_rate]
         return false unless bleed_info
@@ -429,9 +429,17 @@ module Lich
         wounds_by_severity.map { |severity, wound_list| (severity**2) * wound_list.count }.reduce(:+) || 0
       end
 
-      # Represents the health status of a character.
+      # Represents the result of a health check, containing various health attributes.
       #
-      # Contains information about wounds, bleeders, parasites, and other health-related data.
+      # @see #wounds
+      # @see #bleeders
+      # @see #parasites
+      # @see #lodged
+      # @see #poisoned
+      # @see #diseased
+      # @see #score
+      # @see #dead
+      # @see #vitality
       class HealthResult
         attr_reader :wounds, :bleeders, :parasites, :lodged,
                     :poisoned, :diseased, :score, :dead, :vitality
@@ -467,9 +475,11 @@ module Lich
         end
       end
 
-      # Represents a wound on a character.
+      # Represents a wound on a character's body.
       #
-      # Contains details about the wound's location, severity, and other characteristics.
+      # @see #body_part
+      # @see #severity
+      # @see #bleeding_rate
       class Wound
         attr_reader :body_part, :severity, :bleeding_rate
 

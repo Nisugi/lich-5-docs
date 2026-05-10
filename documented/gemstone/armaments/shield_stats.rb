@@ -47,7 +47,6 @@ module Lich
 
         ##
         # Finds shield information by category.
-        #
         # @param category [Symbol] the category of the shield to find
         # @return [Hash, nil] the shield information if found, otherwise nil
         def self.find_by_category(category)
@@ -64,7 +63,6 @@ module Lich
 
         ##
         # Finds a shield by its name.
-        #
         # @param name [String] the name of the shield to find
         # @return [Hash, nil] the shield information if found, otherwise nil
         def self.find(name)
@@ -79,7 +77,6 @@ module Lich
 
         ##
         # Lists shields within a specified evade modifier range.
-        #
         # @param min [Float] the minimum evade modifier
         # @param max [Float] the maximum evade modifier
         # @return [Array<Hash>] an array of shields that match the criteria
@@ -98,7 +95,6 @@ module Lich
 
         ##
         # Retrieves the category for a given shield name.
-        #
         # @param name [String] the name of the shield
         # @return [Symbol, nil] the category of the shield if found, otherwise nil
         def self.category_for(name)
@@ -110,7 +106,6 @@ module Lich
 
         ##
         # Returns a formatted string representation of the shield's details.
-        #
         # @param name [String] the name of the shield
         # @return [String] a formatted string with shield details
         def self.pretty(name)
@@ -143,8 +138,7 @@ module Lich
         end
 
         ##
-        # Returns a long formatted string representation of the shield's details.
-        #
+        # Returns a detailed formatted string representation of the shield's details.
         # @param name [String] the name of the shield
         # @return [String] a formatted string with shield details
         def self.pretty_long(name)
@@ -153,7 +147,6 @@ module Lich
 
         ##
         # Retrieves all alternative names for a given shield.
-        #
         # @param name [String] the name of the shield
         # @return [Array<String>] an array of alternative names
         def self.aliases_for(name)
@@ -164,7 +157,6 @@ module Lich
 
         ##
         # Compares two shields by their names and returns their attributes.
-        #
         # @param name1 [String] the name of the first shield
         # @param name2 [String] the name of the second shield
         # @return [Hash, nil] a hash containing the comparison data if both shields are found, otherwise nil
@@ -189,7 +181,6 @@ module Lich
 
         ##
         # Searches for shields based on various filters.
-        #
         # @param filters [Hash] a hash of filters to apply
         # @return [Array<Hash>] an array of shields that match the filters
         def self.search(filters = {})
@@ -208,7 +199,6 @@ module Lich
 
         ##
         # Checks if a given name is a valid shield name.
-        #
         # @param name [String] the name to validate
         # @return [Boolean] true if the name is valid, otherwise false
         # @api private

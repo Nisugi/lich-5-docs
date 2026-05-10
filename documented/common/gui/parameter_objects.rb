@@ -4,7 +4,6 @@ module Lich
     module GUI
       # Represents the parameters required for user login.
       #
-      # This class encapsulates the user login parameters and provides methods to access them.
       # @see UIConfig
       # @see CallbackParams
       class LoginParams
@@ -43,14 +42,10 @@ module Lich
           }
         end
 
-        # Checks if the login parameters are marked as favorite.
-        # @return [Boolean] true if the parameters are marked as favorite, false otherwise
         def favorite?
           @is_favorite == true
         end
 
-        # Returns a hash representing the character ID information.
-        # @return [Hash] a hash containing username, character name, and game code
         def character_id
           {
             username: @user_id,
@@ -62,7 +57,8 @@ module Lich
 
       # Represents the configuration settings for the user interface.
       #
-      # This class encapsulates UI configuration parameters and provides methods to access them.
+      # @see LoginParams
+      # @see CallbackParams
       class UIConfig
         attr_accessor :theme_state, :tab_layout_state, :autosort_state
 
@@ -83,7 +79,8 @@ module Lich
 
       # Represents the callback parameters for various UI actions.
       #
-      # This class encapsulates callback parameters and provides methods to access them.
+      # @see LoginParams
+      # @see UIConfig
       class CallbackParams
         attr_accessor :on_play, :on_remove, :on_save, :on_error,
                       :on_theme_change, :on_layout_change, :on_sort_change,
@@ -92,17 +89,17 @@ module Lich
         # @option params [Proc] :on_play Callback for play button
         # Initializes a new instance of CallbackParams.
         # @param params [Hash] a hash of callback parameters
-        # @option params [Proc] :on_play Callback for play button
-        # @option params [Proc] :on_remove Callback for remove action
-        # @option params [Proc] :on_save Callback for save action
-        # @option params [Proc] :on_error Callback for error handling
-        # @option params [Proc] :on_theme_change Callback for theme change
-        # @option params [Proc] :on_layout_change Callback for layout change
-        # @option params [Proc] :on_sort_change Callback for sort change
-        # @option params [Proc] :on_persistent_launcher_change Callback for persistent launcher change
-        # @option params [Proc] :on_add_character Callback for adding a character
-        # @option params [Proc] :on_favorites_change Callback for favorites change
-        # @option params [Proc] :on_favorites_reorder Callback for favorites reorder
+        # @param params[:on_play] [Proc] Callback for play button
+        # @param params[:on_remove] [Proc] Callback for remove action
+        # @param params[:on_save] [Proc] Callback for save action
+        # @param params[:on_error] [Proc] Callback for error handling
+        # @param params[:on_theme_change] [Proc] Callback for theme change
+        # @param params[:on_layout_change] [Proc] Callback for layout change
+        # @param params[:on_sort_change] [Proc] Callback for sort change
+        # @param params[:on_persistent_launcher_change] [Proc] Callback for persistent launcher change
+        # @param params[:on_add_character] [Proc] Callback for adding a character
+        # @param params[:on_favorites_change] [Proc] Callback for favorites change
+        # @param params[:on_favorites_reorder] [Proc] Callback for reordering favorites
         # @return [CallbackParams]
         def initialize(params = {})
           @on_play = params[:on_play]
@@ -118,8 +115,6 @@ module Lich
           @on_favorites_reorder = params[:on_favorites_reorder]
         end
 
-        # Converts the CallbackParams instance to a hash representation.
-        # @return [Hash] a hash containing the callback parameters
         def to_h
           {
             on_play: @on_play,

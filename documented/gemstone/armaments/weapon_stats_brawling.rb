@@ -4,8 +4,8 @@ module Lich
       # Contains static weapon statistics for brawling weapons.
       #
       # Each weapon entry includes metadata such as category, base name,
-      # alternative names, damage types, damage factors, armor avoidance by
-      # armor size group (ASG), base roundtime (RT), and minimum RT.
+      # alternative names, damage types, damage factors, armor avoidance by armor
+      # size group (ASG), base roundtime (RT), and minimum RT.
       #
       # @see Lich::Gemstone::Armaments::WeaponStats
       module WeaponStats
@@ -44,7 +44,16 @@ module Lich
             :min_rt        => 4,
           },
 =end
+        # Static array of weapon stats indexed by weapon identifiers.
+        # Each weapon entry contains metadata such as category, base name,
+        # alternative names, damage types, damage factors, armor avoidance by armor
+        # size group (ASG), base roundtime (RT), and minimum RT.
         @@weapon_stats_brawling = {
+          # Weapon statistics for the closed fist.
+          #
+          # @return [Hash] weapon statistics including category, base name,
+          # alternative names, damage types, damage factors, armor avoidance,
+          # base roundtime, and minimum roundtime.
           :closed_fist    => {
             :category      => :brawling,
             :base_name     => "closed fist",
@@ -56,6 +65,11 @@ module Lich
             :base_rt       => 1,
             :min_rt        => 2,
           },
+          # Weapon statistics for the blackjack.
+          #
+          # @return [Hash] weapon statistics including category, base name,
+          # alternative names, damage types, damage factors, armor avoidance,
+          # base roundtime, and minimum roundtime.
           :blackjack      => {
             :category      => :brawling,
             :base_name     => "blackjack",
@@ -67,6 +81,11 @@ module Lich
             :base_rt       => 1,
             :min_rt        => 2,
           },
+          # Weapon statistics for the cestus.
+          #
+          # @return [Hash] weapon statistics including category, base name,
+          # alternative names, damage types, damage factors, armor avoidance,
+          # base roundtime, and minimum roundtime.
           :cestus         => {
             :category      => :brawling,
             :base_name     => "cestus",
@@ -78,6 +97,11 @@ module Lich
             :base_rt       => 1,
             :min_rt        => 2,
           },
+          # Weapon statistics for the fist-scythe.
+          #
+          # @return [Hash] weapon statistics including category, base name,
+          # alternative names, damage types, damage factors, armor avoidance,
+          # base roundtime, and minimum roundtime.
           :fist_scythe    => {
             :category      => :brawling,
             :base_name     => "fist-scythe",
@@ -89,6 +113,11 @@ module Lich
             :base_rt       => 3,
             :min_rt        => 3,
           },
+          # Weapon statistics for the hook-knife.
+          #
+          # @return [Hash] weapon statistics including category, base name,
+          # alternative names, damage types, damage factors, armor avoidance,
+          # base roundtime, and minimum roundtime.
           :hook_knife     => {
             :category      => :brawling,
             :base_name     => "hook-knife",
@@ -100,6 +129,11 @@ module Lich
             :base_rt       => 1,
             :min_rt        => 2,
           },
+          # Weapon statistics for the jackblade.
+          #
+          # @return [Hash] weapon statistics including category, base name,
+          # alternative names, damage types, damage factors, armor avoidance,
+          # base roundtime, and minimum roundtime.
           :jackblade      => {
             :category      => :brawling,
             :base_name     => "jackblade",
@@ -111,6 +145,11 @@ module Lich
             :base_rt       => 2,
             :min_rt        => 3,
           },
+          # Weapon statistics for the paingrip.
+          #
+          # @return [Hash] weapon statistics including category, base name,
+          # alternative names, damage types, damage factors, armor avoidance,
+          # base roundtime, and minimum roundtime.
           :paingrip       => {
             :category      => :brawling,
             :base_name     => "paingrip",
@@ -122,6 +161,11 @@ module Lich
             :base_rt       => 1,
             :min_rt        => 2,
           },
+          # Weapon statistics for the sai.
+          #
+          # @return [Hash] weapon statistics including category, base name,
+          # alternative names, damage types, damage factors, armor avoidance,
+          # base roundtime, and minimum roundtime.
           :sai            => {
             :category      => :brawling,
             :base_name     => "sai",
@@ -133,6 +177,11 @@ module Lich
             :base_rt       => 2,
             :min_rt        => 3,
           },
+          # Weapon statistics for the knuckle-blade.
+          #
+          # @return [Hash] weapon statistics including category, base name,
+          # alternative names, damage types, damage factors, armor avoidance,
+          # base roundtime, and minimum roundtime.
           :knuckle_blade  => {
             :category      => :brawling,
             :base_name     => "knuckle-blade",
@@ -144,6 +193,11 @@ module Lich
             :base_rt       => 1,
             :min_rt        => 2,
           },
+          # Weapon statistics for the knuckle-duster.
+          #
+          # @return [Hash] weapon statistics including category, base name,
+          # alternative names, damage types, damage factors, armor avoidance,
+          # base roundtime, and minimum roundtime.
           :knuckle_duster => {
             :category      => :brawling,
             :base_name     => "knuckle-duster",
@@ -155,6 +209,11 @@ module Lich
             :base_rt       => 1,
             :min_rt        => 2,
           },
+          # Weapon statistics for the razorpaw.
+          #
+          # @return [Hash] weapon statistics including category, base name,
+          # alternative names, damage types, damage factors, armor avoidance,
+          # base roundtime, and minimum roundtime.
           :razorpaw       => {
             :category      => :brawling,
             :base_name     => "razorpaw",
@@ -166,6 +225,11 @@ module Lich
             :base_rt       => 1,
             :min_rt        => 2,
           },
+          # Weapon statistics for the tiger-claw.
+          #
+          # @return [Hash] weapon statistics including category, base name,
+          # alternative names, damage types, damage factors, armor avoidance,
+          # base roundtime, and minimum roundtime.
           :tiger_claw     => {
             :category      => :brawling,
             :base_name     => "tiger-claw",
@@ -177,6 +241,11 @@ module Lich
             :base_rt       => 1,
             :min_rt        => 2,
           },
+          # Weapon statistics for the troll-claw.
+          #
+          # @return [Hash] weapon statistics including category, base name,
+          # alternative names, damage types, damage factors, armor avoidance,
+          # base roundtime, and minimum roundtime.
           :troll_claw     => {
             :category      => :brawling,
             :base_name     => "troll-claw",
@@ -188,6 +257,11 @@ module Lich
             :base_rt       => 2,
             :min_rt        => 3,
           },
+          # Weapon statistics for the yierka-spur.
+          #
+          # @return [Hash] weapon statistics including category, base name,
+          # alternative names, damage types, damage factors, armor avoidance,
+          # base roundtime, and minimum roundtime.
           :yierka_spur    => {
             :category      => :brawling,
             :base_name     => "yierka-spur",

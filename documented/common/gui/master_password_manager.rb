@@ -83,8 +83,8 @@ module Lich
         # Creates a validation test for the given master password.
         # @param master_password [String] the master password to validate
         # @return [Hash] a hash containing the validation salt and hash
-        # @example
-        #   validation_test = create_validation_test("my_secret_password")
+        # @example Create a validation test
+        #   validation_test = MasterPasswordManager.create_validation_test("my_secret_password")
         def self.create_validation_test(master_password)
           random_salt = SecureRandom.random_bytes(16)
           full_salt = VALIDATION_SALT_PREFIX + random_salt
@@ -155,9 +155,9 @@ module Lich
         # On some macOS + Ruby/GTK combinations, spawning a shell command here can
         # raise during GUI startup before the launcher is fully built. Prefer a
         # direct executable check for the system Keychain CLI.
-        # Checks if the macOS Keychain CLI is available for use.
+        # Checks if the macOS Keychain CLI is available.
         # @return [Boolean] true if the macOS Keychain CLI is available, false otherwise
-        # @api private
+        # @note This method may raise an error during GUI startup.
         private_class_method def self.macos_keychain_available?
           File.executable?('/usr/bin/security')
         rescue StandardError => e
@@ -165,10 +165,6 @@ module Lich
           false
         end
 
-        # Stores the master password in the macOS Keychain.
-        # @param password [String] the password to store
-        # @return [Boolean] true if the password was stored successfully, false otherwise
-        # @api private
         private_class_method def self.store_macos_keychain(password)
           escaped = password.shellescape
           # Delete existing entry (ignore result)
@@ -177,9 +173,6 @@ module Lich
           system("security add-generic-password -s #{KEYCHAIN_SERVICE.shellescape} -a lich5 -w #{escaped}")
         end
 
-        # Retrieves the master password from the macOS Keychain.
-        # @return [String, nil] the stored password, or nil if not found
-        # @api private
         private_class_method def self.retrieve_macos_keychain
           output = `security find-generic-password -s #{KEYCHAIN_SERVICE.shellescape} -w 2>/dev/null`.strip
           output.empty? ? nil : output
@@ -187,26 +180,18 @@ module Lich
           nil
         end
 
-        # Deletes the master password from the macOS Keychain.
-        # @return [Boolean] true if the password was deleted successfully, false otherwise
-        # @api private
         private_class_method def self.delete_macos_keychain
           system("security delete-generic-password -s #{KEYCHAIN_SERVICE.shellescape} 2>/dev/null")
         end
 
-        # Checks if the Linux keychain is available for use.
+        # Checks if the Linux keychain is available.
         # @return [Boolean] true if the Linux keychain is available, false otherwise
-        # @api private
         private_class_method def self.linux_keychain_available?
           response = system('command -v secret-tool >/dev/null 2>&1')
           Lich.log "debug: secret-tool command not found; Linux keychain unavailable" if response == false
           response
         end
 
-        # Stores the master password in the Linux keychain.
-        # @param password [String] the password to store
-        # @return [Boolean] true if the password was stored successfully, false otherwise
-        # @api private
         private_class_method def self.store_linux_keychain(password)
           # Delete existing entry (ignore result) to ensure a clean update
           system("secret-tool clear service #{KEYCHAIN_SERVICE.shellescape} user lich5 >/dev/null 2>&1")
@@ -219,9 +204,6 @@ module Lich
           $?.success?
         end
 
-        # Retrieves the master password from the Linux keychain.
-        # @return [String, nil] the stored password, or nil if not found
-        # @api private
         private_class_method def self.retrieve_linux_keychain
           output = `secret-tool lookup service #{KEYCHAIN_SERVICE.shellescape} user lich5 2>/dev/null`.strip
           output.empty? ? nil : output
@@ -229,16 +211,12 @@ module Lich
           nil
         end
 
-        # Deletes the master password from the Linux keychain.
-        # @return [Boolean] true if the password was deleted successfully, false otherwise
-        # @api private
         private_class_method def self.delete_linux_keychain
           system("secret-tool clear service #{KEYCHAIN_SERVICE.shellescape} user lich5 2>/dev/null")
         end
 
-        # Checks if the Windows Credential Manager is available for use.
+        # Checks if the Windows Credential Manager is available.
         # @return [Boolean] true if the Windows Credential Manager is available, false otherwise
-        # @api private
         private_class_method def self.windows_keychain_available?
           return false unless OS.windows?
 
@@ -246,10 +224,6 @@ module Lich
           WindowsCredentialManager.available?
         end
 
-        # Stores the master password in the Windows Credential Manager.
-        # @param password [String] the password to store
-        # @return [Boolean] true if the password was stored successfully, false otherwise
-        # @api private
         private_class_method def self.store_windows_keychain(password)
           WindowsCredentialManager.store_credential(
             KEYCHAIN_SERVICE,
@@ -260,16 +234,10 @@ module Lich
           )
         end
 
-        # Retrieves the master password from the Windows Credential Manager.
-        # @return [String, nil] the stored password, or nil if not found
-        # @api private
         private_class_method def self.retrieve_windows_keychain
           WindowsCredentialManager.retrieve_credential(KEYCHAIN_SERVICE)
         end
 
-        # Deletes the master password from the Windows Credential Manager.
-        # @return [Boolean] true if the password was deleted successfully, false otherwise
-        # @api private
         private_class_method def self.delete_windows_keychain
           WindowsCredentialManager.delete_credential(KEYCHAIN_SERVICE)
         end
@@ -278,7 +246,6 @@ module Lich
         # @param a [String] the first string to compare
         # @param b [String] the second string to compare
         # @return [Boolean] true if the strings are equal, false otherwise
-        # @api private
         private_class_method def self.secure_compare(a, b)
           return false if a.nil? || b.nil? || a.length != b.length
           result = 0

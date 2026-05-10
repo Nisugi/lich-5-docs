@@ -8,19 +8,20 @@
 =end
 
 module Lich
+  # Provides utility methods for the Lich project.
+  #
+  # @see Lich::Util::Update
   module Util
     module Update
       # HTTP client for GitHub API with caching and token auth.
       #
       # Provides JSON and raw GET requests with optional Bearer token auth from
       # DATA_DIR/githubtoken.txt. Includes in-memory cache with TTL for API responses.
-      #
-      # @see Lich::Util::Update
       class GitHubClient
         attr_reader :http_cache
 
         # Initializes a new GitHubClient instance.
-        # @param cache_ttl [Integer] time-to-live for cached responses in seconds
+        # @param cache_ttl [Integer] time-to-live for cache in seconds
         # @return [void]
         def initialize(cache_ttl: 60)
           @http_cache = {}
@@ -30,10 +31,11 @@ module Lich
         end
 
         # Fetches JSON data from the specified GitHub URL with caching.
-        #
         # @param url [String] the GitHub API URL to fetch data from
         # @return [Hash, nil] parsed JSON data or nil if an error occurs
-        # @raise [StandardError] if there is a network error during the fetch
+        # @example Fetching repository data
+        #   client = GitHubClient.new
+        #   data = client.fetch_github_json("https://api.github.com/repos/user/repo")
         def fetch_github_json(url)
           now = Time.now.to_i
           entry = @http_cache[url]
@@ -54,11 +56,10 @@ module Lich
         end
 
         # Performs a GET request to the specified URL with optional authentication.
-        #
         # @param url [String] the URL to send the GET request to
         # @param auth [Boolean] whether to include authentication token (default: true)
         # @return [String, nil] response body or nil if an error occurs
-        # @raise [StandardError] if there is a network error during the request
+        # @raise [StandardError] if a network error occurs
         def http_get(url, auth: true)
           uri = URI.parse(url)
           http = Net::HTTP.new(uri.host, uri.port)
@@ -83,7 +84,6 @@ module Lich
         end
 
         # Retrieves the GitHub authentication token from the specified file.
-        #
         # @return [String, nil] the Bearer token or nil if not found or empty
         # @note The token is loaded from DATA_DIR/githubtoken.txt
         def github_token

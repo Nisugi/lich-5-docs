@@ -5,7 +5,7 @@ module Lich
       module Utilities
         # Creates a CSS provider for buttons with a specified font size.
         #
-        # @param font_size [Integer] the font size for the button text
+        # @param font_size [Integer] the font size for the button text (default is 12)
         # @return [Gtk::CssProvider] the CSS provider for buttons
         def self.create_button_css_provider(font_size: 12)
           css = Gtk::CssProvider.new
@@ -13,7 +13,7 @@ module Lich
           css
         end
 
-        # Creates a CSS provider for tabs in a notebook.
+        # Creates a CSS provider for tabs.
         # @return [Gtk::CssProvider] the CSS provider for tabs
         def self.create_tab_css_provider
           css = Gtk::CssProvider.new
@@ -21,11 +21,11 @@ module Lich
           css
         end
 
-        # Creates a message dialog with a specified message and optional icon.
+        # Creates a message dialog with a specified parent and icon.
         #
         # @param parent [Gtk::Window, nil] the parent window for the dialog
         # @param icon [Gdk::Pixbuf, nil] the icon to display in the dialog
-        # @return [Proc] a lambda that takes a message and shows the dialog
+        # @return [Proc] a lambda that takes a message and displays the dialog
         def self.create_message_dialog(parent: nil, icon: nil)
           ->(message) {
             dialog = Gtk::MessageDialog.new(

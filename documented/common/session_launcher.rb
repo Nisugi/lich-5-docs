@@ -27,6 +27,8 @@ module Lich
         # @param launch_context [Hash, nil] optional context for the launch
         # @return [Hash] result of the launch operation, including success status and process ID
         # @raise [ArgumentError] if launch_data is not a non-empty array
+        # @example Launch a session
+        #   result = Lich::Common::SessionLauncher.launch(['--option', 'value'])
         def launch(launch_data, launch_context: nil)
           unless launch_data.is_a?(Array) && launch_data.any?
             return { ok: false, error: 'launch_data must be a non-empty Array' }
@@ -40,9 +42,9 @@ module Lich
 
         private
 
-        # Spawns a new process for the session using the provided launch data and context.
+        # Spawns a new process for the session using the provided launch data.
         #
-        # @param launch_data [Array] the data required to spawn the process
+        # @param launch_data [Array] an array of data required to spawn the process
         # @param launch_context [Hash, nil] optional context for the launch
         # @return [Integer] the process ID of the spawned process
         def spawn_process(launch_data, launch_context: nil)
@@ -69,12 +71,13 @@ module Lich
           defined?(LICH_DIR) ? LICH_DIR : Dir.pwd
         end
 
-        # Builds the arguments required to spawn the session process.
+        # Builds the arguments for spawning the session process.
         #
         # @param entrypoint [String] the entry point for the session
         # @param launch_map [Hash] parsed launch data
         # @param launch_context [Hash, nil] optional context for the launch
-        # @return [Array<String>] the arguments for spawning the process
+        # @return [Array<String>] the arguments to be passed to the spawn command
+        # @raise [ArgumentError] if the character name is missing
         def build_spawn_args(entrypoint, launch_map, launch_context)
           context = launch_context || {}
           character = context[:char_name] || launch_map['CHARACTER'] || launch_map['NAME']
@@ -98,7 +101,7 @@ module Lich
         # Constructs optional flags for the spawn command based on the context.
         #
         # @param context [Hash] the context containing potential flag values
-        # @return [Array<String>] the optional flags for spawning the process
+        # @return [Array<String>] an array of optional flags for the spawn command
         def optional_spawn_flags(context)
           flags = []
 
@@ -115,10 +118,10 @@ module Lich
           flags
         end
 
-        # Parses the launch data into a hash for easier access.
+        # Parses the launch data from an array of strings into a hash.
         #
-        # @param launch_data [Array<String>] the raw launch data lines
-        # @return [Hash] a hash mapping keys to values from the launch data
+        # @param launch_data [Array] the raw launch data strings
+        # @return [Hash] a hash mapping keys to values parsed from the launch data
         def parse_launch_data(launch_data)
           launch_data.each_with_object({}) do |line, data|
             next unless line.include?('=')
@@ -142,7 +145,7 @@ module Lich
           end
         end
 
-        # Resolves the dark mode setting from the context or defaults.
+        # Resolves the dark mode setting from the context.
         #
         # @param context [Hash] the context containing dark mode information
         # @return [Boolean, nil] the dark mode setting or nil if not applicable
@@ -175,9 +178,9 @@ module Lich
 
         # Determines the default path value for a given option name and constant name.
         #
-        # @param option_name [String] the name of the option
-        # @param constant_name [Symbol] the name of the constant to check
-        # @param context [Hash] the context containing potential overrides
+        # @param option_name [String] the name of the option to resolve
+        # @param constant_name [Symbol] the constant name to use for default resolution
+        # @param context [Hash] the context containing potential directory overrides
         # @return [String, nil] the default path value or nil if not applicable
         def default_path_value(option_name, constant_name, context)
           if option_name == 'home'
@@ -194,7 +197,7 @@ module Lich
           File.expand_path(Object.const_get(constant_name).to_s)
         end
 
-        # Returns the path to the Ruby binary, adjusted for Windows if necessary.
+        # Retrieves the appropriate Ruby binary for the current platform.
         #
         # @return [String] the path to the Ruby binary
         def ruby_binary

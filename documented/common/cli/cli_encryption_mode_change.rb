@@ -12,10 +12,10 @@ module Lich
         #
         # @param new_mode [Symbol] the new encryption mode to set (e.g., :plaintext, :standard, :enhanced)
         # @param provided_password [String, nil] optional password for enhanced mode
-        # @return [Integer] status code indicating the result of the operation (0 for success, non-zero for errors)
-        # @example
-        #   change_mode(:enhanced, "my_secure_password")
-        # @note This method handles the transition between different encryption modes.
+        # @return [Integer] status code indicating the result of the operation
+        # @example Change to enhanced mode
+        #   Lich::Common::CLI::EncryptionModeChange.change_mode(:enhanced)
+        # @note This method handles validation of the current mode and password requirements.
         def self.change_mode(new_mode, provided_password = nil)
           data_dir = DATA_DIR
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)

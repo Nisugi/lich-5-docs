@@ -22,7 +22,7 @@ module Lich
         #
         # @param parent [Gtk::Window] the parent window for the dialog
         # @param data_dir [String] the directory containing the data files
-        # @param on_conversion_complete [Proc, nil] callback to execute upon conversion completion
+        # @param on_conversion_complete [Proc] callback to execute when conversion is complete
         # @return [void]
         def self.show_conversion_dialog(parent, data_dir, on_conversion_complete)
           has_keychain = MasterPasswordManager.keychain_available?

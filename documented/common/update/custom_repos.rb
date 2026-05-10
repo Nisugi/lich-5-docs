@@ -8,6 +8,9 @@
   under SCRIPT_DIR/custom/.
 =end
 
+# Provides utility functions for the Lich5 project.
+#
+# @see Lich::Util::Update for update-related utilities.
 module Lich
   module Util
     module Update
@@ -16,11 +19,8 @@ module Lich
       # Users can register arbitrary GitHub repos and track individual .lic files
       # from them. Custom repo scripts are synced into per-repo subdirectories
       # under SCRIPT_DIR/custom.
-      #
-      # @see Lich::Util::Update
       class CustomRepos
         # Converts the owner/repo format into a directory-friendly name.
-        #
         # @param owner_repo [String] the GitHub repository in owner/repo format
         # @return [String] the formatted directory name
         def self.repo_dir_name(owner_repo)
@@ -28,7 +28,6 @@ module Lich
         end
 
         # Constructs the destination directory path for the custom repository.
-        #
         # @param owner_repo [String] the GitHub repository in owner/repo format
         # @return [String] the full path to the destination directory
         def self.dest_dir(owner_repo)
@@ -36,7 +35,6 @@ module Lich
         end
 
         # Builds the configuration hash for a custom repository.
-        #
         # @param owner_repo [String] the GitHub repository in owner/repo format
         # @param registration [Hash] the registration details for the repository
         # @return [Hash] the configuration hash for the custom repository
@@ -57,14 +55,12 @@ module Lich
         end
 
         # Retrieves all registered custom repositories.
-        #
         # @return [Hash] a hash of custom repositories, where keys are owner/repo strings
         def self.all
           UserVars.custom_repos || {}
         end
 
-        # Adds a custom repository to the user's registered repositories.
-        #
+        # Adds a custom repository to the user's registered list.
         # @param owner_repo [String] the GitHub repository in owner/repo format
         # @param branch [String, nil] the branch to track (defaults to 'main')
         # @return [void]
@@ -88,8 +84,7 @@ module Lich
           StatusReporter.respond_mono("[lich5-update: Registered custom repo '#{owner_repo}' (branch: #{branch || 'main'}).]")
         end
 
-        # Removes a custom repository from the user's registered repositories.
-        #
+        # Removes a custom repository from the user's registered list.
         # @param owner_repo [String] the GitHub repository in owner/repo format
         # @return [void]
         def remove_custom_repo(owner_repo)
@@ -115,7 +110,6 @@ module Lich
         end
 
         # Lists all registered custom repositories in a formatted table.
-        #
         # @return [void]
         def list_custom_repos
           repos = self.class.all

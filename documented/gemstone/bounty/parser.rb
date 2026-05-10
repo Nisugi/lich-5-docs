@@ -2,15 +2,12 @@ module Lich
   module Gemstone
     # Represents a bounty in the Lich game.
     #
-    # This class handles the parsing of bounty descriptions and related tasks.
-    #
+    # This class is responsible for parsing bounty descriptions and extracting relevant task information.
     # @see Lich::Gemstone::Parser
     class Bounty
-      # Parses bounty descriptions to extract task information.
+      # Parses bounty descriptions to extract task details.
       #
-      # This class uses regular expressions to match various task types and their details.
-      #
-      # @see Lich::Gemstone::Bounty
+      # This class uses regular expressions to match various task types and their details from the provided description.
       class Parser
         HMM_REGEX = /(?:Hmm, I've got a task here from .*?(?<town>[A-Z].*?)\..*?)?/
         LOCATION_REGEX = /(?:on|in|near) (?:the\s+)?(?<area>[^.]+?)(?:\s+(?:near|between|under) (?<town>[^.]+))?/
@@ -89,7 +86,7 @@ module Lich
         }
 
         # Initializes a new Parser instance.
-        # @param description [String] the description of the bounty to parse
+        # @param description [String] the bounty description to parse
         # @return [void]
         def initialize(description)
           @description = description
@@ -100,9 +97,8 @@ module Lich
         # Parses the bounty description and returns the task details.
         # @return [Hash, nil] a hash containing task type and details, or nil if no match is found
         # @example
-        #   parser = Lich::Gemstone::Parser.new("You have been tasked to hunt down a dangerous creature.")
-        #   result = parser.parse
-        #   # result will contain the parsed task details
+        #   parser = Lich::Gemstone::Parser.new("Hmm, I've got a task here from Wehnimer's Landing.")
+        #   task_details = parser.parse
         def parse
           TASK_MATCHERS.each do |(task_type, regex)|
             if (md = regex.match(description))
@@ -117,8 +113,8 @@ module Lich
           end
         end
 
-        # Extracts task details from the named captures of a regex match.
-        # @param captures [Hash] the named captures from a regex match
+        # Extracts task details from the captured regex groups.
+        # @param captures [Hash] named captures from the regex match
         # @return [Hash] a hash containing task requirements and details
         def task_details_from(captures)
           {
@@ -148,7 +144,7 @@ module Lich
         end
 
         # Normalizes the creature name based on specific patterns.
-        # @param raw_creature_name [String] the original creature name to normalize
+        # @param raw_creature_name [String] the original creature name
         # @return [String] the normalized creature name
         def normalized_creature_name(raw_creature_name)
           case raw_creature_name
@@ -180,8 +176,8 @@ module Lich
           end
         end
 
-        # Parses a bounty description from a string.
-        # @param desc [String, nil] the description of the bounty to parse
+        # Parses a bounty description string and returns the task details.
+        # @param desc [String, nil] the bounty description to parse, defaults to checkbounty
         # @return [Hash, nil] a hash containing task type and details, or nil if no match is found
         # @api private
         def self.parse(desc = checkbounty)

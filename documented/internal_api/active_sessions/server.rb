@@ -18,8 +18,8 @@ module Lich
         attr_reader :auth_token
 
         # Initializes a new Server instance.
-        # @param host [String] the hostname to bind the server to
-        # @param port [Integer] the port number to bind the server to
+        # @param host [String] the host address to bind the server to
+        # @param port [Integer] the port number to listen on
         # @param registry [Object] the registry for managing session data
         # @param auth_token [String] the token used for authenticating requests
         # @param server_factory [Proc, nil] optional factory for creating the server
@@ -40,9 +40,10 @@ module Lich
           @client_threads = []
         end
 
-        # Starts the server, allowing it to accept client connections.
+        # Starts the server to accept client connections.
         #
-        # @return [Boolean] true if the server was started successfully, false otherwise
+        # This method initializes the server and begins the accept loop.
+        # @return [Boolean] true if the server started successfully, false otherwise
         # @raise [StandardError] if an error occurs during startup
         def start
           @mutex.synchronize do
@@ -59,7 +60,9 @@ module Lich
           false
         end
 
-        # Stops the server and closes all client connections.
+        # Stops the server and cleans up resources.
+        #
+        # This method closes the server socket and joins any active client threads.
         # @return [void]
         def stop
           thread = nil
@@ -96,6 +99,8 @@ module Lich
         private
 
         # Accepts incoming client connections in a loop.
+        #
+        # This method runs in a separate thread and handles client connections.
         # @return [void]
         def accept_loop
           loop do
@@ -124,8 +129,10 @@ module Lich
         end
         private :handle_tracked_client
 
-        # Handles a connected client by processing its request.
-        # @param socket [TCPSocket] the socket connected to the client
+        # Handles a connected client socket.
+        #
+        # This method reads the client's request and sends back a response.
+        # @param socket [TCPSocket] the client socket to handle
         # @return [void]
         def handle_client(socket)
           raw = read_request(socket)
@@ -143,7 +150,9 @@ module Lich
         end
 
         # Reads a request from the client socket with a timeout.
-        # @param socket [TCPSocket] the socket connected to the client
+        #
+        # This method waits for data to be available on the socket and reads it.
+        # @param socket [TCPSocket] the client socket to read from
         # @return [String, nil] the raw request data or nil if timed out
         def read_request(socket)
           deadline = Process.clock_gettime(Process::CLOCK_MONOTONIC) + READ_TIMEOUT
@@ -173,9 +182,10 @@ module Lich
         private :read_request
 
         # Processes a raw request and returns a response.
+        #
+        # This method parses the request and executes the corresponding command.
         # @param raw [String] the raw request data
         # @return [Hash] the response data
-        # @raise [StandardError] if an error occurs during processing
         def process_request(raw)
           request = JSON.parse(raw.to_s, symbolize_names: true)
           return unauthorized_response unless authorized?(request)
@@ -200,7 +210,7 @@ module Lich
         end
 
         # Checks if the request is authorized based on the auth token.
-        # @param request [Hash] the request data
+        # @param request [Hash] the request data containing authorization info
         # @return [Boolean] true if authorized, false otherwise
         # @api private
         def authorized?(request)
@@ -217,7 +227,7 @@ module Lich
         end
         private :unauthorized_response
 
-        # Tracks a client thread for management purposes.
+        # Tracks a client thread for cleanup purposes.
         # @param thread [Thread] the client thread to track
         # @return [void]
         # @api private

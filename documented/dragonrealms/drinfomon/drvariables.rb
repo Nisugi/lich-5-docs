@@ -1,12 +1,13 @@
 
+# Module containing constants and data structures for the Lich project.
+#
+# @see Lich::DragonRealms for DragonRealms specific constants.
 module Lich
   module DragonRealms
-    # Array of learning rates used in the DragonRealms game.
+    # Array of learning rates used in the DragonRealms.
     #
-    # @example
-    #   DR_LEARNING_RATES.each do |rate|
-    #     puts rate
-    #   end
+    # @example Learning rates
+    #   DR_LEARNING_RATES.each { |rate| puts rate }
     DR_LEARNING_RATES = [
       'clear',
       'dabbling',
@@ -46,15 +47,13 @@ module Lich
     ].freeze
 
     # Length of the longest learning rate name, used for padding in exp display
-    # Length of the longest learning rate name, used for padding in exp display.
+    # Length of the longest learning rate name, used for padding in experience display.
     DR_LONGEST_LEARNING_RATE_LENGTH = DR_LEARNING_RATES.max_by(&:length).length
 
-    # Array of balance values used in the DragonRealms game.
+    # Array of balance values used in the DragonRealms.
     #
-    # @example
-    #   DR_BALANCE_VALUES.each do |value|
-    #     puts value
-    #   end
+    # @example Balance values
+    #   DR_BALANCE_VALUES.each { |value| puts value }
     DR_BALANCE_VALUES = [
       'completely',
       'hopelessly',
@@ -70,12 +69,10 @@ module Lich
       'incredibly'
     ].freeze
 
-    # Hash containing skill data categorized by skillsets.
+    # Hash containing skill data for various skillsets in DragonRealms.
     #
-    # @example
-    #   DR_SKILLS_DATA[:skillsets].each do |skillset, skills|
-    #     puts "#{skillset}: #{skills.join(', ')}"
-    #   end
+    # @example Accessing skills
+    #   DR_SKILLS_DATA[:skillsets]['Armor']
     DR_SKILLS_DATA = {
       skillsets: {
         'Armor'    => [
@@ -179,12 +176,10 @@ module Lich
     LIRUM_BANKS = ["Aesry Surlaenis'a", "Hara'jaal", "Mer'Kresh", "Muspar'i", 'Ratha', 'Riverhaven', "Rossman's Landing", 'Therenborough', 'Throne City'].freeze
     DOKORA_BANKS = ['Ain Ghazal', 'Boar Clan', "Chyolvea Tayeu'a", 'Hibarnhvidar', 'Fang Cove', "Raven's Point", 'Shard'].freeze
 
-    # Hash mapping bank names to their titles in the DragonRealms game.
+    # Hash mapping bank names to their titles in the DragonRealms.
     #
-    # @example
-    #   BANK_TITLES.each do |bank, titles|
-    #     puts "#{bank}: #{titles.join(', ')}"
-    #   end
+    # @example Accessing bank titles
+    #   BANK_TITLES['Crossings']
     BANK_TITLES = {
       "Aesry Surlaenis'a" => ['[[Tona Kertigen, Deposit Window]]'].freeze,
       'Ain Ghazal'        => ['[[Ain Ghazal, Private Depository]]'].freeze,
@@ -208,12 +203,10 @@ module Lich
       'Throne City'       => ['[[Faldesu Exchequer, Teller]]'].freeze
     }.freeze
 
-    # Hash mapping vault names to their titles in the DragonRealms game.
+    # Hash mapping vault names to their titles in the DragonRealms.
     #
-    # @example
-    #   VAULT_TITLES.each do |vault, titles|
-    #     puts "#{vault}: #{titles.join(', ')}"
-    #   end
+    # @example Accessing vault titles
+    #   VAULT_TITLES['Crossings']
     VAULT_TITLES = {
       'Crossings'     => ['[[Crossing, Carousel Chamber]]'].freeze,
       'Fang Cove'     => ['[[Fang Cove, Carousel Chamber]]'].freeze,
@@ -233,18 +226,13 @@ module Lich
     # doesn't have Power Monger mastery to see true
     # durations but only vague guestimates.
     # In those situations, we set use this value.
-    # Duration value used for spells with unknown durations.
-    #
-    # @note
-    #   This value is used for cyclic spells or abilities without clear durations.
+    # Constant representing an unknown duration for spells or abilities.
     UNKNOWN_DURATION = 1000 unless defined?(UNKNOWN_DURATION)
 
     # Hash mapping hometown names to their corresponding regular expressions for matching.
     #
-    # @example
-    #   HOMETOWN_REGEX_MAP.each do |town, regex|
-    #     puts "#{town}: #{regex}"
-    #   end
+    # @example Matching hometowns
+    #   HOMETOWN_REGEX_MAP['Crossing']
     HOMETOWN_REGEX_MAP = {
       'Arthe Dale'        => /^(arthe( dale)?)$/i,
       'Crossing'          => /^(cross(ing)?)$/i,
@@ -281,23 +269,15 @@ module Lich
 
     # Union of regular expressions that match town names, like /^(theren(borough)?)$/i
     # Union of regular expressions that match town names.
-    #
-    # @example
-    #   puts HOMETOWN_REGEX.match?('Crossing') # => true
     HOMETOWN_REGEX = Regexp.union(HOMETOWN_REGEX_MAP.values)
 
     # Array of ordinal numbers as strings.
     ORDINALS = %w[first second third fourth fifth sixth seventh eighth ninth tenth eleventh twelfth thirteenth fourteenth fifteenth sixteenth seventeenth eighteenth nineteenth twentieth].freeze
 
-    # Array of currency names used in the DragonRealms game.
+    # Array of currency names used in the DragonRealms.
     CURRENCIES = %w[Kronars Lirums Dokoras].freeze
 
     # Hash mapping encumbrance descriptions to their corresponding values.
-    #
-    # @example
-    #   ENC_MAP.each do |description, value|
-    #     puts "#{description}: #{value}"
-    #   end
     ENC_MAP = {
       'None'                              => 0,
       'Light Burden'                      => 1,
@@ -314,11 +294,6 @@ module Lich
     }.freeze
 
     # Hash mapping number words to their corresponding integer values.
-    #
-    # @example
-    #   NUM_MAP.each do |word, number|
-    #     puts "#{word}: #{number}"
-    #   end
     NUM_MAP = {
       'zero'      => 0,
       'one'       => 1,
@@ -350,10 +325,7 @@ module Lich
       'ninety'    => 90
     }.freeze
 
-    # Regular expression for matching box types in the DragonRealms game.
-    #
-    # @example
-    #   puts 'wooden box'.match?(BOX_REGEX) # => true
+    # Regular expression for matching various types of boxes.
     BOX_REGEX = /((?:brass|copper|deobar|driftwood|iron|ironwood|mahogany|oaken|pine|steel|wooden) (?:box|caddy|casket|chest|coffer|crate|skippet|strongbox|trunk))/.freeze
 
     # Hash mapping mana quality descriptions to their corresponding arrays of strings.
@@ -364,9 +336,9 @@ module Lich
       'good'       => %w[faint dim hazy dull muted dusky pale flickering shimmering pulsating glowing lambent shining luminous radiant fulgent brilliant flaring glaring blazing blinding].freeze
     }.freeze
 
-    # Regular expression pattern for matching primary sigils in the DragonRealms game.
+    # Regular expression pattern for matching primary sigils.
     PRIMARY_SIGILS_PATTERN = /\b(?:abolition|congruence|induction|permutation|rarefaction) sigil\b/.freeze
-    # Regular expression pattern for matching secondary sigils in the DragonRealms game.
+    # Regular expression pattern for matching secondary sigils.
     SECONDARY_SIGILS_PATTERN = /\b(?:antipode|ascension|clarification|decay|evolution|integration|metamorphosis|nurture|paradox|unity) sigil\b/.freeze
 
     # Hash mapping volume descriptions to their corresponding values.

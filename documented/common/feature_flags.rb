@@ -21,8 +21,8 @@ module Lich
       # @param name [String] the name of the feature flag
       # @return [Boolean] true if the feature flag is enabled, false otherwise
       # @raise [ArgumentError] if the flag name is invalid
-      # @example
-      #   FeatureFlags.enabled?("new_feature") #=> true
+      # @example Check if a feature is enabled
+      #   Lich::Common::FeatureFlags.enabled?("new_feature")
       def self.enabled?(name)
         flag_name = validate_flag_name!(normalize_name(name))
         begin
@@ -42,8 +42,8 @@ module Lich
       # @param value [Boolean] the value to set for the feature flag
       # @return [Boolean] true if the operation was successful, false otherwise
       # @raise [ArgumentError] if the flag name is invalid
-      # @example
-      #   FeatureFlags.set("new_feature", true) #=> true
+      # @example Set a feature flag
+      #   Lich::Common::FeatureFlags.set("new_feature", true)
       def self.set(name, value)
         flag_name = validate_flag_name!(normalize_name(name))
         begin
@@ -56,8 +56,8 @@ module Lich
 
       # Normalizes the feature flag name by stripping whitespace and converting to lowercase.
       #
-      # @param name [String] the name to normalize
-      # @return [String] the normalized name
+      # @param name [String] the name of the feature flag
+      # @return [String] the normalized feature flag name
       def self.normalize_name(name)
         name.to_s.strip.downcase
       end
@@ -65,8 +65,8 @@ module Lich
 
       # Validates the feature flag name, ensuring it is non-empty and matches the valid pattern.
       #
-      # @param flag_name [String] the name of the feature flag to validate
-      # @return [String] the validated flag name
+      # @param flag_name [String] the name of the feature flag
+      # @return [String] the validated feature flag name
       # @raise [ArgumentError] if the flag name is invalid
       def self.validate_flag_name!(flag_name)
         raise ArgumentError, 'feature flag name must be non-empty' if flag_name.empty?
@@ -96,7 +96,7 @@ module Lich
 
       # Reads the value of a feature flag from the database.
       #
-      # @param flag_name [String] the name of the feature flag to read
+      # @param flag_name [String] the name of the feature flag
       # @return [String, nil] the value of the feature flag, or nil if not found
       def self.read_flag(flag_name)
         db = fetch_db
@@ -108,8 +108,8 @@ module Lich
 
       # Writes the value of a feature flag to the database.
       #
-      # @param flag_name [String] the name of the feature flag to write
-      # @param value [String] the value to set for the feature flag
+      # @param flag_name [String] the name of the feature flag
+      # @param value [String] the value to write
       # @return [Boolean] true if the operation was successful, false otherwise
       def self.write_flag(flag_name, value)
         db = fetch_db
@@ -123,16 +123,16 @@ module Lich
       end
       private_class_method :write_flag
 
-      # Generates the database key for a feature flag.
+      # Constructs the setting key for a feature flag.
       #
       # @param flag_name [String] the name of the feature flag
-      # @return [String] the database key for the feature flag
+      # @return [String] the setting key for the feature flag
       def self.setting_key(flag_name)
         "#{SETTINGS_PREFIX}#{flag_name}"
       end
       private_class_method :setting_key
 
-      # Fetches the database connection for feature flags.
+      # Fetches the database connection for feature flag operations.
       #
       # @return [Object, nil] the database connection or nil if not available
       def self.fetch_db
@@ -142,11 +142,12 @@ module Lich
       end
       private_class_method :fetch_db
 
-      # Logs a failure that occurred during a feature flag operation.
+      # Logs a failure that occurred during feature flag operations.
       #
       # @param operation [String] the operation that failed
       # @param flag_name [String] the name of the feature flag
       # @param error [StandardError] the error that occurred
+      # @api private
       def self.log_failure(operation, flag_name, error)
         return unless defined?(Lich) && Lich.respond_to?(:log)
 

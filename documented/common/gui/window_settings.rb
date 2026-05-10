@@ -1,7 +1,4 @@
 
-# Provides common functionality for the Lich application.
-#
-# @see Lich::Common
 module Lich
   module Common
     module GUI
@@ -10,12 +7,11 @@ module Lich
         MIN_DIMENSION = 100
         DARWIN_SPACER = 28
 
-        # Provides methods for managing window settings.
+        # Provides methods to load, save, and apply window settings.
         #
-        # This module handles loading, saving, and applying window settings.
+        # @see Lich::Common::GUI
         class << self
           # Loads window settings from a YAML file.
-          #
           # @param data_dir [String] the directory where the settings file is located
           # @return [Hash] the loaded settings or an empty hash if loading fails
           # @raise [StandardError] if there is an error reading the file
@@ -30,8 +26,7 @@ module Lich
             {}
           end
 
-          # Saves window settings to a YAML file.
-          #
+          # Saves the window settings to a YAML file.
           # @param data_dir [String] the directory where the settings file will be saved
           # @param width [Integer] the width of the window
           # @param height [Integer] the height of the window
@@ -55,8 +50,7 @@ module Lich
             false
           end
 
-          # Applies the given settings to a window.
-          #
+          # Applies the given settings to the specified window.
           # @param window [Object] the window to apply settings to
           # @param settings [Hash] the settings to apply, including width, height, and position
           # @return [void]
@@ -76,8 +70,7 @@ module Lich
             window.move(constrained_position[0], constrained_position[1] + spacer)
           end
 
-          # Captures the current geometry of a window.
-          #
+          # Captures the current geometry of the specified window.
           # @param window [Object] the window to capture geometry from
           # @return [Hash] a hash containing the width, height, and position of the window
           def capture_geometry(window)
@@ -90,8 +83,7 @@ module Lich
 
           private
 
-          # Validates the provided settings.
-          #
+          # Validates the provided settings to ensure they are correct.
           # @param settings [Hash] the settings to validate
           # @return [Boolean] true if the settings are valid, false otherwise
           def validate_settings(settings)
@@ -102,7 +94,6 @@ module Lich
           end
 
           # Checks if the provided dimensions are valid.
-          #
           # @param width [Integer] the width to validate
           # @param height [Integer] the height to validate
           # @return [Boolean] true if both dimensions are greater than the minimum, false otherwise
@@ -111,9 +102,8 @@ module Lich
               height.is_a?(Integer) && height > MIN_DIMENSION
           end
 
-          # Checks if the provided position is valid.
-          #
-          # @param position [Array<Integer>] the position to validate as [x, y]
+          # Validates the provided position to ensure it is an array of two integers.
+          # @param position [Array] the position to validate
           # @return [Boolean] true if the position is valid, false otherwise
           def valid_position?(position)
             position.is_a?(Array) &&
@@ -122,9 +112,8 @@ module Lich
               position[1].is_a?(Integer) && position[1] >= 0
           end
 
-          # Constrains the position to fit within the monitor's geometry.
-          #
-          # @param position [Array<Integer>] the original position as [x, y]
+          # Constrains the given position to fit within the monitor's geometry.
+          # @param position [Array<Integer>] the original position to constrain
           # @param width [Integer] the width of the window
           # @param height [Integer] the height of the window
           # @return [Array<Integer>] the constrained position as [x, y]
@@ -146,7 +135,6 @@ module Lich
           end
 
           # Checks if the current platform is Darwin (macOS).
-          #
           # @return [Boolean] true if the platform is Darwin, false otherwise
           # @api private
           def darwin?

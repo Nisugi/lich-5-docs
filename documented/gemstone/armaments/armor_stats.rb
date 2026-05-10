@@ -1,11 +1,15 @@
-# The Lich module serves as a namespace for the Gemstone project.
+# Contains the Lich game logic.
 #
+# @see Lich::Gemstone
 module Lich
   module Gemstone
     module Armaments
-      # The ArmorStats module contains static data and methods related to armor statistics.
+      # Provides armor statistics and related functionalities.
       #
-      # This includes methods for finding armor by various criteria and retrieving armor properties.
+      # This module contains a static array of armor stats indexed by armor identifiers.
+      # Each armor entry contains metadata such as category, alternative names, size and evade modifiers, and base weight.
+      #
+      # @see Lich::Gemstone::Armaments
       module ArmorStats
         # Static array of armor stats indexed by armor identifiers. Each armor
         # entry contains metadata such as category, alternative names, size and
@@ -380,7 +384,7 @@ module Lich
         # Finds armor data by armor sub-group number.
         #
         # @param asg_number [Integer] the armor sub-group number
-        # @return [Hash, nil] the armor data for the specified sub-group or nil if not found
+        # @return [Hash, nil] the armor data if found, otherwise nil
         def self.find_by_asg(asg_number)
           return nil unless asg_number.is_a?(Integer) && asg_number.between?(1, 20)
 
@@ -395,7 +399,7 @@ module Lich
         end
 
         ##
-        # Retrieves a list of all armor names available in the armor statistics.
+        # Retrieves all unique armor names from the armor stats.
         #
         # @return [Array<String>] an array of unique armor names
         def self.names
@@ -405,7 +409,7 @@ module Lich
         end
 
         ##
-        # Retrieves a list of unique armor categories based on base names.
+        # Retrieves all unique armor categories from the armor stats.
         #
         # @return [Array<Symbol>] an array of unique armor categories
         def self.categories
@@ -413,7 +417,7 @@ module Lich
         end
 
         ##
-        # Retrieves a list of unique base names for all armor types.
+        # Retrieves all unique base names of armor from the armor stats.
         #
         # @return [Array<Symbol>] an array of unique base names
         def self.base_names
@@ -464,8 +468,8 @@ module Lich
         ##
         # Lists all armor data of a specific type.
         #
-        # @param type [Symbol] the type of armor to filter by (e.g., :cloth, :leather)
-        # @return [Array<Hash>] an array of armor data matching the specified type
+        # @param type [Symbol] the type of armor to filter by
+        # @return [Array<Hash>] an array of armor data of the specified type
         def self.list_by_type(type)
           @@armor_stats.flat_map do |_, subgroups|
             subgroups.values.compact.select { |asg| asg[:type] == type }
@@ -475,7 +479,7 @@ module Lich
         ##
         # Retrieves all names for a specific armor sub-group.
         #
-        # @param asg [Integer, Symbol] the armor sub-group number or symbol
+        # @param asg [Integer] the armor sub-group number
         # @return [Array<String>] an array of names for the specified armor sub-group
         def self.names_in_asg(asg)
           asg_sym = asg.is_a?(Integer) ? :"asg_#{asg}" : asg.to_sym
@@ -493,7 +497,7 @@ module Lich
         # Retrieves the category type for a given armor name.
         #
         # @param name [String] the name of the armor
-        # @return [Symbol, nil] the armor type or nil if not found
+        # @return [Symbol, nil] the armor type if found, otherwise nil
         def self.category_for(name)
           name = name.downcase.strip
 
@@ -502,10 +506,10 @@ module Lich
         end
 
         ##
-        # Returns a formatted string representation of the armor data for display.
+        # Formats and returns a pretty string representation of the armor data.
         #
         # @param name [String] the name of the armor to format
-        # @return [String] a formatted string containing armor details
+        # @return [String] a formatted string representation of the armor data
         def self.pretty(name)
           armor = self.find(name)
           return "\n(no data)\n" unless armor.is_a?(Hash)
@@ -544,10 +548,10 @@ module Lich
         end
 
         ##
-        # Returns a detailed formatted string representation of the armor data for display.
+        # Formats and returns a detailed string representation of the armor data.
         #
         # @param name [String] the name of the armor to format
-        # @return [String] a detailed formatted string containing armor details
+        # @return [String] a detailed formatted string representation of the armor data
         def self.pretty_long(name)
           armor = self.find(name)
           return "\n(no data)\n" unless armor.is_a?(Hash)
@@ -655,7 +659,7 @@ module Lich
         end
 
         ##
-        # Checks if a given name is a valid armor name.
+        # Validates if the provided name corresponds to an existing armor name.
         #
         # @param name [String] the name to validate
         # @return [Boolean] true if the name is valid, false otherwise

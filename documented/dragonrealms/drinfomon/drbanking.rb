@@ -10,46 +10,93 @@ module Lich
     #
     # Bank balances are tracked passively by parsing game output when players
     # deposit, withdraw, or check their balance at banks across Elanthia.
-    # @see Lich::DragonRealms
     module DRBanking
       module Pattern
         # Deposit a portion of money
         # "The clerk slides a small metal box across the counter into which you drop 5 gold Kronars"
+        # Deposit a portion of money.
+        #
+        # Matches the output when a player deposits a specific amount of currency.
+        # @example
+        #   "The clerk slides a small metal box across the counter into which you drop 5 gold Kronars"
+        # @see Pattern::DEPOSIT_ALL_TELLER
+        # @see Pattern::DEPOSIT_ALL_JAR
         DEPOSIT_PORTION = /The clerk slides a small metal box across the counter into which you drop (?<amount>\d+) (?<denomination>\w+) (?<currency>Kronars|Lirums|Dokoras)/i.freeze
 
         # Deposit all money (teller bank)
         # "The clerk slides a small metal box across the counter into which you drop all your Kronars."
+        # Deposit all money at a teller bank.
+        #
+        # Matches the output when a player deposits all their currency at a teller.
+        # @example
+        #   "The clerk slides a small metal box across the counter into which you drop all your Kronars."
+        # @see Pattern::DEPOSIT_PORTION
+        # @see Pattern::DEPOSIT_ALL_JAR
         DEPOSIT_ALL_TELLER = /The clerk slides a small metal box across the counter into which you drop all your (?<currency>Kronars|Lirums|Dokoras)\.\s+She counts them carefully and records the deposit in her ledger/i.freeze
 
         # Deposit all money (jar bank - Hib, etc.)
         # "You cross through the old balance on the label and update it to reflect your new balance"
+        # Deposit all money at a jar bank.
+        #
+        # Matches the output when a player updates their balance in a jar bank.
+        # @example
+        #   "You cross through the old balance on the label and update it to reflect your new balance"
         DEPOSIT_ALL_JAR = /You cross through the old balance on the label and update it to reflect your new balance/i.freeze
 
         # Withdraw a portion of money
         # "The clerk counts out 5 gold Kronars and hands them over, making a notation in her ledger"
         # "You count out 5 gold Dokoras and quickly pocket them, updating the notation on your jar"
+        # Withdraw a portion of money.
+        #
+        # Matches the output when a player withdraws a specific amount of currency.
+        # @example
+        #   "The clerk counts out 5 gold Kronars and hands them over, making a notation in her ledger"
+        # @example
+        #   "You count out 5 gold Dokoras and quickly pocket them, updating the notation on your jar"
         WITHDRAW_PORTION = /(?:The clerk counts|You count) out (?<amount>\d+) (?<denomination>platinum|gold|silver|bronze|copper) (?<currency>Kronars|Lirums|Dokoras) (?:and hands them over, making a notation in her ledger|and quickly pocket them, updating the notation on your jar)/i.freeze
 
         # Withdraw all money
         # "The clerk counts out all your Kronars and hands them over"
         # "You count out all of your Dokoras and quickly pocket them"
+        # Withdraw all money.
+        #
+        # Matches the output when a player withdraws all their currency.
+        # @example
+        #   "The clerk counts out all your Kronars and hands them over"
+        # @example
+        #   "You count out all of your Dokoras and quickly pocket them"
         WITHDRAW_ALL = /(?:The clerk counts out all your|You count out all of your) (?<currency>Kronars|Lirums|Dokoras)/i.freeze
 
         # Balance check
         # "it looks like your current balance is 5 platinum Kronars"
         # "Here we are. Your current balance is 10 gold, 5 silver Lirums"
         # "As expected, there are 100 copper Dokoras"
+        # Check the balance of a bank account.
+        #
+        # Matches the output when a player checks their current balance.
+        # @example
+        #   "it looks like your current balance is 5 platinum Kronars"
+        # @example
+        #   "Here we are. Your current balance is 10 gold, 5 silver Lirums"
+        # @example
+        #   "As expected, there are 100 copper Dokoras"
         BALANCE_CHECK = /(?:it looks like|"Here we are\.)\s*[Yy]our current balance is (?<balance>.*)\s+(?<currency>Kronars|Lirums|Dokoras)|As expected, there are (?<balance>.*)\s+(?<currency>Kronars|Lirums|Dokoras)/i.freeze
 
         # No account at this bank
+        # Indicates that the player does not have an account at the bank.
+        #
+        # Matches the output when a player tries to access a bank without an account.
+        # @example
+        #   "you do not seem to have an account with us"
+        # @example
+        #   "you should find a new deposit jar for your financial needs"
         NO_ACCOUNT = /you do not seem to have an account with us|you should find a new deposit jar for your financial needs/i.freeze
       end
 
       # Denomination multipliers for converting to copper
       # Denomination multipliers for converting to copper.
       #
-      # @example
-      #   to_copper(5, 'gold') # => 5000
+      # This hash maps currency denominations to their values in copper.
       DENOMINATION_VALUES = {
         'platinum' => 10_000,
         'gold'     => 1_000,
@@ -60,6 +107,8 @@ module Lich
 
       # Currency to bank list mapping
       # Currency to bank list mapping.
+      #
+      # This hash maps currency types to their respective bank lists.
       CURRENCY_BANKS = {
         'Kronars' => KRONAR_BANKS,
         'Lirums'  => LIRUM_BANKS,
@@ -68,13 +117,18 @@ module Lich
 
       # Settings key for banking data
       # Settings key for banking data.
+      #
+      # This constant holds the key used to store and retrieve banking data.
       SETTINGS_KEY = 'banking'
 
       # Pattern for parsing balance amounts from strings
       # Pattern for parsing balance amounts from strings.
       #
+      # Matches strings that represent balance amounts in various denominations.
       # @example
-      #   "10 gold" =~ BALANCE_AMOUNT_PATTERN # => true
+      #   "10 gold"
+      # @example
+      #   "5 platinum"
       BALANCE_AMOUNT_PATTERN = /(\d+)\s+(platinum|gold|silver|bronze|copper)/i.freeze
 
       # In-memory cache of accounts data
@@ -83,7 +137,8 @@ module Lich
       class << self
         # Retrieves all bank accounts for the current character.
         #
-        # @return [Hash] a hash of bank accounts keyed by town.
+        # If the accounts are not already loaded, they will be loaded from storage.
+        # @return [Hash] a hash of bank accounts for the character.
         def all_accounts
           load_accounts unless @@accounts_cache
           @@accounts_cache
@@ -91,14 +146,15 @@ module Lich
 
         # Retrieves the bank accounts for the current character.
         #
-        # @return [Hash] a hash of the character's bank accounts.
+        # If no accounts exist, an empty hash is returned.
+        # @return [Hash] a hash of the current character's bank accounts.
         def my_accounts
           all_accounts[character_name] ||= {}
         end
 
         # Updates the balance for a specific town.
         #
-        # @param town [String] the name of the town.
+        # @param town [String] the name of the town where the account is held.
         # @param copper [Integer] the new balance in copper.
         # @return [void]
         def update_balance(town, copper)
@@ -108,18 +164,22 @@ module Lich
           Lich::Messaging.msg('info', "DRBanking: Updated #{town} balance to #{format_currency(copper)}")
         end
 
+        # Clears the balance for a specific town by setting it to zero.
+        #
+        # @param town [String] the name of the town to clear the balance for.
+        # @return [void]
         def clear_balance(town)
           update_balance(town, 0)
         end
 
-        # Calculates the total wealth of the current character across all banks.
+        # Calculates the total wealth across all accounts for the current character.
         #
         # @return [Integer] the total wealth in copper.
         def total_wealth
           my_accounts.values.sum
         end
 
-        # Calculates the total wealth of all characters across all banks.
+        # Calculates the total wealth across all characters' accounts.
         #
         # @return [Integer] the total wealth in copper.
         def total_wealth_all
@@ -128,8 +188,8 @@ module Lich
 
         # Converts an amount of currency to copper based on its denomination.
         #
-        # @param amount [Integer] the amount of currency.
-        # @param denomination [String] the type of currency (e.g., 'gold').
+        # @param amount [Integer] the amount of currency to convert.
+        # @param denomination [String] the denomination of the currency.
         # @return [Integer] the equivalent amount in copper.
         def to_copper(amount, denomination)
           multiplier = DENOMINATION_VALUES[denomination.downcase] || 1
@@ -152,7 +212,7 @@ module Lich
 
         # Formats a copper amount into a human-readable currency string.
         #
-        # @param copper [Integer] the amount in copper.
+        # @param copper [Integer] the amount in copper to format.
         # @return [String] the formatted currency string.
         def format_currency(copper)
           copper = copper.to_i
@@ -171,7 +231,7 @@ module Lich
 
         # Determines the current bank town based on the room title.
         #
-        # @return [String, nil] the name of the current bank town or nil if not found.
+        # @return [String, nil] the name of the current bank town or nil if not in a bank.
         def current_bank_town
           room_title = XMLData.room_title
           return nil if room_title.nil? || room_title.empty?
@@ -182,9 +242,9 @@ module Lich
           nil
         end
 
-        # Parses a line of game output to update banking information.
+        # Parses a line of game output to handle banking actions.
         #
-        # @param line [String] the line of game output to parse.
+        # @param line [String] the line of output to parse.
         # @return [void]
         def parse(line)
           return unless line.is_a?(String)
@@ -208,7 +268,7 @@ module Lich
           end
         end
 
-        # Displays the current character's bank balances.
+        # Displays the bank balances for the current character.
         #
         # @return [void]
         def display_banks
@@ -238,7 +298,7 @@ module Lich
           Lich::Messaging.msg('info', "  #{'Grand Total:'.rjust(25)} #{format_currency(total_wealth)}")
         end
 
-        # Displays bank balances for all characters.
+        # Displays the bank balances for all characters.
         #
         # @return [void]
         def display_banks_all
@@ -273,7 +333,6 @@ module Lich
         # Reloads the bank accounts from storage.
         #
         # @return [void]
-        # @api private
         def reload!
           @@accounts_cache = nil
           load_accounts
@@ -282,7 +341,6 @@ module Lich
         # Resets the bank data for the current character.
         #
         # @return [void]
-        # @api private
         def reset_character!
           all_accounts.delete(character_name)
           save_accounts
@@ -292,7 +350,6 @@ module Lich
         # Resets the bank data for all characters.
         #
         # @return [void]
-        # @api private
         def reset_all!
           @@accounts_cache = {}
           save_accounts

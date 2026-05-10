@@ -22,7 +22,7 @@ module Lich
       end
 
       # Removes and returns the smallest value from the heap.
-      # @return [Array<Integer, Object>, nil] the smallest value and its priority, or nil if the heap is empty
+      # @return [Array<Object>, nil] the smallest value and its priority, or nil if the heap is empty
       def pop
         return nil if @heap.empty?
 
@@ -74,7 +74,7 @@ module Lich
       end
     end
 
-    # A module that provides map-related functionality.
+    # A module that provides base functionality for map-related operations.
     #
     # This module is intended to be included in classes that manage map data.
     module MapBase
@@ -114,6 +114,11 @@ module Lich
           time
         end
 
+        # Computes the shortest path from a source room to a destination room using Dijkstra's algorithm.
+        # @param source [String, self] the source room identifier or an instance of the class
+        # @param destination [String, nil] the destination room identifier, or nil for all reachable rooms
+        # @return [Array] the shortest path and distances
+        # @raise StandardError if an error occurs during computation
         def dijkstra(source, destination = nil)
           if source.is_a?(self)
             source.dijkstra(destination)
@@ -128,7 +133,7 @@ module Lich
         # Finds the path from a source room to a destination room.
         # @param source [String, self] the source room identifier or an instance of the class
         # @param destination [String] the destination room identifier
-        # @return [Array<Integer>, nil] the path of room identifiers, or nil if no path exists
+        # @return [Array<Integer>, nil] the path as an array of room IDs, or nil if no path exists
         def findpath(source, destination)
           if source.is_a?(self)
             source.path_to(destination)
@@ -162,7 +167,7 @@ module Lich
         end
 
         # Saves the current map data to a JSON file.
-        # @param filename [String, nil] the name of the file to save to, or nil to use a default name
+        # @param filename [String, nil] the name of the file to save to; defaults to a generated filename
         # @return [void]
         def save_json(filename = nil)
           filename ||= File.join(DATA_DIR, XMLData.game, "map-#{Time.now.to_i}.json")
@@ -187,10 +192,9 @@ module Lich
 
         alias_method :save, :save_json
 
-        # Loads map data from a .dat file format (deprecated).
-        # @param filename [String, nil] the name of the file to load, or nil to load the latest file
+        # Loads map data from a .dat file.
+        # @param filename [String, nil] the name of the file to load; defaults to searching for .dat files
         # @return [Boolean] true if loading was successful, false otherwise
-        # @deprecated Use {.load_json} instead.
         def load_dat(filename = nil)
           respond '--- WARNING: Map.load_dat (Marshal .dat format) is deprecated. Use Map.load_json instead.'
           synchronize_load do
@@ -268,6 +272,8 @@ module Lich
       end
 
       # Instance methods for map objects.
+      #
+      # These methods provide functionality for individual map instances.
       module InstanceMethods
         def to_i
           @id
@@ -293,9 +299,9 @@ module Lich
           {}
         end
 
-        # Converts the map object to a JSON representation.
+        # Converts the map instance to a JSON representation.
         # @param args [Array] optional arguments for JSON generation
-        # @return [String] the JSON representation of the map object
+        # @return [String] the JSON representation of the map
         def to_json(*_args)
           mapjson = {
             id: @id,
@@ -319,9 +325,10 @@ module Lich
           JSON.pretty_generate(mapjson)
         end
 
-        # Computes the shortest path to a destination using Dijkstra's algorithm.
-        # @param destination [Integer, nil] the destination room identifier, or nil for all reachable rooms
-        # @return [Array<Array<Integer>, Array<Float>>, nil] the previous room identifiers and shortest distances, or nil on error
+        # Computes the shortest path to a destination room using Dijkstra's algorithm.
+        # @param destination [String, nil] the destination room identifier, or nil for all reachable rooms
+        # @return [Array] the shortest path and distances
+        # @raise StandardError if an error occurs during computation
         def dijkstra(destination = nil)
           self.class.load unless self.class.loaded?
           source = @id
@@ -390,8 +397,8 @@ module Lich
         end
 
         # Finds the path to a specified destination room.
-        # @param destination [Integer] the destination room identifier
-        # @return [Array<Integer>, nil] the path of room identifiers, or nil if no path exists
+        # @param destination [String] the destination room identifier
+        # @return [Array<Integer>, nil] the path as an array of room IDs, or nil if no path exists
         def path_to(destination)
           self.class.load unless self.class.loaded?
           destination = destination.to_i
@@ -430,7 +437,7 @@ module Lich
         end
 
         # Finds the nearest room from a list of target rooms.
-        # @param target_list [Array<Integer>] an array of room IDs to search from
+        # @param target_list [Array<String>] an array of room identifiers to search from
         # @return [Integer] the ID of the nearest room
         def find_nearest(target_list)
           target_list = target_list.collect(&:to_i)
@@ -449,30 +456,30 @@ module Lich
           @description
         end
 
-        # Returns the name of the map image.
-        # @return [String] the name of the map image
+        # Returns the name of the map.
+        # @return [String] the name of the map
         def map_name
           @image
         end
 
-        # Returns the x-coordinate of the map's center.
-        # @return [Integer, nil] the x-coordinate, or nil if not available
+        # Returns the X coordinate of the map's center.
+        # @return [Integer, nil] the X coordinate, or nil if not available
         def map_x
           return nil if @image_coords.nil?
 
           ((image_coords[0] + image_coords[2]) / 2.0).round
         end
 
-        # Returns the y-coordinate of the map's center.
-        # @return [Integer, nil] the y-coordinate, or nil if not available
+        # Returns the Y coordinate of the map's center.
+        # @return [Integer, nil] the Y coordinate, or nil if not available
         def map_y
           return nil if @image_coords.nil?
 
           ((image_coords[1] + image_coords[3]) / 2.0).round
         end
 
-        # Returns the width of the map room.
-        # @return [Integer, nil] the width, or nil if not available
+        # Returns the size of the map room.
+        # @return [Integer, nil] the size of the room, or nil if not available
         def map_roomsize
           return nil if @image_coords.nil?
 

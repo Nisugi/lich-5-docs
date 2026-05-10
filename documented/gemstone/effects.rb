@@ -3,13 +3,10 @@ module Lich
     module Effects
       # Manages a collection of effects for the Lich project.
       #
-      # This class includes methods to handle the registration,
-      # expiration, and active status of various effects.
+      # This class includes methods to handle the registration and
+      # retrieval of effects, including spells, buffs, and debuffs.
       #
-      # @see Lich::Gemstone::Effects::Spells
-      # @see Lich::Gemstone::Effects::Buffs
-      # @see Lich::Gemstone::Effects::Debuffs
-      # @see Lich::Gemstone::Effects::Cooldowns
+      # @see Lich::Gemstone::Effects
       class Registry
         include Enumerable
 
@@ -21,21 +18,21 @@ module Lich
         end
 
         # Converts the registry to a hash representation.
-        # @return [Hash] a hash of effects associated with the dialog
+        # @return [Hash] a hash containing the effects associated with the dialog
         def to_h
           XMLData.dialogs.fetch(@dialog, {})
         end
 
         # Iterates over each effect in the registry.
-        # @yield [key, value] each key-value pair in the registry
+        # @yield [key, value] each key-value pair in the effects hash
         # @return [void]
         def each()
           to_h.each { |k, v| yield(k, v) }
         end
 
         # Retrieves the expiration time for a given effect.
-        # @param effect [String, Regexp] the effect to check
-        # @return [Integer] the expiration time in seconds, or 0 if not found
+        # @param effect [String, Regexp] the effect to check for expiration
+        # @return [Integer] the expiration time in seconds since epoch, or 0 if not found
         def expiration(effect)
           if effect.is_a?(Regexp)
             to_h.find { |k, _v| k.to_s =~ effect }[1] || 0

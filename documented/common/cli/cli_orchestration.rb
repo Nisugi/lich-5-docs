@@ -56,7 +56,7 @@ module Lich
           end
         end
 
-        # Handles the change of an account password.
+        # Handles the change of an account password via command line arguments.
         #
         # @param account [String] the account whose password is to be changed
         # @param new_password [String] the new password for the account
@@ -77,7 +77,7 @@ module Lich
           exit Lich::Common::Authentication::CLIPassword.change_account_password(account, new_password)
         end
 
-        # Handles the addition of a new account.
+        # Handles the addition of a new account via command line arguments.
         #
         # @param account [String] the account to be added
         # @param password [String] the password for the new account
@@ -130,7 +130,7 @@ module Lich
           exit Lich::Common::Authentication::CLIPassword.add_account(account, password, frontend)
         end
 
-        # Handles the change of the master password.
+        # Handles the change of the master password via command line arguments.
         #
         # @param old_password [String] the current master password
         # @param new_password [String, nil] the new master password (optional)
@@ -152,7 +152,7 @@ module Lich
           exit Lich::Common::Authentication::CLIPassword.change_master_password(old_password, new_password)
         end
 
-        # Handles the recovery of the master password.
+        # Handles the recovery of the master password via command line arguments.
         #
         # @param new_password [String, nil] the new master password (optional)
         # @return [Integer] exit status code
@@ -218,7 +218,7 @@ module Lich
           end
         end
 
-        # Handles the change of the encryption mode.
+        # Handles the change of the encryption mode via command line arguments.
         #
         # @param mode_arg [String] the new encryption mode to set
         # @return [Integer] exit status code

@@ -3,7 +3,7 @@ module Lich
   module Gemstone
     # Represents the character's wounds and injuries in the game.
     #
-    # This class provides methods to access and manipulate the wound data for various body parts.
+    # This class provides methods to access and manage the wounds of various body parts.
     #
     # @see Lich::Gemstone::CharacterStatus
     class Wounds < Gemstone::CharacterStatus # GameBase::CharacterStatus
@@ -31,9 +31,6 @@ module Lich
         }.freeze
 
         # Define methods for each body part and its aliases
-        # Defines methods for each body part and its aliases.
-        #
-        # This dynamically creates methods for accessing wound data for each body part defined in the BODY_PARTS constant.
         BODY_PARTS.each do |part, aliases|
           # Define the primary method
           define_method(part) do
@@ -48,7 +45,11 @@ module Lich
           end
         end
 
+        # Returns the wound for the left eye.
+        # @return [String, nil] the wound description or nil if no wound exists.
         def left_eye; leftEye; end
+        # Returns the wound for the right eye.
+        # @return [String, nil] the wound description or nil if no wound exists.
         def right_eye; rightEye; end
         def left_arm; leftArm; end
         def right_arm; rightArm; end
@@ -59,9 +60,8 @@ module Lich
         def left_foot; leftFoot; end
         def right_foot; rightFoot; end
 
-        # Returns the maximum wound level for both arms and hands.
-        #
-        # @return [Integer] the maximum wound level among the left arm, right arm, left hand, and right hand.
+        # Returns the most severe wound among the arms and hands.
+        # @return [String, nil] the most severe wound description or nil if no wounds exist.
         def arms
           fix_injury_mode('both')
           [
@@ -72,9 +72,8 @@ module Lich
           ].max
         end
 
-        # Returns the maximum wound level for all limbs (arms and legs).
-        #
-        # @return [Integer] the maximum wound level among the left arm, right arm, left hand, right hand, left leg, and right leg.
+        # Returns the most severe wound among all limbs (arms and legs).
+        # @return [String, nil] the most severe wound description or nil if no wounds exist.
         def limbs
           fix_injury_mode('both')
           [
@@ -87,9 +86,8 @@ module Lich
           ].max
         end
 
-        # Returns the maximum wound level for the torso and head.
-        #
-        # @return [Integer] the maximum wound level among the right eye, left eye, chest, abdomen, and back.
+        # Returns the most severe wound among the torso and head.
+        # @return [String, nil] the most severe wound description or nil if no wounds exist.
         def torso
           fix_injury_mode('both')
           [
@@ -101,18 +99,16 @@ module Lich
           ].max
         end
 
-        # Returns the wound level for a specific body part.
-        #
+        # Returns the wound level for a specified body part.
         # @param part [Symbol] the body part to check (e.g., :leftArm)
-        # @return [Integer, nil] the wound level for the specified body part, or nil if not found.
+        # @return [String, nil] the wound description or nil if no wound exists.
         def wound_level(part)
           fix_injury_mode('both')
           XMLData.injuries[part.to_s] && XMLData.injuries[part.to_s]['wound']
         end
 
         # Returns a hash of all wounds for each body part.
-        #
-        # @return [Hash] a hash where keys are body part symbols and values are their corresponding wound levels.
+        # @return [Hash<Symbol, String, nil>] a hash mapping body parts to their wound descriptions.
         def all_wounds
           fix_injury_mode('both')
           XMLData.injuries.transform_values { |v| v['wound'] }

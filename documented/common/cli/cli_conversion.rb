@@ -3,17 +3,12 @@
 require_relative '../authentication/entry_store'
 
 module Lich
-  # Provides common functionality for the Lich CLI.
-  #
-  # @see Lich::Common::Authentication for authentication-related methods.
   module Common
     module CLI
-      # Provides methods for converting entry data formats in the CLI.
-      #
-      # This module handles the conversion of legacy entry data to the new format.
       module CLIConversion
-        # Determines if conversion is needed based on the presence of entry.dat and entry.yaml files.
-        # @param data_dir [String] the directory containing the entry files
+        # Determines if conversion is needed based on the presence of entry.dat and absence of entry.yaml.
+        #
+        # @param data_dir [String] the directory containing the data files
         # @return [Boolean] true if conversion is needed, false otherwise
         def self.conversion_needed?(data_dir)
           dat_file = File.join(data_dir, 'entry.dat')
@@ -22,11 +17,10 @@ module Lich
           File.exist?(dat_file) && !File.exist?(yaml_file)
         end
 
-        # Converts entry data from the legacy format to the new format.
+        # Converts the entry.dat file to the new format based on the specified encryption mode.
         #
-        # This method validates the existence of necessary files and performs the conversion.
-        # @param data_dir [String] the directory containing the entry files
-        # @param encryption_mode [String] the encryption mode to use for the conversion
+        # @param data_dir [String] the directory containing the data files
+        # @param encryption_mode [String] the mode of encryption to use for the conversion
         # @return [Boolean] true if conversion was successful, false otherwise
         # @raise StandardError if an error occurs during conversion
         def self.convert(data_dir, encryption_mode)
@@ -62,9 +56,9 @@ module Lich
           false
         end
 
-        # Prints a help message for users regarding entry conversion.
+        # Prints a help message to the standard output regarding the conversion of saved entries.
         #
-        # This method provides instructions on how to convert saved entries to the new format.
+        # @return [void]
         def self.print_conversion_help_message
           lich_script = File.join(LICH_DIR, 'lich.rbw')
 

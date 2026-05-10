@@ -4,11 +4,12 @@ module Lich
     module Infomon
       module Parser
         module Pattern
-          # Regex patterns for parsing character information, experience, skills, and PSMs.
+          # Regex patterns for parsing various character attributes and statistics.
           #
-          # These patterns are used to match and extract relevant data from game output.
+          # These patterns are used to extract information from game output related to character stats,
+          # skills, experience, and other gameplay elements.
           #
-          # @see Lich::Gemstone::Infomon for data handling methods.
+          # @see Lich::Gemstone::Infomon
           # Regex patterns grouped for Info, Exp, Skill and PSM parsing - calls upsert_batch to reduce db impact
           CharRaceProf = /^Name:\s+(?<name>[A-z\s'-]+)\s+Race:\s+(?<race>[A-z]+|[A-z]+(?: |-)[A-z]+)\s+Profession:\s+(?<profession>[-A-z]+)/.freeze
           CharGenderAgeExpLevel = /^Gender:\s+(?<gender>[A-z]+)\s+Age:\s+(?<age>[,0-9]+)\s+Expr:\s+(?<experience>[0-9,]+)\s+Level:\s+(?<level>[0-9]+)/.freeze
@@ -145,6 +146,12 @@ module Lich
                              EnhanciveOn, EnhanciveOff, EnhancivePauses)
         end
 
+        # Manages the state of the Infomon parser.
+        #
+        # This module keeps track of the current state of the parser, allowing transitions between
+        # different states such as ready, goals, and profile.
+        #
+        # @see Lich::Gemstone::Infomon::Parser
         module State
           @state = :ready
           Goals = :goals
@@ -160,9 +167,10 @@ module Lich
 
           # Sets the current state of the parser.
           #
-          # @param state [Symbol] the new state to set (e.g., :goals, :profile)
+          # This method validates the state transition and updates the internal state variable.
+          #
+          # @param state [Symbol] the new state to set
           # @return [void]
-          # @raise [RuntimeError] if the state transition is invalid.
           def self.set(state)
             case state
             when Goals, Profile
@@ -180,20 +188,29 @@ module Lich
             @state = state
           end
 
+          # Retrieves the current state of the parser.
+          #
+          # @return [Symbol] the current state of the parser
           def self.get
             @state
           end
 
+          # Checks if the current state is one of the enhancive states.
+          #
+          # @return [Boolean] true if in an enhancive state, false otherwise
           def self.enhancive_state?
             [EnhanciveStats, EnhanciveSkills, EnhanciveResources,
              EnhanciveMartial, EnhanciveSpells, EnhanciveStatistics].include?(@state)
           end
         end
 
-        # Finds the category name based on the input string.
+        # Determines the category of a given string based on its content.
         #
-        # @param category [String] the category string to match against known categories
-        # @return [String, nil] the matched category name or nil if no match is found.
+        # @param category [String] the category string to analyze
+        # @return [String, nil] the determined category or nil if not matched
+        # @example
+        #   find_cat("Armor") # => "Armor"
+        #   find_cat("Combat") # => "CMan"
         def self.find_cat(category)
           case category
           when /Armor/
@@ -213,9 +230,12 @@ module Lich
 
         # Parses a line of game output and updates the internal state accordingly.
         #
-        # @param line [String] the line of output to parse
-        # @return [Symbol] the result of the parsing operation (e.g., :ok, :noop)
-        # @note This method handles various patterns defined in the Pattern module.
+        # This method uses regex patterns to identify and extract relevant data from the input line,
+        # updating the Infomon database with the parsed information.
+        #
+        # @param line [String] the line of game output to parse
+        # @return [Symbol] status of the parsing operation, e.g., :ok, :noop
+        # @raise [StandardError] if an error occurs during parsing
         def self.parse(line)
           # O(1) vs O(N)
           return :noop unless line =~ Pattern::All

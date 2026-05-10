@@ -10,15 +10,17 @@ require_relative "weapon_stats_thrown.rb"
 require_relative "weapon_stats_two_handed.rb"
 require_relative "weapon_stats_unarmed.rb"
 
-# Provides functionality for the Lich project.
+# Contains the Lich framework for Gemstone.
 #
 # @see Lich::Gemstone
 module Lich
   module Gemstone
     module Armaments
-      # Contains weapon statistics and related methods.
+      # Provides access to weapon statistics and metadata.
       #
-      # This module provides methods to find, list, and compare weapon stats.
+      # This module contains methods to find, list, and compare weapons,
+      # as well as retrieve detailed damage information.
+      #
       # @see Lich::Gemstone::Armaments::WeaponStats#find
       # @see Lich::Gemstone::Armaments::WeaponStats#list
       module WeaponStats
@@ -60,13 +62,13 @@ module Lich
         Lich::Util.deep_freeze(@@weapon_stats)
 
         ##
-        # Finds weapon information by name and category.
+        # Finds a weapon by its name and optional category.
         #
         # @param name [String] the name of the weapon to find
-        # @param category [String, nil] optional category to narrow the search
-        # @return [Hash, nil] weapon information if found, otherwise nil
-        # @example
-        #   find("sword") # => returns weapon info for sword
+        # @param category [String, nil] the category of the weapon (optional)
+        # @return [Hash, nil] the weapon information or nil if not found
+        # @example Find a weapon by name
+        #   weapon = Lich::Gemstone::Armaments::WeaponStats.find("sword")
         def self.find(name, category = nil)
           name = name.downcase.strip
 
@@ -88,12 +90,12 @@ module Lich
         end
 
         ##
-        # Lists all weapons in a given category or all weapons if no category is specified.
+        # Lists all weapons in the specified category or all weapons if no category is given.
         #
-        # @param category [String, nil] optional category to filter the list
-        # @return [Array<Hash>] array of weapon information hashes
-        # @example
-        #   list(:blunt) # => returns all blunt weapons
+        # @param category [String, nil] the category of weapons to list (optional)
+        # @return [Array<Hash>] an array of weapon information hashes
+        # @example List all weapons
+        #   weapons = Lich::Gemstone::Armaments::WeaponStats.list
         def self.list(category = nil)
           result = []
           if category
@@ -109,9 +111,9 @@ module Lich
         ##
         # Returns the list of weapon categories available.
         #
-        # @return [Array<Symbol>] array of weapon category symbols
-        # @example
-        #   categories # => [:brawling, :hybrid, :missile, ...]
+        # @return [Array<Symbol>] an array of weapon category symbols
+        # @example Get weapon categories
+        #   categories = Lich::Gemstone::Armaments::WeaponStats.categories
         def self.categories
           @@weapon_stats.keys
         end
@@ -120,10 +122,10 @@ module Lich
         # Provides a summary of damage types for a specified weapon.
         #
         # @param name [String] the name of the weapon
-        # @param category [String, nil] optional category to narrow the search
-        # @return [Hash, nil] summary of damage types if found, otherwise nil
-        # @example
-        #   damage_summary("sword") # => returns damage summary for sword
+        # @param category [String, nil] the category of the weapon (optional)
+        # @return [Hash, nil] a hash containing damage type information or nil if not found
+        # @example Get damage summary for a weapon
+        #   summary = Lich::Gemstone::Armaments::WeaponStats.damage_summary("sword")
         def self.damage_summary(name, category = nil)
           name = name.downcase.strip
 
@@ -143,10 +145,10 @@ module Lich
         # Retrieves all aliases for a specified weapon name.
         #
         # @param name [String] the name of the weapon
-        # @param category [String, nil] optional category to narrow the search
-        # @return [Array<String>] array of aliases for the weapon
-        # @example
-        #   aliases_for("sword") # => returns array of aliases for sword
+        # @param category [String, nil] the category of the weapon (optional)
+        # @return [Array<String>] an array of aliases for the weapon
+        # @example Get aliases for a weapon
+        #   aliases = Lich::Gemstone::Armaments::WeaponStats.aliases_for("sword")
         def self.aliases_for(name, category = nil)
           name = name.downcase.strip
 
@@ -155,15 +157,15 @@ module Lich
         end
 
         ##
-        # Compares two weapons and returns their stats.
+        # Compares two weapons and returns their statistics.
         #
         # @param name1 [String] the name of the first weapon
         # @param name2 [String] the name of the second weapon
-        # @param category1 [String, nil] optional category for the first weapon
-        # @param category2 [String, nil] optional category for the second weapon
-        # @return [Hash, nil] comparison data if both weapons are found, otherwise nil
-        # @example
-        #   compare("sword", "axe") # => returns comparison data for sword and axe
+        # @param category1 [String, nil] the category of the first weapon (optional)
+        # @param category2 [String, nil] the category of the second weapon (optional)
+        # @return [Hash, nil] a hash containing comparison data or nil if either weapon is not found
+        # @example Compare two weapons
+        #   comparison = Lich::Gemstone::Armaments::WeaponStats.compare("sword", "axe")
         def self.compare(name1, name2, category1 = nil, category2 = nil)
           name1 = name1.downcase.strip
           name2 = name2.downcase.strip
@@ -186,12 +188,12 @@ module Lich
         end
 
         ##
-        # Searches for weapons based on provided filters.
+        # Searches for weapons based on specified filters.
         #
-        # @param filters [Hash] criteria to filter weapons
-        # @return [Array<Hash>] array of matching weapon information hashes
-        # @example
-        #   search(damage_type: :slash) # => returns weapons with slash damage
+        # @param filters [Hash] a hash of filters to apply to the search
+        # @return [Array<Hash>] an array of weapons matching the filters
+        # @example Search for weapons with specific damage type
+        #   results = Lich::Gemstone::Armaments::WeaponStats.search(damage_type: :slash)
         def self.search(filters = {})
           results = []
 
@@ -248,9 +250,9 @@ module Lich
         # Retrieves all weapons in a specified category.
         #
         # @param category [String] the category of weapons to retrieve
-        # @return [Array<Hash>] array of weapon information hashes in the specified category
-        # @example
-        #   weapons_in_category(:blunt) # => returns all blunt weapons
+        # @return [Array<Hash>] an array of weapons in the specified category
+        # @example Get weapons in the "blunt" category
+        #   blunt_weapons = Lich::Gemstone::Armaments::WeaponStats.weapons_in_category("blunt")
         def self.weapons_in_category(category)
           category = category.to_sym
           return [] unless @@weapon_stats.key?(category)
@@ -261,9 +263,9 @@ module Lich
         ##
         # Returns a unique list of all weapon names and aliases.
         #
-        # @return [Array<String>] array of unique weapon names
-        # @example
-        #   names # => returns all unique weapon names
+        # @return [Array<String>] an array of unique weapon names and aliases
+        # @example Get all weapon names
+        #   all_names = Lich::Gemstone::Armaments::WeaponStats.names
         def self.names
           @@weapon_stats.values.flat_map do |weapons|
             weapons.values.map { |w| w[:all_names] }
@@ -271,12 +273,12 @@ module Lich
         end
 
         ##
-        # Checks if a weapon is grippable based on its name.
+        # Checks if a weapon is grippable by its name.
         #
         # @param name [String] the name of the weapon
-        # @return [Boolean] true if the weapon is grippable, otherwise false
-        # @example
-        #   is_grippable?("sword") # => returns true if sword is grippable
+        # @return [Boolean] true if the weapon is grippable, false otherwise
+        # @example Check if a weapon is grippable
+        #   grippable = Lich::Gemstone::Armaments::WeaponStats.is_grippable?("sword")
         def self.is_grippable?(name)
           name = name.downcase.strip
 
@@ -289,9 +291,9 @@ module Lich
         # Retrieves the category for a specified weapon name.
         #
         # @param name [String] the name of the weapon
-        # @return [String, nil] the category of the weapon if found, otherwise nil
-        # @example
-        #   category_for("sword") # => returns the category for sword
+        # @return [String, nil] the category of the weapon or nil if not found
+        # @example Get the category for a weapon
+        #   category = Lich::Gemstone::Armaments::WeaponStats.category_for("sword")
         def self.category_for(name)
           name = name.downcase.strip
 
@@ -300,12 +302,12 @@ module Lich
         end
 
         ##
-        # Formats and returns a detailed string representation of a weapon's stats.
+        # Returns a detailed string representation of a weapon's stats.
         #
         # @param name [String] the name of the weapon
-        # @return [String] formatted string with detailed weapon stats
-        # @example
-        #   pretty_long("sword") # => returns detailed stats for sword
+        # @return [String] a formatted string with detailed weapon information
+        # @example Get detailed weapon information
+        #   details = Lich::Gemstone::Armaments::WeaponStats.pretty_long("sword")
         def self.pretty_long(name)
           weapon = self.find(name)
           return "\n(no data)\n" unless weapon.is_a?(Hash)
@@ -370,12 +372,12 @@ module Lich
         end
 
         ##
-        # Formats and returns a concise string representation of a weapon's stats.
+        # Returns a concise string representation of a weapon's stats.
         #
         # @param name [String] the name of the weapon
-        # @return [String] formatted string with concise weapon stats
-        # @example
-        #   pretty("sword") # => returns concise stats for sword
+        # @return [String] a formatted string with concise weapon information
+        # @example Get concise weapon information
+        #   info = Lich::Gemstone::Armaments::WeaponStats.pretty("sword")
         def self.pretty(name)
           weapon = self.find(name)
           return "\n(no data)\n" unless weapon.is_a?(Hash)
@@ -429,9 +431,9 @@ module Lich
         # Validates if a given name corresponds to a known weapon.
         #
         # @param name [String] the name to validate
-        # @return [Boolean] true if the name is valid, otherwise false
-        # @example
-        #   valid_name?("sword") # => returns true if sword is a valid weapon name
+        # @return [Boolean] true if the name is valid, false otherwise
+        # @example Check if a name is valid
+        #   valid = Lich::Gemstone::Armaments::WeaponStats.valid_name?("sword")
         def self.valid_name?(name)
           name = name.downcase.strip
           @@weapon_stats.values.any? do |weapons|

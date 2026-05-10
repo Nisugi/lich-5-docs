@@ -22,9 +22,8 @@ module Lich
         #
         # @param chunk [String] the raw combat data to process
         # @return [void]
-        # @example
-        #   process("some combat data")
-        # @note This method handles the parsing and event persistence.
+        # @example Process a combat chunk
+        #   process("<combat_data>")
         def process(chunk)
           events = parse_events(chunk)
           return if events.empty?
@@ -38,8 +37,6 @@ module Lich
         #
         # @param lines [Array<String>] the lines of combat data to parse
         # @return [Array<Hash>] an array of parsed events
-        # @example
-        #   parse_events(["line 1", "line 2"])
         def parse_events(lines)
           events = []
           current_event = nil
@@ -196,7 +193,6 @@ module Lich
         #
         # @param event [Hash] the event data to persist
         # @return [void]
-        # @note This method applies damage, critical hits, and status effects.
         def persist_event(event)
           target = event[:target]
           return unless target[:id]
@@ -255,7 +251,6 @@ module Lich
         # @param ucs_result [Hash] the UCS event data
         # @param current_target [Hash, nil] the current target creature, if any
         # @return [void]
-        # @note This method handles various UCS event types.
         def apply_ucs_to_target(ucs_result, current_target = nil)
           target_id = ucs_result[:target_id]
 
@@ -295,7 +290,6 @@ module Lich
         # @param target_id [String, nil] the target's ID, if known
         # @param action [Symbol] the action to perform (:add or :remove)
         # @return [void]
-        # @note This method attempts to find the creature by ID or name.
         def apply_status_to_target(status, target_name_or_id, target_id = nil, action = :add)
           # Handle both name lookup and direct ID
           if target_id
@@ -321,12 +315,10 @@ module Lich
           end
         end
 
-        # Maps critical hit locations to body part names.
+        # Maps a critical hit location to the corresponding body part format.
         #
-        # @param location [String] the location string to map
-        # @return [String, nil] the mapped body part name or nil if not found
-        # @example
-        #   map_critranks_to_body_part("leftarm") #=> "leftArm"
+        # @param location [String] the location of the critical hit
+        # @return [String, nil] the mapped body part or nil if not found
         def map_critranks_to_body_part(location)
           return nil unless location
 

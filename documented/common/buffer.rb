@@ -4,27 +4,24 @@ module Lich
     module Buffer
       # Represents the downstream stripped mode.
       #
-      # @see Buffer#streams
+      # @see DOWNSTREAM_RAW
+      # @see DOWNSTREAM_MOD
       DOWNSTREAM_STRIPPED = 1
       # Represents the downstream raw mode.
       #
-      # @see Buffer#streams
+      # @see DOWNSTREAM_STRIPPED
+      # @see DOWNSTREAM_MOD
       DOWNSTREAM_RAW      = 2
       # Represents the downstream modified mode.
       #
-      # @see Buffer#streams
+      # @see DOWNSTREAM_STRIPPED
+      # @see DOWNSTREAM_RAW
       DOWNSTREAM_MOD      = 4
       # Represents the upstream mode.
-      #
-      # @see Buffer#streams
       UPSTREAM            = 8
       # Represents the upstream modified mode.
-      #
-      # @see Buffer#streams
       UPSTREAM_MOD        = 16
       # Represents the script output mode.
-      #
-      # @see Buffer#streams
       SCRIPT_OUTPUT       = 32
       @@index             = Hash.new
       @@streams           = Hash.new
@@ -32,8 +29,9 @@ module Lich
       @@offset            = 0
       @@buffer            = Array.new
       @@max_size          = 3000
-      # Reads a line from the buffer, blocking until a line is available.
-      # @return [Line] the line read from the buffer, or nil if no line is available
+      # Retrieves the next line from the buffer, blocking if necessary.
+      #
+      # @return [Line] the next line object from the buffer, or nil if no line is available.
       def Buffer.gets
         thread_id = Thread.current.object_id
         if @@index[thread_id].nil?
@@ -59,8 +57,9 @@ module Lich
         return line
       end
 
-      # Attempts to read a line from the buffer without blocking.
-      # @return [Line, nil] the line read from the buffer, or nil if no line is available
+      # Retrieves the next line from the buffer without blocking.
+      #
+      # @return [Line, nil] the next line object from the buffer, or nil if no line is available.
       def Buffer.gets?
         thread_id = Thread.current.object_id
         if @@index[thread_id].nil?
@@ -88,7 +87,8 @@ module Lich
       end
 
       # Resets the buffer index for the current thread to the offset.
-      # @return [Buffer] self
+      #
+      # @return [Buffer] self for method chaining.
       def Buffer.rewind
         thread_id = Thread.current.object_id
         @@index[thread_id] = @@offset
@@ -96,8 +96,9 @@ module Lich
         return self
       end
 
-      # Clears the lines from the buffer for the current thread.
-      # @return [Array<Line>] the lines that were cleared from the buffer
+      # Clears the buffer for the current thread, returning all lines that match the current stream.
+      #
+      # @return [Array<Line>] an array of lines that were cleared from the buffer.
       def Buffer.clear
         thread_id = Thread.current.object_id
         if @@index[thread_id].nil?
@@ -126,9 +127,10 @@ module Lich
       end
 
       # Updates the buffer with a new line, optionally setting its stream.
-      # @param line [Line] the line to add to the buffer
-      # @param stream [Integer, nil] the stream identifier for the line
-      # @return [Buffer] self
+      #
+      # @param line [Line] the line object to add to the buffer.
+      # @param stream [Integer, nil] the stream identifier for the line.
+      # @return [Buffer] self for method chaining.
       def Buffer.update(line, stream = nil)
         @@mutex.synchronize {
           frozen_line = line.dup
@@ -146,15 +148,17 @@ module Lich
       end
 
       # rubocop:disable Lint/HashCompareByIdentity
-      # Retrieves the current stream settings for the thread.
-      # @return [Integer] the current stream settings
+      # Retrieves the current stream value for the calling thread.
+      #
+      # @return [Integer] the current stream value.
       def Buffer.streams
         @@streams[Thread.current.object_id]
       end
 
-      # Sets the stream settings for the current thread.
-      # @param val [Integer] the new stream settings
-      # @raise ArgumentError if val is not a valid stream value
+      # Sets the stream value for the calling thread.
+      #
+      # @param val [Integer] the new stream value to set.
+      # @return [void]
       def Buffer.streams=(val)
         if (!val.is_a?(Integer)) or ((val & 63) == 0)
           respond "--- Lich: error: invalid streams value\n\t#{$!.caller[0..2].join("\n\t")}"
@@ -165,7 +169,8 @@ module Lich
 
       # rubocop:enable Lint/HashCompareByIdentity
       # Cleans up the buffer by removing entries for threads that no longer exist.
-      # @return [Buffer] self
+      #
+      # @return [Buffer] self for method chaining.
       def Buffer.cleanup
         @@index.delete_if { |k, _v| not Thread.list.any? { |t| t.object_id == k } }
         @@streams.delete_if { |k, _v| not Thread.list.any? { |t| t.object_id == k } }

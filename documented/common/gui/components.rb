@@ -18,7 +18,7 @@ module Lich
         #
         # @param buttons [Array<Gtk::Button>] the buttons to include in the box
         # @param expand [Boolean] whether the buttons should expand to fill the box
-        # @param fill [Boolean] whether the buttons should fill the available space
+        # @param fill [Boolean] whether the buttons should fill the space allocated to them
         # @param padding [Integer] the padding between buttons
         # @return [Gtk::Box] the created button box
         def self.create_button_box(buttons, expand: false, fill: false, padding: 5)
@@ -35,7 +35,7 @@ module Lich
         #
         # @param label_text [String] the text to display as the label
         # @param entry_width [Integer] the width of the entry field in characters
-        # @param password [Boolean] whether the entry should hide the text for password input
+        # @param password [Boolean] whether the entry should be a password field
         # @return [Hash] a hash containing the label, entry, and box
         def self.create_labeled_entry(label_text, entry_width: 15, password: false)
           label = Gtk::Label.new(label_text)

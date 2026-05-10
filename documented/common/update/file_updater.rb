@@ -8,28 +8,27 @@
   for script repository files.
 =end
 
-# Provides utility functions for the Lich project.
+# Provides utility functions for the Lich5 project.
 #
-# @see Lich::Util::Update for update-related utilities.
+# @see Lich::Util for additional utility methods.
 module Lich
   module Util
     module Update
       # Handles the updating of files from repositories.
       #
-      # This class manages both script and data file updates, including
-      # repository-specific and legacy updates.
+      # This class is responsible for managing updates to scripts, libraries,
+      # and data files, including handling repository-specific updates.
       class FileUpdater
         # Initializes a new FileUpdater instance.
-        # @param client [Object] the client used for fetching data
+        # @param client [Object] the client used to fetch data from repositories
         # @param resolver [Object] the resolver for handling versioning
         def initialize(client, resolver)
           @client = client
           @resolver = resolver
         end
 
-        # Updates a file from a specified repository.
-        #
-        # @param type [String] the type of file to update ("script" or "data")
+        # Updates a file from the specified repository.
+        # @param type [String] the type of file to update (e.g., "script", "data")
         # @param repo_key [String] the key identifying the repository
         # @param filename [String] the name of the file to update
         # @return [void]
@@ -107,11 +106,10 @@ module Lich
           end
         end
 
-        # Updates a specified file to the latest version.
-        #
-        # @param type [String] the type of file to update ("script", "library", or "data")
+        # Updates a specified file based on its type and version.
+        # @param type [String] the type of file to update (e.g., "script", "library", "data")
         # @param rf [String] the requested file name
-        # @param version [String] the version channel (default is 'production')
+        # @param version [String] the version channel to use (default: 'production')
         # @return [void]
         # @raise [StandardError] if the file cannot be updated
         def update_file(type, rf, version = 'production')
@@ -202,9 +200,8 @@ module Lich
           end
         end
 
-        # Updates core data and scripts based on the game type.
-        #
-        # @param version [String] the version to update to (default is LICH_VERSION)
+        # Updates core data and scripts based on the game version.
+        # @param version [String] the version to use for updates (default: LICH_VERSION)
         # @return [void]
         # @raise [StandardError] if the game type is invalid
         def update_core_data_and_scripts(version = LICH_VERSION)

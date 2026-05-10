@@ -18,10 +18,10 @@ module Lich
   module Gemstone
     # Provides a unified interface for interacting with Player System Manager (PSM) skills in GemStone IV.
     #
-    # This module includes methods for normalizing names, finding skills, assessing skill availability,
-    # and checking for skill usage limits.
+    # This module includes methods for normalizing names, finding skills, assessing their availability,
+    # and checking for special conditions related to skills.
     #
-    # @see Lich::Gemstone
+    # @see Lich::Gemstone::Util
     module PSMS
       # Normalizes the given skill name.
       #
@@ -34,8 +34,8 @@ module Lich
       # Finds a skill by its name and type.
       #
       # @param name [String] the name of the skill to find
-      # @param type [String] the type of the skill (e.g., "Armor", "CMan")
-      # @return [Hash, nil] the skill details as a hash or nil if not found
+      # @param type [String] the type of skill (e.g., "Armor", "CMan")
+      # @return [Hash, nil] the skill details if found, otherwise nil
       def self.find_name(name, type)
         name = self.name_normal(name)
         Object.const_get("Lich::Gemstone::#{type}").method("#{type.downcase}_lookups").call
@@ -45,11 +45,11 @@ module Lich
       # Assesses the availability of a skill based on its name and type.
       #
       # @param name [String] the name of the skill to assess
-      # @param type [String] the type of the skill (e.g., "Armor", "CMan")
+      # @param type [String] the type of skill (e.g., "Armor", "CMan")
       # @param costcheck [Boolean] whether to check costs (default: false)
       # @param forcert_count [Integer] the number of forcerts to consider (default: 0)
       # @return [Boolean] true if the skill is available, false otherwise
-      # @raise [ArgumentError] if the skill is invalid
+      # @raise ArgumentError if the skill is invalid
       def self.assess(name, type, costcheck = false, forcert_count: 0)
         return false unless forcert_count <= max_forcert_count
         name = self.name_normal(name)
@@ -117,8 +117,7 @@ module Lich
       #
       # @example
       #   FAILURES_REGEXES.match("You are unable to do that right now.") # => true
-      #
-      # @see #assess for how this is used in skill assessments
+      #   FAILURES_REGEXES.match("You can't reach the target!") # => false
       FAILURES_REGEXES = Regexp.union(
         /^And give yourself away!  Never!$/,
         /^You are unable to do that right now\.$/,

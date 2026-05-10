@@ -1,12 +1,11 @@
 
 module Lich
-  # Provides common character settings functionality.
-  #
-  # @see Lich::Common
   module Common
     module CharSettings
 
-      # Returns the active scope for character settings based on the current game and name.
+      # Returns the active scope for character settings.
+      #
+      # This scope is a combination of the current game and character name.
       # @return [String] the active scope in the format "game:name"
       def self.active_scope
         # Ensure XMLData.game and XMLData.name are available and up-to-date when scope is needed
@@ -14,6 +13,7 @@ module Lich
       end
 
       # Retrieves a scoped setting by name.
+      #
       # @param name [String] the name of the setting to retrieve
       # @return [OpenStruct] the value of the setting
       def self.[](name)
@@ -21,6 +21,7 @@ module Lich
       end
 
       # Sets a scoped setting by name.
+      #
       # @param name [String] the name of the setting to set
       # @param value [OpenStruct] the value to assign to the setting
       # @return [void]
@@ -30,9 +31,8 @@ module Lich
 
       # Converts the character settings to a hash-like structure.
       #
-      # This method does not behave like a standard Ruby hash request.
-      # It returns a root proxy for the character settings scope, allowing persistent
-      # modifications on the returned object for legacy support.
+      # This method returns a root proxy for the character settings scope,
+      # allowing persistent modifications on the returned object for legacy support.
       # @return [OpenStruct] a proxy for the character settings
       def self.to_hash
         # NB:  This method does not behave like a standard Ruby hash request.
@@ -42,7 +42,8 @@ module Lich
       end
 
       # Loads character settings (deprecated).
-      # @deprecated This method is not applicable and should not be used.
+      #
+      # This method is deprecated and not applicable.
       # @return [nil]
       def CharSettings.load
         Lich.deprecated("CharSettings.load", "not using, not applicable,", caller[0], fe_log: true)
@@ -50,7 +51,8 @@ module Lich
       end
 
       # Saves character settings (deprecated).
-      # @deprecated This method is not applicable and should not be used.
+      #
+      # This method is deprecated and not applicable.
       # @return [nil]
       def CharSettings.save
         Lich.deprecated("CharSettings.save", "not using, not applicable,", caller[0], fe_log: true)
@@ -58,7 +60,8 @@ module Lich
       end
 
       # Saves all character settings (deprecated).
-      # @deprecated This method is not applicable and should not be used.
+      #
+      # This method is deprecated and not applicable.
       # @return [nil]
       def CharSettings.save_all
         Lich.deprecated("CharSettings.save_all", "not using, not applicable,", caller[0], fe_log: true)
@@ -66,7 +69,8 @@ module Lich
       end
 
       # Clears character settings (deprecated).
-      # @deprecated This method is not applicable and should not be used.
+      #
+      # This method is deprecated and not applicable.
       # @return [nil]
       def CharSettings.clear
         Lich.deprecated("CharSettings.clear", "not using, not applicable,", caller[0], fe_log: true)
@@ -74,13 +78,17 @@ module Lich
       end
 
       # Sets the auto setting (deprecated).
-      # @deprecated This method is not applicable and should not be used.
+      #
+      # This method is deprecated and not applicable.
+      # @param _val [Boolean] the value to set for auto
+      # @return [void]
       def CharSettings.auto=(_val)
         Lich.deprecated("CharSettings.auto=(val)", "not using, not applicable,", caller[0], fe_log: true)
       end
 
       # Retrieves the auto setting (deprecated).
-      # @deprecated This method is not applicable and should not be used.
+      #
+      # This method is deprecated and not applicable.
       # @return [nil]
       def CharSettings.auto
         Lich.deprecated("CharSettings.auto", "not using, not applicable,", caller[0], fe_log: true)
@@ -88,7 +96,8 @@ module Lich
       end
 
       # Retrieves the autoload setting (deprecated).
-      # @deprecated This method is not applicable and should not be used.
+      #
+      # This method is deprecated and not applicable.
       # @return [nil]
       def CharSettings.autoload
         Lich.deprecated("CharSettings.autoload", "not using, not applicable,", caller[0], fe_log: true)

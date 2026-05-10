@@ -5,9 +5,8 @@ module Lich
     #
     # This class manages a shared buffer with a maximum size and provides methods to read from and write to it.
     #
-    # @see Lich::Common::SharedBuffer#update
     # @see Lich::Common::SharedBuffer#gets
-    # @see Lich::Common::SharedBuffer#clear
+    # @see Lich::Common::SharedBuffer#update
     class SharedBuffer
       attr_accessor :max_size
 
@@ -24,7 +23,7 @@ module Lich
         # return self # rubocop does not like this - Lint/ReturnInVoidContext
       end
 
-      # Retrieves the next line from the buffer, blocking if necessary.
+      # Retrieves the next line from the buffer, blocking if necessary until a line is available.
       # @return [String, nil] the next line from the buffer or nil if no line is available
       def gets
         thread_id = Thread.current.object_id
@@ -67,7 +66,7 @@ module Lich
         return line
       end
 
-      # Clears the lines from the buffer that have been read by the current thread.
+      # Clears the lines that have been read from the buffer for the current thread.
       # @return [Array<String>] an array of lines that were cleared from the buffer
       def clear
         thread_id = Thread.current.object_id
@@ -91,7 +90,7 @@ module Lich
       end
 
       # rubocop:disable Lint/HashCompareByIdentity
-      # Resets the current thread's read index to the beginning of the buffer.
+      # Resets the buffer index for the current thread to the beginning of the buffer.
       # @return [SharedBuffer] self
       def rewind
         @buffer_index[Thread.current.object_id] = @buffer_offset

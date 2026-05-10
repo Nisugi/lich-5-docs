@@ -1,10 +1,7 @@
 
-# Provides common functionality for the Lich project.
-#
-# @see Lich::Common::GameLoader
 module Lich
   module Common
-    # Handles the loading of game-specific resources and dependencies.
+    # Provides methods to load game-specific resources and configurations.
     #
     # @see Lich::Common
     module GameLoader
@@ -21,8 +18,6 @@ module Lich
 
       # Loads resources specific to the GemStone game.
       # @return [void]
-      # @example
-      #   Lich::Common::GameLoader.gemstone
       def self.gemstone
         self.common_before
         require File.join(LIB_DIR, 'gemstone', 'sk.rb')
@@ -64,8 +59,6 @@ module Lich
 
       # Loads resources specific to the Dragon Realms game.
       # @return [void]
-      # @example
-      #   Lich::Common::GameLoader.dragon_realms
       def self.dragon_realms
         self.common_before
         require File.join(LIB_DIR, 'common', 'map', 'map_dr.rb')
@@ -77,7 +70,7 @@ module Lich
         self.common_after
       end
 
-      # Loads common post-initialization tasks after game resources are loaded.
+      # Loads post-game initialization tasks and settings.
       # @return [void]
       def self.common_after
         require File.join(LIB_DIR, 'common', 'postload.rb')
@@ -96,8 +89,6 @@ module Lich
 
       # Loads the appropriate game based on the current game data.
       # @return [void]
-      # @example
-      #   Lich::Common::GameLoader.load!
       def self.load!
         sleep 0.1 while XMLData.game.nil? or XMLData.game.empty?
         return self.dragon_realms if XMLData.game =~ /DR/

@@ -19,9 +19,6 @@ require 'ostruct'
 require 'set' # rubocop:disable Lint/RedundantRequireStatement -- needed for Ruby < 3.2
 require 'yaml'
 
-# Namespace for the Lich project.
-#
-# This module contains common functionality and classes used across the Lich scripts.
 module Lich
   module Common
     CORE_SETUPFILES = true
@@ -129,7 +126,7 @@ module Lich
         transform_settings(settings)
       end
 
-      # Retrieves data of a specified type from the YAML files.
+      # Retrieves data for a specified type from the base YAML file.
       #
       # @param type [String] the type of data to retrieve
       # @return [OpenStruct] the data loaded from the YAML file
@@ -212,7 +209,7 @@ module Lich
       # Resolves nested includes recursively for the given filenames.
       #
       # @param filenames [Array<String>] the filenames to resolve includes for
-      # @param visited [Set<String>] a set of already visited filenames to prevent circular dependencies
+      # @param visited [Set<String>] a set of already visited filenames to prevent cycles
       # @param include_order [Array<String>] the order of includes resolved
       # @return [Array<String>] the ordered list of resolved filenames
       def resolve_includes_recursively(filenames, visited = Set.new, include_order = [])
@@ -310,10 +307,11 @@ module Lich
         end
       end
 
-      # Transforms the original data into a more usable format.
+      # Transforms the original data into an OpenStruct.
       #
       # @param original_data [Hash] the original data to transform
       # @return [OpenStruct] the transformed data
+      # @raise [StandardError] if there is an error modifying the data
       def transform_data(original_data)
         safe_log "#{self.class}::#{__callee__}" if @debug
         data = OpenStruct.new(original_data)

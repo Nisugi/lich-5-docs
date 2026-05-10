@@ -3,9 +3,9 @@ module Lich
   module Common
     module GUI
       module ThemeUtils
-        # Applies the specified theme settings to the application.
+        # Applies the theme settings based on the provided state.
         #
-        # @param theme_state [Boolean] true for dark theme, false for light theme.
+        # @param theme_state [Boolean] indicates whether to apply dark theme.
         # @return [void]
         def self.apply_theme_settings(theme_state)
           Gtk::Settings.default.gtk_application_prefer_dark_theme = theme_state
@@ -32,7 +32,7 @@ module Lich
         # Applies the specified theme to the given window.
         #
         # @param window [Gtk::Window] the window to apply the theme to.
-        # @param theme_state [Boolean] true for dark theme, false for light theme.
+        # @param theme_state [Boolean] indicates whether to apply dark theme.
         # @return [void]
         def self.apply_theme_to_window(window, theme_state)
           if theme_state
@@ -45,7 +45,7 @@ module Lich
         # Applies the specified theme to the given notebook.
         #
         # @param notebook [Gtk::Notebook] the notebook to apply the theme to.
-        # @param theme_state [Boolean] true for dark theme, false for light theme.
+        # @param theme_state [Boolean] indicates whether to apply dark theme.
         # @return [void]
         def self.apply_theme_to_notebook(notebook, theme_state)
           if theme_state
@@ -70,7 +70,7 @@ module Lich
 
         # Creates CSS for favorite items based on the theme state.
         #
-        # @param theme_state [Boolean] true for dark theme, false for light theme.
+        # @param theme_state [Boolean] indicates whether to apply dark theme.
         # @return [String] the generated CSS string.
         def self.create_favorites_css(theme_state)
           if theme_state
@@ -132,8 +132,8 @@ module Lich
 
         # Creates a CSS provider for the favorites styling based on the theme state.
         #
-        # @param theme_state [Boolean] true for dark theme, false for light theme.
-        # @return [Gtk::CssProvider] the CSS provider for the favorites.
+        # @param theme_state [Boolean] indicates whether to apply dark theme.
+        # @return [Gtk::CssProvider] the CSS provider for favorites styling.
         def self.create_favorites_css_provider(theme_state)
           provider = Gtk::CssProvider.new
           css_data = create_favorites_css(theme_state)
@@ -147,10 +147,10 @@ module Lich
           provider
         end
 
-        # Applies the favorites styling to the specified widget.
+        # Applies the favorites styling to the given widget based on the theme state.
         #
-        # @param widget [Gtk::Widget] the widget to apply styling to.
-        # @param theme_state [Boolean] true for dark theme, false for light theme.
+        # @param widget [Gtk::Widget] the widget to apply the styling to.
+        # @param theme_state [Boolean] indicates whether to apply dark theme.
         # @param is_favorite [Boolean] indicates if the widget is a favorite.
         # @return [void]
         def self.apply_favorites_styling(widget, theme_state, is_favorite = false)
@@ -164,7 +164,7 @@ module Lich
 
         # Returns the color for the favorite indicator based on the theme state.
         #
-        # @param theme_state [Boolean] true for dark theme, false for light theme.
+        # @param theme_state [Boolean] indicates whether to apply dark theme.
         # @return [Gdk::RGBA] the color for the favorite indicator.
         def self.favorite_indicator_color(theme_state)
           if theme_state
@@ -176,7 +176,7 @@ module Lich
 
         # Returns the background color for the favorite button based on the theme state.
         #
-        # @param theme_state [Boolean] true for dark theme, false for light theme.
+        # @param theme_state [Boolean] indicates whether to apply dark theme.
         # @return [Gdk::RGBA] the background color for the favorite button.
         def self.favorite_button_background(theme_state)
           if theme_state

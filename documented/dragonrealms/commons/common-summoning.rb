@@ -8,15 +8,11 @@ module Lich
       # Shared response for elemental charge depletion
       LACK_CHARGE = 'You lack the elemental charge'.freeze
 
-      # Responses for summoning weapons
-      #
-      # @see LACK_CHARGE
       SUMMON_WEAPON_RESPONSES = [
         LACK_CHARGE,
         'you draw out'
       ].freeze
 
-      # Responses for breaking summoned weapons
       BREAK_WEAPON_RESPONSES = [
         'Focusing your will',
         'disrupting its matrix',
@@ -26,8 +22,6 @@ module Lich
 
       # Moon Mage skill-to-shape mapping for moonblades/staves
       # Moon Mage skill-to-shape mapping for moonblades/staves
-      #
-      # @see SUMMON_WEAPON_RESPONSES
       MOON_SKILL_TO_SHAPE = {
         'Staves'          => 'blunt',
         'Twohanded Edged' => 'huge',
@@ -35,14 +29,12 @@ module Lich
         'Small Edged'     => 'normal'
       }.freeze
 
-      # Responses for shaping summoned moon weapons
       MOON_SHAPE_RESPONSES = [
         'you adjust the magic that defines its shape',
         'already has',
         'You fumble around'
       ].freeze
 
-      # Responses for failures when shaping summoned weapons
       WM_SHAPE_FAILURES = [
         LACK_CHARGE,
         'You reach out',
@@ -50,14 +42,10 @@ module Lich
         "You don't know how to manipulate your weapon in that way"
       ].freeze
 
-      # Responses for turning summoned weapons
       TURN_WEAPON_RESPONSES = [LACK_CHARGE, 'You reach out'].freeze
-      # Responses for pushing summoned weapons
       PUSH_WEAPON_RESPONSES = [LACK_CHARGE, 'Closing your eyes', "That's as"].freeze
-      # Responses for pulling summoned weapons
       PULL_WEAPON_RESPONSES = [LACK_CHARGE, 'Closing your eyes', "That's as"].freeze
 
-      # Responses for summoning admittance
       SUMMON_ADMITTANCE_RESPONSES = [
         'You align yourself to it',
         'further increasing your proximity',
@@ -99,7 +87,7 @@ module Lich
 
       # Retrieves an ingot for use in summoning.
       #
-      # @param ingot [String, nil] the ingot type to retrieve
+      # @param ingot [String, nil] the type of ingot to retrieve
       # @param swap [Boolean] whether to swap the ingot
       # @return [Boolean] true if the ingot was successfully retrieved
       def get_ingot(ingot, swap)
@@ -115,7 +103,7 @@ module Lich
 
       # Stows an ingot after use.
       #
-      # @param ingot [String, nil] the ingot type to stow
+      # @param ingot [String, nil] the type of ingot to stow
       # @return [Boolean] true if the ingot was successfully stowed
       def stow_ingot(ingot)
         return true unless ingot
@@ -203,7 +191,7 @@ module Lich
         end
       end
 
-      # Turns the summoned weapon in hand.
+      # Turns the summoned weapon.
       # @return [void]
       def turn_summoned_weapon
         result = DRC.bput("turn my #{DRC.right_hand_noun}", *TURN_WEAPON_RESPONSES)
@@ -215,7 +203,7 @@ module Lich
         waitrt?
       end
 
-      # Pushes the summoned weapon in hand.
+      # Pushes the summoned weapon.
       # @return [void]
       def push_summoned_weapon
         result = DRC.bput("push my #{DRC.right_hand_noun}", *PUSH_WEAPON_RESPONSES)
@@ -227,7 +215,7 @@ module Lich
         waitrt?
       end
 
-      # Pulls the summoned weapon in hand.
+      # Pulls the summoned weapon.
       # @return [void]
       def pull_summoned_weapon
         result = DRC.bput("pull my #{DRC.right_hand_noun}", *PULL_WEAPON_RESPONSES)
@@ -239,7 +227,7 @@ module Lich
         waitrt?
       end
 
-      # Handles the process of summoning admittance.
+      # Handles the admittance process for summoning.
       # @return [void]
       def summon_admittance
         loop do

@@ -13,7 +13,7 @@ module Lich
       # @param argv [Array<String>] the command line arguments to parse
       # @param schema [Hash] a hash defining the expected options and their configurations
       # @return [OpenStruct] an OpenStruct containing the parsed options
-      # @example
+      # @example Parse options
       #   options = Opts.parse(ARGV, { verbose: { default: false, type: :boolean } })
       def self.parse(argv, schema = {})
         options = {}

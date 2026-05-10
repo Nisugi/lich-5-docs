@@ -8,15 +8,13 @@ require 'time'
 # @see Lich::db_vacuum_if_due!
 module Lich
   # Returns the path to the database maintenance lock file.
-  #
   # @return [String] the path to the lock file.
   def Lich.db_maint_lock_path
     File.join(DATA_DIR, 'lich.db3.maint.lock')
   end
 
   # Retrieves the last maintenance timestamp from the database.
-  #
-  # @return [String, nil] the last maintenance timestamp in ISO 8601 format or nil if not set.
+  # @return [String, nil] the last maintenance timestamp in ISO 8601 format or nil if not found.
   def Lich.db_maint_last_at
     ts = nil
     begin
@@ -31,7 +29,6 @@ module Lich
   end
 
   # Sets the last maintenance timestamp and an optional note in the database.
-  #
   # @param iso_utc [String] the current timestamp in ISO 8601 format.
   # @param note [String] an optional note regarding the maintenance.
   # @return [void]
@@ -49,7 +46,6 @@ module Lich
   end
 
   # Checks if the database maintenance is due based on the last maintenance timestamp.
-  #
   # @param months [Integer] the number of months to check against (default is 6).
   # @return [Boolean] true if maintenance is due, false otherwise.
   def Lich.db_maint_due?(months = 6)
@@ -67,10 +63,9 @@ module Lich
   end
 
   # Performs a VACUUM operation on the database if maintenance is due.
-  #
   # @param months [Integer] the number of months to check against (default is 6).
   # @param lock_timeout_s [Float] the timeout for acquiring the lock (default is 0.5 seconds).
-  # @return [Symbol] the result of the vacuum operation.
+  # @return [Symbol] the result of the vacuum operation status.
   def Lich.db_vacuum_if_due!(months: 6, lock_timeout_s: 0.5)
     return :skipped_recent unless Lich.db_maint_due?(months)
 
@@ -153,14 +148,12 @@ module Lich
   @@max_debug_logs  = nil # integer
 
   # Returns the mutex used for database operations.
-  #
-  # @return [Mutex] the database mutex.
+  # @return [Mutex] the mutex for synchronizing database access.
   def self.db_mutex
     @@db_mutex
   end
 
-  # Locks the database mutex to ensure thread safety during operations.
-  #
+  # Locks the database mutex to ensure thread-safe operations.
   # @return [void]
   def self.mutex_lock
     begin
@@ -172,7 +165,6 @@ module Lich
   end
 
   # Unlocks the database mutex after operations are complete.
-  #
   # @return [void]
   def self.mutex_unlock
     begin
@@ -183,11 +175,6 @@ module Lich
     end
   end
 
-  # Handles missing method calls for deprecated Lich variables.
-  #
-  # @param arg1 [String] the name of the missing method.
-  # @param arg2 [String] an optional second argument.
-  # @return [void]
   def Lich.method_missing(arg1, arg2 = '')
     if (Time.now.to_i - @@last_warn_deprecated) > 300
       respond "--- warning: Lich.* variables will stop working in a future version of Lich.  Use Vars.* (offending script: #{Script.current.name || 'unknown'})"
@@ -196,10 +183,6 @@ module Lich
     Vars.method_missing(arg1, arg2)
   end
 
-  # Finds the frontend location based on the provided frontend identifier.
-  #
-  # @param fe [String] the frontend identifier (e.g., 'wizard', 'stormfront').
-  # @return [String, nil] the location of the frontend or nil if not found.
   def Lich.seek(fe)
     if fe =~ /wizard/
       return $wiz_fe_loc
@@ -209,16 +192,10 @@ module Lich
     pp "Landed in get_simu_launcher method"
   end
 
-  # Initializes and returns the SQLite3 database connection.
-  #
-  # @return [SQLite3::Database] the database connection.
   def Lich.db
     @@lich_db ||= SQLite3::Database.new("#{DATA_DIR}/lich.db3")
   end
 
-  # Initializes the database schema and settings.
-  #
-  # @return [void]
   def Lich.init_db
     begin
       Lich.db.execute("CREATE TABLE IF NOT EXISTS script_setting (script TEXT NOT NULL, name TEXT NOT NULL, value BLOB, PRIMARY KEY(script, name));")
@@ -266,21 +243,19 @@ module Lich
 
   def Lich.module_eval(*_a);        nil; end
 
-  # Logs a message to stderr with a timestamp.
-  #
+  # Logs a message to standard error with a timestamp.
   # @param msg [String] the message to log.
   # @return [void]
   def Lich.log(msg)
     $stderr.puts "#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}: #{msg}"
   end
 
-  # Logs a deprecation warning for an old object.
-  #
+  # Logs a deprecation warning for an old object being used.
   # @param old_object [String] the deprecated object name.
-  # @param new_object [String] the recommended replacement object name.
+  # @param new_object [String] the new object name to use instead.
   # @param script_location [String] the location of the script using the deprecated object.
   # @param debug_log [Boolean] whether to log the message to debug logs (default is true).
-  # @param fe_log [Boolean] whether to log the message to frontend (default is false).
+  # @param fe_log [Boolean] whether to log the message to front-end (default is false).
   # @param limit_log [Boolean] whether to limit logging of the same message (default is true).
   # @return [void]
   def Lich.deprecated(old_object = '', new_object = '', script_location = "#{Script.current.name || 'unknown'}", debug_log: true, fe_log: false, limit_log: true)
@@ -291,19 +266,15 @@ module Lich
     @@deprecated_log.push(msg) unless @@deprecated_log.include?(msg)
   end
 
-  # Displays the log of deprecated messages.
-  #
-  # @return [void]
   def Lich.show_deprecated_log
     @@deprecated_log.each do |msg|
       respond(msg)
     end
   end
 
-  # Displays a message box with the specified arguments.
-  #
-  # @param args [Hash] the arguments for the message box, including title, message, buttons, and icon.
-  # @return [Symbol, nil] the response from the message box or nil if not applicable.
+  # Displays a message box with specified options.
+  # @param args [Hash] options for the message box, including title, message, buttons, and icon.
+  # @return [Symbol, nil] the response from the message box (e.g., :ok, :cancel) or nil if not applicable.
   def Lich.msgbox(args)
     if defined?(Win32)
       if args[:buttons] == :ok_cancel
@@ -377,9 +348,6 @@ module Lich
     end
   end
 
-  # Retrieves the command for launching the Simutronics game launcher.
-  #
-  # @return [String, nil] the launcher command or nil if not found.
   def Lich.get_simu_launcher
     if defined?(Win32)
       begin
@@ -403,9 +371,6 @@ module Lich
     end
   end
 
-  # Links the Lich application to the Simutronics game environment.
-  #
-  # @return [Boolean] true if successfully linked, false otherwise.
   def Lich.link_to_sge
     if defined?(Win32)
       if Win32.admin?
@@ -474,9 +439,6 @@ module Lich
     end
   end
 
-  # Unlinks the Lich application from the Simutronics game environment.
-  #
-  # @return [Boolean] true if successfully unlinked, false otherwise.
   def Lich.unlink_from_sge
     if defined?(Win32)
       if Win32.admin?
@@ -527,9 +489,6 @@ module Lich
     end
   end
 
-  # Links the Lich application to the Simutronics AutoLauncher.
-  #
-  # @return [Boolean] true if successfully linked, false otherwise.
   def Lich.link_to_sal
     if defined?(Win32)
       if Win32.admin?
@@ -599,9 +558,6 @@ module Lich
     end
   end
 
-  # Unlinks the Lich application from the Simutronics AutoLauncher.
-  #
-  # @return [Boolean] true if successfully unlinked, false otherwise.
   def Lich.unlink_from_sal
     if defined?(Win32)
       if Win32.admin?
@@ -653,7 +609,6 @@ module Lich
   end
 
   # Finds and returns the path to the hosts file used by the system.
-  #
   # @return [String, false] the path to the hosts file or false if not found.
   def Lich.hosts_file
     Lich.find_hosts_file if @@hosts_file.nil?
@@ -697,9 +652,8 @@ module Lich
     return (@@hosts_file = false)
   end
 
-  # Modifies the hosts file to redirect the specified game host.
-  #
-  # @param game_host [String] the game host to redirect.
+  # Modifies the hosts file to include the specified game host.
+  # @param game_host [String] the game host to add to the hosts file.
   # @return [Boolean] true if the modification was successful, false otherwise.
   def Lich.modify_hosts(game_host)
     if Lich.hosts_file and File.exist?(Lich.hosts_file)
@@ -724,7 +678,6 @@ module Lich
   end
 
   # Restores the original hosts file from the backup.
-  #
   # @return [void]
   def Lich.restore_hosts
     if Lich.hosts_file and File.exist?(Lich.hosts_file)
@@ -747,8 +700,7 @@ module Lich
   end
 
   # Checks if inventory boxes are enabled for the specified player.
-  #
-  # @param player_id [Integer] the ID of the player.
+  # @param player_id [Integer] the ID of the player to check.
   # @return [Boolean] true if inventory boxes are enabled, false otherwise.
   def Lich.inventory_boxes(player_id)
     begin
@@ -765,8 +717,7 @@ module Lich
   end
 
   # Sets the inventory boxes state for the specified player.
-  #
-  # @param player_id [Integer] the ID of the player.
+  # @param player_id [Integer] the ID of the player to modify.
   # @param enabled [Boolean] whether to enable or disable inventory boxes.
   # @return [void]
   def Lich.set_inventory_boxes(player_id, enabled)
@@ -788,8 +739,7 @@ module Lich
     nil
   end
 
-  # Retrieves the Windows 32 launch method setting.
-  #
+  # Retrieves the current Windows 32 launch method from the database.
   # @return [String, nil] the launch method or nil if not set.
   def Lich.win32_launch_method
     begin
@@ -801,8 +751,7 @@ module Lich
     val
   end
 
-  # Sets the Windows 32 launch method setting.
-  #
+  # Sets the Windows 32 launch method in the database.
   # @param val [String] the launch method to set.
   # @return [void]
   def Lich.win32_launch_method=(val)
@@ -814,11 +763,10 @@ module Lich
     end
   end
 
-  # Fixes the game host and port based on known mappings.
-  #
+  # Adjusts the game host and port based on specific rules.
   # @param gamehost [String] the original game host.
   # @param gameport [Integer] the original game port.
-  # @return [Array<String>] the fixed game host and port.
+  # @return [Array<String, Integer>] the adjusted game host and port.
   def Lich.fix_game_host_port(gamehost, gameport)
     if (gamehost == 'gs-plat.simutronics.net') and (gameport.to_i == 10121)
       gamehost = 'storm.gs4.game.play.net'
@@ -836,11 +784,10 @@ module Lich
     [gamehost, gameport]
   end
 
-  # Reverts the game host and port to their original values based on known mappings.
-  #
-  # @param gamehost [String] the modified game host.
-  # @param gameport [Integer] the modified game port.
-  # @return [Array<String>] the reverted game host and port.
+  # Reverts the game host and port to their original values based on specific rules.
+  # @param gamehost [String] the adjusted game host.
+  # @param gameport [Integer] the adjusted game port.
+  # @return [Array<String, Integer>] the original game host and port.
   def Lich.break_game_host_port(gamehost, gameport)
     if (gamehost == 'storm.gs4.game.play.net') and (gameport.to_i == 10324)
       gamehost = 'gs4.simutronics.net'
@@ -859,8 +806,7 @@ module Lich
   end
 
 
-  # Retrieves the debug messaging setting.
-  #
+  # Retrieves the current debug messaging setting from the database.
   # @return [Boolean] true if debug messaging is enabled, false otherwise.
   def Lich.debug_messaging
     if @@debug_messaging.nil?
@@ -876,8 +822,7 @@ module Lich
     return @@debug_messaging
   end
 
-  # Sets the debug messaging setting.
-  #
+  # Sets the debug messaging setting in the database.
   # @param val [Boolean] whether to enable or disable debug messaging.
   # @return [void]
   def Lich.debug_messaging=(val)
@@ -890,9 +835,8 @@ module Lich
     end
   end
 
-  # Retrieves the display setting for Lich ID.
-  #
-  # @return [Boolean] true if Lich ID should be displayed, false otherwise.
+  # Retrieves the current display Lich ID setting from the database.
+  # @return [Boolean] true if display Lich ID is enabled, false otherwise.
   def Lich.display_lichid
     if @@display_lichid.nil?
       begin
@@ -907,9 +851,8 @@ module Lich
     return @@display_lichid
   end
 
-  # Sets the display setting for Lich ID.
-  #
-  # @param val [Boolean] whether to enable or disable display of Lich ID.
+  # Sets the display Lich ID setting in the database.
+  # @param val [Boolean] whether to enable or disable display Lich ID.
   # @return [void]
   def Lich.display_lichid=(val)
     @@display_lichid = (val.to_s =~ /on|true|yes/ ? true : false)
@@ -921,9 +864,8 @@ module Lich
     end
   end
 
-  # Retrieves the setting for hiding the user ID flag.
-  #
-  # @return [Boolean] true if the user ID flag should be hidden, false otherwise.
+  # Retrieves the current hide UID flag setting from the database.
+  # @return [Boolean] true if hide UID flag is enabled, false otherwise.
   def Lich.hide_uid_flag
     if @@hide_uid_flag.nil?
       begin
@@ -938,9 +880,8 @@ module Lich
     return @@hide_uid_flag
   end
 
-  # Sets the setting for hiding the user ID flag.
-  #
-  # @param val [Boolean] whether to enable or disable hiding of the user ID flag.
+  # Sets the hide UID flag setting in the database.
+  # @param val [Boolean] whether to enable or disable hide UID flag.
   # @return [void]
   def Lich.hide_uid_flag=(val)
     @@hide_uid_flag = (val.to_s =~ /on|true|yes/ ? true : false)
@@ -952,9 +893,8 @@ module Lich
     end
   end
 
-  # Retrieves the version of the core that was updated with Lich.
-  #
-  # @return [String] the version of the core.
+  # Retrieves the current core updated with Lich version setting from the database.
+  # @return [String] the version string or nil if not set.
   def Lich.core_updated_with_lich_version
     begin
       val = Lich.db.get_first_value("SELECT value FROM lich_settings WHERE name='core_updated_with_lich_version';")
@@ -965,9 +905,8 @@ module Lich
     return val.to_s
   end
 
-  # Sets the version of the core that was updated with Lich.
-  #
-  # @param val [String] the version to set.
+  # Sets the core updated with Lich version setting in the database.
+  # @param val [String] the version string to set.
   # @return [void]
   def Lich.core_updated_with_lich_version=(val)
     begin
@@ -978,9 +917,8 @@ module Lich
     end
   end
 
-  # Retrieves the display setting for user ID.
-  #
-  # @return [Boolean] true if user ID should be displayed, false otherwise.
+  # Retrieves the current display UID setting from the database.
+  # @return [Boolean] true if display UID is enabled, false otherwise.
   def Lich.display_uid
     if @@display_uid.nil?
       begin
@@ -995,9 +933,8 @@ module Lich
     return @@display_uid
   end
 
-  # Sets the display setting for user ID.
-  #
-  # @param val [Boolean] whether to enable or disable display of user ID.
+  # Sets the display UID setting in the database.
+  # @param val [Boolean] whether to enable or disable display UID.
   # @return [void]
   def Lich.display_uid=(val)
     @@display_uid = (val.to_s =~ /on|true|yes/ ? true : false)
@@ -1009,9 +946,8 @@ module Lich
     end
   end
 
-  # Retrieves the display setting for exits.
-  #
-  # @return [Boolean] true if exits should be displayed, false otherwise.
+  # Retrieves the current display exits setting from the database.
+  # @return [Boolean] true if display exits is enabled, false otherwise.
   def Lich.display_exits
     if @@display_exits.nil?
       begin
@@ -1026,9 +962,8 @@ module Lich
     return @@display_exits
   end
 
-  # Sets the display setting for exits.
-  #
-  # @param val [Boolean] whether to enable or disable display of exits.
+  # Sets the display exits setting in the database.
+  # @param val [Boolean] whether to enable or disable display exits.
   # @return [void]
   def Lich.display_exits=(val)
     @@display_exits = (val.to_s =~ /on|true|yes/ ? true : false)
@@ -1040,9 +975,8 @@ module Lich
     end
   end
 
-  # Retrieves the display setting for string procs.
-  #
-  # @return [Boolean] true if string procs should be displayed, false otherwise.
+  # Retrieves the current display string procs setting from the database.
+  # @return [Boolean] true if display string procs is enabled, false otherwise.
   def Lich.display_stringprocs
     if @@display_stringprocs.nil?
       begin
@@ -1057,9 +991,8 @@ module Lich
     return @@display_stringprocs
   end
 
-  # Sets the display setting for string procs.
-  #
-  # @param val [Boolean] whether to enable or disable display of string procs.
+  # Sets the display string procs setting in the database.
+  # @param val [Boolean] whether to enable or disable display string procs.
   # @return [void]
   def Lich.display_stringprocs=(val)
     @@display_stringprocs = (val.to_s =~ /on|true|yes/ ? true : false)
@@ -1071,9 +1004,8 @@ module Lich
     end
   end
 
-  # Retrieves the display setting for experience gains.
-  #
-  # @return [Boolean] true if experience gains should be displayed, false otherwise.
+  # Retrieves the current display experience gains setting from the database.
+  # @return [Boolean] true if display experience gains is enabled, false otherwise.
   def Lich.display_expgains
     if @@display_expgains.nil?
       begin
@@ -1092,9 +1024,8 @@ module Lich
     @@display_expgains
   end
 
-  # Sets the display setting for experience gains.
-  #
-  # @param val [Boolean] whether to enable or disable display of experience gains.
+  # Sets the display experience gains setting in the database.
+  # @param val [Boolean] whether to enable or disable display experience gains.
   # @return [void]
   def Lich.display_expgains=(val)
     @@display_expgains = (val.to_s =~ /on|true|yes/ ? true : false)
@@ -1106,9 +1037,8 @@ module Lich
     end
   end
 
-  # Retrieves the setting for tracking autosort state.
-  #
-  # @return [Boolean] true if autosort state should be tracked, false otherwise.
+  # Retrieves the current track autosort state setting from the database.
+  # @return [Boolean] true if track autosort state is enabled, false otherwise.
   def Lich.track_autosort_state
     if @@track_autosort_state.nil?
       begin
@@ -1122,9 +1052,8 @@ module Lich
     return @@track_autosort_state
   end
 
-  # Sets the setting for tracking autosort state.
-  #
-  # @param val [Boolean] whether to enable or disable tracking of autosort state.
+  # Sets the track autosort state setting in the database.
+  # @param val [Boolean] whether to enable or disable track autosort state.
   # @return [void]
   def Lich.track_autosort_state=(val)
     @@track_autosort_state = (val.to_s =~ /on|true|yes/ ? true : false)
@@ -1136,9 +1065,8 @@ module Lich
     end
   end
 
-  # Retrieves the setting for tracking dark mode.
-  #
-  # @return [Boolean] true if dark mode should be tracked, false otherwise.
+  # Retrieves the current track dark mode setting from the database.
+  # @return [Boolean] true if track dark mode is enabled, false otherwise.
   def Lich.track_dark_mode
     if @@track_dark_mode.nil?
       begin
@@ -1152,9 +1080,8 @@ module Lich
     return @@track_dark_mode
   end
 
-  # Sets the setting for tracking dark mode.
-  #
-  # @param val [Boolean] whether to enable or disable tracking of dark mode.
+  # Sets the track dark mode setting in the database.
+  # @param val [Boolean] whether to enable or disable track dark mode.
   # @return [void]
   def Lich.track_dark_mode=(val)
     @@track_dark_mode = (val.to_s =~ /on|true|yes/ ? true : false)
@@ -1166,9 +1093,8 @@ module Lich
     end
   end
 
-  # Retrieves the setting for tracking layout state.
-  #
-  # @return [Boolean] true if layout state should be tracked, false otherwise.
+  # Retrieves the current track layout state setting from the database.
+  # @return [Boolean] true if track layout state is enabled, false otherwise.
   def Lich.track_layout_state
     if @@track_layout_state.nil?
       begin
@@ -1182,9 +1108,8 @@ module Lich
     return @@track_layout_state
   end
 
-  # Sets the setting for tracking layout state.
-  #
-  # @param val [Boolean] whether to enable or disable tracking of layout state.
+  # Sets the track layout state setting in the database.
+  # @param val [Boolean] whether to enable or disable track layout state.
   # @return [void]
   def Lich.track_layout_state=(val)
     @@track_layout_state = (val.to_s =~ /on|true|yes/ ? true : false)
@@ -1196,9 +1121,8 @@ module Lich
     end
   end
 
-  # Retrieves the setting for tracking persistent launcher mode.
-  #
-  # @return [Boolean] true if persistent launcher mode should be tracked, false otherwise.
+  # Retrieves the current track persistent launcher mode setting from the database.
+  # @return [Boolean] true if track persistent launcher mode is enabled, false otherwise.
   def Lich.track_persistent_launcher_mode
     if @@track_persistent_launcher_mode.nil?
       begin
@@ -1212,9 +1136,8 @@ module Lich
     return @@track_persistent_launcher_mode
   end
 
-  # Sets the setting for tracking persistent launcher mode.
-  #
-  # @param val [Boolean] whether to enable or disable tracking of persistent launcher mode.
+  # Sets the track persistent launcher mode setting in the database.
+  # @param val [Boolean] whether to enable or disable track persistent launcher mode.
   # @return [void]
   def Lich.track_persistent_launcher_mode=(val)
     @@track_persistent_launcher_mode = (val.to_s =~ /on|true|yes/ ? true : false)
@@ -1230,8 +1153,7 @@ module Lich
 
   MAX_DEBUG_LOGS_MINIMUM = 1
 
-  # Retrieves the maximum number of debug logs to keep.
-  #
+  # Retrieves the maximum number of debug logs allowed from the database.
   # @return [Integer] the maximum number of debug logs.
   def Lich.max_debug_logs
     if @@max_debug_logs.nil?
@@ -1246,9 +1168,8 @@ module Lich
     @@max_debug_logs
   end
 
-  # Sets the maximum number of debug logs to keep.
-  #
-  # @param val [Integer] the maximum number of debug logs.
+  # Sets the maximum number of debug logs allowed in the database.
+  # @param val [Integer] the maximum number of debug logs to set.
   # @return [void]
   def Lich.max_debug_logs=(val)
     @@max_debug_logs = [val.to_i, MAX_DEBUG_LOGS_MINIMUM].max
@@ -1260,8 +1181,7 @@ module Lich
     end
   end
 
-  # Cleans up old debug logs in the specified temporary directory.
-  #
+  # Cleans up old debug log files in the specified temporary directory.
   # @param temp_dir [String] the path to the temporary directory.
   # @return [void]
   def Lich.cleanup_debug_logs(temp_dir)

@@ -1,18 +1,19 @@
 module Lich
   module Gemstone
     module Armaments
-      # Static array of weapon stats indexed by weapon identifiers. Each weapon
-      # entry contains metadata such as category, base name, alternative names,
-      # damage types, damage factors, armor avoidance by armor size group (ASG),
-      # base roundtime (RT), and minimum RT.
-      #
-      # @see Lich::Gemstone::Armaments::WeaponStats
       module WeaponStats
+# Static array of weapon stats indexed by weapon identifiers.
+# Each weapon entry contains metadata such as category, base name,
+# alternative names, damage types, damage factors, armor avoidance by
+# armor size group (ASG), base roundtime (RT), and minimum RT.
 # Static array of weapon stats indexed by weapon identifiers. Each weapon
 # entry contains metadata such as category, base name, alternative names,
 # damage types, damage factors, armor avoidance by armor size group (ASG),
 # base roundtime (RT), and minimum RT.
 #
+# damage_types: Hash of damage type percentages or values.
+#
+# @return [Hash] A hash containing damage type percentages or values.
 # damage_types: Hash of damage type percentages or values.
 #   :slash    => % of slash damage (Float or nil)
 #   :crush    => % of crush damage (Float or nil)
@@ -20,8 +21,14 @@ module Lich
 #   :special  => Array of special damage types (or empty array)
 #
 # damage factor array:
+#
+# @return [Array<Float>] An array representing damage factors for different armor types.
+# damage factor array:
 #  [0] = nil (none)    [1] = Cloth    [2] = Leather    [3] = Scale    [4] = Chain    [5] = Plate
 #
+# avd_by_asg array:
+#
+# @return [Array<Integer>] An array representing armor avoidance by armor size group.
 # avd_by_asg array:
 #  Cloth:   [1] ASG 1    [2] ASG 2      [3] nil      [4] nil
 #  Leather: [5] ASG 5    [6] ASG 6    [7] ASG 7    [8] ASG 8

@@ -6,17 +6,16 @@ module Lich
   module Gemstone
     # Represents a group of members in the game.
     #
-    # This class manages the members of a group, including adding,
-    # removing, and checking the status of the group.
+    # This class manages group membership, leader status, and group operations.
     #
-    # @see Lich::Gemstone::Group::Observer for group-related events.
+    # @see Lich::Gemstone::Group::Observer For observing group-related events.
     class Group
       @@members ||= []
       @@leader  ||= nil
       @@checked ||= false
       @@status  ||= :closed
 
-      # Clears all members from the group and resets the checked status.
+      # Clears the group members and resets the checked status.
       # @return [void]
       def self.clear()
         @@members = []
@@ -24,13 +23,13 @@ module Lich
       end
 
       # Checks if the group has been checked.
-      # @return [Boolean] true if the group has been checked, false otherwise.
+      # @return [Boolean] true if checked, false otherwise.
       def self.checked?
         @@checked
       end
 
       # Adds members to the group unless they are already included.
-      # @param members [Array<GameObj>] the members to add to the group
+      # @param members [Array<GameObj>] the members to add to the group.
       # @return [void]
       def self.push(*members)
         members.each do |member|
@@ -38,22 +37,22 @@ module Lich
         end
       end
 
-      # Removes specified members from the group.
-      # @param members [Array<GameObj>] the members to remove from the group
+      # Removes members from the group based on their IDs.
+      # @param members [Array<GameObj>] the members to remove from the group.
       # @return [void]
       def self.delete(*members)
         gone = members.map(&:id)
         @@members.reject! do |m| gone.include?(m.id) end
       end
 
-      # Refreshes the group members with the provided list.
-      # @param members [Array<GameObj>] the new list of members
+      # Refreshes the group members with a new list.
+      # @param members [Array<GameObj>] the new members to set for the group.
       # @return [void]
       def self.refresh(*members)
         @@members = members.dup
       end
 
-      # Returns a duplicate of the current members in the group.
+      # Returns a duplicate of the current group members.
       # @return [Array<GameObj>] the current members of the group.
       def self.members
         maybe_check
@@ -77,18 +76,21 @@ module Lich
         @@members.to_s
       end
 
+      # Sets the checked status of the group.
+      # @param flag [Boolean] the new checked status.
+      # @return [void]
       def self.checked=(flag)
         @@checked = flag
       end
 
       # Sets the status of the group.
-      # @param state [Symbol] the new status of the group
+      # @param state [Symbol] the new status of the group.
       # @return [void]
       def self.status=(state)
         @@status = state
       end
 
-      # Retrieves the current status of the group.
+      # Returns the current status of the group.
       # @return [Symbol] the current status of the group.
       def self.status()
         @@status
@@ -108,7 +110,7 @@ module Lich
       end
 
       # Checks the group status and clears members if necessary.
-      # @return [Array<GameObj>] the current members of the group.
+      # @return [Array<GameObj>] the current members of the group after checking.
       def self.check
         Group.clear()
         ttl = Time.now + 3
@@ -128,13 +130,13 @@ module Lich
       end
 
       # Sets the leader of the group.
-      # @param char [GameObj] the character to set as the leader
+      # @param char [GameObj] the character to set as the leader.
       # @return [void]
       def self.leader=(char)
         @@leader = char
       end
 
-      # Retrieves the current leader of the group.
+      # Returns the current leader of the group.
       # @return [GameObj, nil] the current leader of the group or nil if none.
       def self.leader
         @@leader
@@ -146,9 +148,9 @@ module Lich
         @@leader.eql?(:self)
       end
 
-      # Adds members to the group, handling various cases for input.
-      # @param members [Array<(GameObj, Array<GameObj>)] the members to add to the group
-      # @return [Hash] result of the add operation.
+      # Adds members to the group with checks for existing membership and status.
+      # @param members [Array<GameObj, String>] the members to add to the group.
+      # @return [Array<Hash>] results of the add operation for each member.
       def self.add(*members)
         members.map do |member|
           if member.is_a?(Array)
@@ -177,21 +179,21 @@ module Lich
         end
       end
 
-      # Returns the IDs of the current members in the group.
+      # Returns the IDs of the current group members.
       # @return [Array<Integer>] the IDs of the group members.
       def self.ids
         @@members.map(&:id)
       end
 
-      # Returns the nouns of the current members in the group.
+      # Returns the nouns of the current group members.
       # @return [Array<String>] the nouns of the group members.
       def self.nouns
         @@members.map(&:noun)
       end
 
       # Checks if the specified members are included in the group.
-      # @param members [Array<GameObj>] the members to check
-      # @return [Boolean] true if all specified members are in the group, false otherwise.
+      # @param members [Array<GameObj>] the members to check for inclusion.
+      # @return [Boolean] true if all specified members are included, false otherwise.
       def self.include?(*members)
         members.all? { |m| ids.include?(m.id) }
       end
@@ -209,11 +211,11 @@ module Lich
         end
       end
 
-      # Handles missing methods by delegating to the members array.
-      # @param method [Symbol] the method name that was called
-      # @param args [Array] the arguments passed to the method
-      # @param block [Proc] an optional block
-      # @return [Object] the result of the method call on the members array.
+      # Handles calls to methods that are not defined on the group, delegating to members.
+      # @param method [Symbol] the method name being called.
+      # @param args [Array] the arguments for the method call.
+      # @param block [Proc] an optional block for the method call.
+      # @return [Object] the result of the delegated method call.
       def self.method_missing(method, *args, &block)
         @@members.send(method, *args, &block)
       end

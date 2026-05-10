@@ -3,11 +3,16 @@
 require_relative '../authentication/gui'
 
 module Lich
+  # Provides common utilities for the Lich GUI.
+  #
+  # @see Lich::Common::GUI
   module Common
     module GUI
+      # Utility methods for managing login tab UI elements.
+      #
+      # @see Lich::Common::GUI
       module LoginTabUtils
-        # Creates a CSS provider for buttons with a specified font size.
-        #
+        # Creates a CSS provider for buttons with specified font size.
         # @param font_size [Integer] the font size for the button
         # @return [Gtk::CssProvider] the CSS provider for the button
         def self.create_button_css_provider(font_size: 12)
@@ -16,8 +21,7 @@ module Lich
           css
         end
 
-        # Creates a compact CSS provider for buttons with a specified font size.
-        #
+        # Creates a compact CSS provider for buttons with specified font size.
         # @param font_size [Integer] the font size for the compact button
         # @return [Gtk::CssProvider] the compact CSS provider for the button
         def self.create_compact_button_css_provider(font_size: 11)
@@ -27,7 +31,6 @@ module Lich
         end
 
         # Creates a CSS provider for toggle buttons.
-        #
         # @return [Gtk::CssProvider] the CSS provider for the toggle button
         def self.create_toggle_button_css_provider
           css = Gtk::CssProvider.new
@@ -35,11 +38,10 @@ module Lich
           css
         end
 
-        # Applies the specified theme to the UI elements.
-        #
-        # @param theme_state [Boolean] indicates whether to apply the dark theme
-        # @param ui_elements [Hash] a hash of UI elements to style
-        # @param providers [Hash] a hash of CSS providers for the elements
+        # Applies the specified theme to UI elements.
+        # @param theme_state [Boolean] indicates if the dark theme is enabled
+        # @param ui_elements [Hash] a hash of UI elements to apply the theme to
+        # @param providers [Hash] a hash of CSS providers for the UI elements
         # @return [void]
         def self.apply_theme_to_ui_elements(theme_state, ui_elements, providers)
           if theme_state
@@ -67,8 +69,7 @@ module Lich
           end
         end
 
-        # Sets up the handler for the play button.
-        #
+        # Sets up the event handler for the play button.
         # @param button [Gtk::Button] the play button to set up
         # @param login_info [Hash] the login information for authentication
         # @param callback [Proc] the callback to execute on successful authentication
@@ -87,12 +88,11 @@ module Lich
           }
         end
 
-        # Sets up the handler for the remove button.
-        #
+        # Sets up the event handler for the remove button.
         # @param button [Gtk::Button] the remove button to set up
-        # @param login_info [Hash] the login information for authentication
+        # @param login_info [Hash] the login information for the character
         # @param char_box [Gtk::Box] the character box to hide on removal
-        # @param default_icon [Gtk::Icon] the default icon for the dialog
+        # @param default_icon [Gtk::Image] the default icon for the dialog
         # @param callback [Proc] the callback to execute on removal
         # @return [void]
         def self.setup_remove_button_handler(button, login_info, char_box, default_icon, callback)
@@ -124,15 +124,14 @@ module Lich
           }
         end
 
-        # Creates the global settings components for the UI.
-        #
-        # @param parent_container [Gtk::Container] the parent container to hold the settings
-        # @param theme_state [Boolean] the initial state of the theme
-        # @param tab_layout_state [Boolean] the initial state of the tab layout
-        # @param autosort_state [Boolean] the initial state of the auto sort
-        # @param persistent_launcher_state [Boolean] the initial state of the persistent launcher
+        # Creates the global settings components for the GUI.
+        # @param parent_container [Gtk::Box] the parent container to hold the settings components
+        # @param theme_state [Boolean] the current state of the theme
+        # @param tab_layout_state [Boolean] the current state of the tab layout
+        # @param autosort_state [Boolean] the current state of the auto sort feature
+        # @param persistent_launcher_state [Boolean] the current state of the persistent launcher
         # @param callbacks [Hash] a hash of callback functions for state changes
-        # @return [Hash] a hash containing the created UI components
+        # @return [Hash] a hash containing the created settings components
         def self.create_global_settings_components(parent_container, theme_state, tab_layout_state, autosort_state, persistent_launcher_state, callbacks)
           # Create toggle button styling
           togglebutton_provider = create_toggle_button_css_provider
@@ -234,9 +233,8 @@ module Lich
           }
         end
 
-        # Creates a custom launch entry for user input.
-        #
-        # @return [Gtk::ComboBoxText] the custom launch entry component
+        # Creates a custom launch entry for user-defined commands.
+        # @return [Gtk::ComboBoxText] the combo box for custom launch commands
         def self.create_custom_launch_entry
           custom_launch_entry = Gtk::ComboBoxText.new(entry: true)
           custom_launch_entry.child.set_placeholder_text("(enter custom launch command)")
@@ -248,9 +246,8 @@ module Lich
           custom_launch_entry
         end
 
-        # Creates a custom launch directory entry for user input.
-        #
-        # @return [Gtk::ComboBoxText] the custom launch directory component
+        # Creates a custom launch directory entry for user-defined working directories.
+        # @return [Gtk::ComboBoxText] the combo box for custom launch directories
         def self.create_custom_launch_dir
           custom_launch_dir = Gtk::ComboBoxText.new(entry: true)
           custom_launch_dir.child.set_placeholder_text("(enter working directory for command)")

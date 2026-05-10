@@ -3,14 +3,13 @@ module Lich
   module Common
     module GUI
       module AccountManager
-        # Adds or updates an account with the given username and password.
+        # Adds a new account or updates an existing account with the provided data.
         #
         # @param data_dir [String] the directory where account data is stored
         # @param username [String] the username for the account
         # @param password [String] the password for the account
         # @param characters [Array<Hash>] optional list of character data associated with the account
         # @return [void]
-        # @raise [StandardError] if master password is required but not found
         def self.add_or_update_account(data_dir, username, password, characters = [])
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -113,7 +112,7 @@ module Lich
           write_yaml_with_headers(yaml_file, yaml_data)
         end
 
-        # Removes an account with the given username.
+        # Removes an account by username from the account data.
         #
         # @param data_dir [String] the directory where account data is stored
         # @param username [String] the username of the account to remove
@@ -144,7 +143,7 @@ module Lich
           end
         end
 
-        # Changes the password for the specified account.
+        # Changes the password for an existing account.
         #
         # @param data_dir [String] the directory where account data is stored
         # @param username [String] the username of the account
@@ -156,12 +155,12 @@ module Lich
           add_or_update_account(data_dir, normalized_username, new_password)
         end
 
-        # Adds a character to the specified account.
+        # Adds a character to an existing account.
         #
         # @param data_dir [String] the directory where account data is stored
         # @param username [String] the username of the account
         # @param character_data [Hash] the character data to add
-        # @return [Hash] result of the operation with success status and message
+        # @return [Hash] a result hash indicating success or failure
         def self.add_character(data_dir, username, character_data)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -224,13 +223,13 @@ module Lich
           end
         end
 
-        # Removes a character from the specified account.
+        # Removes a character from an existing account.
         #
         # @param data_dir [String] the directory where account data is stored
         # @param username [String] the username of the account
         # @param char_name [String] the name of the character to remove
         # @param game_code [String] the game code associated with the character
-        # @param frontend [String, nil] optional frontend for precise matching
+        # @param frontend [String, nil] optional frontend specification for character removal
         # @return [Boolean] true if the character was removed, false otherwise
         def self.remove_character(data_dir, username, char_name, game_code, frontend = nil)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
@@ -277,13 +276,13 @@ module Lich
           end
         end
 
-        # Updates the properties of a character in the specified account.
+        # Updates properties of an existing character in an account.
         #
         # @param data_dir [String] the directory where account data is stored
         # @param username [String] the username of the account
         # @param char_name [String] the name of the character to update
         # @param game_code [String] the game code associated with the character
-        # @param updates [Hash] the properties to update
+        # @param updates [Hash] a hash of properties to update
         # @return [Boolean] true if the character was updated, false otherwise
         def self.update_character(data_dir, username, char_name, game_code, updates)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
@@ -322,7 +321,7 @@ module Lich
         #
         # @param auth_data [Array<Hash>] the authentication data to convert
         # @param frontend [String] the frontend to associate with the characters
-        # @return [Array<Hash>] the converted character data
+        # @return [Array<Hash>] an array of character hashes
         def self.convert_auth_data_to_characters(auth_data, frontend = 'stormfront')
           characters = []
           return characters unless auth_data.is_a?(Array)
@@ -348,7 +347,7 @@ module Lich
         # Retrieves a list of account usernames from the data directory.
         #
         # @param data_dir [String] the directory where account data is stored
-        # @return [Array<String>] list of account usernames
+        # @return [Array<String>] an array of usernames
         def self.get_accounts(data_dir)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -400,11 +399,11 @@ module Lich
           end
         end
 
-        # Retrieves characters associated with a specified account.
+        # Retrieves characters associated with a specific account.
         #
         # @param data_dir [String] the directory where account data is stored
         # @param username [String] the username of the account
-        # @return [Array<Hash>] list of characters associated with the account
+        # @return [Array<Hash>] an array of character hashes
         def self.get_characters(data_dir, username)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -435,7 +434,7 @@ module Lich
         # Converts account data to a legacy format.
         #
         # @param data_dir [String] the directory where account data is stored
-        # @return [Array] the legacy formatted data
+        # @return [Array] the converted legacy format data
         def self.to_legacy_format(data_dir)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -451,7 +450,7 @@ module Lich
           end
         end
 
-        # Writes YAML data to a file with headers.
+        # Writes YAML data to a file with headers for preservation.
         #
         # @param yaml_file [String] the path to the YAML file
         # @param yaml_data [Hash] the data to write to the YAML file

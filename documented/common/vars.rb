@@ -90,7 +90,7 @@ module Lich
 
       # Retrieves the value associated with the given name.
       #
-      # @param name [String] the name of the variable to retrieve
+      # @param name [Object] the name of the variable to retrieve
       # @return [Object, nil] the value associated with the name, or nil if not found
       def Vars.[](name)
         @@load.call unless @@load_state == LoadState::LOADED
@@ -99,7 +99,7 @@ module Lich
 
       # Sets the value for the given name.
       #
-      # @param name [String] the name of the variable to set
+      # @param name [Object] the name of the variable to set
       # @param val [Object, nil] the value to assign, or nil to delete the variable
       # @return [void]
       def Vars.[]=(name, val)
@@ -114,7 +114,7 @@ module Lich
 
       # Returns a duplicate of the current variables.
       #
-      # @return [Hash] a hash containing all current variables
+      # @return [Hash] a duplicate of the current variables
       def Vars.list
         @@load.call unless @@load_state == LoadState::LOADED
         @@vars.dup
@@ -160,7 +160,7 @@ module Lich
         end
       end
 
-      # Checks if the object responds to the given method name.
+      # Determines if the object responds to the given method name.
       #
       # @param method_name [Symbol] the name of the method
       # @param _include_private [Boolean] whether to include private methods in the check

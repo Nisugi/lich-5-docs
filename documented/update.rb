@@ -33,16 +33,10 @@ module Lich
   # Provides utility methods for the Lich5 update system.
   #
   # This module contains methods for managing updates, syncing scripts,
-  # and handling versioning within the Lich5 ecosystem.
-  #
-  # @see Lich::Util::Update
+  # and handling versioning.
   module Util
     module Update
       # Update channel constants
-      # The stable reference branch for updates.
-      #
-      # @example
-      #   STABLE_REF # => 'main'
       STABLE_REF = 'main'
       BETA_BRANCH_PREFIX = 'pre/beta'
       ASSET_TARBALL_NAME = 'lich-5.tar.gz'
@@ -98,8 +92,6 @@ module Lich
       #
       # @param type [String] the type of request to process
       # @return [void]
-      # @example
-      #   Lich::Util::Update.request('--announce')
       # @note This method handles various update commands.
       def self.request(type = '--announce')
         case type
@@ -156,10 +148,10 @@ module Lich
         end
       end
 
-      # Synchronizes all script repositories for the current game.
+      # Syncs all script repositories for the current game.
       #
       # @return [void]
-      # @example
+      # @example Sync all repositories
       #   Lich::Util::Update.sync_all_repos
       def self.sync_all_repos
         script_sync.sync_all_repos
@@ -167,10 +159,10 @@ module Lich
 
       # Updates the core data and scripts to the specified version.
       #
-      # @param version [String] the version to update to
+      # @param version [String] the version to update to (default is LICH_VERSION)
       # @return [void]
-      # @example
-      #   Lich::Util::Update.update_core_data_and_scripts('1.0.0')
+      # @example Update to a specific version
+      #   Lich::Util::Update.update_core_data_and_scripts("1.0.0")
       def self.update_core_data_and_scripts(version = LICH_VERSION)
         file_updater.update_core_data_and_scripts(version)
       end
@@ -229,10 +221,10 @@ module Lich
     "
       end
 
-      # Displays the current status of the Lich5 version and branch tracking.
+      # Displays the current status of the Lich5 ecosystem.
       #
       # @return [void]
-      # @example
+      # @example Show the current status
       #   Lich::Util::Update.show_status
       def self.show_status
         respond
@@ -260,11 +252,11 @@ module Lich
       end
 
 
-      # Stores the current branch tracking information.
+      # Stores the branch tracking information in the version file.
       #
       # @param branch_name [String] the name of the branch being tracked
       # @param repo [String] the repository associated with the branch
-      # @param _version [String] the version of the branch (not used)
+      # @param version [String] the version of the branch (not used)
       # @return [void]
       def self.store_branch_tracking(branch_name, repo, _version)
         version_file_path = File.join(LIB_DIR, "version.rb")
@@ -300,8 +292,6 @@ module Lich
       # Retrieves information about the currently tracked branch.
       #
       # @return [Hash, nil] a hash containing branch information or nil if not set
-      # @example
-      #   Lich::Util::Update.get_branch_info
       def self.get_branch_info
         if defined?(LICH_BRANCH) && LICH_BRANCH && !LICH_BRANCH.empty?
           {
@@ -313,38 +303,65 @@ module Lich
       end
 
 
+      # Returns the GitHub client instance used for API requests.
+      #
+      # @return [GitHubClient] the GitHub client instance
       def self.client
         @client ||= GitHubClient.new
       end
 
+      # Returns the channel resolver instance used for resolving update channels.
+      #
+      # @return [ChannelResolver] the channel resolver instance
       def self.resolver
         @resolver ||= ChannelResolver.new(client)
       end
 
+      # Returns the snapshot manager instance used for managing snapshots.
+      #
+      # @return [SnapshotManager] the snapshot manager instance
       def self.snapshot_manager
         @snapshot_manager ||= SnapshotManager.new
       end
 
+      # Returns the release installer instance used for handling release updates.
+      #
+      # @return [ReleaseInstaller] the release installer instance
       def self.release_installer
         ReleaseInstaller.new(client, resolver, snapshot_manager)
       end
 
+      # Returns the branch installer instance used for handling branch updates.
+      #
+      # @return [BranchInstaller] the branch installer instance
       def self.branch_installer
         @branch_installer ||= BranchInstaller.new(snapshot_manager, release_installer)
       end
 
+      # Returns the script sync instance used for syncing script repositories.
+      #
+      # @return [ScriptSync] the script sync instance
       def self.script_sync
         @script_sync ||= ScriptSync.new(client)
       end
 
+      # Returns the tracked scripts manager instance used for managing tracked scripts.
+      #
+      # @return [TrackedScripts] the tracked scripts manager instance
       def self.tracked_scripts_manager
         @tracked_scripts_manager ||= TrackedScripts.new
       end
 
+      # Returns the custom repositories manager instance used for managing custom repos.
+      #
+      # @return [CustomRepos] the custom repositories manager instance
       def self.custom_repos_manager
         @custom_repos_manager ||= CustomRepos.new
       end
 
+      # Returns the file updater instance used for updating files.
+      #
+      # @return [FileUpdater] the file updater instance
       def self.file_updater
         @file_updater ||= FileUpdater.new(client, resolver)
       end

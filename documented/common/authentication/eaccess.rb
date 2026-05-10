@@ -7,7 +7,7 @@ module Lich
   module Common
     module Authentication
       module EAccess
-        # Raised when an authentication error occurs.
+        # Represents an error that occurs during authentication.
         #
         # @see Lich::Common::Authentication::EAccess
         class AuthenticationError < StandardError
@@ -27,14 +27,13 @@ module Lich
           @pem ||= File.join(DATA_DIR, "simu.pem")
         end
 
-        # Checks if the PEM file exists.
+        # Checks if the PEM file exists on the filesystem.
         # @return [Boolean] true if the PEM file exists, false otherwise
         def self.pem_exist?
           File.exist? pem
         end
 
         # Downloads the PEM file from the specified hostname and port.
-        #
         # @param hostname [String] the hostname to connect to (default: "eaccess.play.net")
         # @param port [Integer] the port to connect to (default: 7910)
         # @return [void]
@@ -52,7 +51,6 @@ module Lich
         end
 
         # Verifies the PEM certificate against the stored PEM file.
-        #
         # @param conn [OpenSSL::SSL::SSLSocket] the SSL connection to verify
         # @return [Boolean] true if the certificate matches, false otherwise
         # @raise AuthenticationError if the certificate does not match
@@ -67,8 +65,7 @@ module Lich
           #     fail Exception, "\nssl peer certificate did not match #{pem}\nwas:\n#{conn.peer_cert}"
         end
 
-        # Establishes a new SSL socket connection to the specified hostname and port.
-        #
+        # Establishes a secure socket connection to the specified hostname and port.
         # @param hostname [String] the hostname to connect to (default: "eaccess.play.net")
         # @param port [Integer] the port to connect to (default: 7910)
         # @return [OpenSSL::SSL::SSLSocket] the established SSL socket
@@ -87,7 +84,6 @@ module Lich
         end
 
         # Authenticates a user with the provided credentials.
-        #
         # @param password [String] the user's password
         # @param account [String] the user's account name
         # @param character [String, nil] the character name (optional)
@@ -203,8 +199,7 @@ module Lich
           end
         end
 
-        # Reads data from the given connection.
-        #
+        # Reads data from the given connection up to the defined packet size.
         # @param conn [TCPSocket] the connection to read from
         # @return [String] the data read from the connection
         def self.read(conn)

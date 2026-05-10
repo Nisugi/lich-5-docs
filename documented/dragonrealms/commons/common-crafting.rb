@@ -5,9 +5,10 @@ module Lich
       module_function
 
       # Pattern constants for bput responses
-      # Pattern constants for bput responses.
+      # Pattern constants for bput responses
       #
-      # These constants are used to match various responses from the crafting system.
+      # @see LOOK_CRUCIBLE_EMPTY
+      # @see LOOK_CRUCIBLE_SEE_PATTERN
       LOOK_CRUCIBLE_NOT_FOUND = '^I could not find'
       LOOK_CRUCIBLE_EMPTY = '^There is nothing in there'
       LOOK_CRUCIBLE_SEE_PATTERN = /^In the .* crucible you see (?<items>.*)\./.freeze
@@ -63,10 +64,11 @@ module Lich
       PUT_BAG_COMBINE = 'You combine'
 
       # Parts that cannot be purchased from crafting shops
-      # Parts that cannot be purchased from crafting shops.
+      # Parts that cannot be purchased from crafting shops
       #
       # @example
-      #   %w[sufil blue\ flower muljin] # Example of parts that cannot be purchased.
+      #   %w[sufil blue\ flower muljin belradi dioica hulnik aloe eghmok]
+      # @see LOOK_CRUCIBLE_NOT_FOUND
       PARTS_CANNOT_PURCHASE = %w[
         sufil blue\ flower muljin belradi dioica hulnik aloe eghmok
         lujeakave yelith cebi blocil hulij nuloe hisan gem pebble
@@ -132,7 +134,8 @@ module Lich
 
       # Checks if the crucible is empty.
       #
-      # @return [Boolean] true if the crucible is empty, false otherwise.
+      # @return [Boolean] true if the crucible is empty, false otherwise
+      # @api private
       def empty_crucible?
         case result = DRC.bput('look in cruc',
                                LOOK_CRUCIBLE_NOT_FOUND,
@@ -166,7 +169,7 @@ module Lich
 
       # Finds an empty crucible in the specified hometown.
       #
-      # @param hometown [String] the name of the hometown to search in.
+      # @param hometown [String] the name of the hometown to search in
       # @return [void]
       def find_empty_crucible(hometown)
         return if DRC.bput('tap crucible', TAP_CRUCIBLE_NOT_FOUND, TAP_CRUCIBLE_SUCCESS) =~ TAP_CRUCIBLE_SUCCESS && (DRRoom.pcs - DRRoom.group_members).empty? && empty_crucible?
@@ -179,7 +182,8 @@ module Lich
 
       # Checks if the anvil is clean.
       #
-      # @return [Boolean] true if the anvil is clean, false otherwise.
+      # @return [Boolean] true if the anvil is clean, false otherwise
+      # @api private
       def clean_anvil?
         case result = DRC.bput('look on anvil', LOOK_ANVIL_NOT_FOUND, LOOK_ANVIL_CLEAN, LOOK_ANVIL_SEE_PATTERN)
         when /surface looks clean and ready/i
@@ -215,7 +219,7 @@ module Lich
 
       # Finds a wheel in the specified hometown.
       #
-      # @param hometown [String] the name of the hometown to search in.
+      # @param hometown [String] the name of the hometown to search in
       # @return [void]
       def find_wheel(hometown)
         wheels = get_data('crafting')['tailoring'][hometown]['spinning-rooms']
@@ -225,7 +229,7 @@ module Lich
 
       # Finds an anvil in the specified hometown.
       #
-      # @param hometown [String] the name of the hometown to search in.
+      # @param hometown [String] the name of the hometown to search in
       # @return [void]
       def find_anvil(hometown)
         return if DRC.bput('tap anvil', TAP_ANVIL_NOT_FOUND, TAP_ANVIL_SUCCESS) =~ TAP_ANVIL_SUCCESS && (DRRoom.pcs - DRRoom.group_members).empty? && clean_anvil?
@@ -238,7 +242,7 @@ module Lich
 
       # Finds a grindstone in the specified hometown.
       #
-      # @param hometown [String] the name of the hometown to search in.
+      # @param hometown [String] the name of the hometown to search in
       # @return [void]
       def find_grindstone(hometown)
         return unless DRC.bput('tap grindstone', TAP_GRINDSTONE_NOT_FOUND, TAP_GRINDSTONE_SUCCESS) == TAP_GRINDSTONE_NOT_FOUND
@@ -250,8 +254,8 @@ module Lich
 
       # Finds a sewing room in the specified hometown.
       #
-      # @param hometown [String] the name of the hometown to search in.
-      # @param override [String, nil] optional override location.
+      # @param hometown [String] the name of the hometown to search in
+      # @param override [String, nil] optional override location
       # @return [void]
       def find_sewing_room(hometown, override = nil)
         if override
@@ -265,8 +269,8 @@ module Lich
 
       # Finds a loom room in the specified hometown.
       #
-      # @param hometown [String] the name of the hometown to search in.
-      # @param override [String, nil] optional override location.
+      # @param hometown [String] the name of the hometown to search in
+      # @param override [String, nil] optional override location
       # @return [void]
       def find_loom_room(hometown, override = nil)
         if override
@@ -280,8 +284,8 @@ module Lich
 
       # Finds a shaping room in the specified hometown.
       #
-      # @param hometown [String] the name of the hometown to search in.
-      # @param override [String, nil] optional override location.
+      # @param hometown [String] the name of the hometown to search in
+      # @param override [String, nil] optional override location
       # @return [void]
       def find_shaping_room(hometown, override = nil)
         if override
@@ -295,7 +299,7 @@ module Lich
 
       # Finds a press grinder room in the specified hometown.
       #
-      # @param hometown [String] the name of the hometown to search in.
+      # @param hometown [String] the name of the hometown to search in
       # @return [void]
       def find_press_grinder_room(hometown)
         return unless DRC.bput('tap grinder', TAP_GRINDER_NOT_FOUND, TAP_GRINDER_SUCCESS) == TAP_GRINDER_NOT_FOUND
@@ -306,8 +310,8 @@ module Lich
 
       # Finds an enchanting room in the specified hometown.
       #
-      # @param hometown [String] the name of the hometown to search in.
-      # @param override [String, nil] optional override location.
+      # @param hometown [String] the name of the hometown to search in
+      # @param override [String, nil] optional override location
       # @return [void]
       def find_enchanting_room(hometown, override = nil)
         if override
@@ -321,9 +325,11 @@ module Lich
 
       # Looks up a recipe by item name.
       #
-      # @param recipes [Array<Hash>] the list of recipes to search through.
-      # @param item_name [String] the name of the item to find a recipe for.
-      # @return [Hash, nil] the matching recipe or nil if not found.
+      # @param recipes [Array<Hash>] the list of recipes to search through
+      # @param item_name [String] the name of the item to find a recipe for
+      # @return [Hash, nil] the matching recipe or nil if not found
+      # @example
+      #   recipe_lookup(recipes, "metal pike")
       def recipe_lookup(recipes, item_name)
         match_names = recipes.map { |x| x['name'] }.select { |x| x =~ /#{item_name}/i }
         case match_names.length
@@ -349,12 +355,14 @@ module Lich
         end
       end
 
-      # Finds a recipe in the specified book and chapter.
+      # Finds a recipe in a book by chapter.
       #
-      # @param chapter [Integer] the chapter number to turn to.
-      # @param match_string [String] the string to match in the recipe.
-      # @param book [String] the name of the book to search in.
-      # @return [String, nil] the page number of the recipe or nil if not found.
+      # @param chapter [Integer] the chapter number to turn to
+      # @param match_string [String] the string to match in the recipe
+      # @param book [String] the name of the book to read from
+      # @return [String, nil] the page number of the recipe or nil if not found
+      # @example
+      #   find_recipe(2, "metal pike")
       def find_recipe(chapter, match_string, book = 'book')
         case DRC.bput("turn my #{book} to chapter #{chapter}", BOOK_CHAPTER_TURN_SUCCESS, BOOK_CHAPTER_DISTRACTED, BOOK_CHAPTER_ALREADY)
         when BOOK_CHAPTER_DISTRACTED
@@ -368,13 +376,15 @@ module Lich
         match&.[](:page)
       end
 
-      # Finds a recipe in the specified book and chapter, optionally by discipline.
+      # Finds a recipe in a book by chapter and discipline.
       #
-      # @param chapter [Integer] the chapter number to turn to.
-      # @param match_string [String] the string to match in the recipe.
-      # @param book [String] the name of the book to search in.
-      # @param discipline [String, nil] optional discipline to filter recipes.
-      # @return [String, nil] the page number of the recipe or nil if not found.
+      # @param chapter [Integer] the chapter number to turn to
+      # @param match_string [String] the string to match in the recipe
+      # @param book [String] the name of the book to read from
+      # @param discipline [String, nil] the discipline to turn to
+      # @return [String, nil] the page number of the recipe or nil if not found
+      # @example
+      #   find_recipe2(2, "metal pike", "crafting")
       def find_recipe2(chapter, match_string, book = 'book', discipline = nil)
         DRC.bput("turn my #{book} to discipline #{discipline}", BOOK_DISCIPLINE_SUCCESS) unless discipline.nil?
         case DRC.bput("turn my #{book} to chapter #{chapter}", BOOK_CHAPTER2_SUCCESS, BOOK_CHAPTER2_ALREADY, BOOK_CHAPTER_DISTRACTED)
@@ -391,14 +401,6 @@ module Lich
         DRC.bput("study my #{book}", BOOK_STUDY_SUCCESS)
       end
 
-      # Retrieves a crafting item from the specified bag or belt.
-      #
-      # @param name [String] the name of the item to retrieve.
-      # @param bag [String] the name of the bag to search in.
-      # @param bag_items [Array<String>] the list of items in the bag.
-      # @param belt [Hash] the belt information.
-      # @param skip_exit [Boolean] whether to skip exit messages.
-      # @return [void]
       def get_crafting_item(name, bag, bag_items, belt, skip_exit = false)
         waitrt?
         if belt && belt['items'].find { |item| /\b#{name}/i =~ item || /\b#{item}/i =~ name }
@@ -440,12 +442,6 @@ module Lich
         end
       end
 
-      # Stows a crafting item in the specified bag or belt.
-      #
-      # @param name [String] the name of the item to stow.
-      # @param bag [String] the name of the bag to stow in.
-      # @param belt [Hash] the belt information.
-      # @return [Boolean] true if stowed successfully, false otherwise.
       def stow_crafting_item(name, bag, belt)
         return unless name
 
@@ -470,14 +466,16 @@ module Lich
         true
       end
 
-      # Calculates the crafting cost for a given recipe.
+      # Calculates the crafting cost for a recipe.
       #
-      # @param recipe [Hash] the recipe details including name, volume, and type.
-      # @param hometown [String] the name of the hometown for currency conversion.
-      # @param parts [Array<String>] the list of parts required for crafting.
-      # @param quantity [Integer] the number of items to craft.
-      # @param material [Hash] the material details including stock volume and value.
-      # @return [Integer] the total crafting cost.
+      # @param recipe [Hash] the recipe details
+      # @param hometown [String] the hometown for currency conversion
+      # @param parts [Array<String>] the parts required for crafting
+      # @param quantity [Integer] the number of items to craft
+      # @param material [Hash, nil] the material details
+      # @return [Integer] the total cost of crafting
+      # @example
+      #   crafting_cost(recipe, "Crossing", parts, 2, material)
       def crafting_cost(recipe, hometown, parts, quantity, material)
         # To use this method, you'll need to pass:
         # recipe => This is a hash drawn directly from base-recipes eg {name: 'a metal ring cap', noun: 'cap', volume: 8, type: 'armorsmithing',etc}
@@ -519,14 +517,6 @@ module Lich
         end
       end
 
-      # Repairs the user's own tools using specified consumables.
-      #
-      # @param info [Hash] information about the tools and their repair requirements.
-      # @param tools [Array<String>] the list of tools to repair.
-      # @param bag [String] the name of the bag containing consumables.
-      # @param bag_items [Array<String>] the list of items in the bag.
-      # @param belt [Hash] the belt information.
-      # @return [void]
       def repair_own_tools(info, tools, bag, bag_items, belt)
         UserVars.immune_list ||= {} # declaring a hash unless hash already
         tools = tools.to_a # Convert single tool string to array
@@ -577,16 +567,6 @@ module Lich
         nil
       end
 
-      # Checks for the specified consumables and retrieves them if necessary.
-      #
-      # @param name [String] the name of the consumable to check.
-      # @param room [String] the room where the consumable is located.
-      # @param number [Integer] the number of consumables needed.
-      # @param bag [String] the name of the bag containing consumables.
-      # @param bag_items [Array<String>] the list of items in the bag.
-      # @param belt [Hash] the belt information.
-      # @param count [Integer] the number of consumables to check for.
-      # @return [void]
       def check_consumables(name, room, number, bag, bag_items, belt, count = 3)
         current = Room.current.id
         case DRC.bput("get my #{name} from my #{bag}", CONSUMABLE_GET_SUCCESS, CONSUMABLE_GET_NOT_FOUND)
@@ -605,14 +585,6 @@ module Lich
         DRCT.walk_to(current)
       end
 
-      # Adjusts the tongs based on the specified usage.
-      #
-      # @param usage [String] the type of usage (e.g., 'shovel' or 'tongs').
-      # @param bag [String] the name of the bag containing tongs.
-      # @param bag_items [Array<String>] the list of items in the bag.
-      # @param belt [Hash] the belt information.
-      # @param adjustable_tongs [Boolean] whether the tongs are adjustable.
-      # @return [Boolean] true if the tongs were successfully adjusted, false otherwise.
       def get_adjust_tongs?(usage, bag, bag_items, belt, adjustable_tongs = false)
         case usage
         when 'shovel' # looking for a shovel
@@ -674,12 +646,6 @@ module Lich
         end
       end
 
-      # Logs an item in the specified logbook.
-      #
-      # @param logbook [String] the name of the logbook to log the item in.
-      # @param noun [String] the name of the item to log.
-      # @param container [String] the container holding the item.
-      # @return [void]
       def logbook_item(logbook, noun, container)
         DRCI.get_item?("#{logbook} logbook")
         bundle_result = DRC.bput("bundle my #{noun} with my logbook",
@@ -706,14 +672,6 @@ module Lich
         DRCI.put_away_item?("#{logbook} logbook", container) || DRCI.put_away_item?("#{logbook} logbook")
       end
 
-      # Orders a specified number of enchantments from the stock room.
-      #
-      # @param stock_room [String] the name of the stock room to order from.
-      # @param stock_needed [Integer] the number of stock items needed.
-      # @param stock_number [Integer] the stock number to order.
-      # @param bag [String] the name of the bag to stow items in.
-      # @param belt [Hash] the belt information.
-      # @return [void]
       def order_enchant(stock_room, stock_needed, stock_number, bag, belt)
         stock_needed.times do
           DRCT.order_item(stock_room, stock_number)
@@ -723,16 +681,6 @@ module Lich
         end
       end
 
-      # Interacts with a fount to retrieve stock items.
-      #
-      # @param stock_room [String] the name of the stock room to interact with.
-      # @param stock_needed [Integer] the number of stock items needed.
-      # @param stock_number [Integer] the stock number to retrieve.
-      # @param quantity [Integer] the quantity of items to retrieve.
-      # @param bag [String] the name of the bag to stow items in.
-      # @param bag_items [Array<String>] the list of items in the bag.
-      # @param belt [Hash] the belt information.
-      # @return [void]
       def fount(stock_room, stock_needed, stock_number, quantity, bag, bag_items, belt)
         case DRC.bput('tap my fount', FOUNT_TAP_IN_BAG, FOUNT_TAP_ON_BAG, FOUNT_TAP_NOT_FOUND)
         when FOUNT_TAP_IN_BAG, FOUNT_TAP_ON_BAG
@@ -759,9 +707,6 @@ module Lich
         end
       end
 
-      # Checks if the brazier is clean and cleans it if necessary.
-      #
-      # @return [Boolean] true if the brazier is clean, false otherwise.
       def clean_brazier?
         case DRC.bput('look on brazier', BRAZIER_NOTHING, BRAZIER_SEE_PATTERN)
         when /There is nothing on there/i
@@ -776,9 +721,6 @@ module Lich
         end
       end
 
-      # Empties the brazier of its contents.
-      #
-      # @return [void]
       def empty_brazier
         result = DRC.bput('look on brazier', BRAZIER_SEE_PATTERN, BRAZIER_CLEAN_NOTHING)
         match = result.match(BRAZIER_SEE_PATTERN)
@@ -793,15 +735,6 @@ module Lich
         end
       end
 
-      # Checks for existing sigils and orders more if necessary.
-      #
-      # @param sigil [String] the name of the sigil to check for.
-      # @param stock_number [Integer] the stock number for ordering.
-      # @param quantity [Integer] the quantity needed.
-      # @param bag [String] the name of the bag to stow items in.
-      # @param belt [Hash] the belt information.
-      # @param info [Hash] additional information for ordering.
-      # @return [Boolean] true if sigils are sufficient, false otherwise.
       def check_for_existing_sigil?(sigil, stock_number, quantity, bag, belt, info)
         merged = Regexp.union($PRIMARY_SIGILS_PATTERN, $SECONDARY_SIGILS_PATTERN)
 
@@ -826,11 +759,6 @@ module Lich
         end
       end
 
-      # Counts the amount of raw metal in a specified container.
-      #
-      # @param container [String] the name of the container to rummage through.
-      # @param type [String, nil] optional type of metal to count.
-      # @return [Hash, nil] a hash of metal types and their volumes or nil if none found.
       def count_raw_metal(container, type = nil)
         result = DRC.bput("rummage /M #{container}", RUMMAGE_NOTHING, RUMMAGE_CLOSED, RUMMAGE_NOT_FOUND, RUMMAGE_INVISIBLE, RUMMAGE_NOTHING_ACCOMPLISH, RUMMAGE_SUCCESS_PATTERN)
 

@@ -6,8 +6,7 @@ module Lich
   module Common
     # Represents a map in the Lich game.
     #
-    # This class handles the management of rooms, their properties,
-    # and interactions within the game world.
+    # This class handles the management of rooms and their connections.
     #
     # @see Lich::Common::Room
     class Map
@@ -44,18 +43,17 @@ module Lich
       # @param location [String, nil] optional location of the map
       # @param climate [String, nil] optional climate description
       # @param terrain [String, nil] optional terrain description
-      # @param wayto [Hash] paths to other maps
+      # @param wayto [Hash] connections to other maps
       # @param timeto [Hash] time taken to travel to other maps
       # @param image [String, nil] optional image associated with the map
       # @param image_coords [Array<Integer>, nil] optional coordinates for the image
-      # @param tags [Array<String>] tags associated with the map
+      # @param tags [Array<String>] optional tags associated with the map
       # @param check_location [String, nil] optional check location
       # @param unique_loot [String, nil] optional unique loot
       # @param _room_objects [nil] reserved for future use
       # @param genie_id [String, nil] optional genie identifier
       # @param genie_zone [String, nil] optional genie zone
       # @param genie_pos [String, nil] optional genie position
-      # @return [Map]
       def initialize(id, title, description, paths, uid = [], location = nil,
                      climate = nil, terrain = nil, wayto = {}, timeto = {},
                      image = nil, image_coords = nil, tags = [], check_location = nil,
@@ -84,21 +82,21 @@ module Lich
 
       # Returns a string representation of the map.
       #
-      # This includes the ID, UID, title, description, and paths.
-      # @return [String] string representation of the map
+      # @return [String] formatted string containing map details
       def to_s
         "##{@id} (#{@uid[-1]}):\n#{@title[-1]}\n#{@description[-1]}\n#{@paths[-1]}"
       end
 
       # Returns additional fields for JSON representation.
       #
-      # @return [Hash] a hash containing genie_id, genie_zone, and genie_pos
+      # @return [Hash] hash containing genie_id, genie_zone, and genie_pos
       def json_extra_fields
         { genie_id: @genie_id, genie_zone: @genie_zone, genie_pos: @genie_pos }
       end
 
       class << self
         # Checks if the map has been loaded.
+        #
         # @return [Boolean] true if the map is loaded, false otherwise
         def loaded?
           @@loaded
@@ -106,7 +104,6 @@ module Lich
 
         # Retrieves the list of maps.
         #
-        # This method loads the maps if they haven't been loaded yet.
         # @return [Array<Map>] array of loaded maps
         def list
           self.load unless @@loaded
@@ -118,18 +115,21 @@ module Lich
         end
 
         # Retrieves the unique identifiers for the maps.
-        # @return [Hash] a hash mapping unique identifiers to map IDs
+        #
+        # @return [Hash] hash mapping unique identifiers to map IDs
         def uids
           @@uids
         end
 
         # Clears the cached tags for the maps.
+        #
         # @return [void]
         def clear_tags_cache
           @@tags.clear
         end
 
         # Marks the map as loaded.
+        #
         # @return [void]
         def mark_loaded
           @@loaded = true
@@ -141,6 +141,7 @@ module Lich
       end
 
       # Finds a map by its genie reference.
+      #
       # @param zone_id [String] the zone identifier
       # @param node_id [String] the node identifier
       # @return [Map, nil] the map if found, nil otherwise
@@ -149,8 +150,9 @@ module Lich
         @@list.find { |r| r&.genie_zone == zone_id.to_s && r&.genie_id == node_id.to_s }
       end
 
-      # Retrieves the next available unique identifier for a new map.
-      # @return [Integer] the next free ID
+      # Retrieves a free ID for a new map.
+      #
+      # @return [Integer] a unique ID for a new map
       def self.get_free_id
         self.load unless @@loaded
         @@list.compact.max_by(&:id).id + 1
@@ -172,19 +174,22 @@ module Lich
         end
       end
 
-      # Retrieves the previously accessed map.
+      # Retrieves the previous map.
+      #
       # @return [Map, nil] the previous map if available, nil otherwise
       def self.previous
         @@list[@@previous_room_id]
       end
 
-      # Retrieves the UID of the previous map.
-      # @return [Integer, nil] the previous UID if available, nil otherwise
+      # Retrieves the previous UID for the map.
+      #
+      # @return [String] the previous UID
       def self.previous_uid
         XMLData.previous_nav_rm
       end
 
-      # Retrieves the current map based on the game state.
+      # Retrieves the current map.
+      #
       # @return [Map, nil] the current map if available, nil otherwise
       def self.current
         self.load unless @@loaded
@@ -203,6 +208,7 @@ module Lich
       end
 
       # Matches the current map when no UID is available.
+      #
       # @return [Map, nil] the matched map if found, nil otherwise
       def self.match_no_uid
         if (script = Script.current)
@@ -212,9 +218,10 @@ module Lich
         end
       end
 
-      # Sets the current map based on fuzzy matching.
-      # @param id [Integer] the ID of the map to set as current
-      # @return [Map, nil] the newly set map if available, nil otherwise
+      # Sets the current map using fuzzy matching.
+      #
+      # @param id [Integer] the ID of the map to set
+      # @return [Map, nil] the set map if successful, nil otherwise
       def self.set_fuzzy(id)
         @@previous_room_id = @@current_room_id if !id.nil? && id != @@current_room_id
         @@current_room_id = id
@@ -272,6 +279,7 @@ module Lich
       end
 
       # Matches the current map using fuzzy logic.
+      #
       # @return [Map, nil] the matched map if found, nil otherwise
       def self.match_fuzzy
         @@fuzzy_room_mutex.synchronize do
@@ -323,7 +331,8 @@ module Lich
       end
 
       # Retrieves the current map or creates a new one if none exists.
-      # @return [Map] the current or newly created map
+      #
+      # @return [Map, nil] the current or newly created map
       def self.current_or_new
         return nil unless Script.current
 
@@ -356,9 +365,10 @@ module Lich
         set_current(id)
       end
 
-      # Sets the current map to the specified ID.
-      # @param id [Integer] the ID of the map to set as current
-      # @return [Map, nil] the newly set map if available, nil otherwise
+      # Sets the current map by ID.
+      #
+      # @param id [Integer] the ID of the map to set
+      # @return [Map, nil] the set map if successful, nil otherwise
       def self.set_current(id)
         @@previous_room_id = @@current_room_id if id != @@current_room_id
         @@current_room_id = id
@@ -367,7 +377,8 @@ module Lich
         @@list[id]
       end
 
-      # Matches multiple IDs against the current map's paths.
+      # Matches multiple IDs for the current map.
+      #
       # @param ids [Array<Integer>] the IDs to match
       # @return [Integer, nil] the matched ID if found, nil otherwise
       def self.match_multi_ids(ids)
@@ -377,7 +388,8 @@ module Lich
         nil
       end
 
-      # Loads unique identifiers for the maps from the current list.
+      # Loads unique identifiers for the maps.
+      #
       # @return [void]
       def self.load_uids
         self.load unless @@loaded
@@ -393,7 +405,8 @@ module Lich
         end
       end
 
-      # Retrieves the unique tags associated with the maps.
+      # Retrieves the tags associated with the maps.
+      #
       # @return [Array<String>] array of unique tags
       def self.tags
         self.load unless @@loaded
@@ -401,14 +414,16 @@ module Lich
         @@tags.dup
       end
 
-      # Retrieves map IDs associated with a given UID.
-      # @param n [Integer] the unique identifier
+      # Retrieves map IDs from a given UID.
+      #
+      # @param n [Integer] the UID to look up
       # @return [Array<Integer>] array of map IDs associated with the UID
       def self.ids_from_uid(n)
         @@uids[n].nil? || n.zero? ? [] : @@uids[n]
       end
 
       # Clears the map data and resets the state.
+      #
       # @return [Boolean] true if cleared successfully, false otherwise
       def self.clear
         @@load_mutex.synchronize do
@@ -420,8 +435,9 @@ module Lich
         true
       end
 
-      # Loads map data from files.
-      # @param filename [String, nil] optional filename to load specific map data
+      # Loads map data from a file.
+      #
+      # @param filename [String, nil] optional filename to load from
       # @return [Boolean] true if loaded successfully, false otherwise
       def self.load(filename = nil)
         file_list = if filename.nil?
@@ -452,7 +468,8 @@ module Lich
       end
 
       # Loads map data from a JSON file.
-      # @param filename [String, nil] optional filename to load specific map data
+      #
+      # @param filename [String, nil] optional filename to load from
       # @return [Boolean] true if loaded successfully, false otherwise
       def self.load_json(filename = nil)
         @@load_mutex.synchronize do
@@ -510,7 +527,8 @@ module Lich
       end
 
       # Loads map data from an XML file.
-      # @param filename [String] the filename to load map data
+      #
+      # @param filename [String] the filename to load from
       # @return [Boolean] true if loaded successfully, false otherwise
       def self.load_xml(filename = File.join(DATA_DIR, XMLData.game, 'map.xml'))
         respond '--- WARNING: Map.load_xml is deprecated. Use Map.load_json instead.'
@@ -647,8 +665,9 @@ module Lich
         end
       end
 
-      # Saves the current map data to an XML file.
-      # @param _filename [String, nil] optional filename to save the map data
+      # Saves the map data to an XML file.
+      #
+      # @param _filename [String, nil] optional filename to save to
       # @return [void]
       def self.save_xml(_filename = nil)
         respond '--- WARNING: Map.save_xml is deprecated. Use Map.save_json instead.'

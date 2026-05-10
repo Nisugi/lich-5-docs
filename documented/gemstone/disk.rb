@@ -4,7 +4,8 @@ module Lich
     #
     # This class provides methods to identify, find, and manage disk objects.
     #
-    # @see Lich::Gemstone
+    # @see Lich::Gemstone::Disk#find_by_name
+    # @see Lich::Gemstone::Disk#all
     class Disk
       NOUNS = %w{cassone chest coffer coffin coffret disk hamper saucer sphere trunk tureen}
 
@@ -17,10 +18,9 @@ module Lich
 
       # Finds a disk by its name.
       # @param name [String] the name of the disk to find
-      # @return [Disk, nil] the Disk object if found, nil otherwise
-      # @example
-      #   disk = Disk.find_by_name("golden disk")
-      #   puts disk.name if disk
+      # @return [Lich::Gemstone::Disk, nil] the found disk object or nil if not found
+      # @example Find a disk by name
+      #   disk = Lich::Gemstone::Disk.find_by_name("golden disk")
       def self.find_by_name(name)
         disk = GameObj.loot.find do |item|
           is_disk?(item) && item.name.include?(name)
@@ -30,13 +30,13 @@ module Lich
       end
 
       # Mines for a disk based on the character's name.
-      # @return [Disk, nil] the Disk object if found, nil otherwise
+      # @return [Lich::Gemstone::Disk, nil] the found disk object or nil if not found
       def self.mine
         find_by_name(Char.name)
       end
 
-      # Retrieves all disk objects from the game.
-      # @return [Array<Disk>] an array of all Disk objects
+      # Retrieves all disk objects from the loot.
+      # @return [Array<Lich::Gemstone::Disk>] an array of all disk objects
       def self.all()
         (GameObj.loot || []).select do |item|
           is_disk?(item)
@@ -57,30 +57,26 @@ module Lich
         end
       end
 
-      # Compares this Disk object with another for equality.
+      # Compares this disk with another disk for equality.
       # @param other [Object] the object to compare
-      # @return [Boolean] true if the objects are equal, false otherwise
+      # @return [Boolean] true if the disks are equal, false otherwise
       def ==(other)
         other.is_a?(Disk) && other.id == self.id
       end
 
-      # Checks if this Disk object is equal to another.
+      # Checks if this disk is equal to another disk.
       # @param other [Object] the object to compare
-      # @return [Boolean] true if the objects are equal, false otherwise
+      # @return [Boolean] true if the disks are equal, false otherwise
       def eql?(other)
         self == other
       end
 
-      # Handles calls to methods that are not defined on this Disk object.
-      # @param method [Symbol] the name of the method being called
-      # @param args [Array] the arguments passed to the method
-      # @return [Object] the result of the method call on the underlying game object
       def method_missing(method, *args)
         GameObj[@id].send(method, *args)
       end
 
-      # Converts this Disk object to a container object.
-      # @return [Container, GameObj] the corresponding container object
+      # Converts this disk to a container object.
+      # @return [Container, GameObj] the corresponding container object or game object
       def to_container
         if defined?(Container)
           Container.new(@id)

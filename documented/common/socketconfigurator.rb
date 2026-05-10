@@ -2,7 +2,7 @@ require 'socket'
 
 # Provides common utilities for the Lich project.
 #
-# @see Lich::Common
+# @see Lich::Common::SocketConfigurator
 module Lich
   module Common
     # Configures socket options for different platforms.
@@ -18,58 +18,69 @@ module Lich
           ffi_lib 'Ws2_32', 'msvcrt'
 
           # WSAIoctl command code for setting TCP keep-alive parameters
+          # WSAIoctl command code for setting TCP keep-alive parameters.
           SIO_KEEPALIVE_VALS = 0x98000004
 
           # Socket option level for socket-level options
+          # Socket option level for socket-level options.
           SOL_SOCKET = 0xffff
 
           # Socket option to enable/disable keep-alive
+          # Socket option to enable/disable keep-alive.
           SO_KEEPALIVE = 0x0008
 
           # Socket option to control connection linger on close
+          # Socket option to control connection linger on close.
           SO_LINGER   = 0x0080
 
           # Socket option to set receive timeout
+          # Socket option to set receive timeout.
           SO_RCVTIMEO = 0x1006
 
           # Socket option to set send timeout
+          # Socket option to set send timeout.
           SO_SNDTIMEO = 0x1005
 
           # Socket option to set receive buffer size
+          # Socket option to set receive buffer size.
           SO_RCVBUF   = 0x1002
 
           # Socket option to set send buffer size
+          # Socket option to set send buffer size.
           SO_SNDBUF   = 0x1003
 
           # Protocol number for TCP
+          # Protocol number for TCP.
           IPPROTO_TCP = 6
 
           # TCP option to disable Nagle's algorithm
+          # TCP option to disable Nagle's algorithm.
           TCP_NODELAY = 0x0001
 
           # TCP option to set maximum retransmission time
+          # TCP option to set maximum retransmission time.
           TCP_MAXRT   = 5
 
-          # Represents the TCP keepalive settings structure.
+          # Struct for TCP keepalive settings.
           #
-          # This structure is used to configure TCP keepalive options.
+          # This struct holds the parameters for configuring TCP keepalive.
           class TcpKeepalive < FFI::Struct
             layout :onoff, :ulong,
                    :keepalivetime, :ulong,
                    :keepaliveinterval, :ulong
           end
 
-          # Represents the linger settings structure for sockets.
+          # Struct for linger settings.
           #
-          # This structure is used to configure the linger option on sockets.
+          # This struct holds the parameters for controlling connection linger.
           class Linger < FFI::Struct
             layout :l_onoff, :ushort,
                    :l_linger, :ushort
           end
 
-          # Represents a time value structure used for socket timeouts.
+          # Struct for time values.
           #
-          # This structure is used to specify timeouts for socket operations.
+          # This struct holds the parameters for time values used in socket options.
           class Timeval < FFI::Struct
             layout :tv_sec, :long,
                    :tv_usec, :long
@@ -86,19 +97,25 @@ module Lich
       end
 
 
-      # Configures the specified socket with various options.
+      # Configures the given socket with specified options.
       #
       # @param sock [Socket] the socket to configure
       # @param keepalive [Hash] options for TCP keepalive settings
-      # @param linger [Hash] options for linger settings
+      # @param linger [Hash] options for connection linger settings
       # @param timeout [Hash] options for receive/send timeouts
       # @param buffer_size [Hash] options for receive/send buffer sizes
       # @param tcp_nodelay [Boolean] whether to disable Nagle's algorithm
       # @param tcp_maxrt [Integer] maximum retransmission time
       # @return [void]
       # @raise [StandardError] if configuration fails
-      # @example
-      #   configure(socket, keepalive: { enable: true, idle: 120 }, linger: { enable: true, timeout: 5 })
+      # @example Configure a socket with custom settings
+      #   SocketConfigurator.configure(my_socket,
+      #     keepalive: { enable: true, idle: 120, interval: 30 },
+      #     linger: { enable: true, timeout: 5 },
+      #     timeout: { recv: 30, send: 30 },
+      #     buffer_size: { recv: 32768, send: 32768 },
+      #     tcp_nodelay: true,
+      #     tcp_maxrt: 10)
       def self.configure(sock,
                          keepalive: { enable: true, idle: 120, interval: 30 },
                          linger: { enable: true, timeout: 5 },
@@ -126,7 +143,7 @@ module Lich
       #
       # @param sock [Socket] the socket to configure
       # @param keepalive [Hash] options for TCP keepalive settings
-      # @param linger [Hash] options for linger settings
+      # @param linger [Hash] options for connection linger settings
       # @param timeout [Hash] options for receive/send timeouts
       # @param buffer_size [Hash] options for receive/send buffer sizes
       # @param tcp_nodelay [Boolean] whether to disable Nagle's algorithm
@@ -193,7 +210,7 @@ module Lich
       #
       # @param sock [Socket] the socket to configure
       # @param keepalive [Hash] options for TCP keepalive settings
-      # @param linger [Hash] options for linger settings
+      # @param linger [Hash] options for connection linger settings
       # @param timeout [Hash] options for receive/send timeouts
       # @param buffer_size [Hash] options for receive/send buffer sizes
       # @param tcp_nodelay [Boolean] whether to disable Nagle's algorithm

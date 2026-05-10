@@ -12,10 +12,8 @@ module Lich
       # Adds a new downstream hook.
       #
       # @param name [String] the name of the hook
-      # @param action [Proc] the action to be executed for the hook
+      # @param action [Proc] the action to be executed as a hook
       # @return [Boolean] true if the hook was added successfully, false otherwise
-      # @example
-      #   DownstreamHook.add("example_hook", Proc.new { |str| str.upcase })
       def DownstreamHook.add(name, action)
         unless action.is_a?(Proc)
           echo "DownstreamHook: not a Proc (#{action})"
@@ -29,8 +27,7 @@ module Lich
       #
       # @param server_string [String] the server string to process
       # @return [String, nil] the modified server string or nil if the input was nil
-      # @example
-      #   modified_string = DownstreamHook.run("input string")
+      # @raise [StandardError] if an error occurs during hook execution
       def DownstreamHook.run(server_string)
         for key in @@downstream_hooks.keys
           return nil if server_string.nil?

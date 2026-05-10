@@ -3,7 +3,7 @@
 require 'time'
 
 module Lich
-  # Provides functionality for managing session lifecycles.
+  # Provides common functionality for session lifecycle management.
   #
   # @see Lich::Common
   module Common
@@ -175,7 +175,7 @@ module Lich
 
       # Resolves the frontend context for the session.
       #
-      # @return [String, nil] the frontend context if available, nil otherwise
+      # @return [String, nil] the frontend identifier or nil if not set
       def self.resolve_frontend
         return $frontend if defined?($frontend) && !$frontend.nil? && !$frontend.to_s.empty?
 
@@ -184,7 +184,7 @@ module Lich
 
       # Resolves the game code from the XML data.
       #
-      # @return [String, nil] the game code if available, nil otherwise
+      # @return [String, nil] the game code or nil if not available
       def self.resolve_game_code
         return XMLData.game if defined?(XMLData) && XMLData.respond_to?(:game) && !XMLData.game.to_s.empty?
 
@@ -202,7 +202,7 @@ module Lich
       #
       # @param session_name [String] the name of the session
       # @param role [String] the role of the session
-      # @param frontend [String, nil] the frontend context
+      # @param frontend [String] the frontend identifier
       # @param started_epoch [Integer] the epoch time when the session started
       # @param started_iso [String] the ISO 8601 formatted start time
       # @param registration_delay [Integer] delay before registration in seconds

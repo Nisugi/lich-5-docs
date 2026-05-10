@@ -7,7 +7,8 @@ stash.rb: Core lich file for extending free_hands, empty_hands functions in
 module Lich
   # Provides methods for managing items in the game, including stashing and retrieving items from containers.
   #
-  # @see Lich::Util Utility methods for command handling.
+  # @see Lich::Stash#find_container
+  # @see Lich::Stash#add_to_bag
   module Stash
     @weapon_displayer ||= []
     @bandolier_weapon ||= {}
@@ -33,8 +34,8 @@ module Lich
 
     # Retrieves a container and ensures it is accessible.
     #
-    # @param param [String, GameObj] the name of the container or a GameObj instance
-    # @return [GameObj] the checked container
+    # @param param [String] the name of the container
+    # @return [GameObj] the container object
     def self.container(param)
       container_to_check = find_container(param)
       unless @weapon_displayer.include?(container_to_check.id)
@@ -50,7 +51,7 @@ module Lich
     # @param seconds [Integer] the maximum time to wait for the command to succeed
     # @param command [String] the command to execute
     # @return [void]
-    # @raise [RuntimeError] if the command does not succeed within the given time
+    # @raise [RuntimeError] if the command does not succeed within the specified time
     def self.try_or_fail(seconds: 2, command: nil)
       result = fput(command)
       expiry = Time.now + seconds
@@ -60,8 +61,8 @@ module Lich
 
     # Adds an item to a specified bag, handling special cases like vapor messages.
     #
-    # @param bag [String, GameObj] the name of the bag or a GameObj instance
-    # @param item [GameObj] the item to add to the bag
+    # @param bag [String] the name of the bag to add the item to
+    # @param item [GameObj] the item to add
     # @return [Boolean] true if the item was successfully added, false otherwise
     def self.add_to_bag(bag, item)
       bag = container(bag)
@@ -101,7 +102,7 @@ module Lich
 
     # Finds the bag associated with a specific item in the bandolier.
     #
-    # @param item [GameObj] the item to find the associated bag for
+    # @param item [GameObj] the item to find the bag for
     # @return [String, nil] the ID of the found bag or nil if not found
     def self.find_bandolier_bag(item)
       # Return cached value if valid and item exists in inventory

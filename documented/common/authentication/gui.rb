@@ -15,10 +15,10 @@ module Lich
 
         # Authenticates the user and launches the game.
         #
-        # @param button [Gtk::Button] the button to disable during authentication
-        # @param login_info [Hash] user login information including :user_id, :password, :char_name, :game_code, :frontend, :custom_launch, :custom_launch_dir
-        # @param on_success [Proc] callback to invoke on successful authentication
-        # @param on_error [Proc, nil] optional callback to invoke on authentication error
+        # @param button [Gtk::Button] the button that triggers the launch
+        # @param login_info [Hash] user login information including :user_id, :password, :char_name, and :game_code
+        # @param on_success [Proc] callback to execute on successful authentication
+        # @param on_error [Proc, nil] optional callback to execute on authentication error
         # @return [void]
         # @raise [FatalAuthError] if authentication fails
         # @raise [StandardError] for unexpected errors
@@ -62,11 +62,11 @@ module Lich
           end
         end
 
-        # Handles authentication errors by enabling the button and invoking the error callback or showing an error dialog.
+        # Handles authentication errors by updating the button state and invoking error callbacks.
         #
-        # @param button [Gtk::Button] the button to re-enable
-        # @param error [StandardError] the error that occurred
-        # @param on_error [Proc, nil] optional callback to invoke on error
+        # @param button [Gtk::Button] the button that triggered the authentication
+        # @param error [StandardError] the error that occurred during authentication
+        # @param on_error [Proc, nil] optional callback to execute on authentication error
         # @return [void]
         def self.handle_auth_error(button, error, on_error)
           button.sensitive = true
@@ -80,7 +80,7 @@ module Lich
 
         # Displays an error dialog to the user when authentication fails.
         #
-        # @param button [Gtk::Button] the button that triggered the dialog
+        # @param button [Gtk::Button] the button that triggered the authentication
         # @param message [String] the error message to display
         # @return [void]
         def self.show_error_dialog(button, message)

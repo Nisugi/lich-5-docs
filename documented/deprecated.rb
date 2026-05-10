@@ -57,7 +57,7 @@ end
 
 # Takes specified items and places them in the user's bag.
 #
-# @param items [Array<String>] the items to take.
+# @param items [Array] the items to take.
 # @return [void]
 def take(*items)
   items.flatten!
@@ -79,23 +79,23 @@ end
 # Extends the String class to add additional utility methods.
 #
 # @see #to_a for converting a string to an array.
-# @see #silent for checking if the string is silent.
+# @see #split_as_list for splitting a string into a list.
 class String
-  # Converts the string to an array containing itself.
+  # Converts the string to an array containing the string itself.
   #
   # @return [Array<String>] an array with the string as its only element.
   def to_a # for compatibility with Ruby 1.8
     [self]
   end
 
-  # Checks if the string is considered silent.
+  # Returns false, indicating that the string is not silent.
   #
   # @return [Boolean] always returns false.
   def silent
     false
   end
 
-  # Splits the string into a list based on specific delimiters.
+  # Splits the string into a list based on specific patterns.
   #
   # @return [Array<String>] an array of non-empty trimmed strings.
   def split_as_list

@@ -9,10 +9,10 @@ require 'concurrent'
 module Lich
   module Gemstone
     module Combat
-      # AsyncProcessor handles asynchronous combat processing in a thread-safe manner.
+      # AsyncProcessor handles combat processing asynchronously.
       #
-      # This class manages a pool of threads to process combat data concurrently,
-      # ensuring performance and safety in a multi-threaded environment.
+      # This class is designed to manage multiple threads for combat processing,
+      # ensuring thread safety and performance.
       #
       # @see Lich::Gemstone::Combat::Processor
       class AsyncProcessor
@@ -29,13 +29,13 @@ module Lich
 
         # Processes a chunk of combat data asynchronously.
         #
-        # This method will create a new thread to handle the processing of the given chunk.
-        # It will wait if the maximum number of threads is reached.
-        #
-        # @param chunk [Array<String>] the lines of combat data to process
+        # This method will create a new thread to handle the processing of the
+        # provided chunk of data, ensuring that the number of active threads
+        # does not exceed the specified maximum.
+        # @param chunk [Array<String>] the chunk of combat data to process
         # @return [Thread] the thread that is processing the chunk
         # @example
-        #   processor = AsyncProcessor.new
+        #   processor = Lich::Gemstone::Combat::AsyncProcessor.new
         #   processor.process_async(["line1", "line2"])
         def process_async(chunk)
           return if chunk.empty?
@@ -78,9 +78,9 @@ module Lich
 
         # Shuts down the AsyncProcessor, waiting for all threads to finish.
         #
-        # This method will block until all active threads have completed their work.
-        # It also triggers garbage collection to help with memory management.
-        #
+        # This method will block until all active threads have completed their
+        # execution and will perform garbage collection to help with memory
+        # management.
         # @return [void]
         def shutdown
           respond "[Combat] Waiting for #{@thread_pool.count(&:alive?)} threads..." if Tracker.debug?
@@ -94,9 +94,9 @@ module Lich
 
         # Returns statistics about the current state of the AsyncProcessor.
         #
-        # This includes the number of active threads, total alive threads, and other metrics.
-        #
-        # @return [Hash] a hash containing statistics about the thread pool and processing state
+        # This includes the number of active threads, total alive threads,
+        # and other relevant metrics.
+        # @return [Hash] a hash containing statistics about the processor's state
         def stats
           {
             active: @active_count.value,
@@ -117,9 +117,8 @@ module Lich
 
         # Cleans up dead threads from the thread pool.
         #
-        # This method is called periodically to ensure that the thread pool does not
-        # retain references to dead threads, which can lead to memory issues.
-        #
+        # This method is called periodically to remove threads that have
+        # finished execution and to suggest garbage collection if necessary.
         # @api private
         # @return [void]
         def cleanup_dead_threads

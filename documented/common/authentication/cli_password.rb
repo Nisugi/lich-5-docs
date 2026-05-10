@@ -7,22 +7,16 @@ require_relative '../gui/account_manager'
 require_relative 'authenticator'
 
 module Lich
-  # Provides common authentication functionalities for the Lich project.
-  #
-  # @see Lich::Common::Authentication
   module Common
     module Authentication
-      # Handles command-line interface password management for accounts.
-      #
-      # @see Lich::Common::Authentication
       module CLIPassword
         # Changes the password for a specified account.
         #
         # @param account [String] the account name to change the password for
-        # @param new_password [String] the new password to set
+        # @param new_password [String] the new password to set for the account
         # @return [Integer] status code indicating success or failure
-        # @example
-        #   change_account_password("my_account", "new_password")
+        # @example Change an account password
+        #   Lich::Common::Authentication::CLIPassword.change_account_password("my_account", "new_password")
         # @raise [StandardError] if an error occurs during the process
         def self.change_account_password(account, new_password)
           # Normalize account name to uppercase (accounts are stored uppercase)
@@ -102,14 +96,14 @@ module Lich
           end
         end
 
-        # Adds a new account with the specified password and optional frontend.
+        # Adds a new account with the specified password.
         #
         # @param account [String] the account name to add
         # @param password [String] the password for the new account
         # @param frontend [String, nil] optional frontend to associate with the account
         # @return [Integer] status code indicating success or failure
-        # @example
-        #   add_account("my_account", "my_password", "stormfront")
+        # @example Add a new account
+        #   Lich::Common::Authentication::CLIPassword.add_account("my_account", "my_password", "stormfront")
         # @raise [StandardError] if an error occurs during the process
         def self.add_account(account, password, frontend = nil)
           # Normalize account name to uppercase (accounts are stored uppercase)
@@ -195,13 +189,13 @@ module Lich
           end
         end
 
-        # Changes the master password used for enhanced encryption mode.
+        # Changes the master password used for account encryption.
         #
         # @param old_password [String] the current master password
         # @param new_password [String, nil] the new master password to set (prompts if nil)
         # @return [Integer] status code indicating success or failure
-        # @example
-        #   change_master_password("old_password", "new_password")
+        # @example Change the master password
+        #   Lich::Common::Authentication::CLIPassword.change_master_password("old_password", "new_password")
         # @raise [StandardError] if an error occurs during the process
         def self.change_master_password(old_password, new_password = nil)
           data_dir = DATA_DIR
@@ -319,12 +313,12 @@ module Lich
           end
         end
 
-        # Determines the most commonly used frontend from the accounts in the YAML file.
+        # Determines the most commonly used frontend from the accounts.
         #
         # @param yaml_file [String] path to the YAML file containing account data
         # @return [String, nil] the predominant frontend or nil if none found
-        # @example
-        #   determine_predominant_frontend("path/to/entry.yaml")
+        # @example Determine the predominant frontend
+        #   frontend = Lich::Common::Authentication::CLIPassword.determine_predominant_frontend("path/to/entry.yaml")
         def self.determine_predominant_frontend(yaml_file)
           return nil unless File.exist?(yaml_file)
 
@@ -372,12 +366,11 @@ module Lich
           end
         end
 
-        # Validates if the master password is available for enhanced encryption mode.
+        # Validates if the master password is available for use.
         #
         # @return [Boolean] true if the master password is available, false otherwise
-        # @example
-        #   validate_master_password_available
-        # @raise [StandardError] if an error occurs during the validation process
+        # @example Check if master password is available
+        #   available = Lich::Common::Authentication::CLIPassword.validate_master_password_available
         def self.validate_master_password_available
           data_dir = DATA_DIR
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
@@ -423,13 +416,13 @@ module Lich
           end
         end
 
-        # Recovers the master password from the keychain or prompts the user for it.
+        # Recovers the master password from the keychain or prompts the user.
         #
         # @param master_password [String, nil] optional master password to validate
         # @return [Integer] status code indicating success or failure
-        # @example
-        #   recover_master_password
-        # @raise [StandardError] if an error occurs during the recovery process
+        # @example Recover the master password
+        #   Lich::Common::Authentication::CLIPassword.recover_master_password
+        # @raise [StandardError] if an error occurs during the process
         def self.recover_master_password(master_password = nil)
           data_dir = DATA_DIR
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
@@ -506,12 +499,12 @@ module Lich
           end
         end
 
-        # Prompts the user for a password and confirms it.
+        # Prompts the user for a password and confirmation.
         #
         # @param prompt [String] the prompt message to display
         # @return [String, nil] the confirmed password or nil if failed
-        # @example
-        #   prompt_and_confirm_password("Enter your password")
+        # @example Prompt for a password
+        #   password = Lich::Common::Authentication::CLIPassword.prompt_and_confirm_password("Enter your password")
         def self.prompt_and_confirm_password(prompt = "Enter password")
           print "#{prompt}: "
           input = $stdin.gets
@@ -554,8 +547,8 @@ module Lich
         # Retrieves the master password from the keychain or prompts the user to create one.
         #
         # @return [String, nil] the master password or nil if failed
-        # @example
-        #   get_master_password_from_keychain_or_prompt
+        # @example Get the master password
+        #   master_password = Lich::Common::Authentication::CLIPassword.get_master_password_from_keychain_or_prompt
         def self.get_master_password_from_keychain_or_prompt
           # Check if password already exists in keychain
           existing = Lich::Common::GUI::MasterPasswordManager.retrieve_master_password
@@ -566,11 +559,11 @@ module Lich
           prompt_and_confirm_password("Enter new master password")
         end
 
-        # Prompts the user to enter their master password.
+        # Prompts the user for the master password.
         #
         # @return [String, nil] the entered master password or nil if failed
-        # @example
-        #   prompt_for_master_password
+        # @example Prompt for the master password
+        #   master_password = Lich::Common::Authentication::CLIPassword.prompt_for_master_password
         def self.prompt_for_master_password
           print "Enter master password: "
           input = $stdin.gets

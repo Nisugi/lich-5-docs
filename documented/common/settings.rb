@@ -13,9 +13,9 @@ module Lich
 
     # Provides configuration settings for the Lich framework.
     #
-    # This module manages logging levels, settings storage, and retrieval.
+    # This module manages settings with support for logging and path navigation.
     #
-    # @see Lich::Common::SettingsProxy for proxy management.
+    # @see Lich::Common::SettingsProxy
     module Settings
       class CircularReferenceError < StandardError
         def initialize(msg = "Circular Reference Detected")
@@ -35,7 +35,7 @@ module Lich
       # Sets the logging level for the Settings module.
       #
       # @param level [Symbol] the desired log level, can be :none, :error, :info, or :debug
-      # @return [Integer] the numeric representation of the log level
+      # @return [void]
       def self.set_log_level(level)
         numeric_level = case level
                         when :none, LOG_LEVEL_NONE then LOG_LEVEL_NONE
@@ -50,7 +50,7 @@ module Lich
       end
 
       # Retrieves the current logging level for the Settings module.
-      # @return [Integer] the current numeric log level
+      # @return [Integer] the current log level
       def self.get_log_level
         @@log_level
       end
@@ -163,7 +163,7 @@ module Lich
       # Saves changes made to the specified proxy back to the database.
       #
       # @param proxy [SettingsProxy] the proxy containing changes to save
-      # @return [nil] explicitly returns nil
+      # @return [void]
       def self.save_proxy_changes(proxy)
         _log(LOG_LEVEL_DEBUG, @@log_prefix, -> { "save_proxy_changes: Initiated for proxy.scope: #{proxy.scope.inspect}, proxy.path: #{proxy.path.inspect}, proxy.target_object_id: #{proxy.target.object_id}" })
         _log(LOG_LEVEL_DEBUG, @@log_prefix, -> { "save_proxy_changes: proxy.target data: #{proxy.target.inspect}" })
@@ -348,7 +348,7 @@ module Lich
       #
       # @param scope [String] the scope for which to retrieve settings (default is DEFAULT_SCOPE)
       # @param script_name [String] the name of the script (optional)
-      # @return [OpenStruct] the current settings for the specified script and scope
+      # @return [OpenStruct] the current settings for the specified script
       def self.current_script_settings(scope = DEFAULT_SCOPE, script_name: nil)
         # Use provided script_name or fall back to Script.current.name
         script_name = script_name || Script.current.name
@@ -369,12 +369,12 @@ module Lich
         end
       end
 
-      # Saves the specified data to the database for the given scope and script name.
+      # Saves the specified data to the database for the given script and scope.
       #
       # @param data_to_save [Object] the data to save
       # @param scope [String] the scope for which to save the data (default is DEFAULT_SCOPE)
       # @param script_name [String] the name of the script (optional)
-      # @return [nil] explicitly returns nil
+      # @return [void]
       def self.save_to_database(data_to_save, scope = DEFAULT_SCOPE, script_name: nil)
         # Use provided script_name or fall back to Script.current.name
         script_name = script_name || Script.current.name
@@ -401,7 +401,7 @@ module Lich
       # Refreshes the settings data for the specified scope by clearing the cache.
       #
       # @param scope [String] the scope to refresh (default is DEFAULT_SCOPE)
-      # @return [OpenStruct] the refreshed settings for the specified scope
+      # @return [OpenStruct] the refreshed settings
       def self.refresh_data(scope = DEFAULT_SCOPE)
         script_name = Script.current.name
         cache_key = "#{script_name || ""}::#{scope}" # Use an empty string if script_name is nil
@@ -445,13 +445,13 @@ module Lich
         [target, root_for_scope]
       end
 
-      # Sets a value in the settings for the specified scope and name.
+      # Sets a specific setting for the current script and scope.
       #
       # @param scope [String] the scope in which to set the value (default is DEFAULT_SCOPE)
       # @param name [String] the name of the setting to set
-      # @param value [Object] the value to set
+      # @param value [Object] the value to assign to the setting
       # @param script_name [String] the name of the script (optional)
-      # @return [nil] explicitly returns nil
+      # @return [void]
       def self.set_script_settings(scope = DEFAULT_SCOPE, name, value, script_name: nil)
         _log(LOG_LEVEL_DEBUG, @@log_prefix, -> { "set_script_settings: scope: #{scope.inspect}, name: #{name.inspect}, value: #{value.inspect}, script_name: #{script_name.inspect}, current_path: #{@path_navigator.path.inspect}" })
         unwrapped_value = unwrap_proxies(value)
@@ -527,12 +527,12 @@ module Lich
         end
       end
 
-      # Retrieves a scoped setting value for the specified key.
+      # Retrieves a setting value for a specific scope and key.
       #
-      # @param scope_string [String] the scope string to use
-      # @param key_name [String] the key name of the setting to retrieve
+      # @param scope_string [String] the scope to retrieve the setting from
+      # @param key_name [String] the name of the setting to retrieve
       # @param script_name [String] the name of the script (optional)
-      # @return [Object] the value of the scoped setting
+      # @return [Object] the value of the setting, or nil if not found
       def self.get_scoped_setting(scope_string, key_name, script_name: nil)
         _log(LOG_LEVEL_DEBUG, @@log_prefix, -> { "get_scoped_setting: scope: #{scope_string.inspect}, key: #{key_name.inspect}, script_name: #{script_name.inspect}" })
         data_for_scope = current_script_settings(scope_string, script_name: script_name)
@@ -554,8 +554,8 @@ module Lich
       # Wraps a value in a proxy if it is a container (Hash or Array).
       #
       # @param value [Object] the value to wrap
-      # @param scope [String] the scope for which to wrap the value
-      # @param path_array [Array<String>] the path array for the value
+      # @param scope [String] the scope for the value
+      # @param path_array [Array<String>] the path to the value
       # @param script_name [String] the name of the script (optional)
       # @return [Object] the wrapped value or the original value if not a container
       def self.wrap_value_if_container(value, scope, path_array, script_name: nil)
@@ -569,10 +569,10 @@ module Lich
         end
       end
 
-      # Converts the current settings to a hash representation.
+      # Converts the current settings for the specified scope to a Hash.
       #
       # @param scope [String] the scope to convert (default is DEFAULT_SCOPE)
-      # @return [Hash] the hash representation of the current settings
+      # @return [Hash] the settings as a Hash
       def self.to_hash(scope = DEFAULT_SCOPE)
         _log(LOG_LEVEL_DEBUG, @@log_prefix, -> { "to_hash: scope: #{scope.inspect}" })
         data = current_script_settings(scope)

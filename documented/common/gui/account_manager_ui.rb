@@ -12,7 +12,7 @@ module Lich
       # Provides a user interface for managing accounts.
       #
       # This class handles the creation and management of the account management window,
-      # including adding, removing, and displaying accounts and characters.
+      # including adding, removing, and modifying accounts and characters.
       #
       # @see Lich::Common::GUI for related GUI components.
       class AccountManagerUI
@@ -39,7 +39,7 @@ module Lich
 
         # Sets a callback to be invoked when account data changes.
         #
-        # @param callback [Proc] the callback to invoke on data change
+        # @param callback [Proc] the callback to invoke on data changes
         # @return [void]
         def set_data_change_callback(callback)
           @data_change_callback = callback
@@ -54,7 +54,7 @@ module Lich
           @accounts_store = nil # Will be set when accounts tab is created
         end
 
-        # Registers a callback to handle incoming notifications.
+        # Registers a callback to handle incoming notifications about account changes.
         #
         # @return [void]
         def register_notification_callback
@@ -777,7 +777,7 @@ module Lich
         # @param avalon_option [Gtk::RadioButton] the avalon option
         # @param custom_launch_entry [Gtk::Entry] the entry for custom launch options
         # @param custom_launch_dir_entry [Gtk::Entry] the entry for custom launch directory
-        # @param notebook [Gtk::Notebook] the notebook to add the tab to
+        # @param notebook [Gtk::Notebook] the notebook to switch tabs
         # @return [void]
         def setup_add_character_handlers(add_button, account_combo, refresh_button, char_name_entry, game_combo, _stormfront_option, wizard_option, avalon_option, custom_launch_entry, custom_launch_dir_entry, notebook)
           # Set up refresh button handler

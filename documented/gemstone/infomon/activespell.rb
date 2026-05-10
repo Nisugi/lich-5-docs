@@ -8,7 +8,6 @@ module Lich
     # Module for managing active spells in the Lich game.
     #
     # This module handles spell duration updates and displays.
-    #
     # @see Lich::Gemstone
     module ActiveSpell
       extend Lich::Common::Watchable
@@ -136,7 +135,6 @@ module Lich
 
       # Updates the durations of active spells based on the latest information.
       # @return [void]
-      # @raise StandardError if an error occurs during the update process
       def self.update_spell_durations
         begin
           respond "[infomon] updating spell durations..." if $infomon_debug
@@ -187,11 +185,13 @@ module Lich
         queue << Time.now
       end
 
+      # Retrieves the queue for update requests.
+      # @return [Queue] the queue of update requests
       def self.queue
         @queue ||= Queue.new
       end
 
-      # Blocks execution until an update is requested.
+      # Blocks until an update request is made and clears the queue.
       # @return [Time] the time when the update was requested
       def self.block_until_update_requested
         event = queue.pop

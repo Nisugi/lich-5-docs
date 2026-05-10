@@ -77,7 +77,6 @@ module Lich
       attr_accessor :after_name
 
       # Initializes a new game object.
-      #
       # @param id [String] unique object ID
       # @param noun [String] object noun (e.g., "sword", "backpack")
       # @param name [String] object name
@@ -115,7 +114,6 @@ module Lich
 
 
       # Retrieves the type of the game object based on its name.
-      #
       # @return [String, nil] a comma-separated list of types or nil if none found.
       def type
         GameObj.load_data if @@type_data.empty?
@@ -130,7 +128,6 @@ module Lich
       end
 
       # Retrieves the sellable types of the game object.
-      #
       # @return [String, nil] a comma-separated list of sellable types or nil if none found.
       def sellable
         GameObj.load_data if @@sellable_data.empty?
@@ -156,7 +153,6 @@ module Lich
 
 
       # Creates a new NPC game object and registers it.
-      #
       # @param id [String] unique NPC ID
       # @param noun [String] NPC noun
       # @param name [String] NPC name
@@ -168,18 +164,11 @@ module Lich
         obj
       end
 
-      # Creates a new loot game object and registers it.
-      #
-      # @param id [String] unique loot ID
-      # @param noun [String] loot noun
-      # @param name [String] loot name
-      # @return [GameObj] the created loot object.
       def self.new_loot(id, noun, name)
         find_or_create(@@loot, id, noun, name)
       end
 
       # Creates a new player character game object and registers it.
-      #
       # @param id [String] unique PC ID
       # @param noun [String] PC noun
       # @param name [String] PC name
@@ -238,7 +227,6 @@ module Lich
       #
       # Unlike +find_or_create+, this method does *not* push the object into any
       # Looks up an existing game object in the shared identity index by composite key (id, noun, name), or creates and indexes a new one.
-      #
       # @param id [String] unique object ID
       # @param noun [String] object noun
       # @param name [String] object name
@@ -405,9 +393,8 @@ module Lich
       # live in registries are always skipped. Entries accessed within the TTL
       # window are always skipped.
       # Removes entries from the shared identity index whose last_seen_at timestamp is older than ttl seconds ago and whose object is not currently present in any active registry.
-      #
-      # @param ttl [Integer] the time-to-live in seconds for entries in the index (default is 900 seconds)
-      # @param verbose [Boolean] whether to print detailed output during pruning
+      # @param ttl [Integer] the time-to-live in seconds for entries in the index
+      # @param verbose [Boolean] whether to print detailed output
       # @return [Hash] a summary of the pruning operation.
       def self.prune_index!(ttl: 900, verbose: false)
         require 'objspace'
@@ -484,7 +471,6 @@ module Lich
       end
 
       # Provides statistics about the current state of the index.
-      #
       # @param verbose [Boolean] whether to print detailed output
       # @return [Hash] a summary of index statistics.
       def self.index_stats(verbose: false)
@@ -559,8 +545,7 @@ module Lich
 
 
       # Reloads the game object data from the specified file.
-      #
-      # @param filename [String, nil] optional path to the data file (defaults to the primary data file)
+      # @param filename [String, nil] optional path to the data file
       # @return [Boolean] true if the reload was successful, false otherwise.
       def self.reload(filename = nil)
         load_data(filename)
@@ -570,10 +555,6 @@ module Lich
         existing.is_a?(Regexp) ? Regexp.union(existing, new_value) : new_value
       end
 
-      # Loads game object data from the specified XML file.
-      #
-      # @param filename [String, nil] optional path to the data file (defaults to the primary data file)
-      # @return [Boolean] true if the load was successful, false otherwise.
       def self.load_data(filename = nil)
         primary = filename || File.join(DATA_DIR, 'gameobj-data.xml')
 

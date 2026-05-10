@@ -5,7 +5,7 @@ module Lich
   module Gemstone
     # Provides weapon techniques and their management.
     #
-    # This module includes various weapon techniques used in the game.
+    # @see Lich::Gemstone
     module Weapon
       @@weapon_techniques = {
         "barrage"          => {
@@ -171,11 +171,11 @@ module Lich
         }
       }
 
-      # Retrieves a list of weapon techniques with their long and short names and costs.
-      # @return [Array<Hash>] an array of hashes containing weapon technique details
+      # Returns a list of weapon techniques with their long and short names and costs.
+      # @return [Array<Hash>] list of weapon techniques with details
       # @example
-      #   weapon_lookups.each do |weapon|
-      #     puts "Long Name: \\#{weapon[:long_name]}, Short Name: \\#{weapon[:short_name]}, Cost: \\#{weapon[:cost]}"
+      #   Weapon.weapon_lookups.each do |weapon|
+      #     puts weapon[:long_name]
       #   end
       def self.weapon_lookups
         @@weapon_techniques.map do |long_name, psm|
@@ -190,15 +190,19 @@ module Lich
       # Retrieves a weapon technique by its name.
       # @param name [String] the name of the weapon technique
       # @return [Hash, nil] the weapon technique details or nil if not found
-      # @see .known?
+      # @example
+      #   technique = Weapon["barrage"]
+      #   puts technique[:short_name] if technique
       def Weapon.[](name)
         return PSMS.assess(name, 'Weapon')
       end
 
       # Checks if a weapon technique is known and meets the minimum rank requirement.
       # @param name [String] the name of the weapon technique
-      # @param min_rank [Integer] the minimum rank to check against (default is 1)
+      # @param min_rank [Integer] the minimum rank to check against
       # @return [Boolean] true if known and meets rank, false otherwise
+      # @example
+      #   puts Weapon.known?("barrage", 1)
       def Weapon.known?(name, min_rank: 1)
         min_rank = 1 unless min_rank >= 1 # in case a 0 or below is passed
         Weapon[name] >= min_rank
@@ -206,8 +210,10 @@ module Lich
 
       # Determines if a weapon technique can be afforded based on the current conditions.
       # @param name [String] the name of the weapon technique
-      # @param forcert_count [Integer] the number of forcerts available (default is 0)
+      # @param forcert_count [Integer] the number of forcerts available
       # @return [Boolean] true if affordable, false otherwise
+      # @example
+      #   puts Weapon.affordable?("charge")
       def Weapon.affordable?(name, forcert_count: 0)
         return true if @@weapon_techniques.fetch(PSMS.find_name(name, "Weapon")[:long_name])[:type] == :area_of_effect && Effects::Buffs.active?("Glorious Momentum")
         return PSMS.assess(name, 'Weapon', true, forcert_count: forcert_count)
@@ -215,9 +221,11 @@ module Lich
 
       # Checks if a weapon technique is available for use based on known status, affordability, and buffs.
       # @param name [String] the name of the weapon technique
-      # @param min_rank [Integer] the minimum rank required (default is 1)
-      # @param forcert_count [Integer] the number of forcerts available (default is 0)
+      # @param min_rank [Integer] the minimum rank required
+      # @param forcert_count [Integer] the number of forcerts available
       # @return [Boolean] true if available, false otherwise
+      # @example
+      #   puts Weapon.available?("flurry")
       def Weapon.available?(name, min_rank: 1, forcert_count: 0)
         return false unless Weapon.known?(name, min_rank: min_rank)
         return false unless Weapon.affordable?(name, forcert_count: forcert_count)
@@ -234,7 +242,7 @@ module Lich
       # Checks if a weapon technique is currently active.
       # @param name [String] the name of the weapon technique
       # @return [Boolean] true if active, false otherwise
-      # @deprecated Use .buff_active? instead.
+      # @deprecated Use #buff_active? instead
       def Weapon.active?(name)
         ## DEPRECATED ##
         Lich.deprecated("Weapon.active?", "Weapon.buff_active?", caller[0], fe_log: false)
@@ -244,18 +252,22 @@ module Lich
       # Checks if the buff associated with a weapon technique is currently active.
       # @param name [String] the name of the weapon technique
       # @return [Boolean] true if the buff is active, false otherwise
+      # @example
+      #   puts Weapon.buff_active?("fury")
       def Weapon.buff_active?(name)
         buff = @@weapon_techniques.fetch(PSMS.find_name(name, "Weapon")[:long_name])[:buff]
         return false if buff.nil?
         Effects::Buffs.active?(@@weapon_techniques.fetch(PSMS.find_name(name, "Weapon")[:long_name])[:buff])
       end
 
-      # Uses a weapon technique against a target, handling cooldowns and results.
+      # Uses a weapon technique against a target, processing the results.
       # @param name [String] the name of the weapon technique
-      # @param target [String, Integer, GameObj] the target of the technique
-      # @param results_of_interest [Regexp, nil] additional regex patterns to match results (default is nil)
-      # @param forcert_count [Integer] the number of forcerts available (default is 0)
-      # @return [String, nil] the result of the technique use or nil if not applicable
+      # @param target [String] the target of the weapon technique
+      # @param results_of_interest [Regexp, nil] additional regex patterns to match results
+      # @param forcert_count [Integer] the number of forcerts available
+      # @return [String, nil] the result of the weapon use or nil if not applicable
+      # @example
+      #   result = Weapon.use("barrage", "enemy")
       def Weapon.use(name, target = "", results_of_interest: nil, forcert_count: 0)
         return unless Weapon.available?(name, forcert_count: forcert_count)
 
@@ -322,7 +334,9 @@ module Lich
 
       # Retrieves the regex pattern associated with a weapon technique.
       # @param name [String] the name of the weapon technique
-      # @return [Regexp] the regex pattern for the technique
+      # @return [Regexp] the regex pattern for the weapon technique
+      # @example
+      #   pattern = Weapon.regexp("charge")
       def Weapon.regexp(name)
         @@weapon_techniques.fetch(PSMS.find_name(name, "Weapon")[:long_name])[:regex]
       end

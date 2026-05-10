@@ -8,20 +8,20 @@ module Lich
     module Combat
       module Definitions
         module Statuses
-          # Represents a status effect definition.
+          # Represents a status definition with patterns for adding and removing the status.
           #
-          # @!attribute name
-          #   @return [Symbol] the name of the status effect
-          # @!attribute add_patterns
+          # @!attribute [r] name
+          #   @return [Symbol] the name of the status
+          # @!attribute [r] add_patterns
           #   @return [Array<Regexp>] patterns that indicate when the status is applied
-          # @!attribute remove_patterns
+          # @!attribute [r] remove_patterns
           #   @return [Array<Regexp>] patterns that indicate when the status is removed
           StatusDef = Struct.new(:name, :add_patterns, :remove_patterns)
 
           # Core status effects with both add and remove patterns
           # Core status effects with both add and remove patterns.
           #
-          # @example
+          # @example Status effects
           #   STATUS_EFFECTS.each do |status|
           #     puts status.name
           #   end
@@ -121,16 +121,16 @@ module Lich
           ].freeze
 
           # Create lookup tables for fast pattern matching
-          # Lookup table for fast matching of add patterns.
+          # Lookup table for fast pattern matching of add patterns.
           #
-          # @see STATUS_EFFECTS
+          # @see REMOVE_LOOKUP for remove patterns
           ADD_LOOKUP = STATUS_EFFECTS.flat_map do |status_def|
             status_def.add_patterns.compact.map { |pattern| [pattern, status_def.name, :add] }
           end.freeze
 
-          # Lookup table for fast matching of remove patterns.
+          # Lookup table for fast pattern matching of remove patterns.
           #
-          # @see STATUS_EFFECTS
+          # @see ADD_LOOKUP for add patterns
           REMOVE_LOOKUP = STATUS_EFFECTS.flat_map do |status_def|
             status_def.remove_patterns.compact.map { |pattern| [pattern, status_def.name, :remove] }
           end.freeze
@@ -138,7 +138,7 @@ module Lich
           ALL_LOOKUP = (ADD_LOOKUP + REMOVE_LOOKUP).freeze
 
           # Compiled regex for fast detection
-          # Compiled regex for fast detection of all status effects.
+          # Compiled regex for fast detection of all status patterns.
           #
           # @see ADD_LOOKUP
           # @see REMOVE_LOOKUP
@@ -148,10 +148,9 @@ module Lich
           #
           # @param line [String] the line of text to parse
           # @return [Hash, nil] a hash containing the detected status and action, or nil if no status is detected
-          # @example
+          # @example Detecting a status
           #   result = Lich::Gemstone::Combat::Definitions::Statuses.parse("You blinded the enemy!")
-          #   # => { status: :blind, action: :add, target: "the enemy" }
-          # @note This method uses the compiled STATUS_DETECTOR for efficiency.
+          #   puts result[:status] # => :blind
           def self.parse(line)
             ALL_LOOKUP.each do |pattern, name, action|
               if (match = pattern.match(line))

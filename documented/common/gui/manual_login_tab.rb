@@ -14,14 +14,13 @@ module Lich
       # @see Lich::Common::GUI for related GUI components.
       class ManualLoginTab
         # Initializes a new ManualLoginTab instance.
-        #
-        # @param parent [Gtk::Widget] the parent widget for this tab.
-        # @param entry_data [Array<Hash>] initial entry data for the login.
-        # @param theme_state [Boolean] indicates if dark theme is enabled.
-        # @param default_icon [Gtk::Icon] default icon for the tab.
-        # @param data_dir [String] directory for saving/loading data.
-        # @param callbacks [Hash] optional callbacks for various events.
-        # @param autosort_state [Boolean] indicates if entries should be autosorted.
+        # @param parent [Gtk::Widget] the parent widget for this tab
+        # @param entry_data [Array<Hash>] initial entry data for the login
+        # @param theme_state [Boolean] indicates if dark theme is enabled
+        # @param default_icon [Gtk::Icon] default icon for the tab
+        # @param data_dir [String] directory for storing data
+        # @param callbacks [Hash] optional callbacks for various events
+        # @param autosort_state [Boolean] indicates if entries should be autosorted
         # @return [ManualLoginTab]
         def initialize(parent, entry_data, theme_state, default_icon, data_dir, callbacks = {}, autosort_state = false)
           @parent = parent
@@ -45,8 +44,8 @@ module Lich
           create_tab_content
         end
 
-        # Returns the tab widget for this manual login tab.
-        # @return [Gtk::Widget] the tab widget.
+        # Returns the tab widget for this manual login.
+        # @return [Gtk::Widget] the tab widget
         def tab_widget
           @game_entry_tab
         end
@@ -59,19 +58,13 @@ module Lich
         end
 
         # Updates the theme state of the UI elements.
-        #
-        # @param theme_state [Boolean] the new theme state to apply.
+        # @param theme_state [Boolean] the new theme state
         # @return [void]
         def update_theme_state(theme_state)
           @theme_state = theme_state
           apply_theme_to_ui_elements
         end
 
-        # Refreshes the entry data from the YAML file.
-        #
-        # This method reloads the entry data based on the current autosort state.
-        # @return [void]
-        # @raise [StandardError] if there is an error loading the entries.
         def refresh_entry_data
           begin
             # Reload data from YAML file using consistent autosort state
@@ -83,11 +76,9 @@ module Lich
           end
         end
 
-        # Updates the entry data with new values.
-        #
-        # @param new_entry_data [Array<Hash>] the new entry data to set.
+        # Updates the entry data for the login tab.
+        # @param new_entry_data [Array<Hash>] the new entry data to set
         # @return [void]
-        # @raise [StandardError] if there is an error during the update.
         def update_entry_data(new_entry_data)
           begin
             # Validate input parameter
@@ -105,8 +96,6 @@ module Lich
 
         private
 
-        # Applies the current theme state to the UI elements.
-        # @return [void]
         def apply_theme_to_ui_elements
           # Removed useless assignment to ui_elements
 
@@ -201,7 +190,7 @@ module Lich
         end
 
         # Creates the user ID and password entry fields.
-        # @return [Array<Gtk::Entry, Gtk::Entry, Gtk::Table>] the user ID entry, password entry, and login table.
+        # @return [Array<Gtk::Entry, Gtk::Entry, Gtk::Table>] the user ID entry, password entry, and login table
         def create_login_fields
           user_id_entry = Gtk::Entry.new
 
@@ -218,7 +207,7 @@ module Lich
         end
 
         # Creates the connect and disconnect buttons for the login.
-        # @return [Array<Gtk::Button, Gtk::Button, Gtk::Box>] the connect button, disconnect button, and button box.
+        # @return [Array<Gtk::Button, Gtk::Button, Gtk::Box>] the connect button, disconnect button, and button box
         def create_login_buttons
           disconnect_button = Components.create_button(label: ' Disconnect ')
           disconnect_button.sensitive = false
@@ -241,7 +230,7 @@ module Lich
         end
 
         # Creates the character list for the login tab.
-        # @return [Array<Gtk::ListStore, Gtk::TreeView, Gtk::ScrolledWindow>] the list store, tree view, and scrolled window.
+        # @return [Array<Gtk::ListStore, Gtk::TreeView, Gtk::ScrolledWindow>] the list store, tree view, and scrolled window
         def create_character_list
           liststore = Gtk::ListStore.new(String, String, String, String)
           liststore.set_sort_column_id(1, :ascending)
@@ -270,7 +259,7 @@ module Lich
         end
 
         # Creates the frontend selection options for the login.
-        # @return [Array<Gtk::Box, Gtk::RadioButton, Gtk::RadioButton, Gtk::RadioButton, Gtk::RadioButton>] the frontend box and radio buttons.
+        # @return [Array<Gtk::Box, Gtk::RadioButton, Gtk::RadioButton, Gtk::RadioButton, Gtk::RadioButton>] the frontend box and radio buttons
         def create_frontend_selection
           stormfront_option = Gtk::RadioButton.new(label: 'Wrayth')
           wizard_option = Gtk::RadioButton.new(label: 'Wizard', member: stormfront_option)
@@ -289,7 +278,7 @@ module Lich
         end
 
         # Creates the custom launch options for the login tab.
-        # @return [Gtk::CheckButton] the custom launch option button.
+        # @return [Gtk::CheckButton] the custom launch option button
         def create_custom_launch_options
           custom_launch_option = Gtk::CheckButton.new('Custom launch command')
 
@@ -305,7 +294,7 @@ module Lich
         end
 
         # Creates the play button for the login tab.
-        # @return [Array<Gtk::Button, Gtk::Box>] the play button and button box.
+        # @return [Array<Gtk::Button, Gtk::Box>] the play button and button box
         def create_play_button
           play_button = Components.create_button(label: ' Play ')
           play_button.sensitive = false
@@ -324,7 +313,7 @@ module Lich
         end
 
         # Sets up the handler for the custom launch option toggle.
-        # @param custom_launch_option [Gtk::CheckButton] the custom launch option button.
+        # @param custom_launch_option [Gtk::CheckButton] the custom launch option button
         # @return [void]
         def setup_custom_launch_handler(custom_launch_option)
           custom_launch_option.signal_connect('toggled') {
@@ -334,8 +323,8 @@ module Lich
         end
 
         # Sets up the handler for the Avalon option toggle.
-        # @param avalon_option [Gtk::RadioButton] the Avalon option button.
-        # @param custom_launch_option [Gtk::CheckButton] the custom launch option button.
+        # @param avalon_option [Gtk::RadioButton] the Avalon option button
+        # @param custom_launch_option [Gtk::CheckButton] the custom launch option button
         # @return [void]
         def setup_avalon_option_handler(avalon_option, custom_launch_option)
           avalon_option.signal_connect('toggled') {
@@ -349,11 +338,11 @@ module Lich
         end
 
         # Sets up the handler for the connect button click event.
-        # @param connect_button [Gtk::Button] the connect button.
-        # @param disconnect_button [Gtk::Button] the disconnect button.
-        # @param user_id_entry [Gtk::Entry] the user ID entry field.
-        # @param pass_entry [Gtk::Entry] the password entry field.
-        # @param liststore [Gtk::ListStore] the list store for character data.
+        # @param connect_button [Gtk::Button] the connect button
+        # @param disconnect_button [Gtk::Button] the disconnect button
+        # @param user_id_entry [Gtk::Entry] the user ID entry field
+        # @param pass_entry [Gtk::Entry] the password entry field
+        # @param liststore [Gtk::ListStore] the list store for characters
         # @return [void]
         def setup_connect_button_handler(connect_button, disconnect_button, user_id_entry, pass_entry, liststore)
           connect_button.signal_connect('clicked') {
@@ -399,8 +388,8 @@ module Lich
         end
 
         # Sets up the handler for the tree view selection change event.
-        # @param treeview [Gtk::TreeView] the tree view for character selection.
-        # @param play_button [Gtk::Button] the play button.
+        # @param treeview [Gtk::TreeView] the tree view for character selection
+        # @param play_button [Gtk::Button] the play button
         # @return [void]
         def setup_treeview_handler(treeview, play_button)
           treeview.signal_connect('cursor-changed') {
@@ -410,12 +399,12 @@ module Lich
         end
 
         # Sets up the handler for the disconnect button click event.
-        # @param disconnect_button [Gtk::Button] the disconnect button.
-        # @param play_button [Gtk::Button] the play button.
-        # @param connect_button [Gtk::Button] the connect button.
-        # @param user_id_entry [Gtk::Entry] the user ID entry field.
-        # @param pass_entry [Gtk::Entry] the password entry field.
-        # @param liststore [Gtk::ListStore] the list store for character data.
+        # @param disconnect_button [Gtk::Button] the disconnect button
+        # @param play_button [Gtk::Button] the play button
+        # @param connect_button [Gtk::Button] the connect button
+        # @param user_id_entry [Gtk::Entry] the user ID entry field
+        # @param pass_entry [Gtk::Entry] the password entry field
+        # @param liststore [Gtk::ListStore] the list store for characters
         # @return [void]
         def setup_disconnect_button_handler(disconnect_button, play_button, connect_button, user_id_entry, pass_entry, liststore)
           disconnect_button.signal_connect('clicked') {
@@ -432,14 +421,14 @@ module Lich
         #
         # Handles character login with optional quick entry saving and favorite marking.
         # Sets up the handler for the play button click event.
-        # @param play_button [Gtk::Button] the play button.
-        # @param treeview [Gtk::TreeView] the tree view for character selection.
-        # @param user_id_entry [Gtk::Entry] the user ID entry field.
-        # @param pass_entry [Gtk::Entry] the password entry field.
-        # @param wizard_option [Gtk::RadioButton] the wizard option button.
-        # @param avalon_option [Gtk::RadioButton] the Avalon option button.
-        # @param suks_option [Gtk::RadioButton] the suks option button.
-        # @param custom_launch_option [Gtk::CheckButton] the custom launch option button.
+        # @param play_button [Gtk::Button] the play button
+        # @param treeview [Gtk::TreeView] the tree view for character selection
+        # @param user_id_entry [Gtk::Entry] the user ID entry field
+        # @param pass_entry [Gtk::Entry] the password entry field
+        # @param wizard_option [Gtk::RadioButton] the wizard option button
+        # @param avalon_option [Gtk::RadioButton] the Avalon option button
+        # @param suks_option [Gtk::RadioButton] the suks option button
+        # @param custom_launch_option [Gtk::CheckButton] the custom launch option button
         # @return [void]
         def setup_play_button_handler(play_button, treeview, user_id_entry, pass_entry, wizard_option, avalon_option, suks_option, custom_launch_option)
           play_button.signal_connect('clicked') {
@@ -613,9 +602,9 @@ module Lich
         end
 
         # Sets up key handlers for the user ID and password entry fields.
-        # @param user_id_entry [Gtk::Entry] the user ID entry field.
-        # @param pass_entry [Gtk::Entry] the password entry field.
-        # @param connect_button [Gtk::Button] the connect button.
+        # @param user_id_entry [Gtk::Entry] the user ID entry field
+        # @param pass_entry [Gtk::Entry] the password entry field
+        # @param connect_button [Gtk::Button] the connect button
         # @return [void]
         def setup_entry_key_handlers(user_id_entry, pass_entry, connect_button)
           # Trigger connect button on Enter key in user ID field
@@ -639,12 +628,12 @@ module Lich
           }
         end
 
-        # Reports a connection error and shows an error dialog.
-        # @param message [String] the error message to display.
-        # @param connect_button [Gtk::Button] the connect button.
-        # @param disconnect_button [Gtk::Button] the disconnect button.
-        # @param user_id_entry [Gtk::Entry] the user ID entry field.
-        # @param pass_entry [Gtk::Entry] the password entry field.
+        # Reports a connection error and updates the UI accordingly.
+        # @param message [String] the error message to display
+        # @param connect_button [Gtk::Button] the connect button
+        # @param disconnect_button [Gtk::Button] the disconnect button
+        # @param user_id_entry [Gtk::Entry] the user ID entry field
+        # @param pass_entry [Gtk::Entry] the password entry field
         # @return [void]
         def report_connect_error(message, connect_button, disconnect_button, user_id_entry, pass_entry)
           connect_button.sensitive = true

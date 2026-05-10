@@ -8,25 +8,33 @@
   versioning comparison to find the latest eligible beta.
 =end
 
+# Provides utility functions for the Lich project.
 module Lich
   module Util
     module Update
       # Resolves update channel names to git references.
       #
-      # This class determines the appropriate git ref (tag or branch) for stable and beta
-      # channels by querying GitHub releases and branches. It handles semantic
+      # Determines the appropriate git ref (tag or branch) for stable and beta
+      # channels by querying GitHub releases and branches. Handles semantic
       # versioning comparison to find the latest eligible beta.
       #
-      # @see Lich::Util::Update
+      # @see Lich::Util
       class ChannelResolver
+        # Initializes a new ChannelResolver instance.
+        # @param client [Object] the client used to fetch GitHub data
+        # @return [void]
         def initialize(client)
           @client = client
         end
 
         # Resolves the git reference for the specified channel.
         #
-        # @param channel [Symbol, String] the channel to resolve (e.g., :stable, :beta, 'production')
+        # @param channel [Symbol, String] the channel to resolve (e.g., :stable, :beta)
         # @return [String, nil] the resolved git reference or nil if not found
+        # @example Resolve stable channel
+        #   resolver.resolve_channel_ref(:stable)
+        # @example Resolve beta channel
+        #   resolver.resolve_channel_ref(:beta)
         def resolve_channel_ref(channel)
           case channel
           when :stable, 'production'
@@ -52,7 +60,6 @@ module Lich
         end
 
         # Fetches the latest stable tag from GitHub releases.
-        #
         # @return [String, nil] the latest stable tag or nil if not found
         def latest_stable_tag
           releases = @client.fetch_github_json("https://api.github.com/repos/#{GITHUB_REPO}/releases")
@@ -62,11 +69,11 @@ module Lich
           stable && stable['tag_name']
         end
 
-        # Finds the latest prerelease tag greater than the specified stable version.
+        # Finds the latest prerelease tag greater than the specified version.
         #
         # @param stable_major [Integer] the major version of the stable release
         # @param stable_minor [Integer] the minor version of the stable release
-        # @param stable_patch [Integer] the patch version of the stable release (default: 0)
+        # @param stable_patch [Integer] the patch version of the stable release
         # @return [String, nil] the latest prerelease tag or nil if not found
         def latest_prerelease_tag_greater_than(stable_major, stable_minor, stable_patch = 0)
           releases = @client.fetch_github_json("https://api.github.com/repos/#{GITHUB_REPO}/releases")
@@ -89,13 +96,13 @@ module Lich
           tag.sub(/^v/, '')
         end
 
-        # Finds the latest branch with a specified prefix that is greater than the specified stable version.
+        # Finds the latest branch with a specified prefix that is greater than the specified version.
         #
         # @param prefix [String] the prefix to filter branches
         # @param stable_major [Integer] the major version of the stable release
         # @param stable_minor [Integer] the minor version of the stable release
-        # @param stable_patch [Integer] the patch version of the stable release (default: 0)
-        # @return [String, nil] the latest prefixed branch or nil if not found
+        # @param stable_patch [Integer] the patch version of the stable release
+        # @return [String, nil] the latest branch name or nil if not found
         def latest_prefixed_branch_greater_than(prefix, stable_major, stable_minor, stable_patch = 0)
           branches = @client.fetch_github_json("https://api.github.com/repos/#{GITHUB_REPO}/branches?per_page=100")
           return nil unless branches.is_a?(Array)
@@ -123,7 +130,7 @@ module Lich
         # Generates a version key from a tag or branch name for comparison.
         #
         # @param tag_or_name [String] the tag or branch name to generate a version key from
-        # @return [Gem::Version] the version key as a Gem::Version object
+        # @return [Gem::Version] the version key
         def version_key(tag_or_name)
           s = tag_or_name.to_s.sub(/^v/, '')
           if s =~ /(\d+\.\d+(?:\.\d+)?(?:-[0-9A-Za-z\.]+)?)/
@@ -136,7 +143,7 @@ module Lich
         # Extracts the major, minor, and patch version numbers from a version string.
         #
         # @param str [String] the version string to parse
-        # @return [Array<Integer, Integer, Integer>] an array containing the major, minor, and patch version numbers
+        # @return [Array<Integer, Integer, Integer>] an array containing major, minor, and patch version numbers
         def major_minor_patch_from(str)
           return [nil, nil, nil] if str.nil?
 
@@ -153,7 +160,7 @@ module Lich
         # Extracts the major and minor version numbers from a version string.
         #
         # @param str [String] the version string to parse
-        # @return [Array<Integer, Integer>] an array containing the major and minor version numbers
+        # @return [Array<Integer, Integer>] an array containing major and minor version numbers
         def major_minor_from(str)
           maj, min, _patch = major_minor_patch_from(str)
           [maj, min]

@@ -1,14 +1,14 @@
-# The Lich module contains all components related to the Lich game system.
+# Provides functionality related to the Lich game framework.
 #
 # @see Lich::Gemstone
 module Lich
-  # The Gemstone module encompasses all functionalities related to gemstones in the Lich game.
+  # Contains gemstone-related functionality within the Lich framework.
   #
   # @see Lich::Gemstone::Shield
   module Gemstone
-    # The Shield module provides various techniques and functionalities related to shield usage in the game.
+    # Manages shield techniques and their interactions in the game.
     #
-    # This module includes a collection of shield techniques that can be used by players.
+    # This module provides methods to access and utilize various shield techniques.
     module Shield
       @@shield_techniques = {
         "adamantine_bulwark"    => {
@@ -248,12 +248,8 @@ module Lich
         }
       }
 
-      # Retrieves a list of shield techniques with their long and short names along with their costs.
-      #
-      # @return [Array<Hash>] an array of hashes containing long names, short names, and costs of shield techniques.
-      # @example
-      #   Shield.shield_lookups
-      #   # => [{:long_name => "adamantine_bulwark", :short_name => "bulwark", :cost => { stamina: 0 }}, ...]
+      # Returns a list of available shield techniques with their long and short names and costs.
+      # @return [Array<Hash>] an array of hashes containing long_name, short_name, and cost for each shield technique.
       def self.shield_lookups
         @@shield_techniques.map do |long_name, psm|
           {
@@ -265,27 +261,24 @@ module Lich
       end
 
       # Retrieves a shield technique by its name.
-      #
       # @param name [String] the name of the shield technique to retrieve.
       # @return [Hash, nil] the shield technique details or nil if not found.
       def Shield.[](name)
         return PSMS.assess(name, 'Shield')
       end
 
-      # Checks if a shield technique is known by the player, considering a minimum rank.
-      #
+      # Checks if a shield technique is known at or above a specified rank.
       # @param name [String] the name of the shield technique.
-      # @param min_rank [Integer] the minimum rank required to consider the technique known.
+      # @param min_rank [Integer] the minimum rank to check against (default is 1).
       # @return [Boolean] true if the technique is known at the specified rank, false otherwise.
       def Shield.known?(name, min_rank: 1)
         min_rank = 1 unless min_rank >= 1 # in case a 0 or below is passed
         Shield[name] >= min_rank
       end
 
-      # Determines if a shield technique can be afforded based on the current resources.
-      #
+      # Determines if a shield technique can be afforded based on the current conditions.
       # @param name [String] the name of the shield technique to check.
-      # @param forcert_count [Integer] the number of forcerts available.
+      # @param forcert_count [Integer] the number of forcerts available (default is 0).
       # @return [Boolean] true if the technique is affordable, false otherwise.
       def Shield.affordable?(name, forcert_count: 0)
         return true if @@shield_techniques.fetch(PSMS.find_name(name, "Shield")[:long_name])[:type] == :area_of_effect && Effects::Buffs.active?("Glorious Momentum")
@@ -293,10 +286,9 @@ module Lich
       end
 
       # Checks if a shield technique is available for use based on known status, affordability, and availability.
-      #
       # @param name [String] the name of the shield technique.
-      # @param min_rank [Integer] the minimum rank required to consider the technique available.
-      # @param forcert_count [Integer] the number of forcerts available.
+      # @param min_rank [Integer] the minimum rank required to use the technique (default is 1).
+      # @param forcert_count [Integer] the number of forcerts available (default is 0).
       # @return [Boolean] true if the technique is available, false otherwise.
       def Shield.available?(name, min_rank: 1, forcert_count: 0)
         Shield.known?(name, min_rank: min_rank) &&
@@ -305,20 +297,18 @@ module Lich
       end
 
       # Checks if a buff associated with a shield technique is currently active.
-      #
       # @param name [String] the name of the shield technique.
-      # @return [Boolean, nil] true if the buff is active, false if not, or nil if no buff is associated.
+      # @return [Boolean, nil] true if the buff is active, false if not, or nil if the technique does not have a buff.
       def Shield.buff_active?(name)
         return unless @@shield_techniques.fetch(PSMS.find_name(name, "Shield")[:long_name]).key?(:buff)
         Effects::Buffs.active?(@@shield_techniques.fetch(PSMS.find_name(name, "Shield")[:long_name])[:buff])
       end
 
-      # Uses a shield technique on a target, executing the associated action.
-      #
+      # Uses a shield technique against a target, processing the results of the action.
       # @param name [String] the name of the shield technique to use.
-      # @param target [String, Integer, GameObj] the target of the technique.
-      # @param results_of_interest [Regexp, nil] optional regex to match specific results.
-      # @param forcert_count [Integer] the number of forcerts available.
+      # @param target [String] the target of the technique (default is an empty string).
+      # @param results_of_interest [Regexp, nil] additional regex patterns to match results (default is nil).
+      # @param forcert_count [Integer] the number of forcerts available (default is 0).
       # @return [String, nil] the result of the technique use or nil if it cannot be used.
       def Shield.use(name, target = "", results_of_interest: nil, forcert_count: 0)
         return unless Shield.available?(name, forcert_count: forcert_count)
@@ -366,7 +356,6 @@ module Lich
       end
 
       # Retrieves the regular expression associated with a shield technique.
-      #
       # @param name [String] the name of the shield technique.
       # @return [Regexp] the regex pattern for the technique.
       def Shield.regexp(name)

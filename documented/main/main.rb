@@ -44,10 +44,16 @@ reconnect_if_wanted = proc {
   $lich_char_regex = Regexp.union(',', ';')
 
   @launch_data = nil
+  # Loads the eaccess module for authentication handling.
+  #
+  # @see Lich::Common::Authentication
   require File.join(LIB_DIR, 'common', 'authentication', 'eaccess.rb')
   require File.join(LIB_DIR, 'common', 'account.rb')
   # Lifecycle tracker is loaded here because startup context (argv/account)
   # and shutdown sequencing both live in main runtime orchestration.
+  # Loads the session lifecycle management module.
+  #
+  # @see Lich::Common::SessionLifecycle
   require File.join(LIB_DIR, 'common', 'session_lifecycle.rb')
 
   if ARGV.include?('--login')
@@ -85,6 +91,10 @@ reconnect_if_wanted = proc {
 
   ## GUI starts here
 
+  # Initiates GUI login flow if GTK is defined and GUI options are set.
+  #
+  # @return [void]
+  # @note This block handles GUI-based login if applicable.
   elsif defined?(Gtk) and (ARGV.empty? or @argv_options[:gui])
     require File.join(LIB_DIR, 'common', 'gui_login.rb')
     gui_login
@@ -112,6 +122,10 @@ reconnect_if_wanted = proc {
     end
   end
 
+  # Processes the launch data after successful login.
+  #
+  # @return [void]
+  # @note This block handles the game initialization based on launch data.
   if @launch_data
     if @launch_data.find { |opt| opt =~ /GAMECODE=DR/ }
       gamecodeshort = "DR"
@@ -217,6 +231,10 @@ reconnect_if_wanted = proc {
     gamehost = gamehost.split('=').last
     game     = game.split('=').last
 
+    # Checks if the game port indicates a platinum account.
+    #
+    # @return [void]
+    # @note This block sets the platinum flag based on the game port.
     if (gameport == '10121') or (gameport == '10124')
       $platinum = true
     else
@@ -294,6 +312,10 @@ reconnect_if_wanted = proc {
         #        else
         Lich.msgbox(:message => "error: timeout waiting for client to connect", :icon => :error)
         #        end
+        # Cleans up the temporary launch file if it exists.
+        #
+        # @return [void]
+        # @note This block ensures that temporary files are removed after use.
         if sal_filename
           File.delete(sal_filename) # rescue() # rubocop complaint, but is it even necessary?
         end

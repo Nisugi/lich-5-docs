@@ -17,15 +17,14 @@ rescue StandardError => e
   false
 end
 
+# Provides utility methods for the Lich5 project.
+#
+# @see Lich::Util
 module Lich
-  # Provides utility methods for text processing.
-  #
-  # @see Lich::Util
   module Util
     # Provides methods to strip formatting from text.
     #
-    # This module handles various text formats including HTML, XML, and Markdown.
-    # @see Lich::Util::TextStripper::Mode
+    # This module handles different modes of text stripping, including HTML, XML, and Markdown.
     module TextStripper
       module Mode
         # Strip HTML tags
@@ -42,7 +41,7 @@ module Lich
 
         ALL = [HTML, XML, MARKUP, MARKDOWN].freeze
 
-        # Validates if the given mode is supported.
+        # Checks if the given mode is valid.
         # @param mode [Symbol, String] the mode to validate
         # @return [Boolean] true if the mode is valid, false otherwise
         def self.valid?(mode)
@@ -62,9 +61,9 @@ module Lich
         Mode::MARKDOWN => 'GFM'
       }.freeze
 
-      # Checks if the given mode requires the kramdown gem.
+      # Determines if Kramdown is required for the given mode.
       # @param mode [Symbol] the mode to check
-      # @return [Boolean] true if kramdown is required for the mode
+      # @return [Boolean] true if Kramdown is required, false otherwise
       def self.requires_kramdown?(mode)
         MODE_TO_INPUT_FORMAT.key?(mode)
       end
@@ -73,7 +72,8 @@ module Lich
       # @param text [String] the text to be stripped
       # @param mode [Symbol] the mode to use for stripping
       # @return [String] the stripped text
-      # @raise ArgumentError if the mode is invalid
+      # @example Strip HTML tags
+      #   TextStripper.strip("<p>Hello</p>", TextStripper::Mode::HTML)
       def self.strip(text, mode)
         return "" if text.nil? || text.empty?
 
@@ -108,10 +108,10 @@ module Lich
         text
       end
 
-      # Validates and normalizes the mode parameter.
+      # Validates the given mode and normalizes it to a symbol.
       # @param mode [Symbol, String] the mode to validate
       # @return [Symbol] the normalized mode
-      # @raise ArgumentError if the mode is not a Symbol or String or is invalid
+      # @raise ArgumentError if the mode is invalid
       def self.validate_mode(mode)
         # Ensure mode is a Symbol or String
         unless mode.is_a?(Symbol) || mode.is_a?(String)
@@ -141,10 +141,11 @@ module Lich
         Lich.log(full_message)
       end
 
-      # Strips formatting from text using the kramdown gem.
+      # Strips formatting from text using Kramdown.
       # @param text [String] the text to be stripped
       # @param mode [Symbol] the mode to use for stripping
       # @return [String] the stripped text
+      # @note Kramdown must be loaded for this method to work
       def self.strip_with_kramdown(text, mode)
         unless KRAMDOWN_LOADED
           respond("Need to restart Lich5 in order to use this method.")
@@ -201,7 +202,7 @@ module Lich
         text_parts.join
       end
 
-      # Extracts plain text from a kramdown element.
+      # Extracts plain text from a Kramdown element.
       # @param element [Kramdown::Element] the element to extract text from
       # @return [String] the extracted text
       def self.extract_text(element)
@@ -236,7 +237,7 @@ module Lich
       end
 
       # Converts an HTML entity to its corresponding character.
-      # @param entity [Symbol] the HTML entity to convert
+      # @param entity [Symbol] the entity to convert
       # @return [String] the corresponding character
       def self.entity_to_char(entity)
         if entity.respond_to?(:char)
@@ -268,6 +269,7 @@ module Lich
       # Strips HTML tags from the given text.
       # @param text [String] the HTML text to be stripped
       # @return [String] the stripped text
+      # @note Kramdown must be loaded for this method to work
       def self.strip_html(text)
         unless KRAMDOWN_LOADED
           respond("Need to restart Lich5 in order to use this method.")
@@ -287,6 +289,7 @@ module Lich
       # Strips markup formatting from the given text.
       # @param text [String] the markup text to be stripped
       # @return [String] the stripped text
+      # @note Kramdown must be loaded for this method to work
       def self.strip_markup(text)
         unless KRAMDOWN_LOADED
           respond("Need to restart Lich5 in order to use this method.")
@@ -299,6 +302,7 @@ module Lich
       # Strips Markdown formatting from the given text.
       # @param text [String] the Markdown text to be stripped
       # @return [String] the stripped text
+      # @note Kramdown must be loaded for this method to work
       def self.strip_markdown(text)
         unless KRAMDOWN_LOADED
           respond("Need to restart Lich5 in order to use this method.")

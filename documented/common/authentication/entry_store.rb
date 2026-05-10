@@ -6,26 +6,23 @@ require_relative '../gui/master_password_manager'
 require_relative '../gui/master_password_prompt'
 
 module Lich
-  # Provides common authentication functionalities for the Lich application.
-  #
-  # @see Lich::Common::Authentication
   module Common
     module Authentication
       module EntryStore
-        # Returns the path to the YAML file for storing entry data.
+        # Returns the path to the YAML file for storing entries.
+        #
         # @param data_dir [String] the directory where the YAML file is located
         # @return [String] the full path to the YAML file
         def self.yaml_file_path(data_dir)
           File.join(data_dir, "entry.yaml")
         end
 
-        # Loads saved entries from the specified data directory.
+        # Loads saved entries from the specified directory, prioritizing YAML format.
         #
-        # This method first attempts to load entries from a YAML file. If the YAML file does not exist,
-        # it falls back to loading from a legacy DAT file.
-        # @param data_dir [String] the directory where entry files are stored
+        # @param data_dir [String] the directory containing the entry files
         # @param autosort_state [Boolean] whether to sort entries by favorites
-        # @return [Array<Hash>] an array of loaded entry data
+        # @return [Array<Hash>] an array of loaded entries, each represented as a hash
+        # @raise [StandardError] if there is an error loading the entries
         def self.load_saved_entries(data_dir, autosort_state)
           # Guard against nil data_dir
           return [] if data_dir.nil?
@@ -62,12 +59,11 @@ module Lich
           end
         end
 
-        # Saves entry data to the YAML file in the specified data directory.
+        # Saves the provided entry data to the YAML file in the specified directory.
         #
-        # This method preserves the validation test and encryption mode from existing YAML if it exists.
         # @param data_dir [String] the directory where the YAML file will be saved
-        # @param entry_data [Array<Hash>] the entry data to save
-        # @return [Boolean] true if the save was successful, false otherwise
+        # @param entry_data [Array<Hash>] the entry data to save, each represented as a hash
+        # @return [Boolean] true if the entries were saved successfully, false otherwise
         def self.save_entries(data_dir, entry_data)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
 
@@ -129,12 +125,10 @@ module Lich
           end
         end
 
-        # Migrates entry data from the legacy DAT format to the YAML format.
+        # Migrates entries from the legacy format to the new YAML format.
         #
-        # This method checks for the existence of the legacy DAT file and converts its contents to the
-        # new YAML format, applying any necessary encryption settings.
-        # @param data_dir [String] the directory where the legacy DAT file is located
-        # @param encryption_mode [Symbol] the encryption mode to use for the migration
+        # @param data_dir [String] the directory containing the legacy entry file
+        # @param encryption_mode [Symbol] the encryption mode to use for the migrated entries
         # @return [Boolean] true if migration was successful, false otherwise
         def self.migrate_from_legacy(data_dir, encryption_mode: :plaintext)
           dat_file = File.join(data_dir, "entry.dat")
@@ -212,14 +206,14 @@ module Lich
           true
         end
 
-        # Encrypts a password using the specified encryption mode.
+        # Encrypts the given password using the specified mode and optional master password.
         #
-        # This method handles different encryption modes and can use a master password if required.
         # @param password [String] the password to encrypt
         # @param mode [Symbol] the encryption mode to use
         # @param account_name [String, nil] the name of the account associated with the password
-        # @param master_password [String, nil] the master password for encryption, if needed
+        # @param master_password [String, nil] the master password for encryption, if required
         # @return [String] the encrypted password
+        # @raise [StandardError] if encryption fails
         def self.encrypt_password(password, mode:, account_name: nil, master_password: nil)
           return password if mode == :plaintext || mode.to_sym == :plaintext
 
@@ -229,15 +223,14 @@ module Lich
           raise
         end
 
-        # Decrypts an encrypted password using the specified encryption mode.
+        # Decrypts the given encrypted password using the specified mode and optional master password.
         #
-        # This method retrieves the master password from the Keychain if not provided and handles
-        # different encryption modes accordingly.
         # @param encrypted_password [String] the encrypted password to decrypt
         # @param mode [Symbol] the encryption mode used for the password
         # @param account_name [String, nil] the name of the account associated with the password
-        # @param master_password [String, nil] the master password for decryption, if needed
+        # @param master_password [String, nil] the master password for decryption, if required
         # @return [String] the decrypted password
+        # @raise [StandardError] if decryption fails
         def self.decrypt_password(encrypted_password, mode:, account_name: nil, master_password: nil)
           return encrypted_password if mode == :plaintext || mode.to_sym == :plaintext
 
@@ -253,15 +246,15 @@ module Lich
           raise
         end
 
-        # Attempts to decrypt a password, with recovery options if the master password is missing.
+        # Attempts to decrypt the given password, with recovery options if the master password is missing.
         #
-        # This method will prompt the user for a master password if it cannot be retrieved from the Keychain.
         # @param encrypted_password [String] the encrypted password to decrypt
         # @param mode [Symbol] the encryption mode used for the password
         # @param account_name [String, nil] the name of the account associated with the password
-        # @param master_password [String, nil] the master password for decryption, if needed
+        # @param master_password [String, nil] the master password for decryption, if required
         # @param validation_test [String, nil] the validation test for recovery
         # @return [String] the decrypted password
+        # @raise [StandardError] if decryption fails and recovery is not possible
         def self.decrypt_password_with_recovery(encrypted_password, mode:, account_name: nil, master_password: nil, validation_test: nil)
           # Try normal decryption first
           return decrypt_password(encrypted_password, mode: mode, account_name: account_name, master_password: master_password)
@@ -306,12 +299,11 @@ module Lich
           end
         end
 
-        # Encrypts all passwords in the provided YAML data according to the specified mode.
+        # Encrypts all passwords in the provided YAML data using the specified mode.
         #
-        # This method iterates through all accounts and encrypts their passwords based on the given mode.
-        # @param yaml_data [Hash] the YAML data containing account information
+        # @param yaml_data [Hash] the YAML data containing accounts and passwords
         # @param mode [Symbol] the encryption mode to use
-        # @param master_password [String, nil] the master password for encryption, if needed
+        # @param master_password [String, nil] the master password for encryption, if required
         # @return [Hash] the updated YAML data with encrypted passwords
         def self.encrypt_all_passwords(yaml_data, mode, master_password: nil)
           return yaml_data if mode == :plaintext
@@ -331,13 +323,12 @@ module Lich
           yaml_data
         end
 
-        # Changes the encryption mode for the stored passwords in the YAML file.
+        # Changes the encryption mode for the stored entries and updates the master password if necessary.
         #
-        # This method handles backup creation and re-encryption of all passwords according to the new mode.
-        # @param data_dir [String] the directory where the YAML file is located
+        # @param data_dir [String] the directory containing the YAML file
         # @param new_mode [Symbol] the new encryption mode to set
         # @param new_master_password [String, nil] the new master password for Enhanced mode, if applicable
-        # @return [Boolean] true if the change was successful, false otherwise
+        # @return [Boolean] true if the encryption mode was changed successfully, false otherwise
         def self.change_encryption_mode(data_dir, new_mode, new_master_password = nil)
           yaml_file = yaml_file_path(data_dir)
 
@@ -451,12 +442,11 @@ module Lich
           end
         end
 
-        # Restores a backup file if it exists and returns false.
+        # Restores the backup file to the original YAML file and returns false.
         #
-        # This method is used to revert changes in case of an error during operations like encryption mode change.
         # @param backup_file [String] the path to the backup file
         # @param yaml_file [String] the path to the original YAML file
-        # @return [Boolean] always returns false
+        # @return [Boolean] false, indicating the operation was unsuccessful
         def self.restore_backup_and_return_false(backup_file, yaml_file)
           if File.exist?(backup_file)
             FileUtils.cp(backup_file, yaml_file)
@@ -468,9 +458,8 @@ module Lich
 
         # Migrates the provided YAML data to include encryption format fields.
         #
-        # This method ensures that the YAML data has the necessary fields for encryption mode and validation test.
         # @param yaml_data [Hash] the YAML data to migrate
-        # @return [Hash] the migrated YAML data with encryption fields
+        # @return [Hash] the migrated YAML data with encryption fields added
         def self.migrate_to_encryption_format(yaml_data)
           return yaml_data unless yaml_data.is_a?(Hash)
 
@@ -484,13 +473,12 @@ module Lich
 
         # Adds a character to the favorites list in the YAML data.
         #
-        # This method updates the character's favorite status and order, saving the changes directly to the YAML file.
-        # @param data_dir [String] the directory where the YAML file is located
+        # @param data_dir [String] the directory containing the YAML file
         # @param username [String] the username associated with the character
         # @param char_name [String] the name of the character to add as a favorite
         # @param game_code [String] the game code associated with the character
         # @param frontend [String, nil] the frontend associated with the character, if applicable
-        # @return [Boolean] true if the character was added as a favorite, false otherwise
+        # @return [Boolean] true if the character was added to favorites, false otherwise
         def self.add_favorite(data_dir, username, char_name, game_code, frontend = nil)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
           return false unless File.exist?(yaml_file)
@@ -525,8 +513,7 @@ module Lich
 
         # Removes a character from the favorites list in the YAML data.
         #
-        # This method updates the character's favorite status and reorders the remaining favorites.
-        # @param data_dir [String] the directory where the YAML file is located
+        # @param data_dir [String] the directory containing the YAML file
         # @param username [String] the username associated with the character
         # @param char_name [String] the name of the character to remove from favorites
         # @param game_code [String] the game code associated with the character
@@ -568,8 +555,7 @@ module Lich
 
         # Checks if a character is marked as a favorite in the YAML data.
         #
-        # This method retrieves the character's favorite status based on the provided identifiers.
-        # @param data_dir [String] the directory where the YAML file is located
+        # @param data_dir [String] the directory containing the YAML file
         # @param username [String] the username associated with the character
         # @param char_name [String] the name of the character to check
         # @param game_code [String] the game code associated with the character
@@ -591,11 +577,10 @@ module Lich
           end
         end
 
-        # Retrieves a list of all favorite characters from the YAML data.
+        # Retrieves a list of favorite characters from the YAML data.
         #
-        # This method compiles a list of characters marked as favorites, including their details.
-        # @param data_dir [String] the directory where the YAML file is located
-        # @return [Array<Hash>] an array of favorite character data
+        # @param data_dir [String] the directory containing the YAML file
+        # @return [Array<Hash>] an array of favorite characters, each represented as a hash
         def self.get_favorites(data_dir)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
           return [] unless File.exist?(yaml_file)
@@ -634,10 +619,9 @@ module Lich
 
         # Reorders the favorites list based on the provided order.
         #
-        # This method updates the favorite order for each character according to the specified list.
-        # @param data_dir [String] the directory where the YAML file is located
-        # @param ordered_favorites [Array<Hash>] the ordered list of favorite character information
-        # @return [Boolean] true if the reordering was successful, false otherwise
+        # @param data_dir [String] the directory containing the YAML file
+        # @param ordered_favorites [Array<Hash>] an array of favorite characters with their new order
+        # @return [Boolean] true if the favorites were reordered successfully, false otherwise
         def self.reorder_favorites(data_dir, ordered_favorites)
           yaml_file = Lich::Common::Authentication::EntryStore.yaml_file_path(data_dir)
           return false unless File.exist?(yaml_file)
@@ -672,9 +656,8 @@ module Lich
           end
         end
 
-        # Converts YAML data to the legacy format for entry data.
+        # Converts the YAML data to the legacy format for compatibility.
         #
-        # This method extracts relevant information from the YAML structure and prepares it for legacy usage.
         # @param yaml_data [Hash] the YAML data to convert
         # @return [Array<Hash>] an array of entries in legacy format
         def self.convert_yaml_to_legacy_format(yaml_data)
@@ -721,9 +704,8 @@ module Lich
           entries
         end
 
-        # Converts legacy entry data to the YAML format.
+        # Converts legacy entry data to the new YAML format.
         #
-        # This method normalizes account names and character data for consistent storage in YAML.
         # @param entry_data [Array<Hash>] the legacy entry data to convert
         # @param validation_test [String, nil] the validation test for the master password, if applicable
         # @return [Hash] the converted YAML data
@@ -783,9 +765,8 @@ module Lich
 
         # Sorts entries with favorites prioritized based on the autosort state.
         #
-        # This method separates favorites from non-favorites and sorts them accordingly.
         # @param entries [Array<Hash>] the entries to sort
-        # @param autosort_state [Boolean] whether to enable autosorting
+        # @param autosort_state [Boolean] whether to sort entries by favorites
         # @return [Array<Hash>] the sorted entries
         def self.sort_entries_with_favorites(entries, autosort_state)
           # If autosort is disabled, preserve original order without any reordering
@@ -808,11 +789,10 @@ module Lich
           favorites + sorted_non_favorites
         end
 
-        # Migrates the provided YAML data to include favorite fields.
+        # Migrates the YAML data to include favorite fields for characters.
         #
-        # This method ensures that each character has the necessary fields for favorite status.
         # @param yaml_data [Hash] the YAML data to migrate
-        # @return [Hash] the migrated YAML data with favorite fields
+        # @return [Hash] the migrated YAML data with favorite fields added
         def self.migrate_to_favorites_format(yaml_data)
           return yaml_data unless yaml_data.is_a?(Hash) && yaml_data['accounts']
 
@@ -829,15 +809,14 @@ module Lich
           yaml_data
         end
 
-        # Finds a character in the YAML data based on provided identifiers.
+        # Finds a character in the YAML data based on the provided criteria.
         #
-        # This method searches for a character using the username, character name, game code, and optional frontend.
-        # @param yaml_data [Hash] the YAML data containing account information
+        # @param yaml_data [Hash] the YAML data containing accounts and characters
         # @param username [String] the username associated with the character
         # @param char_name [String] the name of the character to find
         # @param game_code [String] the game code associated with the character
         # @param frontend [String, nil] the frontend associated with the character, if applicable
-        # @return [Hash, nil] the character data if found, nil otherwise
+        # @return [Hash, nil] the found character data, or nil if not found
         def self.find_character(yaml_data, username, char_name, game_code, frontend = nil)
           return nil unless yaml_data['accounts'] && yaml_data['accounts'][username]
           account_data = yaml_data['accounts'][username]
@@ -864,10 +843,9 @@ module Lich
           end
         end
 
-        # Retrieves the next available favorite order number for new favorites.
+        # Retrieves the next available order number for a new favorite character.
         #
-        # This method scans existing favorites to determine the next order number.
-        # @param yaml_data [Hash] the YAML data containing account information
+        # @param yaml_data [Hash] the YAML data containing accounts and characters
         # @return [Integer] the next favorite order number
         def self.get_next_favorite_order(yaml_data)
           max_order = 0
@@ -885,15 +863,14 @@ module Lich
           max_order + 1
         end
 
-        # Finds an entry in the legacy format based on provided identifiers.
+        # Finds an entry in the legacy format based on the provided criteria.
         #
-        # This method matches entries using the username, character name, game code, and optional frontend.
         # @param entry_data [Array<Hash>] the legacy entry data to search
         # @param username [String] the username associated with the entry
         # @param char_name [String] the name of the character to find
         # @param game_code [String] the game code associated with the entry
         # @param frontend [String, nil] the frontend associated with the entry, if applicable
-        # @return [Hash, nil] the entry data if found, nil otherwise
+        # @return [Hash, nil] the found entry data, or nil if not found
         def self.find_entry_in_legacy_format(entry_data, username, char_name, game_code, frontend = nil)
           entry_data.find do |entry|
             # Match on username first
@@ -914,8 +891,7 @@ module Lich
 
         # Reorders all favorite characters in the YAML data.
         #
-        # This method collects all favorites and assigns them consecutive order numbers.
-        # @param yaml_data [Hash] the YAML data containing account information
+        # @param yaml_data [Hash] the YAML data containing accounts and characters
         # @return [void]
         def self.reorder_all_favorites(yaml_data)
           # Collect all favorites
@@ -938,11 +914,6 @@ module Lich
           end
         end
 
-        # Prepares YAML data for serialization, ensuring proper formatting.
-        #
-        # This method clones the data to avoid mutation and ensures top-level fields are present.
-        # @param yaml_data [Hash] the YAML data to prepare
-        # @return [Hash] the prepared YAML data
         def self.prepare_yaml_for_serialization(yaml_data)
           # Clone to avoid mutating caller's object
           prepared_data = Marshal.load(Marshal.dump(yaml_data))
@@ -965,27 +936,16 @@ module Lich
           prepared_data
         end
 
-        # Normalizes an account name by stripping whitespace and converting to uppercase.
-        # @param name [String, nil] the account name to normalize
-        # @return [String] the normalized account name
         def self.normalize_account_name(name)
           return '' if name.nil?
           name.to_s.strip.upcase
         end
 
-        # Normalizes a character name by stripping whitespace and capitalizing.
-        # @param name [String, nil] the character name to normalize
-        # @return [String] the normalized character name
         def self.normalize_character_name(name)
           return '' if name.nil?
           name.to_s.strip.capitalize
         end
 
-        # Generates YAML content from the provided data.
-        #
-        # This method prepares the YAML content with headers and ensures proper formatting for serialization.
-        # @param yaml_data [Hash] the YAML data to convert to YAML format
-        # @return [String] the generated YAML content
         def self.generate_yaml_content(yaml_data)
           # Prepare YAML with password preservation (clones to avoid mutation)
           prepared_yaml = prepare_yaml_for_serialization(yaml_data)
@@ -996,12 +956,6 @@ module Lich
           return content
         end
 
-        # Writes the provided YAML data to a file with secure permissions.
-        #
-        # This method ensures that the file is created with appropriate headers and permissions.
-        # @param yaml_file [String] the path to the YAML file to write
-        # @param yaml_data [Hash] the YAML data to write to the file
-        # @return [void]
         def self.write_yaml_file(yaml_file, yaml_data)
           prepared_yaml = prepare_yaml_for_serialization(yaml_data)
 
@@ -1012,10 +966,6 @@ module Lich
           end
         end
 
-        # Ensures that a master password exists, prompting the user if necessary.
-        #
-        # This method checks the Keychain for an existing master password and prompts the user to create one if not found.
-        # @return [Hash, nil] the master password and validation test if created, nil otherwise
         def self.ensure_master_password_exists
           # Check if master password already in Keychain
           existing = Lich::Common::GUI::MasterPasswordManager.retrieve_master_password
@@ -1050,10 +1000,6 @@ module Lich
           { password: master_password, validation_test: validation_test }
         end
 
-        # Retrieves the existing master password for migration purposes.
-        #
-        # This method checks the Keychain for an existing master password and creates a validation test for it.
-        # @return [Hash, nil] the existing master password and validation test if found, nil otherwise
         def self.get_existing_master_password_for_migration
           # Retrieve existing master password from keychain
           existing_password = Lich::Common::GUI::MasterPasswordManager.retrieve_master_password

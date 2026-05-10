@@ -1,12 +1,12 @@
 module Lich
   module Gemstone
     module Armaments
-      # Static array of weapon stats indexed by weapon identifiers.
-      # Each weapon entry contains metadata such as category, base name,
-      # alternative names, damage types, damage factors, armor avoidance by
-      # armor size group (ASG), base roundtime (RT), and minimum RT.
+      # Static array of weapon stats indexed by weapon identifiers. Each weapon
+      # entry contains metadata such as category, base name, alternative names,
+      # damage types, damage factors, armor avoidance by armor size group (ASG),
+      # base roundtime (RT), and minimum RT.
       #
-      # @see Lich::Gemstone::Armaments::WeaponStats#weapon_stats_edged
+      # @see Lich::Gemstone::Armaments::WeaponStats
       module WeaponStats
 # Static array of weapon stats indexed by weapon identifiers. Each weapon
 # entry contains metadata such as category, base name, alternative names,

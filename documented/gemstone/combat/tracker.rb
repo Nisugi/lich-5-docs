@@ -22,9 +22,10 @@ module Lich
       # Combat tracking system
       #
       # Main interface for the combat tracking system. Integrates with Lich's
-      # game processing to track damage, wounds, and status effects.
+      # game processing to track various combat-related events.
       #
-      # @see Lich::Gemstone::Combat
+      # @see Lich::Gemstone::Combat::Processor
+      # @see Lich::Gemstone::Combat::AsyncProcessor
       module Tracker
         @enabled = false
         @settings = {}
@@ -36,20 +37,9 @@ module Lich
         # Default settings for combat tracking
         # Default settings for combat tracking
         #
-        # @example
-        #   DEFAULT_SETTINGS = {
-        #     enabled: true,
-        #     track_damage: true,
-        #     track_wounds: true,
-        #     track_statuses: true,
-        #     track_ucs: true,
-        #     max_threads: 2,
-        #     debug: false,
-        #     buffer_size: 200,
-        #     fallback_max_hp: 350,
-        #     cleanup_interval: 100,
-        #     cleanup_max_age: 600
-        #   }
+        # @example Default settings
+        #   DEFAULT_SETTINGS[:enabled] # => false
+        #   DEFAULT_SETTINGS[:track_damage] # => true
         DEFAULT_SETTINGS = {
           enabled: false,           # Disabled by default, user must enable
           track_damage: true,
@@ -172,7 +162,7 @@ module Lich
             end
           end
 
-          # Checks if a line of text is relevant to combat.
+          # Determines if a line of text is relevant to combat.
           #
           # @param line [String] the line of text to check
           # @return [Boolean] true if the line is combat relevant, false otherwise
@@ -211,7 +201,7 @@ module Lich
             respond "[Combat] Settings updated: #{@settings}" if debug?
           end
 
-          # Retrieves the current stats of the combat tracker.
+          # Retrieves the current statistics of the combat tracker.
           #
           # @return [Hash] a hash containing the current stats
           def stats
@@ -258,7 +248,7 @@ module Lich
             @settings = DEFAULT_SETTINGS.merge(stored_settings)
           end
 
-          # Saves the current settings to the database store.
+          # Saves current settings to the database store.
           #
           # @return [void]
           def save_settings
@@ -284,7 +274,7 @@ module Lich
             @async_processor = nil
           end
 
-          # Adds a downstream hook to process incoming data.
+          # Adds a downstream hook for processing combat data.
           #
           # @return [void]
           def add_downstream_hook
@@ -317,7 +307,7 @@ module Lich
             DownstreamHook.add(@hook_id, segment_buffer)
           end
 
-          # Removes the downstream hook for processing data.
+          # Removes the downstream hook for processing combat data.
           #
           # @return [void]
           def remove_downstream_hook
@@ -325,7 +315,7 @@ module Lich
             @hook_id = nil
           end
 
-          # Initializes the combat tracker, loading settings and preparing for use.
+          # Initializes the combat tracker, loading settings and setting up hooks.
           #
           # @return [void]
           def initialize!

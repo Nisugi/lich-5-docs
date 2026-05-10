@@ -8,27 +8,26 @@
   updates and SnapshotManager for backups.
 =end
 
+# Provides utility functions for Lich5.
+#
+# @see Lich::Util for additional utility methods.
 module Lich
   module Util
     module Update
       # Handles the installation of Lich5 from GitHub releases.
       #
-      # This class manages release announcements, tarball downloads,
-      # Ruby compatibility checks, and file extraction. It delegates
-      # to FileUpdater for data/script updates and SnapshotManager
-      # for backups.
-      #
-      # @see Lich::Util::Update::FileUpdater
-      # @see Lich::Util::Update::SnapshotManager
+      # This class manages release announcements, downloads,
+      # Ruby compatibility checks, and file extraction.
+      # It delegates data/script updates to FileUpdater and backups to SnapshotManager.
       class ReleaseInstaller
         # Top-level files (besides lib/ and lich.rbw) to copy from release archive.
         # lich.rbw is handled separately due to its dynamic target name.
         TOP_LEVEL_FILES = %w[Gemfile LICENSE].freeze
 
         # Initializes a new ReleaseInstaller instance.
-        # @param client [Object] the client used to interact with GitHub
-        # @param resolver [Object] the resolver for versioning
-        # @param snapshot_manager [SnapshotManager] the manager for snapshots
+        # @param client [Object] the client used to interact with GitHub.
+        # @param resolver [Object] the resolver for versioning.
+        # @param snapshot_manager [Object] the manager for snapshots.
         # @return [void]
         def initialize(client, resolver, snapshot_manager)
           @client = client
@@ -41,10 +40,9 @@ module Lich
           @zipfile = nil
         end
 
-        # Announces the availability of a new version of Lich.
-        # This method checks the current version against the latest
-        # available version and responds accordingly.
+        # Announces the availability of a new version of Lich5.
         # @return [void]
+        # @note This method checks the current version and compares it to the latest available version.
         def announce
           prep_update
           if "#{LICH_VERSION}".chr == '5'
@@ -73,6 +71,7 @@ module Lich
 
         # Prepares for an update by fetching the latest release information.
         # @return [void]
+        # @raise [StandardError] if the latest release payload cannot be read.
         def prep_update
           latest = @client.fetch_github_json("https://api.github.com/repos/#{GITHUB_REPO}/releases/latest")
           if latest.is_a?(Hash) && latest['prerelease']
@@ -99,8 +98,8 @@ module Lich
         end
 
         # Prepares for beta testing of the next Lich release.
-        # @param type [String, nil] the type of beta test (optional)
-        # @param requested_file [String, nil] the requested file for the beta test (optional)
+        # @param type [String, nil] the type of beta test.
+        # @param requested_file [String, nil] the file requested for the beta test.
         # @return [void]
         def prep_betatest(type = nil, requested_file = nil)
           if type.nil?
@@ -187,9 +186,8 @@ module Lich
         end
 
         # Downloads the release update for Lich5.
-        # This method handles the downloading and extraction of the
-        # update tarball, as well as compatibility checks.
         # @return [void]
+        # @raise [StandardError] if the update cannot be performed.
         def download_release_update
           prep_update if @update_to.nil? || @update_to.empty?
           if Gem::Version.new("#{@update_to}") <= Gem::Version.new("#{@current}") && !defined?(LICH_BRANCH)
@@ -245,10 +243,10 @@ module Lich
           end
         end
 
-        # Performs the update of Lich from the specified source directory.
-        # @param source_dir [String] the directory containing the new version
-        # @param version [String] the version to update to
-        # @return [Boolean] true if the update was successful, false otherwise
+        # Performs the update of Lich5 to the specified version.
+        # @param source_dir [String] the directory containing the new version files.
+        # @param version [String] the version to update to.
+        # @return [Boolean] true if the update was successful, false otherwise.
         def perform_update(source_dir, version)
           unless validate_lich_structure(source_dir)
             respond "Error: extracted source is missing required files. Aborting update to protect installation."
@@ -284,17 +282,17 @@ module Lich
         end
 
         # Validates the structure of the Lich installation directory.
-        # @param dir [String] the directory to validate
-        # @return [Boolean] true if the structure is valid, false otherwise
+        # @param dir [String] the directory to validate.
+        # @return [Boolean] true if the structure is valid, false otherwise.
         def validate_lich_structure(dir)
           required_items = ['lib', 'lich.rbw'] + TOP_LEVEL_FILES
           required_items.all? { |item| File.exist?(File.join(dir, item)) }
         end
 
         # Checks if the Ruby version is compatible with the specified Lich version.
-        # @param source_dir [String] the directory containing the new version
-        # @param version [String] the version to check compatibility against
-        # @return [Boolean] true if compatible, false otherwise
+        # @param source_dir [String] the directory containing the Lich version files.
+        # @param version [String] the version of Lich to check compatibility for.
+        # @return [Boolean] true if compatible, false otherwise.
         def check_ruby_compatibility(source_dir, version)
           version_file_path = File.join(source_dir, "lib", "version.rb")
           if File.exist?(version_file_path)
@@ -322,8 +320,8 @@ module Lich
         end
 
         # Extracts the Lich version from the specified version file.
-        # @param version_file_path [String] the path to the version file
-        # @return [String, nil] the extracted version or nil if not found
+        # @param version_file_path [String] the path to the version file.
+        # @return [String, nil] the extracted version or nil if not found.
         def extract_version_from_file(version_file_path)
           return nil unless File.exist?(version_file_path)
 

@@ -3,9 +3,7 @@ module Lich
   module Gemstone
     # Manages the tracking of hidden targets in the game.
     #
-    # This class provides methods to track and manage targets that are hidden in the game environment.
-    #
-    # @see Lich::Gemstone::Observer for handling events related to hiding and revealing.
+    # @see Lich::Gemstone::Observer
     class Overwatch
       @@hidden_targets ||= nil
       @@debug          ||= false
@@ -16,51 +14,50 @@ module Lich
         @@hidden_targets = nil
       end
 
-      # Returns the room ID that has hidden targets.
-      # @return [String, nil] the room ID with hiders or nil if none.
+      # Returns the room ID with hidden targets.
+      # @return [String, nil] the room ID or nil if no targets are hidden
       def self.room_with_hiders
         @@hidden_targets
       end
 
       # Checks if there are any hidden targets in the current room.
-      # @return [Boolean] true if there are hidden targets, false otherwise.
+      # @return [Boolean] true if there are hidden targets, false otherwise
       def self.hiders?
         return false if @@hidden_targets.nil?
         @@hidden_targets.eql?(XMLData.room_id)
       end
 
       # Tracks the specified room ID as having hidden targets.
-      # @param room_id [String] the ID of the room with hidden targets.
+      # @param room_id [String] the room ID to track
       # @return [void]
       def self.track_hidden_targets(room_id)
         @@hidden_targets = room_id
       end
 
-      # Resets the tracking of hidden targets by clearing the current room.
+      # Resets the room with hidden targets by clearing the list.
       # @return [void]
       def self.room_with_hiders_reset
         clear
       end
 
       # Sets the debug mode for tracking hidden targets.
-      # @param value [Boolean] true to enable debug mode, false to disable.
+      # @param value [Boolean] true to enable debug mode, false to disable
       # @return [void]
       def self.debug=(value)
         @@debug = value
       end
 
       # Checks if debug mode is enabled.
-      # @return [Boolean] true if debug mode is enabled, false otherwise.
+      # @return [Boolean] true if debug mode is enabled, false otherwise
       def self.debug?
         @@debug
       end
 
-      # Processes and tracks revealed targets based on the provided parameters.
-      #
-      # @param target_id [String] the ID of the target being revealed.
-      # @param target_noun [String] the noun associated with the target.
-      # @param target_name [String] the name of the target.
-      # @param silent_strike [Boolean] whether the reveal is due to a silent strike (default: false).
+      # Pushes revealed targets into the tracking system.
+      # @param target_id [String] the ID of the target
+      # @param target_noun [String] the noun associated with the target
+      # @param target_name [String] the name of the target
+      # @param silent_strike [Boolean] whether the reveal is due to a silent strike
       # @return [void]
       def self.push_revealed_targets(target_id, target_noun, target_name, silent_strike: false)
         @@hidden_targets = nil
@@ -103,7 +100,9 @@ module Lich
         end
       end
 
-      # Provides functionality for observing and handling events related to hiding and revealing targets.
+      # Provides functionality for observing and reacting to hidden targets.
+      #
+      # @see Lich::Gemstone::Overwatch
       module Observer
         module Term
           # Patterns for creatures entering hiding
@@ -192,15 +191,15 @@ module Lich
         end
 
         # Determines if the given line matches any hiding or revealing patterns.
-        # @param line [String] the line to check against patterns.
-        # @return [Boolean] true if the line matches any patterns, false otherwise.
+        # @param line [String] the line to check
+        # @return [Boolean] true if the line matches any patterns, false otherwise
         def self.wants?(line)
           line.match(Term::ANY)
         end
 
         # Consumes a line and processes it based on matching patterns.
-        # @param line [String] the line to process.
-        # @param match_data [MatchData] the data from the matched pattern.
+        # @param line [String] the line to consume
+        # @param match_data [MatchData] the data from the matched pattern
         # @return [void]
         def self.consume(line, match_data)
           case line

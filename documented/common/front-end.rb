@@ -69,8 +69,8 @@ module Lich
 
       # Checks if a frontend has a specific capability.
       #
-      # @param frontend_name [String] the name of the frontend to check
-      # @param capability [Symbol] the capability to check for
+      # @param frontend_name [String] the name of the frontend
+      # @param capability [Symbol] the capability to check
       # @return [Boolean] true if the frontend has the capability, false otherwise
       def self.has_capability?(frontend_name, capability)
         return false if frontend_name.nil?
@@ -78,7 +78,7 @@ module Lich
         @registry[frontend_name.to_s.downcase][:capabilities].include?(capability.to_sym)
       end
 
-      # Retrieves metadata for a registered frontend.
+      # Retrieves metadata for a registered frontend by key.
       #
       # @param frontend_name [String] the name of the frontend
       # @param key [String] the key of the metadata to retrieve
@@ -98,8 +98,8 @@ module Lich
 
       # Returns a list of frontend names that support a specific capability.
       #
-      # @param capability [Symbol] the capability to filter frontends by
-      # @return [Array<String>] an array of frontend names that have the capability
+      # @param capability [Symbol] the capability to check for
+      # @return [Array<String>] an array of frontend names that support the capability
       def self.frontends_with_capability(capability)
         @registry.select { |_name, data| data[:capabilities].include?(capability.to_sym) }.keys
       end
@@ -246,7 +246,7 @@ module Lich
         @pid_mutex.synchronize { @frontend_pid }
       end
 
-      # Sets the current frontend process ID (PID).
+      # Sets the frontend process ID (PID).
       #
       # @param value [Integer] the PID to set
       # @return [void]
@@ -289,7 +289,7 @@ module Lich
 
       # Sets the frontend PID from the client.
       #
-      # @param pid [Integer] the PID received from the client
+      # @param pid [Integer] the PID to set
       # @return [Integer] the set PID
       def self.set_from_client(pid)
         self.pid = pid
@@ -364,7 +364,7 @@ module Lich
         end
       end
 
-      # Resolves the given PID to find the actual process ID.
+      # Resolves a process ID (PID) to find the correct one based on platform.
       #
       # @param pid [Integer] the PID to resolve
       # @return [Integer] the resolved PID
@@ -384,7 +384,7 @@ module Lich
         end
       end
 
-      # Resolves the given PID on Windows to find the actual process ID.
+      # Resolves a Windows process ID (PID) to find the correct one based on window visibility.
       #
       # @param pid [Integer] the PID to resolve
       # @return [Integer] the resolved PID
@@ -443,7 +443,7 @@ module Lich
         pid
       end
 
-      # Retrieves the parent process ID for a given PID on Windows.
+      # Retrieves the parent process ID for a given Windows process ID.
       #
       # @param wmi [WIN32OLE] the WMI connection object
       # @param pid [Integer] the PID to check
@@ -454,7 +454,7 @@ module Lich
         row ? row.ParentProcessId.to_i : 0
       end
 
-      # Resolves the given PID on Linux to find the actual process ID.
+      # Resolves a Linux process ID (PID) to find the correct one based on window visibility.
       #
       # @param pid [Integer] the PID to resolve
       # @return [Integer] the resolved PID
@@ -483,7 +483,7 @@ module Lich
         pid
       end
 
-      # Refocuses the window for the given PID on Windows.
+      # Refocuses a Windows window based on the given process ID (PID).
       #
       # @param pid [Integer] the PID of the window to refocus
       # @return [Boolean] true if refocus was successful, false otherwise
@@ -525,7 +525,7 @@ module Lich
         false
       end
 
-      # Refocuses the window for the given PID on macOS.
+      # Refocuses a macOS window based on the given process ID (PID).
       #
       # @param pid [Integer] the PID of the window to refocus
       # @return [Boolean] true if refocus was successful, false otherwise
@@ -546,7 +546,7 @@ module Lich
         false
       end
 
-      # Refocuses the window for the given PID on Linux.
+      # Refocuses a Linux window based on the given process ID (PID).
       #
       # @param pid [Integer] the PID of the window to refocus
       # @return [Boolean] true if refocus was successful, false otherwise

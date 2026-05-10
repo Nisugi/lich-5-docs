@@ -4,18 +4,15 @@ module Lich
     module GUI
       # UI class for prompting the user for a master password.
       #
-      # This class provides methods to display various dialogs related to master password management.
+      # This class provides methods to show various dialogs related to master password management.
       #
       # @see Lich::Common::GUI
       class MasterPasswordPromptUI
         # Displays a dialog for the user to enter their master password.
         #
-        # This method blocks until the dialog is completed.
         # @return [String, nil] the entered master password or nil if canceled.
-        # @example
+        # @example Show master password dialog
         #   password = MasterPasswordPromptUI.show_dialog
-        #   puts "Entered password: #{password}" if password
-        # @note This method uses a condition variable for synchronization.
         def self.show_dialog
           # Block until dialog completes, using condition variable for sync
           result = nil
@@ -34,11 +31,7 @@ module Lich
 
         # Displays a dialog indicating that the master password recovery was successful.
         #
-        # This method blocks until the dialog is completed.
-        # @return [Hash] a hash containing the result of the recovery process.
-        # @example
-        #   result = MasterPasswordPromptUI.show_recovery_success_dialog
-        #   puts "Recovery successful: #{result[:continue_session]}"
+        # @return [void]
         def self.show_recovery_success_dialog
           # Block until dialog completes, using condition variable for sync
           result = nil
@@ -55,12 +48,13 @@ module Lich
           result
         end
 
-        # Displays a confirmation dialog for the master password when changing encryption modes.
+        # Displays a dialog to confirm the master password when changing encryption modes.
         #
-        # This method blocks until the dialog is completed.
         # @param validation_test [String, nil] optional validation test for the password.
         # @param leaving_enhanced [Boolean] indicates if the user is leaving enhanced mode.
         # @return [String, nil] the entered master password or nil if canceled.
+        # @example Confirm password for mode change
+        #   password = MasterPasswordPromptUI.show_password_confirmation_for_mode_change(validation_test)
         def self.show_password_confirmation_for_mode_change(validation_test = nil, leaving_enhanced: false)
           result = nil
           mutex = Mutex.new
@@ -91,9 +85,10 @@ module Lich
 
         # Displays a dialog for the user to enter their master password to access data.
         #
-        # This method blocks until the dialog is completed.
         # @param validation_test [String, nil] optional validation test for the password.
         # @return [String, nil] the entered master password or nil if canceled.
+        # @example Show password for data access
+        #   password = MasterPasswordPromptUI.show_password_for_data_access(validation_test)
         def self.show_password_for_data_access(validation_test = nil)
           result = nil
           mutex = Mutex.new
@@ -116,9 +111,10 @@ module Lich
 
         # Displays a dialog for the user to recover their master password.
         #
-        # This method blocks until the dialog is completed.
         # @param validation_test [String, nil] optional validation test for the password.
         # @return [String, nil] the entered master password or nil if canceled.
+        # @example Show password recovery dialog
+        #   password = MasterPasswordPromptUI.show_password_recovery_dialog(validation_test)
         def self.show_password_recovery_dialog(validation_test = nil)
           result = nil
           mutex = Mutex.new
@@ -140,13 +136,16 @@ module Lich
           result
         end
 
+        # Displays a dialog for recovering the master password.
+        #
+        # @param validation_test [String, nil] optional validation test for the password.
+        # @return [String, nil] the entered master password or nil if canceled.
         def self.show_recovery_dialog(validation_test = nil)
           show_password_recovery_dialog(validation_test)
         end
 
         # Creates a modal dialog for master password creation.
         #
-        # This dialog allows the user to set a new master password.
         # @return [String, nil] the created master password or nil if canceled.
         def create_dialog
           # Create modal dialog for master password creation
@@ -348,12 +347,11 @@ module Lich
 
         # Creates a modal dialog for validating the master password.
         #
-        # This dialog allows the user to enter their master password for validation.
         # @param validation_test [String, nil] optional validation test for the password.
         # @param title [String] the title of the dialog.
         # @param instructions [String] instructions to display in the dialog.
         # @param show_success_dialog [Boolean] whether to show a success dialog after validation.
-        # @return [Hash] a hash containing the result of the validation process.
+        # @return [String, nil] the validated master password or nil if canceled.
         def create_password_validation_dialog(validation_test = nil, title: "Validate Master Password", instructions: "Enter your master password:", show_success_dialog: false)
           # Create modal dialog for password validation
           # Single password entry - validates against PBKDF2 test
@@ -452,6 +450,10 @@ module Lich
           { password: password, continue_session: continue_session }
         end
 
+        # Creates a recovery dialog for the master password.
+        #
+        # @param validation_test [String, nil] optional validation test for the password.
+        # @return [String, nil] the recovered master password or nil if canceled.
         def create_recovery_dialog(validation_test = nil)
           create_password_validation_dialog(
             validation_test,
@@ -464,8 +466,7 @@ module Lich
 
         # Creates a modal dialog for confirming the success of the master password recovery.
         #
-        # This dialog informs the user that their master password has been successfully recovered.
-        # @return [Hash] a hash containing the result of the recovery success.
+        # @return [void]
         def create_recovery_success_dialog
           # Create modal dialog for master password recovery success confirmation
           dialog = Gtk::Dialog.new(
@@ -529,9 +530,8 @@ module Lich
           { continue_session: continue_session }
         end
 
-        # Creates and wires a checkbox to show/hide password characters in the dialog.
+        # Creates and wires a checkbox to show/hide password characters.
         #
-        # This checkbox allows users to toggle the visibility of their entered password.
         # @param content_box [Gtk::Box] the content box to add the checkbox to.
         # @param entries_to_toggle [Array<Gtk::Entry>] the entries whose visibility will be toggled.
         def create_and_wire_show_password_checkbox(content_box, entries_to_toggle)
@@ -556,6 +556,10 @@ module Lich
 
         private
 
+        # Calculates the strength of a given password.
+        #
+        # @param password [String] the password to evaluate.
+        # @return [Integer] a score from 0 to 100 representing the password strength.
         def calculate_password_strength(password)
           return 0 if password.empty?
 
@@ -582,6 +586,10 @@ module Lich
           [score, 100].min
         end
 
+        # Gets a label for the password strength score.
+        #
+        # @param score [Integer] the strength score.
+        # @return [String] the strength label corresponding to the score.
         def get_strength_label(score)
           case score
           when 0..20
@@ -597,6 +605,11 @@ module Lich
           end
         end
 
+        # Updates the icon for a password category based on whether it meets the criteria.
+        #
+        # @param icon_label [Gtk::Label] the label to update with the icon.
+        # @param has_category [Boolean] indicates if the category is met.
+        # @param color_code [String] the color code to use for the icon.
         def update_category_icon(icon_label, has_category, color_code)
           if has_category
             icon_label.markup = "<span foreground='#{color_code}'>✓</span>"
@@ -605,6 +618,10 @@ module Lich
           end
         end
 
+        # Displays an error dialog with a message.
+        #
+        # @param message [String] the main error message to display.
+        # @param secondary_message [String, nil] an optional secondary message.
         def show_error_dialog(message, secondary_message = nil)
           Gtk.queue do
             dialog = Gtk::MessageDialog.new(

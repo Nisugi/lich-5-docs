@@ -1,5 +1,8 @@
 
 
+# Namespace for the Lich project.
+#
+# This module contains various submodules related to the game's mechanics.
 module Lich
   module Gemstone
     module Combat
@@ -10,14 +13,13 @@ module Lich
           # @!attribute [r] name
           #   @return [Symbol] the name of the attack
           # @!attribute [r] patterns
-          #   @return [Array<Regexp>] the patterns associated with the attack
+          #   @return [Array<Regexp>] the patterns that match the attack description
           AttackDef = Struct.new(:name, :patterns)
 
           # Core attack patterns - most common combat actions
           # Core attack patterns - most common combat actions.
           #
-          # @return [Array<AttackDef>] an array of basic attack definitions
-          # @example
+          # @example Basic attack patterns
           #   BASIC_ATTACKS.each do |attack|
           #     puts attack.name
           #   end
@@ -34,8 +36,7 @@ module Lich
           # Spell-based attacks
           # Spell-based attacks.
           #
-          # @return [Array<AttackDef>] an array of spell attack definitions
-          # @example
+          # @example Spell attack patterns
           #   SPELL_ATTACKS.each do |attack|
           #     puts attack.name
           #   end
@@ -67,8 +68,7 @@ module Lich
           # Weapon maneuvers
           # Weapon maneuvers.
           #
-          # @return [Array<AttackDef>] an array of weapon attack definitions
-          # @example
+          # @example Weapon attack patterns
           #   WEAPON_ATTACKS.each do |attack|
           #     puts attack.name
           #   end
@@ -90,8 +90,7 @@ module Lich
           # Combat maneuvers
           # Combat maneuvers.
           #
-          # @return [Array<AttackDef>] an array of maneuver attack definitions
-          # @example
+          # @example Maneuver attack patterns
           #   MANEUVER_ATTACKS.each do |attack|
           #     puts attack.name
           #   end
@@ -104,8 +103,7 @@ module Lich
           # Companion/pet attacks
           # Companion/pet attacks.
           #
-          # @return [Array<AttackDef>] an array of companion attack definitions
-          # @example
+          # @example Companion attack patterns
           #   COMPANION_ATTACKS.each do |attack|
           #     puts attack.name
           #   end
@@ -120,8 +118,7 @@ module Lich
           # Environmental attacks
           # Environmental attacks.
           #
-          # @return [Array<AttackDef>] an array of environmental attack definitions
-          # @example
+          # @example Environmental attack patterns
           #   ENVIRONMENTAL_ATTACKS.each do |attack|
           #     puts attack.name
           #   end
@@ -130,8 +127,7 @@ module Lich
           # All attack definitions combined
           # All attack definitions combined.
           #
-          # @return [Array<AttackDef>] an array of all attack definitions
-          # @example
+          # @example All attack patterns
           #   ALL_ATTACKS.each do |attack|
           #     puts attack.name
           #   end
@@ -141,10 +137,9 @@ module Lich
           # Create lookup table for fast pattern matching
           # Create lookup table for fast pattern matching.
           #
-          # @return [Array<Array>] an array of attack patterns and their names
-          # @example
+          # @example Lookup table usage
           #   ATTACK_LOOKUP.each do |pattern, name|
-          #     puts "Pattern: \\#{pattern}, Name: \\#{name}"
+          #     puts "Pattern: \\#{pattern}, Attack: \\#{name}"
           #   end
           ATTACK_LOOKUP = ALL_ATTACKS.flat_map do |attack_def|
             attack_def.patterns.compact.map { |pattern| [pattern, attack_def.name] }
@@ -153,8 +148,7 @@ module Lich
           # Compiled regex for fast detection
           # Compiled regex for fast detection of attacks.
           #
-          # @return [Regexp] a regex that matches all attack patterns
-          # @example
+          # @example Using the attack detector
           #   if input.match?(ATTACK_DETECTOR)
           #     puts "Attack detected!"
           #   end

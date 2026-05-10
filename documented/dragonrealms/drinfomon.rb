@@ -3,12 +3,17 @@ module Lich
     module DRInfomon
       # The version of the DRInfomon module.
       #
-      # @example
-      # "3.0"
+      # @return [String] the version number
       $DRINFOMON_VERSION = '3.0'
 
+      # An array of core Lich defines used in DRInfomon.
+      #
+      # @return [Array<String>] the list of core defines
       DRINFOMON_CORE_LICH_DEFINES = %W(drinfomon common common-arcana common-crafting common-healing common-healing-data common-items common-money common-moonmage common-summoning common-theurgy common-travel common-validation events slackbot equipmanager spellmonitor)
 
+      # Indicates whether DRInfomon is included in the core Lich.
+      #
+      # @return [Boolean] true if included, false otherwise
       DRINFOMON_IN_CORE_LICH = true
       require_relative 'drinfomon/drdefs'
       require_relative 'drinfomon/drvariables'
@@ -27,6 +32,9 @@ module Lich
       # - Persisted: if user toggles it off, stays off across sessions
       # Use ";display expgains" command to toggle on/off manually
       # Use ";display inlineexp" to toggle inline gains in EXP window (off by default)
+      # Starts the DRExpMonitor based on the Lich.display_expgains setting.
+      #
+      # @return [void]
       DRExpMonitor.start if Lich.display_expgains
     end
   end

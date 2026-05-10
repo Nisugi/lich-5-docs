@@ -1,44 +1,26 @@
 module Lich
   module Gemstone
     module Armaments
+      # Provides static weapon statistics for two-handed weapons.
+      #
+      # This module contains a collection of weapon stats indexed by weapon identifiers, including metadata such as category, base name, damage types, and more.
+      #
+      # @see Lich::Gemstone::Armaments for related armament functionalities.
       module WeaponStats
-# Static array of weapon stats indexed by weapon identifiers.
-# Each weapon entry contains metadata such as category, base name,
-# alternative names, damage types, damage factors, armor avoidance by
-# armor size group (ASG), base roundtime (RT), and minimum RT.
 # Static array of weapon stats indexed by weapon identifiers. Each weapon
 # entry contains metadata such as category, base name, alternative names,
 # damage types, damage factors, armor avoidance by armor size group (ASG),
 # base roundtime (RT), and minimum RT.
 #
 # damage_types: Hash of damage type percentages or values.
-#
-# @return [Hash] A hash containing damage type percentages or values.
-#   :slash    => % of slash damage (Float or nil)
-#   :crush    => % of crush damage (Float or nil)
-#   :puncture => % of puncture damage (Float or nil)
-#   :special  => Array of special damage types (or empty array)
-# damage_types: Hash of damage type percentages or values.
 #   :slash    => % of slash damage (Float or nil)
 #   :crush    => % of crush damage (Float or nil)
 #   :puncture => % of puncture damage (Float or nil)
 #   :special  => Array of special damage types (or empty array)
 #
 # damage factor array:
-#
-# @return [Array<Float>] An array representing damage factors for different armor types.
-#  [0] = nil (none)    [1] = Cloth    [2] = Leather    [3] = Scale    [4] = Chain    [5] = Plate
-# damage factor array:
 #  [0] = nil (none)    [1] = Cloth    [2] = Leather    [3] = Scale    [4] = Chain    [5] = Plate
 #
-# avd_by_asg array:
-#
-# @return [Array<Integer>] An array representing armor avoidance by armor size group (ASG).
-#  Cloth:   [1] ASG 1    [2] ASG 2      [3] nil      [4] nil
-#  Leather: [5] ASG 5    [6] ASG 6    [7] ASG 7    [8] ASG 8
-#  Scale:   [9] ASG 9    [10] ASG 10  [11] ASG 11  [12] ASG 12
-#  Chain:   [13] ASG 13  [14] ASG 14  [15] ASG 15  [16] ASG 16
-#  Plate:   [17] ASG 17  [18] ASG 18  [19] ASG 19  [20] ASG 20
 # avd_by_asg array:
 #  Cloth:   [1] ASG 1    [2] ASG 2      [3] nil      [4] nil
 #  Leather: [5] ASG 5    [6] ASG 6    [7] ASG 7    [8] ASG 8
@@ -60,7 +42,14 @@ module Lich
             :min_rt        => 4,
           },
 =end
+        # Static array of weapon stats indexed by weapon identifiers.
+        # Each weapon entry contains metadata such as category, base name, alternative names,
+        # damage types, damage factors, armor avoidance by armor size group (ASG),
+        # base roundtime (RT), and minimum RT.
         @@weapon_stats_two_handed = {
+          # Weapon statistics for the bastard sword.
+          #
+          # @return [Hash] weapon stats including category, base name, damage types, and more.
           :bastard_sword    => {
             :category      => :two_handed,
             :base_name     => "bastard sword",
@@ -73,6 +62,9 @@ module Lich
             :min_rt        => 4,
             :grippable?    => true,
           },
+          # Weapon statistics for the battle axe.
+          #
+          # @return [Hash] weapon stats including category, base name, damage types, and more.
           :battle_axe       => {
             :category      => :two_handed,
             :base_name     => "battle axe",
@@ -84,6 +76,9 @@ module Lich
             :base_rt       => 8,
             :min_rt        => 4,
           },
+          # Weapon statistics for the claidmore.
+          #
+          # @return [Hash] weapon stats including category, base name, damage types, and more.
           :claidhmore       => { # made a choice here to only account for new style claidmores, not the old ones
             :category         => :two_handed,
             :base_name        => "claidhmore",
@@ -97,6 +92,9 @@ module Lich
             :weighting_type   => :critical,
             :weighting_amount => 40,
           },
+          # Weapon statistics for the flail.
+          #
+          # @return [Hash] weapon stats including category, base name, damage types, and more.
           :flail            => {
             :category      => :two_handed,
             :base_name     => "flail",
@@ -108,6 +106,9 @@ module Lich
             :base_rt       => 7,
             :min_rt        => 4,
           },
+          # Weapon statistics for the flamberge.
+          #
+          # @return [Hash] weapon stats including category, base name, damage types, and more.
           :flamberge        => {
             :category      => :two_handed,
             :base_name     => "flamberge",
@@ -119,6 +120,9 @@ module Lich
             :base_rt       => 7,
             :min_rt        => 4,
           },
+          # Weapon statistics for the katana.
+          #
+          # @return [Hash] weapon stats including category, base name, damage types, and more.
           :katana           => {
             :category         => :two_handed,
             :base_name        => "katana",
@@ -133,6 +137,9 @@ module Lich
             :weighting_amount => 10,
             :grippable?       => true,
           },
+          # Weapon statistics for the maul.
+          #
+          # @return [Hash] weapon stats including category, base name, damage types, and more.
           :maul             => {
             :category      => :two_handed,
             :base_name     => "maul",
@@ -144,6 +151,9 @@ module Lich
             :base_rt       => 7,
             :min_rt        => 4,
           },
+          # Weapon statistics for the military pick.
+          #
+          # @return [Hash] weapon stats including category, base name, damage types, and more.
           :military_pick    => {
             :category      => :two_handed,
             :base_name     => "military pick",
@@ -155,6 +165,9 @@ module Lich
             :base_rt       => 7,
             :min_rt        => 4,
           },
+          # Weapon statistics for the quarterstaff.
+          #
+          # @return [Hash] weapon stats including category, base name, damage types, and more.
           :quarterstaff     => {
             :category      => :two_handed,
             :base_name     => "quarterstaff",
@@ -166,6 +179,9 @@ module Lich
             :base_rt       => 3,
             :min_rt        => 3,
           },
+          # Weapon statistics for the two-handed sword.
+          #
+          # @return [Hash] weapon stats including category, base name, damage types, and more.
           :two_handed_sword => {
             :category      => :two_handed,
             :base_name     => "two-handed sword",
@@ -177,6 +193,9 @@ module Lich
             :base_rt       => 8,
             :min_rt        => 4,
           },
+          # Weapon statistics for the war mattock.
+          #
+          # @return [Hash] weapon stats including category, base name, damage types, and more.
           :war_mattock      => {
             :category      => :two_handed,
             :base_name     => "war mattock",

@@ -4,27 +4,24 @@ module Lich
     module ArgNormalization
       # Regular expression pattern for matching the --headless argument.
       #
-      # @example
+      # @example Matching examples
       #   "--headless"
       #   "--headless=8080"
+      #   "--headless=auto"
       # @see #normalize! for usage
       HEADLESS_PATTERN = /^--headless(?:=(.+))?$/i.freeze
       DETACHABLE_CLIENT_PREFIX = '--detachable-client='.freeze
 
       # Normalizes command-line arguments for headless mode.
-      # This method modifies the argv array in place to ensure that the
-      # --headless argument is correctly formatted and does not conflict
-      # with other arguments.
+      # This method modifies the argv array in place to replace the
+      # --headless argument with --without-frontend and appends the
+      # detachable client prefix with the specified port.
       #
       # @param argv [Array<String>] the command-line arguments to normalize
-      # @return [Array<String>] the normalized command-line arguments
+      # @return [Array<String>] the modified command-line arguments
       # @raise [ArgumentError] if --headless is specified more than once
       # @raise [ArgumentError] if --headless is combined with --detachable-client
-      # @raise [ArgumentError] if --headless is missing a port number or auto
-      # @example
-      #   argv = ["--headless=8080", "--other-arg"]
-      #   normalized_argv = Lich::Main::ArgNormalization.normalize!(argv)
-      #   # => ["--without-frontend", "--detachable-client=8080", "--other-arg"]
+      # @raise [ArgumentError] if --headless does not have a valid port number
       def self.normalize!(argv)
         headless_indices = argv.each_index.select { |index| argv[index].match?(HEADLESS_PATTERN) }
         return argv if headless_indices.empty?
@@ -54,18 +51,12 @@ module Lich
         argv
       end
 
-      # Normalizes the port token for headless mode.
-      # Converts the token to an integer if it is a valid port number,
-      # or returns 0 if the token is 'auto'.
+      # Normalizes the headless port token.
+      # Converts the token to an integer if it's not 'auto'.
       #
       # @param token [String] the port token to normalize
       # @return [Integer] the normalized port number
-      # @raise [ArgumentError] if the port number is not between 1 and 65535 or if it is not a valid integer
-      # @example
-      #   port = Lich::Main::ArgNormalization.normalize_headless_port("8080")
-      #   # => 8080
-      #   port = Lich::Main::ArgNormalization.normalize_headless_port("auto")
-      #   # => 0
+      # @raise [ArgumentError] if the port number is not between 1 and 65535 or if it's not 'auto'
       def self.normalize_headless_port(token)
         return 0 if token.to_s.casecmp('auto').zero?
 

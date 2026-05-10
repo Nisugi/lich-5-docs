@@ -5,17 +5,8 @@ module Lich
       #
       # This method allows you to schedule a block of code to be executed after a short delay.
       #
-      # @param block [Proc] the block of code to execute
-      # @return [Boolean] returns false to indicate that the timeout should not repeat
-      # @raise [StandardError] if an error occurs during execution of the block
-      # @raise [SyntaxError] if a syntax error occurs in the block
-      # @raise [SecurityError] if a security error occurs during execution
-      # @raise [ThreadError] if a thread error occurs during execution
-      # @raise [SystemExit] if the program is exiting
-      # @raise [SystemStackError] if a stack error occurs during execution
-      # @raise [LoadError] if a load error occurs during execution
-      # @raise [NoMemoryError] if there is not enough memory to execute the block
-      # @see Lich.log for logging errors
+      # @yield The block to be executed after the timeout.
+      # @return [Boolean] returns false to prevent repeating the timeout.
       def Gtk.queue(&block)
         GLib::Timeout.add(1) {
           begin
@@ -61,6 +52,10 @@ module Lich
       end
     end
 
+    # Checks for the existence of the logo file and creates it if it does not exist.
+    #
+    # This method ensures that the logo file is present in the specified directory.
+    # @return [void]
     unless File.exist?(File.join(LICH_DIR, 'logo.png'))
       File.open(File.join(LICH_DIR, 'logo.png'), 'wb') { |f|
         f.write '
@@ -158,6 +153,10 @@ module Lich
       }
     end
 
+    # Initializes the GTK queue and sets up the default icon and theme state.
+    #
+    # This block is executed to set up the initial state of the application when GTK is ready.
+    # @return [void]
     begin
       Gtk.queue {
         @default_icon = GdkPixbuf::Pixbuf.new(:file => File.join(LICH_DIR, 'logo.png'))

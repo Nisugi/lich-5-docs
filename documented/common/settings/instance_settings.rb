@@ -16,7 +16,9 @@
 module Lich
   # Provides settings-like access for core Lich functionality.
   #
-  # This module allows access to settings in both character-scoped and game-scoped modes.
+  # This module supports two scoping modes:
+  # - Character-scoped: Data specific to current character (game:name)
+  # - Game-scoped: Data shared across all characters in the game (game only)
   #
   # @see Lich::Common::CharSettings
   # @see Lich::Common::GameSettings
@@ -40,7 +42,7 @@ module Lich
         XMLData.game
       end
 
-      # Retrieves a setting value by name in the character scope.
+      # Retrieves a setting value by name for the current character scope.
       #
       # @param name [String] the name of the setting
       # @return [OpenStruct] the setting value
@@ -48,7 +50,7 @@ module Lich
         Settings.get_scoped_setting(character_scope, name, script_name: SCRIPT_NAME)
       end
 
-      # Sets a setting value by name in the character scope.
+      # Sets a setting value by name for the current character scope.
       #
       # @param name [String] the name of the setting
       # @param value [OpenStruct] the value to set
@@ -107,19 +109,19 @@ module Lich
         )
       end
 
-      # Loads the instance settings (deprecated).
+      # Loads instance settings (deprecated).
       #
-      # @return [nil]
-      # @deprecated This method is not applicable and will not be used.
+      # @return [nil] always returns nil
+      # @deprecated This method is not applicable.
       def self.load
         Lich.deprecated('InstanceSettings.load', 'not using, not applicable,', caller[0], fe_log: true)
         nil
       end
 
-      # Saves the instance settings (deprecated).
+      # Saves instance settings (deprecated).
       #
-      # @return [nil]
-      # @deprecated This method is not applicable and will not be used.
+      # @return [nil] always returns nil
+      # @deprecated This method is not applicable.
       def self.save
         Lich.deprecated('InstanceSettings.save', 'not using, not applicable,', caller[0], fe_log: true)
         nil

@@ -84,7 +84,7 @@ module Lich
 
       # Stops the background experience gain reporter.
       # @return [void]
-      # @note This method will do nothing if the reporter is not running.
+      # @note This method will do nothing if the reporter is already inactive.
       def self.stop
         @@mutex.synchronize do
           unless @@running
@@ -172,7 +172,7 @@ module Lich
       # Formats the BRIEFEXP OFF line with gained experience.
       # @param line [String] the line to format.
       # @param skill [String] the skill for which experience is gained.
-      # @param rate_word [String] the word representing the rate of experience gain.
+      # @param rate_word [String] the word representing the rate of experience.
       # @return [String] the formatted line.
       def self.format_briefexp_off(line, skill, rate_word)
         return line unless @@inline_display
@@ -182,9 +182,9 @@ module Lich
         line.sub(/(%\s+)(#{Regexp.escape(rate_word)})/, "\\1#{padded_rate} #{format('%0.2f', gained)}")
       end
 
-      # Aggregates and formats multiple experience gain entries.
-      # @param gains_array [Array<Hash>] array of gain entries, each containing :skill and :change.
-      # @return [Array<String>] formatted strings representing skill gains.
+      # Formats an array of skill gains into a readable string.
+      # @param gains_array [Array<Hash>] an array of hashes containing skill gain information.
+      # @return [Array<String>] an array of formatted skill gain strings.
       def self.format_gains(gains_array)
         # Aggregate multiple pulses of same skill
         aggregated = gains_array.reduce(Hash.new(0)) do |result, gain|

@@ -1,28 +1,33 @@
 
-# The Lich module provides a framework for scripting within the game.
+# Provides the core functionality for the Lich scripting engine.
 #
-# @see Lich::Common
+# @see Lich::Common for common utilities.
 module Lich
   module Common
-    # The Scripting class provides methods for script execution.
+    # Handles script execution and context binding.
     #
+    # @see Lich::Script for script management.
     class Scripting
-      # Returns a binding for the script execution context.
-      # @return [Binding] the binding for the script context
       def script
         Proc.new {}.binding
       end
     end
 
+    # Creates a new script binding context.
+    # @return [Binding] the binding context for the script.
     def _script
       Proc.new {}.binding
     end
 
+    # A proc that returns a trusted script binding context.
+    #
+    # @see #_script for creating script bindings.
     TRUSTED_SCRIPT_BINDING = proc { _script }
 
-    # The Script class represents a script that can be executed within the game.
+    # Represents a script that can be executed within the Lich engine.
     #
-    # @see Lich::Common::Scripting
+    # This class manages the execution state, variables, and script flow.
+    # @see Lich::Scripting for script execution details.
     class Script
       @@elevated_script_start = proc { |args|
         if args.empty?
@@ -309,6 +314,10 @@ module Lich
       JUMP = JumpError.exception('JUMP')
       JUMP_ERROR = JumpError.exception('JUMP_ERROR')
 
+      # Retrieves the version of the specified script.
+      # @param script_name [String] the name of the script to check.
+      # @param script_version_required [String, nil] the required version to compare against.
+      # @return [Gem::Version, nil] the version of the script or nil if not found.
       def Script.version(script_name, script_version_required = nil)
         script_name = script_name.sub(/[.](lic|rb|cmd|wiz)$/, '')
         file_list = Dir.children(File.join(SCRIPT_DIR, "custom")).sort_by { |fn| fn.sub(/[.](lic|rb|cmd|wiz)$/, '') }.map { |s| s.prepend("/custom/") } + Dir.children(SCRIPT_DIR).sort_by { |fn| fn.sub(/[.](lic|rb|cmd|wiz)$/, '') }
@@ -346,10 +355,14 @@ module Lich
         end
       end
 
+      # Returns a list of currently running scripts.
+      # @return [Array<Script>] an array of running script instances.
       def Script.list
         @@running.dup
       end
 
+      # Returns the currently running script.
+      # @return [Script, nil] the current script instance or nil if none is running.
       def Script.current
         if (script = @@running.find { |s| s.has_thread?(Thread.current) })
           sleep 0.2 while script.paused? and not script.ignore_pause
@@ -359,23 +372,32 @@ module Lich
         end
       end
 
-      # Starts the execution of a script with the given arguments.
-      # @param args [Array] the arguments to pass to the script
-      # @return [Script] the script instance that was started
+      # Starts a new elevated script with the given arguments.
+      # @param args [Array] the arguments to pass to the script.
+      # @return [Script] the newly started script instance.
       def Script.start(*args)
         @@elevated_script_start.call(args)
       end
 
+      # Runs the specified elevated script with the given arguments.
+      # @param args [Array] the arguments to pass to the script.
+      # @return [void]
       def Script.run(*args)
         if (s = @@elevated_script_start.call(args))
           sleep 0.1 while @@running.include?(s)
         end
       end
 
+      # Checks if a script with the given name is currently running.
+      # @param name [String] the name of the script to check.
+      # @return [Boolean] true if the script is running, false otherwise.
       def Script.running?(name)
         @@running.any? { |i| (i.name =~ /^#{name}$/i) }
       end
 
+      # Pauses the currently running script or the script with the given name.
+      # @param name [String, nil] the name of the script to pause; if nil, pauses the current script.
+      # @return [Boolean] true if the script was paused, false otherwise.
       def Script.pause(name = nil)
         if name.nil?
           Script.current.pause
@@ -390,6 +412,9 @@ module Lich
         end
       end
 
+      # Unpauses the script with the given name.
+      # @param name [String] the name of the script to unpause.
+      # @return [Boolean] true if the script was unpaused, false otherwise.
       def Script.unpause(name)
         if (s = (@@running.find { |i| (i.name == name) and i.paused? }) || (@@running.find { |i| (i.name =~ /^#{name}$/i) and i.paused? }))
           s.unpause
@@ -399,6 +424,9 @@ module Lich
         end
       end
 
+      # Kills the script with the given name.
+      # @param name [String] the name of the script to kill.
+      # @return [Boolean] true if the script was killed, false otherwise.
       def Script.kill(name)
         if (s = (@@running.find { |i| i.name == name }) || (@@running.find { |i| i.name =~ /^#{name}$/i }))
           s.killed_externally = true
@@ -419,8 +447,8 @@ module Lich
       end
 
       # Checks if a script with the given name exists.
-      # @param script_name [String] the name of the script to check
-      # @return [Boolean] true if the script exists, false otherwise
+      # @param script_name [String] the name of the script to check.
+      # @return [Boolean] true if the script exists, false otherwise.
       def Script.exists?(script_name)
         @@elevated_exists.call(script_name)
       end
@@ -464,24 +492,30 @@ module Lich
         end
       end
 
+      # Logs data related to the current script.
+      # @param data [String] the data to log.
+      # @return [Boolean] true if logging was successful, false otherwise.
       def Script.log(data)
         @@elevated_log.call(data)
       end
 
-      # Returns a database connection for the current script.
-      # @return [SQLite3::Database] the database connection
+      # Accesses the database associated with the current script.
+      # @return [SQLite3::Database, nil] the database instance or nil if not available.
       def Script.db
         @@elevated_db.call
       end
 
-      # Opens a file with the specified extension and mode.
-      # @param ext [String] the file extension
-      # @param mode [String] the mode to open the file in (default: 'r')
-      # @return [File, nil] the opened file or nil if an error occurred
+      # Opens a file associated with the current script.
+      # @param ext [String] the file extension to use.
+      # @param mode [String] the mode in which to open the file (default is 'r').
+      # @return [File, nil] the opened file or nil if an error occurred.
       def Script.open_file(ext, mode = 'r', &block)
         @@elevated_open_file.call(ext, mode, block)
       end
 
+      # Registers a block to be executed when the script exits.
+      # @yield the block to execute on exit.
+      # @return [Boolean] true if the block was registered successfully.
       def Script.at_exit(&block)
         if (script = Script.current)
           script.at_exit(&block)
@@ -491,6 +525,8 @@ module Lich
         end
       end
 
+      # Clears all exit procedures registered for the current script.
+      # @return [Boolean] true if the procedures were cleared.
       def Script.clear_exit_procs
         if (script = Script.current)
           script.clear_exit_procs
@@ -500,6 +536,8 @@ module Lich
         end
       end
 
+      # Forces the current script to exit immediately.
+      # @return [Boolean] true if the script exited successfully.
       def Script.exit!
         if (script = Script.current)
           script.exit!
@@ -883,14 +921,17 @@ module Lich
       end
     end
 
+    # Represents an executable script that can be run within the Lich engine.
+    #
+    # This class handles the execution of command scripts.
     class ExecScript < Script
       @@name_exec_mutex = Mutex.new
       attr_reader :cmd_data
 
-      # Starts the execution of an exec script with the given command data.
-      # @param cmd_data [String] the command data to execute
-      # @param options [Hash] options for the script execution
-      # @return [ExecScript] the exec script instance that was started
+      # Starts a new executable script with the given command data.
+      # @param cmd_data [String] the command data to execute.
+      # @param options [Hash] options for script execution.
+      # @return [ExecScript] the newly started executable script instance.
       def ExecScript.start(cmd_data, options = {})
         options = { :quiet => true } if options == true
         unless (new_script = ExecScript.new(cmd_data, options))
@@ -1008,15 +1049,17 @@ module Lich
       end
     end
 
-    # The WizardScript class represents a script specifically for wizard actions.
+    # Represents a wizard script that can be executed within the Lich engine.
     #
+    # This class handles the execution of wizard-specific scripts.
     class WizardScript < Script
       # rubocop:disable Lint/MissingSuper
       # rubocop:disable Lint/UselessAssignment
       # rubocop:disable Lint/InterpolationCheck
       # Initializes a new wizard script instance with the given file name and command line variables.
-      # @param file_name [String] the name of the script file
-      # @param cli_vars [Array<String>] command line variables for the script
+      # @param file_name [String] the name of the script file.
+      # @param cli_vars [Array<String>] command line variables for the script.
+      # @return [void]
       def initialize(file_name, cli_vars = [])
         @name = /.*[\/\\]+([^\.]+)\./.match(file_name).captures.first
         @file_name = file_name

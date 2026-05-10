@@ -7,10 +7,10 @@
   for sync summaries.
 =end
 
+# Provides utility methods for the Lich project.
+#
+# @see Lich::Util
 module Lich
-  # Provides utility methods for the Lich project.
-  #
-  # This module contains various helper methods used throughout the Lich project.
   module Util
     module Update
       module StatusReporter
@@ -37,8 +37,10 @@ module Lich
         # @param downloaded_other [Hash] a hash of other downloaded files categorized by subdirectory
         # @param subdir_names [Array<String>] the names of subdirectories
         # @param failed_scripts [Array<String>] the list of failed scripts (default: [])
-        # @param failed_other [Hash] a hash of failed downloads categorized by subdirectory (default: {})
+        # @param failed_other [Hash] a hash of failed files categorized by subdirectory (default: {})
         # @return [void]
+        # @example Render a sync summary
+        #   render_sync_summary("my_repo", 5, ["script1.rb", "script2.rb"], {}, ["subdir1", "subdir2"], ["script3.rb"], {"subdir1" => ["file1.txt"]})
         def self.render_sync_summary(repo_name, script_count, downloaded_scripts, downloaded_other, subdir_names, failed_scripts = [], failed_other = {})
           total_downloaded = downloaded_scripts.length + downloaded_other.values.flatten.length
           total_failed = failed_scripts.length + failed_other.values.flatten.length

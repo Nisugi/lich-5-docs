@@ -220,9 +220,9 @@ module Lich
         end
 
         ##
-        # Returns an array of hashes containing metadata for all sigils.
+        # Provides a list of all sigil lookups with their metadata.
         #
-        # @return [Array<Hash>] an array of sigil metadata hashes
+        # @return [Array<Hash>] an array of hashes containing sigil metadata
         def self.sigil_lookups
           @@sunfist_sigils.map do |_, sigil|
             {
@@ -235,7 +235,7 @@ module Lich
         end
 
         ##
-        # Checks if a sigil is known and accessible by the member.
+        # Checks if a sigil is known and accessible based on the member's rank.
         #
         # @param sigil_name [String] the name of the sigil to check
         # @return [Boolean] true if the sigil is known and accessible, false otherwise
@@ -248,7 +248,7 @@ module Lich
         end
 
         ##
-        # Uses a sigil for a target if the member is eligible.
+        # Uses a sigil on a target if the member is eligible.
         #
         # @param sigil_name [String] the name of the sigil to use
         # @param target [String, nil] the target for the sigil, if applicable
@@ -276,9 +276,9 @@ module Lich
         end
 
         ##
-        # Checks if the member can afford to use a sigil based on its cost.
+        # Checks if the sigil can be afforded based on the member's resources.
         #
-        # @param sigil_name [String] the name of the sigil to check affordability
+        # @param sigil_name [String] the name of the sigil to check
         # @return [Boolean] true if the sigil can be afforded, false otherwise
         def self.affordable?(sigil_name)
           return false unless member?
@@ -301,10 +301,10 @@ module Lich
         end
 
         ##
-        # Checks if a sigil is known and affordable for the member.
+        # Checks if a sigil is available for use based on membership and affordability.
         #
-        # @param sigil_name [String] the name of the sigil to check availability
-        # @return [Boolean] true if the sigil is available for use, false otherwise
+        # @param sigil_name [String] the name of the sigil to check
+        # @return [Boolean] true if the sigil is available, false otherwise
         def self.available?(sigil_name)
           return false unless member?
           known?(sigil_name) && affordable?(sigil_name)
@@ -313,15 +313,15 @@ module Lich
         ##
         # Retrieves all sigils with their metadata.
         #
-        # @return [Array<Hash>] an array of all sigil metadata
+        # @return [Array<Hash>] an array of hashes containing all sigil metadata
         def self.all
           @@sunfist_sigils.values.map { |entry| entry.transform_values { |v| Society.resolve(v, entry) } }
         end
 
         ##
-        # Checks if the character is a member of the Guardians of Sunfist.
+        # Checks if the current character is a member of the Guardians of Sunfist.
         #
-        # @param rank [Integer, nil] optional rank to check against
+        # @param rank [Integer, nil] the rank to check against, or nil to check membership only
         # @return [Boolean] true if the character is a member, false otherwise
         def self.member?(rank = nil)
           return false unless Society.membership == "Guardians of Sunfist"
@@ -329,16 +329,16 @@ module Lich
         end
 
         ##
-        # Checks if the member is a master of the Guardians of Sunfist.
+        # Checks if the current character is a master member of the Guardians of Sunfist.
         #
-        # @return [Boolean] true if the member's rank is 20, false otherwise
+        # @return [Boolean] true if the character is a master, false otherwise
         def self.master?
           return false unless member?
           Society.rank == 20
         end
 
         ##
-        # Retrieves the rank of the member in the Guardians of Sunfist.
+        # Retrieves the rank of the current member of the Guardians of Sunfist.
         #
         # @return [Integer] the rank of the member, or 0 if not a member
         def self.rank

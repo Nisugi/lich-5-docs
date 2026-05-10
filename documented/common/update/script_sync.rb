@@ -111,7 +111,7 @@ module Lich
         #
         # @param tree [Array<Hash>] the tree structure of the repository
         # @param config [Hash] the configuration for the repository
-        # @param _subdir_name [String] the name of the subdirectory (unused)
+        # @param subdir_name [String] the name of the subdirectory to sync
         # @param subconfig [Hash] the configuration for the subdirectory
         # @return [Array<Array<String>>] an array containing two arrays: downloaded and failed files
         def sync_subdir(tree, config, _subdir_name, subconfig)

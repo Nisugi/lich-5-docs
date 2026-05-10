@@ -19,7 +19,7 @@ module Lich
       class TrackedScripts
         # Returns a unique list of tracked scripts for the given repository configuration.
         #
-        # @param config [Hash] the repository configuration containing default tracked scripts
+        # @param config [Hash] the configuration hash for the repository
         # @return [Array<String>] an array of unique tracked script names
         def tracked_scripts(config)
           defaults = config[:default_tracked] || []
@@ -44,7 +44,7 @@ module Lich
 
         # Checks for script name collisions in tracked repositories.
         #
-        # @param script_name [String] the name of the script to check for collisions
+        # @param script_name [String] the name of the script to check
         # @param exclude_repo [String] the repository key to exclude from the check
         # @return [String, nil] a warning or error message if a collision is found, otherwise nil
         def check_collision(script_name, exclude_repo)
@@ -141,9 +141,10 @@ module Lich
           end
         end
 
-        # Displays the list of tracked scripts for a given repository key or all repositories.
+        # Displays the list of tracked scripts for the specified repository.
+        # If no repository key is provided, it shows all tracked scripts.
         #
-        # @param repo_key [String, nil] the key of the repository to show tracked scripts for, or nil for all
+        # @param repo_key [String, nil] the key of the repository to show tracked scripts for
         # @return [void]
         def show_tracked(repo_key = nil)
           table_rows = []

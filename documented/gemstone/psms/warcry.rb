@@ -2,7 +2,7 @@ module Lich
   module Gemstone
     # Represents a Warcry in the Lich Gemstone module.
     #
-    # Warcries are special abilities that can be used in combat.
+    # This class manages various warcries, their properties, and actions.
     #
     # @see Lich::Gemstone
     class Warcry
@@ -54,12 +54,10 @@ module Lich
         },
       }
 
-      # Returns a list of available warcries with their long and short names and costs.
-      #
+      # Returns a list of warcry lookups with their long and short names and costs.
       # @return [Array<Hash>] an array of hashes containing warcry details
-      # @example
+      # @example Get warcry lookups
       #   Warcry.warcry_lookups
-      #   #=> [{:long_name=>"bertrandts_bellow", :short_name=>"bellow", :cost=>{:stamina=>20}}, ...]
       def self.warcry_lookups
         @@warcries.map do |long_name, psm|
           {
@@ -71,40 +69,42 @@ module Lich
       end
 
       # Retrieves the warcry associated with the given name.
-      #
-      # @param name [String] the name of the warcry
+      # @param name [String] the name of the warcry to retrieve
       # @return [Integer, nil] the rank of the warcry or nil if not found
-      # @see Warcry.known?
+      # @example Get a warcry by name
+      #   Warcry["bertrandts_bellow"]
       def Warcry.[](name)
         return PSMS.assess(name, 'Warcry')
       end
 
       # Checks if a warcry is known and meets the minimum rank requirement.
-      #
-      # @param name [String] the name of the warcry
+      # @param name [String] the name of the warcry to check
       # @param min_rank [Integer] the minimum rank to check against (default is 1)
       # @return [Boolean] true if known and meets rank, false otherwise
-      # @see Warcry.available?
+      # @example Check if a warcry is known
+      #   Warcry.known?("bertrandts_bellow", 1)
       def Warcry.known?(name, min_rank: 1)
         min_rank = 1 unless min_rank >= 1 # in case a 0 or below is passed
         Warcry[name] >= min_rank
       end
 
       # Determines if a warcry can be afforded based on the current stamina and forcert count.
-      #
-      # @param name [String] the name of the warcry
+      # @param name [String] the name of the warcry to check
       # @param forcert_count [Integer] the number of forcerts available (default is 0)
       # @return [Boolean] true if affordable, false otherwise
+      # @example Check if a warcry is affordable
+      #   Warcry.affordable?("bertrandts_bellow")
       def Warcry.affordable?(name, forcert_count: 0)
         return PSMS.assess(name, 'Warcry', true, forcert_count: forcert_count)
       end
 
       # Checks if a warcry is known, affordable, and available for use.
-      #
-      # @param name [String] the name of the warcry
+      # @param name [String] the name of the warcry to check
       # @param min_rank [Integer] the minimum rank to check against (default is 1)
       # @param forcert_count [Integer] the number of forcerts available (default is 0)
       # @return [Boolean] true if available, false otherwise
+      # @example Check if a warcry is available
+      #   Warcry.available?("bertrandts_bellow")
       def Warcry.available?(name, min_rank: 1, forcert_count: 0)
         Warcry.known?(name, min_rank: min_rank) &&
           Warcry.affordable?(name, forcert_count: forcert_count) &&
@@ -112,20 +112,20 @@ module Lich
       end
 
       # Checks if the specified warcry buff is currently active.
-      #
-      # @param name [String] the name of the warcry
+      # @param name [String] the name of the warcry to check
       # @return [Boolean] true if the buff is active, false otherwise
-      # @deprecated Use Warcry.buff_active? instead
+      # @deprecated Use #buff_active? instead.
       def Warcry.buffActive?(name)
         ### DEPRECATED ###
         Lich.deprecated("Warcry.buffActive?", "Warcry.buff_active?", caller[0], fe_log: false)
         buff_active?(name)
       end
 
-      # Retrieves the active buff associated with the specified warcry.
-      #
-      # @param name [String] the name of the warcry
-      # @return [String, nil] the name of the active buff or nil if none is active
+      # Checks if the specified warcry buff is currently active.
+      # @param name [String] the name of the warcry to check
+      # @return [Boolean] true if the buff is active, false otherwise
+      # @example Check if a warcry buff is active
+      #   Warcry.buff_active?("bertrandts_bellow")
       def Warcry.buff_active?(name)
         buff = @@warcries.fetch(PSMS.find_name(name, "Warcry")[:long_name])[:buff]
         return false if buff.nil?
@@ -133,12 +133,13 @@ module Lich
       end
 
       # Uses the specified warcry on a target, if available and not on cooldown.
-      #
-      # @param name [String] the name of the warcry
-      # @param target [String, Integer] the target of the warcry (can be a name or ID)
-      # @param results_of_interest [Regexp, nil] additional regex patterns to match results (default is nil)
+      # @param name [String] the name of the warcry to use
+      # @param target [String, Integer] the target of the warcry (optional)
+      # @param results_of_interest [Regexp, nil] additional regex patterns to match results (optional)
       # @param forcert_count [Integer] the number of forcerts available (default is 0)
-      # @return [String, nil] the result of the warcry usage or nil if not executed
+      # @return [String, nil] the result of the warcry usage or nil if not used
+      # @example Use a warcry
+      #   Warcry.use("bertrandts_bellow", "target_name")
       def Warcry.use(name, target = "", results_of_interest: nil, forcert_count: 0)
         return unless Warcry.available?(name, forcert_count: forcert_count)
         return if Warcry.buff_active?(name)
@@ -184,10 +185,11 @@ module Lich
         usage_result
       end
 
-      # Retrieves the regex pattern associated with the specified warcry.
-      #
-      # @param name [String] the name of the warcry
+      # Retrieves the regex pattern associated with the specified warcry name.
+      # @param name [String] the name of the warcry to retrieve the regex for
       # @return [Regexp] the regex pattern for the warcry
+      # @example Get the regex for a warcry
+      #   Warcry.regexp("bertrandts_bellow")
       def Warcry.regexp(name)
         @@warcries.fetch(PSMS.find_name(name, "Warcry")[:long_name])[:regex]
       end

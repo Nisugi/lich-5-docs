@@ -34,7 +34,6 @@ module Lich
       # Sends the Slack token to the specified character.
       # @param character [String] the name of the character to send the token to
       # @return [void]
-      # @note This method will only send the token if lnet is available.
       def send_slack_token(character)
         return unless lnet_available?
 
@@ -43,10 +42,9 @@ module Lich
         send_chat_to(character, message)
       end
 
-      # Validates the specified character.
+      # Validates the specified character by checking if they are already validated.
       # @param character [String] the name of the character to validate
       # @return [void]
-      # @note This method will only validate if lnet is available.
       def validate(character)
         return if valid?(character)
         return unless lnet_available?
@@ -55,10 +53,9 @@ module Lich
         @lnet.unique_buffer.push("who #{character}")
       end
 
-      # Confirms the validation of the specified character.
+      # Confirms the validation of the specified character and optionally greets them.
       # @param character [String] the name of the character to confirm
       # @return [void]
-      # @note This method will greet the character if the greet flag is set.
       def confirm(character)
         return if valid?(character)
 
@@ -81,7 +78,6 @@ module Lich
       # @param character [String] the name of the character to send the balance to
       # @param balance [Integer] the current balance to send
       # @return [void]
-      # @note This method will only send the balance if lnet is available.
       def send_bankbot_balance(character, balance)
         return unless lnet_available?
 
@@ -93,7 +89,6 @@ module Lich
       # Sends the current location to the specified character.
       # @param character [String] the name of the character to send the location to
       # @return [void]
-      # @note This method will only send the location if lnet is available.
       def send_bankbot_location(character)
         return unless lnet_available?
 
@@ -103,10 +98,9 @@ module Lich
       end
 
       # Sends help messages to the specified character.
-      # @param character [String] the name of the character to send help messages to
-      # @param messages [Array<String>] the list of help messages to send
+      # @param character [String] the name of the character to send help to
+      # @param messages [Array<String>] the list of messages to send
       # @return [void]
-      # @note This method will only send messages if lnet is available.
       def send_bankbot_help(character, messages)
         return unless lnet_available?
 
@@ -133,10 +127,19 @@ module Lich
         !@lnet.nil?
       end
 
+      # Sends a chat message through the lnet script.
+      # @param message [String] the message to send
+      # @return [void]
+      # @api private
       def send_chat(message)
         @lnet.unique_buffer.push("chat #{message}")
       end
 
+      # Sends a chat message to a specific character through the lnet script.
+      # @param character [String] the name of the character to send the message to
+      # @param message [String] the message to send
+      # @return [void]
+      # @api private
       def send_chat_to(character, message)
         @lnet.unique_buffer.push("chat to #{character} #{message}")
       end

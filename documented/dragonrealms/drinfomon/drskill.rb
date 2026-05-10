@@ -5,7 +5,7 @@ module Lich
     #
     # This class manages skill data, including experience and rank.
     #
-    # @see Lich::DragonRealms for related modules.
+    # @see Lich::DragonRealms
     class DRSkill
       @@skills_data ||= DR_SKILLS_DATA
       @@gained_skills ||= []
@@ -71,7 +71,6 @@ module Lich
       # @param name [String] the name of the skill
       # @param new_exp [Integer] the new experience value
       # @return [void]
-      # @api private
       def self.handle_exp_change(name, new_exp)
         return unless Lich.display_expgains
 
@@ -114,7 +113,6 @@ module Lich
       # @param name [String] the name of the skill
       # @param rank [Integer] the new rank to set as a modifier
       # @return [void]
-      # @api private
       def self.update_mods(name, rank)
         exp_modifiers[lookup_alias(name)] = rank.to_i
       end
@@ -124,7 +122,6 @@ module Lich
       # @param usable [String] the usable rested experience as a string
       # @param refresh [String] the refresh time for rested experience as a string
       # @return [void]
-      # @api private
       def self.update_rested_exp(stored, usable, refresh)
         @@rexp_stored = convert_rexp_str_to_seconds(stored)
         @@rexp_usable = convert_rexp_str_to_seconds(usable)
@@ -147,8 +144,6 @@ module Lich
         @@rexp_refresh
       end
 
-      # Checks if there is any rested experience available.
-      # @return [Boolean] true if there is rested experience, false otherwise
       def self.rested_active?
         @@rexp_stored > 0 && @@rexp_usable > 0
       end
@@ -158,9 +153,6 @@ module Lich
         skill.exp = 0 if skill
       end
 
-      # Retrieves the rank of a specified skill.
-      # @param val [String] the name of the skill
-      # @return [Integer] the rank of the skill, or 0 if not found
       def self.getrank(val)
         skill = find_skill(val)
         return 0 unless skill
@@ -168,9 +160,6 @@ module Lich
         skill.rank.to_i
       end
 
-      # Retrieves the modified rank of a specified skill, including modifiers.
-      # @param val [String] the name of the skill
-      # @return [Integer] the modified rank of the skill, or 0 if not found
       def self.getmodrank(val)
         skill = find_skill(val)
         return 0 unless skill
@@ -180,9 +169,6 @@ module Lich
         rank + modifier
       end
 
-      # Retrieves the experience points of a specified skill.
-      # @param val [String] the name of the skill
-      # @return [Integer] the experience points of the skill, or 0 if not found
       def self.getxp(val)
         skill = find_skill(val)
         return 0 unless skill
@@ -190,9 +176,6 @@ module Lich
         skill.exp.to_i
       end
 
-      # Retrieves the percentage to the next rank of a specified skill.
-      # @param val [String] the name of the skill
-      # @return [Integer] the percentage to the next rank, or 0 if not found
       def self.getpercent(val)
         skill = find_skill(val)
         return 0 unless skill
@@ -200,9 +183,6 @@ module Lich
         skill.percent.to_i
       end
 
-      # Retrieves the skillset associated with a specified skill.
-      # @param val [String] the name of the skill
-      # @return [String, nil] the skillset name, or nil if not found
       def self.getskillset(val)
         skill = find_skill(val)
         return nil unless skill
@@ -210,7 +190,7 @@ module Lich
         skill.skillset
       end
 
-      # Lists all skills and their details to the messaging system.
+      # Lists all skills and their details.
       # @return [void]
       def self.listall
         @@list.each do |i|
@@ -222,14 +202,14 @@ module Lich
         @@list
       end
 
-      # Finds a skill by its name or alias.
-      # @param val [String] the name or alias of the skill
-      # @return [DRSkill, nil] the found skill instance, or nil if not found
+      # Finds a skill by its name.
+      # @param val [String] the name of the skill to find
+      # @return [DRSkill, nil] the found skill or nil if not found
       def self.find_skill(val)
         @@list.find { |data| data.name == lookup_alias(val) }
       end
 
-      # Converts a rested experience time string into seconds.
+      # Converts a rested experience string to seconds.
       # @param time_string [String] the time string to convert
       # @return [Integer] the total seconds represented by the time string
       def self.convert_rexp_str_to_seconds(time_string)
@@ -262,13 +242,13 @@ module Lich
         total_seconds
       end
 
+      # Looks up the alias for a skill based on the guild's skill aliases.
+      # @param skill [String] the skill name to look up
+      # @return [String] the resolved skill name or the original if not found
       def self.lookup_alias(skill)
         @@skills_data.dig(:guild_skill_aliases, DRStats.guild, skill) || skill
       end
 
-      # Looks up the skillset for a given skill.
-      # @param skill [String] the name of the skill
-      # @return [String, nil] the skillset name, or nil if not found
       def lookup_skillset(skill)
         result = @@skills_data[:skillsets].find { |_skillset, skills| skills.include?(skill) }
         result&.first

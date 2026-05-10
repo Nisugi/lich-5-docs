@@ -132,8 +132,8 @@ module Lich
 
       # Determines if the specified armor technique can be afforded based on the forcert count.
       #
-      # @param name [String] the name of the armor technique to check affordability for.
-      # @param forcert_count [Integer] the number of forcerts available.
+      # @param name [String] the name of the armor technique to check affordability.
+      # @param forcert_count [Integer] the number of forcerts available for the check.
       # @return [Boolean] true if the technique is affordable, false otherwise.
       def Armor.affordable?(name, forcert_count: 0)
         return PSMS.assess(name, 'Armor', true, forcert_count: forcert_count)
@@ -141,9 +141,9 @@ module Lich
 
       # Checks if the specified armor technique is known, affordable, and available for use.
       #
-      # @param name [String] the name of the armor technique to check availability for.
+      # @param name [String] the name of the armor technique to check availability.
       # @param min_rank [Integer] the minimum rank required to consider the technique known.
-      # @param forcert_count [Integer] the number of forcerts available.
+      # @param forcert_count [Integer] the number of forcerts available for the check.
       # @return [Boolean] true if the technique is available, false otherwise.
       def Armor.available?(name, min_rank: 1, forcert_count: 0)
         Armor.known?(name, min_rank: min_rank) &&
@@ -163,10 +163,10 @@ module Lich
       # Uses the specified armor technique on a target, if available.
       #
       # @param name [String] the name of the armor technique to use.
-      # @param target [String, Integer, GameObj] the target of the technique.
-      # @param results_of_interest [Regexp, nil] additional regex patterns to match results.
-      # @param forcert_count [Integer] the number of forcerts available.
-      # @return [String, nil] the result of the usage or nil if not applicable.
+      # @param target [String, Integer, GameObj] the target of the armor technique.
+      # @param results_of_interest [Regexp, nil] optional regex to match specific results.
+      # @param forcert_count [Integer] the number of forcerts available for the use.
+      # @return [String, nil] the result of the usage or nil if the technique cannot be used.
       def Armor.use(name, target = "", results_of_interest: nil, forcert_count: 0)
         return unless Armor.available?(name, forcert_count: forcert_count)
 

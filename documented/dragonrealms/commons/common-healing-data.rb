@@ -16,9 +16,8 @@ module Lich
       # its non-tended counterpart because once the bandages come off
       # then the wound is much worse so they should be triaged first.
       #
-      # @see https://elanthipedia.play.net/Damage#Bleeding_Levels
-      # @note Skill to tend based on https://elanthipedia.play.net/First_Aid_skill#Skill_to_Tend
-      # A 'nil' value means that can't be tended because already is tended or isn't bleeding.
+      # @see Lich::DragonRealms::WOUND_SEVERITY
+      # @see Lich::DragonRealms::LODGED_SEVERITY
       BLEED_RATE_TO_SEVERITY = {
         'tended'                   => { severity: 1, bleeding: false, skill_to_tend: nil, skill_to_tend_internal: nil }.freeze,
         '(tended)'                 => { severity: 1, bleeding: false, skill_to_tend: nil, skill_to_tend_internal: nil }.freeze,
@@ -69,9 +68,9 @@ module Lich
       # Maps lodged item descriptions to severity levels.
       #
       # @example
-      # LODGED_SEVERITY["loosely hanging"] # => 1
-      # LODGED_SEVERITY["deeply"] # => 4
-      # @see https://elanthipedia.play.net/Damage#Lodged_Items
+      #   LODGED_SEVERITY["loosely hanging"] # => 1
+      #   LODGED_SEVERITY["deeply"] # => 4
+      # @see Lich::DragonRealms::BLEED_RATE_TO_SEVERITY
       LODGED_SEVERITY = {
         'loosely hanging' => 1,
         'shallowly'       => 2,
@@ -84,9 +83,9 @@ module Lich
       # Maps wound descriptions to severity levels.
       #
       # @example
-      # WOUND_SEVERITY["insignificant"] # => 1
-      # WOUND_SEVERITY["devastating"] # => 11
-      # @see https://elanthipedia.play.net/Damage#Wound_Severity_Levels
+      #   WOUND_SEVERITY["insignificant"] # => 1
+      #   WOUND_SEVERITY["devastating"] # => 11
+      # @see Lich::DragonRealms::BLEED_RATE_TO_SEVERITY
       WOUND_SEVERITY = {
         'insignificant'    => 1,
         'negligible'       => 2,
@@ -107,8 +106,8 @@ module Lich
       # Regular expressions to match parasite descriptions.
       #
       # @example
-      # PARASITES_REGEX[0] # => /(?:small|large) (?:black|red) blood mite/
-      # @see https://elanthipedia.play.net/Damage#Parasites
+      #   PARASITES_REGEX[0].match("small black blood mite") # => #<MatchData>
+      # @see Lich::DragonRealms::WOUND_SEVERITY
       PARASITES_REGEX = [
         /(?:small|large) (?:black|red) blood mite/,
         /(?:black|red|albino) (sand|forest) leech/,
@@ -121,8 +120,8 @@ module Lich
       # Parses the severity number out of the wound line from 'perceive health self'.
       #
       # @example
-      # For example, the 'negligible' in "Fresh External:  light scratches -- negligible"
-      # @see https://elanthipedia.play.net/Damage#Wounds
+      #   "Fresh External:  light scratches -- negligible".match(PERCEIVE_HEALTH_SEVERITY_REGEX)
+      # @return [MatchData, nil] returns MatchData if matched, nil otherwise
       PERCEIVE_HEALTH_SEVERITY_REGEX = /(?<freshness>Fresh|Scars) (?<location>External|Internal).+--\s+(?<severity>insignificant|negligible|minor|more than minor|harmful|very harmful|damaging|very damaging|severe|very severe|devastating|very devastating|useless)\b/
 
       BODY_PART_REGEX = /(?<part>(?:l\.|r\.|left|right)?\s?(?:\w+))/
@@ -143,8 +142,8 @@ module Lich
       # Maps wound descriptions to severity levels using regular expressions.
       #
       # @example
-      # WOUND_SEVERITY_REGEX_MAP[/minor abrasions to the #{WOUND_BODY_PART_REGEX}/] # => { severity: 1, internal: false, scar: false }
-      # @see https://elanthipedia.play.net/Damage#Wounds
+      #   WOUND_SEVERITY_REGEX_MAP[/minor abrasions to the head/] # => { severity: 1, internal: false, scar: false }
+      # @see Lich::DragonRealms::WOUND_SEVERITY
       WOUND_SEVERITY_REGEX_MAP = {
         # insignificant
         /minor abrasions to the #{WOUND_BODY_PART_REGEX}/                                                                    => { severity: 1, internal: false, scar: false }.freeze,

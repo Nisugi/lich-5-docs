@@ -1,6 +1,9 @@
 require 'fiddle'
 require 'rbconfig'
 
+# Main module for the Lich5 project.
+#
+# @see MemoryReleaser
 module Lich
   module Util
     # Memory management module that provides automatic and manual memory release functionality
@@ -8,6 +11,9 @@ module Lich
     module MemoryReleaser
       # Default settings for memory releaser
       # Default settings for memory releaser.
+      #
+      # @example
+      #   MemoryReleaser::DEFAULT_SETTINGS[:auto_start] # => true
       DEFAULT_SETTINGS = {
         auto_start: true, # Disabled by default, user must enable
         interval: 900, # default of 15 minutes
@@ -109,6 +115,8 @@ module Lich
 
         attr_reader :settings
 
+        # Initializes a new Manager instance.
+        # @return [Manager]
         def initialize
           load_settings
           @enabled = true
@@ -178,11 +186,7 @@ module Lich
         # Perform a complete memory release cycle
         #
         # Perform a complete memory release cycle.
-        #
         # @return [void]
-        # @example
-        #   manager.release
-        # @note This method will log memory statistics if verbose mode is enabled.
         def release
           before = print_memory_stats if @verbose
           Lich::Common::GameObj.prune_index!(ttl: @interval, verbose: @verbose)
@@ -193,6 +197,11 @@ module Lich
           log "Memory release completed"
         end
 
+        # Starts the memory releaser worker thread.
+        #
+        # @param interval [Integer, nil] optional interval in seconds
+        # @param verbose [Boolean, nil] optional verbose output setting
+        # @return [void]
         def start(interval: nil, verbose: nil)
           stop if running?
 
@@ -228,6 +237,8 @@ module Lich
           MemoryReleaser.worker_thread
         end
 
+        # Stops the memory releaser worker thread.
+        # @return [void]
         def stop
           @enabled = false
 
@@ -239,11 +250,15 @@ module Lich
           log "Memory releaser stopped"
         end
 
+        # Checks if the memory releaser worker is currently running.
+        # @return [Boolean]
         def running?
           worker = MemoryReleaser.worker_thread
           worker&.alive? || false
         end
 
+        # Returns the current status of the memory releaser.
+        # @return [Hash] status information including running, enabled, auto_start, interval, verbose, and platform.
         def status
           {
             running: running?,
@@ -255,6 +270,8 @@ module Lich
           }
         end
 
+        # Runs a benchmark to measure memory usage before and after release.
+        # @return [void]
         def benchmark
           respond "=" * 60
           respond "Memory Usage Before Release:"
@@ -524,15 +541,11 @@ module Lich
       # Class-level singleton instance
       @instance = nil
 
-      # Class-level methods for managing the MemoryReleaser instance.
       class << self
         attr_reader :command_queue
 
         attr_reader :worker_thread
 
-        # Returns the singleton instance of the MemoryReleaser.
-        #
-        # @return [Manager] the singleton instance of the memory releaser manager.
         def instance
           @mutex ||= Mutex.new
           @mutex.synchronize {
@@ -549,50 +562,22 @@ module Lich
           }
         end
 
-        # Starts the memory releaser worker thread.
-        #
-        # @param interval [Integer, nil] the interval in seconds for memory release (defaults to settings)
-        # @param verbose [Boolean, nil] whether to enable verbose logging (defaults to settings)
-        # @return [void]
-        # @example
-        #   MemoryReleaser.start(interval: 600, verbose: true)
         def start(interval: nil, verbose: nil)
           instance.start(interval: interval, verbose: verbose)
         end
 
-        # Stops the memory releaser worker thread.
-        #
-        # @return [void]
-        # @example
-        #   MemoryReleaser.stop
         def stop
           instance.stop
         end
 
-        # Enables auto-start for the memory releaser.
-        #
-        # @return [void]
-        # @example
-        #   MemoryReleaser.auto_start!
         def auto_start!
           instance.auto_start!
         end
 
-        # Disables auto-start for the memory releaser.
-        #
-        # @return [void]
-        # @example
-        #   MemoryReleaser.auto_disable!
         def auto_disable!
           instance.auto_disable!
         end
 
-        # Sets the interval for memory release.
-        #
-        # @param seconds [Integer] the interval in seconds (minimum 60)
-        # @return [Integer] the set interval
-        # @example
-        #   MemoryReleaser.interval!(1200) # 20 minutes
         def interval!(seconds)
           instance.interval!(seconds)
         end
@@ -605,25 +590,14 @@ module Lich
           instance.release
         end
 
-        # Checks if the memory releaser is currently running.
-        #
-        # @return [Boolean] true if running, false otherwise.
         def running?
           instance.running?
         end
 
-        # Returns the current status of the memory releaser.
-        #
-        # @return [Hash] a hash containing the current status information.
         def status
           instance.status
         end
 
-        # Runs a benchmark to measure memory usage before and after release.
-        #
-        # @return [void]
-        # @example
-        #   MemoryReleaser.benchmark
         def benchmark
           instance.benchmark
         end

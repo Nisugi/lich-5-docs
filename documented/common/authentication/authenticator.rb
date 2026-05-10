@@ -25,11 +25,11 @@ module Lich
 
       # Authenticates a user with the provided credentials.
       #
-      # @param account [String] the account identifier
+      # @param account [String] the account name
       # @param password [String] the account password
-      # @param character [String, nil] optional character identifier
-      # @param game_code [String, nil] optional game code
-      # @param legacy [Boolean] whether to use legacy authentication
+      # @param character [String, nil] optional character name for authentication
+      # @param game_code [String, nil] optional game code for authentication
+      # @param legacy [Boolean] whether to use legacy authentication method
       # @return [Boolean] true if authentication is successful
       # @raise FatalAuthError if a fatal authentication error occurs
       def self.authenticate(account:, password:, character: nil, game_code: nil, legacy: false)
@@ -58,6 +58,7 @@ module Lich
 
       # Retries the given block of code for transient authentication errors.
       #
+      # @yield block of code to execute
       # @return [Object] the result of the block if successful
       # @raise FatalAuthError if a fatal authentication error occurs
       # @raise StandardError if all retries are exhausted

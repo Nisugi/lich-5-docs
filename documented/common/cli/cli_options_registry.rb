@@ -13,13 +13,13 @@ module Lich
         @handlers = {}
 
         class << self
-          # Defines a command-line option.
+          # Defines a command-line option with its configuration.
           #
           # @param name [Symbol] the name of the option
           # @param type [Symbol] the type of the option (default: :string)
           # @param default [Object, nil] the default value for the option
-          # @param deprecated [Boolean] whether the option is deprecated (default: false)
-          # @param deprecation_message [String, nil] message to show when the option is deprecated
+          # @param deprecated [Boolean] indicates if the option is deprecated (default: false)
+          # @param deprecation_message [String, nil] message to show when the option is used
           # @param mutually_exclusive [Array<Symbol>] options that cannot be used together
           # @param handler [Proc, nil] a handler for the option
           # @return [void]
@@ -52,13 +52,15 @@ module Lich
 
           # Retrieves the handler for a specified option.
           #
-          # @param name [Symbol] the name of the option
+          # @param name [Symbol] the name of the option to retrieve the handler for
           # @return [Proc, nil] the handler for the option or nil if not found
           def get_handler(name)
             @handlers[name]
           end
 
           # Validates the parsed options against defined configurations.
+          #
+          # This method checks for mutually exclusive options and deprecation warnings.
           #
           # @param parsed_opts [OpenStruct] the parsed command-line options
           # @return [Array<String>] an array of error messages, if any

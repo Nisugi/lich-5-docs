@@ -238,8 +238,8 @@ module Lich
         #
         # @param name [String] the name of the sign to retrieve
         # @return [Hash, nil] the metadata of the sign or nil if not found
-        # @example
-        #   CouncilOfLight["sign_of_recognition"] #=> metadata hash for "Sign of Recognition"
+        # @example Retrieve sign metadata
+        #   sign_metadata = CouncilOfLight["sign_of_recognition"]
         def self.[](name)
           lookup = Society.lookup(name, sign_lookups)
           return nil unless lookup
@@ -258,9 +258,9 @@ module Lich
         end
 
         ##
-        # Returns an array of hashes containing metadata for all signs in the Council of Light.
+        # Provides a list of all available signs with their metadata.
         #
-        # @return [Array<Hash>] an array of sign metadata hashes
+        # @return [Array<Hash>] an array of hashes containing sign metadata
         def self.sign_lookups
           @@col_signs.map do |_, sign|
             {
@@ -286,12 +286,13 @@ module Lich
         end
 
         ##
-        # Uses a sign from the Council of Light, optionally targeting a specific entity.
+        # Uses a sign for the member, optionally targeting a specific entity.
         #
         # @param sign_name [String] the name of the sign to use
         # @param target [String, nil] the target for the sign, if applicable
         # @return [void]
-        # @note This method sends a message if the member is not part of the Council of Light or if the sign is unknown.
+        # @example Use a sign on a target
+        #   CouncilOfLight.use("sign_of_signal", "friend")
         def self.use(sign_name, target = nil)
           unless member?
             Lich::Messaging.msg("error", "Not a member of Council of Light, can't use: #{sign_name}")
@@ -354,9 +355,9 @@ module Lich
         end
 
         ##
-        # Retrieves all signs in the Council of Light with their metadata.
+        # Retrieves all signs with their resolved metadata.
         #
-        # @return [Array<Hash>] an array of all sign metadata hashes
+        # @return [Array<Hash>] an array of hashes containing all sign metadata
         def self.all
           @@col_signs.values.map { |entry| entry.transform_values { |v| Society.resolve(v, entry) } }
         end
@@ -371,17 +372,17 @@ module Lich
         end
 
         ##
-        # Checks if the character is a member of the Council of Light.
+        # Checks if the current member belongs to the Council of Light.
         #
         # @param rank [Integer, nil] optional rank to check against
-        # @return [Boolean] true if the character is a member, false otherwise
+        # @return [Boolean] true if the member belongs to the Council of Light, false otherwise
         def self.member?(rank = nil)
           return false unless Society.membership == "Council of Light"
           rank.nil? || Society.rank == rank
         end
 
         ##
-        # Retrieves the rank of the member in the Council of Light.
+        # Retrieves the rank of the current member in the Council of Light.
         #
         # @return [Integer] the rank of the member, or 0 if not a member
         def self.rank
@@ -392,7 +393,7 @@ module Lich
         ##
         # Checks if a sign is available for use by the member.
         #
-        # @param sign_name [String] the name of the sign to check availability
+        # @param sign_name [String] the name of the sign to check
         # @return [Boolean] true if the sign is available, false otherwise
         def self.available?(sign_name)
           return false unless member?

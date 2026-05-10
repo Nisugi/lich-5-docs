@@ -1,21 +1,19 @@
 
 module Lich
   module Common
-    # Handles upstream hooks for the Lich game.
+    # Handles upstream hooks for the Lich project.
     #
-    # This class allows for the registration, execution, and management of hooks that can modify client strings.
-    #
-    # @see Lich::Common
+    # This class allows adding, running, removing, and listing hooks that can modify client strings.
     class UpstreamHook
       @@upstream_hooks ||= Hash.new
       @@upstream_hook_sources ||= Hash.new
 
-      # Registers a new upstream hook with a given name and action.
+      # Adds a new upstream hook.
       #
       # @param name [String] the name of the hook
-      # @param action [Proc] the action to be executed when the hook is triggered
+      # @param action [Proc] the action to be executed for the hook
       # @return [Boolean] true if the hook was added successfully, false otherwise
-      # @example
+      # @example Add a hook
       #   UpstreamHook.add("example_hook", Proc.new { |client_string| client_string.upcase })
       def UpstreamHook.add(name, action)
         unless action.is_a?(Proc)
@@ -26,13 +24,13 @@ module Lich
         @@upstream_hooks[name] = action
       end
 
-      # Executes all registered upstream hooks in order, passing the client string through each.
+      # Executes all registered upstream hooks in order.
       #
-      # @param client_string [String] the client string to be processed by the hooks
-      # @return [String, nil] the modified client string or nil if an error occurs
-      # @raise [StandardError] if an error occurs during hook execution
-      # @example
-      #   modified_string = UpstreamHook.run("original string")
+      # @param client_string [String] the string to be modified by the hooks
+      # @return [String, nil] the modified string or nil if an error occurred
+      # @raise [StandardError] if a hook raises an error during execution
+      # @example Run hooks on a client string
+      #   modified_string = UpstreamHook.run("input string")
       def UpstreamHook.run(client_string)
         for key in @@upstream_hooks.keys
           begin
@@ -47,7 +45,7 @@ module Lich
         return client_string
       end
 
-      # Removes an upstream hook by its name.
+      # Removes an upstream hook by name.
       #
       # @param name [String] the name of the hook to remove
       # @return [void]

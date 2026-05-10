@@ -1,9 +1,12 @@
-# The Lich module contains all components related to the Lich game framework.
+# Provides functionality for the Lich game framework.
 #
+# @see Lich::Gemstone
 module Lich
   module Gemstone
-    # The CMan module provides combat maneuvers for characters in the Lich game.
+    # Contains combat maneuvers for characters in the Lich game.
     #
+    # This module provides various combat maneuvers that can be used by characters.
+    # Each maneuver has associated properties such as cost and type.
     module CMan
       @@combat_mans = {
         "acrobats_leap"          => {
@@ -660,11 +663,12 @@ module Lich
         }
       }
 
-      # Retrieves a list of combat maneuvers with their long and short names and costs.
-      # @return [Array<Hash>] an array of hashes containing long names, short names, and costs of combat maneuvers.
+      # Returns a list of combat maneuvers with their long and short names and costs.
+      # @return [Array<Hash>] an array of hashes containing maneuver details
       # @example
-      #   CMan.cman_lookups
-      #   #=> [{:long_name=>"acrobats_leap", :short_name=>"acrobatsleap", :cost=>{:stamina=>0}}, ...]
+      #   CMan.cman_lookups.each do |maneuver|
+      #     puts maneuver[:long_name]
+      #   end
       def self.cman_lookups
         @@combat_mans.map do |long_name, psm|
           {
@@ -675,45 +679,44 @@ module Lich
         end
       end
 
-      # Retrieves the combat maneuver associated with the given name.
-      # @param name [String] the name of the combat maneuver to retrieve.
-      # @return [Hash, nil] the combat maneuver details or nil if not found.
-      # @see CMan.cman_lookups
+      # Retrieves a combat maneuver by its name.
+      # @param name [String] the name of the combat maneuver
+      # @return [Hash, nil] the maneuver details or nil if not found
       def CMan.[](name)
         return PSMS.assess(name, 'CMan')
       end
 
-      # Checks if a combat maneuver is known by the character, considering the minimum rank.
-      # @param name [String] the name of the combat maneuver.
-      # @param min_rank [Integer] the minimum rank required to consider the maneuver known (default is 1).
-      # @return [Boolean] true if the maneuver is known, false otherwise.
+      # Checks if a combat maneuver is known by the character.
+      # @param name [String] the name of the combat maneuver
+      # @param min_rank [Integer] the minimum rank required to consider it known
+      # @return [Boolean] true if known, false otherwise
       def CMan.known?(name, min_rank: 1)
         min_rank = 1 unless min_rank >= 1 # in case a 0 or below is passed
         CMan[name] >= min_rank
       end
 
-      # Determines if a combat maneuver can be afforded based on the current resources.
-      # @param name [String] the name of the combat maneuver.
-      # @param forcert_count [Integer] the number of forcerts available (default is 0).
-      # @return [Boolean] true if the maneuver can be afforded, false otherwise.
+      # Determines if a combat maneuver can be afforded based on stamina.
+      # @param name [String] the name of the combat maneuver
+      # @param forcert_count [Integer] the number of forcerts available
+      # @return [Boolean] true if affordable, false otherwise
       def CMan.affordable?(name, forcert_count: 0)
         return PSMS.assess(name, 'CMan', true, forcert_count: forcert_count)
       end
 
-      # Checks if a specific buff associated with a combat maneuver is currently active.
-      # @param name [String] the name of the combat maneuver.
-      # @return [Boolean, nil] true if the buff is active, false if not, or nil if the maneuver does not have a buff.
+      # Checks if a buff from a combat maneuver is currently active.
+      # @param name [String] the name of the combat maneuver
+      # @return [Boolean, nil] true if the buff is active, nil if not applicable
       def CMan.buff_active?(name)
         return unless @@combat_mans.fetch(PSMS.find_name(name, "CMan")[:long_name]).key?(:buff)
         Effects::Buffs.active?(@@combat_mans.fetch(PSMS.find_name(name, "CMan")[:long_name])[:buff])
       end
 
-      # Checks if a combat maneuver is available for use, considering cooldowns and costs.
-      # @param name [String] the name of the combat maneuver.
-      # @param ignore_cooldown [Boolean] whether to ignore cooldowns when checking availability (default is false).
-      # @param min_rank [Integer] the minimum rank required to consider the maneuver available (default is 1).
-      # @param forcert_count [Integer] the number of forcerts available (default is 0).
-      # @return [Boolean] true if the maneuver is available, false otherwise.
+      # Checks if a combat maneuver is available for use.
+      # @param name [String] the name of the combat maneuver
+      # @param ignore_cooldown [Boolean] whether to ignore cooldowns
+      # @param min_rank [Integer] the minimum rank required
+      # @param forcert_count [Integer] the number of forcerts available
+      # @return [Boolean] true if available, false otherwise
       def CMan.available?(name, ignore_cooldown: false, min_rank: 1, forcert_count: 0)
         return false unless CMan.known?(name, min_rank: min_rank)
         return false unless CMan.affordable?(name, forcert_count: forcert_count)
@@ -724,13 +727,13 @@ module Lich
         end
       end
 
-      # Executes a combat maneuver on a target, considering cooldowns and costs.
-      # @param name [String] the name of the combat maneuver to use.
-      # @param target [String] the target of the maneuver (default is an empty string).
-      # @param ignore_cooldown [Boolean] whether to ignore cooldowns when using the maneuver (default is false).
-      # @param results_of_interest [Regexp, nil] additional regex patterns to match against results (default is nil).
-      # @param forcert_count [Integer] the number of forcerts available (default is 0).
-      # @return [String, nil] the result of the maneuver execution or nil if it cannot be executed.
+      # Uses a combat maneuver on a target.
+      # @param name [String] the name of the combat maneuver
+      # @param target [String, Integer, GameObj] the target of the maneuver
+      # @param ignore_cooldown [Boolean] whether to ignore cooldowns
+      # @param results_of_interest [Regexp, nil] additional regex for expected results
+      # @param forcert_count [Integer] the number of forcerts available
+      # @return [String, nil] the result of the maneuver or nil if not used
       def CMan.use(name, target = "", ignore_cooldown: false, results_of_interest: nil, forcert_count: 0)
         return unless CMan.available?(name, ignore_cooldown: ignore_cooldown, forcert_count: forcert_count)
 
@@ -776,9 +779,9 @@ module Lich
         usage_result
       end
 
-      # Retrieves the regular expression associated with a combat maneuver's usage.
-      # @param name [String] the name of the combat maneuver.
-      # @return [Regexp] the regex pattern for the combat maneuver.
+      # Retrieves the regex pattern associated with a combat maneuver.
+      # @param name [String] the name of the combat maneuver
+      # @return [Regexp] the regex pattern for the maneuver
       def CMan.regexp(name)
         @@combat_mans.fetch(PSMS.find_name(name, "CMan")[:long_name])[:regex]
       end

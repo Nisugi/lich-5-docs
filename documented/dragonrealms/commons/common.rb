@@ -13,15 +13,15 @@ module Lich
       # Pattern for XML tags
       # Pattern for XML tags.
       #
-      # @example
-      #   "<tag>content</tag>" matches this pattern.
+      # @example Match example
+      #   "<tag>content</tag>" =~ XML_TAG_PATTERN
       XML_TAG_PATTERN = /<[^>]+>/.freeze
 
       # Pattern for game wait/roundtime responses in bput
       # Pattern for game wait/roundtime responses in bput.
       #
-      # @example
-      #   "Wait 5" matches this pattern with seconds = 5.
+      # @example Match example
+      #   "Wait 5 seconds" =~ WAIT_RESPONSE_PATTERN
       WAIT_RESPONSE_PATTERN = /(?:\.\.\.wait |Wait |\.\.\. wait )(?<seconds>[0-9]+)/.freeze
 
       # Collect command response messages
@@ -48,8 +48,8 @@ module Lich
       # Retreat command response patterns
       # Retreat command response patterns.
       #
-      # @example
-      #   "You retreat from combat" matches this pattern.
+      # @example Match example
+      #   "You retreat from combat" =~ RETREAT_ESCAPE_MESSAGES[1]
       RETREAT_ESCAPE_MESSAGES = [
         /You are already as far away as you can get/,
         /You retreat from combat/,
@@ -72,8 +72,8 @@ module Lich
       # Assess teach parsing patterns
       # Assess teach parsing patterns.
       #
-      # @example
-      #   "John is teaching a class on Swordsmanship which is still open to new students" matches this pattern.
+      # @example Match example
+      #   "John is teaching a class on Swordsmanship which is still open to new students" =~ ASSESS_TEACH_TEACHER_PATTERN
       ASSESS_TEACH_TEACHER_PATTERN = /(?<teacher>.*) is teaching a class on (?<skill>.*) which is still open to new students/.freeze
       ASSESS_TEACH_SKILL_FILTER_PATTERN = /.* \(compared to what you already know\) (?<filtered_skill>.*)/.freeze
 
@@ -227,7 +227,7 @@ module Lich
       # @param name [String] name of the script to wait for.
       # @param args [Array<String>] arguments to pass to the script.
       # @param flags [Hash] additional options for script execution.
-      # @return [String, nil] the script handle if it started, nil otherwise.
+      # @return [String, nil] the script handle if it started successfully, nil otherwise.
       def wait_for_script_to_complete(name, args = [], flags = {})
         verify_script(name)
         script_handle = start_script(name, args.map { |arg| arg.to_s =~ /\s/ ? "\"#{arg}\"" : arg }, flags)
@@ -240,7 +240,7 @@ module Lich
 
       # Checks if the player can see the sky based on their location.
       #
-      # @return [Boolean] true if the player can see the sky, false otherwise.
+      # @return [Boolean] true if the sky is visible, false otherwise.
       def can_see_sky?
         # If you are indoors and not able to see the sky.
         inside_no_sky = "That's a bit hard to do while inside."
@@ -281,7 +281,7 @@ module Lich
       # Collects an item, optionally practicing the action.
       #
       # @param item [String] the item to collect.
-      # @param practice [Boolean] whether to practice while collecting.
+      # @param practice [Boolean] whether to practice the collection.
       # @return [void]
       def collect(item, practice = true)
         practicing = "practice" if practice
@@ -295,10 +295,6 @@ module Lich
         waitrt?
       end
 
-      # Kicks a pile to see if it can be interacted with.
-      #
-      # @param item [String] the item to kick, defaults to 'pile'.
-      # @return [Boolean] true if the kick was successful, false otherwise.
       def kick_pile?(item = 'pile')
         fix_standing
         return unless DRRoom.room_objs.any? { |room_obj| room_obj.match?(/pile/) }
@@ -425,7 +421,6 @@ module Lich
         end
 
         # Returns the short name of the item, including its adjective if present.
-        #
         # @return [String] the short name of the item.
         def short_name
           @adjective ? "#{@adjective}.#{@name}" : @name
@@ -464,10 +459,10 @@ module Lich
         end
       end
 
-      # Retrieves the town name from the given text.
+      # Extracts the town name from the given text.
       #
       # @param text [String] the text to search for a town name.
-      # @return [String, nil] the matched town name or nil if none found.
+      # @return [String, nil] the town name if found, nil otherwise.
       def get_town_name(text)
         towns = $HOMETOWN_REGEX_MAP.select { |_town, regex| regex =~ text }.keys
         if towns.length > 1
@@ -483,7 +478,6 @@ module Lich
       end
 
       # Ensures the player is standing.
-      #
       # @return [void]
       def fix_standing
         loop do
@@ -493,7 +487,7 @@ module Lich
         end
       end
 
-      # Listens to a teacher's class if available.
+      # Listens to a teacher's class if possible.
       #
       # @param teacher [String] the name of the teacher.
       # @param observe_flag [Boolean] whether to observe the class.
@@ -522,9 +516,8 @@ module Lich
         false
       end
 
-      # Assesses the teaching status of available classes.
-      #
-      # @return [Hash] a hash of teachers and their respective skills.
+      # Assesses the teaching status of classes.
+      # @return [Hash] a hash of teachers and their skills.
       def assess_teach
         lines = Lich::Util.issue_command(
           'assess teach',
@@ -554,10 +547,10 @@ module Lich
         end
       end
 
-      # Attempts to hide the player in the environment.
+      # Attempts to hide the player.
       #
       # @param hide_type [String] the type of hiding action to perform.
-      # @return [Boolean] true if hiding was successful, false otherwise.
+      # @return [Boolean] true if successfully hidden, false otherwise.
       def hide?(hide_type = 'hide')
         unless hiding?
           case bput(hide_type, 'Roundtime', 'too busy performing', 'can\'t see any place to hide yourself', 'Stalk what', 'You\'re already stalking', 'Stalking is an inherently stealthy', 'You haven\'t had enough time', 'You search but find no place to hide')
@@ -577,10 +570,6 @@ module Lich
         hiding?
       end
 
-      # Cleans up specific phrases in the given string.
-      #
-      # @param string [String] the string to clean up.
-      # @return [String] the cleaned string.
       def fix_dr_bullshit(string)
         return string if string.split.length <= 2
 
@@ -592,16 +581,10 @@ module Lich
         "#{match[:first]} #{match[:last]}"
       end
 
-      # Retrieves the name of the item in the left hand.
-      #
-      # @return [String, nil] the name of the item or nil if empty.
       def left_hand
         GameObj.left_hand.name == 'Empty' ? nil : fix_dr_bullshit(GameObj.left_hand.name)
       end
 
-      # Retrieves the name of the item in the right hand.
-      #
-      # @return [String, nil] the name of the item or nil if empty.
       def right_hand
         GameObj.right_hand.name == 'Empty' ? nil : fix_dr_bullshit(GameObj.right_hand.name)
       end
@@ -614,9 +597,6 @@ module Lich
         GameObj.right_hand == 'Empty' ? nil : GameObj.right_hand.noun
       end
 
-      # Releases any invisibility spells currently active.
-      #
-      # @return [void]
       def release_invisibility
         get_data('spells')
           .spell_data
@@ -630,10 +610,6 @@ module Lich
         bput('khri stop vanish', /^You would need to start Vanish/, /^Your control over the limited subversion of reality falters/, /^You are not trained in the Vanish meditation/) if (DRStats.guild == "Thief" && invisible?)
       end
 
-      # Checks the player's encumbrance status.
-      #
-      # @param refresh [Boolean] whether to refresh the encumbrance data.
-      # @return [String] the current encumbrance status.
       def check_encumbrance(refresh = true)
         encumbrance = DRStats.encumbrance
         if refresh
@@ -645,10 +621,6 @@ module Lich
         $ENC_MAP[encumbrance]
       end
 
-      # Retreats from combat, ignoring specified NPCs.
-      #
-      # @param ignored_npcs [Array<String>] list of NPCs to ignore during retreat.
-      # @return [void]
       def retreat(ignored_npcs = [])
         return if (DRRoom.npcs - ignored_npcs).empty?
 
@@ -665,7 +637,7 @@ module Lich
       # Converts a text representation of a number into an integer.
       #
       # @param text_num [String] the text to convert.
-      # @return [Integer, nil] the converted number or nil if invalid.
+      # @return [Integer, nil] the numeric value if conversion is successful, nil otherwise.
       def text2num(text_num)
         text_num = text_num.tr('-', ' ')
         split_words = text_num.split(' ')
@@ -774,18 +746,15 @@ module Lich
         end
       end
 
-      # Stops playing the current song.
-      #
-      # @return [void]
       def stop_playing
         bput('stop play', 'You stop playing your song', 'In the name of', "But you're not performing")
       end
 
-      # Cleans the specified instrument using a cleaning cloth.
+      # Cleans the specified instrument.
       #
       # @param settings [OpenStruct] the settings for cleaning the instrument.
       # @param worn [Boolean] whether the instrument is worn.
-      # @return [Boolean] true if cleaning was successful, false otherwise.
+      # @return [Boolean] true if the instrument was cleaned successfully, false otherwise.
       def clean_instrument(settings, worn = true)
         cloth = settings.cleaning_cloth
         instrument = worn ? settings.worn_instrument : settings.instrument
@@ -840,10 +809,10 @@ module Lich
         true
       end
 
-      # Tunes the specified instrument to ensure it plays correctly.
+      # Tunes the specified instrument.
       #
       # @param settings [OpenStruct] the settings for tuning the instrument.
-      # @return [Boolean] true if tuning was successful, false otherwise.
+      # @return [Boolean] true if the instrument was tuned successfully, false otherwise.
       def tune_instrument(settings)
         instrument = settings.worn_instrument || settings.instrument
 
@@ -879,11 +848,11 @@ module Lich
         true
       end
 
-      # Performs the actual tuning of the instrument.
+      # Performs the tuning action on the specified instrument.
       #
       # @param instrument [String] the instrument to tune.
       # @param tuning [String] the type of tuning to perform.
-      # @return [Boolean] true if tuning was successful, false otherwise.
+      # @return [Boolean] true if the tuning was successful, false otherwise.
       def do_tune(instrument, tuning = "")
         unless instrument && DRCI.in_hands?(instrument)
           Lich::Messaging.msg("bold", "DRC: No instrument found in hands. Not trying to tune.")
@@ -909,9 +878,8 @@ module Lich
         end
       end
 
-      # Pauses all scripts that are not marked to avoid pausing.
-      #
-      # @return [Boolean] true if pause was successful, false otherwise.
+      # Pauses all scripts that can be paused.
+      # @return [Boolean] true if all scripts were paused, false otherwise.
       def pause_all
         return false unless $pause_all_lock.try_lock
 
@@ -932,9 +900,8 @@ module Lich
         true
       end
 
-      # Unpauses all scripts that were previously paused.
-      #
-      # @return [Boolean] true if unpause was successful, false otherwise.
+      # Unpauses all previously paused scripts.
+      # @return [Boolean] true if all scripts were unpaused, false otherwise.
       def unpause_all
         return false unless $pause_all_lock.owned?
 
@@ -950,8 +917,7 @@ module Lich
         true
       end
 
-      # Smartly pauses all scripts to allow the current script to run.
-      #
+      # Pauses all scripts except the current one to allow it to run.
       # @return [Array<String>] list of paused script names.
       def smart_pause_all
         paused_script_list = []
@@ -965,7 +931,7 @@ module Lich
 
       # Unpauses a list of specified scripts.
       #
-      # @param scripts_to_unpause [Array<String>] list of script names to unpause.
+      # @param scripts_to_unpause [Array<String>] names of scripts to unpause.
       # @return [void]
       def unpause_all_list(scripts_to_unpause)
         if scripts_to_unpause.empty?
@@ -976,8 +942,7 @@ module Lich
         end
       end
 
-      # Safely pauses all scripts while ensuring the current script can run.
-      #
+      # Safely pauses all scripts that can be paused.
       # @return [Array<String>] list of paused script names.
       def safe_pause_list
         return false unless $safe_pause_lock.try_lock
@@ -993,7 +958,7 @@ module Lich
 
       # Safely unpauses a list of specified scripts.
       #
-      # @param scripts_to_unpause [Array<String>] list of script names to unpause.
+      # @param scripts_to_unpause [Array<String>] names of scripts to unpause.
       # @return [void]
       def safe_unpause_list(scripts_to_unpause)
         return false unless $safe_pause_lock.owned?

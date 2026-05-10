@@ -2,15 +2,15 @@
 
 Lich::Util.install_gem_requirements({ 'ffi' => true })
 
-# Provides utility functions and classes for the Lich project.
-#
-# @see Lich::Util
 module Lich
+  # Provides common utilities for the Lich framework.
+  #
+  # @see Lich::Util
   module Common
     module GUI
-      # Provides access to Windows Credential Manager functions using FFI.
+      # Provides access to the Windows Credential Manager.
       #
-      # This module allows storing, retrieving, and deleting credentials on Windows systems.
+      # This module allows for storing, retrieving, and deleting credentials in the Windows Credential Manager.
       #
       # @see Lich::Common::GUI
       module WindowsCredentialManager
@@ -37,9 +37,6 @@ module Lich
         # Max credential size (512KB)
         CRED_MAX_CREDENTIAL_BLOB_SIZE = 512 * 1024
 
-        # Represents the structure of a credential in Windows Credential Manager.
-        #
-        # This class defines the layout of the credential structure used in FFI calls.
         class CredentialStruct < FFI::Struct
           layout(
             :flags, :uint32,
@@ -67,9 +64,6 @@ module Lich
         end
 
         class << self
-          # Checks if the Windows Credential Manager is available.
-          #
-          # @return [Boolean] true if available, false otherwise.
           def available?
             return false unless OS.windows?
 
@@ -84,12 +78,14 @@ module Lich
 
           # Stores a credential in the Windows Credential Manager.
           #
-          # @param target_name [String] the target name for the credential.
-          # @param username [String] the username associated with the credential.
-          # @param password [String] the password to store.
-          # @param comment [String, nil] an optional comment for the credential.
-          # @param persist [Integer] the persistence type (default is CRED_PERSIST_LOCAL_MACHINE).
-          # @return [Boolean] true if the credential was stored successfully, false otherwise.
+          # @param target_name [String] the target name for the credential
+          # @param username [String] the username associated with the credential
+          # @param password [String] the password for the credential
+          # @param comment [String, nil] an optional comment for the credential
+          # @param persist [Integer] the persistence type for the credential (default: CRED_PERSIST_LOCAL_MACHINE)
+          # @return [Boolean] true if the credential was stored successfully, false otherwise
+          # @example Store a credential
+          #   store_credential("example.com", "user", "password123")
           def store_credential(target_name, username, password, comment = nil, persist = CRED_PERSIST_LOCAL_MACHINE)
             return false unless available?
 
@@ -141,8 +137,10 @@ module Lich
 
           # Retrieves a credential from the Windows Credential Manager.
           #
-          # @param target_name [String] the target name of the credential to retrieve.
-          # @return [String, nil] the password if found, nil if not found.
+          # @param target_name [String] the target name for the credential
+          # @return [String, nil] the password if found, nil if not found
+          # @example Retrieve a credential
+          #   password = retrieve_credential("example.com")
           def retrieve_credential(target_name)
             return nil unless available?
 
@@ -183,8 +181,10 @@ module Lich
 
           # Deletes a credential from the Windows Credential Manager.
           #
-          # @param target_name [String] the target name of the credential to delete.
-          # @return [Boolean] true if the credential was deleted successfully, false otherwise.
+          # @param target_name [String] the target name for the credential
+          # @return [Boolean] true if the credential was deleted successfully, false otherwise
+          # @example Delete a credential
+          #   delete_credential("example.com")
           def delete_credential(target_name)
             return false unless available?
 
@@ -211,8 +211,8 @@ module Lich
 
           # Converts a string to a wide character string (UTF-16LE).
           #
-          # @param str [String] the string to convert.
-          # @return [FFI::MemoryPointer] a pointer to the wide character string.
+          # @param str [String] the string to convert
+          # @return [FFI::MemoryPointer] pointer to the wide character string
           def string_to_wide(str)
             wide_str = str.encode('UTF-16LE')
             # Add UTF-16LE null terminator
@@ -225,8 +225,8 @@ module Lich
 
           # Converts a wide character string (UTF-16LE) back to a regular string.
           #
-          # @param ptr [FFI::MemoryPointer] a pointer to the wide character string.
-          # @return [String, nil] the converted string, or nil if the pointer is null.
+          # @param ptr [FFI::MemoryPointer] pointer to the wide character string
+          # @return [String, nil] the converted string, or nil if the pointer is null
           def wide_to_string(ptr)
             return nil if ptr.null?
 

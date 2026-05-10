@@ -10,6 +10,9 @@ require_relative 'active_sessions/client'
 require_relative 'active_sessions/lifecycle'
 
 module Lich
+  # Provides an internal API for managing active Lich sessions.
+  #
+  # This module contains methods to register, unregister, and query active sessions.
   module InternalAPI
     # Cross-process local service that tracks currently active Lich sessions.
     #
@@ -17,8 +20,7 @@ module Lich
     # Cross-process local service that tracks currently active Lich sessions.
     #
     # This module owns the process-local server instance for the active
-    # sessions.
-    #
+    # sessions and provides methods to manage them.
     # @see Lich::InternalAPI
     module ActiveSessions
       FEATURE_FLAG = :active_sessions_api
@@ -36,8 +38,7 @@ module Lich
       @mutex = Mutex.new
       @service_client_mutex = Mutex.new
 
-      # Checks if the ActiveSessions feature is enabled.
-      #
+      # Checks if the active sessions feature is enabled.
       # @return [Boolean] true if the feature is enabled, false otherwise.
       def self.enabled?
         return false unless defined?(Lich::Common::FeatureFlags)
@@ -48,8 +49,7 @@ module Lich
         false
       end
 
-      # Ensures that the ActiveSessions service is running.
-      #
+      # Ensures that the active sessions service is running.
       # @return [Boolean] true if the service is available, false otherwise.
       def self.ensure_service!
         return false unless enabled?
@@ -97,9 +97,8 @@ module Lich
       private_class_method :ensure_service_internal!
 
       # Registers a new session with the given payload.
-      #
       # @param payload [Hash] the session data to register.
-      # @return [Boolean] true if the session was registered successfully, false otherwise.
+      # @return [Boolean] true if the session was successfully registered, false otherwise.
       def self.register_session(payload)
         return false unless enabled?
         return false unless ensure_service!
@@ -115,9 +114,8 @@ module Lich
       private_class_method :register_session_admitted
 
       # Unregisters a session by its process ID.
-      #
       # @param pid [Integer] the process ID of the session to unregister.
-      # @return [Boolean] true if the session was unregistered successfully, false otherwise.
+      # @return [Boolean] true if the session was successfully unregistered, false otherwise.
       def self.unregister_session(pid:)
         return false unless enabled?
         return false unless ensure_service!
@@ -133,7 +131,6 @@ module Lich
       private_class_method :unregister_session_admitted
 
       # Retrieves a snapshot of the current active sessions.
-      #
       # @return [Hash] a snapshot of active sessions or a fallback snapshot in case of failure.
       def self.snapshot
         return fallback_snapshot unless enabled?
@@ -157,8 +154,7 @@ module Lich
         fallback_snapshot(error: e.message)
       end
 
-      # Provides information about the ActiveSessions service.
-      #
+      # Provides information about the active sessions service.
       # @return [Hash] a hash containing service information such as owner PID and availability.
       def self.service_info
         discovery = load_discovery
@@ -170,8 +166,7 @@ module Lich
         }.compact
       end
 
-      # Stops the ActiveSessions service and cleans up resources.
-      #
+      # Stops the active sessions service and cleans up resources.
       # @return [void]
       def self.stop_service!
         @mutex.synchronize do
@@ -201,7 +196,6 @@ module Lich
       private_class_method :service_client
 
       # Provides a fallback snapshot structure in case of service unavailability.
-      #
       # @param error [String, nil] optional error message to include in the snapshot.
       # @return [Hash] a fallback snapshot structure.
       def self.fallback_snapshot(error: nil)
@@ -216,8 +210,7 @@ module Lich
       end
       private_class_method :fallback_snapshot
 
-      # Checks if the ActiveSessions service is available.
-      #
+      # Checks if the active sessions service is available.
       # @return [Boolean] true if the service is available, false otherwise.
       def self.service_available?
         service_client&.ping || false
@@ -225,7 +218,6 @@ module Lich
       private_class_method :service_available?
 
       # Returns the file path for the discovery file.
-      #
       # @return [String] the path to the discovery file.
       def self.discovery_path
         base_dir = defined?(TEMP_DIR) ? TEMP_DIR : Dir.tmpdir
@@ -234,8 +226,7 @@ module Lich
       private_class_method :discovery_path
 
       # Loads the discovery information from the discovery file.
-      #
-      # @return [Hash] the discovery data or an empty hash if not found.
+      # @return [Hash] the parsed discovery data or an empty hash if not found.
       def self.load_discovery
         return {} unless File.exist?(discovery_path)
 
@@ -246,7 +237,6 @@ module Lich
       private_class_method :load_discovery
 
       # Writes the discovery information to the discovery file.
-      #
       # @param owner_pid [Integer] the process ID of the owner.
       # @param auth_token [String] the authentication token for the service.
       # @return [void]
@@ -267,7 +257,6 @@ module Lich
       private_class_method :write_discovery
 
       # Deletes the discovery file if this process owns it.
-      #
       # @return [void]
       def self.delete_discovery_if_owned
         discovery = load_discovery
@@ -280,8 +269,7 @@ module Lich
       end
       private_class_method :delete_discovery_if_owned
 
-      # Cleans up the discovery file if this is the last session.
-      #
+      # Cleans up the discovery file if this is the last active session.
       # @return [void]
       def self.cleanup_discovery_if_last_session!
         discovery = load_discovery

@@ -4,7 +4,6 @@ module Lich
     # Represents a processor for string evaluations.
     #
     # This class allows for the evaluation of a string as Ruby code.
-    #
     # @see Lich::Common
     class StringProc
       # Initializes a new StringProc instance.
@@ -34,22 +33,19 @@ module Lich
         proc { eval(@string) }.call
       end
 
-      # Dumps the string representation of the object.
-      # @param _d [nil] optional parameter (not used)
-      # @return [String] the string stored in the object
       def _dump(_d = nil)
         @string
       end
 
-      # Returns a string representation of the object for inspection.
+      # Returns a string representation of the StringProc instance.
       # @return [String] a string describing the StringProc instance
       def inspect
         "StringProc.new(#{@string.inspect})"
       end
 
-      # Converts the object to JSON format.
+      # Converts the StringProc instance to JSON format.
       # @param args [Array] optional arguments for JSON conversion
-      # @return [String] the JSON representation of the object
+      # @return [String] the JSON representation of the StringProc
       def to_json(*args)
         ";e #{_dump}".to_json(args)
       end
@@ -57,6 +53,7 @@ module Lich
       # Loads a StringProc instance from a string.
       # @param string [String] the string to load
       # @return [StringProc] the loaded StringProc instance
+      # @api private
       def StringProc._load(string)
         StringProc.new(string)
       end

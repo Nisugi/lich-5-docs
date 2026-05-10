@@ -2,12 +2,13 @@
 module Lich
   module Gemstone
     module Infomon
-      # Synchronizes the character's infomon settings.
+      # Synchronizes the character's infomon settings with the server.
       #
       # This method checks for active spells that may interfere with the sync process,
-      # retrieves various character information, and updates the last sync date and version.
+      # such as the Shroud of Deception, and handles them accordingly.
+      #
       # @return [void]
-      # @note This method may disable certain spells during the sync process.
+      # @api private
       def self.sync
         # since none of this information is 3rd party displayed, silence is golden.
         shroud_detected = false
@@ -47,11 +48,12 @@ module Lich
         Infomon.set('infomon.last_sync_version', LICH_VERSION)
       end
 
-      # Resets the infomon data and re-synchronizes it.
+      # Resets the infomon data and repopulates it.
       #
-      # This method deletes the character table, recreates it, and then repopulates it.
+      # This method deletes the character table, recreates it, and then syncs the data.
+      #
       # @return [void]
-      # @note This is a destructive operation and should be used with caution.
+      # @api private
       def self.redo!
         # Destructive - deletes char table, recreates it, then repopulates it
         respond 'Infomon complete reset reqeusted.'
@@ -62,12 +64,11 @@ module Lich
 
       # Displays stored information for the character.
       #
-      # This method retrieves and formats the stored infomon data for display.
-      # @param full [Boolean] whether to display all data or only non-zero values
+      # If the full parameter is set to true, all stored values are displayed.
+      # Otherwise, only non-zero values are shown.
+      #
+      # @param full [Boolean] whether to display all values or only non-zero ones
       # @return [void]
-      # @example
-      #   Infomon.show(true) # Displays all stored information
-      #   Infomon.show # Displays only non-zero values
       def self.show(full = false)
         response = []
         # display all stored db values
@@ -90,9 +91,10 @@ module Lich
       # Checks if a refresh of the infomon database is needed.
       #
       # This method determines if the database structure has changed or if the
-      # stored version is outdated, necessitating a refresh.
+      # version of the infomon data is outdated.
+      #
       # @return [Boolean] true if a refresh is needed, false otherwise
-      # @note The refresh criteria include the last sync date and version.
+      # @api private
       def self.db_refresh_needed?
         # Change date below to the last date of infomon.db structure change to allow for a forced reset of data.
         # Change Lich version below to also force a refresh of DB as well due to new API/methods used by infomon (introduction of CHE and account subscription status for example).

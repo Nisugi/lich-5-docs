@@ -10,9 +10,7 @@ module Lich
       #
       # This constant provides a mapping of directions to their opposites.
       #
-      # @example
-      #   DIRECTION_REVERSE["north"] # => "south"
-      #   DIRECTION_REVERSE["northeast"] # => "southwest"
+      # @see #reverse_path
       DIRECTION_REVERSE = {
         'northeast' => 'southwest',
         'southwest' => 'northeast',
@@ -31,8 +29,8 @@ module Lich
       #
       # This constant contains regular expressions that match successful sale messages.
       #
-      # @example
-      #   SELL_SUCCESS_PATTERNS[0].match("hands you 100 kronars") # => MatchData
+      # @example Matching success pattern
+      #   /hands? you \d+ (?:kronars|lirums|dokoras)/i
       SELL_SUCCESS_PATTERNS = [
         /hands? you \d+ (?:kronars|lirums|dokoras)/i
       ].freeze unless defined?(SELL_SUCCESS_PATTERNS)
@@ -42,8 +40,8 @@ module Lich
       #
       # This constant contains regular expressions that match failure messages when attempting to sell an item.
       #
-      # @example
-      #   SELL_FAILURE_PATTERNS[0].match("I need to examine the merchandise first") # => MatchData
+      # @example Matching failure pattern
+      #   /I need to examine the merchandise first/
       SELL_FAILURE_PATTERNS = [
         /I need to examine the merchandise first/,
         /That's not worth anything/,
@@ -81,8 +79,8 @@ module Lich
       #
       # This constant contains phrases that indicate a purchase action without specifying a price.
       #
-      # @example
-      #   BUY_NON_PRICE_PATTERNS.include?("You decide to purchase") # => true
+      # @example Matching non-price buy pattern
+      #   'You decide to purchase'
       BUY_NON_PRICE_PATTERNS = [
         'You decide to purchase',
         'Buy what'
@@ -93,8 +91,8 @@ module Lich
       #
       # This constant contains regular expressions that match successful ask messages.
       #
-      # @example
-      #   ASK_SUCCESS_PATTERNS[0].match("hands you") # => MatchData
+      # @example Matching success ask pattern
+      #   /hands you/
       ASK_SUCCESS_PATTERNS = [
         /hands you/
       ].freeze unless defined?(ASK_SUCCESS_PATTERNS)
@@ -104,8 +102,8 @@ module Lich
       #
       # This constant contains regular expressions that match failure messages when attempting to ask for an item.
       #
-      # @example
-      #   ASK_FAILURE_PATTERNS[0].match("does not seem to know anything about that") # => MatchData
+      # @example Matching failure ask pattern
+      #   /does not seem to know anything about that/
       ASK_FAILURE_PATTERNS = [
         /does not seem to know anything about that/,
         /All I know about/,
@@ -116,7 +114,7 @@ module Lich
       # Sells an item in the specified room.
       #
       # @param room [String] the room where the item is to be sold
-      # @param item [String] the name of the item to sell
+      # @param item [String] the item to sell
       # @return [Boolean] true if the sale was successful, false otherwise
       def sell_item(room, item)
         return false unless DRCI.in_hands?(item)
@@ -134,7 +132,7 @@ module Lich
       # Buys an item in the specified room.
       #
       # @param room [String] the room where the item is to be bought
-      # @param item [String] the name of the item to buy
+      # @param item [String] the item to buy
       # @return [void]
       def buy_item(room, item)
         walk_to(room)
@@ -150,9 +148,9 @@ module Lich
 
       # Asks a character for an item in the specified room.
       #
-      # @param room [String] the room where the ask action takes place
+      # @param room [String] the room where the ask is made
       # @param name [String] the name of the character to ask
-      # @param item [String] the name of the item to ask for
+      # @param item [String] the item to ask for
       # @return [Boolean] true if the ask was successful, false otherwise
       def ask_for_item?(room, name, item)
         walk_to(room)
@@ -167,7 +165,7 @@ module Lich
 
       # Orders an item in the specified room.
       #
-      # @param room [String] the room where the order is placed
+      # @param room [String] the room where the order is made
       # @param item_number [Integer] the number of the item to order
       # @return [void]
       def order_item(room, item_number)
@@ -180,10 +178,10 @@ module Lich
 
       # Disposes of an item in the specified trash room.
       #
-      # @param item [String] the name of the item to dispose
-      # @param trash_room [String, nil] the room where the item will be disposed (optional)
-      # @param worn_trashcan [String, nil] the trashcan to use (optional)
-      # @param worn_trashcan_verb [String, nil] the verb to use with the trashcan (optional)
+      # @param item [String] the item to dispose of
+      # @param trash_room [String, nil] the room where the item will be disposed
+      # @param worn_trashcan [String, nil] the trashcan being used
+      # @param worn_trashcan_verb [String, nil] the verb for disposing
       # @return [void]
       def dispose(item, trash_room = nil, worn_trashcan = nil, worn_trashcan_verb = nil)
         return unless item
@@ -196,7 +194,7 @@ module Lich
       #
       # @param lockpick_type [String] the type of lockpick to refill
       # @param hometown [String] the hometown where the refill occurs
-      # @param container [String] the container to refill
+      # @param container [String] the container to hold the lockpicks
       # @param count [Integer] the number of lockpicks to refill
       # @return [void]
       def refill_lockpick_container(lockpick_type, hometown, container, count)
@@ -233,12 +231,12 @@ module Lich
       # game server connection is lost or go2 repeatedly fails.
       MAX_WALK_TO_RETRIES = 3
 
-      # Navigates to the specified room.
+      # Walks to the specified target room.
       #
-      # @param target_room [String, Integer] the room to navigate to
-      # @param restart_on_fail [Boolean] whether to restart navigation on failure (default: true)
-      # @param retry_depth [Integer] the current depth of retries (default: 0)
-      # @return [Boolean] true if navigation was successful, false otherwise
+      # @param target_room [String, Integer] the room to walk to
+      # @param restart_on_fail [Boolean] whether to restart on failure
+      # @param retry_depth [Integer] the current depth of retries
+      # @return [Boolean] true if successfully reached the room, false otherwise
       def walk_to(target_room, restart_on_fail = true, retry_depth: 0)
         target_room = tag_to_id(target_room) if target_room.is_a?(String) && target_room.count("a-zA-Z") > 0
 
@@ -368,7 +366,7 @@ module Lich
 
       # Retreats from the current room, ignoring specified NPCs.
       #
-      # @param ignored_npcs [Array<String>] a list of NPCs to ignore during retreat
+      # @param ignored_npcs [Array<String>] list of NPCs to ignore during retreat
       # @return [void]
       def retreat(ignored_npcs = [])
         return if (DRRoom.npcs - ignored_npcs).empty?
@@ -376,15 +374,15 @@ module Lich
         DRC.retreat(ignored_npcs)
       end
 
-      # Finds an empty room based on specified criteria.
+      # Finds an empty room from a list of search rooms.
       #
-      # @param search_rooms [Array<String>] a list of room IDs to search
+      # @param search_rooms [Array<String>] the list of room IDs to search
       # @param idle_room [String] a room to go to if no empty room is found
-      # @param predicate [Proc, nil] a predicate to evaluate for room suitability (optional)
-      # @param min_mana [Integer] minimum mana required for the room (default: 0)
-      # @param strict_mana [Boolean] whether to enforce strict mana requirements (default: false)
-      # @param max_search_attempts [Integer] maximum number of search attempts (default: Float::INFINITY)
-      # @param prioritize_buddies [Boolean] whether to prioritize rooms with friends (default: false)
+      # @param predicate [Proc, nil] a condition to check for suitability
+      # @param min_mana [Integer] minimum mana required to consider a room
+      # @param strict_mana [Boolean] whether to enforce the minimum mana requirement
+      # @param max_search_attempts [Integer] maximum number of search attempts
+      # @param prioritize_buddies [Boolean] whether to prioritize rooms with friends
       # @return [Boolean] true if an empty room is found, false otherwise
       def find_empty_room(search_rooms, idle_room, predicate = nil, min_mana = 0, strict_mana = false, max_search_attempts = Float::INFINITY, prioritize_buddies = false)
         search_attempt = 0
@@ -439,7 +437,7 @@ module Lich
 
       # Sorts a list of destinations based on distance from the current room.
       #
-      # @param target_list [Array<Integer>] a list of room IDs to sort
+      # @param target_list [Array<Integer>] the list of room IDs to sort
       # @return [Array<Integer>] the sorted list of room IDs
       def sort_destinations(target_list)
         target_list = target_list.collect(&:to_i)
@@ -448,11 +446,11 @@ module Lich
         target_list.sort { |a, b| shortest_distances[a] <=> shortest_distances[b] }
       end
 
-      # Finds an empty room from a sorted list of rooms.
+      # Finds an empty room from a sorted list of search rooms.
       #
-      # @param search_rooms [Array<String>] a list of room IDs to search
+      # @param search_rooms [Array<String>] the list of room IDs to search
       # @param idle_room [String] a room to go to if no empty room is found
-      # @param predicate [Proc, nil] a predicate to evaluate for room suitability (optional)
+      # @param predicate [Proc, nil] a condition to check for suitability
       # @return [Boolean] true if an empty room is found, false otherwise
       def find_sorted_empty_room(search_rooms, idle_room, predicate = nil)
         sorted_rooms = sort_destinations(search_rooms)
@@ -462,8 +460,8 @@ module Lich
       # Calculates the time to travel from one room to another.
       #
       # @param origin [Integer] the starting room ID
-      # @param destination [Integer] the destination room ID
-      # @return [Integer] the time to travel in seconds
+      # @param destination [Integer] the target room ID
+      # @return [Integer] the time taken to travel to the destination
       def time_to_room(origin, destination)
         _previous, shortest_paths = Map.dijkstra(origin, destination)
         shortest_paths[destination]
@@ -471,7 +469,7 @@ module Lich
 
       # Reverses a path of directions.
       #
-      # @param path [Array<String>] an array of directions to reverse
+      # @param path [Array<String>] the path to reverse
       # @return [Array<String>, nil] the reversed path or nil if an error occurs
       def reverse_path(path)
         path.reverse.map do |dir|
@@ -484,9 +482,9 @@ module Lich
         end
       end
 
-      # Retrieves the target ID for a specified target in a hometown.
+      # Retrieves the target ID for a given target in a hometown.
       #
-      # @param hometown [String] the name of the hometown
+      # @param hometown [String] the hometown to search in
       # @param target [String] the target to find
       # @return [Integer, nil] the target ID or nil if not found
       def get_hometown_target_id(hometown, target)

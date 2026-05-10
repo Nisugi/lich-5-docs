@@ -42,13 +42,13 @@ module Lich
         @cache
       end
 
-      # Returns the file path for the database used by Infomon.
+      # Returns the path to the database file.
       # @return [String]
       def self.file
         @file
       end
 
-      # Returns the database connection instance.
+      # Returns the Sequel database connection instance.
       # @return [Sequel::Database]
       def self.db
         @db
@@ -60,8 +60,6 @@ module Lich
         @sql_mutex
       end
 
-      # Locks the mutex to ensure thread safety during operations.
-      # @return [void]
       def self.mutex_lock
         begin
           self.mutex.lock unless self.mutex.owned?
@@ -71,8 +69,6 @@ module Lich
         end
       end
 
-      # Unlocks the mutex after operations are complete.
-      # @return [void]
       def self.mutex_unlock
         begin
           self.mutex.unlock if self.mutex.owned?
@@ -82,8 +78,6 @@ module Lich
         end
       end
 
-      # Returns the SQL queue used for asynchronous database operations.
-      # @return [Queue]
       def self.queue
         @sql_queue
       end
@@ -95,7 +89,6 @@ module Lich
       end
 
       # Ensures that the context is valid before accessing Infomon data.
-      # @return [void]
       # @raise [RuntimeError] if XMLData.name is not loaded
       def self.context!
         return unless XMLData.name.empty? or XMLData.name.nil?
@@ -103,7 +96,7 @@ module Lich
         fail "cannot access Infomon before XMLData.name is loaded"
       end
 
-      # Returns the name of the database table for the current game context.
+      # Returns the name of the database table based on game and character name.
       # @return [Symbol]
       def self.table_name
         self.context!
@@ -120,13 +113,11 @@ module Lich
         Infomon.setup!
       end
 
-      # Returns the database table instance for the current game context.
-      # @return [Sequel::Dataset]
       def self.table
         @_table ||= self.setup!
       end
 
-      # Sets up the database table for the current game context, creating it if necessary.
+      # Sets up the database table for Infomon if it does not exist.
       # @return [Sequel::Dataset]
       def self.setup!
         self.mutex_lock
@@ -167,9 +158,9 @@ module Lich
         key.to_s.downcase.tr(' -', '_').gsub(/_+/, '_')
       end
 
-      # Normalizes the value for storage in the cache.
-      # @param val [Object] the original value
-      # @return [Boolean, String, nil] the normalized value
+      # Converts the value to a boolean if it is a string representation.
+      # @param val [String, Boolean] the original value
+      # @return [Boolean, String] the converted value
       def self._value(val)
         return true if val.to_s == "true"
         return false if val.to_s == "false"
@@ -177,10 +168,10 @@ module Lich
       end
 
       AllowedTypes = [Integer, String, NilClass, FalseClass, TrueClass]
-      # Validates the key and value types for insertion into the database.
+      # Validates the key and value types before insertion.
       # @param key [String] the key to validate
       # @param value [Object] the value to validate
-      # @return [Boolean, String, nil] the validated value
+      # @return [Object] the validated value
       # @raise [RuntimeError] if the value type is invalid
       def self._validate!(key, value)
         return self._value(value) if AllowedTypes.include?(value.class)
@@ -189,7 +180,9 @@ module Lich
 
       # Retrieves a value from the cache or database by key.
       # @param key [String] the key to retrieve
-      # @return [Boolean, String, nil] the retrieved value
+      # @return [String, nil] the value associated with the key or nil if not found
+      # @example Get a value
+      #   Infomon.get("example_key")
       def self.get(key)
         self.cache_load if !@cache_loaded
         key = self._key(key)
@@ -220,7 +213,9 @@ module Lich
 
       # Retrieves a boolean value from the cache or database by key.
       # @param key [String] the key to retrieve
-      # @return [Boolean] the retrieved boolean value
+      # @return [Boolean] the boolean value associated with the key
+      # @example Get a boolean value
+      #   Infomon.get_bool("example_key")
       def self.get_bool(key)
         value = Infomon.get(key)
         if value.is_a?(TrueClass) || value.is_a?(FalseClass)
@@ -234,7 +229,7 @@ module Lich
 
       # Retrieves the last updated timestamp for a given key.
       # @param key [String] the key to retrieve the timestamp for
-      # @return [Float, nil] the last updated timestamp
+      # @return [Float, nil] the updated timestamp or nil if not found
       def self.get_updated_at(key)
         key = self._key(key)
         begin
@@ -253,8 +248,8 @@ module Lich
         end
       end
 
-      # Inserts or replaces a record in the database for the given key and value.
-      # @param args [Array] the key-value pairs to insert or replace
+      # Inserts or replaces a record in the database.
+      # @param args [Array] the arguments for the insert operation
       # @return [void]
       def self.upsert(*args)
         self.table
@@ -262,10 +257,10 @@ module Lich
             .insert(*args)
       end
 
-      # Sets a value in the cache and queues an insert or replace operation in the database.
+      # Sets a key-value pair in the cache and database.
       # @param key [String] the key to set
       # @param value [Object] the value to set
-      # @return [Symbol] :noop if the value is unchanged, otherwise returns :ok
+      # @return [Symbol] :noop if the value is unchanged, otherwise performs the operation
       def self.set(key, value)
         key = self._key(key)
         value = self._validate!(key, value)
@@ -275,7 +270,7 @@ module Lich
       on conflict(`key`) do update set value = excluded.value, updated_at = excluded.updated_at;" % [self.db.literal(self.table_name), self.db.literal(key), self.db.literal(value), current_timestamp]
       end
 
-      # Deletes a key from the cache and queues a delete operation in the database.
+      # Deletes a key from the cache and database.
       # @param key [String] the key to delete
       # @return [void]
       def self.delete!(key)
@@ -284,9 +279,9 @@ module Lich
         self.queue << "DELETE FROM %s WHERE key = (%s);" % [self.db.literal(self.table_name), self.db.literal(key)]
       end
 
-      # Flushes the SQL queue, executing all queued operations.
-      # @param timeout_seconds [Integer] the maximum time to wait for the flush to complete
-      # @return [Boolean] true if the flush completed successfully, false if it timed out
+      # Flushes the SQL queue, ensuring all queued operations are executed.
+      # @param timeout_seconds [Integer] the maximum time to wait for the flush
+      # @return [Boolean] true if flushed successfully, false if timed out
       def self.flush(timeout_seconds: 5)
         return true if self.queue.empty?
 
@@ -304,8 +299,8 @@ module Lich
         end
       end
 
-      # Inserts or replaces multiple records in the database for the given key-value pairs.
-      # @param blob [Array] an array of key-value pairs to insert or replace
+      # Inserts or replaces multiple records in the database in a batch operation.
+      # @param blob [Array] an array of key-value pairs to upsert
       # @return [void]
       def self.upsert_batch(*blob)
         updated = (blob.first.map { |k, v| [self._key(k), self._validate!(k, v)] } - self.cache.to_a)
@@ -347,7 +342,7 @@ module Lich
         end
       end
 
-      # Starts a thread to monitor the game state and perform initial setup as needed.
+      # Starts a thread to monitor and initialize Infomon when the game is ready.
       # @return [void]
       def self.watch!
         @init_thread ||= Thread.new do

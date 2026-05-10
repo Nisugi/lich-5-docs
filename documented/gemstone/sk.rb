@@ -5,8 +5,6 @@ module Lich
 
       # Retrieves the known SK spells.
       #
-      # This method checks if the known spells are already loaded,
-      # and if not, it attempts to load them from the database.
       # @return [Array<String>, nil] the list of known SK spells or nil if not set.
       def self.sk_known
         if @sk_known.nil?
@@ -27,9 +25,7 @@ module Lich
 
       # Sets the known SK spells.
       #
-      # This method saves the provided list of spells to the database
-      # and updates the internal state.
-      # @param val [Array<String>] the list of spells to be known
+      # @param val [Array<String>] the list of SK spells to be known.
       # @return [void]
       def self.sk_known=(val)
         unless @sk_known == val
@@ -40,8 +36,7 @@ module Lich
 
       # Checks if a specific spell is known.
       #
-      # This method returns true if the spell is included in the known spells.
-      # @param spell [Object] the spell object to check
+      # @param spell [Object] the spell to check for knowledge.
       # @return [Boolean] true if the spell is known, false otherwise.
       def self.known?(spell)
         self.sk_known if @sk_known.nil?
@@ -49,8 +44,6 @@ module Lich
       end
 
       # Lists the current known SK spells.
-      #
-      # This method outputs the current list of known spells to the user.
       # @return [void]
       def self.list
         respond "Current SK Spells: #{@sk_known.inspect}"
@@ -58,8 +51,6 @@ module Lich
       end
 
       # Provides help information for managing SK spells.
-      #
-      # This method outputs the commands available for managing SK spells.
       # @return [void]
       def self.help
         respond "   Script to add SK spells to be known and used with Spell API calls."
@@ -71,31 +62,28 @@ module Lich
         respond ""
       end
 
-      # Adds new spells to the known SK spells list.
+      # Adds one or more spell numbers to the known SK spells.
       #
-      # This method takes one or more spell numbers and adds them to the known spells.
-      # @param numbers [Array<String>] the spell numbers to add
+      # @param numbers [Array<String>] the spell numbers to add.
       # @return [void]
       def self.add(*numbers)
         self.sk_known = (@sk_known + numbers).uniq
         self.list
       end
 
-      # Removes spells from the known SK spells list.
+      # Removes one or more spell numbers from the known SK spells.
       #
-      # This method takes one or more spell numbers and removes them from the known spells.
-      # @param numbers [Array<String>] the spell numbers to remove
+      # @param numbers [Array<String>] the spell numbers to remove.
       # @return [void]
       def self.remove(*numbers)
         self.sk_known = (@sk_known - numbers).uniq
         self.list
       end
 
-      # Main entry point for managing SK spells.
+      # Main entry point for managing SK spells based on the action provided.
       #
-      # This method processes the action requested and performs the corresponding operation.
-      # @param action [Symbol] the action to perform (e.g., :add, :rm, :list)
-      # @param spells [String, nil] the spell numbers to add or remove, as a space-separated string
+      # @param action [Symbol] the action to perform (e.g., :add, :rm, :list).
+      # @param spells [String, nil] the spell numbers to add or remove, as a space-separated string.
       # @return [void]
       def self.main(action = help, spells = nil)
         self.sk_known if @sk_known.nil?

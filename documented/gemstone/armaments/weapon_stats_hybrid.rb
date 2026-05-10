@@ -1,16 +1,21 @@
 module Lich
   module Gemstone
     module Armaments
-      # Contains static weapon statistics for various weapon types.
-      #
-      # This module provides a structured way to access weapon stats,
-      # including damage types, factors, and other metadata.
       module WeaponStats
+# Static array of weapon stats indexed by weapon identifiers.
+# Each weapon entry contains metadata such as category, base name,
+# alternative names, damage types, damage factors, armor avoidance by
+# armor size group (ASG), base roundtime (RT), and minimum RT.
+#
+# @see Lich::Gemstone::Armaments::WeaponStats
 # Static array of weapon stats indexed by weapon identifiers. Each weapon
 # entry contains metadata such as category, base name, alternative names,
 # damage types, damage factors, armor avoidance by armor size group (ASG),
 # base roundtime (RT), and minimum RT.
 #
+# damage_types: Hash of damage type percentages or values.
+#
+# @see Lich::Gemstone::Armaments::WeaponStats
 # damage_types: Hash of damage type percentages or values.
 #   :slash    => % of slash damage (Float or nil)
 #   :crush    => % of crush damage (Float or nil)
@@ -28,6 +33,9 @@ module Lich
 #  Plate:   [17] ASG 17  [18] ASG 18  [19] ASG 19  [20] ASG 20
 #
 
+# Template for weapon stats configuration.
+# This template defines the structure for weapon stats including
+# categories, names, damage types, and other attributes.
 =begin Template
         :Name   => {
             :category      => :unarmed,
@@ -41,15 +49,8 @@ module Lich
             :min_rt        => 4,
           },
 =end
-        # A hash containing hybrid weapon statistics indexed by weapon identifiers.
-        # Each entry includes details such as category, base name, damage types,
-        # damage factors, armor avoidance by armor size group, and roundtime.
         @@weapon_stats_hybrid = {
           # Hybrid Weapons
-          # Statistics for the katar weapon.
-          #
-          # @note This weapon is categorized as hybrid and utilizes both OHE and BRAWL skills.
-          # @return [Hash] A hash containing the weapon's stats.
           :katar => {
             :category      => :hybrid,
             :hybrid_skills => [:OHE, :BRAWL],

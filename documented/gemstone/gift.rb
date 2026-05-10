@@ -3,24 +3,21 @@ module Lich
   module Gemstone
     # Represents a gift in the Lich game.
     #
-    # This class manages the state of a gift, including its start time,
-    # pulse count, and methods to manipulate and retrieve this data.
+    # This class manages the timing and pulse count of a gift.
     #
     # @see Lich::Gemstone
     class Gift
       class << self
         attr_reader :gift_start, :pulse_count
 
-        # Initializes the gift state.
-        # Sets the start time to the current time and resets the pulse count.
+        # Initializes the gift's starting time and pulse count.
         # @return [void]
         def init_gift
           @gift_start = Time.now
           @pulse_count = 0
         end
 
-        # Marks the gift as started.
-        # Resets the pulse count and updates the start time to the current time.
+        # Marks the start of the gift, resetting the pulse count.
         # @return [void]
         def started
           @gift_start = Time.now
@@ -34,25 +31,25 @@ module Lich
         end
 
         # Calculates the remaining time for the gift in seconds.
-        # @return [Float] the remaining time in seconds
+        # @return [Float] remaining time in seconds
         def remaining
           ([360 - @pulse_count, 0].max * 60).to_f
         end
 
         # Calculates the time when the gift will restart.
-        # @return [Time] the time when the gift restarts
+        # @return [Time] the restart time
         def restarts_on
           @gift_start + 594000
         end
 
-        # Serializes the gift state into an array.
-        # @return [Array] an array containing the start time and pulse count
+        # Serializes the gift's state into an array.
+        # @return [Array] an array containing the gift start time and pulse count
         def serialize
           [@gift_start, @pulse_count]
         end
 
-        # Loads the gift state from a serialized array.
-        # @param array [Array] an array containing the start time and pulse count
+        # Loads the gift's state from a serialized array.
+        # @param array [Array] an array containing the gift start time and pulse count
         # @return [void]
         def load_serialized=(array)
           @gift_start = array[0]

@@ -1,12 +1,12 @@
 
 # Provides functionality for the Lich project.
 #
-# @see Lich::DragonRealms
+# @see Lich::DragonRealms for DragonRealms specific features.
 module Lich
   module DragonRealms
     # Module for managing DragonRealms character statistics.
     #
-    # This module contains methods to access and modify character stats such as race, guild, and attributes.
+    # This module handles various character attributes such as race, guild, and stats.
     module DRStats
       @@race = nil
       @@guild = nil
@@ -27,271 +27,271 @@ module Lich
       @@balance ||= 8
       @@luck ||= 0
 
-      # Retrieves the character's race.
+      # Returns the current race of the character.
       # @return [String, nil] the character's race or nil if not set.
       def self.race
         @@race
       end
 
-      # Sets the character's race.
+      # Sets the race of the character.
       # @param val [String] the race to set for the character.
       # @return [void]
       def self.race=(val)
         @@race = val
       end
 
-      # Retrieves the character's guild.
+      # Returns the current guild of the character.
       # @return [String, nil] the character's guild or nil if not set.
       def self.guild
         @@guild
       end
 
-      # Sets the character's guild.
+      # Sets the guild of the character.
       # @param val [String] the guild to set for the character.
       # @return [void]
       def self.guild=(val)
         @@guild = val
       end
 
-      # Retrieves the character's gender.
+      # Returns the current gender of the character.
       # @return [String, nil] the character's gender or nil if not set.
       def self.gender
         @@gender
       end
 
-      # Sets the character's gender.
+      # Sets the gender of the character.
       # @param val [String] the gender to set for the character.
       # @return [void]
       def self.gender=(val)
         @@gender = val
       end
 
-      # Retrieves the character's age.
+      # Returns the current age of the character.
       # @return [Integer] the character's age.
       def self.age
         @@age
       end
 
-      # Sets the character's age.
+      # Sets the age of the character.
       # @param val [Integer] the age to set for the character.
       # @return [void]
       def self.age=(val)
         @@age = val
       end
 
-      # Retrieves the character's circle.
+      # Returns the current circle of the character.
       # @return [Integer] the character's circle.
       def self.circle
         @@circle
       end
 
-      # Sets the character's circle.
+      # Sets the circle of the character.
       # @param val [Integer] the circle to set for the character.
       # @return [void]
       def self.circle=(val)
         @@circle = val
       end
 
-      # Retrieves the character's strength.
+      # Returns the current strength of the character.
       # @return [Integer] the character's strength.
       def self.strength
         @@strength
       end
 
-      # Sets the character's strength.
+      # Sets the strength of the character.
       # @param val [Integer] the strength to set for the character.
       # @return [void]
       def self.strength=(val)
         @@strength = val
       end
 
-      # Retrieves the character's stamina.
+      # Returns the current stamina of the character.
       # @return [Integer] the character's stamina.
       def self.stamina
         @@stamina
       end
 
-      # Sets the character's stamina.
+      # Sets the stamina of the character.
       # @param val [Integer] the stamina to set for the character.
       # @return [void]
       def self.stamina=(val)
         @@stamina = val
       end
 
-      # Retrieves the character's reflex.
+      # Returns the current reflex of the character.
       # @return [Integer] the character's reflex.
       def self.reflex
         @@reflex
       end
 
-      # Sets the character's reflex.
+      # Sets the reflex of the character.
       # @param val [Integer] the reflex to set for the character.
       # @return [void]
       def self.reflex=(val)
         @@reflex = val
       end
 
-      # Retrieves the character's agility.
+      # Returns the current agility of the character.
       # @return [Integer] the character's agility.
       def self.agility
         @@agility
       end
 
-      # Sets the character's agility.
+      # Sets the agility of the character.
       # @param val [Integer] the agility to set for the character.
       # @return [void]
       def self.agility=(val)
         @@agility = val
       end
 
-      # Retrieves the character's intelligence.
+      # Returns the current intelligence of the character.
       # @return [Integer] the character's intelligence.
       def self.intelligence
         @@intelligence
       end
 
-      # Sets the character's intelligence.
+      # Sets the intelligence of the character.
       # @param val [Integer] the intelligence to set for the character.
       # @return [void]
       def self.intelligence=(val)
         @@intelligence = val
       end
 
-      # Retrieves the character's wisdom.
+      # Returns the current wisdom of the character.
       # @return [Integer] the character's wisdom.
       def self.wisdom
         @@wisdom
       end
 
-      # Sets the character's wisdom.
+      # Sets the wisdom of the character.
       # @param val [Integer] the wisdom to set for the character.
       # @return [void]
       def self.wisdom=(val)
         @@wisdom = val
       end
 
-      # Retrieves the character's discipline.
+      # Returns the current discipline of the character.
       # @return [Integer] the character's discipline.
       def self.discipline
         @@discipline
       end
 
-      # Sets the character's discipline.
+      # Sets the discipline of the character.
       # @param val [Integer] the discipline to set for the character.
       # @return [void]
       def self.discipline=(val)
         @@discipline = val
       end
 
-      # Retrieves the character's charisma.
+      # Returns the current charisma of the character.
       # @return [Integer] the character's charisma.
       def self.charisma
         @@charisma
       end
 
-      # Sets the character's charisma.
+      # Sets the charisma of the character.
       # @param val [Integer] the charisma to set for the character.
       # @return [void]
       def self.charisma=(val)
         @@charisma = val
       end
 
-      # Retrieves the character's favors.
+      # Returns the current favors of the character.
       # @return [Integer] the character's favors.
       def self.favors
         @@favors
       end
 
-      # Sets the character's favors.
+      # Sets the favors of the character.
       # @param val [Integer] the favors to set for the character.
       # @return [void]
       def self.favors=(val)
         @@favors = val
       end
 
-      # Retrieves the character's TDPS (Total Damage Per Second).
+      # Returns the current TDPS of the character.
       # @return [Integer] the character's TDPS.
       def self.tdps
         @@tdps
       end
 
-      # Sets the character's TDPS.
+      # Sets the TDPS of the character.
       # @param val [Integer] the TDPS to set for the character.
       # @return [void]
       def self.tdps=(val)
         @@tdps = val
       end
 
-      # Retrieves the character's luck.
+      # Returns the current luck of the character.
       # @return [Integer] the character's luck.
       def self.luck
         @@luck
       end
 
-      # Sets the character's luck.
+      # Sets the luck of the character.
       # @param val [Integer] the luck to set for the character.
       # @return [void]
       def self.luck=(val)
         @@luck = val
       end
 
-      # Retrieves the character's balance.
+      # Returns the current balance of the character.
       # @return [Integer] the character's balance.
       def self.balance
         @@balance
       end
 
-      # Sets the character's balance.
+      # Sets the balance of the character.
       # @param val [Integer] the balance to set for the character.
       # @return [void]
       def self.balance=(val)
         @@balance = val
       end
 
-      # Retrieves the character's encumbrance.
+      # Returns the current encumbrance of the character.
       # @return [Integer, nil] the character's encumbrance or nil if not set.
       def self.encumbrance
         @@encumbrance
       end
 
-      # Sets the character's encumbrance.
+      # Sets the encumbrance of the character.
       # @param val [Integer, nil] the encumbrance to set for the character.
       # @return [void]
       def self.encumbrance=(val)
         @@encumbrance = val
       end
 
-      # Retrieves the character's name from XML data.
+      # Returns the name of the character from XML data.
       # @return [String] the character's name.
       def self.name
         XMLData.name
       end
 
-      # Retrieves the character's health from XML data.
+      # Returns the health of the character from XML data.
       # @return [Integer] the character's health.
       def self.health
         XMLData.health
       end
 
-      # Retrieves the character's mana from XML data.
+      # Returns the mana of the character from XML data.
       # @return [Integer] the character's mana.
       def self.mana
         XMLData.mana
       end
 
-      # Retrieves the character's fatigue from XML data.
+      # Returns the stamina of the character from XML data as fatigue.
       # @return [Integer] the character's fatigue.
       def self.fatigue
         XMLData.stamina
       end
 
-      # Retrieves the character's spirit from XML data.
+      # Returns the spirit of the character from XML data.
       # @return [Integer] the character's spirit.
       def self.spirit
         XMLData.spirit
       end
 
-      # Retrieves the character's concentration from XML data.
+      # Returns the concentration of the character from XML data.
       # @return [Integer] the character's concentration.
       def self.concentration
         XMLData.concentration
@@ -301,8 +301,8 @@ module Lich
       # Guilds and their native mana types, frozen for immutability.
       #
       # @example
-      #   GUILD_MANA_TYPES["Necromancer"] # => "arcane"
-      #   GUILD_MANA_TYPES["Barbarian"]   # => nil
+      #   GUILD_MANA_TYPES['Necromancer'] # => 'arcane'
+      #   GUILD_MANA_TYPES['Barbarian'] # => nil
       GUILD_MANA_TYPES = {
         'Necromancer'  => 'arcane',
         'Barbarian'    => nil,
@@ -317,14 +317,14 @@ module Lich
         'Ranger'       => 'life'
       }.freeze
 
-      # Retrieves the native mana type for the character's guild.
-      # @return [String, nil] the native mana type or nil if the guild has no native type.
+      # Returns the native mana type for the current guild.
+      # @return [String, nil] the native mana type or nil if not applicable.
       def self.native_mana
         GUILD_MANA_TYPES[@@guild]
       end
 
       # Serializes the character's stats into an array.
-      # @return [Array] an array containing the character's stats.
+      # @return [Array] an array containing the serialized stats.
       def self.serialize
         [@@race, @@guild, @@gender, @@age, @@circle, @@strength, @@stamina, @@reflex, @@agility, @@intelligence, @@wisdom, @@discipline, @@charisma, @@favors, @@tdps, @@luck, @@encumbrance]
       end

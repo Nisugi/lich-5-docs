@@ -7,20 +7,19 @@
   for detecting file changes.
 =end
 
-# Provides utility methods for the Lich update system.
+# Provides utility methods for the Lich project.
 #
-# @see Lich::Util
-# @see Lich::Util::Update
+# @see Lich::Util for additional utility methods.
 module Lich
   module Util
     module Update
       module FileWriter
         # Safely writes content to a file using a temporary rename-delete pattern.
         #
-        # @param path [String] the path to the file to write
-        # @param content [String] the content to write to the file
+        # @param path [String] the path to the file to write.
+        # @param content [String] the content to write to the file.
         # @return [void]
-        # @raise [StandardError] if the write operation fails
+        # @raise [StandardError] if the write operation fails.
         def self.safe_write(path, content)
           tmp = "#{path}.tmp"
           old = "#{path}.old"
@@ -38,11 +37,12 @@ module Lich
 
         # Builds a SHA1 hash map for files in a directory matching a given pattern.
         #
-        # @param dir [String] the directory to scan for files
-        # @param pattern [String] the pattern to match files (default is '*.lic')
-        # @return [Hash] a hash mapping file names to their SHA1 hashes
+        # @param dir [String] the directory to scan for files.
+        # @param pattern [String] the pattern to match files (default is '*.lic').
+        # @return [Hash] a hash mapping file names to their SHA1 hashes.
         # @example
-        #   sha_map = Lich::Util::Update::FileWriter.build_local_sha_map("/path/to/dir")
+        #   sha_map = Lich::Util::Update::FileWriter.build_local_sha_map('/path/to/dir')
+        #   puts sha_map
         def self.build_local_sha_map(dir, pattern = '*.lic')
           Dir[File.join(dir, pattern)].each_with_object({}) do |path, map|
             body = File.binread(path)

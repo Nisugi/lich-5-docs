@@ -15,7 +15,7 @@ module Lich
       end
 
       # Sets the name for the account.
-      # @param value [String] the new account name
+      # @param value [String] the name to set for the account
       # @return [void]
       def self.name=(value)
         @@name = value
@@ -29,7 +29,7 @@ module Lich
       end
 
       # Sets the character for the account.
-      # @param value [String] the new character name
+      # @param value [String] the character name to set
       # @return [void]
       def self.character=(value)
         @@character = value
@@ -52,7 +52,7 @@ module Lich
       end
 
       # Sets the subscription type for the account.
-      # @param value [String] the new subscription type (NORMAL, PREMIUM, TRIAL, INTERNAL, FREE)
+      # @param value [String] the subscription type to set (NORMAL, PREMIUM, TRIAL, INTERNAL, FREE)
       # @return [void]
       def self.subscription=(value)
         if value =~ /(NORMAL|PREMIUM|TRIAL|INTERNAL|FREE)/
@@ -68,7 +68,7 @@ module Lich
       end
 
       # Sets the game code for the account.
-      # @param value [String] the new game code
+      # @param value [String] the game code to set
       # @return [void]
       def self.game_code=(value)
         @@game_code = value
@@ -76,13 +76,13 @@ module Lich
 
       # Returns the members associated with the account.
       #
-      # @return [Hash] a hash of member codes and names
+      # @return [Hash] a hash of member character codes and names
       def self.members
         @@members
       end
 
       # Sets the members for the account based on a formatted string.
-      # @param value [String] the formatted string containing member codes and names
+      # @param value [String] the formatted string containing member character codes and names
       # @return [void]
       def self.members=(value)
         potential_members = {}
@@ -93,7 +93,7 @@ module Lich
         @@members = potential_members
       end
 
-      # Returns the character names of all members associated with the account.
+      # Returns the character names of the members associated with the account.
       #
       # @return [Array<String>] an array of character names
       def self.characters

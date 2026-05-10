@@ -8,6 +8,9 @@
   structure, and delegates to ReleaseInstaller for actual installation.
 =end
 
+# Provides utility methods for the Lich5 project.
+#
+# @see Lich::Util
 module Lich
   module Util
     module Update
@@ -18,19 +21,19 @@ module Lich
       # structure, and delegates to ReleaseInstaller for actual installation.
       class BranchInstaller
         # Initializes a new BranchInstaller.
-        # @param snapshot_manager [Object] an instance responsible for managing snapshots
-        # @param release_installer [Object] an instance responsible for installing releases
+        # @param snapshot_manager [Object] the manager for handling snapshots
+        # @param release_installer [Object] the installer for handling releases
         # @return [void]
         def initialize(snapshot_manager, release_installer)
           @snapshot_manager = snapshot_manager
           @release_installer = release_installer
         end
 
-        # Downloads and updates the specified branch from GitHub.
+        # Downloads and installs the specified branch update from GitHub.
         #
         # @param branch_spec [String] the branch specification in owner:branch_name format or just branch_name
         # @return [void]
-        # @raise [StandardError] if the branch specification is invalid or download fails
+        # @raise StandardError if the branch specification is invalid or download fails
         def download_branch_update(branch_spec)
           branch_spec = branch_spec.strip
           if branch_spec.empty?

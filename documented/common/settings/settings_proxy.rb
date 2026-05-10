@@ -2,7 +2,7 @@ module Lich
   module Common
     # A proxy class for managing settings with a target object.
     #
-    # This class allows for dynamic delegation of method calls to the target object,
+    # This class allows for dynamic delegation of method calls to a target object,
     # while maintaining a context of scope and path for settings management.
     #
     # @see Lich::Common::Settings
@@ -11,10 +11,10 @@ module Lich
 
       # Initializes a new SettingsProxy instance.
       #
-      # @param settings_module [Module] the settings module that manages logging and state
+      # @param settings_module [Module] the settings module to use for logging and management
       # @param scope [Object] the scope in which the settings are applied
-      # @param path [Array<String>] the path to the settings
-      # @param target [Object] the target object to which settings are delegated
+      # @param path [Array] the path to the settings
+      # @param target [Object] the target object to delegate method calls to
       # @param detached [Boolean] whether the proxy is detached from the target (default: false)
       # @param script_name [String, nil] optional script name for logging
       # @return [SettingsProxy]
@@ -37,14 +37,11 @@ module Lich
         !!@detached
       end
 
-      # Checks if the target is nil.
-      #
-      # @return [Boolean] true if the target is nil, false otherwise
       def nil?
         @target.nil?
       end
 
-      # Performs a binary operation with the target and another value.
+      # Performs a binary operation with the target object.
       #
       # @param operator [Symbol] the operator to apply (e.g., :+, :-, :==)
       # @param other [Object] the other operand for the operation
@@ -154,7 +151,7 @@ module Lich
       # Converts the target object to JSON format.
       #
       # @param args [Array] optional arguments for JSON conversion
-      # @return [String] the JSON representation of the target
+      # @return [String] the JSON representation of the target object
       # @raise [NoMethodError] if the target does not respond to :to_json
       def to_json(*args)
         if @target.respond_to?(:to_json)
@@ -280,9 +277,11 @@ module Lich
 
       # Handles calls to methods that are not explicitly defined in the proxy.
       #
+      # This method delegates the call to the target object if it responds to the method.
+      #
       # @param method [Symbol] the name of the method being called
-      # @param args [Array] arguments for the method
-      # @param block [Proc] optional block for the method
+      # @param args [Array] arguments for the method call
+      # @param block [Proc] optional block for the method call
       # @return [Object] the result of the method call or raises NoMethodError
       def method_missing(method, *args, &block)
         @settings_module._log(Settings::LOG_LEVEL_DEBUG, LOG_PREFIX, -> { "CALL scope: #{@scope.inspect}, path: #{@path.inspect}, method: #{method}, args: #{args.inspect}, target_object_id: #{@target.object_id}" })
@@ -321,7 +320,7 @@ module Lich
 
       # Handles the result of non-destructive method calls.
       #
-      # @param method [Symbol] the name of the method that was called
+      # @param method [Symbol] the method that was called
       # @param result [Object] the result of the method call
       # @return [Object] the processed result, potentially wrapped in a new SettingsProxy
       def handle_non_destructive_result(method, result)

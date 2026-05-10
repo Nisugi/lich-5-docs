@@ -6,18 +6,9 @@ require 'rbconfig'
 module Lich
   # Provides settings and management for session handling.
   #
-  # This module includes methods for registering, updating,
-  # and unregistering sessions, as well as checking their status.
-  #
   # @see Lich::Common::FeatureFlags
   module Common
     module SessionsSettings
-      # Feature flag for enabling session summary storage and reporting.
-      #
-      # @example
-      #   if Lich::Common::SessionsSettings::FEATURE_FLAG
-      #     # Feature is enabled
-      #   end
       FEATURE_FLAG = :session_summary_store_and_reporting
       HEARTBEAT_INTERVAL_SECONDS = 90
       STALE_THRESHOLD_SECONDS = 360
@@ -25,7 +16,6 @@ module Lich
       ADAPTER_MUTEX = Mutex.new
 
       # Checks if the session summary store and reporting feature is enabled.
-      #
       # @return [Boolean] true if the feature is enabled, false otherwise
       def self.enabled?
         return false unless defined?(Lich::Common::FeatureFlags)
@@ -34,7 +24,6 @@ module Lich
       end
 
       # Retrieves the session database adapter, initializing it if necessary.
-      #
       # @return [SessionDatabaseAdapter] the session database adapter instance
       def self.adapter
         return @adapter if @adapter
@@ -45,7 +34,6 @@ module Lich
       end
 
       # Registers a new session with the given parameters.
-      #
       # @param pid [Integer] the process ID of the session
       # @param session_name [String] the name of the session
       # @param role [String] the role of the session
@@ -79,7 +67,6 @@ module Lich
       end
 
       # Updates the heartbeat for an existing session.
-      #
       # @param pid [Integer] the process ID of the session
       # @param state [String, nil] the current state of the session
       # @param hidden [Boolean, nil] whether the session is hidden
@@ -87,7 +74,7 @@ module Lich
       # @param role [String, nil] the role of the session
       # @param frontend [String, nil] optional frontend identifier
       # @param game_code [String, nil] optional game code
-      # @param last_utilization_at [Integer, nil] timestamp of last utilization
+      # @param last_utilization_at [Integer, nil] optional timestamp of last utilization
       # @return [void]
       def self.heartbeat(pid:, state: nil, hidden: nil, session_name: nil, role: nil, frontend: nil, game_code: nil, last_utilization_at: nil)
         return unless enabled?
@@ -111,9 +98,8 @@ module Lich
         )
       end
 
-      # Unregisters a session by its process ID.
-      #
-      # @param pid [Integer] the process ID of the session to unregister
+      # Unregisters a session by marking it as exited.
+      # @param pid [Integer] the process ID of the session
       # @return [void]
       def self.unregister_session(pid:)
         return unless enabled?
@@ -128,10 +114,10 @@ module Lich
         )
       end
 
-      # Takes a snapshot of the current sessions and their states.
-      #
+      # Takes a snapshot of the current active sessions.
       # @return [Hash] a hash containing session statistics and details
-      # @raise [StandardError] if an error occurs while taking the snapshot
+      # @example Get the current session snapshot
+      #   Lich::Common::SessionsSettings.snapshot
       def self.snapshot
         return disabled_snapshot unless enabled?
 
@@ -183,7 +169,6 @@ module Lich
       end
 
       # Formats the last utilization timestamp into seconds ago.
-      #
       # @param last_utilization_at [Integer, nil] the last utilization timestamp
       # @param now_epoch [Integer] the current epoch time
       # @return [Integer, nil] seconds ago since last utilization, or nil if not applicable
@@ -196,10 +181,9 @@ module Lich
       private_class_method :format_last_utilization
 
       # Calculates the age of the last heartbeat.
-      #
       # @param last_heartbeat_at [Integer, nil] the last heartbeat timestamp
       # @param now_epoch [Integer] the current epoch time
-      # @return [Integer, nil] age in seconds since last heartbeat, or nil if not applicable
+      # @return [Integer, nil] age of the last heartbeat in seconds, or nil if not applicable
       def self.heartbeat_age(last_heartbeat_at, now_epoch)
         return nil if last_heartbeat_at.nil?
 
@@ -208,8 +192,7 @@ module Lich
       end
       private_class_method :heartbeat_age
 
-      # Determines if a session is stale based on its last heartbeat.
-      #
+      # Determines if a session is stale based on the last heartbeat.
       # @param last_heartbeat_at [Integer, nil] the last heartbeat timestamp
       # @param now_epoch [Integer] the current epoch time
       # @return [Boolean] true if the session is stale, false otherwise
@@ -219,9 +202,8 @@ module Lich
       end
       private_class_method :stale?
 
-      # Checks the OS presence of a process based on its PID.
-      #
-      # @param pid [Integer] the process ID to check
+      # Checks the OS presence of a session based on its PID and session name.
+      # @param pid [Integer] the process ID of the session
       # @param session_name [String] the name of the session
       # @param now [Integer] the current epoch time
       # @return [Hash] a hash containing OS presence details
@@ -239,6 +221,10 @@ module Lich
         }
       end
 
+      # Checks if a process is alive based on its PID.
+      # @param pid [Integer] the process ID to check
+      # @return [Boolean] true if the process is alive, false otherwise
+      # @api private
       def self.process_alive?(pid)
         Process.kill(0, pid.to_i)
         true
@@ -252,10 +238,10 @@ module Lich
       private_class_method :process_alive?
 
       # Checks if the session name matches the command line of the process.
-      #
       # @param pid [Integer] the process ID to check
       # @param session_name [String] the name of the session
-      # @return [Integer, nil] 1 if matches, 0 if not, or nil if an error occurs
+      # @return [Integer, nil] 1 if the name matches, 0 if it does not, or nil on error
+      # @api private
       def self.name_matches_process?(pid, session_name)
         return nil if session_name.to_s.strip.empty?
 
@@ -269,6 +255,10 @@ module Lich
       private_class_method :name_matches_process?
       private_class_method :os_presence
 
+      # Retrieves the command line of a process based on its PID.
+      # @param pid [Integer] the process ID to check
+      # @return [String, nil] the command line of the process, or nil on error
+      # @api private
       def self.process_command_line(pid)
         case RbConfig::CONFIG['host_os']
         when /linux/, /darwin|mac os/
@@ -285,10 +275,10 @@ module Lich
       end
       private_class_method :process_command_line
 
-      # Sweeps and unregisters sessions that are no longer alive.
-      #
+      # Sweeps and marks dead sessions as exited based on their PID.
       # @param now [Integer] the current epoch time
       # @return [void]
+      # @api private
       def self.sweep_dead_sessions!(now: Time.now.to_i)
         adapter.tracked_live_candidates.each do |row|
           next if process_alive?(row['pid'])
@@ -304,10 +294,10 @@ module Lich
       end
       private_class_method :sweep_dead_sessions!
 
-      # Returns a snapshot indicating that sessions are disabled.
-      #
+      # Returns a snapshot indicating that the session feature is disabled.
       # @param error [String, nil] optional error message
-      # @return [Hash] a hash containing session statistics with error details
+      # @return [Hash] a hash containing default session statistics
+      # @api private
       def self.disabled_snapshot(error: nil)
         {
           source: 'SessionsSettings',

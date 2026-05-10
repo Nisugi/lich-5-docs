@@ -1,13 +1,10 @@
 module Lich
   module Gemstone
     module Armaments
-      # Provides static weapon statistics for various weapon types.
-      #
+      # Static array of weapon stats indexed by weapon identifiers.
       # Each weapon entry contains metadata such as category, base name,
-      # alternative names, damage types, damage factors, armor avoidance by armor
-      # size group (ASG), base roundtime (RT), and minimum RT.
-      #
-      # @see Lich::Gemstone::Armaments for related armament classes.
+      # alternative names, damage types, damage factors, armor avoidance by
+      # armor size group (ASG), base roundtime (RT), and minimum RT.
       module WeaponStats
 # Static array of weapon stats indexed by weapon identifiers. Each weapon
 # entry contains metadata such as category, base name, alternative names,
@@ -44,12 +41,16 @@ module Lich
             :min_rt        => 4,
           },
 =end
-        # A hash containing weapon statistics for the runestave.
-        #
-        # Each entry includes details such as category, base name, all names,
-        # damage types, damage factors, armor avoidance by armor size group,
+        # A hash containing weapon stats for various weapons.
+        # Each weapon's stats include category, base name, all names,
+        # damage types, damage factors, armor avoidance by ASG,
         # base roundtime, and minimum roundtime.
         @@weapon_stats_runestave = {
+          # Weapon stats for the runestave.
+          #
+          # @return [Hash] weapon stats including category, base name,
+          #   all names, damage types, damage factors, armor avoidance,
+          #   base roundtime, and minimum roundtime.
           :runestave => {
             :category      => :runestave,
             :base_name     => "runestave",

@@ -15,8 +15,7 @@ module Lich
         # @param master_password [String, nil] optional master password for enhanced mode
         # @return [Hash] the updated entry with the new password
         # @raise [ArgumentError] if required parameters are missing for the specified mode
-        # @raise [NotImplementedError] if the ssh_key mode is used
-        # @raise [ArgumentError] if an unknown encryption mode is specified
+        # @raise [NotImplementedError] if the encryption mode is not implemented
         def self.change_password(entry:, new_password:, account_name: nil, master_password: nil)
           mode = entry[:encryption_mode]&.to_sym || :plaintext
 
@@ -59,8 +58,7 @@ module Lich
         # @param master_password [String, nil] optional master password for enhanced mode
         # @return [String] the decrypted or plaintext password
         # @raise [ArgumentError] if required parameters are missing for the specified mode
-        # @raise [NotImplementedError] if the ssh_key mode is used
-        # @raise [ArgumentError] if an unknown encryption mode is specified
+        # @raise [NotImplementedError] if the encryption mode is not implemented
         def self.get_password(entry:, account_name: nil, master_password: nil)
           mode = entry[:encryption_mode]&.to_sym || :plaintext
           encrypted_password = entry[:password]

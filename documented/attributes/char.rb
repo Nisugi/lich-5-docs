@@ -4,74 +4,74 @@ module Lich
     # Represents a character in the game.
     #
     # This class provides methods to access various character attributes.
-    #
-    # @see XMLData for data retrieval.
+    # @see Lich::Common
     class Char
       # Initializes the character (deprecated).
       #
+      # This method is no longer used and should be updated in scripts.
       # @param _blah [Object] unused parameter
       # @return [void]
-      # @deprecated Char.init is no longer used.
+      # @deprecated
       def Char.init(_blah)
         echo 'Char.init is no longer used. Update or fix your script.'
       end
 
       # Returns the name of the character.
-      # @return [String] the character's name.
+      # @return [String] the character's name
       def Char.name
         XMLData.name
       end
 
       # Returns the current stance of the character.
-      # @return [String] the character's stance text.
+      # @return [String] the character's stance text
       def Char.stance
         XMLData.stance_text
       end
 
       # Returns the percentage of the character's stance.
-      # @return [Integer] the percentage value of the stance.
+      # @return [Integer] the percentage of stance
       def Char.percent_stance
         XMLData.stance_value
       end
 
       # Returns the current encumbrance of the character.
-      # @return [String] the encumbrance text.
+      # @return [String] the character's encumbrance text
       def Char.encumbrance
         XMLData.encumbrance_text
       end
 
       # Returns the percentage of the character's encumbrance.
-      # @return [Integer] the percentage value of the encumbrance.
+      # @return [Integer] the percentage of encumbrance
       def Char.percent_encumbrance
         XMLData.encumbrance_value
       end
 
       # Returns the current health of the character.
-      # @return [Integer] the character's health.
+      # @return [Integer] the character's health
       def Char.health
         XMLData.health
       end
 
       # Returns the current mana of the character.
-      # @return [Integer] the character's mana.
+      # @return [Integer] the character's mana
       def Char.mana
         XMLData.mana
       end
 
       # Returns the current spirit of the character.
-      # @return [Integer] the character's spirit.
+      # @return [Integer] the character's spirit
       def Char.spirit
         XMLData.spirit
       end
 
       # Returns the current stamina of the character.
-      # @return [Integer] the character's stamina.
+      # @return [Integer] the character's stamina
       def Char.stamina
         XMLData.stamina
       end
 
       # Returns the maximum health of the character.
-      # @return [Integer] the character's maximum health.
+      # @return [Integer] the character's maximum health
       def Char.max_health
         # Object.module_eval { XMLData.max_health }
         XMLData.max_health
@@ -79,66 +79,70 @@ module Lich
 
       # Returns the maximum health of the character (deprecated).
       #
-      # @return [Integer] the character's maximum health.
-      # @deprecated Use Char.max_health instead.
+      # This method is deprecated; use #max_health instead.
+      # @return [Integer] the character's maximum health
+      # @deprecated
       def Char.maxhealth
         Lich.deprecated("Char.maxhealth", "Char.max_health", caller[0], fe_log: true)
         Char.max_health
       end
 
       # Returns the maximum mana of the character.
-      # @return [Integer] the character's maximum mana.
+      # @return [Integer] the character's maximum mana
       def Char.max_mana
         Object.module_eval { XMLData.max_mana }
       end
 
       # Returns the maximum mana of the character (deprecated).
       #
-      # @return [Integer] the character's maximum mana.
-      # @deprecated Use Char.max_mana instead.
+      # This method is deprecated; use #max_mana instead.
+      # @return [Integer] the character's maximum mana
+      # @deprecated
       def Char.maxmana
         Lich.deprecated("Char.maxmana", "Char.max_mana", caller[0], fe_log: true)
         Char.max_mana
       end
 
       # Returns the maximum spirit of the character.
-      # @return [Integer] the character's maximum spirit.
+      # @return [Integer] the character's maximum spirit
       def Char.max_spirit
         Object.module_eval { XMLData.max_spirit }
       end
 
       # Returns the maximum spirit of the character (deprecated).
       #
-      # @return [Integer] the character's maximum spirit.
-      # @deprecated Use Char.max_spirit instead.
+      # This method is deprecated; use #max_spirit instead.
+      # @return [Integer] the character's maximum spirit
+      # @deprecated
       def Char.maxspirit
         Lich.deprecated("Char.maxspirit", "Char.max_spirit", caller[0], fe_log: true)
         Char.max_spirit
       end
 
       # Returns the maximum stamina of the character.
-      # @return [Integer] the character's maximum stamina.
+      # @return [Integer] the character's maximum stamina
       def Char.max_stamina
         Object.module_eval { XMLData.max_stamina }
       end
 
       # Returns the maximum stamina of the character (deprecated).
       #
-      # @return [Integer] the character's maximum stamina.
-      # @deprecated Use Char.max_stamina instead.
+      # This method is deprecated; use #max_stamina instead.
+      # @return [Integer] the character's maximum stamina
+      # @deprecated
       def Char.maxstamina
         Lich.deprecated("Char.maxstamina", "Char.max_stamina", caller[0], fe_log: true)
         Char.max_stamina
       end
 
       # Returns the percentage of the character's health.
-      # @return [Integer] the percentage value of the health.
+      # @return [Integer] the percentage of health
       def Char.percent_health
         ((XMLData.health.to_f / XMLData.max_health.to_f) * 100).to_i
       end
 
       # Returns the percentage of the character's mana.
-      # @return [Integer] the percentage value of the mana.
+      # @return [Integer] the percentage of mana
       def Char.percent_mana
         if XMLData.max_mana == 0
           100
@@ -148,13 +152,13 @@ module Lich
       end
 
       # Returns the percentage of the character's spirit.
-      # @return [Integer] the percentage value of the spirit.
+      # @return [Integer] the percentage of spirit
       def Char.percent_spirit
         ((XMLData.spirit.to_f / XMLData.max_spirit.to_f) * 100).to_i
       end
 
       # Returns the percentage of the character's stamina.
-      # @return [Integer] the percentage value of the stamina.
+      # @return [Integer] the percentage of stamina
       def Char.percent_stamina
         if XMLData.max_stamina == 0
           100
@@ -165,33 +169,35 @@ module Lich
 
       # Dumps character information (deprecated).
       #
+      # This method is no longer used and should be updated in scripts.
       # @return [void]
-      # @deprecated Char.dump_info is no longer used.
+      # @deprecated
       def Char.dump_info
         echo "Char.dump_info is no longer used. Update or fix your script."
       end
 
-      # Loads character information from a string (deprecated).
+      # Loads character information (deprecated).
       #
-      # @param _string [String] the string to load
+      # This method is no longer used and should be updated in scripts.
+      # @param _string [String] unused parameter
       # @return [void]
-      # @deprecated Char.load_info is no longer used.
+      # @deprecated
       def Char.load_info(_string)
         echo "Char.load_info is no longer used. Update or fix your script."
       end
 
-      # Checks if the character responds to a method, including Stats, Skills, and Spellsong.
-      # @param m [Symbol] the method name
-      # @param args [Array] additional arguments
-      # @return [Boolean] true if the method is available.
+      # Checks if the character responds to a method.
+      # @param m [Symbol] the method name to check
+      # @param args [Array] additional arguments for the method
+      # @return [Boolean] true if the method is supported
       def Char.respond_to?(m, *args)
         [Stats, Skills, Spellsong].any? { |k| k.respond_to?(m) } or super(m, *args)
       end
 
-      # Handles missing methods by delegating to Stats, Skills, or Spellsong.
-      # @param meth [Symbol] the method name
-      # @param args [Array] additional arguments
-      # @return [Object] the result of the delegated method or raises NoMethodError.
+      # Handles calls to methods that are not defined.
+      # @param meth [Symbol] the method name that was called
+      # @param args [Array] arguments passed to the method
+      # @return [Object] the result of the method call or raises an error
       def Char.method_missing(meth, *args)
         polyfill = [Stats, Skills, Spellsong].find { |klass|
           klass.respond_to?(meth, *args)
@@ -203,39 +209,42 @@ module Lich
         super(meth, *args)
       end
 
-      # Provides character information (deprecated).
+      # Returns character information (deprecated).
       #
+      # This method is no longer supported and should be updated in scripts.
       # @return [void]
-      # @deprecated Char.info is no longer supported.
+      # @deprecated
       def Char.info
         echo "Char.info is no longer supported. Update or fix your script."
       end
 
-      # Provides character skills information (deprecated).
+      # Returns character skills (deprecated).
       #
+      # This method is no longer supported and should be updated in scripts.
       # @return [void]
-      # @deprecated Char.skills is no longer supported.
+      # @deprecated
       def Char.skills
         echo "Char.skills is no longer supported. Update or fix your script."
       end
 
       # Returns the citizenship of the character if applicable.
-      # @return [String, nil] the citizenship value or nil if not applicable.
+      # @return [String, nil] the character's citizenship or nil
       def Char.citizenship
         Infomon.get('citizenship') if XMLData.game =~ /^GS/
       end
 
       # Sets the citizenship of the character (deprecated).
       #
-      # @param _val [String] the citizenship value
+      # This method is no longer supported and should be updated in scripts.
+      # @param _val [String] the new citizenship value
       # @return [void]
-      # @deprecated Updating via Char.citizenship is no longer supported.
+      # @deprecated
       def Char.citizenship=(_val)
         echo "Updating via Char.citizenship is no longer supported. Update or fix your script."
       end
 
-      # Returns the 'che' value of the character if applicable.
-      # @return [String, nil] the 'che' value or nil if not applicable.
+      # Returns the 'che' attribute of the character if applicable.
+      # @return [String, nil] the character's 'che' value or nil
       def Char.che
         Infomon.get('che') if XMLData.game =~ /^GS/
       end

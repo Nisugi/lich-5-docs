@@ -2,9 +2,9 @@
 
 require_relative '../../common/watchable'
 
-# Provides functionality for the Lich project.
+# Provides the main namespace for the Lich project.
 #
-# @see Lich::DragonRealms for DragonRealms specific features.
+# @see Lich::DragonRealms for DragonRealms specific functionality.
 module Lich
   module DragonRealms
     module DRInfomon
@@ -31,8 +31,7 @@ module Lich
       end
 
       # Starts a thread to monitor the game state and execute startup commands.
-      #
-      # @note This method is called automatically when the game is ready.
+      # @return [void]
       def self.watch!
         @startup_thread ||= Thread.new do
           begin
@@ -56,7 +55,7 @@ module Lich
       end
 
       # Provides the script to be executed during startup.
-      # @return [String] the startup commands to be executed.
+      # @return [String] the startup script containing game commands.
       def self.startup_script
         <<~SCRIPT
           # Populate stats, race, guild, circle, etc.
@@ -99,6 +98,8 @@ module Lich
         post_startup_checks
       end
 
+      # Performs checks after the startup process to warn about obsolete scripts and data files.
+      # @return [void]
       def self.post_startup_checks
         warn_obsolete_scripts
         warn_obsolete_data_files
@@ -109,6 +110,10 @@ module Lich
         safe_log("DRInfomon: post_startup_checks error: #{e.inspect}\n\t#{e.backtrace&.first(5)&.join("\n\t")}")
       end
 
+      # Sends a message safely, either through the messaging system or logs it directly.
+      # @param type [String] the type of message (e.g., 'error', 'info')
+      # @param text [String] the message text to send or log.
+      # @return [void]
       def self.safe_message(type, text)
         if defined?(Lich::Messaging) && Lich::Messaging.respond_to?(:msg)
           Lich::Messaging.msg(type, text)
@@ -117,6 +122,9 @@ module Lich
         end
       end
 
+      # Logs a message safely, either through the logging system or to standard error.
+      # @param text [String] the message text to log.
+      # @return [void]
       def self.safe_log(text)
         if defined?(Lich) && Lich.respond_to?(:log)
           Lich.log(text)
@@ -128,8 +136,9 @@ module Lich
       # Script names that are obsolete and should be deleted.
       # Checked on login to warn users about stale files.
       # List of obsolete script names that should be deleted.
+      #
       # @example
-      #   DR_OBSOLETE_SCRIPTS #=> ["events", "slackbot", "spellmonitor", ...]
+      #   DR_OBSOLETE_SCRIPTS #=> ["events", "slackbot", ...]
       DR_OBSOLETE_SCRIPTS = %w[
         events slackbot spellmonitor exp-monitor
         common-travel common-validation common drinfomon equipmanager
@@ -140,6 +149,7 @@ module Lich
 
       # Data filenames that are obsolete and should be deleted.
       # List of obsolete data filenames that should be deleted.
+      #
       # @example
       #   DR_OBSOLETE_DATA_FILES #=> []
       DR_OBSOLETE_DATA_FILES = %w[].freeze

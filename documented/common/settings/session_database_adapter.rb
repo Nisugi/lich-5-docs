@@ -6,14 +6,13 @@ module Lich
   module Common
     # Handles database interactions for session management.
     #
-    # This class provides methods to upsert, find, delete, and query sessions in a SQLite database.
+    # This class provides methods to upsert, find, delete, and query sessions.
     #
     # @see Lich::Common
     class SessionDatabaseAdapter
       DEFAULT_TABLE_NAME = 'session_summary_state'
 
       # Initializes a new SessionDatabaseAdapter instance.
-      #
       # @param db [SQLite3::Database, nil] the database connection (optional)
       # @param data_dir [String] the directory where the database file is located
       # @param table_name [String] the name of the table to use for sessions
@@ -23,10 +22,9 @@ module Lich
         @table_name = table_name
       end
 
-      # Upserts a session into the database.
+      # Inserts or updates a session in the database.
       #
-      # This method inserts a new session or updates an existing one based on the provided payload.
-      #
+      # This method will insert a new session or update an existing one based on the provided payload.
       # @param payload [Hash] the session data to upsert
       # @return [void]
       def upsert_session(payload)
@@ -56,7 +54,6 @@ module Lich
       end
 
       # Retrieves all active sessions from the database.
-      #
       # @return [Array<Hash>] an array of hashes representing active sessions
       def active_sessions
         with_retry do
@@ -65,7 +62,6 @@ module Lich
       end
 
       # Deletes a session from the database by its process ID.
-      #
       # @param pid [Integer] the process ID of the session to delete
       # @return [void]
       def delete_session(pid:)
@@ -74,8 +70,7 @@ module Lich
         end
       end
 
-      # Finds a session in the database by its process ID.
-      #
+      # Finds a session by its process ID.
       # @param pid [Integer] the process ID of the session to find
       # @return [Hash, nil] the session data as a hash, or nil if not found
       def find_session(pid:)
@@ -84,8 +79,7 @@ module Lich
         end
       end
 
-      # Retrieves duplicate active session names from the database.
-      #
+      # Retrieves session names that have duplicates in the active sessions.
       # @return [Array<Hash>] an array of hashes containing session names and their duplicate counts
       def duplicate_active_session_names
         with_retry do
@@ -102,8 +96,7 @@ module Lich
         end
       end
 
-      # Retrieves tracked live candidates from the database.
-      #
+      # Retrieves sessions that are currently tracked and not exited.
       # @return [Array<Hash>] an array of hashes representing tracked live candidates
       def tracked_live_candidates
         with_retry do

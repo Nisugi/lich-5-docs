@@ -29,7 +29,7 @@ module Lich
 
       # Adds a new flag with the specified key and matchers.
       # @param key [String] the key for the new flag
-      # @param matchers [Array<Regexp, String>] one or more matchers associated with the flag
+      # @param matchers [Array<String, Regexp>] one or more matchers associated with the flag
       # @return [void]
       def self.add(key, *matchers)
         @@flags[key] = false

@@ -21,8 +21,8 @@ module Lich
         @scars_cache = nil
         @cache_mutex = Mutex.new
 
-        # Retrieves injury data, utilizing cached values if available.
-        # @return [[Array<Wound>, Array<Scar>]] the cached wounds and scars data
+        # Retrieves injury data, utilizing caching for efficiency.
+        # @return [[Array<Wound>, Array<Scar>]] cached wounds and scars data
         def get_injury_data
           current_key = XMLData.injuries
 
@@ -51,10 +51,10 @@ module Lich
           end
         end
 
-        # Calculates the effective injury for a given body part based on wounds and scars.
+        # Calculates the effective injury from wounds and scars for a given body part.
         # @param body_part [Symbol] the body part to check (e.g., :leftArm)
-        # @param wounds_hash [Hash] a hash mapping body parts to their wound counts
-        # @param scars_hash [Hash] a hash mapping body parts to their scar counts
+        # @param wounds_hash [Hash] a hash mapping body parts to wound counts
+        # @param scars_hash [Hash] a hash mapping body parts to scar counts
         # @return [Integer] the effective injury value
         def effective_injury_from_hashes(body_part, wounds_hash, scars_hash)
           scar = scars_hash[body_part.to_s] || 0
@@ -65,9 +65,9 @@ module Lich
         end
 
         # Checks if there are injuries at a specific rank for the given body parts.
-        # @param rank [Integer] the injury rank to check against
-        # @param wounds_hash [Hash] a hash mapping body parts to their wound counts
-        # @param scars_hash [Hash] a hash mapping body parts to their scar counts
+        # @param rank [Integer] the injury rank to check
+        # @param wounds_hash [Hash] a hash mapping body parts to wound counts
+        # @param scars_hash [Hash] a hash mapping body parts to scar counts
         # @param parts [Array<Symbol>] the body parts to check
         # @return [Boolean] true if any specified body part has an injury at the given rank
         def injuries_at_rank?(rank, wounds_hash, scars_hash, *parts)
@@ -77,9 +77,9 @@ module Lich
         end
 
         # Checks if there are injuries at or above a specific rank for the given body parts.
-        # @param rank [Integer] the injury rank to check against
-        # @param wounds_hash [Hash] a hash mapping body parts to their wound counts
-        # @param scars_hash [Hash] a hash mapping body parts to their scar counts
+        # @param rank [Integer] the minimum injury rank to check
+        # @param wounds_hash [Hash] a hash mapping body parts to wound counts
+        # @param scars_hash [Hash] a hash mapping body parts to scar counts
         # @param parts [Array<Symbol>] the body parts to check
         # @return [Boolean] true if any specified body part has an injury at or above the given rank
         def injuries_at_or_above_rank?(rank, wounds_hash, scars_hash, *parts)

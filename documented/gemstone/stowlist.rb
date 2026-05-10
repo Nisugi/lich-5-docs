@@ -3,6 +3,7 @@ module Lich
     # Represents a list of items that can be stowed.
     #
     # This class manages the stow list entries and their states.
+    # @see Lich::Gemstone for related functionality
     class StowList
       @checked = false
 
@@ -32,28 +33,22 @@ module Lich
       end
 
       class << self
-        # Returns the current stow list.
-        # @return [Hash] a hash representing the stow list entries and their values.
         def stow_list
           @stow_list
         end
 
-        # Checks if the stow list has been validated.
-        # @return [Boolean] true if the stow list is checked, false otherwise.
         def checked?
           @checked
         end
 
-        # Sets the checked state of the stow list.
-        # @param value [Boolean] the new checked state.
         def checked=(value)
           @checked = value
         end
 
-        # Validates the stow list entries against existing containers.
+        # Checks if the stow list entries are valid.
         #
-        # @param all [Boolean] whether to validate all entries or only those in the original stow list.
-        # @return [Boolean] true if all relevant entries are valid, false otherwise.
+        # @param all [Boolean] if true, checks all entries; otherwise, only checks original stow list entries.
+        # @return [Boolean] true if all checked entries are valid, false otherwise.
         def valid?(all: false)
           # check if existing containers are valid or not
           return false unless checked?
@@ -69,7 +64,8 @@ module Lich
 
         # Resets the stow list entries to nil.
         #
-        # @param all [Boolean] whether to reset all entries or only those in the original stow list.
+        # @param all [Boolean] if true, resets all entries; otherwise, only resets original stow list entries.
+        # @return [void]
         def reset(all: false)
           @checked = false
           @stow_list.each do |key, _value|
@@ -78,10 +74,10 @@ module Lich
           end
         end
 
-        # Checks the current stow list against the game state.
+        # Checks the current stow list status and updates the checked state.
         #
-        # @param silent [Boolean] whether to suppress output during the check.
-        # @param quiet [Boolean] whether to suppress all output.
+        # @param silent [Boolean] if true, suppresses output messages.
+        # @param quiet [Boolean] if true, uses a quiet output pattern.
         # @return [void]
         def check(silent: false, quiet: false)
           if quiet

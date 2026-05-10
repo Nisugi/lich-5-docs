@@ -1,18 +1,22 @@
 module Lich
   module Gemstone
     module Armaments
-      # Static array of weapon stats indexed by weapon identifiers. Each weapon
-      # entry contains metadata such as category, base name, alternative names,
-      # damage types, damage factors, armor avoidance by armor size group (ASG),
-      # base roundtime (RT), and minimum RT.
-      #
-      # @see Lich::Gemstone::Armaments::WeaponStats
       module WeaponStats
+# Static array of weapon stats indexed by weapon identifiers.
+# Each weapon entry contains metadata such as category, base name,
+# alternative names, damage types, damage factors, armor avoidance by
+# armor size group (ASG), base roundtime (RT), and minimum RT.
 # Static array of weapon stats indexed by weapon identifiers. Each weapon
 # entry contains metadata such as category, base name, alternative names,
 # damage types, damage factors, armor avoidance by armor size group (ASG),
 # base roundtime (RT), and minimum RT.
 #
+# damage_types: Hash of damage type percentages or values.
+#
+# @param slash [Float, nil] % of slash damage
+# @param crush [Float, nil] % of crush damage
+# @param puncture [Float, nil] % of puncture damage
+# @param special [Array<String>] Array of special damage types (or empty array)
 # damage_types: Hash of damage type percentages or values.
 #   :slash    => % of slash damage (Float or nil)
 #   :crush    => % of crush damage (Float or nil)
@@ -20,8 +24,23 @@ module Lich
 #   :special  => Array of special damage types (or empty array)
 #
 # damage factor array:
+#
+# @note The damage factor array indicates the effectiveness of the weapon
+# against different armor types:
+#  [0] = nil (none)    [1] = Cloth    [2] = Leather    [3] = Scale
+#  [4] = Chain    [5] = Plate
+# damage factor array:
 #  [0] = nil (none)    [1] = Cloth    [2] = Leather    [3] = Scale    [4] = Chain    [5] = Plate
 #
+# avd_by_asg array:
+#
+# @note The armor avoidance by armor size group (ASG) array indicates
+# the weapon's effectiveness against different armor sizes:
+#  Cloth:   [1] ASG 1    [2] ASG 2      [3] nil      [4] nil
+#  Leather: [5] ASG 5    [6] ASG 6    [7] ASG 7    [8] ASG 8
+#  Scale:   [9] ASG 9    [10] ASG 10  [11] ASG 11  [12] ASG 12
+#  Chain:   [13] ASG 13  [14] ASG 14  [15] ASG 15  [16] ASG 16
+#  Plate:   [17] ASG 17  [18] ASG 18  [19] ASG 19  [20] ASG 20
 # avd_by_asg array:
 #  Cloth:   [1] ASG 1    [2] ASG 2      [3] nil      [4] nil
 #  Leather: [5] ASG 5    [6] ASG 6    [7] ASG 7    [8] ASG 8
@@ -43,7 +62,21 @@ module Lich
             :min_rt        => 4,
           },
 =end
+        # Static hash containing weapon statistics for blunt weapons.
+        # Each entry includes details such as category, base name, all names,
+        # damage types, damage factors, armor avoidance by armor size group,
+        # base roundtime, and minimum roundtime.
         @@weapon_stats_blunt = {
+          # Weapon statistics for the ball and chain.
+          #
+          # @param category [Symbol] The category of the weapon (e.g., :blunt)
+          # @param base_name [String] The primary name of the weapon
+          # @param all_names [Array<String>] An array of all names for the weapon
+          # @param damage_types [Hash] A hash of damage type percentages
+          # @param damage_factor [Array<Float>] An array of damage factors against armor types
+          # @param avd_by_asg [Array<Integer, nil>] An array of armor avoidance values by ASG
+          # @param base_rt [Integer] The base roundtime for the weapon
+          # @param min_rt [Integer] The minimum roundtime for the weapon
           :ball_and_chain => {
             :category      => :blunt,
             :base_name     => "ball and chain",
@@ -55,6 +88,16 @@ module Lich
             :base_rt       => 6,
             :min_rt        => 4,
           },
+          # Weapon statistics for the crowbill.
+          #
+          # @param category [Symbol] The category of the weapon (e.g., :blunt)
+          # @param base_name [String] The primary name of the weapon
+          # @param all_names [Array<String>] An array of all names for the weapon
+          # @param damage_types [Hash] A hash of damage type percentages
+          # @param damage_factor [Array<Float>] An array of damage factors against armor types
+          # @param avd_by_asg [Array<Integer, nil>] An array of armor avoidance values by ASG
+          # @param base_rt [Integer] The base roundtime for the weapon
+          # @param min_rt [Integer] The minimum roundtime for the weapon
           :crowbill       => {
             :category      => :blunt,
             :base_name     => "crowbill",
@@ -66,6 +109,16 @@ module Lich
             :base_rt       => 3,
             :min_rt        => 3
           },
+          # Weapon statistics for the cudgel.
+          #
+          # @param category [Symbol] The category of the weapon (e.g., :blunt)
+          # @param base_name [String] The primary name of the weapon
+          # @param all_names [Array<String>] An array of all names for the weapon
+          # @param damage_types [Hash] A hash of damage type percentages
+          # @param damage_factor [Array<Float>] An array of damage factors against armor types
+          # @param avd_by_asg [Array<Integer, nil>] An array of armor avoidance values by ASG
+          # @param base_rt [Integer] The base roundtime for the weapon
+          # @param min_rt [Integer] The minimum roundtime for the weapon
           :cudgel         => {
             :category      => :blunt,
             :base_name     => "cudgel",
@@ -77,6 +130,16 @@ module Lich
             :base_rt       => 4,
             :min_rt        => 4,
           },
+          # Weapon statistics for the leather whip.
+          #
+          # @param category [Symbol] The category of the weapon (e.g., :blunt)
+          # @param base_name [String] The primary name of the weapon
+          # @param all_names [Array<String>] An array of all names for the weapon
+          # @param damage_types [Hash] A hash of damage type percentages
+          # @param damage_factor [Array<Float>] An array of damage factors against armor types
+          # @param avd_by_asg [Array<Integer, nil>] An array of armor avoidance values by ASG
+          # @param base_rt [Integer] The base roundtime for the weapon
+          # @param min_rt [Integer] The minimum roundtime for the weapon
           :leather_whip   => {
             :category      => :blunt,
             :base_name     => "leather whip",
@@ -88,6 +151,16 @@ module Lich
             :base_rt       => 2,
             :min_rt        => 3,
           },
+          # Weapon statistics for the mace.
+          #
+          # @param category [Symbol] The category of the weapon (e.g., :blunt)
+          # @param base_name [String] The primary name of the weapon
+          # @param all_names [Array<String>] An array of all names for the weapon
+          # @param damage_types [Hash] A hash of damage type percentages
+          # @param damage_factor [Array<Float>] An array of damage factors against armor types
+          # @param avd_by_asg [Array<Integer, nil>] An array of armor avoidance values by ASG
+          # @param base_rt [Integer] The base roundtime for the weapon
+          # @param min_rt [Integer] The minimum roundtime for the weapon
           :mace           => {
             :category      => :blunt,
             :base_name     => "mace",
@@ -99,6 +172,16 @@ module Lich
             :base_rt       => 4,
             :min_rt        => 4,
           },
+          # Weapon statistics for the morning star.
+          #
+          # @param category [Symbol] The category of the weapon (e.g., :blunt)
+          # @param base_name [String] The primary name of the weapon
+          # @param all_names [Array<String>] An array of all names for the weapon
+          # @param damage_types [Hash] A hash of damage type percentages
+          # @param damage_factor [Array<Float>] An array of damage factors against armor types
+          # @param avd_by_asg [Array<Integer, nil>] An array of armor avoidance values by ASG
+          # @param base_rt [Integer] The base roundtime for the weapon
+          # @param min_rt [Integer] The minimum roundtime for the weapon
           :morning_star   => {
             :category      => :blunt,
             :base_name     => "morning star",
@@ -110,6 +193,16 @@ module Lich
             :base_rt       => 5,
             :min_rt        => 4,
           },
+          # Weapon statistics for the war hammer.
+          #
+          # @param category [Symbol] The category of the weapon (e.g., :blunt)
+          # @param base_name [String] The primary name of the weapon
+          # @param all_names [Array<String>] An array of all names for the weapon
+          # @param damage_types [Hash] A hash of damage type percentages
+          # @param damage_factor [Array<Float>] An array of damage factors against armor types
+          # @param avd_by_asg [Array<Integer, nil>] An array of armor avoidance values by ASG
+          # @param base_rt [Integer] The base roundtime for the weapon
+          # @param min_rt [Integer] The minimum roundtime for the weapon
           :war_hammer     => {
             :category      => :blunt,
             :base_name     => "war hammer",

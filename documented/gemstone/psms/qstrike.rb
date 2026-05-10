@@ -1,33 +1,30 @@
 
 # Provides functionality for the Lich5 project.
 #
-# @see Lich::Gemstone
+# @see Lich::Gemstone for gemstone-related features.
 module Lich
   module Gemstone
     # Module for handling QStrike combat mechanics.
     #
     # This module includes methods for calculating attack costs,
-    # managing combat actions, and handling weapon statistics.
+    # managing combat settings, and executing attacks.
     module QStrike
       # Speed multipliers by weapon category
       # Applied per-weapon to calculate Equipment Speed
-      # Speed multipliers by weapon category.
-      #
-      # Applied per-weapon to calculate Equipment Speed.
-      # @see #weapon_speed_for
       SPEED_MULTIPLIERS = {
         two_handed: 1.5,
         polearm: 1.5,
         ranged: 2.5,
         # All others default to 1.0
       }.freeze
+      # Default speed multiplier for weapons not categorized.
+      #
+      # @example
+      #   DEFAULT_MULTIPLIER # => 1.0
       DEFAULT_MULTIPLIER = 1.0
 
       # Striking Asp stance cost multipliers by rank
       # Rank 1 = 2/3 cost, Rank 2 = 1/2 cost, Rank 3 = 1/3 cost
-      # Striking Asp stance cost multipliers by rank.
-      #
-      # Rank 1 = 2/3 cost, Rank 2 = 1/2 cost, Rank 3 = 1/3 cost.
       STRIKING_ASP_MULTIPLIERS = {
         1 => 2.0 / 3.0,  # 0.667
         2 => 1.0 / 2.0,  # 0.500
@@ -48,15 +45,19 @@ module Lich
       ].freeze
 
       # Default settings
+      # Default settings for QStrike module.
+      #
+      # @example
+      #   DEFAULT_SETTINGS # => { reserve: 1, adaptive: false }
       DEFAULT_SETTINGS = {
         reserve: 1,
         adaptive: false
       }.freeze
 
 
-      # Loads the default settings for QStrike.
+      # Loads and returns the default settings for QStrike.
       #
-      # @return [Hash] a hash containing the default settings.
+      # @return [Hash] the current default settings.
       def self.defaults
         load_settings
         {
@@ -65,9 +66,9 @@ module Lich
         }
       end
 
-      # Sets new default settings for QStrike.
+      # Updates the default settings with new values.
       #
-      # @param new_defaults [Hash] a hash of new default settings.
+      # @param new_defaults [Hash] new settings to apply.
       # @return [void]
       def self.defaults=(new_defaults)
         load_settings
@@ -75,7 +76,7 @@ module Lich
         save_settings
       end
 
-      # Sets a specific default setting for QStrike.
+      # Sets a specific default setting to a new value.
       #
       # @param key [Symbol] the setting key to update.
       # @param value [Object] the new value for the setting.
@@ -89,13 +90,14 @@ module Lich
       # Retrieves the value of a specific default setting.
       #
       # @param key [Symbol] the setting key to retrieve.
-      # @return [Object] the value of the setting, or the default if not set.
+      # @return [Object] the value of the specified setting.
       def self.default(key)
         load_settings
         @settings.fetch(key.to_sym, DEFAULT_SETTINGS[key.to_sym])
       end
 
       # Resets all default settings to their initial values.
+      #
       # @return [void]
       def self.reset_defaults
         @settings = DEFAULT_SETTINGS.dup
@@ -131,11 +133,11 @@ module Lich
 
       # Calculates the QStrike reduction based on provided parameters.
       #
-      # @param reserve [Integer, nil] the reserve stamina to consider.
+      # @param reserve [Integer, nil] the stamina reserve to consider.
       # @param attack_cost [Integer] the cost of the attack.
       # @param attack_name [String, nil] the name of the attack to look up.
       # @param attack_rt [Integer, nil] the current RT of the attack.
-      # @return [Hash] a hash containing the calculated QStrike details.
+      # @return [Hash] a hash containing the calculated values.
       def self.calculate(reserve: nil, attack_cost: 0, attack_name: nil, attack_rt: nil)
         reserve ||= default(:reserve)
         # Look up attack cost if name provided
@@ -198,38 +200,38 @@ module Lich
         end
       end
 
-      # Generates the QStrike command based on the provided parameters.
+      # Generates the QStrike command based on the current settings.
       #
-      # @param reserve [Integer, nil] the reserve stamina to consider.
+      # @param reserve [Integer, nil] the stamina reserve to consider.
       # @param attack_cost [Integer] the cost of the attack.
       # @param attack_name [String, nil] the name of the attack to look up.
       # @param attack_rt [Integer, nil] the current RT of the attack.
-      # @return [String, nil] the generated QStrike command or nil if not applicable.
+      # @return [String, nil] the generated QStrike command.
       def self.command(reserve: nil, attack_cost: 0, attack_name: nil, attack_rt: nil)
         calculate(reserve: reserve, attack_cost: attack_cost, attack_name: attack_name, attack_rt: attack_rt)[:qstrike_cmd]
       end
 
-      # Checks if the QStrike reduction is affordable based on current stamina.
+      # Checks if the QStrike reduction can be afforded with current stamina.
       #
-      # @param reserve [Integer, nil] the reserve stamina to consider.
+      # @param reserve [Integer, nil] the stamina reserve to consider.
       # @param attack_cost [Integer] the cost of the attack.
       # @param attack_name [String, nil] the name of the attack to look up.
       # @param attack_rt [Integer, nil] the current RT of the attack.
-      # @return [Boolean] true if the reduction is affordable, false otherwise.
+      # @return [Boolean] true if the reduction can be afforded, false otherwise.
       def self.affordable?(reserve: nil, attack_cost: 0, attack_name: nil, attack_rt: nil)
         result = calculate(reserve: reserve, attack_cost: attack_cost, attack_name: attack_name, attack_rt: attack_rt)
         result[:seconds].positive?
       end
 
 
-      # Executes a QStrike action with the specified parameters.
+      # Executes a QStrike reduction and attack.
       #
-      # @param reduction [Integer] the amount of RT reduction to apply.
+      # @param reduction [Integer] the amount of reduction to apply.
       # @param attack [String] the name of the attack to execute.
       # @param target [String, nil] the target of the attack.
-      # @param reserve [Integer, nil] the reserve stamina to consider.
-      # @param adaptive [Boolean, nil] whether to adaptively reduce the RT.
-      # @return [Hash] a hash containing the result of the QStrike action.
+      # @param reserve [Integer, nil] the stamina reserve to consider.
+      # @param adaptive [Boolean, nil] whether to adaptively reduce the attack.
+      # @return [Hash] a hash containing the result of the operation.
       def self.use(reduction:, attack:, target: nil, reserve: nil, adaptive: nil)
         reserve ||= default(:reserve)
         adaptive = default(:adaptive) if adaptive.nil?
@@ -300,7 +302,7 @@ module Lich
         }
       end
 
-      # Calculates the cost for a specified reduction in seconds.
+      # Calculates the cost for a given reduction in seconds.
       #
       # @param seconds [Integer] the number of seconds to reduce.
       # @return [Integer] the cost associated with the reduction.
@@ -318,10 +320,10 @@ module Lich
         weapon_speed_for(hand)[:base_rt]
       end
 
-      # Calculates the maximum reduction possible for a given target RT.
+      # Calculates the reduction needed to reach a target RT.
       #
-      # @param target_rt [Integer] the target RT to compare against.
-      # @return [Integer] the maximum reduction in seconds.
+      # @param target_rt [Integer] the target RT to achieve.
+      # @return [Integer] the calculated reduction.
       def self.reduction_for_target_rt(target_rt)
         current_base = base_rt
         return 0 if target_rt >= current_base
@@ -330,7 +332,7 @@ module Lich
       end
 
 
-      # Finds the weapon statistics for a given hand.
+      # Finds the weapon stats for a given hand.
       #
       # @param hand [Object] the weapon object to analyze.
       # @return [Hash, nil] the weapon stats or nil if not found.
@@ -385,7 +387,7 @@ module Lich
       # Calculates the speed for a given weapon based on its stats.
       #
       # @param hand [Object] the weapon object to analyze.
-      # @return [Hash] a hash containing the weapon's speed details.
+      # @return [Hash] a hash containing the weapon's speed stats.
       def self.weapon_speed_for(hand)
         empty_result = { base_rt: 0, category: nil, equipment_speed: 0 }
         return empty_result if hand.nil? || hand.name == "Empty"
@@ -424,7 +426,7 @@ module Lich
 
       # Calculates the cost per second for QStrike reduction.
       #
-      # @return [Integer] the cost per second for the reduction.
+      # @return [Integer] the cost per second for reduction.
       def self.cost_per_second_reduction
         # Check memoization cache
         return @cached_cost if valid_cache?
@@ -515,7 +517,7 @@ module Lich
 
       # Checks if the Striking Asp buff is currently active.
       #
-      # @return [Boolean] true if the buff is active, false otherwise.
+      # @return [Boolean] true if active, false otherwise.
       def self.striking_asp_active?
         return false unless defined?(Effects::Buffs)
 
@@ -524,9 +526,6 @@ module Lich
         false
       end
 
-      # Retrieves the current rank of the Striking Asp buff.
-      #
-      # @return [Integer] the rank of the buff, or 0 if not active.
       def self.striking_asp_rank
         return 0 unless defined?(CMan)
 
@@ -537,7 +536,7 @@ module Lich
 
       # Retrieves the multiplier for the Striking Asp buff based on its rank.
       #
-      # @return [Float] the multiplier for the buff.
+      # @return [Float] the multiplier for the Striking Asp buff.
       def self.striking_asp_multiplier
         return 1.0 unless striking_asp_active?
 
@@ -588,7 +587,7 @@ module Lich
         [:Shield, :@@shield_techniques, :shield],
       ].freeze
 
-      # Looks up the cost of a specified attack by name.
+      # Looks up the cost of an attack by its name.
       #
       # @param name [String] the name of the attack to look up.
       # @return [Integer] the stamina cost of the attack.
@@ -627,21 +626,17 @@ module Lich
         0
       end
 
-      # Checks if a module is defined.
-      #
-      # @param mod_name [String] the name of the module to check.
-      # @return [Boolean] true if the module is defined, false otherwise.
       def self.defined_module?(mod_name)
         Object.const_defined?(mod_name)
       rescue StandardError
         false
       end
 
-      # Finds the maximum number of seconds of reduction possible based on available stamina.
+      # Determines the maximum number of seconds that can be afforded based on stamina.
       #
-      # @param available_stamina [Integer] the available stamina for reduction.
+      # @param available_stamina [Integer] the available stamina to use.
       # @param cost_per_second [Integer] the cost per second of reduction.
-      # @return [Integer] the maximum seconds of reduction.
+      # @return [Integer] the maximum seconds that can be afforded.
       def self.find_max_seconds(available_stamina, cost_per_second)
         return 0 if cost_per_second <= 0
 
@@ -653,10 +648,10 @@ module Lich
       end
 
 
-      # Resolves the reduction value based on the provided parameters.
+      # Resolves the reduction value based on the input parameters.
       #
-      # @param reduction [Symbol, Integer] the requested reduction value.
-      # @param reserve [Integer] the reserve stamina to consider.
+      # @param reduction [Integer, Symbol] the requested reduction value.
+      # @param reserve [Integer] the stamina reserve to consider.
       # @param attack_cost [Integer] the cost of the attack.
       # @return [Integer, nil] the resolved reduction value.
       def self.resolve_reduction(reduction, reserve, attack_cost)
@@ -688,7 +683,7 @@ module Lich
 
       # Executes the QStrike command with the specified reduction.
       #
-      # @param reduction [Integer] the amount of RT reduction to apply.
+      # @param reduction [Integer] the amount of reduction to apply.
       # @return [void]
       def self.execute_qstrike(reduction)
         return if reduction.nil? || reduction <= 0

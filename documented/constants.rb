@@ -9,7 +9,7 @@ BACKUP_DIR  ||= File.join(LICH_DIR, "backup").freeze
 
 # Indicates whether the application is in testing mode.
 #
-# @return [Boolean] true if in testing mode, false otherwise
+# @return [Boolean] true if testing is enabled, false otherwise
 TESTING = false
 
 # add this so that require statements can take the form 'lib/file'
@@ -26,8 +26,9 @@ $data_dir = "#{DATA_DIR}/"
 # A mapping of direction abbreviations to their corresponding codes.
 #
 # @example
-#   DIRMAP["out"] # => "K"
-#   DIRMAP["ne"]  # => "B"
+#   DIRMAP['out']  # => 'K'
+#   DIRMAP['ne']   # => 'B'
+#
 # @see SHORTDIR
 # @see LONGDIR
 DIRMAP = {
@@ -46,8 +47,9 @@ DIRMAP = {
 # A mapping of full direction names to their abbreviations.
 #
 # @example
-#   SHORTDIR["north"] # => "n"
-#   SHORTDIR["southwest"] # => "sw"
+#   SHORTDIR['northeast'] # => 'ne'
+#   SHORTDIR['southwest'] # => 'sw'
+#
 # @see DIRMAP
 # @see LONGDIR
 SHORTDIR = {
@@ -66,8 +68,9 @@ SHORTDIR = {
 # A mapping of direction abbreviations to their full names.
 #
 # @example
-#   LONGDIR["n"] # => "north"
-#   LONGDIR["se"] # => "southeast"
+#   LONGDIR['ne']   # => 'northeast'
+#   LONGDIR['sw']   # => 'southwest'
+#
 # @see DIRMAP
 # @see SHORTDIR
 LONGDIR = {
@@ -86,8 +89,8 @@ LONGDIR = {
 # A mapping of mental state descriptions to their corresponding codes.
 #
 # @example
-#   MINDMAP["clear as a bell"] # => "A"
-#   MINDMAP["muddled"] # => "D"
+#   MINDMAP['clear as a bell'] # => 'A'
+#   MINDMAP['muddled']         # => 'D'
 MINDMAP = {
   'clear as a bell' => 'A',
   'fresh and clear' => 'B',
@@ -101,8 +104,8 @@ MINDMAP = {
 # A mapping of icon names to their corresponding codes.
 #
 # @example
-#   ICONMAP["IconKNEELING"] # => "GH"
-#   ICONMAP["IconDEAD"] # => "B"
+#   ICONMAP['IconKNEELING']  # => 'GH'
+#   ICONMAP['IconDEAD']      # => 'B'
 ICONMAP = {
   'IconKNEELING'  => 'GH',
   'IconPRONE'     => 'G',

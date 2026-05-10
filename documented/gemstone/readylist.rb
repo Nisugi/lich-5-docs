@@ -3,7 +3,8 @@ module Lich
     # Represents a list of ready items and their storage in the game.
     #
     # This class manages the items that a player can have ready for use,
-    # including weapons and other equipment.
+    # including weapons and shields, and provides methods to check their
+    # validity and reset the lists.
     #
     # @see Lich::Gemstone::ReadyList#ready_list
     # @see Lich::Gemstone::ReadyList#store_list
@@ -64,11 +65,11 @@ module Lich
 
         # Checks if the current ready items are valid.
         #
-        # @param all [Boolean] if true, checks all items, otherwise only checks original ready items
+        # @param all [Boolean] if true, checks all items regardless of original list
         # @return [Boolean] true if all checked items are valid, false otherwise
-        # @example
-        #   ready_list.valid?(all: true)
-        # @note This method requires that the checked state is true to perform validation.
+        # @example Check validity of ready items
+        #   ready_list.valid?
+        # @note This method relies on the checked state being true.
         def valid?(all: false)
           # check if existing ready items are valid or not
           return false unless checked?
@@ -82,9 +83,9 @@ module Lich
           return true
         end
 
-        # Resets the ready and store lists to their initial state.
+        # Resets the ready and store lists to nil.
         #
-        # @param all [Boolean] if true, resets all items, otherwise only resets original items
+        # @param all [Boolean] if true, resets all items regardless of original list
         # @return [void]
         def reset(all: false)
           @checked = false
@@ -98,13 +99,11 @@ module Lich
           end
         end
 
-        # Checks the current ready list against the game state.
+        # Checks the current settings of the ready list in the game.
         #
         # @param silent [Boolean] if true, suppresses output
         # @param quiet [Boolean] if true, uses a quieter output pattern
         # @return [void]
-        # @example
-        #   ready_list.check(silent: true)
         # @note This method updates the checked state based on the results.
         def check(silent: false, quiet: false)
           if quiet

@@ -11,7 +11,7 @@ module Lich
     #
     # This class handles authentication, user messaging, and error management.
     #
-    # @see Lich::DragonRealms
+    # @see Lich::DragonRealms::Error for error handling.
     class SlackBot
       class Error < StandardError; end
 
@@ -23,7 +23,6 @@ module Lich
         attr_reader :retry_after
 
         # Initializes a new instance of the SlackBot.
-        # This method ensures that the Slack token is available and fetches the user list.
         # @return [void]
         def initialize(msg, retry_after = nil)
           super(msg)
@@ -62,13 +61,13 @@ module Lich
       end
 
       # Checks if the SlackBot has been initialized successfully.
-      # @return [Boolean] true if initialized, false otherwise
+      # @return [Boolean] true if initialized, false otherwise.
       def initialized?
         @initialized
       end
 
-      # Re-establishes the connection to Slack and fetches the user list again.
-      # @return [Boolean] true if reconnected successfully, false otherwise
+      # Reconnects the SlackBot to the Slack API.
+      # @return [Boolean] true if reconnected successfully, false otherwise.
       def reconnect!
         @error_message = nil
         @initialized = false
@@ -94,9 +93,9 @@ module Lich
         false
       end
 
-      # Checks if the provided token is authenticated with Slack.
-      # @param token [String] the Slack token to validate
-      # @return [Boolean] true if authenticated, false otherwise
+      # Checks if the provided token is authenticated with the Slack API.
+      # @param token [String] the Slack token to validate.
+      # @return [Boolean] true if authenticated, false otherwise.
       def authed?(token)
         return false unless token
 
@@ -106,8 +105,8 @@ module Lich
       end
 
       # Sends a direct message to a specified user on Slack.
-      # @param username [String] the username of the recipient
-      # @param message [String] the message content to send
+      # @param username [String] the username of the recipient.
+      # @param message [String] the message content to send.
       # @return [void]
       def direct_message(username, message)
         if username.nil? || username.to_s.strip.empty?
@@ -146,15 +145,13 @@ module Lich
         !@lnet.nil?
       end
 
-      # Sets an error message for the SlackBot and logs it.
-      # @param message [String] the error message to set
-      # @return [void]
-      # @api private
       def set_error(message)
         @error_message = message
         Lich::Messaging.msg('bold', "SlackBot: #{message}")
       end
 
+      # Ensures that a valid Slack token is available for API requests.
+      # @return [void]
       def ensure_slack_token
         unless lnet_connected?
           unless Script.exists?(LNET_SCRIPT_NAME)
@@ -189,7 +186,7 @@ module Lich
         true
       end
 
-      # Fetches the list of users from Slack, using cached data if available.
+      # Fetches the list of users from the Slack API and caches it.
       # @return [void]
       def fetch_users_list
         cached = read_users_cache
@@ -213,7 +210,7 @@ module Lich
       end
 
       # Retrieves the list of users from the Slack API, handling throttling and errors.
-      # @return [Hash] the list of users from Slack
+      # @return [Hash] a hash containing the list of users.
       def fetch_users_from_api
         retries = 0
         begin
@@ -247,8 +244,8 @@ module Lich
         end
       end
 
-      # Reads the cached user data from the database.
-      # @return [Hash, nil] the cached user data or nil if not available
+      # Reads the cached users list from the database.
+      # @return [Hash, nil] the cached users data or nil if not available.
       def read_users_cache
         data = Lich::Common::DB_Store.get_data(XMLData.game, USERS_CACHE_SCRIPT)
         return nil if data.nil? || data.empty?
@@ -258,8 +255,8 @@ module Lich
         data
       end
 
-      # Writes the user data to the cache in the database.
-      # @param members [Array<Hash>] the list of user data to cache
+      # Writes the users list to the cache in the database.
+      # @param members [Array<Hash>] the list of user data to cache.
       # @return [void]
       def write_users_cache(members)
         Lich::Common::DB_Store.store_data(
@@ -270,8 +267,8 @@ module Lich
         Lich.log "SlackBot: Cached #{members.length} Slack users for all characters"
       end
 
-      # Attempts to find a valid Slack token for the bot.
-      # @return [Boolean] true if a valid token is found, false otherwise
+      # Attempts to find a valid Slack token from the available bots.
+      # @return [Boolean] true if a valid token is found, false otherwise.
       def find_token
         return false unless lnet_available?
 
@@ -285,9 +282,9 @@ module Lich
         end
       end
 
-      # Requests a Slack token from a specified Lich bot.
-      # @param lichbot [String] the name of the Lich bot to request the token from
-      # @return [String, false] the requested token or false if not found
+      # Requests a Slack token from a specified bot.
+      # @param lichbot [String] the name of the bot to request the token from.
+      # @return [String, false] the requested token or false if not found.
       def request_token(lichbot)
         return false unless lnet_available?
 
@@ -307,12 +304,11 @@ module Lich
         end
       end
 
-      # Sends a POST request to the Slack API with the specified method and parameters.
-      # @param method [String] the API method to call
-      # @param params [Hash] the parameters to send with the request
-      # @return [Hash] the response from the Slack API
-      # @raise [ApiError] if the API returns an error
-      # @raise [NetworkError] if there is a network issue
+      # Sends a POST request to the Slack API.
+      # @param method [String] the API method to call.
+      # @param params [Hash] the parameters to send with the request.
+      # @return [Hash] the response from the Slack API.
+      # @raise [ApiError] if the API returns an error.
       def post(method, params)
         retries = 0
 
@@ -354,8 +350,8 @@ module Lich
       end
 
       # Retrieves the direct message channel ID for a specified user.
-      # @param username [String] the username of the user
-      # @return [String, nil] the channel ID or nil if not found
+      # @param username [String] the username of the user.
+      # @return [String, nil] the channel ID or nil if not found.
       def get_dm_channel(username)
         @users_list['members']&.find { |u| u['name'] == username }&.[]('id')
       end

@@ -153,7 +153,7 @@ module Lich
           false
         end
 
-        # Updates the listener information for the session.
+        # Updates the listener's connection details.
         #
         # @param host [String] the host of the listener
         # @param port [Integer] the port of the listener
@@ -170,7 +170,7 @@ module Lich
           upsert_current_session
         end
 
-        # Clears the listener information for the session.
+        # Clears the listener's connection details.
         #
         # @return [void]
         def self.clear_listener
@@ -248,9 +248,9 @@ module Lich
         end
         private_class_method :registration_current?
 
-        # Builds the current session payload with relevant information.
+        # Builds the current session payload with relevant details.
         #
-        # @return [Hash] the constructed payload for the current session
+        # @return [Hash] the constructed payload
         # @api private
         def self.build_current_payload
           {
@@ -268,9 +268,9 @@ module Lich
         end
         private_class_method :build_current_payload
 
-        # Resolves the frontend information for the session.
+        # Resolves the frontend information if available.
         #
-        # @return [String, nil] the frontend information if available, nil otherwise
+        # @return [String, nil] the frontend information or nil if not available
         # @api private
         def self.resolve_frontend
           return $frontend if defined?($frontend) && !$frontend.nil? && !$frontend.to_s.empty?
@@ -279,9 +279,9 @@ module Lich
         end
         private_class_method :resolve_frontend
 
-        # Resolves the game code for the session.
+        # Resolves the game code if available.
         #
-        # @return [String, nil] the game code if available, nil otherwise
+        # @return [String, nil] the game code or nil if not available
         # @api private
         def self.resolve_game_code
           return XMLData.game if defined?(XMLData) && XMLData.respond_to?(:game) && !XMLData.game.to_s.empty?

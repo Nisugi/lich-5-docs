@@ -8,18 +8,16 @@
   describe how to transform DragonRealms user settings.
 =end
 
-# Contains configuration settings for the Lich project.
-#
-# This module serves as a namespace for the DragonRealms settings configuration.
 module Lich
+  # Module containing configuration settings for DragonRealms.
+  #
+  # This module holds the configuration constants used by the SettingsTransformer.
+  # @see Lich::SettingsConfig
   module DragonRealms
-    # Configuration settings for transforming user settings in DragonRealms.
-    #
-    # This module holds various constants that define how user settings are transformed.
     module SettingsConfig
-      # A hash containing the transformation configuration for user settings.
+      # Configuration constants for transforming DragonRealms user settings.
       #
-      # This includes keys for different phases of transformation, fallback settings, and denylists.
+      # This constant includes various settings and mappings used in the transformation process.
       TRANSFORM_CONFIG = {
         # Phase 1: Default empty values
         empty_data_type: 'empty',

@@ -13,10 +13,13 @@
 require 'ostruct'
 
 module Lich
+  # Provides common functionality for Lich modules.
+  #
+  # @see Lich::ArgParser for argument parsing functionality.
   module Common
     CORE_ARGPARSER = true
 
-    # Provides argument parsing for lich scripts.
+    # ArgParser provides argument parsing for lich scripts.
     #
     # Matches script arguments against definition patterns and returns
     # an OpenStruct of matched values, or displays help and exits if
@@ -29,7 +32,10 @@ module Lich
       # @param data [Array<Hash>] the argument definitions to match against
       # @param flex_args [Boolean] whether to allow flexible arguments
       # @return [OpenStruct, nil] matched arguments as an OpenStruct or nil if no match
-      # @note Displays help and exits if no valid arguments are found.
+      # @example Basic argument parsing
+      #   parser = Lich::Common::ArgParser.new
+      #   result = parser.parse_args(data, true)
+      #   puts result.inspect
       def parse_args(data, flex_args = false)
         raw_args = variable.first
         baselist = variable.drop(1).dup || Array.new
@@ -91,11 +97,11 @@ module Lich
 
       private
 
-      # Checks if a given item matches a definition pattern.
+      # Checks if the provided item matches the given definition.
       #
-      # @param definition [Hash] the definition to match against
-      # @param item [String] the item to check
-      # @return [Boolean] true if the item matches the definition, false otherwise
+      # @param definition [Hash] the argument definition to match against
+      # @param item [String] the item to check for a match
+      # @return [Boolean] true if there is a match, false otherwise
       def matches_def(definition, item)
         echo "#{definition}:#{item}" if UserVars.parse_args_debug
         return true if definition[:regex] && definition[:regex] =~ item
@@ -106,7 +112,7 @@ module Lich
 
       # Checks if the provided variables match the definitions.
       #
-      # @param defs [Array<Hash>] the definitions to match against
+      # @param defs [Array<Hash>] the argument definitions to match against
       # @param vars [Array<String>] the variables to check
       # @param flex [Boolean] whether to allow flexible arguments
       # @return [OpenStruct, nil] matched arguments as an OpenStruct or nil if no match
@@ -147,9 +153,9 @@ module Lich
         args
       end
 
-      # Formats a definition item for display.
+      # Formats the argument item for display.
       #
-      # @param definition [Hash] the definition to format
+      # @param definition [Hash] the argument definition to format
       # @return [String] the formatted item string
       def format_item(definition)
         item = definition[:display] || definition[:name]

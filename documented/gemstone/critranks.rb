@@ -1,23 +1,22 @@
 # frozen_string_literal: true
 
 
-# Provides functionality related to the Lich game framework.
+# Provides functionality related to the Lich project.
 #
 # @see Lich::Gemstone
 module Lich
   module Gemstone
-    # Handles critical ranks and related data for the game.
+    # Handles critical ranks for the Gemstone game.
     #
-    # This module manages critical hit tables, types, locations, and ranks.
+    # This module manages critical hit tables and related data.
     module CritRanks
       @critical_table ||= {}
       @types           = []
       @locations       = []
       @ranks           = []
 
-      # Initializes the critical table by loading necessary files.
+      # Initializes the critical ranks module by loading critical tables.
       # @return [void]
-      # @note This method should be called to set up the critical ranks.
       def self.init
         return unless @critical_table.empty?
         Dir.glob("#{File.join(LIB_DIR, "gemstone", "critranks", "*critical_table.rb")}").each do |file|
@@ -26,22 +25,21 @@ module Lich
         create_indices
       end
 
-      # Returns the current critical table.
-      # @return [Hash] the critical table containing rank data.
+      # Returns the critical table data.
+      # @return [Hash] the critical table
       def self.table
         @critical_table
       end
 
-      # Reloads the critical table, clearing existing data.
+      # Reloads the critical table data.
       # @return [void]
-      # @api private
       def self.reload!
         @critical_table = {}
         init
       end
 
       # Returns an array of table names derived from types.
-      # @return [Array<String>] the list of table names.
+      # @return [Array<String>] the list of table names
       def self.tables
         @tables = []
         @types.each do |type|
@@ -50,25 +48,25 @@ module Lich
         @tables
       end
 
-      # Returns an array of types defined in the critical ranks.
-      # @return [Array<String>] the list of types.
+      # Returns the types of critical ranks available.
+      # @return [Array<String>] the types of critical ranks
       def self.types
         @types
       end
 
-      # Returns an array of locations defined in the critical ranks.
-      # @return [Array<String>] the list of locations.
+      # Returns the locations associated with critical ranks.
+      # @return [Array<String>] the locations
       def self.locations
         @locations
       end
 
-      # Returns an array of ranks defined in the critical ranks.
-      # @return [Array<String>] the list of ranks.
+      # Returns the ranks associated with critical hits.
+      # @return [Array<String>] the ranks
       def self.ranks
         @ranks
       end
 
-      # Cleans and normalizes the provided key for validation.
+      # Cleans and normalizes the provided key for consistency.
       # @param key [String, Symbol, Integer] the key to clean
       # @return [String, Integer] the cleaned key
       def self.clean_key(key)
@@ -81,7 +79,7 @@ module Lich
       # Validates the provided key against a list of valid options.
       # @param key [String, Symbol, Integer] the key to validate
       # @param valid [Array<String>] the list of valid keys
-      # @return [String] the cleaned key if valid
+      # @return [String] the cleaned key
       # @raise [RuntimeError] if the key is invalid
       def self.validate(key, valid)
         clean = clean_key(key)
@@ -106,21 +104,21 @@ module Lich
         end
       end
 
-      # Parses a line and filters indices based on regex matches.
+      # Parses a line of text and matches it against the critical rank indices.
       # @param line [String] the line to parse
-      # @return [Hash] filtered indices matching the line
+      # @return [Hash] matched indices
       def self.parse(line)
         @index_rx.filter do |rx, _data|
           rx =~ line.strip # need to strip spaces to support anchored regex in tables
         end
       end
 
-      # Fetches data from the critical table based on type, location, and rank.
-      # @param type [String] the type to fetch
-      # @param location [String] the location to fetch
+      # Fetches the critical rank data for the specified type, location, and rank.
+      # @param type [String] the type of critical rank
+      # @param location [String] the location of the critical rank
       # @param rank [String] the rank to fetch
-      # @return [Hash, nil] the fetched data or nil if not found
-      # @raise [StandardError] if an error occurs during fetching
+      # @return [Hash, nil] the critical rank data or nil if not found
+      # @raise [RuntimeError] if any of the parameters are invalid
       def self.fetch(type, location, rank)
         table.dig(
           validate(type, types),

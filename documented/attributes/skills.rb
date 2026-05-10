@@ -7,10 +7,7 @@ module Lich
       #
       # @param ranks [Integer, String, Symbol] the ranks to calculate the bonus for
       # @return [Integer] the calculated bonus
-      # @example
-      #   to_bonus(50) #=> 10
-      #   to_bonus("two_weapon_combat") #=> 5
-      # @note This method handles both integer ranks and skill names.
+      # @note If ranks is a String or Symbol, it retrieves the bonus from Infomon.
       def self.to_bonus(ranks)
         case ranks
         when Integer
@@ -67,12 +64,8 @@ module Lich
         end
       end
 
-      # Serializes the current skills into an array.
-      #
-      # @return [Array<Integer>] an array of the current skill values
-      # @example
-      #   serialize #=> [0, 1, 2, ...]
-      # @note This method returns the values of all defined skills.
+      # Serializes the skills into an array of their respective values.
+      # @return [Array<Integer>] an array containing the values of all skills.
       def self.serialize
         [self.two_weapon_combat, self.armor_use, self.shield_use, self.combat_maneuvers,
          self.edged_weapons, self.blunt_weapons, self.two_handed_weapons, self.ranged_weapons,

@@ -6,28 +6,26 @@ require_relative 'launch_data'
 require_relative 'login_helpers'
 require_relative 'cli_password'
 
+# Provides common functionality for the Lich application.
+#
+# @see Lich::Common::Authentication for authentication-related methods.
 module Lich
-  # Common functionality for the Lich project.
-  #
-  # @see Lich::Authentication
-  # @see Lich::CLI
   module Common
+    # Handles authentication processes within the CLI module.
+    #
+    # @see Lich::Common::Authentication for related authentication utilities.
     module Authentication
-      # CLI-related authentication methods for the Lich project.
-      #
-      # @see Lich::Common::Authentication
       module CLI
         # Executes the CLI login process for a character.
         #
-        # @param character_name [String] the name of the character to log in
-        # @param game_code [String, nil] optional game code for the character
-        # @param frontend [String, nil] optional frontend identifier
-        # @param custom_launch [String, nil] optional custom launch parameters
-        # @param data_dir [String, nil] optional directory for data files
-        # @return [LaunchData, nil] returns launch data on success, or nil on failure
-        # @example
-        #   Lich::Common::Authentication::CLI.execute("my_character", game_code: "game1")
-        # @raise [StandardError] raises an error if login fails
+        # @param character_name [String] the name of the character to log in.
+        # @param game_code [String, nil] optional game code for the character.
+        # @param frontend [String, nil] optional frontend identifier.
+        # @param custom_launch [String, nil] optional custom launch parameters.
+        # @param data_dir [String, nil] optional directory for data files.
+        # @return [LaunchData, nil] returns launch data on success, or nil on failure.
+        # @example Successful login
+        #   Lich::Common::Authentication::CLI.execute("Hero", game_code: "game123")
         def self.execute(character_name, game_code: nil, frontend: nil, custom_launch: nil, data_dir: nil)
           data_dir ||= DATA_DIR
 
@@ -91,12 +89,11 @@ module Lich
 
         # Decrypts the character's password and authenticates with the game server.
         #
-        # @param char_entry [Hash] the character entry containing authentication details
-        # @param entry_data [Hash] the entry data containing additional information
-        # @return [LaunchData, nil] returns launch data on successful authentication, or nil on failure
-        # @example
+        # @param char_entry [Hash] the character entry containing authentication details.
+        # @param entry_data [Hash] the entry data containing additional information.
+        # @return [LaunchData, nil] returns launch data on successful authentication, or nil on failure.
+        # @example Authenticate a character
         #   Lich::Common::Authentication::CLI.decrypt_and_authenticate(char_entry, entry_data)
-        # @raise [StandardError] raises an error if authentication fails
         def self.decrypt_and_authenticate(char_entry, entry_data)
           # Get encryption mode from YAML
           encryption_mode = (entry_data[:encryption_mode] || 'plaintext').to_sym

@@ -12,12 +12,8 @@ module Lich
       @@log_filter  = nil
 
       # Enables logging with an optional filter.
-      #
       # @param filter [Regexp] a regular expression to filter log messages
-      # @return [nil] 
-      # @example
-      #   Log.on(/error/) # Enables logging for messages matching 'error'
-      # @api private
+      # @return [nil] This method does not return a meaningful value.
       def self.on(filter = //)
         @@log_enabled = true
         @@log_filter = filter
@@ -31,12 +27,8 @@ module Lich
         return nil
       end
 
-      # Disables logging.
-      #
-      # @return [nil] 
-      # @example
-      #   Log.off() # Disables all logging
-      # @api private
+      # Disables logging and resets the filter.
+      # @return [nil] This method does not return a meaningful value.
       def self.off
         @@log_enabled = false
         @@log_filter = //
@@ -51,10 +43,7 @@ module Lich
       end
 
       # Checks if logging is enabled.
-      #
-      # @return [Boolean] true if logging is enabled, false otherwise
-      # @example
-      #   Log.on? # Returns true if logging is currently enabled
+      # @return [Boolean] true if logging is enabled, false otherwise.
       def self.on?
         if @@log_enabled.nil?
           begin
@@ -70,10 +59,7 @@ module Lich
       end
 
       # Retrieves the current log filter.
-      #
-      # @return [Regexp] the current log filter
-      # @example
-      #   Log.filter # Returns the current log filter as a Regexp
+      # @return [Regexp] the current log filter as a regular expression.
       def self.filter
         if @@log_filter.nil?
           begin
@@ -89,12 +75,9 @@ module Lich
       end
 
       # Outputs a log message if logging is enabled and the message matches the filter.
-      #
-      # @param msg [String, Exception] the message or exception to log
+      # @param msg [String] the message to log
       # @param label [Symbol] the label for the log message (default: :debug)
-      # @return [void] 
-      # @example
-      #   Log.out("This is a log message", label: :info) # Logs the message if conditions are met
+      # @return [void]
       def self.out(msg, label: :debug)
         return unless Script.current.vars.include?("--debug") || Log.on?
         return if msg.to_s !~ Log.filter
@@ -107,11 +90,9 @@ module Lich
         end
       end
 
-      # Writes a line to the appropriate output based on the current context.
-      #
-      # @param line [String] the line to write to output
-      # @return [void] 
-      # @api private
+      # Writes a line to the output based on the current environment settings.
+      # @param line [String] the line to write
+      # @return [void]
       def self._write(line)
         if Script.current.vars.include?("--headless") or not defined?(:_respond)
           $stdout.write(line + "\n")
@@ -122,13 +103,10 @@ module Lich
         end
       end
 
-      # Formats a message for logging with a label.
-      #
+      # Formats a message with a label for logging.
       # @param msg [String] the message to format
-      # @param label [Symbol] the label to prepend to the message
-      # @return [String] the formatted message
-      # @example
-      #   Log._view("An error occurred", :error) # Returns "[error] An error occurred"
+      # @param label [Symbol] the label to include in the formatted message
+      # @return [String] the formatted message.
       def self._view(msg, label)
         label = [Script.current.name, label].flatten.compact.join(".")
         safe = msg.inspect
@@ -136,38 +114,27 @@ module Lich
         "[#{label}] #{safe}"
       end
 
-      # Outputs a pretty-printed log message.
-      #
+      # Outputs a formatted log message using the respond method.
       # @param msg [String] the message to log
       # @param label [Symbol] the label for the log message (default: :debug)
-      # @return [void] 
-      # @example
-      #   Log.pp("This is a pretty-printed message") # Logs the message with a debug label
+      # @return [void]
       def self.pp(msg, label = :debug)
         respond _view(msg, label)
       end
 
-      # Outputs a log message, alias for #pp.
-      #
+      # Outputs a log message, alias for pp.
       # @param args [Array] the arguments to log
-      # @return [void] 
-      # @example
-      #   Log.dump("This is a dump message") # Logs the message
+      # @return [void]
       def self.dump(*args)
         pp(*args)
       end
 
       # Provides preset formatting for log messages.
-      #
-      # @see Log
       module Preset
-        # Formats a message with a preset ID.
-        #
+        # Formats a message as a preset log entry.
         # @param kind [String] the type of preset
         # @param body [String] the message body
-        # @return [String] the formatted preset message
-        # @example
-        #   Preset.as(:info, "This is an info message") # Returns "<preset id="info">This is an info message</preset>"
+        # @return [String] the formatted preset message.
         def self.as(kind, body)
           %[<preset id="#{kind}">#{body}</preset>]
         end
